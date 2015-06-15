@@ -1,0 +1,48 @@
+<div style="height: 45px;" class="row"></div>
+<div class="row">
+	<div class="col-md-6">
+		<div style="height: 60px;" class="row"></div>
+		<div class="row">
+			<div class="text-center subscription-body-heading">{{licenses[license].heading}}</div>
+		</div>
+		<div class="row">
+			<ul class="col-md-offset-2 col-md-10 subscription-benefits">
+				<li ng-repeat="b in licenses[license].benefits">
+					{{ b.text }}
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="row"><div class="subscription-licence-text text-center">Choose License Type</div></div>
+		<div style="height: 40px;" class="row"></div>
+		<div class="row">
+			<a href=""><div class="col-md-6" ng-click="set_license('individual')">
+				<div class="row text-center"><img class="img-to-inline-block" src="assets/Individual.png"></div>
+				<div style="height: 20px;" class="row"></div>
+				<div class="row">
+					<div class="col-md-offset-2 col-md-8 text-center subscription-img-tags">Individual Academic</div>
+				</div>
+			</div></a>
+			<a href=""><div class="col-md-6" ng-click="set_license('institution')">
+				<div class="row text-center"><img class="img-to-inline-block" src="assets/Institutional.png"></div>
+				<div style="height: 20px;" class="row"></div>
+				<div class="row">
+					<div class="col-md-offset-2 col-md-8 text-center subscription-img-tags">Institutional (recommended)</div>
+				</div>
+			</div></a>
+		</div>
+		<div style="height: 35px;" class="row"></div>
+		<div class="row">
+			<a href=""><div class="col-md-6" ng-click="set_license('commercial')">
+				<div class="row text-center"><img class="img-to-inline-block" src="assets/Tag.png"></div>
+				<div style="height: 20px;" class="row"></div>
+				<div class="row">
+					<div class="col-md-offset-2 col-md-8 text-center subscription-img-tags">Commercial</div>
+				</div>
+			</div></a>
+		</div>
+	</div>
+</div>
+<!--<div style="height: 45px;" class="row"></div>--!>
+<div class="row"><button type="button" class="btn btn-default text-center" ng-click="next()">NEXT</button></div>

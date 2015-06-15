@@ -1,2 +1,1 @@
-# platform-ui
-User interface code for the Phoenix subscription management platform
+Boilerplate code for starting your own Angular app.

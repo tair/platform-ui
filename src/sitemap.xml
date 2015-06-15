@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" 
+	xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+	<url>
+		<loc>http://example.com/</loc>
+		<image:image>
+			<image:loc>http://example.com/img/example.jpg</image:loc>
+			<image:title>Title</image:title>
+			<image:caption>A caption.</image:caption>
+			<image:geo_location>Redwood City, CA</image:geo_location>
+		</image:image>
+
+		<priority>0.5</priority>
+	</url>
+</urlset>

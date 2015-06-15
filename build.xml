@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<project name="boilerplate" default="main" basedir=".">
+    <description>
+        Boilerplate
+    </description>
+
+    <!--
+    ********************************
+    Global properties for this build
+    ********************************
+    //--><!-- sdfsdfasdfsdffasdf -->
+    <property name="product.name" value="PW2"/>
+    <property name="product.shortname" value="PW2"/>
+    <property environment="env"/>
+    <property name="aws" value="52.4.81.100"/>
+
+    <!--
+    ********************************
+    Tasks for NodeJS
+    ********************************
+    //-->
+    <target name="dev"
+            description="Sync dev build to /var/www/azeem/pw2/dev">
+        <exec executable="rsync">
+            <arg line="-avz --delete --safe-links
+                --exclude '.git*'
+                --exclude '.DS*'
+                --exclude '.*.sw*'
+                --exclude 'ext'
+                ./bin/dev/ /var/www/azeem/pw2/dev"/>
+        </exec>
+    </target>
+
+    <target name="prod"
+            description="Sync dev build to /var/www/azeem/pw2/prod">
+        <exec executable="rsync">
+            <arg line="-avz --delete --safe-links
+                --exclude '.git*'
+                --exclude '.DS*'
+                --exclude '.*.sw*'
+                --exclude 'ext'
+                ./bin/prod/ azeem@${aws}:/var/www/azeem/pw2/prod"/>
+        </exec>
+    </target>
+
+</project>
