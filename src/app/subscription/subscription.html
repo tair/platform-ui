@@ -23,7 +23,6 @@
 					<!-- Tab pages --!>
 					<div class="tab-page" ng-include="templates.chooseTab" ng-if="currentTab == 'chooseTab'"></div>
 					<div class="tab-page" ng-if="currentTab == 'infoTab'">
-						<p>Tab included</p>
 						<div class="paymentTab" ng-repeat="(key, value) in templates.infoTab" ng-include="value" ng-if"license == key"></div>
 					</div>
 					<div class="tab-page" ng-if="currentTab == 'paymentConfirmationTab'">
@@ -34,7 +33,11 @@
 		</div>
 	</div>
 	<!-- Powered By --!>
-	<div class="row"><div class="col-md-offset-8 col-md-4">
-		<div class="subscription-powered-by-text">Powered by <img src="assets/Phoenix.png"></div>
+	<div class="row"><div class="col-md-12">
+		<div style="width: 697px; display: block; margin-left: auto; margin-right: auto;">
+			<div class="row"><div class="col-md-12 text-right">
+				Powered by <img src="assets/Phoenix.png">
+			</div></div>
+		</div>
 	</div></div>
 </div>

@@ -1,6 +1,7 @@
 angular.module('boilerplate.subscription', [
   'ui.router',
   'service.title',
+  'boilerplate.subscription.info.individual',
   'boilerplate.subscription.info.institution'
 ]).config([
   '$stateProvider',

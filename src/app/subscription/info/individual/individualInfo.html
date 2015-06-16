@@ -1,0 +1,56 @@
+<div ng-controller="IndividualInfoController">
+	<form>
+		<div class="row"><div class="col-md-12">
+			Purchase academic license for individual use
+		</div></div>
+		<div class="row"><div class="col-md-12">
+			Check <a href="">this list</a> to see if you already have access to Tair through your library.
+			If your institution is subscribed and you are unable to access a page, please contact us at
+			<a href="">info@phoenixbioinformatics.org</a>
+		</div></div>
+		<div class="row">
+			<div class="col-md-6">
+				Tair academic license for individual user
+			</div>
+			<div class="col-md-6">
+				<div class="radio" ng-repeat="sub in subscriptions">
+					<label>
+						<input type="radio" name="licenseoptions" id="sub.id" value="sub.id" checked>
+						{{ sub.period }} (${{ sub.price }})
+					</label>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				*Number of subscribers<br>
+				<input type="text" required/>
+			</div>
+			<div class="col-md-6">
+				Recieve a 10% discount if you purchase 2 or more individual licenses together
+			</div>
+		</div>
+		<div class="row"><div class="col-md-12">
+			<div class="checkbox">
+				<label>
+					<input type="checkbox" value="">
+					I confirm that I am an academic or non-profit user. 
+				</label>
+			</div>
+			<div class="checkbox">
+				<label>
+					<input type="checkbox" value="">
+					I agree to <a href="">Terms of Use</a>
+				</label>
+			</div>
+		</div></div>
+		<div class="row"><div class="col-md-12">
+			Subtotal: {{ ng-model-var }}
+		</div></div>
+		<div class="row"><div class="col-md-12">
+			<button type="button" class="btn btn-default" ng-click="back()">BACK</button>
+			<button type="button" class="btn btn-default">RESET FORM</button>
+			<button type="submit" class="btn btn-success" ng-click="next()">NEXT</button>
+		</div>
+	</form>
+</div>
