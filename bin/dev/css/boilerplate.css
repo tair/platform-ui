@@ -113,7 +113,7 @@ active {
   height: 8px;
   background-color: #d1dfe6;
 }
-.subscription-tab.active {
+.subscription-tab .active {
   background-color: #97a2a7;
 }
 /*# sourceMappingURL=boilerplate.css.map */
