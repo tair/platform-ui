@@ -1,86 +1,114 @@
 <div ng-controller="IndividualPayController">
-	<div class="row">Checkout</div>
-	<form ng-submit="next()">
-		<div class="row">
-			<div class="col-md-6">
-				<div class="form-group">
-	    					<label for="firstname">*First Name</label>
-	    					<input type="text" class="form-control" id="firstname" ng-model="payment.firstname" required>
+	<div class="page" ng-if="pageNum==1">
+		<p>{{pageNum}}</p>
+		<div class="row">Checkout</div>
+		<form ng-submit="set_pageNum(2)">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+		    					<label for="firstname">*First Name</label>
+		    					<input type="text" class="form-control" id="firstname" ng-model="formdata.firstname" required>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="lastname">*Last Name</label>
+						<input type="text" class="form-control" id="lastname" ng-model="formdata.lastname" required>
+					</div>
 				</div>
 			</div>
-			<div class="col-md-6">
-				<div class="form-group">
-					<label for="lastname">*Last Name</label>
-					<input type="text" class="form-control" id="lastname" ng-model="payment.lastname" required>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="email">*Email(for reciepts/activation codes)</label>
+						<input type="email" class="form-control" id="email" ng-model="formdata.email" required>
+					</div>
 				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="institution">*Institution</label>
+						<input type="text" class="form-control" id="institution" ng-model="formdata.institution" required>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="form-group">
+						<label for="street">*Billing Address Street</label>
+						<input type="text" class="form-control" id="street" ng-model="formdata.street" required>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="city">*City</label>
+						<input type="text" class="form-control" id="city" ng-model="formdata.city" required>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="form-group">
+						<label for="state">*State</label>
+						<input type="text" class="form-control" id="state" ng-model="formdata.state" required>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="form-group">
+						<label for="zip">*Zip</label>
+						<input type="text" class="form-control" id="zip" ng-model="formdata.zip" required>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="creditcard">*Credit Card Number</label>
+						<input type="text" class="form-control" id="creditcard" ng-model="formdata.creditcard" required>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="form-group">
+						<label for="expdate">*Exp Date</label>
+						<input type="text" class="form-control" id="expdate" ng-model="formdata.expdate" required>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="form-group">
+						<label for="cvc">*CVC</label>
+						<input type="text" class="form-control" id="cvc" ng-model="formdata.cvc" required>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4 text-center"><button type="button" class="btn btn-default" ng-click="back()">BACK</button></div>
+				<div class="col-md-4 text-center"><button type="button" class="btn btn-default" ng-click="resetIndividualPayForm()">RESET</button></div>
+				<div class="col-md-4 text-center"><button type="submit" class="btn btn-success">NEXT</button></div>
+			</div>
+		</form>
+	</div>
+	<div class="page" ng-if="pageNum==2">
+		<div class="row"><div class="col-md-12">
+			Order Summary
+		</div></div>
+		<div class="row"><div class="col-md-12">
+			{{ formdata.firstname }}&nbsp;{{ formdata.lastname }}
+		</div></div>
+		<div class="row"><div class="col-md-12">
+			{{ formdata.street }},
+		</div></div>
+		<div class="row"><div class="col-md-12">
+			{{ formdata.city }},&nbsp;{{ formdata.state }}
+		</div></div>
+		<div class="row"><div class="col-md-12">
+			{{ formdata.creditcard }}
+		</div></div>
+		<div class="row">
+			<div class="col-md-6 text-center">
+				<button type="button" class="btn btn-default btn-default-tair" ng-click="set_pageNum(1)">BACK</button>
+			</div>
+			<div class="col-md-6 text-center">
+				<button type="button" class="btn btn-success btn-success-tair">BUY</button>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-md-6">
-				<div class="form-group">
-					<label for="email">*Email(for reciepts/activation codes)</label>
-					<input type="email" class="form-control" id="email" ng-model="payment.email" required>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="form-group">
-					<label for="institution">*Institution</label>
-					<input type="text" class="form-control" id="institution" ng-model="payment.institution" required>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-12">
-				<div class="form-group">
-					<label for="street">*Billing Address Street</label>
-					<input type="text" class="form-control" id="street" ng-model="payment.street" required>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-6">
-				<div class="form-group">
-					<label for="city">*City</label>
-					<input type="text" class="form-control" id="city" ng-model="payment.city" required>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="form-group">
-					<label for="state">*State</label>
-					<input type="text" class="form-control" id="state" ng-model="payment.state" required>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="form-group">
-					<label for="zip">*Zip</label>
-					<input type="text" class="form-control" id="zip" ng-model="payment.zip" required>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-6">
-				<div class="form-group">
-					<label for="creditcard">*Credit Card Number</label>
-					<input type="text" class="form-control" id="creditcard" ng-model="payment.creditcard" required>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="form-group">
-					<label for="expdate">*Exp Date</label>
-					<input type="text" class="form-control" id="expdate" ng-model="payment.expdate" required>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="form-group">
-					<label for="cvc">*CVC</label>
-					<input type="text" class="form-control" id="cvc" ng-model="payment.cvc" required>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-4 text-center"><button type="button" class="btn btn-default" ng-click="back()">BACK</button></div>
-			<div class="col-md-4 text-center"><button type="button" class="btn btn-default" ng-click="reset()">RESET</button></div>
-			<div class="col-md-4 text-center"><button type="submit" class="btn btn-success">BUY</button></div>
-		</div>
-	</form>
+	</div>
 </div>

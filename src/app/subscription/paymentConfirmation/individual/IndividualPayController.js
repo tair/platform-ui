@@ -17,23 +17,26 @@ angular.module('boilerplate.subscription.paymentConfirmation.individual').contro
 		init();
 
 		$scope.resetIndividualPayForm = function() {
-                        $scope.formdata = {
-                                firstname: '',
-                                lastname: '',
-                                email: '',
-                                institution: '',
-                                street: '',
-                                city: '',
-                                state: '',
-                                zip: '',
-                                creditcard: '',
-                                expdate: '',
-                                cvc: '',
-                        }
+			$scope.formdata.firstname = '';
+			$scope.formdata.lastname = '';
+			$scope.formdata.email = '';
+			$scope.formdata.institution = '';
+			$scope.formdata.street = '';
+			$scope.formdata.city = '';
+			$scope.formdata.state = '';
+			$scope.formdata.zip = '';
+			$scope.formdata.creditcard = '';
+			$scope.formdata.expdate = '';
+			$scope.formdata.cvc = '';
                 };
+
+		$scope.set_pageNum = function(i) {
+			$scope.pageNum = i;
+		};
 
 		function init() {
 			$scope.formdata = IndividualPayModel.formdata;
+			$scope.pageNum = IndividualPayModel.pageNum;
                 }
 	}
 ]);

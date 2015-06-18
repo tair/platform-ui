@@ -6,20 +6,16 @@
 
 angular.module(
 	/* Name */
-	'boilerplate.subscription',
+	'boilerplate.subscription.info.commercial',
 
 	/* Dependencies */
 	[
 	'ui.router',
-	'service.title',
-	'boilerplate.subscription.info.individual',
-	'boilerplate.subscription.info.institution',
-	'boilerplate.subscription.info.commercial',
-	'boilerplate.subscription.paymentConfirmation.individual'
+	'service.title'
 	])
 	.config(
 		function ($stateProvider) {
-			$stateProvider.state('subscription', {
+			/*$stateProvider.state('subscription', {
 				url: '/subscription',
 				views: {
 					'main': {
@@ -27,6 +23,6 @@ angular.module(
 						templateUrl: 'subscription/subscription.html'
 					}
 				}
-			});
+			});*/
 		});
 

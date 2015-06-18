@@ -23,7 +23,7 @@
 					<!-- Tab pages --!>
 					<div class="tab-page" ng-include="templates.chooseTab" ng-if="currentTab == 'chooseTab'"></div>
 					<div class="tab-page" ng-if="currentTab == 'infoTab'">
-						<div class="paymentTab" ng-repeat="(key, value) in templates.infoTab" ng-include="value" ng-if"license == key"></div>
+						<div class="paymentTab" ng-repeat="(key, value) in templates.infoTab" ng-include="value" ng-if="license == key"></div>
 					</div>
 					<div class="tab-page" ng-if="currentTab == 'paymentConfirmationTab'">
 						<div class="confirmationTab" ng-repeat="(key, value) in templates.paymentConfirmationTab" ng-include="value" ng-if="license == key"></div>

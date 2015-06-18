@@ -26,7 +26,8 @@ angular.module('boilerplate.subscription.paymentConfirmation.individual').factor
                                 expdate: '',
                                 cvc: '',
                         },
-
+			
+			pageNum: 1,
 		}
 	}
 ]);

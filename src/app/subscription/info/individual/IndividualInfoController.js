@@ -16,20 +16,22 @@ angular.module('boilerplate.subscription.info.individual').controller(
 	function ($scope, $rootScope, IndividualInfoModel) {
 		init();
 
-		$scope.resetIndividualForm = function() {
-			$scope.formdata = {
-				firstname: '',
-				lastname: '',
-				email: '',
-				individual: '',			
-				librarianName: '',
-				librarianEmail: '',
-				comments: '',
-			}
+		$scope.resetIndividualInfoForm = function() {
+			$scope.formdata.numOfSubscribers = '';
+			$scope.formadta.userbool = false;
+			$scope.formdata.termsbool = false;
 		};
 
 		function init() {
 			$scope.formdata = IndividualInfoModel.formdata;
+			$scope.subscriptions = IndividualInfoModel.subscriptions;
                 }
 	}
 ]);
+/*
+angular.module('boilerplate.subscription.info.individual').filter('discount', function () {
+	return function(price, numOfSubscribers) {
+		return numOfSubscribers>1 ? price+'*0.9' : price;
+	};
+});
+*/

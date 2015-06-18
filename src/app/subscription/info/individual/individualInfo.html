@@ -1,5 +1,5 @@
 <div ng-controller="IndividualInfoController">
-	<form>
+	<form ng-submit="next()">
 		<div class="row"><div class="col-md-12">
 			Purchase academic license for individual use
 		</div></div>
@@ -15,8 +15,8 @@
 			<div class="col-md-6">
 				<div class="radio" ng-repeat="sub in subscriptions">
 					<label>
-						<input type="radio" name="licenseoptions" id="sub.id" value="sub.id" checked>
-						{{ sub.period }} (${{ sub.price }})
+						<input type="radio" name="licenseoptions" id="sub.id" ng-model="$parent.price" value="{{ sub.price }}" checked>
+						{{ sub.period }}&nbsp;(${{ sub.price }})
 					</label>
 				</div>
 			</div>
@@ -24,7 +24,7 @@
 		<div class="row">
 			<div class="col-md-6">
 				*Number of subscribers<br>
-				<input type="text" required/>
+				<input type="text" ng-model="formdata.numOfSubscribers" required/>
 			</div>
 			<div class="col-md-6">
 				Recieve a 10% discount if you purchase 2 or more individual licenses together
@@ -33,24 +33,31 @@
 		<div class="row"><div class="col-md-12">
 			<div class="checkbox">
 				<label>
-					<input type="checkbox" value="">
+					<input type="checkbox" value="" ng-model="formdata.userbool">
 					I confirm that I am an academic or non-profit user. 
 				</label>
 			</div>
 			<div class="checkbox">
 				<label>
-					<input type="checkbox" value="">
+					<input type="checkbox" value="" ng-model="formdata.termsbool">
 					I agree to <a href="">Terms of Use</a>
 				</label>
 			</div>
 		</div></div>
 		<div class="row"><div class="col-md-12">
-			Subtotal: {{ ng-model-var }}
+			<!-- Subtotal: {{ price | discount: formdata.numOfSubscribers }} --!>
+			Subtotal: {{ price }}
 		</div></div>
-		<div class="row"><div class="col-md-12">
-			<button type="button" class="btn btn-default" ng-click="back()">BACK</button>
-			<button type="button" class="btn btn-default">RESET FORM</button>
-			<button type="submit" class="btn btn-success" ng-click="next()">NEXT</button>
+		<div class="row">
+			<div class="col-md-4 text-center">
+				<button type="button" class="btn btn-default btn-default-tair" ng-click="back()">BACK</button>
+			</div>
+			<div class="col-md-4 text-center">
+				<button type="button" class="btn btn-default btn-default-tair" ng-click="resetIndividualInfoForm()">RESET FORM</button>
+			</div>
+			<div class="col-md-4 text-center">
+				<button type="submit" class="btn btn-success btn-success-tair">NEXT</button>
+			</div>
 		</div>
 	</form>
 </div>
