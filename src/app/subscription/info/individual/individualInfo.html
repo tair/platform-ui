@@ -15,7 +15,7 @@
 			<div class="col-md-6">
 				<div class="radio" ng-repeat="sub in subscriptions">
 					<label>
-						<input type="radio" name="licenseoptions" id="sub.id" ng-model="$parent.price" value="{{ sub.price }}" checked>
+						<input type="radio" name="licenseoptions" id="sub.id" ng-model="$parent.price" value="{{ sub.price }}" required>
 						{{ sub.period }}&nbsp;(${{ sub.price }})
 					</label>
 				</div>
@@ -24,29 +24,29 @@
 		<div class="row">
 			<div class="col-md-6">
 				*Number of subscribers<br>
-				<input type="text" ng-model="formdata.numOfSubscribers" required/>
+				<input type="number" ng-model="formdata.numOfSubscribers" required/>
 			</div>
-			<div class="col-md-6">
-				Recieve a 10% discount if you purchase 2 or more individual licenses together
+			<div class="col-md-6" ng-if="groupDiscount.available">
+				Recieve a {{ groupDiscount.percentage }}% discount if you purchase {{ groupDiscount.group }} or more individual licenses together
 			</div>
 		</div>
 		<div class="row"><div class="col-md-12">
 			<div class="checkbox">
 				<label>
-					<input type="checkbox" value="" ng-model="formdata.userbool">
+					<input type="checkbox" value="" ng-model="formdata.userbool" required>
 					I confirm that I am an academic or non-profit user. 
 				</label>
 			</div>
 			<div class="checkbox">
 				<label>
-					<input type="checkbox" value="" ng-model="formdata.termsbool">
+					<input type="checkbox" value="" ng-model="formdata.termsbool" required>
 					I agree to <a href="">Terms of Use</a>
 				</label>
 			</div>
 		</div></div>
 		<div class="row"><div class="col-md-12">
 			<!-- Subtotal: {{ price | discount: formdata.numOfSubscribers }} --!>
-			Subtotal: {{ price }}
+			Subtotal: <span ng-if="price != null && formdata.numOfSubscribers != null">{{ get_total_price(price, formdata.numOfSubscribers)|number:2 }}</span>
 		</div></div>
 		<div class="row">
 			<div class="col-md-4 text-center">

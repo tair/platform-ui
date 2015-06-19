@@ -2,9 +2,9 @@
  * App Model
  */
 
-angular.module('boilerplate').factory(
+angular.module('platform-ui').factory(
 	/* Name */
-	'BoilerplateModel',
+	'PlatformModel',
 
 	/* Dependencies */
 	[
@@ -12,11 +12,11 @@ angular.module('boilerplate').factory(
 	/* Controller */
 	function () {
 		return {
-			title: 'Sample Angular App',
-			brand: 'Boilerplate',
+			title: 'PW2 Angular App',
+			brand: 'Platform UI',
 			author: 'Getexp',
 
-			menu: [
+			/*menu: [
 				{ label: 'Home', target: '#home' },
 				{ label: 'About', target: '',
 					dropdown: [
@@ -24,7 +24,7 @@ angular.module('boilerplate').factory(
 						{ label: 'Contact', icon: 'fa-phone', target: '#contact' }
 					]
 				}
-			]
+			]*/
 		};
 	}	
 ]);

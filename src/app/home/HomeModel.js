@@ -3,7 +3,7 @@
  * Model for root /index.html template that wraps every other view.
  */
 
-angular.module('boilerplate.home').factory(
+angular.module('platform-ui.home').factory(
 	/* Name */
 	'HomeModel',
 

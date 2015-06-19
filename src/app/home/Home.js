@@ -6,7 +6,7 @@
 
 angular.module(
 	/* Name */
-	'boilerplate.home',
+	'platform-ui.home',
 
 	/* Dependencies */
 	[

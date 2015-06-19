@@ -6,7 +6,7 @@
 
 angular.module(
 	/* Name */
-	'boilerplate.subscription.info.individual',
+	'platform-ui.subscription.info.individual',
 
 	/* Dependencies */
 	[

@@ -4,7 +4,7 @@
 
 angular.module(
 	/* Name of our app module */
-	'boilerplate',
+	'platform-ui',
 
 	/* Dependencies */
 	[
@@ -23,9 +23,9 @@ angular.module(
 	'service.title',
 
 	/* App-specific */
-	'boilerplate.home',
-	'boilerplate.metering',
-	'boilerplate.subscription',
+	'platform-ui.home',
+	'platform-ui.metering',
+	'platform-ui.subscription',
 	])
 	.config(
 		function ($routeProvider, $httpProvider, $urlRouterProvider) {
@@ -51,9 +51,9 @@ angular.module(
 				.otherwise('/home');
 		})
 	.run(
-		function ($rootScope, Title, BoilerplateModel) {
+		function ($rootScope, Title, PlatformModel) {
 			/**
 			 * Set title
 			 */
-			Title.setSuffix(' | ' + BoilerplateModel.brand);
+			Title.setSuffix(' | ' + PlatformModel.brand);
 		});

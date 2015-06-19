@@ -2,7 +2,7 @@
  * Subscription Controller
  */
 
-angular.module('boilerplate.subscription').controller(
+angular.module('platform-ui.subscription').controller(
 	/* Name */
 	'SubscriptionController',
 

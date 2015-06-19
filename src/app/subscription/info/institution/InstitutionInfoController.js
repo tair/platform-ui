@@ -2,7 +2,7 @@
  * Subscription Controller
  */
 
-angular.module('boilerplate.subscription.info.institution').controller(
+angular.module('platform-ui.subscription.info.institution').controller(
 	/* Name */
 	'InstitutionInfoController',
 

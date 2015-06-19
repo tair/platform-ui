@@ -2,7 +2,7 @@
  * Subscription Controller
  */
 
-angular.module('boilerplate.subscription.info.commercial').controller(
+angular.module('platform-ui.subscription.info.commercial').controller(
 	/* Name */
 	'CommercialInfoController',
 

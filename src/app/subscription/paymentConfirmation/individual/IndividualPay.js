@@ -6,7 +6,7 @@
 
 angular.module(
 	/* Name */
-	'boilerplate.subscription.paymentConfirmation.individual',
+	'platform-ui.subscription.paymentConfirmation.individual',
 
 	/* Dependencies */
 	[

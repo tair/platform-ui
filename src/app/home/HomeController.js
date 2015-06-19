@@ -2,7 +2,7 @@
  * Home Controller
  */
 
-angular.module('boilerplate.home').controller(
+angular.module('platform-ui.home').controller(
 	/* Name */
 	'HomeController',
 

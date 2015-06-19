@@ -2,7 +2,7 @@
  * IndividualInfo Controller
  */
 
-angular.module('boilerplate.subscription.paymentConfirmation.individual').controller(
+angular.module('platform-ui.subscription.paymentConfirmation.individual').controller(
 	/* Name */
 	'IndividualPayController',
 

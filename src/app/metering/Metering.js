@@ -6,7 +6,7 @@
 
 angular.module(
 	/* Name */
-	'boilerplate.metering',
+	'platform-ui.metering',
 
 	/* Dependencies */
 	[

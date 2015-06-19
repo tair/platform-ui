@@ -3,7 +3,7 @@
  * Model for root /index.html template that wraps every other view.
  */
 
-angular.module('boilerplate.subscription.paymentConfirmation.individual').factory(
+angular.module('platform-ui.subscription.paymentConfirmation.individual').factory(
 	/* Name */
 	'IndividualPayModel',
 

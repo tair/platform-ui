@@ -3,7 +3,7 @@
  * Model for root /index.html template that wraps every other view.
  */
 
-angular.module('boilerplate.subscription').factory(
+angular.module('platform-ui.subscription').factory(
 	/* Name */
 	'SubscriptionModel',
 

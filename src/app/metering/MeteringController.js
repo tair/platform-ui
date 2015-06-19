@@ -2,7 +2,7 @@
  * Metering Controller
  */
 
-angular.module('boilerplate.metering').controller(
+angular.module('platform-ui.metering').controller(
 	/* Name */
 	'MeteringController',
 

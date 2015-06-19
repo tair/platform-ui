@@ -3,7 +3,7 @@
  * Model for root /index.html template that wraps every other view.
  */
 
-angular.module('boilerplate.metering').factory(
+angular.module('platform-ui.metering').factory(
 	/* Name */
 	'MeteringModel',
 

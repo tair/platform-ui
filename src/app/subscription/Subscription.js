@@ -6,16 +6,16 @@
 
 angular.module(
 	/* Name */
-	'boilerplate.subscription',
+	'platform-ui.subscription',
 
 	/* Dependencies */
 	[
 	'ui.router',
 	'service.title',
-	'boilerplate.subscription.info.individual',
-	'boilerplate.subscription.info.institution',
-	'boilerplate.subscription.info.commercial',
-	'boilerplate.subscription.paymentConfirmation.individual'
+	'platform-ui.subscription.info.individual',
+	'platform-ui.subscription.info.institution',
+	'platform-ui.subscription.info.commercial',
+	'platform-ui.subscription.paymentConfirmation.individual'
 	])
 	.config(
 		function ($stateProvider) {
