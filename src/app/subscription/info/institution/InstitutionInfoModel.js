@@ -14,13 +14,13 @@ angular.module('platform-ui.subscription.info.institution').factory(
 		return {
 
 			formdata: {
-				firstname: '',
-				lastname: '',
-				email: '',
-				institution: '',
-				librarianName: '',
-				librarianEmail: '',
-				comments: '',
+				firstname: null,
+				lastname: null,
+				email: null,
+				institution: null,
+				librarianName: null,
+				librarianEmail: null,
+				comments: null,
 			},
 
 		}

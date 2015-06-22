@@ -17,12 +17,30 @@ angular.module('platform-ui.subscription.info.commercial').controller(
 		init();
 
 		$scope.resetCommercialForm = function() {
-			$scope.formdata.firstname = '';
-			$scope.formdata.lastname = '';
-			$scope.formdata.email = '';
-			$scope.formdata.institution = '';
-			$scope.formdata.license = 0;
-			$scope.formdata.comments = '';
+			$scope.formdata.firstname = null;
+			$scope.formdata.lastname = null;
+			$scope.formdata.email = null;
+			$scope.formdata.institution = null;
+			$scope.formdata.individualLicense = false;
+			$scope.formdata.companyLicense = false;
+			$scope.formdata.comments = null;
+		};
+
+		$scope.validateInfoCommercialForm = function() {
+			return ($scope.formdata.firstname != null
+					&&
+				$scope.formdata.lastname != null
+					&&
+				$scope.formdata.email != null
+					&&
+				$scope.formdata.institution != null
+					&&
+				(
+					$scope.formdata.individualLicense 
+						||
+					$scope.formdata.companyLicense
+				)
+			);
 		};
 
 		function init() {

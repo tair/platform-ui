@@ -14,11 +14,12 @@ angular.module('platform-ui.subscription.info.commercial').factory(
 		return {
 
 			formdata: {
-				firstname: '',
-				lastname: '',
-				email: '',
-				institution: '',
-				license: 0,
+				firstname: null,
+				lastname: null,
+				email: null,
+				institution: null,
+				individualLicense: false,
+				companyLicense: false,
 				comments: '',
 			},
 

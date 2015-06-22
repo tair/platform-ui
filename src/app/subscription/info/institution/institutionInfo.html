@@ -1,74 +1,85 @@
 <div ng-controller="InstitutionInfoController">
 	<div class="row">
-		Have TAIR contact you about an academic institutional subscription
-	</div>
-	<form ng-submit="next()">
-		<div class="row">
-			<div class="col-md-6">
-				<div class="form-group">
-					<label for="firstname">*First Name</label>
-					<input type="text" class="form-control" id="firstname" ng-model="formdata.firstname" required>
-				</div>	
-			</div>
-			<div class="col-md-6">
-				<div class="form-group">
-					<label for="lastname">*Last Name</label>
-					<input type="text" class="form-control" id="lastname" ng-model="formdata.lastname" required>
+		<div class="col-md-9" style="float: none; margin-left: auto; margin-right: auto;">
+			<div class="row" style="height: 45px;"></div>
+			<div class="row"><div class="col-md-12 text-left info-institution-heading">
+				Have TAIR contact you about an academic institutional subscription
+			</div></div>
+			<div class="row" style="height: 40px;"></div>
+			<form ng-submit="validateInfoInstitutionForm() && next()">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="firstname" class="info-institution-form-label">*First Name</label>
+							<input type="text" class="form-control" id="firstname" ng-model="formdata.firstname" required>
+						</div>	
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="lastname" class="info-institution-form-label">*Last Name</label>
+							<input type="text" class="form-control" id="lastname" ng-model="formdata.lastname" required>
+						</div>
+					</div>
 				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-6">
-				<div class="form-group">
-					<label for="email">*Email</label>
-					<input type="email" class="form-control" id="email" ng-model="formdata.email" required>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="email" class="info-institution-form-label">*Email</label>
+							<input type="email" class="form-control" id="email" ng-model="formdata.email" required>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="row"><div class="col-md-12">
+							<div class="form-group">
+								<label for="institution" class="info-institution-form-label">*Institution Name</label>
+								<input type="text" class="form-control" id="institution" ng-model="formdata.institution" required>
+							</div>
+						</div></div>
+						<div class="row"><div class="col-md-12">
+							<a>Check to see if your institution has already subscribed</a>
+						</div></div>
+					</div>
 				</div>
-			</div>
-			<div class="col-md-6">
+				<div class="row" style="height: 16px;"></div>
+				<div class="row"><div class="col-md-12">
+					We recommed providing your librarian's contact info to expedite the process.
+				</div></div>
+				<div class="row" style="height: 21px;"></div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="librarianName" class="info-institution-form-label">Librarian Contact Name</label>
+							<input type="text" class="form-control" id="librarianName" ng-model="formdata.librarianName">
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="librarianEmail" class="info-institution-form-label">Librarian Email</label>
+							<input type="email" class="form-control" id="librarianEmail" ng-model="formdata.librarianEmail">
+						</div>
+					</div>
+				</div>
+				<div class="row" style="height: 70px;"></div>
 				<div class="row"><div class="col-md-12">
 					<div class="form-group">
-						<label for="institution">*Institution Name</label>
-						<input type="text" class="form-control" id="institution" ng-model="formdata.institution" required>
+						<label for="comments" class="info-institution-form-label">Comments:</label>
+						<textarea type="text" class="form-control" id="comments" ng-model="formdata.comments" placeholder="TAIR is essential for my work. I would like to consider a subscription."></textarea>
 					</div>
 				</div></div>
-				<div class="row"><div class="col-md-12">
-					<a>Check to see if your institution has already subscribed</a>
-				</div></div>
-			</div>
-		</div>
-		<div class="row"><div class="col-md-12">
-			We recommed providing your librarian's contact info to expedite the process.
-		</div></div>
-		<div class="row">
-			<div class="col-md-6">
-				<div class="form-group">
-					<label for="librarianName">Librarian Contact Name</label>
-					<input type="text" class="form-control" id="librarianName" ng-model="formdata.librarianName">
+				<div class="row" style="height: 40px;"></div>
+				<div class="row">
+					<div class="col-md-4 text-center">
+						<button type="button" class="btn btn-default btn-default-tair" ng-click="back()">BACK</button>
+					</div>
+					<div class="col-md-4 text-center">
+						<button type="button" class="btn btn-default btn-default-tair" ng-click="resetInstitutionForm()">RESET FORM</button>
+					</div>
+					<div class="col-md-4 text-center">
+						<button type="submit" class="btn" ng-class="validateInfoInstitutionForm() ? 'btn-success btn-success-tair' : 'btn-primary btn-primary-tair'" ng-click="setInfoInstitutionFormError(validateInfoInstitutionForm())">SUBMIT</button>
+					</div>
 				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="form-group">
-					<label for="librarianEmail">Librarian Email</label>
-					<input type="email" class="form-control" id="librarianEmail" ng-model="formdata.librarianEmail">
-				</div>
-			</div>
+				<div class="row" style="height: 40px;"></div>
+			</form>
 		</div>
-		<div class="row"><div class="col-md-12">
-			<div class="form-group">
-				<label for="comments">Comments:</label>
-				<textarea type="text" class="form-control" id="comments" ng-model="formdata.comments" placeholder="TAIR is essential for my work. I would like to consider a subscription."></textarea>
-			</div>
-		</div></div>
-		<div class="row">
-			<div class="col-md-4 text-center">
-				<button type="button" class="btn btn-default" ng-click="back()">BACK</button>
-			</div>
-			<div class="col-md-4 text-center">
-				<button type="button" class="btn btn-default" ng-click="resetInstitutionForm()">RESET FORM</button>
-			</div>
-			<div class="col-md-4 text-center">
-				<button type="submit" class="btn btn-success">SUBMIT</button>
-			</div>
-		</div>
-	</form>
+	</div>
 </div>

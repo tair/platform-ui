@@ -18,14 +18,26 @@ angular.module('platform-ui.subscription.info.institution').controller(
 
 		$scope.resetInstitutionForm = function() {
 			$scope.formdata = {
-				firstname: '',
-				lastname: '',
-				email: '',
-				institution: '',			
-				librarianName: '',
-				librarianEmail: '',
-				comments: '',
+				firstname: null,
+				lastname: null,
+				email: null,
+				institution: null,			
+				librarianName: null,
+				librarianEmail: null,
+				comments: null,
 			}
+		};
+
+		$scope.validateInfoInstitutionForm = function() {
+			return (
+				$scope.formdata.firstname != null
+					&&
+				$scope.formdata.lastname != null
+					&&
+				$scope.formdata.email != null
+					&&
+				$scope.formdata.institution != null
+			);
 		};
 
 		function init() {

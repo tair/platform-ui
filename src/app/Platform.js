@@ -18,6 +18,7 @@ angular.module(
 	/* Angular */
 	'ngResource',
 	'ngRoute',
+	'ngCookies',
 
 	/* Misc */
 	'service.title',

@@ -8,12 +8,14 @@ angular.module('platform-ui.subscription').controller(
 
 	/* Dependencies */
 	[
+	'$cookies',
+	'$http',
 	'$scope',
 	'Title',
 	'SubscriptionModel',
 
 	/* Controller Definition */
-	function ($scope, Title, SubscriptionModel) {
+	function ($cookies, $http, $scope, Title, SubscriptionModel) {
 		init();
 		$scope.next = function() {
 			switch($scope.currentTab) {
@@ -53,6 +55,15 @@ angular.module('platform-ui.subscription').controller(
                         $scope.currentTab = SubscriptionModel.currentTab;
                         $scope.tabs = SubscriptionModel.tabs;
 			$scope.templates = SubscriptionModel.templates;
+		    $cookies.apiKey = 'test123';
+		    $http({
+                        url:'http://pb.steveatgetexp.com/partners/descriptions/?partnerId=cdiff&includeText=True',
+                        method:'GET',
+			withCredentials:true,
+                    }).success(function(data, status, headers, config) {
+                            $scope.licenses=data;
+                    }).error(function(data, status, headers, config) {
+                    });
                 }
 	}
 ]);

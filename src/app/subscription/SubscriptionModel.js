@@ -21,34 +21,34 @@ angular.module('platform-ui.subscription').factory(
 					id: 'individual',
 					heading: 'Individual benefits',
 					benefits: [
-							{text: 'Who should choose this'}, 
-							{text: 'What they get'}
+					    'Who should choose this', 
+					    'What they get'
 					],
 				},
 				institution: {
 					id: 'institution',
 					heading: 'Institutional Benefits',
 					benefits: [
-							{text: 'Who should choose this'}, 
-							{text: 'What they get'}
+					    'Who should choose this', 
+					    'What they get'
 					],
 				},
 				commercial: {
 					id: 'commercial',
 					heading: 'Commercial Benefits',
 					benefits: [
-							{text: 'Who should choose this'}, 
-							{text: 'What they get'}
+					    'Who should choose this', 
+					    'What they get'
 					],
 				},
 				def: {
-					id: 'default',
-					heading: 'Subscription Benefits',
-					benefits: [
-							{text: 'Unlimited Access to the TAIR pages'},
-							{text: 'More wonderful benefits and features'},
-							{text: 'Some other option'}
-						],
+				    id: 'default',
+				    heading: 'Subscription Benefits',
+				    benefits: [
+					'Unlimited Access to the TAIR pages',
+					'More wonderful benefits and features',
+					'Some other option'
+				    ],
 				},
 			},
 
