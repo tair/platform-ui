@@ -13,35 +13,48 @@ angular.module('platform-ui.subscription.info.individual').factory(
 	function () {
 		return {
 			
-			subscriptions: {
-				sub1: {
-					id: '1',
-					period: '1 month',
-					price: 19.99,
-				},
-				sub2: {
-					id: '2',
-					period: '1 year',
-					price: 99.99,
-				},
-				sub3: {
-					id: '3',
-					period: '2 years',
-					price: 199.99,
-				},
-			},
-
 			formdata: {
-				numOfSubscribers: 0,
+				numOfSubscribers: 1,
 				userbool: false,
 				termsbool: false,
 			},
 
-			groupDiscount: {
-				available: true,
-				percentage: 10,
-				group: 2,
+			subscriptions: [
+				{
+					subscriptionTermId:1, 
+					partnerId:'cdiff', 
+					period:180, 
+					price:99.99, 
+					groupDiscountPercentage:10,
+				    description: '3 Months'
+				},
+				{
+					subscriptionTermId:8, 
+					partnerId:'cdiff', 
+					period:270, 
+					price:149.99, 
+					groupDiscountPercentage:20,
+				    description: '9 months'
+				},
+				{
+					subscriptionTermId:5,
+					partnerId:'cdiff',
+					period:360,
+					price:199.99,
+					groupDiscountPercentage:0,
+				    description: '1 year'
+				}
+			],
+
+			selectedSubscription: {
+				subscriptionTermId: null,
+				partnerId: null,
+				period: null,
+				price: null,
+				groupDiscountPercentage: null
 			},
+
+			subtotal: null,
 
 		}
 	}

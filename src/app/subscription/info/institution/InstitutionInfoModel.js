@@ -14,8 +14,8 @@ angular.module('platform-ui.subscription.info.institution').factory(
 		return {
 
 			formdata: {
-				firstname: null,
-				lastname: null,
+				firstName: null,
+				lastName: null,
 				email: null,
 				institution: null,
 				librarianName: null,

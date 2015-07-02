@@ -1,1 +1,1 @@
-Boilerplate code for starting your own Angular app.
+Angular app for the Paywall 2 UIUX.

@@ -2,25 +2,21 @@
 	<div class="row"><div class="col-md-9" style="float: none; margin-right: auto; margin-left: auto;">
 		<div class="row" style="height: 45px;"></div>
 		<div class="row"><div class="col-md-12 info-commercial-heading text-left">
-			Contact us about a commercial license for TAIR
+			Contact us about a commercial license for {{partner.name}}
 		</div></div>
-		<div class="row" style="height: 10px;"></div>
-		<div class="row"><div class="col-md-12 info-commercial-subheading text-left">
-			We support commercial access to Tair through both individual and company-wide licenses.
-		</div></div>
-		<div class="row" style="height: 35px;"></div>
-		<form ng-submit="validateInfoCommercialForm() && next()">
+		<div class="row" style="height: 45px;"></div>
+		<form ng-submit="validateInfoCommercialForm() && sendCommercialRegistration()">
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group">
-						<label for="firstname" class="info-commercial-form-label">*First Name</label>
-						<input type="text" class="form-control" id="firstname" ng-model="formdata.firstname" required>
+						<label for="firstName" class="info-commercial-form-label">*First Name</label>
+						<input type="text" class="form-control" id="firstName" ng-model="formdata.firstName" required>
 					</div>	
 				</div>
 				<div class="col-md-6">
 					<div class="form-group">
-						<label for="lastname" class="info-commercial-form-label">*Last Name</label>
-						<input type="text" class="form-control" id="lastname" ng-model="formdata.lastname" required>
+						<label for="lastName" class="info-commercial-form-label">*Last Name</label>
+						<input type="text" class="form-control" id="lastName" ng-model="formdata.lastName" required>
 					</div>
 				</div>
 			</div>
@@ -47,13 +43,13 @@
 				</div>
 				<div class="col-md-8">
 					<div class="checkbox" style="margin-top: 0px;">
-						<label>
+						<label class="info-commercial-form-label">
 							<input type="checkbox" ng-model="formdata.individualLicense" data-toggle="checkbox-x">
 							An individual subscription
 						</label>
 					</div>	
 					<div class="checkbox">
-						<label>
+						<label class="info-commercial-form-label">
 							<input type="checkbox" ng-model="formdata.companyLicense" data-toggle="checkbox-x">
 							A company-wide subscription
 						</label>
@@ -63,8 +59,8 @@
 			<div class="row" style="height: 30px;"></div>
 			<div class="row"><div class="col-md-12">
 				<div class="form-group">
-					<label for="comments">Comments:</label>
-					<textarea type="text" class="form-control" id="comments" ng-model="formdata.comments" placeholder="Please send me information about a commercial subscription to TAIR."></textarea>
+					<label for="comments" style="font-family: Arial, Helvetica, sans-serif; -webkit-font-smoothing: antialiased;">Comments:</label>
+					<textarea type="text" class="form-control" id="comments" style="resize: none; height: 78px;" ng-model="formdata.comments" placeholder="Please send me information about a commercial subscription to {{partner.name}}."></textarea>
 				</div>
 			</div></div>
 			<div class="row" style="height: 45px;"></div>

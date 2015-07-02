@@ -8,17 +8,19 @@ angular.module('platform-ui.subscription.info.commercial').controller(
 
 	/* Dependencies */
 	[
+	    '$http',
+	    '$cookies',
 	'$scope',
 	'$rootScope',
 	'CommercialInfoModel',
 
 	/* Controller Definition */
-	function ($scope, $rootScope, CommercialInfoModel) {
+	function ($http, $cookies, $scope, $rootScope, CommercialInfoModel) {
 		init();
 
 		$scope.resetCommercialForm = function() {
-			$scope.formdata.firstname = null;
-			$scope.formdata.lastname = null;
+			$scope.formdata.firstName = null;
+			$scope.formdata.lastName = null;
 			$scope.formdata.email = null;
 			$scope.formdata.institution = null;
 			$scope.formdata.individualLicense = false;
@@ -27,9 +29,9 @@ angular.module('platform-ui.subscription.info.commercial').controller(
 		};
 
 		$scope.validateInfoCommercialForm = function() {
-			return ($scope.formdata.firstname != null
+			return ($scope.formdata.firstName != null
 					&&
-				$scope.formdata.lastname != null
+				$scope.formdata.lastName != null
 					&&
 				$scope.formdata.email != null
 					&&
@@ -42,6 +44,19 @@ angular.module('platform-ui.subscription.info.commercial').controller(
 				)
 			);
 		};
+
+            $scope.sendCommercialRegistration = function() {
+                $cookies.apiKey = 'test123';
+                $http({
+                    url:'http://pb.steveatgetexp.com/subscriptions/commercials/',
+                    data:$scope.formdata,
+                    method:'POST',
+                    withCredentials:true,
+                }).success(function(data, status, headers, config) {
+                }).error(function(data, status, headers, config) {
+                });
+                $scope.next();
+            }
 
 		function init() {
 			$scope.formdata = CommercialInfoModel.formdata;

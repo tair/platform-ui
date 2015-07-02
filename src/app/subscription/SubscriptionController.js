@@ -11,11 +11,12 @@ angular.module('platform-ui.subscription').controller(
 	'$cookies',
 	'$http',
 	'$scope',
+	'$location',
 	'Title',
 	'SubscriptionModel',
 
 	/* Controller Definition */
-	function ($cookies, $http, $scope, Title, SubscriptionModel) {
+	function ($cookies, $http, $scope, $location, Title, SubscriptionModel) {
 		init();
 		$scope.next = function() {
 			switch($scope.currentTab) {
@@ -55,15 +56,26 @@ angular.module('platform-ui.subscription').controller(
                         $scope.currentTab = SubscriptionModel.currentTab;
                         $scope.tabs = SubscriptionModel.tabs;
 			$scope.templates = SubscriptionModel.templates;
-		    $cookies.apiKey = 'test123';
+			$scope.partnerId = $location.search()['partnerId'];
+		    $scope.partner = SubscriptionModel.partner;
+			$scope.redirect = $location.search()['redirect'];
+			$cookies.apiKey = 'test123';
+			$http({
+				url:'http://pb.steveatgetexp.com/partners/descriptions/?partnerId='+$scope.partnerId+'&includeText=True',
+				method:'GET',
+				withCredentials:true,
+			}).success(function(data, status, headers, config) {
+				$scope.licenses=data;
+			}).error(function(data, status, headers, config) {
+			    alert("error!");
+			});
 		    $http({
-                        url:'http://pb.steveatgetexp.com/partners/descriptions/?partnerId=cdiff&includeText=True',
-                        method:'GET',
+			url:'http://pb.steveatgetexp.com/partners/?partnerId='+$scope.partnerId,
+			method:'GET',
 			withCredentials:true,
-                    }).success(function(data, status, headers, config) {
-                            $scope.licenses=data;
-                    }).error(function(data, status, headers, config) {
-                    });
-                }
+		    }).success(function(data, status, headers, config) {
+			$scope.partner = data[0];
+		    });
+		}
 	}
 ]);

@@ -8,18 +8,20 @@ angular.module('platform-ui.subscription.info.institution').controller(
 
 	/* Dependencies */
 	[
+	    '$http',
+	    '$cookies',
 	'$scope',
 	'$rootScope',
 	'InstitutionInfoModel',
 
 	/* Controller Definition */
-	function ($scope, $rootScope, InstitutionInfoModel) {
+	function ($http, $cookies, $scope, $rootScope, InstitutionInfoModel) {
 		init();
 
 		$scope.resetInstitutionForm = function() {
 			$scope.formdata = {
-				firstname: null,
-				lastname: null,
+				firstName: null,
+				lastName: null,
 				email: null,
 				institution: null,			
 				librarianName: null,
@@ -30,9 +32,9 @@ angular.module('platform-ui.subscription.info.institution').controller(
 
 		$scope.validateInfoInstitutionForm = function() {
 			return (
-				$scope.formdata.firstname != null
+				$scope.formdata.firstName != null
 					&&
-				$scope.formdata.lastname != null
+				$scope.formdata.lastName != null
 					&&
 				$scope.formdata.email != null
 					&&
@@ -40,8 +42,21 @@ angular.module('platform-ui.subscription.info.institution').controller(
 			);
 		};
 
-		function init() {
-			$scope.formdata = InstitutionInfoModel.formdata;
-                }
+	    $scope.sendInstitutionRegistration = function() {
+                $cookies.apiKey = 'test123';
+                $http({
+                    url:'http://pb.steveatgetexp.com/subscriptions/institutions/',
+		    data:$scope.formdata,
+                    method:'POST',
+                    withCredentials:true,
+                }).success(function(data, status, headers, config) {
+                }).error(function(data, status, headers, config) {
+                });
+		$scope.next();
+	    }
+
+	    function init() {
+		$scope.formdata = InstitutionInfoModel.formdata;
+            }
 	}
 ]);

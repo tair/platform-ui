@@ -3,21 +3,21 @@
 		<div class="col-md-9" style="float: none; margin-left: auto; margin-right: auto;">
 			<div class="row" style="height: 45px;"></div>
 			<div class="row"><div class="col-md-12 text-left info-institution-heading">
-				Have TAIR contact you about an academic institutional subscription
+				Ask {{partner.name}} to contact your librarian about an academic institutional subscription
 			</div></div>
 			<div class="row" style="height: 40px;"></div>
-			<form ng-submit="validateInfoInstitutionForm() && next()">
+			<form ng-submit="validateInfoInstitutionForm() && sendInstitutionRegistration()">
 				<div class="row">
 					<div class="col-md-6">
 						<div class="form-group">
-							<label for="firstname" class="info-institution-form-label">*First Name</label>
-							<input type="text" class="form-control" id="firstname" ng-model="formdata.firstname" required>
+							<label for="firstName" class="info-institution-form-label">*First Name</label>
+							<input type="text" class="form-control" id="firstName" ng-model="formdata.firstName" required>
 						</div>	
 					</div>
 					<div class="col-md-6">
 						<div class="form-group">
-							<label for="lastname" class="info-institution-form-label">*Last Name</label>
-							<input type="text" class="form-control" id="lastname" ng-model="formdata.lastname" required>
+							<label for="lastName" class="info-institution-form-label">*Last Name</label>
+							<input type="text" class="form-control" id="lastName" ng-model="formdata.lastName" required>
 						</div>
 					</div>
 				</div>
@@ -42,7 +42,7 @@
 				</div>
 				<div class="row" style="height: 16px;"></div>
 				<div class="row"><div class="col-md-12">
-					We recommed providing your librarian's contact info to expedite the process.
+					We recommed providing your librarian's contact information to expedite the process.
 				</div></div>
 				<div class="row" style="height: 21px;"></div>
 				<div class="row">
@@ -63,7 +63,7 @@
 				<div class="row"><div class="col-md-12">
 					<div class="form-group">
 						<label for="comments" class="info-institution-form-label">Comments:</label>
-						<textarea type="text" class="form-control" id="comments" ng-model="formdata.comments" placeholder="TAIR is essential for my work. I would like to consider a subscription."></textarea>
+						<textarea type="text" class="form-control" id="comments" ng-model="formdata.comments" placeholder="{{partner.name}} is essential to my work. I would like my library to consider a subscription."></textarea>
 					</div>
 				</div></div>
 				<div class="row" style="height: 40px;"></div>

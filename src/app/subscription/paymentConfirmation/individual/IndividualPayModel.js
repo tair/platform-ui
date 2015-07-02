@@ -9,25 +9,28 @@ angular.module('platform-ui.subscription.paymentConfirmation.individual').factor
 
 	/* Dependencies */
 	[
-
-	function () {
+	function (IndividualInfoModel) {
 		return {
 
 			formdata: {
-                                firstname: '',
-                                lastname: '',
-                                email: '',
-                                institution: '',
-                                street: '',
-                                city: '',
-                                state: '',
-                                zip: '',
-                                creditcard: '',
-                                expdate: '',
-                                cvc: '',
+                                firstname: null,
+                                lastname: null,
+                                email: null,
+                                institution: null,
+                                street: null,
+                                city: null,
+                                state: null,
+                                zip: null,
+                                creditcard: null,
+                                expmonth: null,
+				expyear: null,
+                                cvc: null,
                         },
 			
 			pageNum: 1,
+
+			fees: 9.99,
+			
 		}
 	}
 ]);
