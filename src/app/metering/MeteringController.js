@@ -18,5 +18,6 @@ angular.module('platform-ui.metering').controller(
 		Title.setTitle(MeteringModel.title);
 		$scope.partnerId = $location.search()['partnerId'];
 		$scope.redirect = $location.search()['redirect'];
+		$scope.exceed = $location.search()['exceed'];
 	}
 ]);
