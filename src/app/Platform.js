@@ -27,6 +27,7 @@ angular.module(
 	'platform-ui.home',
 	'platform-ui.metering',
 	'platform-ui.subscription',
+	'platform-ui.activation',
 	])
 	.config(
 		function ($routeProvider, $httpProvider, $urlRouterProvider) {
