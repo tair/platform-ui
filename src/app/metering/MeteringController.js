@@ -10,11 +10,15 @@ angular.module('platform-ui.metering').controller(
 	[
 	'$scope',
 	'$location',
+<<<<<<< HEAD
 	'$http',
+=======
+>>>>>>> PW-40a
 	'Title',
 	'MeteringModel',
 
 	/* Controller Definition */
+<<<<<<< HEAD
 	function ($scope, $location, $http, Title, MeteringModel) {
 		Title.setTitle(MeteringModel.title);
 		$scope.partnerId = $location.search()['partnerId'];
@@ -39,5 +43,11 @@ angular.module('platform-ui.metering').controller(
 			alert("There was an error getting partner information.");
 		});
 		$scope.license = 'def';
+=======
+	function ($scope, $location, Title, MeteringModel) {
+		Title.setTitle(MeteringModel.title);
+		$scope.partnerId = $location.search()['partnerId'];
+		$scope.redirect = $location.search()['redirect'];
+>>>>>>> PW-40a
 	}
 ]);

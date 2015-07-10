@@ -1,5 +1,20 @@
 /* All your CSS goes here */
 
+.ui-autocomplete {
+    max-height: 320px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+    /* add padding to account for vertical scrollbar */
+    padding-right: 20px;
+}
+/* IE 6 doesn't support max-height
+ * we use height instead, but this forces the menu to always be this tall
+ */
+* html .ui-autocomplete {
+    height: 320px;
+}
+
 body {
 	padding-top: 60px;
 }
@@ -70,9 +85,10 @@ body {
 	-webkit-font-smoothing: antialiased; 
 }
 
+
 .btn-primary-tair:hover, .btn-primary-tair:active, .btn-primary-tair:focus {
-	background-color: #cedde4;
-	border-color: #cedde4;
+	background-color: #bbc9cf;
+	border-color: #bbc9cf;
 }
 
 .btn-default-tair {
@@ -132,7 +148,7 @@ body {
 
 .subscription-img-tags-tag {
 	font-size: 13px;
-	color: #00d86c;
+	color: #b9c841;
 	font-family: Arial, Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
 } 
@@ -151,6 +167,14 @@ body {
 
 .subscription-tab.active {
 	background-color: #97a2a7;
+}
+
+.subscription-tab-tag {
+	color: #bbc9cf;
+}
+
+.subscription-tab-tag.active {
+	color: #666666;
 }
 
 .highlight-license {
@@ -174,7 +198,8 @@ body {
 
 .info-commercial-form-label {
 	font-size: 15px;     
-	color: #97a0a5;
+	color: #666666;
+	font-weight: 600;
 	font-family: Arial, Helvetica, sans-serif; 
 	-webkit-font-smoothing: antialiased;
 }
@@ -203,7 +228,8 @@ body {
 
 .info-institution-form-label {
 	font-size: 15px;
-	color: #97a0a5;
+	color: #666666;
+	font-weight: 600;
 	font-family: Arial, Helvetica, sans-serif;  
 	-webkit-font-smoothing: antialiased; 
 }
@@ -254,6 +280,68 @@ body {
 }
 
 /************************** Payment Individual 1 *****************/
+
+.payment-confirmation-individual-heading {
+	font-size: 24px;
+	color: #666666;
+	font-family: Arial, Helvetica, sans-serif; 
+	-webkit-font-smoothing: antialiased;
+}
+
+.payment-confirmation-individual-label {
+	font-size: 15px;
+	color: #666666;
+	font-weight: 600;
+	font-family: Arial, Helvetica, sans-serif;        
+	-webkit-font-smoothing: antialiased; 
+}
+
+.payment-confirmation-individual-footer {
+	font-size: 15px;
+	color: #666666;
+	font-family: Arial, Helvetica, sans-serif; 
+	-webkit-font-smoothing: antialiased; 
+}
+
+/************** Payment Individual 2 ***************/
+
+.payment-confirmation-individual-confirm-heading {
+	font-size: 24px;
+	color: #666666;
+	font-family: Arial, Helvetica, sans-serif;  
+	-webkit-font-smoothing: antialiased;
+}
+
+.payment-confirmation-individual-confirm-text {
+	font-size: 15px;
+	color: #97a0a5;
+	font-family: Arial, Helvetica, sans-serif; 
+	-webkit-font-smoothing: antialiased;   
+}
+
+hr {
+	width: 260px;
+	height: 1px;
+	color: #dddddd;
+	float: left;
+	margin: 0px;
+}
+
+/************ Payment Indivivual 3 ****************/
+
+.payment-confirmation-individual-thankyou-heading {
+	font-size: 24px;
+	color: #b8c63f;
+	font-family: Arial, Helvetica, sans-serif;
+	-webkit-font-smoothing: antialiased;
+}
+
+.payment-confirmation-individual-thankyou-text {
+	font-size: 14px;
+	color: #666666;
+	font-family: Arial, Helvetica, sans-serif;
+	-webkit-font-smoothing: antialiased;
+}
 
 .payment-confirmation-individual-heading {
 	font-size: 24px;

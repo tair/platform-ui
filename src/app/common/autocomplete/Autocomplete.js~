@@ -1,0 +1,29 @@
+/**
+ * Title Service
+ * 
+ * Sets the <title> tag
+ * Ported to JS from Josh D. Miller's ng-boilerplate example (github.com/joshdmiller/ng-boilerplate)
+ */
+
+angular.module('autocomplete', []).directive(
+    /* Name */
+    'autocomplete',
+    
+    function ($timeout) {
+	return function(scope, iElement, iAttrs) {
+	    iElement.typeahead({
+		hint: true,
+		highlight: true,
+		minLength: 1
+	    },
+			       {
+				   source: substringMatcher(scope['institutions'])
+			       });
+
+/*	    iElement.autocomplete({
+		source: scope['institutions'],
+	    });
+*/
+	};
+    }
+);

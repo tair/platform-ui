@@ -22,13 +22,19 @@ angular.module(
 
 	/* Misc */
 	'service.title',
+	'autocomplete',
+	    'autocompletecountries',
 
 	/* App-specific */
 	'platform-ui.home',
 	'platform-ui.metering',
 	'platform-ui.subscription',
+<<<<<<< HEAD
 	'platform-ui.activation',
 	'platform-ui.login',
+=======
+	'platform-ui.list',
+>>>>>>> PW-40a
 	])
 	.config(
 		function ($routeProvider, $httpProvider, $urlRouterProvider) {
