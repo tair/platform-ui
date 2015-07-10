@@ -1,0 +1,128 @@
+<div ng-controller="PayController">
+<div class="row"><div class="col-md-11" style="float: none; margin-left: auto; margin-right: auto;">
+<div class="row" style="height: 30px;"></div>
+<div class="row"><div class="col-md-12 payment-confirmation-individual-heading">Checkout</div></div>
+<div class="row" style="height: 30px;"></div>
+<form id="payment-form" ng-submit="validateAndSubmit() && makeCharge(false, 'confirm')">
+	<div class="row">
+		<div class="col-md-6">
+			<div class="form-group">
+    					<label for="firstname" class="payment-confirmation-individual-label">*First Name</label>
+    					<input type="text" class="form-control" id="firstname" ng-model="formdata.firstname" required>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="form-group">
+				<label for="lastname" class="payment-confirmation-individual-label">*Last Name</label>
+				<input type="text" class="form-control" id="lastname" ng-model="formdata.lastname" required>
+			</div>
+		</div>
+	</div>
+	<div class="row" style="height: 15px;"></div>
+	<div class="row">
+		<div class="col-md-6">
+			<div class="form-group">
+				<label for="email" class="payment-confirmation-individual-label">*Email (for receipts/activation codes)</label>
+				<input type="email" class="form-control" id="email" ng-model="formdata.email" placeholder="xyz@host.com" required>
+			</div>
+		</div>
+                <div class="col-md-6">
+                        <div class="form-group">
+                                <label for="emailConfirm" class="payment-confirmation-individual-label">*Confirm Email</label>
+                                <input type="emailConfirm" class="form-control" id="emailConfirm" ng-model="formdata.emailConfirm" required>
+                        </div>
+                </div>
+	</div>
+	<div class="row" style="height: 15px;"></div>
+
+        <div class="col-md-13">
+          <div class="form-group">
+            <label for="institution" class="payment-confirmation-individual-label">*Institution</label>
+            <input type="text" class="form-control" id="institution" ng-model="formdata.institution" autocomplete required>
+          </div>
+        </div>
+	<div class="row" style="height: 15px;"></div>
+
+	<div class="row">
+		<div class="col-md-6">
+			<div class="form-group">
+				<label for="street" class="payment-confirmation-individual-label">*Billing Address Street</label>
+				<input type="text" class="form-control" id="street" ng-model="formdata.street" required>
+			</div>
+		</div>
+                <div class="col-md-6">
+                        <div class="form-group">
+                                <label for="city" class="payment-confirmation-individual-label">*City</label>
+                                <input type="text" class="form-control" id="city" ng-model="formdata.city" required>
+                        </div>
+                </div>
+	</div>
+	<div class="row" style="height: 15px;"></div>
+	<div class="row">
+		<div class="col-md-3">
+			<div class="form-group">
+				<label for="state" class="payment-confirmation-individual-label">State/Province</label>
+				<input type="text" class="form-control" id="state" ng-model="formdata.state">
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="form-group">
+				<label for="zip" class="payment-confirmation-individual-label">*Zip/Postal Code</label>
+				<input type="text" class="form-control" id="zip" ng-model="formdata.zip" required>
+			</div>
+		</div>
+                <div class="col-md-6">
+                        <div class="form-group">
+                                <label for="country" class="payment-confirmation-individual-label">*Country</label>
+                                <!-- <input type="text" class="form-control" id="country" ng-model="formdata.country" autocompletecountries required> -->
+				<select class="form-control" id="country" ng-model="formdata.country" ng-options="c for c in countries" required>
+					<option value="">--Choose Country--</option>
+				</select>                        
+			</div>
+                </div>
+	</div>
+	<div class="row" style="height: 15px;"></div>
+	<div class="row">
+		<div class="col-md-6">
+			<div class="form-group">
+				<label for="creditcard" class="payment-confirmation-individual-label">*Credit Card Number</label>
+				<input type="text" size="20" class="form-control" id="creditcard" ng-model="formdata.creditcard" data-stripe="number" required>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="form-group">
+				<label for="expdate" class="payment-confirmation-individual-label">*Expiration Date</label>
+				<div class="row">
+					<div class="col-md-6">
+						<input type="text" size="2" class="form-control" style="padding-left: 8px;" id="expdate" ng-model="formdata.expmonth" placeholder="MM" data-stripe="exp-month" required>
+					</div>
+					<div class="col-md-6" style="padding-left: 0px;">
+						<input type="text" size="4" class="form-control" id="expdate" ng-model="formdata.expyear" placeholder="YYYY" data-stripe="exp-year" required>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-2">
+			<div class="form-group">
+				<label for="cvc" class="payment-confirmation-individual-label">*CVC</label>
+				<input type="text" size="4" class="form-control" id="cvc" ng-model="formdata.cvc" data-stripe="cvc" required>
+			</div>
+		</div>
+	</div>
+	<div class="row" style="height: 15px;"></div>
+	<div class="row"><div class="col-md-12 payment-confirmation-individual-footer">
+		Upon receipt of payment you will be emailed activation code(s) and instructions for activating your subscription(s).
+	</div></div>
+	<div class="row" style="height: 20px;"></div>
+	<span style="color: red;">{{ stripeerrors }}</span>
+	<div class="row" style="height: 20px;"></div>
+	<div class="row">
+		<div class="col-md-4 text-center"><button type="button" class="btn btn-default btn-default-tair" ng-click="next('term')">BACK</button></div>
+		<div class="col-md-4 text-center"><button type="button" class="btn btn-default btn-default-tair" ng-click="reset()">RESET</button></div>
+		<div class="col-md-4 text-center"><button type="submit" class="btn" ng-class=" validate() ? 'btn-success btn-success-tair' : 'btn-primary btn-primary-tair' ">NEXT</button></div>
+	</div>
+	<div class="row" style="height: 30px;"></div>
+</form>
+</div>
+</div>
+</div>

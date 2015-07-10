@@ -1,0 +1,74 @@
+<div ng-controller="LandingController">
+  <!-- Tabs -->                                                                                                                                
+  <div class="row">
+    <div class="col-md-12">
+      <!--<div class="row subscription-tab" ng-class="{ active: true }"></div>
+      <div class="row subscription-tab-tag text-center active">Choose License</div>-->
+    </div>
+  </div>
+
+  <div style="height: 40px;" class="row"></div>
+  <div class="row">
+    <div class="col-md-6">
+      <div style="height: 55px;" class="row"></div>
+		<div class="row">
+			<div class="col-md-offset-2 text-left subscription-body-heading">{{licenses[license].heading}}</div>
+		</div>
+		<div class="row">
+			<ul class="col-md-offset-2 col-md-10 subscription-benefits">
+				<li ng-repeat="b in licenses[license].benefits">
+					{{ b }}
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="row"><div class="col-md-9" style="float: none; margin-left: auto; margin-right: auto;">
+			<div class="row">
+				<div class="col-md-12 subscription-licence-text text-center">Choose License Type</div>
+			</div>
+			<div style="height: 30px;" class="row"></div>
+			<div class="row">
+                                <a href=""><div class="col-md-6" ng-class="{'highlight-license': license=='institution'}" ng-click="set_license('institution')">
+                                        <div style="height: 10px;" class="row"></div>
+                                        <div class="row text-center"><img class="img-to-inline-block" src="assets/Institutional.png"></div>
+                                        <div style="height: 20px;" class="row"></div>
+                                        <div class="row">
+                                                <div class="text-center subscription-img-tags">Academic Institution</div>
+                                        </div>
+                                        <div class="row">
+                                                <div class="text-center subscription-img-tags-tag">Recommended</div>
+                                        </div>
+                                        <div style="height: 10px;" class="row"></div>
+                                </div></a>
+				<a href=""><div class="col-md-6" ng-class="{'highlight-license': license=='individual'}" ng-click="set_license('individual')">
+					<div style="height: 10px;" class="row"></div>
+					<div class="row text-center"><img class="img-to-inline-block" src="assets/Individual.png"></div>
+					<div style="height: 20px;" class="row"></div>
+					<div class="row">
+						<div class="text-center subscription-img-tags">Academic Individual</div>
+					</div>
+					<div style="height: 10px;" class="row"></div>
+				</div></a>
+			</div>
+			<div style="height: 25px;" class="row"></div>
+			<div class="row">
+				<a href=""><div class="col-md-6" ng-class="{'highlight-license': license=='commercial'}" ng-click="set_license('commercial')">
+					<div style="height: 10px;" class="row"></div>
+					<div class="row text-center"><img class="img-to-inline-block" src="assets/Commercial.png"></div>
+					<div style="height: 20px;" class="row"></div>
+					<div class="row">
+						<div class="text-center subscription-img-tags">Commercial</div>
+					</div>
+					<div style="height: 10px;" class="row"></div>
+				</div></a>
+			</div>
+		</div></div>
+	</div>
+</div>
+<div style="height: 35px;" class="row"></div>
+<div class="row">
+	<div class="col-md-12 text-center"><button type="button" class="btn no-hover" ng-class=" license=='def' ? 'btn-primary btn-primary-tair' : 'btn-success btn-success-tair'" ng-click="next()">NEXT</button></div>
+</div>
+<div style="height: 20px;" class="row"></div>
+</div>
