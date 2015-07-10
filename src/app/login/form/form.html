@@ -1,0 +1,58 @@
+<div style="height: 42px;" class="row"></div>
+	<div class="row">
+		<div class="col-md-6">
+			<!--<div style="height: 55px;" class="row"></div>-->
+			<div class="row">
+				<div class="col-md-offset-2 text-left subscription-body-heading">{{licenses[license].heading}}</div>
+			</div>
+			<div class="row" style="height: 5px;"></div>
+			<div class="row">
+				<ul class="col-md-offset-2 col-md-10 subscription-benefits">
+					<li ng-repeat="b in licenses[license].benefits">
+						{{ b }}
+					</li>
+				</ul>
+			</div>
+			<div class="row" style="height: 14px;"></div>
+			<div class="row"><div class="col-md-offset-2">
+				<a href="#subscription?partnerId={{partnerId}}&redirect={{redirect}}" target="_blank"><button type="button" class="btn btn-success btn-success-tair">SUBSCRIBE</button></a>
+			</div></div>
+		</div>
+		<div class="col-md-6">
+			<div class="row">
+				<div class="col-md-10" style="float: none; margin-left: auto; margin-right: auto;">
+					<form method="POST" ng-submit="login()">
+						<div class="row" style="height: 35px;"></div>
+						<div class="row">
+							<div class="col-md-12 text-center form-group">
+								<input type="text" name="user" class="form-control" ng-model="formdata.user" placeholder="Username" style="width: 100%; border-radius: 0px;" required>
+							</div>
+						</div>
+						<!--<div class="row" style="height: 10px;"></div>-->
+						<div class="row">
+							<div class="col-md-12 text-center form-group">
+								<input type="password" name="password" class="form-control" ng-model="formdata.password" placeholder="Password" style="width: 100%; border-radius: 0px;" required>
+							</div>
+						</div>
+						<!--<div class="row" style="height: 10px;"></div>-->
+						<!--TODO-->
+						<!--<div class="row">
+							<div class="col-md-6 checkbox" style="margin-top: 0px;">
+								<label style="color: #666666;">
+									<input type="checkbox">Remember me
+								</label>
+							</div>
+							<div class="col-md-6">
+								<a href="">Forgot password?</a>
+							</div>
+						</div>-->
+						<div class="row" style="height: 7px;"></div>
+						<div class="row text-center"><div class="col-md-12">
+							<button type="submit" class="btn btn-primary btn-primary-tair" style="width: 100%;">LOG IN</button>
+						</div></div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+<div style="height: 50px;" class="row"></div>
