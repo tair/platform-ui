@@ -54,7 +54,8 @@
 						</div></div>
 						<div class="row" style="height: 10px;"></div>
 						<div class="row"><div class="col-md-12">
-							<a href="{{ redirect }}"><button class="btn btn-default btn-default-tair">KEEP BROWSING</button></a>
+							<a href="{{ redirect }}" target="_blank" ng-if="exceed!='true'"><button class="btn btn-default btn-default-tair">KEEP BROWSING</button></a>
+							<a href="{{ redirect }}" target="_blank" ng-if="exceed=='true'"><button class="btn btn-default btn-default-tair">BACK</button></a>
 						</div></div>
 					</div>
 				</div>
