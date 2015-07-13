@@ -40,21 +40,21 @@ angular.module('platform-ui.subscription').controller(
 		$scope.countries = SubscriptionModel.countries;
 		$scope.redirect = $location.search()['redirect'];
 		$http({
-		    url:'http://pb.steveatgetexp.com/partners/?partnerId='+$scope.partnerId,
+		    url:'http://azeemapi.steveatgetexp.com/partners/?partnerId='+$scope.partnerId,
 		    method:'GET',
 		    withCredentials:true,
 		}).success(function(data, status, headers, config) {
 		    $scope.partner = data[0];
 		});
 		$http({
-                    url:'http://pb.steveatgetexp.com/parties/organizations/',
+                    url:'http://azeemapi.steveatgetexp.com/parties/organizations/',
                     method:'GET',
                     withCredentials:true,
                 }).success(function(data, status, headers, config) {
                     $scope.institutions = data;
                 });
 		$http({
-                    url:'http://pb.steveatgetexp.com/parties/countries/',
+                    url:'http://azeemapi.steveatgetexp.com/parties/countries/',
                     method:'GET',
                     withCredentials:true,
                 }).success(function(data, status, headers, config) {

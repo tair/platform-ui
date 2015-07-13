@@ -33,7 +33,7 @@ angular.module('platform-ui.subscription.landing').controller(
 		$scope.licenses = LandingModel.licenses;
 		$scope.license = LandingModel.license;
                 $http({
-                    url:'http://pb.steveatgetexp.com/partners/descriptions/?partnerId='+$scope.partnerId+'&includeText=True',
+                    url:'http://azeemapi.steveatgetexp.com/partners/descriptions/?partnerId='+$scope.partnerId+'&includeText=True',
                     method:'GET',
                     withCredentials:true,
                 }).success(function(data, status, headers, config) {

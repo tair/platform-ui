@@ -63,7 +63,7 @@ angular.module('platform-ui.subscription.individual.term').controller(
 		$scope.termsbool = TermModel.termsbool;
                 $cookies.apiKey = 'test123';
                 $http({
-		    url:'http://pb.steveatgetexp.com/partners/terms/?partnerId='+$scope.partnerId,
+		    url:'http://azeemapi.steveatgetexp.com/partners/terms/?partnerId='+$scope.partnerId,
 		    method:'GET',
 		    withCredentials:true,
                 }).success(function(data, status, headers, config) {

@@ -65,7 +65,7 @@ angular.module('platform-ui.subscription.individual').controller(
                                 if (bool) {
                                     $cookies.apiKey = 'test123';
                                     $http({
-                                        url:'http://pb.steveatgetexp.com/subscriptions/payments/',
+                                        url:'http://azeemapi.steveatgetexp.com/subscriptions/payments/',
                                         data:{
                                             'stripeToken':response.id,
                                             'price':$scope.info.subtotal,

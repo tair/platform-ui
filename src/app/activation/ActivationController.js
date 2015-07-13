@@ -29,7 +29,7 @@ angular.module('platform-ui.activation').controller(
 				return
 			}
 			$http({
-				url: 'http://pb.steveatgetexp.com/subscriptions/',
+				url: 'http://azeemapi.steveatgetexp.com/subscriptions/',
 				data: {
 					'partyId': $cookies.partyId ,
 					'activationCode': code,
@@ -53,7 +53,7 @@ angular.module('platform-ui.activation').controller(
 			$scope.partnerId = $location.search()['partnerId'];
 			$scope.redirect = $location.search()['redirect'];
 			$http({
-				url: 'http://pb.steveatgetexp.com/partners/?partnerId='+$scope.partnerId,
+				url: 'http://azeemapi.steveatgetexp.com/partners/?partnerId='+$scope.partnerId,
 				method: 'GET',
 				withCredentials: true,
 			}).success(function(data, status, headers, config){

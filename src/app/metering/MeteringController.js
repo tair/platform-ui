@@ -21,7 +21,7 @@ angular.module('platform-ui.metering').controller(
 		$scope.redirect = $location.search()['redirect'];
 		$scope.exceed = $location.search()['exceed'];
 		$http({
-			url:'http://pb.steveatgetexp.com/partners/descriptions/?partnerId='+$scope.partnerId+'&includeText=True',
+			url:'http://azeemapi.steveatgetexp.com/partners/descriptions/?partnerId='+$scope.partnerId+'&includeText=True',
 			method:'GET',
 			withCredentials:true,
 		}).success(function(data, status, headers, config) {
@@ -30,7 +30,7 @@ angular.module('platform-ui.metering').controller(
 		    alert("There was an error getting license information about partner. Make sure the partnerId is correct.");
 		});
 		$http({
-			url:'http://pb.steveatgetexp.com/partners/?partnerId='+$scope.partnerId,
+			url:'http://azeemapi.steveatgetexp.com/partners/?partnerId='+$scope.partnerId,
 			method:'GET',
 			withCredentials:true,
 		}).success(function(data, status, headers, config) {

@@ -67,7 +67,7 @@ angular.module('platform-ui.subscription.institution.register').controller(
 	    $scope.send = function() {
                 $cookies.apiKey = 'test123';
                 $http({
-                    url:'http://pb.steveatgetexp.com/subscriptions/institutions/',
+                    url:'http://azeemapi.steveatgetexp.com/subscriptions/institutions/',
 		    data:$scope.formdata,
                     method:'POST',
                     withCredentials:true,

@@ -22,14 +22,14 @@ angular.module('platform-ui.list').controller(
                     Title.setTitle('University List');
 		    $scope.partnerId = $location.search()['partnerId'];
 		    $http({
-			url:'http://pb.steveatgetexp.com/partners/?partnerId='+$scope.partnerId,
+			url:'http://azeemapi.steveatgetexp.com/partners/?partnerId='+$scope.partnerId,
 			method:'GET',
 			withCredentials:true,
 		    }).success(function(data, status, headers, config) {
 			$scope.partner = data[0];
 		    });
 		    $http({
-                        url:'http://pb.steveatgetexp.com/parties/organizations?partnerId='+$scope.partnerId,
+                        url:'http://azeemapi.steveatgetexp.com/parties/organizations?partnerId='+$scope.partnerId,
                         method:'GET',
                         withCredentials:true,
                     }).success(function(data, status, headers, config) {

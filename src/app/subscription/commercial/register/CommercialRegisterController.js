@@ -69,7 +69,7 @@ angular.module('platform-ui.subscription.commercial.register').controller(
             $scope.send = function() {
                 $cookies.apiKey = 'test123';
                 $http({
-                    url:'http://pb.steveatgetexp.com/subscriptions/commercials/',
+                    url:'http://azeemapi.steveatgetexp.com/subscriptions/commercials/',
                     data:$scope.formdata,
                     method:'POST',
                     withCredentials:true,
