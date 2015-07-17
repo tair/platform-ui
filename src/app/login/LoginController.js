@@ -10,13 +10,32 @@ angular.module('platform-ui.login').controller(
 	[
 	'$scope',
 	'$http',
+	'$cookies',
 	'$location',
 	'Title',
 	'LoginModel',
 
 	/* Controller Definition */
-	function ($scope, $http, $location, Title, LoginModel) {
+	function ($scope, $http, $cookies, $location, Title, LoginModel) {
 		init();
+
+	    var getPartnerUriFromRedirect = function(){
+		arr = $scope.redirect.split("/");
+		return arr[0]+"//"+arr[2];
+	    }
+	    var callProxy = function(){
+		$http({
+		    url: getPartnerUriFromRedirect(),
+		    data: {
+			action:"setCookies",
+			partyId:$cookies["partyId"],
+			secret_key:$cookies["secret_key"]
+		    },
+		    method: 'POST',
+		}).success(function(data, status){
+		    $scope.tabPage = '2';
+		});
+	    }
 
 		$scope.login = function() {
 			$http({
@@ -24,7 +43,7 @@ angular.module('platform-ui.login').controller(
 				data: $scope.formdata,
 				method: 'POST',
 			}).success(function(data, status, headers, config){
-				$scope.tabPage = '2';
+			    callProxy();
 				//alert('Login successful: '+$cookies.secret_key);
 			}).error(function(data, status, headers, config){
 				alert('Login failed');
