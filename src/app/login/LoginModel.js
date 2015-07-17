@@ -17,10 +17,6 @@ angular.module('platform-ui.login').factory(
 			formdata: {
 				user: null,
 				password: null
-			},
-
-			resources: {
-				login: 'http://azeemapi.steveatgetexp.com/users/login/',
 			}
 		};
 	}

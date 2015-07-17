@@ -8,13 +8,11 @@ angular.module('platform-ui.subscription.institution').controller(
 
 	/* Dependencies */
 	[
-	    '$http',
-	    '$cookies',
 	    '$scope',
 	    'InstitutionModel',
 	    
 	    /* Controller Definition */
-	    function ($http, $cookies, $scope, InstitutionModel) {
+	    function ($scope, InstitutionModel) {
 		$scope.next = function(nextTab) {
                     $scope.currentTab = nextTab;
 		}

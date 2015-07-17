@@ -49,6 +49,8 @@ angular.module(
 				return angular.isObject(data) && String(data) !== '[object File]' ? jQuery.param(data) : data;
 			}];			
 
+		        $httpProvider.defaults.withCredentials = true;
+
 			/**
 			 * Routing
 			 */

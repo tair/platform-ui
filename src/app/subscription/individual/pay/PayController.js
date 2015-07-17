@@ -8,13 +8,11 @@ angular.module('platform-ui.subscription.individual.pay').controller(
 
 	/* Dependencies */
 	[
-	    '$http',
-	    '$cookies',
 	'$scope',
-	'$rootScope',
 	'PayModel',
+
 	/* Controller Definition */
-	function ($http, $cookies, $scope, $rootScope, PayModel) {
+	function ($scope, PayModel) {
 		init();
 
 		$scope.reset = function() {

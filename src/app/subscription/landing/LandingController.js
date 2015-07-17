@@ -8,15 +8,14 @@ angular.module('platform-ui.subscription.landing').controller(
     
     /* Dependencies */
     [
-        '$cookies',
-        '$http',
+	'$http',
         '$scope',
         '$location',
         'Title',
         'LandingModel',
 	
         /* Controller Definition */
-        function ($cookies, $http, $scope, $location, Title, LandingModel) {
+        function ($http, $scope, $location, Title, LandingModel) {
 	    $scope.next = function(){
 		if ($scope.license == "def"){
 		    alert("Please select a license type");
@@ -33,9 +32,8 @@ angular.module('platform-ui.subscription.landing').controller(
 		$scope.licenses = LandingModel.licenses;
 		$scope.license = LandingModel.license;
                 $http({
-                    url:'http://azeemapi.steveatgetexp.com/partners/descriptions/?partnerId='+$scope.partnerId+'&includeText=True',
+                    url:$scope.apiUri+'/partners/descriptions/?partnerId='+$scope.partnerId+'&includeText=True',
                     method:'GET',
-                    withCredentials:true,
                 }).success(function(data, status, headers, config) {
                     $scope.licenses=data;
                 }).error(function(data, status, headers, config) {

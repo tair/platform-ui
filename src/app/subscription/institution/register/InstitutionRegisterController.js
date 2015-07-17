@@ -9,13 +9,11 @@ angular.module('platform-ui.subscription.institution.register').controller(
 	/* Dependencies */
 	[
 	    '$http',
-	    '$cookies',
 	'$scope',
-	'$rootScope',
 	'InstitutionRegisterModel',
 
 	/* Controller Definition */
-	function ($http, $cookies, $scope, $rootScope, InstitutionRegisterModel) {
+	function ($http, $scope, InstitutionRegisterModel) {
 		init();
 
 		$scope.reset = function() {
@@ -65,12 +63,10 @@ angular.module('platform-ui.subscription.institution.register').controller(
 		};
 
 	    $scope.send = function() {
-                $cookies.apiKey = 'test123';
                 $http({
-                    url:'http://azeemapi.steveatgetexp.com/subscriptions/institutions/',
+                    url:$scope.apiUri+'/subscriptions/institutions/',
 		    data:$scope.formdata,
                     method:'POST',
-                    withCredentials:true,
                 }).success(function(data, status, headers, config) {
                 }).error(function(data, status, headers, config) {
                 });

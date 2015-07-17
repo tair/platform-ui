@@ -9,12 +9,11 @@ angular.module('platform-ui.subscription.commercial.register').controller(
 	/* Dependencies */
 	[
 	    '$http',
-	    '$cookies',
 	    '$scope',
 	    'CommercialRegisterModel',
 
 	/* Controller Definition */
-	function ($http, $cookies, $scope, CommercialRegisterModel) {
+	function ($http, $scope, CommercialRegisterModel) {
 	    init();
 	    
 	    $scope.reset= function() {
@@ -67,12 +66,10 @@ angular.module('platform-ui.subscription.commercial.register').controller(
 	    };
 
             $scope.send = function() {
-                $cookies.apiKey = 'test123';
                 $http({
-                    url:'http://azeemapi.steveatgetexp.com/subscriptions/commercials/',
+                    url:$scope.apiUri+'/subscriptions/commercials/',
                     data:$scope.formdata,
                     method:'POST',
-                    withCredentials:true,
                 }).success(function(data, status, headers, config) {
                 }).error(function(data, status, headers, config) {
                 });

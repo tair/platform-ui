@@ -29,13 +29,12 @@ angular.module('platform-ui.activation').controller(
 				return
 			}
 			$http({
-				url: 'http://azeemapi.steveatgetexp.com/subscriptions/',
+				url: $scope.apiUri+'/subscriptions/',
 				data: {
 					'partyId': $cookies.partyId ,
 					'activationCode': code,
 				},
 				method: 'POST',
-				withCredentials: true,
 			}).success(function(data, status, headers, config){
 				$scope.tabPage = 'success';
 			}).error(function(data, status, headers, config){
@@ -53,9 +52,8 @@ angular.module('platform-ui.activation').controller(
 			$scope.partnerId = $location.search()['partnerId'];
 			$scope.redirect = $location.search()['redirect'];
 			$http({
-				url: 'http://azeemapi.steveatgetexp.com/partners/?partnerId='+$scope.partnerId,
+				url: $scope.apiUri+'/partners/?partnerId='+$scope.partnerId,
 				method: 'GET',
-				withCredentials: true,
 			}).success(function(data, status, headers, config){
 				$scope.partner = data[0];
 			}).error(function(data, status, headers, config) {

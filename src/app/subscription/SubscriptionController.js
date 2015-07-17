@@ -8,7 +8,6 @@ angular.module('platform-ui.subscription').controller(
 
 	/* Dependencies */
 	[
-	'$cookies',
 	'$http',
 	'$scope',
 	'$location',
@@ -16,7 +15,7 @@ angular.module('platform-ui.subscription').controller(
 	'SubscriptionModel',
 
 	/* Controller Definition */
-	function ($cookies, $http, $scope, $location, Title, SubscriptionModel) {
+	function ($http, $scope, $location, Title, SubscriptionModel) {
 	    init();
 
             $scope.switchTab = function(tabName) {
@@ -40,23 +39,20 @@ angular.module('platform-ui.subscription').controller(
 		$scope.countries = SubscriptionModel.countries;
 		$scope.redirect = $location.search()['redirect'];
 		$http({
-		    url:'http://azeemapi.steveatgetexp.com/partners/?partnerId='+$scope.partnerId,
+		    url:$scope.apiUri+'/partners/?partnerId='+$scope.partnerId,
 		    method:'GET',
-		    withCredentials:true,
 		}).success(function(data, status, headers, config) {
 		    $scope.partner = data[0];
 		});
 		$http({
-                    url:'http://azeemapi.steveatgetexp.com/parties/organizations/',
+                    url:$scope.apiUri+'/parties/organizations/',
                     method:'GET',
-                    withCredentials:true,
                 }).success(function(data, status, headers, config) {
                     $scope.institutions = data;
                 });
 		$http({
-                    url:'http://azeemapi.steveatgetexp.com/parties/countries/',
+                    url:$scope.apiUri+'/parties/countries/',
                     method:'GET',
-                    withCredentials:true,
                 }).success(function(data, status, headers, config) {
                     $scope.countries = data.sort();
                 });

@@ -9,13 +9,12 @@ angular.module('platform-ui.subscription.individual.term').controller(
     /* Dependencies */
     [
 	'$http',
-	'$cookies',
 	'$scope',
 	'$rootScope',
 	'TermModel',
 	
 	/* Controller Definition */
-	function ($http, $cookies, $scope, $rootScope, TermModel) {
+	function ($http, $scope, $rootScope, TermModel) {
 	    init();
 	    
 	    $scope.reset = function() {
@@ -61,11 +60,9 @@ angular.module('platform-ui.subscription.individual.term').controller(
                 $scope.subscriptions = TermModel.subscriptions;
 		$scope.userbool = TermModel.userbool;
 		$scope.termsbool = TermModel.termsbool;
-                $cookies.apiKey = 'test123';
                 $http({
-		    url:'http://azeemapi.steveatgetexp.com/partners/terms/?partnerId='+$scope.partnerId,
+		    url:$scope.apiUri+'/partners/terms/?partnerId='+$scope.partnerId,
 		    method:'GET',
-		    withCredentials:true,
                 }).success(function(data, status, headers, config) {
 		    $scope.subscriptions = data;
                 }).error(function(data, status, headers, config) {

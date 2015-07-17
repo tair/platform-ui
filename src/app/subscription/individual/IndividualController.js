@@ -9,13 +9,12 @@ angular.module('platform-ui.subscription.individual').controller(
 	/* Dependencies */
 	[
 	    '$http',
-	    '$cookies',
 	'$scope',
 	'$rootScope',
 	'IndividualModel',
 
 	/* Controller Definition */
-	function ($http, $cookies, $scope, $rootScope, IndividualModel) {
+	function ($http, $scope, $rootScope, IndividualModel) {
 	    init();
 	    
             $scope.next = function(nextTab) {
@@ -63,9 +62,8 @@ angular.module('platform-ui.subscription.individual').controller(
                                 $scope.stripeerrors = null;
                                 $scope.last4 = response.card.last4;
                                 if (bool) {
-                                    $cookies.apiKey = 'test123';
                                     $http({
-                                        url:'http://azeemapi.steveatgetexp.com/subscriptions/payments/',
+                                        url:$scope.apiUri+'/subscriptions/payments/',
                                         data:{
                                             'stripeToken':response.id,
                                             'price':$scope.info.subtotal,
@@ -82,7 +80,6 @@ angular.module('platform-ui.subscription.individual').controller(
 					    'zip': $scope.formdata.zip
                                         },
                                         method:'POST',
-                                        withCredentials:true,
                                     }).success(function(data, status, headers, config) {
                                     }).error(function(data, status, headers, config) {
                                     });
