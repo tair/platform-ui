@@ -23,13 +23,13 @@ angular.module('platform-ui.login').controller(
 		arr = $scope.redirect.split("/");
 		return arr[0]+"//"+arr[2];
 	    }
-	    var callProxy = function(){
+	    var callProxy = function(data){
 		$http({
 		    url: getPartnerUriFromRedirect(),
 		    data: {
 			action:"setCookies",
-			partyId:$cookies["partyId"],
-			secret_key:$cookies["secret_key"]
+			partyId:data["partyId"],
+			secret_key:data["secret_key"]
 		    },
 		    method: 'POST',
 		}).success(function(data, status){
@@ -43,7 +43,9 @@ angular.module('platform-ui.login').controller(
 				data: $scope.formdata,
 				method: 'POST',
 			}).success(function(data, status, headers, config){
-			    callProxy();
+				$cookies.partyId = data["partyId"];
+				$cookies.secret_key = data["secret_key"];
+			    	callProxy(data);
 				//alert('Login successful: '+$cookies.secret_key);
 			}).error(function(data, status, headers, config){
 				alert('Login failed');
