@@ -16,7 +16,6 @@ angular.module('platform-ui').factory(
 		brand: 'Platform UI',
 		author: 'Getexp',
 		apiUri: 'https://steveapi.steveatgetexp.com',
-		apiKey: 'test123'
 	    };
 	}
 ]);
