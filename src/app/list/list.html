@@ -16,8 +16,8 @@
 	<!-- Body -->
         <div style="padding-top: 30px;" class="panel-body">  
 	  <div ng-repeat="institution in institutions track by $index" class="text-center">
-	    {{institution}}
-	  </div>	      
+	    <div><span class="col-md-9 text-left">{{institution[0]}}</span><span class="col-md-3 text-right">{{institution[1]}}</span></div>
+	  </div>
 	</div>
       </div>
       <!-- Powered By -->
