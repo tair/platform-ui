@@ -15,7 +15,8 @@ angular.module('platform-ui').factory(
 		title: 'PW2 Angular App',
 		brand: 'Platform UI',
 		author: 'Getexp',
-		apiUri: 'https://steveapi.steveatgetexp.com',
+		apiUri: 'http://azeemapi.steveatgetexp.com',
+		uiDomain: '.steveatgetexp.com',
 	    };
 	}
 ]);

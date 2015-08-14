@@ -27,11 +27,7 @@ angular.module(
 
 	/* App-specific */
 	'platform-ui.home',
-	'platform-ui.metering',
-	'platform-ui.subscription',
-	'platform-ui.list',
-	'platform-ui.login',
-	'platform-ui.activation',
+	'platform-ui.contentaccess',
 	])
 	.config(
 		function ($routeProvider, $httpProvider, $urlRouterProvider) {
@@ -51,6 +47,9 @@ angular.module(
 
 		        $httpProvider.defaults.withCredentials = true;
 
+			$httpProvider.defaults.xsrfCookieName = 'csrftoken';
+			$httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
+
 			/**
 			 * Routing
 			 */
@@ -59,9 +58,20 @@ angular.module(
 				.otherwise('/home');
 		})
 	.run(
-		function ($rootScope, Title, PlatformModel) {
+		function ($rootScope, $http, Title, PlatformModel) {
+			
 			/**
 			 * Set title
 			 */
+			$http({
+				url: PlatformModel.apiUri+'/cookies/get',
+				method: 'GET'
+			}).success(function(data, status, headers, config) {
+				document.cookie='csrftoken='+data['csrftoken']+';domain='+PlatformModel.uiDomain+';path=/';
+				$http.defaults.headers.post['X-CSRFToken'] = data['csrftoken'];
+			}).error(function() {
+				alert("Unable to get CSRF cookie");
+			});
+
 			Title.setSuffix(' | ' + PlatformModel.brand);
 		});

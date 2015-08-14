@@ -27,7 +27,7 @@
                 --exclude '.DS*'
                 --exclude '.*.sw*'
                 --exclude 'ext'
-                ./bin/dev/ /var/www/azeem/pw2/dev"/>
+                ./bin/dev/ /var/www/html/pw2/dev"/>
         </exec>
     </target>
 

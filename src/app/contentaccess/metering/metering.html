@@ -1,0 +1,82 @@
+<div class="container">
+	<div class="row"><div class="col-md-12">
+		<div style="margin-left: auto; margin-right: auto;" class="panel panel-default metering-panel">
+			<div class="panel-heading metering-panel-heading">
+				<div class="row">
+					<div class="col-md-2 text-right" style="float: right;">
+						<img src={{partner.logoUri}} style="height:30px; float:right"></img>
+					</div>
+					<div class="col-md-9" style="float: none; margin-left: auto; margin-right: auto; padding-top: 20px;">
+						<div class="row">
+							<div class="col-md-3 text-center">
+								<i class="fa fa-exclamation-triangle fa-4x text-danger"></i>
+							</div>
+							<div class="col-md-9 text-left">
+								<div class="row" style="height: 10px;"></div>
+								<p ng-if="exceed!='true'">You are about to exceed your limit of free available page views this month.</p>
+								<p ng-if="exceed=='true'" style="color: red;">You have exceeded you limit for this month</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="panel-body" style="padding-top: 0px;">
+				<div class="row" style="height: 56px;"></div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="row" style="height: 34px;"></div>
+						<div class="row">
+							<div class="col-md-offset-2 text-left metering-body-heading">{{licenses[license].heading}}</div>
+						</div>
+						<div class="row">
+							<ul class="col-md-offset-2 col-md-10 subscription-benefits">
+								<li ng-repeat="b in licenses[license].benefits">
+									{{b}}
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-md-6" style="padding-left: 73px;">
+						<div class="row"><div class="col-md-12">
+							<div class="metering-body-text">To gain unlimited access, please</div>
+						</div></div>
+						<div class="row" style="height: 15px;"></div>
+						<div class="row"><div class="col-md-12">
+							<a href="#contentaccess/subscription?partnerId={{partnerId}}&redirect={{redirect}}" target="_blank" class="btn btn-success btn-success-tair">SUBSCRIBE</a>
+						</div></div>
+						<div class="row" style="height: 32px;"></div>
+						<div class="row"><div class="col-md-12">
+							<div class="metering-body-text">Already have a subscription?</div>
+						</div></div>
+						<div class="row" style="height: 14px;"></div>
+						<div class="row"><div class="col-md-12">
+							<a href="#contentaccess/login?partnerId={{partnerId}}&redirect={{redirect}}"  target="_blank" class="btn btn-success btn-primary-tair">LOG IN</a>
+						</div></div>
+						<div class="row" style="height: 10px;"></div>
+						<div class="row"><div class="col-md-12">
+							<a href="{{ redirect }}" target="_blank" ng-if="exceed!='true'"><button class="btn btn-default btn-default-tair">KEEP BROWSING</button></a>
+							<a href="{{ redirect }}" target="_blank" ng-if="exceed=='true'"><button class="btn btn-default btn-default-tair">BACK</button></a>
+						</div></div>
+					</div>
+				</div>
+				<div class="row" style="height: 41px;"></div>
+			</div>
+		</div>
+	</div></div>
+	<div class="row"><div class="col-md-12">
+		<div style="width: 697px; display: block; margin-left: auto; margin-right: auto;">
+			<div class="row">
+				<div class="col-md-4 text-right" style="float: right;">
+					<div class="col-md-6" >
+						<div class="row text-right" style="padding-top:15px;color:#bbc9cf;">
+							Powered by
+						</div>
+					</div>
+					<div class="col-md-6">
+						<img src="assets/Phoenix.png">
+					</div>
+				</div>
+			</div>
+                </div>
+	</div></div>
+</div>
