@@ -28,6 +28,7 @@ angular.module(
 	/* App-specific */
 	'platform-ui.home',
 	'platform-ui.contentaccess',
+	'platform-ui.librariantool',
 	])
 	.config(
 		function ($routeProvider, $httpProvider, $urlRouterProvider) {
