@@ -16,7 +16,6 @@
 }
 
 body {
-	padding-top: 60px;
 	background-color: #ffffff;
 }
 
@@ -113,7 +112,7 @@ body {
 
 /******************Librarian Tool General ***************/
 
-.lt-color {
+.lt-theme-color {
 	background-color: #8396A8;
 }
 
@@ -135,8 +134,77 @@ body {
 	height: 10px;
 }
 
+.lt-content-width {
+	width: 860px;
+}
+
+/******************Librarian Tool Navbar*****************/
+
+.lt-navbar-panel {
+	.lt-content-width;
+}
+
+.lt-navbar-top {
+	.lt-theme-color;
+	height:64px;
+}
+
+.lt-navbar-img {
+	height:24px;
+	width:24px;
+}
+
+.lt-navbar-tool-text {
+	.lt-font-bold;
+	font-size: 12px;
+	color: #ffffff;
+}
+
+.lt-navbar-email {
+	.lt-font-bold;
+	font-size: 14px;
+	color: #cccccc;
+	padding-right: 10px;
+}
+
+.lt-navbar-status {
+	.lt-font-bold;
+	font-size: 14px;
+	color: #ffffff;
+}
+
+.lt-navbar-bottom {
+	height:212px;
+	background-color: #f5f5f5;
+}
+
+.lt-navbar-bottom-text {
+	.lt-font-bold;
+	font-size: 22px;
+	color: #8396a7;
+}
+
+.lt-navbar-role {
+	.lt-content-width;
+	height: 30px;
+	margin-top: -30px;
+}
+
+.lt-navbar-label {
+	.lt-font-bold;
+	font-size: 14px;
+	color: #cccccc;
+	cursor: pointer;
+}
+
+.lt-navbar-label-highlight {
+	.lt-navbar-label;
+	color: #8396a8;
+}
+
 /******************Librarian Tool Login******************/
 .lt-login-heading {
+	.lt-theme-color;
 	height: 200px;
 }
 
@@ -181,6 +249,7 @@ body {
 .lt-login-login-btn {
 	.lt-font-bold;
 	.lt-login-form-width;
+	.lt-theme-color;
 	height: 36px;
 	font-size: 14px;
 	color: #f9f9f9;

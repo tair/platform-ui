@@ -12,7 +12,7 @@ angular.module('platform-ui.librariantool.role.institution.profile').factory(
 
 	function () {
 		return {
-			title: 'Institution',
+			title: 'PROFILE',
 		};
 	}
 ]);

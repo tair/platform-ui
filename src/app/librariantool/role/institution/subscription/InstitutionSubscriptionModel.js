@@ -12,7 +12,7 @@ angular.module('platform-ui.librariantool.role.institution.subscription').factor
 
 	function () {
 		return {
-			title: 'Institution',
+			title: 'SUBSCRIPTION',
 		};
 	}
 ]);

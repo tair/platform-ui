@@ -18,5 +18,6 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 
 	/* Controller Definition */
 	function ($scope, $http, $cookies, $location, $state, Title, InstitutionIpRangeModel) {
+	    $scope.setTitle(InstitutionIpRangeModel.title);
 	}
 ]);

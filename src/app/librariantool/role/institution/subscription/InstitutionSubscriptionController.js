@@ -18,5 +18,6 @@ angular.module('platform-ui.librariantool.role.institution.subscription').contro
 
 	/* Controller Definition */
 	function ($scope, $http, $cookies, $location, $state, Title, InstitutionSubscriptionModel) {
+	    $scope.setTitle(InstitutionSubscriptionModel.title);
 	}
 ]);

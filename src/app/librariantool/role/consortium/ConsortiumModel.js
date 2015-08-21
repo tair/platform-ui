@@ -12,7 +12,14 @@ angular.module('platform-ui.librariantool.role.consortium').factory(
 
 	function () {
 		return {
-			title: 'Consortium',
+		    title: 'Consortium',
+                    currentTab: {label:"MANAGE", state:"role.consortium.manage"},
+                    tabs: [
+                        {label:"MANAGE", state:"role.consortium.manage"},
+                        {label:"SUBSCRIPTION", state:"role.consortium.subscription"},
+                        {label:"USAGE", state:"role.consortium.usage"},
+                        {label:"PROFILE", state:"role.consortium.profile"},
+                    ]
 		};
 	}
 ]);

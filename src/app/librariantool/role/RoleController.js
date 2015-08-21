@@ -18,5 +18,9 @@ angular.module('platform-ui.librariantool.role').controller(
 
 	/* Controller Definition */
 	function ($scope, $http, $cookies, $location, $state, Title, RoleModel) {
+	    $scope.title = RoleModel.title;
+	    $scope.setTitle = function(title) {
+		$scope.title = title;
+	    }
 	}
 ]);

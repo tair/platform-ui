@@ -1,4 +1,5 @@
-<div class="container">
-  <div> This is Phoenix Header</div>
-  <div ui-view="phoenix"></div>
+<div class="lt-navbar-role text-center center-block" ng-repeat="tab in tabs track by $index">
+  <div class="col-md-3" ng-class="navbarLabel(tab)" ng-click="clickTab(tab)">{{tab.label}}</div>
 </div>
+<div ui-view="phoenix"></div>
+

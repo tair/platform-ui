@@ -12,7 +12,7 @@ angular.module('platform-ui.librariantool.role.institution.iprange').factory(
 
 	function () {
 		return {
-			title: 'Institution',
+			title: 'IP RANGE',
 		};
 	}
 ]);
