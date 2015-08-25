@@ -26,7 +26,7 @@ angular.module('platform-ui.librariantool.role.institution').controller(
 		} 
 		return "lt-navbar-label";
 	    }
-	    $scope.clickTab = function(tab) {
+	    $scope.toTab = function(tab) {
 		$state.go(tab.state);
 		$scope.currentTab = tab;
 	    }

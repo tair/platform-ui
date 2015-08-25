@@ -112,8 +112,14 @@ body {
 
 /******************Librarian Tool General ***************/
 
+@lt-theme-color : #8396a8;
+
 .lt-theme-color {
-	background-color: #8396A8;
+	background-color: #8396a8;
+}
+
+.lt-theme-font-color {
+	color: #8396a8;
 }
 
 .lt-font {
@@ -152,12 +158,14 @@ body {
 .lt-navbar-img {
 	height:24px;
 	width:24px;
+	cursor:pointer;
 }
 
 .lt-navbar-tool-text {
 	.lt-font-bold;
 	font-size: 12px;
 	color: #ffffff;
+	cursor:pointer;
 }
 
 .lt-navbar-email {
@@ -171,6 +179,7 @@ body {
 	.lt-font-bold;
 	font-size: 14px;
 	color: #ffffff;
+	cursor:pointer;
 }
 
 .lt-navbar-bottom {
@@ -179,13 +188,12 @@ body {
 }
 
 .lt-navbar-bottom-text {
+	.lt-theme-font-color;
 	.lt-font-bold;
 	font-size: 22px;
-	color: #8396a7;
 }
 
 .lt-navbar-role {
-	.lt-content-width;
 	height: 30px;
 	margin-top: -30px;
 }
@@ -198,9 +206,158 @@ body {
 }
 
 .lt-navbar-label-highlight {
+	.lt-theme-font-color;
 	.lt-navbar-label;
-	color: #8396a8;
 }
+
+/******************Librarian Tool IP*********************/
+@lt-ip-green: #7acf92;
+
+.lt-ip-glyphicon {
+        .lt-theme-color;
+        width:36px;
+        height:36px;
+        line-height:36px;
+        font-size:18px;
+        font-weight:200;
+        color:#ffffff;
+        cursor:pointer;
+}
+
+.lt-ip-action-label {
+	.lt-font;
+	.lt-theme-font-color;
+	font-size: 16px;
+	margin-top: 75px;
+}
+
+.lt-ip-action-button {
+	border-style: solid;
+	border-width: 2px;
+	border-color: @lt-theme-color;
+	width: 196px;
+	height: 40px;
+	margin-top: 20px;
+	cursor: pointer;
+}
+
+.lt-ip-action-button-selected {
+	.lt-ip-action-button;
+	border-color: @lt-ip-green;
+}
+
+.lt-ip-action-button-label {
+	.lt-font;
+	.lt-theme-font-color;
+	font-size:14px;
+	position: absolute;
+	padding-left: 24px;
+	bottom: 10px;
+}
+
+.lt-ip-action-button-label-selected {
+	.lt-ip-action-button-label;
+	color: @lt-ip-green;
+}
+
+.lt-ip-action-button-glyphicon-selected {
+	.lt-ip-glyphicon;
+	background-color: @lt-ip-green;
+}
+
+.lt-ip-right-panel{
+	margin-top:56px;
+	border-style: solid;
+        border-width: 1px;
+	border-color: #bbc9cf;
+}
+
+.lt-ip-groups-title {
+        .lt-theme-color;
+        height:50px;
+}
+
+.lt-ip-groups-title-label {
+        color:#ffffff;
+        font-size:16px;
+        margin-top:14px;
+	margin-left:22px;
+}
+
+.lt-ip-groups-title-filter {
+        color:#ffffff;
+        font-size:14px;
+        padding-top:16px;
+        padding-right:10px;
+}
+
+.lt-ip-groups-title-glyphicon {
+	.lt-ip-glyphicon;
+	line-height:48px;
+	margin-right: 18px;
+}
+
+.lt-ip-groups-list {
+	height: 68px;
+	margin-left: 22px;
+	margin-right: 33px;
+        margin-top: 10px;
+        background-color: #f6f6f6;
+	cursor: pointer;
+}
+
+.lt-ip-groups-list-selected{
+	.lt-ip-groups-list;
+	border-style: solid;
+        border-width: 3px;
+        border-color: @lt-theme-color;
+	cursor: default;
+}
+
+.lt-ip-groups-list-edit{
+	.lt-ip-groups-list-selected;
+	border-color: @lt-ip-green;
+}
+
+.lt-ip-groups-list-label {
+	.lt-theme-font-color;
+	font-size: 16px;
+	margin-top: 8px;
+	padding-left: 15px;
+	width: 300px;
+}
+
+.lt-ip-groups-list-label-edit {
+	.lt-ip-groups-list-label;
+	color:red;
+}
+
+.lt-ip-groups-list-values {
+	margin-top: 4px;
+}
+
+.lt-ip-groups-list-start {
+	padding-left:30px;
+	font-size:16px;
+	width:140px;
+	height:24px;
+	padding-right:4px;
+}
+
+.lt-ip-groups-list-end {
+	.lt-ip-groups-list-start;
+	padding-left:4px;
+}
+
+.lt-ip-groups-list-glyphicon-container {
+	margin-top: 12px;
+}
+
+.lt-ip-groups-add-glyphicon {
+        .lt-ip-glyphicon;
+        background-color: @lt-ip-green;
+}
+
 
 /******************Librarian Tool Login******************/
 .lt-login-heading {

@@ -1,3 +1,54 @@
-<div class="container">
-  This is the institution IP Range Page
+<div style="padding:0px">
+  <!-- Left Panel -->
+  <div class="col-md-4">
+    <div class="lt-ip-action-label">ACTIONS</div>
+    <div ng-class="actionButtonAddCss()" ng-click="adding=true">
+      <span class="glyphicon glyphicon-plus text-center" ng-class="actionButtonGlyphiconAddCss()" style="margin-top:-1px"></span>
+      <span class="text-center" ng-class="actionButtonLabelAddCss()" style="margin-top:-1px">ADD IP RANGE</span>
+    </div>
+  </div>
+
+  <!-- Right Panel -->
+  <div class="col-md-8 lt-ip-right-panel">
+    <!-- Right Panel Header -->
+    <div class="row lt-ip-groups-title">
+      <div class="col-md-4 lt-ip-groups-title-label">GROUPS</div>
+      <div class="col-md-4 pull-right">
+	<span class="pull-right glyphicon glyphicon-triangle-bottom lt-ip-groups-title-glyphicon"></span>
+	<span class="pull-right text-right lt-ip-groups-title-filter"> By Start IP</span>
+      </div>
+    </div>
+    <div class="row" style="height:20px"></div>
+
+    <!-- Add IP Range -->
+    <div class="row lt-ip-groups-list-edit" ng-class="groupsAddCss()">
+      <div class="col-md-8">
+        <div class="lt-ip-groups-label">Enter IP Range Label</div>
+        <div class="lt-ip-list">catsare - awesome</div>
+      </div>
+      <div class="col-md-4">
+        <div class="pull-right glyphicon glyphicon-remove lt-ip-groups-add-glyphicon text-center" style="margin-right:10px" ng-click="$event.stopPropagation(); adding=false;"></div>
+        <div class="pull-right glyphicon glyphicon-ok lt-ip-groups-add-glyphicon text-center" style="margin-right:10px" ng-click="$event.stopPropagation(); addConfirm();"></div>
+      </div>
+    </div>
+
+    <!-- IP Range List -->
+    <div ng-repeat="iprange in ipranges track by $index">
+      <div class="row" ng-class="groupsListCss(iprange.state)" ng-click="selectIp(iprange)">
+	<div class="col-md-8">
+	  <div ng-class="groupsListLabelCss(iprange.state)">{{$index+1}}. {{iprange.name}}</div>
+	  <div class="lt-ip-groups-list-values">
+	    <span class="lt-ip-groups-list-start">{{iprange.start}}</span> 
+	    - 
+	    <span class="lt-ip-groups-list-end">{{iprange.end}}</span>
+	  </div>
+	</div>
+	<div class="col-md-4" ng-class="groupsListGlyphiconCss(iprange.state)">
+	  <div class="pull-right glyphicon text-center" ng-class="groupsListGlyphiconRemoveCss(iprange.state)" style="margin-right:10px" ng-click="$event.stopPropagation(); remove(iprange);"></div>
+	  <div class="pull-right glyphicon text-center" ng-class="groupsListGlyphiconEditCss(iprange.state)" style="margin-right:10px" ng-click="$event.stopPropagation(); edit(iprange);"></div>
+	</div>
+      </div>
+    </div>
+  </div>
+
 </div>
