@@ -26,6 +26,12 @@ angular.module('platform-ui.librariantool.role.institution').controller(
 		} 
 		return "lt-navbar-label";
 	    }
+	    $scope.navbarLine = function(tab) {
+                if (tab.label == $scope.currentTab.label) {
+                    return "show";
+                }
+                return "hide";
+	    }
 	    $scope.toTab = function(tab) {
 		$state.go(tab.state);
 		$scope.currentTab = tab;

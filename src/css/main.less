@@ -206,12 +206,29 @@ body {
 }
 
 .lt-navbar-label-highlight {
-	.lt-theme-font-color;
 	.lt-navbar-label;
+	.lt-theme-font-color;
+}
+
+.lt-navbar-line {
+	margin-top:5px;
+	height:5px;
+	background-color:@lt-theme-color;
 }
 
 /******************Librarian Tool IP*********************/
 @lt-ip-green: #7acf92;
+@lt-ip-red: #eb636c;
+
+::-webkit-input-placeholder {
+    font-style: italic;
+}
+:-moz-placeholder {
+    font-weight: bold;
+}
+:-ms-input-placeholder {
+    font-weight: bold;
+}
 
 .lt-ip-glyphicon {
         .lt-theme-color;
@@ -272,6 +289,11 @@ body {
 	border-color: #bbc9cf;
 }
 
+.lt-ip-right-subpanel {
+	height:600px;
+	overflow: scroll;
+}
+
 .lt-ip-groups-title {
         .lt-theme-color;
         height:50px;
@@ -297,39 +319,54 @@ body {
 	margin-right: 18px;
 }
 
+.lt-ip-groups-description {
+	.lt-font;
+	color:@lt-theme-color;
+	margin-left: 22px;
+	margin-top: 28px;
+	margin-bottom: 18px;
+	margin-right: 22px;
+}
+
 .lt-ip-groups-list {
-	height: 68px;
+	height: 80px;
 	margin-left: 22px;
 	margin-right: 33px;
         margin-top: 10px;
         background-color: #f6f6f6;
-	cursor: pointer;
+        border-style: solid;
+        border-width: 3px;
+	border-color: #f6f6f6;
 }
 
 .lt-ip-groups-list-selected{
 	.lt-ip-groups-list;
-	border-style: solid;
-        border-width: 3px;
         border-color: @lt-theme-color;
-	cursor: default;
 }
 
 .lt-ip-groups-list-edit{
-	.lt-ip-groups-list-selected;
+	.lt-ip-groups-list;
 	border-color: @lt-ip-green;
+}
+
+.lt-ip-groups-list-remove{
+	.lt-ip-groups-list;
+	border-color: @lt-ip-red;
 }
 
 .lt-ip-groups-list-label {
 	.lt-theme-font-color;
 	font-size: 16px;
 	margin-top: 8px;
-	padding-left: 15px;
+	margin-left: 25px;
 	width: 300px;
+	background-color: transparent;
+	border:	    none;
 }
 
 .lt-ip-groups-list-label-edit {
 	.lt-ip-groups-list-label;
-	color:red;
+	background-color: #ffffff;
 }
 
 .lt-ip-groups-list-values {
@@ -337,20 +374,69 @@ body {
 }
 
 .lt-ip-groups-list-start {
-	padding-left:30px;
+	.lt-font;
+	color:#858585;
 	font-size:16px;
+	margin-left:25px;
 	width:140px;
 	height:24px;
-	padding-right:4px;
+	margin-right:4px;
+	background-color: transparent;
+	border: none;
 }
 
 .lt-ip-groups-list-end {
 	.lt-ip-groups-list-start;
-	padding-left:4px;
+	margin-left:4px;
+}
+
+.lt-ip-groups-list-start-edit {
+	.lt-ip-groups-list-start;
+	background-color: white;
+}
+
+.lt-ip-groups-list-end-edit {
+	.lt-ip-groups-list-end;
+	background-color: white;
 }
 
 .lt-ip-groups-list-glyphicon-container {
 	margin-top: 12px;
+}
+
+.lt-ip-groups-remove-label {
+	.lt-font-bold;
+	font-size: 22px;
+	color: @lt-ip-red;
+	display: inline-block;
+	width: 300px;
+	height: 36px;
+	position: absolute;
+	margin-left: 20px;
+	margin-top:20px;
+}
+
+.lt-ip-groups-remove-button {
+	.lt-font-bold;
+	font-size: 18px;
+	color: #ffffff;
+	background-color: @lt-ip-red;
+	line-height: 36px;
+	height: 36px;
+	width:72px;
+	margin-top:18px;
+	display:inline-block;
+	cursor:pointer;
+}
+
+.lt-ip-groups-remove-button-yes {
+	.lt-ip-groups-remove-button;
+	margin-left: 340px;
+}
+
+.lt-ip-groups-remove-button-no {
+	.lt-ip-groups-remove-button;
+	margin-left: 10px;
 }
 
 .lt-ip-groups-add-glyphicon {
