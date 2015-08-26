@@ -32,11 +32,11 @@
       <!-- Add IP Range -->
       <div class="lt-ip-groups-list-edit" ng-class="groupsAddCss()">
 	<div class="col-md-9" style="padding:0px">
-          <div><input class="lt-ip-groups-list-label-edit" style="width:300px" placeholder="Enter IP Range Label (optional)">{{newRange.label}}</input></div>
+          <div><input class="lt-ip-groups-list-label-edit" style="width:300px" placeholder="Enter IP Range Label (optional)" ng-model="newRange.name"></input></div>
 	  <div class="lt-ip-groups-list-values">
-            <span><input class="lt-ip-groups-list-start-edit" placeholder="Starting IP">{{newRange.start}}</input></span>
+            <span><input class="lt-ip-groups-list-start-edit" placeholder="Starting IP" ng-model="newRange.start"></input></span>
 	    <span>-</span>
-	    <span><input class="lt-ip-groups-list-end-edit" placeholder="Ending IP">{{newRange.end}}</input></span>
+	    <span><input class="lt-ip-groups-list-end-edit" placeholder="Ending IP" ng-model="newRange.end"></input></span>
 	  </div>
 	</div>
 	<div class="col-md-3 lt-ip-groups-list-glyphicon-container" style="padding:0px">

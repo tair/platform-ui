@@ -147,7 +147,7 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 	    }
 	    $scope.edit = function(iprange) {
 		if (iprange.state == "edit") {
-		    // alert("nothing is added!");
+		    //alert("nothing is edited!");
 		    iprange.state = null;
 		    $scope.editRange = null;
 		} else {
@@ -158,7 +158,9 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 		}
 	    }
 	    $scope.addConfirm = function() {
-		//alert("Nothing is removed!");
+		//alert("Nothing is added!");
+                $scope.ipranges.unshift(angular.copy($scope.newRange));
+		$scope.newRange = null;
 		$scope.adding = false;
 	    }
 	    $scope.reset = function() {
