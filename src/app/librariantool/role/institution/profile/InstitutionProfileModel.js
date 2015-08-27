@@ -13,6 +13,15 @@ angular.module('platform-ui.librariantool.role.institution.profile').factory(
 	function () {
 		return {
 			title: 'PROFILE',
+			user: {
+				"name": "Joe McCandles",
+				"username": "joe432",
+				"email": "joe432@abc.xyz",
+				"password": "a34rhdyy",
+			},
+			uiparams: {
+				"colwidth": 'col-md-7',
+			},
 		};
 	}
 ]);

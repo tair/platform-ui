@@ -19,7 +19,7 @@ angular.module(
     .config(
 	function ($stateProvider) {
             $stateProvider.state('role.default', {
-                url: '/',
+                url: '',
                 views: {
                     'role': {
                         controller: 'InstitutionRoleController',
