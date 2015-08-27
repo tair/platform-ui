@@ -12,7 +12,7 @@
   <div class="col-md-8 lt-ip-right-panel" style="padding:0px">
     <!-- Right Panel Header -->
     <div class="lt-ip-groups-title">
-      <div class="col-md-4 lt-ip-groups-title-label" style="padding:0px">GROUPS</div>
+      <div class="col-md-4 lt-ip-groups-title-label" style="padding:0px">{{partyInfo.name}}</div>
       <div class="col-md-4 pull-right" style="padding:0px">
 	<span class="pull-right glyphicon glyphicon-triangle-bottom lt-ip-groups-title-glyphicon"></span>
 	<span class="pull-right text-right lt-ip-groups-title-filter"> By Start IP</span>
@@ -24,9 +24,9 @@
 
       <!-- Remove IP Range Confirmation -->
       <div class="lt-ip-groups-list-remove" ng-class="groupsRemoveCss()">
-	<span class="lt-ip-groups-remove-label text-center">DELETE RANGE?</span>
-	<span class="lt-ip-groups-remove-button-yes text-center" ng-click="removeConfirm()">YES</span>
-	<span class="lt-ip-groups-remove-button-no text-center" ng-click="removing=false; removeRange=null;">NO</span>
+	<div class="col-md-8 lt-ip-groups-remove-label text-center">DELETE RANGE?</div>
+	<div class="col-md-2 lt-ip-groups-remove-button-no text-center pull-right" ng-click="removing=false; removeRange=null;">NO</div>
+	<div class="col-md-2 lt-ip-groups-remove-button-yes text-center pull-right" ng-click="removeConfirm()">YES</div>
       </div>
       
       <!-- Add IP Range -->

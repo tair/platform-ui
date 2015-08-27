@@ -23,7 +23,7 @@ angular.module('platform-ui.librariantool.login').controller(
 		alert("requesting account NYI");
 	    }
 	    $scope.login = function() {
-		$scope.partnerId = "tair"; // should be phoenix eventually.
+		$scope.partnerId = "phoenix"; // should be phoenix eventually.
                 $http({
                     url: $scope.apiUri+'/users/login/?partnerId='+$scope.partnerId,
                     data: $scope.formdata,

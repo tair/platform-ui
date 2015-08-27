@@ -14,6 +14,12 @@ angular.module('platform-ui.librariantool.role').factory(
 		return {
 		    title: 'Role',
 		    navbarTitle: 'ROLE',
+		    email:'dummyemail@dummy.com',
+                    partyInfo: {
+			partyId:null,
+			partyType:null,
+                        name:'GetExp',
+                    },
 		};
 	}
 ]);

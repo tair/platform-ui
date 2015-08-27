@@ -1,5 +1,5 @@
 /**
- * ContentAccess Module
+ * LibrarianTool Module
  *
  * The main landing page
  */

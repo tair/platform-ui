@@ -13,8 +13,6 @@ angular.module('platform-ui.librariantool').controller(
 	'LibrarianToolModel',
 
 	/* Controller Definition */
-	function ($scope, Title, ContentAccessModel) {
-	    Title.setTitle(ContentAccessModel.title);
-	    $scope.title = ContentAccessModel.title;
+	function ($scope, Title, LibrarianToolModel) {
 	}
 ]);

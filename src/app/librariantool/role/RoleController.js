@@ -28,5 +28,16 @@ angular.module('platform-ui.librariantool.role').controller(
 	    $scope.setTitle = function(title) {
 		$scope.title = title;
 	    }
+
+	    $scope.partyInfo = RoleModel.partyInfo;
+	    $scope.email = RoleModel.email;
+            $http({
+                url: $scope.apiUri+'/parties/?partyId='+$cookies.partyId+'&secret_key='+encodeURIComponent($cookies.secret_key),
+                method: 'GET',
+            }).success(function(data, status, headers, config){
+                $scope.partyInfo = data[0];
+            }).error(function(data, status, headers, config){
+                alert("partyId failed");
+            });
 	}
 ]);
