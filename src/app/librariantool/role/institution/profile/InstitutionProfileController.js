@@ -40,6 +40,16 @@ angular.module('platform-ui.librariantool.role.institution.profile').controller(
 	    	function init() {
 	    		$scope.setTitle(InstitutionProfileModel.title);
 	    		$scope.user = InstitutionProfileModel.user;
+			$http({
+				url: $scope.apiUri+'/users/?partyId='+$cookies.partyId,
+				method: 'GET',
+			}).success(function(data, status, headers, config) {
+				$scope.user.username = data[0].username;
+				$scope.user.email = data[0].email;
+				$scope.user.institution = data[0].institution;
+			}).error(function() {
+				alert("Failed to get party information");
+			});
 			$scope.userprev = {};
 			for(k in $scope.user) $scope.userprev[k] = $scope.user[k];
 	    		$scope.edit = false;
