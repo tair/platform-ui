@@ -129,6 +129,8 @@ body {
 /******************Librarian Tool General ***************/
 
 @lt-theme-color : #8396a8;
+@lt-green: #7acf92;
+@lt-red: #eb636c;
 
 .lt-theme-color {
 	background-color: #8396a8;
@@ -166,6 +168,27 @@ body {
 
 .lt-font-aliasing {
 	-webkit-font-smoothing: antialiased;
+}
+
+::-webkit-input-placeholder {
+    font-style: italic;
+}
+:-moz-placeholder {
+    font-weight: bold;
+}
+:-ms-input-placeholder {
+    font-weight: bold;
+}
+
+.lt-glyphicon {
+        .lt-theme-color;
+        width:36px;
+        height:36px;
+	line-height:36px;
+        font-size:18px;
+        font-weight:200;
+        color:#ffffff;
+	cursor:pointer;
 }
 
 /******************Librarian Tool Navbar*****************/
@@ -240,29 +263,12 @@ body {
 	background-color:@lt-theme-color;
 }
 
-/******************Librarian Tool IP*********************/
-@lt-ip-green: #7acf92;
-@lt-ip-red: #eb636c;
+/******************Librarian Tool Admin *****************/
 
-::-webkit-input-placeholder {
-    font-style: italic;
-}
-:-moz-placeholder {
-    font-weight: bold;
-}
-:-ms-input-placeholder {
-    font-weight: bold;
-}
+/******************Librarian Tool IP ********************/
 
 .lt-ip-glyphicon {
-        .lt-theme-color;
-        width:36px;
-        height:36px;
-        line-height:36px;
-        font-size:18px;
-        font-weight:200;
-        color:#ffffff;
-        cursor:pointer;
+	.lt-glyphicon;
 }
 
 .lt-ip-action-label {
@@ -284,7 +290,7 @@ body {
 
 .lt-ip-action-button-selected {
 	.lt-ip-action-button;
-	border-color: @lt-ip-green;
+	border-color: @lt-green;
 }
 
 .lt-ip-action-button-label {
@@ -298,12 +304,12 @@ body {
 
 .lt-ip-action-button-label-selected {
 	.lt-ip-action-button-label;
-	color: @lt-ip-green;
+	color: @lt-green;
 }
 
 .lt-ip-action-button-glyphicon-selected {
 	.lt-ip-glyphicon;
-	background-color: @lt-ip-green;
+	background-color: @lt-green;
 }
 
 .lt-ip-right-panel{
@@ -370,12 +376,12 @@ body {
 
 .lt-ip-groups-list-edit{
 	.lt-ip-groups-list;
-	border-color: @lt-ip-green;
+	border-color: @lt-green;
 }
 
 .lt-ip-groups-list-remove{
 	.lt-ip-groups-list;
-	border-color: @lt-ip-red;
+	border-color: @lt-red;
 }
 
 .lt-ip-groups-list-label {
@@ -431,7 +437,7 @@ body {
 .lt-ip-groups-remove-label {
 	.lt-font-bold;
 	font-size: 22px;
-	color: @lt-ip-red;
+	color: @lt-red;
 	width: 300px;
 	height: 36px;
 	margin-top:20px;
@@ -441,7 +447,7 @@ body {
 	.lt-font-bold;
 	font-size: 18px;
 	color: #ffffff;
-	background-color: @lt-ip-red;
+	background-color: @lt-red;
 	line-height: 36px;
 	height: 36px;
 	width:72px;
@@ -461,7 +467,12 @@ body {
 
 .lt-ip-groups-add-glyphicon {
         .lt-ip-glyphicon;
-        background-color: @lt-ip-green;
+        background-color: @lt-green;
+}
+
+.lt-ip-groups-remove-glyphicon {
+        .lt-ip-glyphicon;
+        background-color: @lt-red;
 }
 
 /******************Librarian Tool Login******************/

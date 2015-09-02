@@ -22,13 +22,6 @@
     <div class="lt-ip-right-subpanel">
       <div class="lt-ip-groups-description">Add new IP ranges from the left action panel. Click on already existing IP ranges to edit or delete them.</div>
 
-      <!-- Remove IP Range Confirmation -->
-      <div class="lt-ip-groups-list-remove" ng-class="groupsRemoveCss()">
-	<div class="col-md-8 lt-ip-groups-remove-label text-center">DELETE RANGE?</div>
-	<div class="col-md-2 lt-ip-groups-remove-button-no text-center pull-right" ng-click="removing=false; removeRange=null;">NO</div>
-	<div class="col-md-2 lt-ip-groups-remove-button-yes text-center pull-right" ng-click="removeConfirm()">YES</div>
-      </div>
-      
       <!-- Add IP Range -->
       <div class="lt-ip-groups-list-edit" ng-class="groupsAddCss()">
 	<div class="col-md-9" style="padding:0px">
@@ -57,8 +50,8 @@
 	  </div>
 	  </div>
 	  <div class="col-md-3" style="margin-top:18px;padding:0px" ng-class="groupsListGlyphiconCss(iprange.state)">
-	    <div class="pull-right glyphicon text-center" ng-class="groupsListGlyphiconRemoveCss(iprange.state)" style="margin-right:10px" ng-click="$event.stopPropagation(); remove(iprange);"></div>
-	    <div class="pull-right glyphicon text-center" ng-class="groupsListGlyphiconEditCss(iprange.state)" style="margin-right:10px" ng-click="$event.stopPropagation(); edit(iprange);"></div>
+	    <div class="pull-right glyphicon text-center" ng-class="groupsListGlyphiconRightCss(iprange.state)" style="margin-right:10px" ng-click="$event.stopPropagation(); right(iprange);"></div>
+	    <div class="pull-right glyphicon text-center" ng-class="groupsListGlyphiconLeftCss(iprange.state)" style="margin-right:10px" ng-click="$event.stopPropagation(); left(iprange);"></div>
 	  </div>
 	</div>
       </div>
