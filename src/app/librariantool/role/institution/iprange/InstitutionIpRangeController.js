@@ -25,6 +25,7 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 	    $scope.newRange = InstitutionIpRangeModel.newRange;
 	    $scope.removeRange = null;
 	    $scope.editRange = null;
+	    $scope.searchTerm = null;
 
 	    // CSS Logics as response to state changes.
             $scope.groupsAddCss = function() {
@@ -36,71 +37,70 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 
             $scope.actionButtonAddCss = function() {
                 if ($scope.adding) {
-                    return "lt-ip-action-button-selected";
+                    return "lt-admin-action-button-selected";
                 }
-                return "lt-ip-action-button";
+                return "lt-admin-action-button";
             }
 
             $scope.actionButtonGlyphiconAddCss = function() {
                 if ($scope.adding) {
-                    return "lt-ip-action-button-glyphicon-selected";
+                    return "lt-glyphicon-green";
                 }
-                return "lt-ip-glyphicon";
+                return "lt-glyphicon";
             }
 
             $scope.actionButtonLabelAddCss = function() {
                 if ($scope.adding) {
-                    return "lt-ip-action-button-label-selected";
+                    return "lt-admin-action-button-label-selected";
                 }
-                return "lt-ip-action-button-label";
+                return "lt-admin-action-button-label";
             }
 
 	    $scope.groupsListCss = function(state) {
 		if (state == null) {
-		    return "lt-ip-groups-list";
+		    return "lt-admin-groups-list";
 		}
 		else if (state == "selected") {
-		    return "lt-ip-groups-list-selected";
+		    return "lt-admin-groups-list-selected";
 		} else if (state == "edit") {
-		    return "lt-ip-groups-list-edit";
+		    return "lt-admin-groups-list-edit";
 		} else if (state == "remove") {
-		    return "lt-ip-groups-list-remove";
+		    return "lt-admin-groups-list-remove";
 		}
 
 	    }
 
 	    $scope.groupsListLabelCss = function(state) {
 		if (state == "edit") {
-		    return "lt-ip-groups-list-label-edit";
+		    return "lt-admin-groups-list-label-edit";
 		}
-		return "lt-ip-groups-list-label";
+		return "lt-admin-groups-list-label";
 	    }
 
 	    $scope.groupsListGlyphiconCss = function(state) {
 		if (state == null) {
-		    return "lt-ip-groups-list-glyphicon-container hidden";
+		    return "lt-admin-groups-list-glyphicon-container hidden";
 		}
-		return "lt-ip-groups-list-glyphicon-container show";
+		return "lt-admin-groups-list-glyphicon-container show";
 	    }
 	    $scope.groupsListGlyphiconRightCss = function(state) {
 		if (state == "selected") {
-		    return "glyphicon-trash lt-ip-glyphicon";
+		    return "glyphicon-trash lt-glyphicon";
 		} else if (state == "edit") {
-		    return "glyphicon-remove lt-ip-groups-add-glyphicon";
+		    return "glyphicon-remove lt-glyphicon-green";
 		} else if (state == "remove") {
-		    return "glyphicon-remove lt-ip-groups-remove-glyphicon";
+		    return "glyphicon-remove lt-glyphicon-red";
 		}
-
 	    }
 	    $scope.groupsListGlyphiconLeftCss = function(state) {
 		if (state == "selected") {
-		    return "glyphicon-pencil lt-ip-glyphicon";
+		    return "glyphicon-pencil lt-glyphicon";
 		} else if (state == "edit") {
-		    return "glyphicon-ok lt-ip-groups-add-glyphicon";
+		    return "glyphicon-ok lt-glyphicon-green";
 		} else if (state == "remove") {
-		    return "glyphicon-ok lt-ip-groups-remove-glyphicon";
+		    return "glyphicon-ok lt-glyphicon-red";
 		}
-		return "lt-ip-glyphicon";
+		return "lt-glyphicon";
 	    }
 	    $scope.groupsListStartCss = function(state) {
 		if (state == "edit") {

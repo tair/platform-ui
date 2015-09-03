@@ -1,7 +1,7 @@
 <div>
   <!-- Left Panel -->
   <div class="col-md-4" style="padding:0px">
-    <div class="lt-ip-action-label">ACTIONS</div>
+    <div class="lt-admin-action-label">ACTIONS</div>
     <div ng-class="actionButtonAddCss()" ng-click="reset(); adding=true">
       <span class="glyphicon glyphicon-plus text-center" ng-class="actionButtonGlyphiconAddCss()" style="margin-top:-1px"></span>
       <span class="text-center" ng-class="actionButtonLabelAddCss()" style="margin-top:-1px">ADD IP RANGE</span>
@@ -9,41 +9,47 @@
   </div>
 
   <!-- Right Panel -->
-  <div class="col-md-8 lt-ip-right-panel" style="padding:0px">
+  <div class="col-md-8 lt-admin-right-panel" style="padding:0px">
     <!-- Right Panel Header -->
-    <div class="lt-ip-groups-title">
-      <div class="col-md-4 lt-ip-groups-title-label" style="padding:0px">{{partyInfo.name}}</div>
+    <div class="lt-admin-groups-title">
+      <div class="col-md-4 lt-admin-groups-title-label" style="padding:0px">{{partyInfo.name}}</div>
       <div class="col-md-4 pull-right" style="padding:0px">
-	<span class="pull-right glyphicon glyphicon-triangle-bottom lt-ip-groups-title-glyphicon"></span>
-	<span class="pull-right text-right lt-ip-groups-title-filter"> By Start IP</span>
+	<span class="pull-right glyphicon glyphicon-triangle-bottom lt-admin-groups-title-glyphicon"></span>
+	<span class="pull-right text-right lt-admin-groups-title-filter"> By Start IP</span>
       </div>
     </div>
 
-    <div class="lt-ip-right-subpanel">
-      <div class="lt-ip-groups-description">Add new IP ranges from the left action panel. Click on already existing IP ranges to edit or delete them.</div>
+    <div class="lt-admin-right-subpanel">
+
+      <!-- Description and Search Box -->
+      <div class="lt-admin-groups-description">Add new IP ranges from the left action panel. Click on already existing IP ranges to edit or delete them.</div>
+      <div class="lt-admin-groups-search">
+        <span>Search</span>
+        <span><input style="width:468px" placeholder="Enter institution name or ID number" ng-model="searchTerm"></input></span>
+      </div>
 
       <!-- Add IP Range -->
-      <div class="lt-ip-groups-list-edit" ng-class="groupsAddCss()">
+      <div class="lt-admin-groups-list-edit" ng-class="groupsAddCss()">
 	<div class="col-md-9" style="padding:0px">
-          <div><input class="lt-ip-groups-list-label-edit" style="width:300px" placeholder="Enter IP Range Label (optional)" ng-model="newRange.name"></input></div>
-	  <div class="lt-ip-groups-list-values">
+          <div><input class="lt-admin-groups-list-label-edit" style="width:300px" placeholder="Enter IP Range Label (optional)" ng-model="newRange.name"></input></div>
+	  <div class="lt-admin-groups-list-values">
             <span><input class="lt-ip-groups-list-start-edit" placeholder="Starting IP" ng-model="newRange.start"></input></span>
 	    <span>-</span>
 	    <span><input class="lt-ip-groups-list-end-edit" placeholder="Ending IP" ng-model="newRange.end"></input></span>
 	  </div>
 	</div>
-	<div class="col-md-3 lt-ip-groups-list-glyphicon-container" style="padding:0px">
-          <div class="pull-right glyphicon glyphicon-remove lt-ip-groups-add-glyphicon text-center" style="margin-right:10px" ng-click="$event.stopPropagation(); adding=false"></div>
-          <div class="pull-right glyphicon glyphicon-ok lt-ip-groups-add-glyphicon text-center" style="margin-right:10px" ng-click="$event.stopPropagation(); addConfirm()"></div>
+	<div class="col-md-3 lt-admin-groups-list-glyphicon-container" style="padding:0px">
+          <div class="pull-right glyphicon glyphicon-remove lt-glyphicon-green text-center" style="margin-right:10px" ng-click="$event.stopPropagation(); adding=false"></div>
+          <div class="pull-right glyphicon glyphicon-ok lt-glyphicon-green text-center" style="margin-right:10px" ng-click="$event.stopPropagation(); addConfirm()"></div>
 	</div>
       </div>
       
       <!-- IP Range List -->
-      <div ng-repeat="iprange in ipranges track by $index">
+      <div ng-repeat="iprange in ipranges | filter:searchTerm">
 	<div class="row" ng-class="groupsListCss(iprange.state)" ng-mouseover="groupsMoveOver(iprange)" ng-mouseleave="groupsMoveOut(iprange)">
 	  <div class="col-md-9" style="padding:0px">
 	    <div><input ng-class="groupsListLabelCss(iprange.state)" style="width:300px" ng-model="iprange.name" ng-readonly="!(iprange.state=='edit')"></input></div>
-	    <div class="lt-ip-groups-list-values">
+	    <div class="lt-admin-groups-list-values">
 	      <span><input ng-class="groupsListStartCss(iprange.state)" ng-model="iprange.start" ng-readonly="!(iprange.state=='edit')"></input></span> 
 	      <span>-</span> 
 	      <span><input ng-class="groupsListEndCss(iprange.state)" ng-model="iprange.end" ng-readonly="!(iprange.state=='edit')"></input></span>
