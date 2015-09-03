@@ -13,6 +13,9 @@ angular.module('platform-ui.librariantool.role.institution.usage').factory(
 	function () {
 		return {
 			title: 'USAGE',
+			uiparams: {
+				"colwidth": 'col-md-11',
+			},
 		};
 	}
 ]);

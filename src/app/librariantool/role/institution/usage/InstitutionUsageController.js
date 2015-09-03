@@ -18,6 +18,11 @@ angular.module('platform-ui.librariantool.role.institution.usage').controller(
 
 	/* Controller Definition */
 	function ($scope, $http, $cookies, $location, $state, Title, InstitutionUsageModel) {
-	    $scope.setTitle(InstitutionUsageModel.title);
+	    init();
+
+	    function init() {
+	    	$scope.setTitle(InstitutionUsageModel.title);
+		$scope.uiparams = InstitutionUsageModel.uiparams;
+	    }
 	}
 ]);
