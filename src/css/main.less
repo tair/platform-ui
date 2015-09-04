@@ -129,6 +129,8 @@ body {
 /******************Librarian Tool General ***************/
 
 @lt-theme-color : #8396a8;
+@lt-green: #7acf92;
+@lt-red: #eb636c;
 
 .lt-theme-color {
 	background-color: #8396a8;
@@ -166,6 +168,27 @@ body {
 
 .lt-font-aliasing {
 	-webkit-font-smoothing: antialiased;
+}
+
+::-webkit-input-placeholder {
+    font-style: italic;
+}
+:-moz-placeholder {
+    font-weight: bold;
+}
+:-ms-input-placeholder {
+    font-weight: bold;
+}
+
+.lt-glyphicon {
+        .lt-theme-color;
+        width:36px;
+        height:36px;
+	line-height:36px;
+        font-size:18px;
+        font-weight:200;
+        color:#ffffff;
+	cursor:pointer;
 }
 
 /******************Librarian Tool Navbar*****************/
@@ -240,177 +263,185 @@ body {
 	background-color:@lt-theme-color;
 }
 
-/******************Librarian Tool IP*********************/
-@lt-ip-green: #7acf92;
-@lt-ip-red: #eb636c;
+/******************Librarian Tool Admin *****************/
 
-::-webkit-input-placeholder {
-    font-style: italic;
-}
-:-moz-placeholder {
-    font-weight: bold;
-}
-:-ms-input-placeholder {
-    font-weight: bold;
+.lt-glyphicon-green {
+        .lt-glyphicon;
+        background-color: @lt-green;
 }
 
-.lt-ip-glyphicon {
-        .lt-theme-color;
-        width:36px;
-        height:36px;
-        line-height:36px;
-        font-size:18px;
-        font-weight:200;
-        color:#ffffff;
-        cursor:pointer;
+.lt-glyphicon-red {
+        .lt-glyphicon;
+        background-color: @lt-red;
 }
 
-.lt-ip-action-label {
-	.lt-font;
-	.lt-theme-font-color;
-	font-size: 16px;
-	margin-top: 75px;
+/*** Admin Left Container ***/
+.lt-admin-action-label {
+        .lt-font;
+        .lt-theme-font-color;
+        font-size: 16px;
+        margin-top: 75px;
 }
 
-.lt-ip-action-button {
-	border-style: solid;
-	border-width: 2px;
-	border-color: @lt-theme-color;
-	width: 196px;
-	height: 40px;
-	margin-top: 20px;
-	cursor: pointer;
+.lt-admin-action-button {
+        border-style: solid;
+        border-width: 2px;
+        border-color: @lt-theme-color;
+        width: 196px;
+        height: 40px;
+        margin-top: 20px;
+        cursor: pointer;
 }
 
-.lt-ip-action-button-selected {
-	.lt-ip-action-button;
-	border-color: @lt-ip-green;
+.lt-admin-action-button-selected {
+        .lt-admin-action-button;
+        border-color: @lt-green;
 }
 
-.lt-ip-action-button-label {
-	.lt-font;
-	.lt-theme-font-color;
-	font-size:14px;
-	position: absolute;
-	padding-left: 24px;
-	bottom: 10px;
+.lt-admin-action-button-label {
+        .lt-font;
+        .lt-theme-font-color;
+        font-size:14px;
+        position: absolute;
+        padding-left: 24px;
+        bottom: 10px;
 }
 
-.lt-ip-action-button-label-selected {
-	.lt-ip-action-button-label;
-	color: @lt-ip-green;
+.lt-admin-action-button-label-selected {
+        .lt-admin-action-button-label;
+        color: @lt-green;
 }
 
-.lt-ip-action-button-glyphicon-selected {
-	.lt-ip-glyphicon;
-	background-color: @lt-ip-green;
-}
-
-.lt-ip-right-panel{
-	margin-top:56px;
-	border-style: solid;
+/*** Admin Right Container ***/
+.lt-admin-right-panel{
+        margin-top:56px;
+        border-style: solid;
         border-width: 1px;
-	border-color: #bbc9cf;
+        border-color: #bbc9cf;
 }
 
-.lt-ip-right-subpanel {
-	height:600px;
-	overflow: scroll;
+.lt-admin-right-subpanel {
+        height:600px;
+        overflow: scroll;
 }
 
-.lt-ip-groups-title {
+.lt-admin-groups-title {
         .lt-theme-color;
         height:50px;
 }
 
-.lt-ip-groups-title-label {
+.lt-admin-groups-title-label {
         color:#ffffff;
         font-size:16px;
         margin-top:14px;
-	margin-left:22px;
+        margin-left:22px;
 }
 
-.lt-ip-groups-title-filter {
+.lt-admin-groups-title-filter {
         color:#ffffff;
         font-size:14px;
         padding-top:16px;
         padding-right:10px;
 }
 
-.lt-ip-groups-title-glyphicon {
-	.lt-ip-glyphicon;
-	line-height:48px;
-	margin-right: 18px;
+.lt-admin-groups-description {
+        .lt-font;
+        color:@lt-theme-color;
+        margin-left: 22px;
+        margin-top: 28px;
+        margin-bottom: 18px;
+        margin-right: 22px;
 }
 
-.lt-ip-groups-description {
-	.lt-font;
-	color:@lt-theme-color;
-	margin-left: 22px;
+.lt-admin-groups-search {
+        .lt-font;
+        color:#bababa;
+        margin-left: 22px;
 	margin-top: 28px;
-	margin-bottom: 18px;
-	margin-right: 22px;
+        margin-bottom: 18px;
+        margin-right: 22px;
 }
 
-.lt-ip-groups-list {
-	height: 80px;
-	margin-left: 22px;
-	margin-right: 33px;
+.lt-admin-groups-title-glyphicon {
+        .lt-glyphicon;
+        line-height:48px;
+        margin-right: 18px;
+}
+
+.lt-admin-groups-list {
+        height: 80px;
+        margin-left: 22px;
+        margin-right: 33px;
         margin-top: 10px;
         background-color: #f6f6f6;
         border-style: solid;
         border-width: 3px;
-	border-color: #f6f6f6;
+        border-color: #f6f6f6;
 }
 
-.lt-ip-groups-list-selected{
-	.lt-ip-groups-list;
+.lt-admin-groups-list-selected{
+        .lt-admin-groups-list;
         border-color: @lt-theme-color;
 }
 
-.lt-ip-groups-list-edit{
-	.lt-ip-groups-list;
-	border-color: @lt-ip-green;
+.lt-admin-groups-list-edit{
+        .lt-admin-groups-list;
+        border-color: @lt-green;
 }
 
-.lt-ip-groups-list-remove{
-	.lt-ip-groups-list;
-	border-color: @lt-ip-red;
+.lt-admin-groups-list-remove{
+        .lt-admin-groups-list;
+        border-color: @lt-red;
 }
 
-.lt-ip-groups-list-label {
-	.lt-theme-font-color;
-	font-size: 16px;
-	margin-top: 8px;
-	margin-left: 25px;
-	width: 300px;
-	background-color: transparent;
-	border:	    none;
+.lt-admin-groups-list-label {
+        .lt-theme-font-color;
+        font-size: 16px;
+        margin-top: 8px;
+        margin-left: 25px;
+        width: 300px;
+        background-color: transparent;
+        border:     none;
 }
 
-.lt-ip-groups-list-label-edit {
-	.lt-ip-groups-list-label;
-	background-color: #ffffff;
+.lt-admin-groups-list-label-edit {
+        .lt-admin-groups-list-label;
+        background-color: #ffffff;
 }
 
-.lt-ip-groups-list-values {
-	margin-top: 4px;
+.lt-admin-groups-list-glyphicon-container {
+        margin-top: 12px;
 }
+
+.lt-admin-groups-list-values {
+        margin-top: 4px;
+}
+
+.lt-admin-groups-list-values-input {
+        .lt-font;
+        color:#858585;
+        font-size:16px;
+        margin-left:25px;
+        width:140px;
+        height:24px;
+        margin-right:4px;
+        background-color: transparent;
+        border: none;
+}
+
+.lt-admin-groups-list-values-input-edit {
+	.lt-admin-groups-list-values-input;
+	background-color: white;
+}
+
+/******************Librarian Tool IP ********************/
 
 .lt-ip-groups-list-start {
-	.lt-font;
-	color:#858585;
-	font-size:16px;
-	margin-left:25px;
-	width:140px;
-	height:24px;
-	margin-right:4px;
-	background-color: transparent;
-	border: none;
+	.lt-admin-groups-list-values-input;
 }
 
 .lt-ip-groups-list-end {
-	.lt-ip-groups-list-start;
+	.lt-admin-groups-list-values-input;
 	margin-left:4px;
 }
 
@@ -422,46 +453,6 @@ body {
 .lt-ip-groups-list-end-edit {
 	.lt-ip-groups-list-end;
 	background-color: white;
-}
-
-.lt-ip-groups-list-glyphicon-container {
-	margin-top: 12px;
-}
-
-.lt-ip-groups-remove-label {
-	.lt-font-bold;
-	font-size: 22px;
-	color: @lt-ip-red;
-	width: 300px;
-	height: 36px;
-	margin-top:20px;
-}
-
-.lt-ip-groups-remove-button {
-	.lt-font-bold;
-	font-size: 18px;
-	color: #ffffff;
-	background-color: @lt-ip-red;
-	line-height: 36px;
-	height: 36px;
-	width:72px;
-	margin-top:18px;
-	cursor:pointer;
-	margin-right: 10px;
-}
-
-.lt-ip-groups-remove-button-yes {
-	.lt-ip-groups-remove-button;
-}
-
-.lt-ip-groups-remove-button-no {
-	.lt-ip-groups-remove-button;
-	margin-left: 10px;
-}
-
-.lt-ip-groups-add-glyphicon {
-        .lt-ip-glyphicon;
-        background-color: @lt-ip-green;
 }
 
 /******************Librarian Tool Login******************/

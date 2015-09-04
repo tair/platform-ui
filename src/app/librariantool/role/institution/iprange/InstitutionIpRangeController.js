@@ -22,88 +22,12 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 	    $scope.ipranges = InstitutionIpRangeModel.ipranges;
 	    $scope.addGroupShow = "hidden";
 	    $scope.adding = false;
-	    $scope.removing = false;
 	    $scope.newRange = InstitutionIpRangeModel.newRange;
 	    $scope.removeRange = null;
 	    $scope.editRange = null;
+	    $scope.searchTerm = null;
 
 	    // CSS Logics as response to state changes.
-            $scope.groupsAddCss = function() {
-                if ($scope.adding) {
-                    return "show";
-                }
-                return "hidden";
-            }
-
-	    $scope.groupsRemoveCss = function() {
-		if ($scope.removing) {
-		    return "show";
-		}
-		return "hidden";
-	    }
-
-            $scope.actionButtonAddCss = function() {
-                if ($scope.adding) {
-                    return "lt-ip-action-button-selected";
-                }
-                return "lt-ip-action-button";
-            }
-
-            $scope.actionButtonGlyphiconAddCss = function() {
-                if ($scope.adding) {
-                    return "lt-ip-action-button-glyphicon-selected";
-                }
-                return "lt-ip-glyphicon";
-            }
-
-            $scope.actionButtonLabelAddCss = function() {
-                if ($scope.adding) {
-                    return "lt-ip-action-button-label-selected";
-                }
-                return "lt-ip-action-button-label";
-            }
-
-	    $scope.groupsListCss = function(state) {
-		if (state == "selected") {
-		    if ($scope.removing) {
-			return "lt-ip-groups-list-remove";
-		    } else {
-			return "lt-ip-groups-list-selected";
-		    }
-		} else if (state == "edit") {
-		    return "lt-ip-groups-list-edit";
-		} 
-		return "lt-ip-groups-list";
-	    }
-
-	    $scope.groupsListLabelCss = function(state) {
-		if (state == "edit") {
-		    return "lt-ip-groups-list-label-edit";
-		}
-		return "lt-ip-groups-list-label";
-	    }
-
-	    $scope.groupsListGlyphiconCss = function(state) {
-		if (state == "selected" || state == "edit") {
-		    return "lt-ip-groups-list-glyphicon-container show";
-		}
-		return "lt-ip-groups-list-glyphicon-container hidden";
-	    }
-	    $scope.groupsListGlyphiconRemoveCss = function(state) {
-		if (state == "selected") {
-		    return "glyphicon-trash lt-ip-glyphicon";
-		} else if (state == "edit") {
-		    return "glyphicon-remove lt-ip-groups-add-glyphicon";
-		}
-	    }
-	    $scope.groupsListGlyphiconEditCss = function(state) {
-		if (state == "selected") {
-		    return "glyphicon-pencil lt-ip-glyphicon";
-		} else if (state == "edit") {
-		    return "glyphicon-ok lt-ip-groups-add-glyphicon";
-		}
-		return "lt-ip-glyphicon";
-	    }
 	    $scope.groupsListStartCss = function(state) {
 		if (state == "edit") {
 		    return "lt-ip-groups-list-start-edit";
@@ -120,17 +44,22 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 
 	    // Events that change states
             $scope.groupsMoveOver = function(iprange) {
-                if (iprange.state == null && !$scope.adding && !$scope.removing) {
+                if (iprange.state == null && !$scope.adding) {
                     iprange.state = "selected";
                 }
             }
             $scope.groupsMoveOut = function(iprange) {
-                if (iprange.state == "selected" && !$scope.adding && !$scope.removing) {
+                if (iprange.state == "selected" && !$scope.adding) {
                     iprange.state = null;
                 }
             }
-	    $scope.remove = function(iprange) {
-		if (iprange.state == "edit") {
+	    $scope.right = function(iprange) {
+		if (iprange.state == "selected") {
+		    // this is the trash button at normal state
+                    iprange.state = "remove";
+		}
+		else if (iprange.state == "edit") {
+		    // this is the "x" button at edit state
 		    if ($scope.editRange) {
 			iprange.name = $scope.editRange.name;
 			iprange.start = $scope.editRange.start;
@@ -138,14 +67,20 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 			$scope.editRange = null;
 		    }
 		    iprange.state = null;
-		} else {
-		    $scope.removing = true;
-		    $scope.removeRange = iprange;
+		} else if (iprange.state == "remove") {
+		    // this is the cancel button at remove state.
+		    iprange.state = null;
 		}
 	    }
-	    $scope.edit = function(iprange) {
-		if (iprange.state == "edit") {
-		    //alert("nothing is edited!");
+	    $scope.left = function(iprange) {
+		if (iprange.state == "selected") {
+		    // This is the edit button at normal state.
+                    $scope.editRange = angular.copy(iprange);
+                    iprange.state = "edit";
+                    $scope.adding = false;
+		}
+		else if (iprange.state == "edit") {
+		    // This is the confirm button at edit state
 		    data = {
 			ipRangeId:iprange['ipRangeId'],
 			start:iprange['start'],
@@ -159,17 +94,15 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 			method: 'PUT',
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 		    }).success(function(data, status, headers, config){
-			alert("done");
 		    }).error(function(data, status, headers, config){
 			alert("ip range request failed");
 		    });
 		    iprange.state = null;
 		    $scope.editRange = null;
-		} else {
-		    $scope.editRange = angular.copy(iprange);
-		    iprange.state = "edit";
-		    $scope.adding = false;
-		    $scope.removing = false;
+		} else if (iprange.state == "remove") {
+		    // this is the remove button at remove state
+		    $scope.removeConfirm(iprange);
+		    iprange.state = null;
 		}
 	    }
 	    $scope.addConfirm = function() {
@@ -185,7 +118,6 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 		    data:data,
                     method: 'POST',
 		}).success(function(data, status, headers, config){
-		    alert("done");
 		}).error(function(data, status, headers, config){
                     alert("ip range request failed");
 		});
@@ -196,15 +128,11 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 	    }
 	    $scope.reset = function() {
 		$scope.adding = false;
-		$scope.removing = false;
 		for (i=0; i<$scope.ipranges.length; i++) {
 		    $scope.ipranges[i].state=null;
 		}
 	    }
-	    $scope.removeConfirm = function() {
-		$scope.removing = false;
-		//alert("Nothing is changed yet! Need backend call");
-		iprange = $scope.removeRange;
+	    $scope.removeConfirm = function(iprange) {
                 data = {
                     ipRangeId:iprange['ipRangeId'],
                     start:iprange['start'],
@@ -217,7 +145,6 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
                     data:data,
                     method: 'DELETE',
                 }).success(function(data, status, headers, config){
-                    alert("done");
                 }).error(function(data, status, headers, config){
                     alert("ip range request failed");
                 });
