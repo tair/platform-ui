@@ -44,6 +44,7 @@ angular.module('platform-ui.librariantool.role.institution.profile').controller(
 				url: $scope.apiUri+'/users/?partyId='+$cookies.partyId,
 				method: 'GET',
 			}).success(function(data, status, headers, config) {
+				$scope.user.name = data[0].name;
 				$scope.user.username = data[0].username;
 				$scope.user.email = data[0].email;
 				$scope.user.institution = data[0].institution;
