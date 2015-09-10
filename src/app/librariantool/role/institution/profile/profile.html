@@ -1,83 +1,81 @@
-<div class="container">
-	<div class="row" style="height: 56px;"></div>
-	<div class="panel panel-default block-center" style="width: 860px;">
-		<div class="panel-heading lt-institution-profile-panel-heading lt-font-bold lt-font-aliasing" style="font-size: 16px; color: #ffffff;">
-			PROFILE SETTINGS
+<div class="row" style="height: 56px;"></div>
+<div class="panel panel-default block-center" style="width: 860px;">
+	<div class="panel-heading lt-institution-profile-panel-heading lt-font-bold lt-font-aliasing" style="font-size: 16px; color: #ffffff;">
+		PROFILE SETTINGS
+	</div>
+	<div class="panel-body">
+		<div class="row" style="height: 40px;"></div>
+		<div class="row">
+			<div class="{{uiparams.colwidth}} block-center text-center lt-font lt-font-color lt-font-aliasing" style="font-size: 36px;">
+				{{user.username}}
+			</div>
 		</div>
-		<div class="panel-body">
-			<div class="row" style="height: 40px;"></div>
-			<div class="row">
-				<div class="{{uiparams.colwidth}} block-center text-center lt-font lt-font-color lt-font-aliasing" style="font-size: 36px;">
-					{{user.username}}
-				</div>
+		<div class="row" style="height: 6px;"></div>
+		<div class="row">
+			<div class="{{uiparams.colwidth}} block-center text-center lt-font lt-font-aliasing" style="font-size: 16px; color: #868686;">
+				{{user.institution}}
 			</div>
-			<div class="row" style="height: 6px;"></div>
-			<div class="row">
-				<div class="{{uiparams.colwidth}} block-center text-center lt-font lt-font-aliasing" style="font-size: 16px; color: #868686;">
-					{{user.institution}}
-				</div>
-			</div>
-			<div class="row" style="height: 54px;"></div>
-			<div class="row">
-				<div class="{{uiparams.colwidth}} block-center">
-					<div class="row">
-						<div class="col-md-5 block-left">
-							<div class="row text-left lt-font lt-font-aliasing" style="font-size: 16px; color: #868686;"><div class="col-md-12">
-								Full Name
-							</div></div>
-							<div class="row text-left"><div class="col-md-12">
-								<input type="text" class="lt-institution-profile-input" ng-model="user.name" ng-disabled="!edit" ng-class=" edit == false ? 'lt-no-border' : 'lt-with-border' "></input>
-							</div></div>
-						</div>
-						<div class="col-md-5 block-right">
-							<div class="row text-left lt-font lt-font-aliasing" style="font-size: 16px; color: #868686;"><div class="col-md-12">
-								User Name
-							</div></div>
-							<div class="row text-left"><div class="col-md-12">
-								<input type="text" class="lt-institution-profile-input" ng-model="user.username" ng-disabled="!edit" ng-class=" edit == false ? 'lt-no-border' : 'lt-with-border' "></input>
-							</div></div>
-						</div>
+		</div>
+		<div class="row" style="height: 54px;"></div>
+		<div class="row">
+			<div class="{{uiparams.colwidth}} block-center">
+				<div class="row">
+					<div class="col-md-5 block-left">
+						<div class="row text-left lt-font lt-font-aliasing" style="font-size: 16px; color: #868686;"><div class="col-md-12">
+							Full Name
+						</div></div>
+						<div class="row text-left"><div class="col-md-12">
+							<input type="text" class="lt-institution-profile-input" ng-model="user.name" ng-disabled="!edit" ng-class=" edit == false ? 'lt-no-border' : 'lt-with-border' "></input>
+						</div></div>
+					</div>
+					<div class="col-md-5 block-right">
+						<div class="row text-left lt-font lt-font-aliasing" style="font-size: 16px; color: #868686;"><div class="col-md-12">
+							User Name
+						</div></div>
+						<div class="row text-left"><div class="col-md-12">
+							<input type="text" class="lt-institution-profile-input" ng-model="user.username" ng-disabled="!edit" ng-class=" edit == false ? 'lt-no-border' : 'lt-with-border' "></input>
+						</div></div>
 					</div>
 				</div>
 			</div>
-			<div class="row" style="height: 60px;"></div>
-			<div class="row">
-				<div class="{{uiparams.colwidth}} block-center">
-					<div class="row">
-						<div class="col-md-5 block-left">
-							<div class="row text-left lt-font lt-font-aliasing" style="font-size: 16px; color: #868686;"><div class="col-md-12">
-								Email
-							</div></div>
-							<div class="row text-left"><div class="col-md-12">
-								<input type="text" class="lt-institution-profile-input" ng-model="user.email" ng-disabled="!edit" ng-class=" edit == false ? 'lt-no-border' : 'lt-with-border' "></input>
-							</div></div>
-							<div class="row" style="height: 10px;"></div>
-							<div class="row text-left"><div class="col-md-12">
-								<input type="text" class="lt-institution-profile-input" ng-model="user.email" ng-disabled="!edit" ng-class=" edit == false ? 'lt-no-border' : 'lt-with-border' "></input>
-							</div></div>
-						</div>
-						<div class="col-md-5 block-right">
-							<div class="row text-left lt-font lt-font-aliasing" style="font-size: 16px; color: #868686;"><div class="col-md-12">
-								Password
-							</div></div>
-							<div class="row text-left"><div class="col-md-12">
-								<input type="password" class="lt-institution-profile-input" ng-model="user.password" ng-disabled="!edit" ng-class=" edit == false ? 'lt-no-border' : 'lt-with-border' "></input>
-							</div></div>
-							<div class="row" style="height: 10px;"></div>
-							<div class="row text-left"><div class="col-md-12">
-								<input type="password" class="lt-institution-profile-input" ng-model="user.password" ng-disabled="!edit" ng-class=" edit == false ? 'lt-no-border' : 'lt-with-border' "></input>
-							</div></div>
-						</div>
+		</div>
+		<div class="row" style="height: 60px;"></div>
+		<div class="row">
+			<div class="{{uiparams.colwidth}} block-center">
+				<div class="row">
+					<div class="col-md-5 block-left">
+						<div class="row text-left lt-font lt-font-aliasing" style="font-size: 16px; color: #868686;"><div class="col-md-12">
+							Email
+						</div></div>
+						<div class="row text-left"><div class="col-md-12">
+							<input type="text" class="lt-institution-profile-input" ng-model="user.email" ng-disabled="!edit" ng-class=" edit == false ? 'lt-no-border' : 'lt-with-border' "></input>
+						</div></div>
+						<div class="row" style="height: 10px;"></div>
+						<div class="row text-left"><div class="col-md-12">
+							<input type="text" class="lt-institution-profile-input" ng-model="user.email" ng-disabled="!edit" ng-class=" edit == false ? 'lt-no-border' : 'lt-with-border' "></input>
+						</div></div>
+					</div>
+					<div class="col-md-5 block-right">
+						<div class="row text-left lt-font lt-font-aliasing" style="font-size: 16px; color: #868686;"><div class="col-md-12">
+							Password
+						</div></div>
+						<div class="row text-left"><div class="col-md-12">
+							<input type="password" class="lt-institution-profile-input" ng-model="user.password" ng-disabled="!edit" ng-class=" edit == false ? 'lt-no-border' : 'lt-with-border' "></input>
+						</div></div>
+						<div class="row" style="height: 10px;"></div>
+						<div class="row text-left"><div class="col-md-12">
+							<input type="password" class="lt-institution-profile-input" ng-model="user.password" ng-disabled="!edit" ng-class=" edit == false ? 'lt-no-border' : 'lt-with-border' "></input>
+						</div></div>
 					</div>
 				</div>
 			</div>
-			<div class="row" style="height: 55px;"></div>
-			<div class="row">	
-				<div class="{{uiparams.colwidth}} block-center text-center">
-					<button type="button" class="btn btn-default" ng-click="edit_fields();">{{ edit==true && 'Save' || 'Edit' }}</button>
-					<span style="width: 10px;"></span>
-					<button type="button" class="btn btn-default" ng-click="cancel();">Cancel</button>
-				</div>
+		</div>
+		<div class="row" style="height: 55px;"></div>
+		<div class="row">	
+			<div class="{{uiparams.colwidth}} block-center text-center">
+				<button type="button" class="btn btn-default" ng-click="edit_fields();">{{ edit==true && 'Save' || 'Edit' }}</button>
+				<span style="width: 10px;"></span>
+				<button type="button" class="btn btn-default" ng-click="cancel();">Cancel</button>
 			</div>
 		</div>
 	</div>
