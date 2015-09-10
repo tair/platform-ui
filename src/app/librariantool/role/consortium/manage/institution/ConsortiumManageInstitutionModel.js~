@@ -3,16 +3,15 @@
  * Model for root /index.html template that wraps every other view.
  */
 
-angular.module('platform-ui.librariantool.role.consortium.profile').factory(
+angular.module('platform-ui.librariantool.role.consortium.manage.institution').factory(
 	/* Name */
-	'ConsortiumProfileModel',
+	'ConsortiumManageInstitutionModel',
 
 	/* Dependencies */
 	[
 
 	function () {
 		return {
-			title: 'Consortium Profile',
 		};
 	}
 ]);

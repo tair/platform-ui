@@ -12,7 +12,7 @@ angular.module('platform-ui.librariantool.role.consortium.subscription').factory
 
 	function () {
 		return {
-			title: 'Consortium',
+			title: 'Consortium Subscription',
 		};
 	}
 ]);

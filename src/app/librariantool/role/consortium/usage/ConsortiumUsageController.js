@@ -18,5 +18,6 @@ angular.module('platform-ui.librariantool.role.consortium.usage').controller(
 
 	/* Controller Definition */
 	function ($scope, $http, $cookies, $location, $state, Title, ConsortiumUsageModel) {
+	    $scope.setTitle(ConsortiumUsageModel.title);
 	}
 ]);

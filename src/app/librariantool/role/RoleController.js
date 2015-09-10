@@ -15,14 +15,17 @@ angular.module('platform-ui.librariantool.role').controller(
 	'$state',
 	'Title',
 	'RoleModel',
+	'$cookieStore',
 
 	/* Controller Definition */
-	function ($scope, $http, $cookies, $location, $state, Title, RoleModel) {
+	function ($scope, $http, $cookies, $location, $state, Title, RoleModel, $cookieStore) {
 	    $scope.title = RoleModel.title;
 	    $scope.home = function() {
 		window.location.href='#/librariantool/login';
 	    }
 	    $scope.logout = function() {
+		$cookieStore.remove("partyId");
+		$cookieStore.remove("secret_key");
 		$scope.home();
 	    }
 	    $scope.setTitle = function(title) {
