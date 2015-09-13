@@ -40,7 +40,7 @@ angular.module('platform-ui.contentaccess.login').controller(
 
 		$scope.login = function() {
 			$http({
-				url: $scope.apiUri+'/users/login/?partnerId='+$scope.partnerId, 
+				url: $scope.apiUri+'/credentials/login/?partnerId='+$scope.partnerId, 
 				data: $scope.formdata,
 				method: 'POST',
 			}).success(function(data, status, headers, config){
