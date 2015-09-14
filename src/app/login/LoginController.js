@@ -20,7 +20,7 @@ angular.module('platform-ui.login').controller(
 		init();
 
 	    var getPartnerUriFromRedirect = function(){
-		arr = $scope.redirect.split("/");
+		arr = $scope.redirectNoEncode.split("/");
 		return arr[0]+"//"+arr[2];
 	    }
 	    var callProxy = function(data){
@@ -56,7 +56,8 @@ angular.module('platform-ui.login').controller(
 			Title.setTitle(LoginModel.title);
 			$scope.formdata = LoginModel.formdata;
 			$scope.partnerId = $location.search()['partnerId'];
-			$scope.redirect = $location.search()['redirect'];
+			$scope.redirect = $scope.getRedirect();
+		    $scope.redirectNoEncode = $scope.getRedirectNoEncode();
 			$http({
 				url: $scope.apiUri+'/partners/descriptions/?partnerId='+$scope.partnerId+'&includeText=True',
 				method:'GET',

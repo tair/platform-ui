@@ -10,14 +10,21 @@ angular.module('platform-ui').controller(
 	[
 	'$scope',
 	'$cookies',
+	'$location',
 	'PlatformModel',
 
 	/* Controller Definition */
-	function ($scope, $cookies, PlatformModel) {
+	function ($scope, $cookies, $location, PlatformModel) {
 	    $scope.title = PlatformModel.title;
 	    $scope.brand = PlatformModel.brand;
 	    $scope.author = PlatformModel.author;
 	    $scope.menu = PlatformModel.menu;
 	    $scope.apiUri = PlatformModel.apiUri;
+	    $scope.getRedirect = function() {
+		return encodeURIComponent($location.search()['redirect']);
+	    }
+	    $scope.getRedirectNoEncode = function() {
+		return $location.search()['redirect'];
+	    }
 	}
 ]);
