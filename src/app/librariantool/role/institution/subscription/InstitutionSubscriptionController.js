@@ -20,25 +20,29 @@ angular.module('platform-ui.librariantool.role.institution.subscription').contro
 	function ($scope, $http, $cookies, $location, $state, Title, InstitutionSubscriptionModel) {
 	    init();
 
-	    $scope.getExpDate = function(id) {
-		if (id in $scope.activeSubscriptions) {
-			return $scope.activeSubscriptions[id].endDate;
-		}
-		return "Unlicensced";
-	    };
-
-	    $scope.licenseButton = function(id) {
-		if (id in $scope.activeSubscriptions) {
-			return "RENEW LICENCSE";
-		}
-		return "REQUEST LICENCSE";
-	    };
-
 	    function init() {
+		console.log($state);
 		$scope.setTitle(InstitutionSubscriptionModel.title);
 		$scope.partners = InstitutionSubscriptionModel.partners;
 		$scope.activeSubscriptions = InstitutionSubscriptionModel.activeSubscriptions;
 		$scope.uiparams = InstitutionSubscriptionModel.uiparams;
+		$http({
+			url: $scope.apiUri+'/partners/',
+			method: 'GET',
+		}).success(function(data, status, headers, config) {
+			$scope.partners = data;
+		}).error(function() {
+			alert("Cannot get partner information");
+		});
+		$http({
+			url: $scope.apiUri+'/subscriptions/activesubscriptions/'+$cookies.partyId+'/',
+			method: 'GET',
+		}).success(function(data, status, headers, config) {
+			$scope.activeSubscriptions = data;
+		}).error(function() {
+			alert("Cannot get active subscription information");
+		});
+		$state.go('role.institution.subscription.list');
 	    }
 	}
 ]);
