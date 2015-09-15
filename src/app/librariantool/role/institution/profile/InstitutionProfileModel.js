@@ -14,11 +14,11 @@ angular.module('platform-ui.librariantool.role.institution.profile').factory(
 		return {
 			title: 'PROFILE',
 			user: {
-				"name": "NotSavedInDB",
-				"username": "joe432",
-				"institution": "University of Awesomeness",
-				"email": "joe432@abc.xyz",
-				"password": "a34rhdyy",
+				"name": null,
+				"username": null,
+				"institution": null,
+				"email": null,
+				"password": null,
 			},
 			uiparams: {
 				"colwidth": 'col-md-7',
