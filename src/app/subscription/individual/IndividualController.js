@@ -21,12 +21,13 @@ angular.module('platform-ui.subscription.individual').controller(
                 $scope.currentTab = nextTab;
             }
 	    
-		$scope.setSelectedSubscription = function(id, partner, period, price, discount) {
+		$scope.setSelectedSubscription = function(id, partner, period, price, discount, description) {
 			$scope.selectedSubscription.subscriptionTermId = id;
 			$scope.selectedSubscription.partnerId = partner;
 			$scope.selectedSubscription.period = period;
 			$scope.selectedSubscription.price = price;
 			$scope.selectedSubscription.groupDiscountPercentage = discount;	
+		    $scope.selectedSubscription.description = description;
 		};
 
 		$scope.get_total_price2 = function() {
@@ -77,7 +78,8 @@ angular.module('platform-ui.subscription.individual').controller(
 					    'city': $scope.formdata.city,
 					    'state': $scope.formdata.state,
 					    'country': $scope.formdata.country,
-					    'zip': $scope.formdata.zip
+					    'zip': $scope.formdata.zip,
+					    'redirect': $scope.redirect
                                         },
                                         method:'POST',
                                     }).success(function(data, status, headers, config) {

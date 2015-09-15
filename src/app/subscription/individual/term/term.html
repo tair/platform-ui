@@ -19,7 +19,7 @@
 					<div class="col-md-5">
 						<div class="radio" ng-repeat="sub in subscriptions" style="margin-top: 0px;">
 							<label class="info-individual-text">
-								<input type="radio" name="licenseoptions" ng-model="$parent.subscriptionTermId" ng-value="{{ sub.subscriptionTermId }}" ng-change="setSelectedSubscription(sub.subscriptionTermId, sub.partnerId, sub.period, sub.price, sub.groupDiscountPercentage)" required>
+								<input type="radio" name="licenseoptions" ng-model="$parent.subscriptionTermId" ng-value="{{ sub.subscriptionTermId }}" ng-change="setSelectedSubscription(sub.subscriptionTermId, sub.partnerId, sub.period, sub.price, sub.groupDiscountPercentage, sub.description)" required>
 								{{ sub.description }}&nbsp;-&nbsp;${{ sub.price }} (USD)
 							</label>
 						</div>

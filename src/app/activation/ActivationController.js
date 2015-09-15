@@ -50,7 +50,7 @@ angular.module('platform-ui.activation').controller(
 			Title.setTitle(ActivationModel.title);
 		
 			$scope.partnerId = $location.search()['partnerId'];
-			$scope.redirect = $location.search()['redirect'];
+			$scope.redirect = $scope.getRedirectNoEncode();
 			$http({
 				url: $scope.apiUri+'/partners/?partnerId='+$scope.partnerId,
 				method: 'GET',

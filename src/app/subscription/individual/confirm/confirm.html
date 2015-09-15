@@ -27,7 +27,7 @@
 <div class="row" style="height: 34px;"></div> --!>
 
 <div class="row"><div class="col-md-12 payment-confirmation-individual-confirm-text">
-	Subscription Term: {{ selectedSubscription.period }}
+	Subscription Term: {{ selectedSubscription.description }}
 </div></div>
 <div class="row"><div class="col-md-12 payment-confirmation-individual-confirm-text">
 	Quantity: {{ info.numOfSubscribers }}
@@ -36,15 +36,9 @@
 <!-- Draw horizontal line! --!>
 <hr/>
 <div class="row" style="height: 27px;"></div>
-<div class="row"><div class="col-md-12 payment-confirmation-individual-confirm-text">
-	Subtotal: ${{ info.subtotal | number:2 }}
-</div></div>
-<div class="row"><div class="col-md-12 payment-confirmation-individual-confirm-text">
-	Fees: ${{ info.fees }}
-</div></div>
 <div class="row" style="height: 20px;"></div>
 <div class="row"><div class="col-md-12 payment-confirmation-individual-confirm-heading">
-	Total: ${{ info.fees + info.subtotal | number:2 }}
+	Total: ${{ info.subtotal | number:2 }}
 </div></div>
 <div class="row" style="height: 36px;"></div>
 <div class="row">
