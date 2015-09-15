@@ -16,6 +16,12 @@ angular.module('platform-ui.librariantool.role.institution.usage').factory(
 			uiparams: {
 				"colwidth": 'col-md-11',
 			},
+			postData: {
+				"institution": null,
+				"startDate": null,
+				"endDate": null,
+				"comments": null
+			},
 		};
 	}
 ]);

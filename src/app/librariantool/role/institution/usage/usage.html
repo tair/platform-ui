@@ -19,6 +19,7 @@
 			</div>
 		</div>
 		<div class="row" style="height: 16px;"></div>
+		<form ng-submit="validateForm() && requestUsage()">
 		<div class="row">
 			<div class="{{uiparams.colwidth}} block-center text-left">
 				<div class="row">
@@ -27,7 +28,7 @@
 							Institution
 						</div></div>
 						<div class="row"><div class="col-md-12">
-							<input type="text"></input>
+							<input type="text" ng-model="postData.institution" disabled></input>
 						</div></div>
 					</div>
 					<div class="col-md-3">
@@ -35,18 +36,17 @@
 							Starting date
 						</div></div>
 						<div class="row"><div class="col-md-12">
-							<input type="text"></input>
+							<input type="date" ng-model="postData.startDate" required></input>
 						</div></div>
 					</div>
 					<div class="col-md-1">
-						-
 					</div>
 					<div class="col-md-3">
 						<div class="row"><div class="col-md-12">
 							Ending date
 						</div></div>
 						<div class="row"><div class="col-md-12">
-							<input type="text"></input>
+							<input type="date" ng-model="postData.endDate" required></input>
 						</div></div>
 					</div>
 				</div>
@@ -59,14 +59,15 @@
 					Comments
 				</div></div>
 				<div class="row"><div class="col-md-12">
-					<textarea style="resize: none; height: 92px; width: 100%;"></textarea>
+					<textarea style="resize: none; height: 92px; width: 100%;" ng-model="postData.comments"></textarea>
 				</div></div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="{{uiparams.colwidth}} block-center text-center">
-				<button class="btn btn-default">EMAIL REQUEST</button>
+				<button type="submit" class="btn btn-default">EMAIL REQUEST</button>
 			</div>
 		</div>
+                </form>
 	</div>
 </div>
