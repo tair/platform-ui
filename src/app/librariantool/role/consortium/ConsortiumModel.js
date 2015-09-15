@@ -13,9 +13,9 @@ angular.module('platform-ui.librariantool.role.consortium').factory(
 	function () {
 		return {
 		    title: 'Consortium',
-                    currentTab: {label:"MANAGE", state:"role.consortium.manage"},
+                    currentTab: {label:"MANAGE INSTITUTION", state:"role.consortium.manage"},
                     tabs: [
-                        {label:"MANAGE", state:"role.consortium.manage"},
+                        {label:"MANAGE INSTITUTION", state:"role.consortium.manage"},
                         {label:"SUBSCRIPTION", state:"role.consortium.subscription"},
                         {label:"USAGE", state:"role.consortium.usage"},
                         {label:"PROFILE", state:"role.consortium.profile"},
