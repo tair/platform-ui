@@ -25,12 +25,13 @@ angular.module('platform-ui.librariantool.login').controller(
 	    $scope.login = function() {
 		$scope.partnerId = "phoenix"; // should be phoenix eventually.
                 $http({
-                    url: $scope.apiUri+'/users/login/?partnerId='+$scope.partnerId,
+                    url: $scope.apiUri+'/credentials/login/?partnerId='+$scope.partnerId,
                     data: $scope.formdata,
                     method: 'POST',
                 }).success(function(data, status, headers, config){
                     $cookies.partyId = data["partyId"];
                     $cookies.secret_key = data["secret_key"];
+		    $cookies.username = data["username"];
                     $state.go("role.institution.iprange");
                 }).error(function(data, status, headers, config){
                     alert('Login failed');
