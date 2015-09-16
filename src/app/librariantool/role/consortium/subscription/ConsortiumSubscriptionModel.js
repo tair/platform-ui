@@ -13,6 +13,8 @@ angular.module('platform-ui.librariantool.role.consortium.subscription').factory
 	function () {
 		return {
 			title: 'Consortium Subscription',
+			partners: [],
+			activeSubscriptions: {},
 		};
 	}
 ]);
