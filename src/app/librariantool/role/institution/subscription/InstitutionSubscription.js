@@ -27,7 +27,7 @@ angular.module(
 				}
 			}
 		}).state('role.institution.subscription.renewal', {
-			url: '/renewal',
+			url: '/renewal?partnerId',
 			views: {
 				'subscription': {
 					controller: 'SubscriptionRenewalController',
@@ -35,7 +35,7 @@ angular.module(
 				}
 			}
 		}).state('role.institution.subscription.request', {
-			url: '/request',
+			url: '/request?partnerId',
 			views: {
 				'subscription': {
 					controller: 'SubscriptionRequestController',

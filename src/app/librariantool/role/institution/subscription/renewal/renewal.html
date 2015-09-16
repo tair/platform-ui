@@ -8,12 +8,12 @@
 			<div class="{{uiparams.colwidth}}">
 				<form ng-submit="requestRenewal()">
 					<div class="row"><div class="col-md-12">
-						Partner name
+						{{partner.name}}
 					</div></div>
 					<div class="row"><div class="col-md-12">
 						Partner description
 					</div></div>
-					<textarea ng-model="postData.comments"></textarea>
+					<textarea ng-model="comments"></textarea>
 					<button type="button" ng-click="back()">GO BACK</button>
 					<button type="submit">REQUEST RENEWAL</button>
 				</form>
