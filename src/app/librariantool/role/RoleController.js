@@ -33,7 +33,14 @@ angular.module('platform-ui.librariantool.role').controller(
 	    }
 
 	    $scope.partyInfo = RoleModel.partyInfo;
-	    $scope.email = RoleModel.email;
+	    $http({
+		url: $scope.apiUri+'/credentials/?username='+$cookies.username,
+		method: 'GET',
+	    }).success(function(data, status, headers, config) {
+	    	$scope.email = data[0].email;
+	    }).error(function() {
+		alert("Cannot get user email info");
+	    });
             $http({
                 url: $scope.apiUri+'/parties/?partyId='+$cookies.partyId+'&secret_key='+encodeURIComponent($cookies.secret_key),
                 method: 'GET',
