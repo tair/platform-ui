@@ -34,6 +34,8 @@ angular.module('platform-ui.login').controller(
 		    method: 'POST',
 		}).success(function(data, status){
 		    $scope.tabPage = '2';
+		}).error(function(data, status){
+		    alert("cookies error");
 		});
 	    }
 
