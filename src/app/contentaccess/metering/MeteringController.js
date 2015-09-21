@@ -19,7 +19,8 @@ angular.module('platform-ui.contentaccess.metering').controller(
 	function ($scope, $location, $http, $cookies, Title, MeteringModel) {
 		Title.setTitle(MeteringModel.title);
 		$scope.partnerId = $location.search()['partnerId'];
-		$scope.redirect = $location.search()['redirect'];
+		$scope.redirect = $scope.getRedirect();
+	        $scope.redirectNoEncode = $scope.getRedirectNoEncode();
 		$scope.exceed = $location.search()['exceed'];
 		$http({
 			url:$scope.apiUri+'/partners/descriptions/?partnerId='+$scope.partnerId+'&includeText=True',

@@ -29,7 +29,6 @@ angular.module('platform-ui.contentaccess.subscription.individual').factory(
                         cvc: null,
 		    },
 		    info: {
-			fees: 9.99,
 			numOfSubscribers: 1,
 			subtotal: null,
 		    },

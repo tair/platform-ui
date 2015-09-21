@@ -44,7 +44,8 @@ angular.module('platform-ui.contentaccess.subscription').controller(
 		$scope.partner = SubscriptionModel.partner;
 		$scope.institutions = SubscriptionModel.institutions;
 		$scope.countries = SubscriptionModel.countries;
-		$scope.redirect = $location.search()['redirect'];
+		$scope.redirect = $scope.getRedirect();
+		$scope.redirectNoEncode = $scope.getRedirectNoEncode();
 		$http({
 		    url:$scope.apiUri+'/partners/?partnerId='+$scope.partnerId,
 		    method:'GET',
