@@ -55,7 +55,7 @@ angular.module(
 			 */
 			$urlRouterProvider
 				/* Default */
-				.otherwise('/home');
+				.otherwise('/contentaccess/subscription?partnerId=tair&redirect=https:%2F%2Fdemotair.arabidopsis.org');
 		})
 	.run(
 		function ($rootScope, $http, Title, PlatformModel) {
