@@ -16,12 +16,27 @@
 }
 
 body {
-	padding-top: 60px;
-	background-color: #eeeeee;
+	background-color: #ffffff;
 }
 
 .img-to-inline-block {
 	display: inline-block;
+}
+
+.block-center {
+	display: block; 
+	float: none;
+	margin: auto;
+}
+
+.block-left {
+	display: block;
+	float: left;
+}
+
+.block-right {
+	display: block;
+	float: right;
 }
 
 .metering-panel {
@@ -109,6 +124,453 @@ body {
 	background-color: #bbc9cf;
 	border-color: #bbc9cf;
 	color: #ffffff;
+}
+
+/******************Librarian Tool General ***************/
+
+@lt-theme-color : #8396a8;
+@lt-green: #7acf92;
+@lt-red: #eb636c;
+
+.lt-theme-color {
+	background-color: #8396a8;
+}
+
+.lt-theme-font-color {
+	color: #8396a8;
+}
+
+.lt-font {
+	font-family: arial;
+}
+
+.lt-font-bold {
+	.lt-font;
+	font-weight: bold;
+}
+
+.lt-font-color {
+	color: #8396A8;
+}
+
+.lt-input-box {
+	.lt-font;
+	padding-left: 10px;
+}
+
+.lt-gap {
+	height: 10px;
+}
+
+.lt-content-width {
+	width: 860px;
+}
+
+.lt-font-aliasing {
+	-webkit-font-smoothing: antialiased;
+}
+
+::-webkit-input-placeholder {
+    font-style: italic;
+}
+:-moz-placeholder {
+    font-weight: bold;
+}
+:-ms-input-placeholder {
+    font-weight: bold;
+}
+
+.lt-glyphicon {
+        .lt-theme-color;
+        width:36px;
+        height:36px;
+	line-height:36px;
+        font-size:18px;
+        font-weight:200;
+        color:#ffffff;
+	cursor:pointer;
+}
+
+/******************Librarian Tool Navbar*****************/
+
+.lt-navbar-panel {
+	.lt-content-width;
+}
+
+.lt-navbar-top {
+	.lt-theme-color;
+	height:64px;
+}
+
+.lt-navbar-img {
+	height:24px;
+	width:24px;
+	cursor:pointer;
+}
+
+.lt-navbar-tool-text {
+	.lt-font-bold;
+	font-size: 12px;
+	color: #ffffff;
+	cursor:pointer;
+}
+
+.lt-navbar-email {
+	.lt-font-bold;
+	font-size: 14px;
+	color: #cccccc;
+	padding-right: 10px;
+}
+
+.lt-navbar-status {
+	.lt-font-bold;
+	font-size: 14px;
+	color: #ffffff;
+	cursor:pointer;
+}
+
+.lt-navbar-bottom {
+	height:212px;
+	background-color: #f5f5f5;
+}
+
+.lt-navbar-bottom-text {
+	.lt-theme-font-color;
+	.lt-font-bold;
+	font-size: 22px;
+}
+
+.lt-navbar-role {
+	height: 30px;
+	margin-top: -30px;
+}
+
+.lt-navbar-label {
+	.lt-font-bold;
+	font-size: 14px;
+	color: #cccccc;
+	cursor: pointer;
+}
+
+.lt-navbar-label-highlight {
+	.lt-navbar-label;
+	.lt-theme-font-color;
+}
+
+.lt-navbar-line {
+	margin-top:5px;
+	height:5px;
+	background-color:@lt-theme-color;
+}
+
+/******************Librarian Tool Admin *****************/
+
+.lt-glyphicon-green {
+        .lt-glyphicon;
+        background-color: @lt-green;
+}
+
+.lt-glyphicon-red {
+        .lt-glyphicon;
+        background-color: @lt-red;
+}
+
+/*** Admin Left Container ***/
+.lt-admin-action-label {
+        .lt-font;
+        .lt-theme-font-color;
+        font-size: 16px;
+        margin-top: 75px;
+}
+
+.lt-admin-action-button {
+        border-style: solid;
+        border-width: 2px;
+        border-color: @lt-theme-color;
+        width: 196px;
+        height: 40px;
+        margin-top: 20px;
+        cursor: pointer;
+}
+
+.lt-admin-action-button-selected {
+        .lt-admin-action-button;
+        border-color: @lt-green;
+}
+
+.lt-admin-action-button-label {
+        .lt-font;
+        .lt-theme-font-color;
+        font-size:14px;
+        position: relative;
+        padding-left: 15px;
+        bottom: 3px;
+}
+
+.lt-admin-action-button-label-selected {
+        .lt-admin-action-button-label;
+        color: @lt-green;
+}
+
+/*** Admin Right Container ***/
+.lt-admin-right-panel{
+        margin-top:56px;
+        border-style: solid;
+        border-width: 1px;
+        border-color: #bbc9cf;
+}
+
+.lt-admin-right-subpanel {
+        height:600px;
+        overflow: scroll;
+}
+
+.lt-admin-groups-title {
+        .lt-theme-color;
+        height:50px;
+}
+
+.lt-admin-groups-title-label {
+        color:#ffffff;
+        font-size:16px;
+        margin-top:14px;
+        margin-left:22px;
+}
+
+.lt-admin-groups-title-filter {
+        color:#ffffff;
+        font-size:14px;
+        padding-top:16px;
+        padding-right:10px;
+}
+
+.lt-admin-groups-description {
+        .lt-font;
+        color:@lt-theme-color;
+        margin-left: 22px;
+        margin-top: 28px;
+        margin-bottom: 18px;
+        margin-right: 22px;
+}
+
+.lt-admin-groups-search {
+        .lt-font;
+        color:#bababa;
+        margin-left: 22px;
+	margin-top: 28px;
+        margin-bottom: 18px;
+        margin-right: 22px;
+}
+
+.lt-admin-groups-title-glyphicon {
+        .lt-glyphicon;
+        line-height:48px;
+        margin-right: 18px;
+}
+
+.lt-admin-groups-list {
+	height: 80px;
+        margin-left: 22px;
+        margin-right: 33px;
+        margin-top: 10px;
+        background-color: #f6f6f6;
+        border-style: solid;
+        border-width: 3px;
+        border-color: #f6f6f6;
+}
+
+.lt-admin-groups-list-selected{
+        .lt-admin-groups-list;
+        border-color: @lt-theme-color;
+}
+
+.lt-admin-groups-list-edit{
+        .lt-admin-groups-list;
+        border-color: @lt-green;
+}
+
+.lt-admin-groups-list-remove{
+        .lt-admin-groups-list;
+        border-color: @lt-red;
+}
+
+.lt-admin-groups-list-label {
+        .lt-theme-font-color;
+        font-size: 16px;
+        margin-top: 8px;
+        margin-left: 25px;
+        width: 300px;
+        background-color: transparent;
+        border:     none;
+}
+
+.lt-admin-groups-list-label-edit {
+        .lt-admin-groups-list-label;
+        background-color: #ffffff;
+}
+
+.lt-admin-groups-list-glyphicon-container {
+        margin-top: 12px;
+}
+
+.lt-admin-groups-list-values {
+        margin-top: 4px;
+}
+
+.lt-admin-groups-list-values-input {
+        .lt-font;
+        color:#858585;
+        font-size:16px;
+        margin-left:25px;
+        width:140px;
+        height:24px;
+        margin-right:4px;
+        background-color: transparent;
+        border: none;
+}
+
+.lt-admin-groups-list-values-input-edit {
+	.lt-admin-groups-list-values-input;
+	background-color: white;
+}
+
+/******************Librarian Tool IP ********************/
+
+.lt-ip-groups-list-start {
+	.lt-admin-groups-list-values-input;
+}
+
+.lt-ip-groups-list-end {
+	.lt-admin-groups-list-values-input;
+	margin-left:4px;
+}
+
+.lt-ip-groups-list-start-edit {
+	.lt-ip-groups-list-start;
+	background-color: white;
+}
+
+.lt-ip-groups-list-end-edit {
+	.lt-ip-groups-list-end;
+	background-color: white;
+}
+
+/******************Librarian Tool Login******************/
+.lt-login-heading {
+	.lt-theme-color;
+	height: 200px;
+}
+
+.lt-login-heading-img {
+	height: 64px;
+	width: 60px;
+}
+
+.lt-login-heading-text {
+	font: 22px arial bold; 
+	color: #ffffff;
+	letter-spacing: 2px;
+}
+
+.lt-login-panel {
+	width: 520px;
+}
+
+.lt-login-form-width {
+	width: 240px;
+}
+
+.lt-login-input-box {
+	.lt-input-box;
+	.lt-login-form-width;
+        height: 32px;
+	font-size: 16px;
+	color: #858585;
+}
+
+.lt-login-remember {
+	.lt-font;
+	font: 14px;
+	color: #909b9f;
+}
+
+.lt-login-forgot {
+	font: 15px;
+	color: #6aa2ce;
+}
+
+.lt-login-login-btn {
+	.lt-font-bold;
+	.lt-login-form-width;
+	.lt-theme-color;
+	height: 36px;
+	font-size: 14px;
+	color: #f9f9f9;
+	border-width: 1px;
+	border-color: #cccccc;
+}
+
+.lt-login-req-btn {
+	.lt-font-bold;
+	.lt-login-form-width;
+	height: 36px;
+	font-size: 14px;
+	color: #909a9f;
+	border-width: 2px;
+	border-color: #bbc9cf;
+	background-color: #ffffff;
+}
+
+.lt-login-description {
+	.lt-font;
+        color: #aaaaaa;
+        font-size: 14px;
+}
+
+.lt-login-info {
+	.lt-font;
+	font-size: 15px;
+	color: #6aa2ce;
+}
+
+/******************Librarian tool institution profile page*************/
+
+.panel-default>.lt-institution-profile-panel-heading {
+	.lt-theme-color;
+}
+
+.lt-institution-profile-input {
+	width: 160px;
+	height: 36px;
+}
+
+.lt-institution-profile-edit-btn {
+	.lt-theme-color;
+	height: 36px;
+	width: 36px;
+	font-size: 14px;
+	color: #ffffff;
+}
+
+.lt-no-border {
+	border: 1px solid;
+	border-color: #ffffff;
+}
+
+.lt-with-border {
+	border: 1px solid;
+	color: #868686;
+}
+
+/******************* Librarian tool institution subscription page ************/
+
+.lt-institution-subscription-list {
+	height: 180px;
+	width: 860px;
+	border-style: solid;
+	border-color: #dddddd;
+	border-width: 0px 0px 1px 0px;
+	padding: 15px;
 }
 
 /******************Subscription Page*********************/

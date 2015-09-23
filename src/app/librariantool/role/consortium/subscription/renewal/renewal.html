@@ -1,0 +1,23 @@
+<div class="row" style="height: 56px;"></div>
+<div class="panel panel-default block-center" style="width: 860px;">
+	<div class="panel-heading lt-institution-profile-panel-heading lt-font-bold lt-font-aliasing" style="font-size: 16px; color: #ffffff;">
+		LICENSE RENEWAL
+	</div>
+	<div class="panel-body" style="padding: 0px;">
+		<div class="row">
+			<div class="{{uiparams.colwidth}}">
+				<form ng-submit="requestRenewal()">
+					<div class="row"><div class="col-md-12">
+						{{partner.name}}
+					</div></div>
+					<div class="row"><div class="col-md-12">
+						Partner description
+					</div></div>
+					<textarea ng-model="comments"></textarea>
+					<button type="button" ng-click="back()">GO BACK</button>
+					<button type="submit">REQUEST RENEWAL</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
