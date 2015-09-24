@@ -89,11 +89,12 @@ angular.module('platform-ui.librariantool.role.consortium.manage.institution').c
                         label:iprange['name'],
                     };
                     $http({
-                        url: $scope.apiUri+'/parties/ipranges/?partyId='+$cookies.partyId+'&secret_key='+encodeURIComponent($cookies.secret_key)+'&ipRangeId='+iprange['ipRangeId'],
+                        url: $scope.apiUri+'/parties/ipranges/?partyId='+$scope.selectedInstitution.partyId+'&secret_key='+encodeURIComponent($cookies.secret_key)+'&ipRangeId='+iprange['ipRangeId'],
                         data: data,
                         method: 'PUT',
                         headers: {'Content-Type': 'application/x-www-form-urlencoded'}
                     }).success(function(data, status, headers, config){
+			
                     }).error(function(data, status, headers, config){
                         alert("ip range request failed");
                     });
@@ -110,11 +111,11 @@ angular.module('platform-ui.librariantool.role.consortium.manage.institution').c
 		var data = {
                     start:$scope.newRange['start'],
                     end:$scope.newRange['end'],
-                    partyId:$cookies.partyId,
+                    partyId:$scope.selectedInstitution.partyId,
                     label:$scope.newRange['name'],
                 }
                 $http({
-                    url: $scope.apiUri+'/parties/ipranges/?partyId='+$cookies.partyId+'&secret_key='+encodeURIComponent($cookies.secret_key),
+                    url: $scope.apiUri+'/parties/ipranges/?partyId='+$scope.selectedInstitution.partyId+'&secret_key='+encodeURIComponent($cookies.secret_key),
                     data:data,
                     method: 'POST',
                 }).success(function(data, status, headers, config){
@@ -141,7 +142,7 @@ angular.module('platform-ui.librariantool.role.consortium.manage.institution').c
                     label:iprange['name'],
                 };
                 $http({
-                    url: $scope.apiUri+'/parties/ipranges/?partyId='+$cookies.partyId+'&secret_key='+encodeURIComponent($cookies.secret_key)+'&ipRangeId='+data['ipRangeId'],
+                    url: $scope.apiUri+'/parties/ipranges/?partyId='+$scope.selectedInstitution.partyId+'&secret_key='+encodeURIComponent($cookies.secret_key)+'&ipRangeId='+data['ipRangeId'],
                     data:data,
                     method: 'DELETE',
                 }).success(function(data, status, headers, config){
@@ -160,9 +161,8 @@ angular.module('platform-ui.librariantool.role.consortium.manage.institution').c
 	    }
 
             // init
-/*
 	    $http({
-                url: $scope.apiUri+'/parties/ipranges/?partyId='+$cookies.partyId+'&secret_key='+encodeURIComponent($cookies.secret_key),
+                url: $scope.apiUri+'/parties/ipranges/?partyId='+$scope.selectedInstitution.partyId+'&secret_key='+encodeURIComponent($cookies.secret_key),
                 method: 'GET',
             }).success(function(data, status, headers, config){
                 $scope.ipranges = [];
@@ -180,6 +180,5 @@ angular.module('platform-ui.librariantool.role.consortium.manage.institution').c
             }).error(function(data, status, headers, config){
                 alert("ip range request failed");
             });
-*/
 	}
 ]);
