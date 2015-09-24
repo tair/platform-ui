@@ -12,7 +12,17 @@ angular.module('platform-ui.librariantool.role.phoenix.profile').factory(
 
 	function () {
 		return {
-			title: 'Phoenix',
+			title: 'PROFILE',
+			user: {
+				"name": null,
+				"username": null,
+				"institution": null,
+				"email": null,
+				"password": null,
+			},
+			uiparams: {
+				"colwidth": 'col-md-7',
+			},
 		};
 	}
 ]);

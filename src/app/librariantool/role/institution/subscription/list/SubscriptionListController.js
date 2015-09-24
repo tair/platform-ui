@@ -41,6 +41,17 @@ angular.module('platform-ui.librariantool.role.institution.subscription.list').c
 			$state.go('role.institution.subscription.request', {'partnerId': id});
 		}
 	    } 
+	
+	    $scope.listPartners = function(partners) {
+		var ret = [];
+		for (var i=0; i<partners.length; i++) {
+		    if (partners[i].partnerId!="phoenix") {
+			ret.push(partners[i]);
+		    }
+		}
+		console.log(ret);
+		return ret;
+	    }
 
 	    function init() {
 		console.log($state);

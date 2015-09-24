@@ -32,7 +32,18 @@ angular.module('platform-ui.librariantool.login').controller(
                     $cookies.partyId = data["partyId"];
                     $cookies.secret_key = data["secret_key"];
 		    $cookies.username = data["username"];
-                    $state.go("role.institution.iprange");
+		    $http({
+			url: $scope.apiUri+'/parties?partyId='+$cookies.partyId+'&secret_key='+encodeURIComponent($cookies.secret_key),
+			method: 'GET'
+		    }).success(function(data, status, headers, config){
+			if (data[0].partyType=="consortium") {
+			    $state.go("role.consortium.manage");
+			} else if (data[0].partyType=="staff") {
+			    $state.go("role.phoenix.manage");
+			} else {
+			    $state.go("role.institution.iprange");
+			}
+		    }).error(function() {});
                 }).error(function(data, status, headers, config){
                     alert('Login failed');
                 });
