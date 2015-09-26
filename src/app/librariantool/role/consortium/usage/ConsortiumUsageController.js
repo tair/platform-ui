@@ -27,7 +27,7 @@ angular.module('platform-ui.librariantool.role.consortium.usage').controller(
 				};
 		$scope.requestUsage = function() {
 					$http({
-						url: $scope.apiUri+'/parties/usage/',
+						url: $scope.apiUri+'/parties/usage/?partyId='+$scope.selectedInstitution.partyId+'&secret_key='+encodeURIComponent($cookies.secret_key),
 						method: 'POST',
 						data: $scope.postData,
 					}).success(function() {
@@ -44,7 +44,7 @@ angular.module('platform-ui.librariantool.role.consortium.usage').controller(
 			$scope.uiparams = ConsortiumUsageModel.uiparams;
 			$scope.postData = ConsortiumUsageModel.postData;
 			$http({
-				url: $scope.apiUri+'/credentials/?partyId='+$cookies.partyId,
+				url: $scope.apiUri+'/credentials/?partyId='+$scope.selectedInstitution.partyId+'&secret_key='+encodeURIComponent($cookies.secret_key),
 				method: 'GET',
 			}).success(function(data, status, headers, config) {
 				$scope.postData.institution = data[0].institution;

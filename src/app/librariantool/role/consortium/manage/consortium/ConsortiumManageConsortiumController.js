@@ -107,7 +107,7 @@ angular.module('platform-ui.librariantool.role.consortium.manage.consortium').co
                 $scope.adding = false;
                 $scope.searchTerm = null;
                 $http({
-		    url: $scope.apiUri+'/parties/consortiuminstitutions/'+$cookies.partyId,
+		    url: $scope.apiUri+'/parties/consortiuminstitutions/'+$cookies.partyId+'/?partyId='+$cookies.partyId+'&secret_key='+encodeURIComponent($cookies.secret_key),
 		    method: 'GET'
 		}).success(function(data, status, headers, config){
 		    $scope.consortiums = [];

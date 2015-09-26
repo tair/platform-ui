@@ -36,7 +36,7 @@ angular.module('platform-ui.librariantool.role.institution.profile').controller(
 					}
 				}
 				$http({
-					url: $scope.apiUri+'/credentials/?username='+$cookies.username,
+					url: $scope.apiUri+'/credentials/?username='+$cookies.username+'&partyId='+$cookies.partyId+'&secret_key='+encodeURIComponent($cookies.secret_key),
 					data: put_data,
 					method: 'PUT',
 					headers: {'Content-Type': 'application/x-www-form-urlencoded'},
@@ -72,7 +72,7 @@ angular.module('platform-ui.librariantool.role.institution.profile').controller(
 	    		$scope.setTitle(InstitutionProfileModel.title);
 	    		$scope.user = InstitutionProfileModel.user;
 			$http({
-				url: $scope.apiUri+'/credentials/?username='+$cookies.username,
+				url: $scope.apiUri+'/credentials/?username='+$cookies.username+'&partyId='+$cookies.partyId+'&secret_key='+encodeURIComponent($cookies.secret_key),
 				method: 'GET',
 			}).success(function(data, status, headers, config) {
 				$scope.user.name = data[0].name;

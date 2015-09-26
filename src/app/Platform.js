@@ -65,7 +65,7 @@ angular.module(
 			 * Set title
 			 */
 			$http({
-				url: PlatformModel.apiUri+'/cookies/get',
+				url: PlatformModel.apiUri+'/cookies/get/',
 				method: 'GET'
 			}).success(function(data, status, headers, config) {
 				document.cookie='csrftoken='+data['csrftoken']+';domain='+PlatformModel.uiDomain+';path=/';

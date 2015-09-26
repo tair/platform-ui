@@ -34,7 +34,7 @@ angular.module('platform-ui.librariantool.role.consortium.profile').controller(
                                         }
                                 }
                                 $http({
-                                        url: $scope.apiUri+'/credentials/?username='+$cookies.username,
+                                        url: $scope.apiUri+'/credentials/?username='+$cookies.username+'&partyId='+$cookies.partyId+'&secret_key='+encodeURIComponent($cookies.secret_key),
                                         data: put_data,
                                         method: 'PUT',
                                         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
@@ -70,7 +70,7 @@ angular.module('platform-ui.librariantool.role.consortium.profile').controller(
                         $scope.setTitle(ConsortiumProfileModel.title);
                         $scope.user = ConsortiumProfileModel.user;
                         $http({
-                                url: $scope.apiUri+'/credentials/?username='+$cookies.username,
+                                url: $scope.apiUri+'/credentials/?username='+$cookies.username+'&partyId='+$scope.selectedInstitution.partyId+'&secret_key='+encodeURIComponent($cookies.secret_key),
                                 method: 'GET',
                         }).success(function(data, status, headers, config) {
                                 $scope.user.name = data[0].name;

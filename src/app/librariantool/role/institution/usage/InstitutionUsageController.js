@@ -29,7 +29,7 @@ angular.module('platform-ui.librariantool.role.institution.usage').controller(
 
 	    $scope.requestUsage = function() {
 					$http({
-						url: $scope.apiUri+'/parties/usage/',
+						url: $scope.apiUri+'/parties/usage/?partyId='+$cookies.partyId+'&secret_key='+encodeURIComponent($cookies.secret_key),
 						method: 'POST',
 						data: $scope.postData,
 					}).success(function() {
@@ -47,7 +47,7 @@ angular.module('platform-ui.librariantool.role.institution.usage').controller(
 		$scope.uiparams = InstitutionUsageModel.uiparams;
 		$scope.postData = InstitutionUsageModel.postData;
 		$http({
-			url: $scope.apiUri+'/credentials/?partyId='+$cookies.partyId,
+			url: $scope.apiUri+'/credentials/?partyId='+$cookies.partyId+'&secret_key='+encodeURIComponent($cookies.secret_key),
 			method: 'GET',
 		}).success(function(data, status, headers, config) {
 			$scope.postData.institution = data[0].institution;
