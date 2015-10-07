@@ -13,10 +13,13 @@
     <!-- Right Panel Header -->
     <div class="lt-admin-groups-title">
       <div class="col-md-4 lt-admin-groups-title-label" style="padding:0px">{{partyInfo.name}}</div>
-      <div class="col-md-4 pull-right" style="padding:0px">
-	<span class="pull-right glyphicon glyphicon-triangle-bottom lt-admin-groups-title-glyphicon"></span>
-	<span class="pull-right text-right lt-admin-groups-title-filter" ng-click="sortField='start';reverse=!reverse"> By Start IP</span>
-    <span class="pull-right text-right lt-admin-groups-title-filter" ng-click="sortField='name';reverse=!reverse"> By Label</span>
+      <div class="col-md-6 pull-right" style="padding:0px">
+	    <a href = "" class="lt-admin-groups-title-filter" ng-click="sortField='start';reverseField=startReverse;startReverse=!startReverse"> By Start IP</a>
+	    <span class="glyphicon glyphicon-triangle-top lt-admin-groups-title-glyphicon" ng-show="startReverse"></span>
+	    <span class="glyphicon glyphicon-triangle-bottom lt-admin-groups-title-glyphicon" ng-hide="startReverse"></span>
+        <a href = "" class="lt-admin-groups-title-filter" ng-click="sortField='name';reverseField=labelReverse;labelReverse=!labelReverse"> By Label</a>
+        <span class="glyphicon glyphicon-triangle-top lt-admin-groups-title-glyphicon" ng-show="labelReverse"></span>
+        <span class="glyphicon glyphicon-triangle-bottom lt-admin-groups-title-glyphicon" ng-hide="labelReverse"></span>
       </div>
     </div>
 
@@ -46,7 +49,7 @@
       </div>
       
       <!-- IP Range List -->
-      <div ng-repeat="iprange in ipranges | filter:searchTerm | orderBy:sortField:reverse">
+      <div ng-repeat="iprange in ipranges | filter:searchTerm | orderBy:sortField:reverseField">
 	<div class="row" ng-class="groupsListCss(iprange.state)" ng-mouseover="groupsMoveOver(iprange)" ng-mouseleave="groupsMoveOut(iprange)">
 	  <div class="col-md-9" style="padding:0px">
 	    <div><input ng-class="groupsListLabelCss(iprange.state)" style="width:300px" ng-model="iprange.name" ng-readonly="!(iprange.state=='edit')"></input></div>
