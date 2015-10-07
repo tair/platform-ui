@@ -28,7 +28,7 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 	    $scope.searchTerm = null;
 	    $scope.startReverse = true;
 	    $scope.labelReverse = true;
-	    $scope.reverseField = true;
+	    $scope.reverseField = $scope.labelReverse;
 	    $scope.sortField = 'start';
 
 	    // CSS Logics as response to state changes.
