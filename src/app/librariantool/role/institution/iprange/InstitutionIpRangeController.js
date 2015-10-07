@@ -26,10 +26,20 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 	    $scope.removeRange = null;
 	    $scope.editRange = null;
 	    $scope.searchTerm = null;
-	    $scope.startReverse = true;
-	    $scope.labelReverse = true;
-	    $scope.reverseField = $scope.labelReverse;
-	    $scope.sortField = 'start';
+	    $scope.sortings = InstitutionIpRangeModel.sortings; //List of sorting objects which contain sortField and reverse attributes.
+	    $scope.reverseField = $scope.sortings[0].reverse;
+	    $scope.sortField = $scope.sortings[0].sortField;
+	    
+	    //Sorting function for ng-click
+	    $scope.sortByField = function(sorting) {
+	    	if ($scope.sortField!=sorting.sortField){
+	    	    $scope.sortField=sorting.sortField;
+	    	    $scope.reverseField=sorting.reverse;
+	    	}else{
+	    		sorting.reverse = !sorting.reverse;
+	    		$scope.reverseField=sorting.reverse;
+	    	}
+	    }
 
 	    // CSS Logics as response to state changes.
 	    $scope.groupsListStartCss = function(state) {

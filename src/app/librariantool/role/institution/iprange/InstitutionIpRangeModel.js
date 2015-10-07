@@ -26,6 +26,10 @@ angular.module('platform-ui.librariantool.role.institution.iprange').factory(
 			{'name':'Cat Catches Catfish', 'start':'132.42.34', 'end':'12.123.3.52', 'state':null},
 			{'name':'Catastrophically Catalized Cataclysm', 'start':'132.42.34', 'end':'12.123.3.52', 'state':null},
 		    ]*/
+		    sortings: [
+		              {sortField:'start', reverse:false, text:"start IP"},
+		              {sortField:'name', reverse:false, text:"Label"}
+		              ]
 		};
 	}
 ]);
