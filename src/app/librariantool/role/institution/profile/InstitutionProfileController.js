@@ -57,6 +57,10 @@ angular.module('platform-ui.librariantool.role.institution.profile').controller(
 		}
 
 		function validateInfo() {
+			if ($scope.user.email.$invalid) {
+				console.log("User email is invalid");
+				return false;
+			}
 			if ($scope.user.email!=$scope.email_validate) {
 				console.log("User email is "+$scope.user.email+" and validate email is "+$scope.email_validate);
 				return false;
