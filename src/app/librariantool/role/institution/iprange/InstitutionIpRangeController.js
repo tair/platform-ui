@@ -26,6 +26,8 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 	    $scope.removeRange = null;
 	    $scope.editRange = null;
 	    $scope.searchTerm = null;
+	    $scope.reverse = true;
+	    $scope.sortField = 'start';
 
 	    // CSS Logics as response to state changes.
 	    $scope.groupsListStartCss = function(state) {
