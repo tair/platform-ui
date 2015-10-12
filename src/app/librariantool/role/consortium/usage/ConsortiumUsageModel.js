@@ -14,7 +14,7 @@ angular.module('platform-ui.librariantool.role.consortium.usage').factory(
 		return {
 			title: 'Consortium',
 			uiparams: {
-				"colwidth": 'col-md-11',
+				"colwidth": 'col-xs-11',
 			},
 			postData: {
 				"institution": null,
