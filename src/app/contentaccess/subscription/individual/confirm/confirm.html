@@ -1,35 +1,35 @@
-<div class="row"><div class="col-md-10" style="float: none; margin-left: auto; margin-right: auto;">
+<div class="row"><div class="col-xs-10" style="float: none; margin-left: auto; margin-right: auto;">
 <div class="row" style="height: 40px;"></div>
-<div class="row"><div class="col-md-12 payment-confirmation-individual-confirm-heading">
+<div class="row"><div class="col-xs-12 payment-confirmation-individual-confirm-heading">
 	Order Summary
 </div></div>
 <div class="row" style="height: 24px;"></div>
-<div class="row"><div class="col-md-12 payment-confirmation-individual-confirm-text"> 
+<div class="row"><div class="col-xs-12 payment-confirmation-individual-confirm-text"> 
 	{{ formdata.firstname }}&nbsp;{{ formdata.lastname }}
 </div></div>
-<div class="row"><div class="col-md-12 payment-confirmation-individual-confirm-text">
+<div class="row"><div class="col-xs-12 payment-confirmation-individual-confirm-text">
 	{{ formdata.street }}
 </div></div>
-<div class="row"><div class="col-md-12 payment-confirmation-individual-confirm-text">
+<div class="row"><div class="col-xs-12 payment-confirmation-individual-confirm-text">
 	{{ formdata.city }},&nbsp;{{ formdata.state }}&nbsp;{{ formdata.zip }}
 </div></div>
-<div class="row"><div class="col-md-12 payment-confirmation-individual-confirm-text">
+<div class="row"><div class="col-xs-12 payment-confirmation-individual-confirm-text">
 	{{ formdata.country }}
 </div></div>
 <div class="row" style="height: 24px;"></div>
-<div class="row"><div class="col-md-12 payment-confirmation-individual-confirm-text">
+<div class="row"><div class="col-xs-12 payment-confirmation-individual-confirm-text">
 	Credit Card Number Ending in: {{ last4 }} <!-- {{ formdata.creditcard }} -->
 </div></div>
 <div class="row" style="height: 20px;"></div>
 
 <!-- Edit credit card number --!>
-<!-- <div class="row"><div class="col-md-12 text-left"><a href="">Edit</a></div></div>
+<!-- <div class="row"><div class="col-xs-12 text-left"><a href="">Edit</a></div></div>
 <div class="row" style="height: 34px;"></div> --!>
 
-<div class="row"><div class="col-md-12 payment-confirmation-individual-confirm-text">
+<div class="row"><div class="col-xs-12 payment-confirmation-individual-confirm-text">
 	Subscription Term: {{ selectedSubscription.description }}
 </div></div>
-<div class="row"><div class="col-md-12 payment-confirmation-individual-confirm-text">
+<div class="row"><div class="col-xs-12 payment-confirmation-individual-confirm-text">
 	Quantity: {{ info.numOfSubscribers }}
 </div></div>
 <div class="row" style="height: 27px;"></div>
@@ -37,16 +37,16 @@
 <hr/>
 <div class="row" style="height: 27px;"></div>
 <div class="row" style="height: 20px;"></div>
-<div class="row"><div class="col-md-12 payment-confirmation-individual-confirm-heading">
+<div class="row"><div class="col-xs-12 payment-confirmation-individual-confirm-heading">
 	Total: ${{ info.subtotal | number:2 }}
 </div></div>
 <div class="row" style="height: 36px;"></div>
 <div class="row">
-	<div class="col-md-7" style="float: none; margin-right: auto; margin-left: auto;">
-	<div class="col-md-6 text-center">
+	<div class="col-xs-7" style="float: none; margin-right: auto; margin-left: auto;">
+	<div class="col-xs-6 text-center">
 		<button type="button" class="btn btn-default btn-default-tair" ng-click="next('pay')">BACK</button>
 	</div>
-	<div class="col-md-6 text-center">
+	<div class="col-xs-6 text-center">
 		<button type="button" class="btn btn-success btn-success-tair" ng-click="makeCharge(true, 'thankyou')">BUY</button>
 	</div>
 	</div>

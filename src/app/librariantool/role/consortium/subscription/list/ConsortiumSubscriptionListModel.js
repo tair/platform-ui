@@ -14,9 +14,9 @@ angular.module('platform-ui.librariantool.role.consortium.subscription.list').fa
 		return {
 			title: 'SUBSCRIPTION',
 			uiparams: {
-				"partnercolwidth": 'col-md-5',
-				"expcolwidth": 'col-md-3',
-				"actionscolwidth": 'col-md-4'
+				"partnercolwidth": 'col-xs-5',
+				"expcolwidth": 'col-xs-3',
+				"actionscolwidth": 'col-xs-4'
 			}
 		};
 	}

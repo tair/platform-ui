@@ -21,7 +21,7 @@ angular.module('platform-ui.librariantool.role.phoenix.profile').factory(
 				"password": null,
 			},
 			uiparams: {
-				"colwidth": 'col-md-7',
+				"colwidth": 'col-xs-7',
 			},
 		};
 	}
