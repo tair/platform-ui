@@ -11,10 +11,11 @@ angular.module('platform-ui.contentaccess.subscription.individual.term').control
 	'$http',
 	'$scope',
 	'$rootScope',
+	'$stateParams',
 	'TermModel',
 	
 	/* Controller Definition */
-	function ($http, $scope, $rootScope, TermModel) {
+	function ($http, $scope, $rootScope, $stateParams, TermModel) {
 	    init();
 	    
 	    $scope.reset = function() {
@@ -57,6 +58,17 @@ angular.module('platform-ui.contentaccess.subscription.individual.term').control
 	    };
 	    
 	    function init() {
+	    	if($scope.partnerId == null){
+		    	$scope.partnerId = $stateParams.partnerId;
+		    }
+		    if($scope.partner == null){
+		    	$http({
+				    url:$scope.apiUri+'/partners/?partnerId='+$scope.partnerId,
+				    method:'GET',
+				}).success(function(data, status, headers, config) {
+				    $scope.partner = data[0];
+				});
+		    }
                 $scope.subscriptions = TermModel.subscriptions;
 		$scope.userbool = TermModel.userbool;
 		$scope.termsbool = TermModel.termsbool;

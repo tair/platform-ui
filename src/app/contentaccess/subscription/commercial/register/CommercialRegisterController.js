@@ -10,10 +10,11 @@ angular.module('platform-ui.contentaccess.subscription.commercial.register').con
 	[
 	    '$http',
 	    '$scope',
+	    '$stateParams',
 	    'CommercialRegisterModel',
 
 	/* Controller Definition */
-	function ($http, $scope, CommercialRegisterModel) {
+	function ($http, $scope, $stateParams, CommercialRegisterModel) {
 	    init();
 	    
 	    $scope.reset= function() {
@@ -77,6 +78,17 @@ angular.module('platform-ui.contentaccess.subscription.commercial.register').con
             }
 
 	    function init() {
+	    	if($scope.partnerId == null){
+		    	$scope.partnerId = $stateParams.partnerId;
+		    }
+		    if($scope.partner == null){
+		    	$http({
+				    url:$scope.apiUri+'/partners/?partnerId='+$scope.partnerId,
+				    method:'GET',
+				}).success(function(data, status, headers, config) {
+				    $scope.partner = data[0];
+				});
+		    }
 		$scope.formdata = CommercialRegisterModel.formdata;
 		$scope.formdata.partnerName = $scope.partner.name;
 		$scope.formdata.comments = 'Please send me information about a commercial subscription to '+$scope.partner.name+'.'

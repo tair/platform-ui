@@ -24,17 +24,17 @@ angular.module('platform-ui.contentaccess.subscription.landing').controller(
 		}
 		//$scope.switchTab($scope.license);
 		if ($scope.license == "individual") {
-			$state.go("subscription.individual.term");
+			$state.go("subscription.individual.term", {partnerId:$scope.partnerId,redirect:$scope.redirect});
 			console.log($state);
 			return;
 		}
 		if ($scope.license == "institution") {
-			$state.go("subscription.institution.register");
+			$state.go("subscription.institution.register", {partnerId:$scope.partnerId,redirect:$scope.redirect});
 			console.log($state);
 			return;
 		}
 		if ($scope.license == "commercial") {
-			$state.go("subscription.commercial.register");
+			$state.go("subscription.commercial.register", {partnerId:$scope.partnerId,redirect:$scope.redirect});
 			console.log($state);
 			return;
 		}
