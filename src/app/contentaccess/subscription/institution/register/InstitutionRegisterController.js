@@ -10,6 +10,7 @@ angular.module('platform-ui.contentaccess.subscription.institution.register').co
 	[
 	    '$http',
 	'$scope',
+//	'$location',
 	'InstitutionRegisterModel',
 
 	/* Controller Definition */
@@ -74,6 +75,9 @@ angular.module('platform-ui.contentaccess.subscription.institution.register').co
 	    }
 
 	    function init() {
+	    	$scope.partnerId=localStorage.partnerId;
+//	    	$scope.partner=$localStorage.partner;
+//	    $scope.partnerId = $location.search()['partnerId'];
 		$scope.formdata = InstitutionRegisterModel.formdata;
 		$scope.formdata.partnerName = $scope.partner.name;
 		$scope.formdata.comments = $scope.partner.name+' is essential to my work. I would like my library to consider a subscription.'

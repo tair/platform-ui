@@ -42,6 +42,8 @@ angular.module('platform-ui.contentaccess.subscription').controller(
 		$scope.templates = SubscriptionModel.templates;
 		$scope.partnerId = $location.search()['partnerId'];
 		$scope.partner = SubscriptionModel.partner;
+		localStorage.partnerId = $location.search()['partnerId'];
+//		$localStorage.partner = SubscriptionModel.partner;
 		$scope.institutions = SubscriptionModel.institutions;
 		$scope.countries = SubscriptionModel.countries;
 		$scope.redirect = $scope.getRedirect();
@@ -51,6 +53,7 @@ angular.module('platform-ui.contentaccess.subscription').controller(
 		    method:'GET',
 		}).success(function(data, status, headers, config) {
 		    $scope.partner = data[0];
+//		    $localStorage.partner = data[0];
 		});
 		$http({
                     url:$scope.apiUri+'/parties/organizations/',
