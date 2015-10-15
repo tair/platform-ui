@@ -23,7 +23,7 @@ angular.module('platform-ui.contentaccess.subscription').controller(
             $scope.switchTab = function(tabName) {
 		//$scope.currentTab = tabName;
 		if (tabName=="landing") {
-			$state.go("subscription.landing");
+			$state.go("subscription.landing", {partnerId:$scope.partnerId,redirect:$scope.redirect});
 			console.log($state);
 			return;
 		}
