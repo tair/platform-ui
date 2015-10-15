@@ -46,7 +46,6 @@ angular.module('platform-ui.contentaccess.subscription').controller(
 		$scope.countries = SubscriptionModel.countries;
 		$scope.redirect = $scope.getRedirectNoEncode();
 		$scope.redirect = decodeURIComponent($scope.redirect);
-		alert($scope.redirect);
 		$scope.redirectNoEncode = $scope.getRedirectNoEncode();
 		$http({
 		    url:$scope.apiUri+'/partners/?partnerId='+$scope.partnerId,
