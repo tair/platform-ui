@@ -18,7 +18,7 @@ angular.module('platform-ui.contentaccess.subscription').factory(
 		
 		partner: {
 		    partnerId: 'tair',
-		    name: 'TAIRI',
+		    name: 'TAIR',
 		    logoUri: 'https://s3-us-west-2.amazonaws.com/pw2-logo/yfd.png',
 		    termOfServiceUri: 'http://thisisanotherbrokenuri.com',
 		},
