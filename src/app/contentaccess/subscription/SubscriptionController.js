@@ -40,7 +40,7 @@ angular.module('platform-ui.contentaccess.subscription').controller(
                 $scope.currentTab = SubscriptionModel.currentTab;
                 $scope.tabs = SubscriptionModel.tabs;
 		$scope.templates = SubscriptionModel.templates;
-		$scope.partnerId = $location.search()['partnerId'];
+		$scope.partnerId = $location.search()['partnerId'];//TODO: need to use $stateParams in the future
 		$scope.partner = SubscriptionModel.partner;
 		$scope.institutions = SubscriptionModel.institutions;
 		$scope.countries = SubscriptionModel.countries;
