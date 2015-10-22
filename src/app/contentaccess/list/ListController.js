@@ -11,10 +11,11 @@ angular.module('platform-ui.contentaccess.list').controller(
 	'$http',
 	'$scope',
 	'$location',
+	"$timeout",
 	'Title',
 
 	/* Controller Definition */
-	function ($http, $scope, $location, Title) {
+	function ($http, $scope, $location, $timeout, Title) {
 	    init();
 	    
 	    sortfunction = function(a,b) {
