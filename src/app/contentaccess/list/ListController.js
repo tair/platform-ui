@@ -29,6 +29,10 @@ angular.module('platform-ui.contentaccess.list').controller(
 		if (institution2 > institution1) return -1;
 		return 0;
 	    }
+	    $timeout(function(){
+	    	$scope.searchTerm="";
+	    	$scope.$apply();
+	    }, 1000);
 	    
 	    function init() {
                 Title.setTitle('University List');
