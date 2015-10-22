@@ -15,9 +15,18 @@
 	</div>
 	<!-- Body -->
         <div style="padding-top: 30px;" class="panel-body">
-        <p>Academic users in mainland China are covered by a national subscription through the National Science and Technology Library (NSTL). Academic users in Switzerland are covered by a national subscription through the Swiss Institute of Bioinformatics (SIB). If you are an academic user in China or Switzerland, you do not need to purchase an individual or lab subscription. </p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Academic users in mainland China are covered by a national subscription through the National Science and Technology Library (NSTL). Academic users in Switzerland are covered by a national subscription through the Swiss Institute of Bioinformatics (SIB). If you are an academic user in China or Switzerland, you do not need to purchase an individual or lab subscription. </p>
 	  <br/>
-	  <div ng-repeat="institution in institutions track by $index" class="text-center">
+	  <form class="form-horizontal">
+	  <div class="form-group col-xs-6 pull-right">
+	  <label class="col-xs-3 control-label">Search:</label>
+	      <div class="col-xs-9">  
+		  <input class="form-control" ng-model='searchTerm' placeholder="organization/country name">
+		  </input>
+		  </div>
+	  </div>
+	  </form>
+	  <div ng-repeat="institution in institutions track by $index | filter:searchTerm" class="text-center">
 	    <div><span class="col-xs-8 text-left">{{institution[0]}}</span><span class="col-xs-4 text-left">{{institution[1]}}</span></div>
 	  </div>
 	</div>
