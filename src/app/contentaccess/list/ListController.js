@@ -30,11 +30,6 @@ angular.module('platform-ui.contentaccess.list').controller(
 		if (institution2 > institution1) return -1;
 		return 0;
 	    }
-	    $scope.$watch('searchTerm', function(){
-	    	$timeout(function(){
-		    	$scope.$apply();
-		    }, 1000);
-	    })
 	    
 	    function init() {
                 Title.setTitle('University List');

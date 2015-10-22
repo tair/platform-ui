@@ -21,7 +21,7 @@
 	  <div class="form-group col-xs-6 pull-right">
 	  <label class="col-xs-3 control-label">Search:</label>
 	      <div class="col-xs-9">  
-		  <input class="form-control" ng-model='searchTerm' placeholder="organization/country name">
+		  <input class="form-control" ng-model='searchTerm' ng-model-options='{ debounce: 1000 }' placeholder="organization/country name">
 		  </input>
 		  </div>
 	  </div>
