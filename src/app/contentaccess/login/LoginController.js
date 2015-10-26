@@ -21,10 +21,12 @@ angular.module('platform-ui.contentaccess.login').controller(
 		init();
 
 	    var getPartnerUriFromRedirect = function(){
+	    	$scope.formdata.emailsent = false;
 		arr = $scope.redirectNoEncode.split("/");
 		return arr[0]+"//"+arr[2];
 	    }
 	    var callProxy = function(data){
+	    	$scope.formdata.emailsent = false;
 		$http({
 		    url: getPartnerUriFromRedirect(),
 		    data: {
@@ -39,8 +41,9 @@ angular.module('platform-ui.contentaccess.login').controller(
 		    alert("cookies error");
 		});
 	    }
-
+	    
 		$scope.login = function() {
+			$scope.formdata.emailsent = false;
 			$http({
 				url: $scope.apiUri+'/credentials/login/?partnerId='+$scope.partnerId, 
 				data: $scope.formdata,
@@ -55,10 +58,48 @@ angular.module('platform-ui.contentaccess.login').controller(
 				alert('Login failed');
 			});
 		};
-
+		
+		
+		$scope.sent = function(){
+			return $scope.formdata.emailsent;
+		}
+		//vet PW-123
+	    $scope.resetpwd = function() {
+	    	$scope.formdata.emailsent = false;
+	    	if ($scope.formdata.user === null) {
+	    		alert("username is required");
+	    		return;
+	    	}
+			
+	    	//alert("user= "+$scope.formdata.user + "    $scope.formdata.emailsent="+$scope.formdata.emailsent );
+	    
+//	    	$scope.formdata.emailsent = true;
+//	    	return;
+	    	//just a test of getting email address by username via api
+	    	 $http({
+	    		 	//get email by username https://demoapi.arabidopsis.org//credentials/?username=techteam
+	                url:$scope.apiUri+'/credentials/?username='+$scope.formdata.user,
+	                method:'GET'
+	            }).success(function(data, status, headers, config) {
+	            	
+	            	$scope.formdata.email = data[0].email;
+	            	$scope.formdata.emailsent = true;
+	            	alert ("user email is "+$scope.formdata.email);
+	            	
+	            }).error(function() {
+	            	
+	            	$scope.formdata.emailsent = false;
+	            	alert('Error. Email was not sent.');
+	            	
+	            });
+	            
+	    }
+	    
+        
 		function init() {
 			Title.setTitle(LoginModel.title);
 			$scope.formdata = LoginModel.formdata;
+			$scope.formdata.emailsent = false;
 			$scope.partnerId = $location.search()['partnerId'];
 			$scope.redirect = $scope.getRedirect();
 		    $scope.redirectNoEncode = $scope.getRedirectNoEncode();
