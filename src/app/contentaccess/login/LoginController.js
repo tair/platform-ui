@@ -86,13 +86,39 @@ angular.module('platform-ui.contentaccess.login').controller(
 	            	$scope.formdata.emailsent = true;
 	            	alert ("user email is "+$scope.formdata.email);
 	            	
+	                $http({
+                    url:$scope.apiUri+'/subscriptions/forgot/',
+                    data:{'user':$scope.formdata.user,
+                    	  'useremail':$scope.formdata.email
+                    },
+                    method:'POST',
+                }).success(function(data, status, headers, config) {
+                	
+                }).error(function(data, status, headers, config) {
+	            	$scope.formdata.emailsent = false;
+	            	alert('Error. Email was not sent.');
+                });
+	            	
+	            	
 	            }).error(function() {
 	            	
 	            	$scope.formdata.emailsent = false;
 	            	alert('Error. Email was not sent.');
 	            	
 	            });
-	            
+	    	 
+	    	 
+//	         $scope.send = function() {
+//	                $http({
+//	                    url:$scope.apiUri+'/subscriptions/commercials/',
+//	                    data:$scope.formdata,
+//	                    method:'POST',
+//	                }).success(function(data, status, headers, config) {
+//	                }).error(function(data, status, headers, config) {
+//	                });
+//	                $scope.next("thankyou");
+//	            }
+//	            
 	    }
 	    
         
