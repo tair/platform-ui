@@ -74,8 +74,9 @@ angular.module('platform-ui.contentaccess.login').controller(
             	url:$scope.apiUri+'/credentials/forgot?partnerId='+$scope.partnerId,
             	data:{'user':$scope.formdata.user},
             	method:'POST',
-            }).then(function(response) {
+            }).then(function(response,data) {
             	alert(angular.fromJson(response));
+            	alert(angular.fromJson(data));
             	$scope.formdata.emailsent = true;
             },
             function(response) {
