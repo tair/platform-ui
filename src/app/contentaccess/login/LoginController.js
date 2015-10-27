@@ -73,12 +73,12 @@ angular.module('platform-ui.contentaccess.login').controller(
 	    	//https://demoapi.arabidopsis.org/credentials/?username=andr5
 	    	 $http({
 	            	url:$scope.apiUri+'/credentials/?username='+$scope.formdata.user+'&partnerId='+$scope.partnerId,
-	            	headers: {'Content-Type': 'application/json'},
-	            	data: {"password1":"2"},
+	            	//headers: {'Content-Type': 'application/json'},
+	            	data: {'password':'2'},
 	            	method:'PUT',
 	            }).success(function(data, status, headers, config){
-	            	console.log('status',data);
-	                console.log('data',status);
+	            	console.log('status',status);
+	                console.log('data',data);
 	                console.log('headers',header);
 	            	//send email via credentials/forgot api
 	                $http({
