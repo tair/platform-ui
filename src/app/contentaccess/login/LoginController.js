@@ -71,22 +71,10 @@ angular.module('platform-ui.contentaccess.login').controller(
 	    	}
         	
 	    	//https://demoapi.arabidopsis.org/credentials/?username=andr5
-	    	 //put_data = {};
-	    	
 	    	 $http({
 	            	url:$scope.apiUri+'/credentials/?username='+$scope.formdata.user+'&partnerId='+$scope.partnerId,
-	            	//headers: {'Content-Type': 'application/json'},
-//	            	transformRequest: function(obj) {
-//	                    var str = [];
-//	                    for(var p in obj)
-//	                    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-//	                    return str.join("&");
-//	                },
-	                //data: {username: $scope.userName, password: $scope.password},
 	                data: {'password':'2'},
-	            	//data: {'password':'2'},
 	            	method:'PUT',
-	            	//$httpParamSerializer and $httpParamSerializerJQLike
 	            	headers: {'Content-Type': 'application/x-www-form-urlencoded'},
 	            }).success(function(data, status, headers, config){
 	            	console.log('status',status);
