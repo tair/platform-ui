@@ -85,10 +85,11 @@ angular.module('platform-ui.contentaccess.login').controller(
 	                	data:{'user':$scope.formdata.user},
 	                	method:'POST',
 	                }).success(function(data, status, headers, config) {
-                	$scope.formdata.emailsent = true;
+	                	alert(data);
+	                	$scope.formdata.emailsent = true;
 	                }).error(function(data, status, headers, config) {
+	                	alert('Error. Email was not sent. '+ data);
 	                	$scope.formdata.emailsent = false;
-	                	alert('Error. Email was not sent.');
 	                });
 	            	
 	            	
