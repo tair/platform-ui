@@ -70,30 +70,22 @@ angular.module('platform-ui.contentaccess.login').controller(
 	    		alert("username is required");
 	    		return;
 	    	}
-			
-	    	//alert("user= "+$scope.formdata.user + "    $scope.formdata.emailsent="+$scope.formdata.emailsent );
-	    
-//	    	$scope.formdata.emailsent = true;
-//	    	return;
 	    	//just a test of getting email address by username via api
 	    	 $http({
 	    		 	//get email by username https://demoapi.arabidopsis.org//credentials/?username=techteam
 	                url:$scope.apiUri+'/credentials/?username='+$scope.formdata.user,
 	                method:'GET'
 	            }).success(function(data, status, headers, config) {
-	            	
 	            	$scope.formdata.email = data[0].email;
 	            	$scope.formdata.emailsent = true;
 	            	alert ("user email is "+$scope.formdata.email);
-	            	
+	            	//send email via credentials/forgot api
 	                $http({
-                    url:$scope.apiUri+'/subscriptions/forgot/',
-                    data:{'user':$scope.formdata.user,
-                    	  'useremail':$scope.formdata.email
-                    },
-                    method:'POST',
-                }).success(function(data, status, headers, config) {
-                	
+	                	url:$scope.apiUri+'/credentials/forgot?partnerId='+$scope.partnerId,
+	                	data:$scope.formdata.user,
+	                	method:'POST',
+	                }).success(function(data, status, headers, config) {
+                	$scope.formdata.emailsent = true;
                 }).error(function(data, status, headers, config) {
 	            	$scope.formdata.emailsent = false;
 	            	alert('Error. Email was not sent.');

@@ -18,7 +18,7 @@ angular.module('platform-ui.contentaccess.login').factory(
 				user: null,
 				password: null,
 				emailsent: false,
-				email: null
+				emailaddress: null
 			}
 		};
 	}
