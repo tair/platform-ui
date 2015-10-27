@@ -87,6 +87,8 @@ angular.module('platform-ui.contentaccess.login').controller(
 	                	method:'POST',
 	                }).success(function(data, status, headers, config){
 	                	//alert(data+":"+response+":"+data.response+":"+response.data);
+	                	console.log('status',status);
+		                console.log('data',data);
 	                	$scope.formdata.emailsent = true;
 	                }).error(function(data, status, headers, config){
 	                	alert('Error. Email was not sent.');
