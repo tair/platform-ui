@@ -59,7 +59,6 @@ angular.module('platform-ui.contentaccess.login').controller(
 			});
 		};
 		
-		
 		$scope.sent = function(){
 			return $scope.formdata.emailsent;
 		}
@@ -70,53 +69,19 @@ angular.module('platform-ui.contentaccess.login').controller(
 	    		alert("username is required");
 	    		return;
 	    	}
-	    	//just a test of getting email address by username via api
-//	    	 $http({
-//	    		 	//get email by username https://demoapi.arabidopsis.org//credentials/?username=techteam
-//	                url:$scope.apiUri+'/credentials/?username='+$scope.formdata.user,
-//	                method:'GET'
-//	            }).success(function(data, status, headers, config) {
-//	            	$scope.formdata.email = data[0].email;
-//	            	$scope.formdata.emailsent = true;
-//	            	alert ("user email is "+$scope.formdata.email);
-	            	//send email via credentials/forgot api
-	                $http({
-	                	url:$scope.apiUri+'/credentials/forgot?partnerId='+$scope.partnerId,
-	                	data:{'user':$scope.formdata.user},
-	                	method:'POST',
-	                }).then(function(response) {
-	                //success(function(data, status, headers, config) {
-	                	alert(response);
-	                	$scope.formdata.emailsent = true;
-	                },
-	                function(response) {
-	                //error(function(data, status, headers, config) {
-	                	alert('Error. Email was not sent. '+ response);
-	                	$scope.formdata.emailsent = false;
-	                });
-	            	
-	            	
-//	            }).error(function() {
-//	            	
-//	            	$scope.formdata.emailsent = false;
-//	            	alert('Error. Email was not sent.');
-//	            	
-//	            });
-	    	 
-	    	 
-//	         $scope.send = function() {
-//	                $http({
-//	                    url:$scope.apiUri+'/subscriptions/commercials/',
-//	                    data:$scope.formdata,
-//	                    method:'POST',
-//	                }).success(function(data, status, headers, config) {
-//	                }).error(function(data, status, headers, config) {
-//	                });
-//	                $scope.next("thankyou");
-//	            }
-//	            
+        	//send email via credentials/forgot api
+            $http({
+            	url:$scope.apiUri+'/credentials/forgot?partnerId='+$scope.partnerId,
+            	data:{'user':$scope.formdata.user},
+            	method:'POST',
+            }).then(function(response) {
+            	$scope.formdata.emailsent = true;
+            },
+            function(response) {
+            	alert('Error. Email was not sent.');
+            	$scope.formdata.emailsent = false;
+            });
 	    }
-	    
         
 		function init() {
 			Title.setTitle(LoginModel.title);
