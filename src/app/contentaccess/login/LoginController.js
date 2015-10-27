@@ -17,7 +17,7 @@ angular.module('platform-ui.contentaccess.login').controller(
 	'LoginModel',
 
 	/* Controller Definition */
-	function ($scope, $http, $cookies, $location, $state, Title, LoginModel) {
+	function ($scope, $http, $cookies, $location, $state, Title, LoginModel, $httpParamSerializerJQLike) {
 		init();
 
 	    var getPartnerUriFromRedirect = function(){
