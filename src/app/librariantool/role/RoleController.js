@@ -24,8 +24,8 @@ angular.module('platform-ui.librariantool.role').controller(
 		window.location.href='#/librariantool/login';
 	    }
 	    $scope.logout = function() {
-		$cookieStore.remove("partyId");
-		$cookieStore.remove("secret_key");
+		$cookieStore.remove("credentialId");
+		$cookieStore.remove("secretKey");
 		$scope.home();
 	    }
 	    $scope.setTitle = function(title) {
@@ -34,7 +34,7 @@ angular.module('platform-ui.librariantool.role').controller(
 
 	    $scope.partyInfo = RoleModel.partyInfo;
 	    $http({
-		url: $scope.apiUri+'/credentials/?username='+$cookies.username+'&secret_key='+encodeURIComponent($cookies.secret_key),
+		url: $scope.apiUri+'/credentials/?username='+$cookies.username+'&secretKey='+encodeURIComponent($cookies.secretKey),
 		method: 'GET',
 	    }).success(function(data, status, headers, config) {
 	    	$scope.email = data[0].email;
@@ -42,7 +42,7 @@ angular.module('platform-ui.librariantool.role').controller(
 		alert("Cannot get user email info");
 	    });
             $http({
-                url: $scope.apiUri+'/parties/?partyId='+$cookies.partyId+'&secret_key='+encodeURIComponent($cookies.secret_key),
+                url: $scope.apiUri+'/parties/?partyId='+$cookies.credentialId+'credentialId'+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
                 method: 'GET',
             }).success(function(data, status, headers, config){
                 $scope.partyInfo = data[0];

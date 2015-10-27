@@ -28,11 +28,11 @@ angular.module('platform-ui.librariantool.forgotpassword').controller(
                     data: $scope.formdata,
                     method: 'POST',
                 }).success(function(data, status, headers, config){
-                    $cookies.partyId = data["partyId"];
-                    $cookies.secret_key = data["secret_key"];
+                    $cookies.credentialId = data["credentialId"];
+                    $cookies.secretKey = data["secretKey"];
 		    $cookies.username = data["username"];
 		    $http({
-			url: $scope.apiUri+'/parties?partyId='+$cookies.partyId+'&secret_key='+encodeURIComponent($cookies.secret_key),
+			url: $scope.apiUri+'/parties?partyId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
 			method: 'GET'
 		    }).success(function(data, status, headers, config){
 			if (data[0].partyType=="consortium") {

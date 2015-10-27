@@ -89,7 +89,7 @@ angular.module('platform-ui.librariantool.role.consortium.manage.institution').c
                         label:iprange['name'],
                     };
                     $http({
-                        url: $scope.apiUri+'/parties/ipranges/?partyId='+$scope.selectedInstitution.partyId+'&secret_key='+encodeURIComponent($cookies.secret_key)+'&ipRangeId='+iprange['ipRangeId'],
+                        url: $scope.apiUri+'/parties/ipranges/?partyId='+$scope.selectedInstitution.partyId+'&credentialId='+$scope.selectedInstitution.partyId+'&secretKey='+encodeURIComponent($cookies.secretKey)+'&ipRangeId='+iprange['ipRangeId'],
                         data: data,
                         method: 'PUT',
                         headers: {'Content-Type': 'application/x-www-form-urlencoded'}
@@ -115,7 +115,7 @@ angular.module('platform-ui.librariantool.role.consortium.manage.institution').c
                     label:$scope.newRange['name'],
                 }
                 $http({
-                    url: $scope.apiUri+'/parties/ipranges/?partyId='+$scope.selectedInstitution.partyId+'&secret_key='+encodeURIComponent($cookies.secret_key),
+                    url: $scope.apiUri+'/parties/ipranges/?partyId='+$scope.selectedInstitution.partyId+'&credentialId='+$scope.selectedInstitution.partyId+'&secretKey='+encodeURIComponent($cookies.secretKey),
                     data:data,
                     method: 'POST',
                 }).success(function(data, status, headers, config){
@@ -142,7 +142,7 @@ angular.module('platform-ui.librariantool.role.consortium.manage.institution').c
                     label:iprange['name'],
                 };
                 $http({
-                    url: $scope.apiUri+'/parties/ipranges/?partyId='+$scope.selectedInstitution.partyId+'&secret_key='+encodeURIComponent($cookies.secret_key)+'&ipRangeId='+data['ipRangeId'],
+                    url: $scope.apiUri+'/parties/ipranges/?partyId='+$scope.selectedInstitution.partyId+'&credentialId='+$scope.selectedInstitution.partyId+'&secretKey='+encodeURIComponent($cookies.secretKey)+'&ipRangeId='+data['ipRangeId'],
                     data:data,
                     method: 'DELETE',
                 }).success(function(data, status, headers, config){
@@ -162,7 +162,7 @@ angular.module('platform-ui.librariantool.role.consortium.manage.institution').c
 
             // init
 	    $http({
-                url: $scope.apiUri+'/parties/ipranges/?partyId='+$scope.selectedInstitution.partyId+'&secret_key='+encodeURIComponent($cookies.secret_key),
+                url: $scope.apiUri+'/parties/ipranges/?partyId='+$scope.selectedInstitution.partyId+'&credentialId='+$scope.selectedInstitution.partyId+'&secretKey='+encodeURIComponent($cookies.secretKey),
                 method: 'GET',
             }).success(function(data, status, headers, config){
                 $scope.ipranges = [];

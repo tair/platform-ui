@@ -35,7 +35,7 @@ angular.module('platform-ui.librariantool.role.consortium.subscription').control
                         alert("Cannot get partner information");
                 });
                 $http({
-                        url: $scope.apiUri+'/subscriptions/activesubscriptions/'+$cookies.partyId+'/',
+                        url: $scope.apiUri+'/subscriptions/activesubscriptions/'+$cookies.credentialId+'/',
                         method: 'GET',
                 }).success(function(data, status, headers, config) {
                         $scope.activeSubscriptions = data;
