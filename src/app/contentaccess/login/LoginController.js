@@ -82,14 +82,14 @@ angular.module('platform-ui.contentaccess.login').controller(
 	            	//send email via credentials/forgot api
 	                $http({
 	                	url:$scope.apiUri+'/credentials/forgot?partnerId='+$scope.partnerId,
-	                	data:$scope.formdata.user,
+	                	data:{'user':$scope.formdata.user},
 	                	method:'POST',
 	                }).success(function(data, status, headers, config) {
                 	$scope.formdata.emailsent = true;
-                }).error(function(data, status, headers, config) {
-	            	$scope.formdata.emailsent = false;
-	            	alert('Error. Email was not sent.');
-                });
+	                }).error(function(data, status, headers, config) {
+	                	$scope.formdata.emailsent = false;
+	                	alert('Error. Email was not sent.');
+	                });
 	            	
 	            	
 	            }).error(function() {
