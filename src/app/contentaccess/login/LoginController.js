@@ -69,18 +69,31 @@ angular.module('platform-ui.contentaccess.login').controller(
 	    		alert("username is required");
 	    		return;
 	    	}
-        	//send email via credentials/forgot api
-            $http({
-            	url:$scope.apiUri+'/credentials/forgot?partnerId='+$scope.partnerId,
-            	data:{'user':$scope.formdata.user},
-            	method:'POST',
-            }).success(function(data, status, headers, config){
-            	//alert(data+":"+response+":"+data.response+":"+response.data);
-            	$scope.formdata.emailsent = true;
-            }).error(function(data, status, headers, config){
-            	alert('Error. Email was not sent.');
-            	$scope.formdata.emailsent = false;
-            });
+        	
+	    	//https://demoapi.arabidopsis.org/credentials/?username=andr5
+	    	 $http({
+	            	url:$scope.apiUri+'/credentials/?username='+$scope.formdata.user+'partnerId='+$scope.partnerId,
+	            	data:{'password':'2'},
+	            	method:'PUT',
+	            }).success(function(data, status, headers, config){
+	            	//send email via credentials/forgot api
+	                $http({
+	                	url:$scope.apiUri+'/credentials/forgot?partnerId='+$scope.partnerId,
+	                	data:{'user':$scope.formdata.user},
+	                	method:'POST',
+	                }).success(function(data, status, headers, config){
+	                	//alert(data+":"+response+":"+data.response+":"+response.data);
+	                	$scope.formdata.emailsent = true;
+	                }).error(function(data, status, headers, config){
+	                	alert('Error. Email was not sent.');
+	                	$scope.formdata.emailsent = false;
+	                });
+	            }).error(function(data, status, headers, config){
+	            	alert('Error. Password not updated');
+	            	$scope.formdata.emailsent = false;
+	            });
+	    	 
+	    	
 	    }
         
 		function init() {
