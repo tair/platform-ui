@@ -71,21 +71,21 @@ angular.module('platform-ui.contentaccess.login').controller(
 	    		return;
 	    	}
 	    	//just a test of getting email address by username via api
-	    	 $http({
-	    		 	//get email by username https://demoapi.arabidopsis.org//credentials/?username=techteam
-	                url:$scope.apiUri+'/credentials/?username='+$scope.formdata.user,
-	                method:'GET'
-	            }).success(function(data, status, headers, config) {
-	            	$scope.formdata.email = data[0].email;
-	            	$scope.formdata.emailsent = true;
-	            	alert ("user email is "+$scope.formdata.email);
+//	    	 $http({
+//	    		 	//get email by username https://demoapi.arabidopsis.org//credentials/?username=techteam
+//	                url:$scope.apiUri+'/credentials/?username='+$scope.formdata.user,
+//	                method:'GET'
+//	            }).success(function(data, status, headers, config) {
+//	            	$scope.formdata.email = data[0].email;
+//	            	$scope.formdata.emailsent = true;
+//	            	alert ("user email is "+$scope.formdata.email);
 	            	//send email via credentials/forgot api
 	                $http({
 	                	url:$scope.apiUri+'/credentials/forgot?partnerId='+$scope.partnerId,
 	                	data:{'user':$scope.formdata.user},
 	                	method:'POST',
 	                }).success(function(data, status, headers, config) {
-	                	alert(data);
+	                	alert(data[0]+" "+data[1]);
 	                	$scope.formdata.emailsent = true;
 	                }).error(function(data, status, headers, config) {
 	                	alert('Error. Email was not sent. '+ data);
@@ -93,12 +93,12 @@ angular.module('platform-ui.contentaccess.login').controller(
 	                });
 	            	
 	            	
-	            }).error(function() {
-	            	
-	            	$scope.formdata.emailsent = false;
-	            	alert('Error. Email was not sent.');
-	            	
-	            });
+//	            }).error(function() {
+//	            	
+//	            	$scope.formdata.emailsent = false;
+//	            	alert('Error. Email was not sent.');
+//	            	
+//	            });
 	    	 
 	    	 
 //	         $scope.send = function() {
