@@ -74,7 +74,7 @@ angular.module('platform-ui.contentaccess.login').controller(
 	    	 $http({
 	            	url:$scope.apiUri+'/credentials/?username='+$scope.formdata.user+'&partnerId='+$scope.partnerId,
 	            	headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-	            	data: password=2,
+	            	data: "password=2",
 	            	method:'PUT',
 	            }).success(function(data, status, headers, config){
 	            	console.log('status',data);
