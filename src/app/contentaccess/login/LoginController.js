@@ -55,7 +55,7 @@ angular.module('platform-ui.contentaccess.login').controller(
 				$state.go("login.success");
 				//alert('Login successful: '+$cookies.secret_key);
 			}).error(function(data, status, headers, config){
-				alert('Login failed');
+				alert('Login failed'+'\ndata: '+data+' status: '+status);
 			});
 		};
 		
