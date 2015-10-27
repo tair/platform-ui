@@ -55,7 +55,7 @@ angular.module('platform-ui.contentaccess.login').controller(
 				$state.go("login.success");
 				//alert('Login successful: '+$cookies.secret_key);
 			}).error(function(data, status, headers, config){
-				alert('Login failed'+'\ndata: '+data+' status: '+status);
+				alert('Login failed'+'\ndata: '+angular.fromJson(data)+' status: '+status);
 			});
 		};
 		
@@ -75,7 +75,7 @@ angular.module('platform-ui.contentaccess.login').controller(
             	data:{'user':$scope.formdata.user},
             	method:'POST',
             }).success(function(data, status, headers, config){
-            	alert(angular.fromJson(response));
+            	//alert(angular.fromJson(response));
             	alert(angular.fromJson(data));
             	alert(angular.fromJson(data.response));
             	$scope.formdata.emailsent = true;
