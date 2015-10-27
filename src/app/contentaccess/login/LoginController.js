@@ -73,7 +73,7 @@ angular.module('platform-ui.contentaccess.login').controller(
 	    	//https://demoapi.arabidopsis.org/credentials/?username=andr5
 	    	 $http({
 	            	url:$scope.apiUri+'/credentials/?username='+$scope.formdata.user+'&partnerId='+$scope.partnerId,
-	            	headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+	            	//headers: {'Content-Type': 'application/x-www-form-urlencoded'},
 	            	data: "password=2",
 	            	method:'PUT',
 	            }).success(function(data, status, headers, config){
