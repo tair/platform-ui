@@ -83,7 +83,7 @@ angular.module('platform-ui.contentaccess.login').controller(
 //	                    return str.join("&");
 //	                },
 	                //data: {username: $scope.userName, password: $scope.password},
-	                data: $httpParamSerializer( {'password':'2'} ),
+	                data: $httpParamSerializerJQLike({'password':'2'}),
 	            	//data: {'password':'2'},
 	            	method:'PUT',
 	            	//$httpParamSerializer and $httpParamSerializerJQLike
