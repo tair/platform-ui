@@ -75,9 +75,7 @@ angular.module('platform-ui.contentaccess.login').controller(
             	data:{'user':$scope.formdata.user},
             	method:'POST',
             }).success(function(data, status, headers, config){
-            	//alert(angular.fromJson(response));
-            	alert(angular.fromJson(data));
-            	//alert(angular.fromJson(data.response));
+            	alert(data+":"+response+":"+data.response+":"+response.data);
             	$scope.formdata.emailsent = true;
             }).error(function(data, status, headers, config){
             	alert('Error. Email was not sent.');
