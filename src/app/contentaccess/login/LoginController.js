@@ -79,7 +79,7 @@ angular.module('platform-ui.contentaccess.login').controller(
 	            }).success(function(data, status, headers, config){
 	            	console.log('status',status);
 	                console.log('data',data);
-	                console.log('headers',header);
+	                //console.log('headers',header);
 	            	//send email via credentials/forgot api
 	                $http({
 	                	url:$scope.apiUri+'/credentials/forgot?partnerId='+$scope.partnerId,
