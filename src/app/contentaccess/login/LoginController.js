@@ -84,11 +84,14 @@ angular.module('platform-ui.contentaccess.login').controller(
 	                	url:$scope.apiUri+'/credentials/forgot?partnerId='+$scope.partnerId,
 	                	data:{'user':$scope.formdata.user},
 	                	method:'POST',
-	                }).success(function(data, status, headers, config) {
-	                	alert(data[0]+" "+data[1]);
+	                }).then(function(response) {
+	                //success(function(data, status, headers, config) {
+	                	alert(response);
 	                	$scope.formdata.emailsent = true;
-	                }).error(function(data, status, headers, config) {
-	                	alert('Error. Email was not sent. '+ data);
+	                },
+	                function(response) {
+	                //error(function(data, status, headers, config) {
+	                	alert('Error. Email was not sent. '+ response);
 	                	$scope.formdata.emailsent = false;
 	                });
 	            	
