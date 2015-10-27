@@ -74,12 +74,12 @@ angular.module('platform-ui.contentaccess.login').controller(
             	url:$scope.apiUri+'/credentials/forgot?partnerId='+$scope.partnerId,
             	data:{'user':$scope.formdata.user},
             	method:'POST',
-            }).then(function(response,data) {
+            }).success(function(data, status, headers, config){
             	alert(angular.fromJson(response));
             	alert(angular.fromJson(data));
+            	alert(angular.fromJson(data.response));
             	$scope.formdata.emailsent = true;
-            },
-            function(response) {
+            }).error(function(data, status, headers, config){
             	alert('Error. Email was not sent.');
             	$scope.formdata.emailsent = false;
             });
