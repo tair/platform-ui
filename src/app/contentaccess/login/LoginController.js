@@ -75,6 +75,7 @@ angular.module('platform-ui.contentaccess.login').controller(
             	data:{'user':$scope.formdata.user},
             	method:'POST',
             }).then(function(response) {
+            	alert(response.data);
             	$scope.formdata.emailsent = true;
             },
             function(response) {
