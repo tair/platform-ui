@@ -17,7 +17,7 @@ angular.module('platform-ui.contentaccess.login').controller(
 	'LoginModel',
 
 	/* Controller Definition */
-	function ($scope, $http, $cookies, $location, $state, Title, LoginModel, $httpParamSerializerJQLike) {
+	function ($scope, $http, $cookies, $location, $state, Title, LoginModel) {
 		init();
 
 	    var getPartnerUriFromRedirect = function(){
@@ -83,7 +83,7 @@ angular.module('platform-ui.contentaccess.login').controller(
 //	                    return str.join("&");
 //	                },
 	                //data: {username: $scope.userName, password: $scope.password},
-	                data: $httpParamSerializerJQLike({'password':'2'}),
+	                data: {'password':'2'},
 	            	//data: {'password':'2'},
 	            	method:'PUT',
 	            	//$httpParamSerializer and $httpParamSerializerJQLike
