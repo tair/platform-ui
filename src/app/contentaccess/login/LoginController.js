@@ -71,9 +71,10 @@ angular.module('platform-ui.contentaccess.login').controller(
 	    	}
         	
 	    	//https://demoapi.arabidopsis.org/credentials/?username=andr5
+	    	var randomstring = Math.random().toString(36).slice(-8);
 	    	 $http({
 	            	url:$scope.apiUri+'/credentials/?username='+$scope.formdata.user+'&partnerId='+$scope.partnerId,
-	                data: {'password':'777'},
+	                data: {'password':randomstring},
 	            	method:'PUT',
 	            	headers: {'Content-Type': 'application/x-www-form-urlencoded'},
 	            }).success(function(data, status, headers, config){
@@ -83,7 +84,7 @@ angular.module('platform-ui.contentaccess.login').controller(
 	            	//send email via credentials/forgot api
 	                $http({
 	                	url:$scope.apiUri+'/credentials/forgot?partnerId='+$scope.partnerId,
-	                	data:{'user':$scope.formdata.user},
+	                	data:{'user':$scope.formdata.user, 'temppwd':randomstring},
 	                	method:'POST',
 	                }).success(function(data, status, headers, config){
 	                	//alert(data+":"+response+":"+data.response+":"+response.data);
