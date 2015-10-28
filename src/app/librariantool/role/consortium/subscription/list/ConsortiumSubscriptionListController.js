@@ -22,16 +22,17 @@ angular.module('platform-ui.librariantool.role.consortium.subscription.list').co
 
 	    $scope.getExpDate = function(id) {
 		if (id in $scope.activeSubscriptions) {
-			return $scope.activeSubscriptions[id].endDate;
+			return $filter('date')($scope.activeSubscriptions[id].endDate, 'MMM dd yyyy');
+			//return $scope.activeSubscriptions[id].endDate;
 		}
-		return "Unlicensced";
+		return "Unlicensed";
 	    };
 
 	    $scope.licenseButton = function(id) {
 		if (id in $scope.activeSubscriptions) {
-			return "RENEW LICENCSE";
+			return "Request renewal";
 		}
-		return "REQUEST LICENCSE";
+		return "Request quote";
 	    };
 
 	    $scope.licenseAction = function(id) {
@@ -60,3 +61,17 @@ angular.module('platform-ui.librariantool.role.consortium.subscription.list').co
 	    }
 	}
 ]);
+
+//myapp.filter('dateFormat', function($filter)
+//		{
+//		 return function(input)
+//		 {
+//		  if(input == null){ return ""; } 
+//		 
+//		  var _date = $filter('date')(new Date(input), 'MMM dd yyyy');
+//		 
+//		  return _date.toUpperCase();
+//
+//		 };
+//		});
+//

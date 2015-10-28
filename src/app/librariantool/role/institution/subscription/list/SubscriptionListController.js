@@ -22,16 +22,16 @@ angular.module('platform-ui.librariantool.role.institution.subscription.list').c
 
 	    $scope.getExpDate = function(id) {
 		if (id in $scope.activeSubscriptions) {
-			return $scope.activeSubscriptions[id].endDate;
+			return $filter('date')($scope.activeSubscriptions[id].endDate, 'MMM dd yyyy');
 		}
-		return "Unlicensced";
+		return "Unlicensed";
 	    };
 
 	    $scope.licenseButton = function(id) {
 		if (id in $scope.activeSubscriptions) {
-			return "RENEW LICENCSE";
+			return "Request renewal";
 		}
-		return "REQUEST LICENCSE";
+		return "Request quote";
 	    };
 
 	    $scope.licenseAction = function(id) {
