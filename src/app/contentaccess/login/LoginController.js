@@ -83,13 +83,12 @@ angular.module('platform-ui.contentaccess.login').controller(
 	                //console.log('headers',header);
 	            	//send email via credentials/forgot api
 	                $http({
-	                	url:$scope.apiUri+'/credentials/forgot?partnerId='+$scope.partnerId,
+	                	url:$scope.apiUri+'/credentials/resetPassword?partnerId='+$scope.partnerId,
 	                	data:{'user':$scope.formdata.user, 'temppwd':randomstring},
 	                	method:'POST',
 	                }).success(function(data, status, headers, config){
-	                	//alert(data+":"+response+":"+data.response+":"+response.data);
-	                	console.log('status',status);
-		                console.log('data',data);
+	                	//console.log('status',status);
+		                //console.log('data',data);
 	                	$scope.formdata.emailsent = true;
 	                }).error(function(data, status, headers, config){
 	                	alert('Error. Email was not sent.');
