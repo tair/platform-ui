@@ -22,7 +22,7 @@ angular.module('platform-ui.librariantool.role.institution.subscription.list').c
 
 	    $scope.getExpDate = function(id) {
 		if (id in $scope.activeSubscriptions) {
-			return $filter('date')($scope.activeSubscriptions[id].endDate, 'MMM dd yyyy');
+			return $scope.activeSubscriptions[id].endDate;
 		}
 		return "Unlicensed";
 	    };
