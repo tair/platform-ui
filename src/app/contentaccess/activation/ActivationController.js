@@ -21,8 +21,8 @@ angular.module('platform-ui.contentaccess.activation').controller(
 		init();
 
 		$scope.postActivation = function(code) {
-			if ($cookies.partyId == null) {
-				alert('No partyId found. Check if you are logged in.');
+			if ($cookies.credentialId == null) {
+				alert('No party identifier found for activation. Check if you are logged in.');
 				return;
 			}
 			if (code == null) {
@@ -32,7 +32,7 @@ angular.module('platform-ui.contentaccess.activation').controller(
 			$http({
 				url: $scope.apiUri+'/subscriptions/',
 				data: {
-					'partyId': $cookies.partyId ,
+					'partyId': $cookies.credentialId ,
 					'activationCode': code,
 				},
 				method: 'POST',

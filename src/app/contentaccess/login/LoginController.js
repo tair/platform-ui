@@ -31,14 +31,14 @@ angular.module('platform-ui.contentaccess.login').controller(
 		    url: getPartnerUriFromRedirect(),
 		    data: {
 			action:"setCookies",
-			partyId:data["partyId"],
-			secret_key:data["secret_key"]
+			credentialId:data["credentialId"],
+			secretKey:data["secretKey"]
 		    },
 		    method: 'POST',
 		}).success(function(data, status){
 		    $scope.tabPage = '2';
 		}).error(function(data, status){
-		    alert("cookies error");
+		    alert("cookies error, data " + data + ", status " + status);
 		});
 	    }
 	    
@@ -49,11 +49,11 @@ angular.module('platform-ui.contentaccess.login').controller(
 				data: $scope.formdata,
 				method: 'POST',
 			}).success(function(data, status, headers, config){
-				$cookies.partyId = data["partyId"];
-				$cookies.secret_key = data["secret_key"];
+				$cookies.credentialId = data["credentialId"];
+				$cookies.secretKey = data["secretKey"];
 			    	callProxy(data);
 				$state.go("login.success");
-				//alert('Login successful: '+$cookies.secret_key);
+				//alert('Login successful: '+$cookies.secretKey);
 			}).error(function(data, status, headers, config){
 				alert('Login failed'+'\ndata: '+data+' status: '+status);
 			});
