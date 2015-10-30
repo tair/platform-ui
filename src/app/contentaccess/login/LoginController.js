@@ -73,7 +73,7 @@ angular.module('platform-ui.contentaccess.login').controller(
 	    	//https://demoapi.arabidopsis.org/credentials/?username=andr5
 	    	var randomstring = Math.random().toString(36).slice(-8);
 	    	 $http({
-	            	url:$scope.apiUri+'/credentials/?username='+$scope.formdata.user+'&partnerId='+$scope.partnerId,
+	            	url:$scope.apiUri+'/credentials/?userIdentifier='+$scope.formdata.user+'&partnerId='+$scope.partnerId,
 	                data: {'password':randomstring},
 	            	method:'PUT',
 	            	headers: {'Content-Type': 'application/x-www-form-urlencoded'},
