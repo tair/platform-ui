@@ -69,37 +69,21 @@ angular.module('platform-ui.contentaccess.login').controller(
 	    		alert("username is required");
 	    		return;
 	    	}
-        	
-	    	//https://demoapi.arabidopsis.org/credentials/?username=andr5
-	    	var randomstring = Math.random().toString(36).slice(-8);
-	    	 $http({
+ 	    	$http({
 	            	url:$scope.apiUri+'/credentials/?username='+$scope.formdata.user+'&partnerId='+$scope.partnerId,
-	                data: {'password':randomstring},
+	                data: {'reset':""},
 	            	method:'PUT',
 	            	headers: {'Content-Type': 'application/x-www-form-urlencoded'},
 	            }).success(function(data, status, headers, config){
 	            	console.log('status',status);
 	                console.log('data',data);
-	                //console.log('headers',header);
-	            	//send email via credentials/forgot api
-	                $http({
-	                	url:$scope.apiUri+'/credentials/resetPassword?partnerId='+$scope.partnerId,
-	                	data:{'user':$scope.formdata.user, 'temppwd':randomstring},
-	                	method:'POST',
-	                }).success(function(data, status, headers, config){
-	                	//console.log('status',status);
-		                //console.log('data',data);
-	                	$scope.formdata.emailsent = true;
-	                }).error(function(data, status, headers, config){
-	                	alert('Error. Email was not sent.');
-	                	$scope.formdata.emailsent = false;
-	                });
+	                $scope.formdata.emailsent = true;
 	            }).error(function(data, status, headers, config){
 	            	alert('Error. Password not updated');
 	            	$scope.formdata.emailsent = false;
+	            	console.log('status',status);
+	                console.log('data',data);
 	            });
-	    	 
-	    	
 	    }
         
 		function init() {
