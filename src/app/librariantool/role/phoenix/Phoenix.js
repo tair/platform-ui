@@ -15,7 +15,6 @@ angular.module(
 	'platform-ui.librariantool.role.phoenix.manage',
 	'platform-ui.librariantool.role.phoenix.subscription',
 	'platform-ui.librariantool.role.phoenix.profile',
-	'platform-ui.librariantool.role.phoenix.usage',
     ])
     .config(
 	function ($stateProvider) {
@@ -35,7 +34,15 @@ angular.module(
 			templateUrl: 'librariantool/role/phoenix/manage/manage.html'
 		    }
 		}
-            }).state('role.phoenix.subscription', {
+            }).state('role.phoenix.iprange', {
+        		url: '/iprange',
+        		views: {
+        		    'phoenix': {
+        			controller: 'PhoenixIpRangeController',
+        			templateUrl: 'librariantool/role/phoenix/iprange/iprange.html'
+        		    }
+        		}
+                    }).state('role.phoenix.subscription', {
                 url: '/subscription',
                 views: {
                     'phoenix': {
@@ -49,14 +56,6 @@ angular.module(
                     'phoenix': {
                         controller: 'PhoenixProfileController',
                         templateUrl: 'librariantool/role/phoenix/profile/profile.html'
-                    }
-                }
-            }).state('role.phoenix.usage', {
-                url: '/usage',
-                views: {
-                    'phoenix': {
-                        controller: 'PhoenixUsageController',
-                        templateUrl: 'librariantool/role/phoenix/usage/usage.html'
                     }
                 }
             });

@@ -1,0 +1,40 @@
+<div class="row" style="height: 56px;"></div>
+<div class="panel panel-default block-center" style="width: 860px;">
+	<div class="panel-heading lt-institution-profile-panel-heading lt-font-bold lt-font-aliasing" style="font-size: 16px; color: #ffffff;">
+		<div class="row">
+			<div class="{{uiparams.partnercolwidth}}">
+				LICENSE 
+			</div>
+			<div class="{{uiparams.expcolwidth}}">
+				EXPIRATION
+			</div>
+			<div class="{{uiparams.actionscolwidth}}">
+				ACTIONS
+			</div>
+		</div>
+	</div>
+	<div class="panel-body" style="padding: 0px;">
+		<div class="lt-institution-subscription-list" ng-repeat="p in listPartners(partners)">
+			<div class="row">
+				<div class="{{uiparams.partnercolwidth}}">
+					<div class="row"><div class="col-xs-12 lt-font lt-theme-font-color lt-font-aliasing" style="font-size: 24px;">
+						{{p.name}} <img src={{p.logoUri}} alt="partner" width="87" height="61">
+					</div></div>
+					<div class="row"><div class="col-xs-12 lt-font lt-font-aliasing" style="font-size: 16px; color: #858585;">
+						{{p.description}}
+					</div></div>
+				</div>
+				<div class="{{uiparams.expcolwidth}}">
+					<div class="row">
+						{{getExpDate(p.partnerId) | date:'fullDate'}}
+					</div>
+				</div>
+				<div class="{{uiparams.actionscolwidth}}">
+					<div class="row">
+						<button type="button" class="btn btn-default" ng-click="licenseAction(p.partnerId);">{{licenseButton(p.partnerId)}}</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
