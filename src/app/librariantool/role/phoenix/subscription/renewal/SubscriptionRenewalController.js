@@ -21,7 +21,7 @@ angular.module('platform-ui.librariantool.role.phoenix.subscription.renewal').co
 	    init();
 	
 	    $scope.back = function() {
-		$state.go('role.institution.subscription.list');
+		$state.go('role.phoenix.subscription.list');
 	    };
 
 	    $scope.requestRenewal = function() {

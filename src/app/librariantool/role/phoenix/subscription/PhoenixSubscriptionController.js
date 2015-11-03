@@ -1,5 +1,5 @@
 /**
- * InstitutionSubscription Controller
+ * PhoenixSubscription Controller
  */
 
 angular.module('platform-ui.librariantool.role.phoenix.subscription').controller(
@@ -14,7 +14,7 @@ angular.module('platform-ui.librariantool.role.phoenix.subscription').controller
 	'$location',
 	'$state',
 	'Title',
-	'InstitutionSubscriptionModel',
+	'PhoenixSubscriptionModel',
 
 	/* Controller Definition */
 	function ($scope, $http, $cookies, $location, $state, Title, PhoenixSubscriptionModel) {

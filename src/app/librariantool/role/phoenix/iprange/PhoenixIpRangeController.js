@@ -1,10 +1,10 @@
 /**
- * InstitutionIpRange Controller
+ * PhoenixIpRange Controller
  */
 
-angular.module('platform-ui.librariantool.role.institution.iprange').controller(
+angular.module('platform-ui.librariantool.role.phoenix.iprange').controller(
 	/* Name */
-	'InstitutionIpRangeController',
+	'PhoenixIpRangeController',
 
 	/* Dependencies */
 	[
@@ -14,19 +14,19 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 	'$location',
 	'$state',
 	'Title',
-	'InstitutionIpRangeModel',
+	'PhoenixIpRangeModel',
 
 	/* Controller Definition */
-	function ($scope, $http, $cookies, $location, $state, Title, InstitutionIpRangeModel) {
-	    $scope.setTitle(InstitutionIpRangeModel.title);
-	    $scope.ipranges = InstitutionIpRangeModel.ipranges;
+	function ($scope, $http, $cookies, $location, $state, Title, PhoenixIpRangeModel) {
+	    $scope.setTitle(PhoenixIpRangeModel.title);
+	    $scope.ipranges = PhoenixIpRangeModel.ipranges;
 	    $scope.addGroupShow = "hidden";
 	    $scope.adding = false;
-	    $scope.newRange = InstitutionIpRangeModel.newRange;
+	    $scope.newRange = PhoenixIpRangeModel.newRange;
 	    $scope.removeRange = null;
 	    $scope.editRange = null;
 	    $scope.searchTerm = null;
-	    $scope.sortings = InstitutionIpRangeModel.sortings; //List of sorting objects which contain sortField and reverse attributes.
+	    $scope.sortings = PhoenixIpRangeModel.sortings; //List of sorting objects which contain sortField and reverse attributes.
 	    $scope.reverseField = $scope.sortings[0].reverse;
 	    $scope.sortField = $scope.sortings[0].sortField;
 	    

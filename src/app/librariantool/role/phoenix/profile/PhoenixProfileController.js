@@ -1,5 +1,5 @@
 /**
- * InstitutionIpRange Controller
+ * PhoenixIpRange Controller
  */
 
 angular.module('platform-ui.librariantool.role.phoenix.profile').controller(
