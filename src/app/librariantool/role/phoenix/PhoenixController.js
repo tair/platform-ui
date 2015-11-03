@@ -1,5 +1,5 @@
 /**
- * InstitutionRole Controller
+ * PhoenixRole Controller
  */
 
 angular.module('platform-ui.librariantool.role.phoenix').controller(
