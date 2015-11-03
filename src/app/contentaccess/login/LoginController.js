@@ -70,7 +70,7 @@ angular.module('platform-ui.contentaccess.login').controller(
 	    		return;
 	    	}
  	    	$http({
-	            	url:$scope.apiUri+'/credentials/?resetPwd?user='+$scope.formdata.user+'&partnerId='+$scope.partnerId,
+	            	url:$scope.apiUri+'/credentials/resetPwd/?user='+$scope.formdata.user+'&partnerId='+$scope.partnerId,
 	   	            method:'PUT',
 	            	headers: {'Content-Type': 'application/x-www-form-urlencoded'},
 	            }).success(function(data, status, headers, config){
