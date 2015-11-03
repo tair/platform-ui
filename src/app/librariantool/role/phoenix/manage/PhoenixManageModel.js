@@ -12,7 +12,7 @@ angular.module('platform-ui.librariantool.role.phoenix.manage').factory(
 
 	function () {
 		return {
-			title: 'Phoenix',
+			title: 'MANAGE',
 		};
 	}
 ]);

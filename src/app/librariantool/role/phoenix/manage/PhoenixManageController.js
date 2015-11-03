@@ -18,5 +18,6 @@ angular.module('platform-ui.librariantool.role.phoenix.manage').controller(
 
 	/* Controller Definition */
 	function ($scope, $http, $cookies, $location, $state, Title, PhoenixManageModel) {
+		$scope.setTitle(PhoenixManageModel.title);
 	}
 ]);
