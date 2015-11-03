@@ -70,14 +70,14 @@ angular.module('platform-ui.contentaccess.login').controller(
 	    		return;
 	    	}
  	    	$http({
-	            	url:$scope.apiUri+'/credentials/?username='+$scope.formdata.user+'&partnerId='+$scope.partnerId+'&resetpwd',
-	                //data: {'reset':""},
-	            	method:'PUT',
+	            	url:$scope.apiUri+'/credentials/?resetPwd?user='+$scope.formdata.user+'&partnerId='+$scope.partnerId,
+	   	            method:'PUT',
 	            	headers: {'Content-Type': 'application/x-www-form-urlencoded'},
 	            }).success(function(data, status, headers, config){
 	            	console.log('status',status);
 	                console.log('data',data);
 	                $scope.formdata.emailsent = true;
+	                $scope.formdata.email=data["useremail"];
 	            }).error(function(data, status, headers, config){
 	            	alert('Error. Password not updated');
 	            	$scope.formdata.emailsent = false;
