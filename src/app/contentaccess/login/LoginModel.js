@@ -17,8 +17,7 @@ angular.module('platform-ui.contentaccess.login').factory(
 			formdata: {
 				user: null,
 				password: null,
-				emailsent: false,
-				emailaddress: null
+				emailsent: false
 			}
 		};
 	}
