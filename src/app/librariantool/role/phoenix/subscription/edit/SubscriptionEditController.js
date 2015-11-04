@@ -19,7 +19,7 @@ angular.module('platform-ui.librariantool.role.phoenix.subscription.edit').contr
 	/* Controller Definition */
 	function ($scope, $http, $cookies, $location, $state, Title, SubscriptionEditModel) {
 	    init();
-	
+	    
 	    $scope.back = function() {
 		$state.go('role.phoenix.subscription.list');
 	    };
@@ -46,8 +46,11 @@ angular.module('platform-ui.librariantool.role.phoenix.subscription.edit').contr
 	    };
 
 	    function init() {
-		$scope.setTitle(SubscriptionRequestModel.title);
-		$scope.uiparams = SubscriptionRequestModel.uiparams;
+    	$(function () {
+            $('#datepicker').datepicker();
+        });
+		$scope.setTitle(SubscriptionEditModel.title);
+		$scope.uiparams = SubscriptionEditModel.uiparams;
 		$scope.partnerId = $location.search()['partnerId'];
 		$http({
 			url: $scope.apiUri+'/partners?partnerId='+$scope.partnerId,

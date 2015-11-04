@@ -28,18 +28,20 @@ angular.module('platform-ui.librariantool.role.phoenix.subscription.list').contr
 	    };
 
 	    $scope.licenseButton = function(id) {
-		if (id in $scope.activeSubscriptions) {
-			return "Request renewal";
-		}
-		return "Request quote";
+	    	return "Edit";
+//		if (id in $scope.activeSubscriptions) {
+//			return "Request renewal";
+//		}
+//		return "Request quote";
 	    };
 
 	    $scope.licenseAction = function(id) {
-		if (id in $scope.activeSubscriptions) {
-			$state.go('role.phoenix.subscription.renewal', {'partnerId': id});
-		} else {
-			$state.go('role.phoenix.subscription.request', {'partnerId': id});
-		}
+	    	$state.go('role.phoenix.subscription.edit', {'partnerId': id});
+//		if (id in $scope.activeSubscriptions) {
+//			$state.go('role.phoenix.subscription.renewal', {'partnerId': id});
+//		} else {
+//			$state.go('role.phoenix.subscription.request', {'partnerId': id});
+//		}
 	    } 
 	
 	    $scope.listPartners = function(partners) {
