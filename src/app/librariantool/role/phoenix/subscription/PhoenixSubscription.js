@@ -42,6 +42,14 @@ angular.module(
 					templateUrl: 'librariantool/role/phoenix/subscription/request/request.html'
 				}
 			}
+		}).state('role.phoenix.subscription.edit', {
+			url: '/edit?partnerId',
+			views: {
+				'subscription': {
+					controller: 'SubscriptionEditController',
+					templateUrl: 'librariantool/role/phoenix/subscription/edit/edit.html'
+				}
+			}
 		});
 	});
 
