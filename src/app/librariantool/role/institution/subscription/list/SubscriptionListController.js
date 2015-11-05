@@ -36,6 +36,7 @@ angular.module('platform-ui.librariantool.role.institution.subscription.list').c
 
 	    $scope.licenseAction = function(id) {
 		if (id in $scope.activeSubscriptions) {
+			//PW-139
 			$state.go('role.institution.subscription.renewal', {'partnerId': id});
 		} else {
 			$state.go('role.institution.subscription.request', {'partnerId': id});

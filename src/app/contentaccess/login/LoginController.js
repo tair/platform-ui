@@ -45,11 +45,11 @@ angular.module('platform-ui.contentaccess.login').controller(
 		$scope.login = function() {
 			$scope.formdata.emailsent = false;
 			$http({
-				url: $scope.apiUri+'/credentials/login/?partnerId='+$scope.partnerId, 
+				url: $scope.apiUri+'/credentials/login/?partnerId='+$scope.partnerId, //partnerId is tair
 				data: $scope.formdata,
 				method: 'POST',
 			}).success(function(data, status, headers, config){
-				$cookies.credentialId = data["credentialId"];
+				$cookies.credentialId = data["credentialId"];//for user andreydemo credentialId is set to Credential.partyId=31300
 				$cookies.secretKey = data["secretKey"];
 			    	callProxy(data);
 				$state.go("login.success");
