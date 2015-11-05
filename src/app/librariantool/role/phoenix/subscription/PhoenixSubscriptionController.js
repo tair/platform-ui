@@ -44,12 +44,12 @@ angular.module('platform-ui.librariantool.role.phoenix.subscription').controller
 			alert("Cannot get active subscription information");
 		});
 		$http({
-			url: $scope.apiUri+'/subscriptions/all/'+'?authority=admin',
+			url: $scope.apiUri+'/subscriptions/getall/'+'?authority=admin',
 			method: 'GET',
 		}).success(function(data, status, headers, config) {
 			$scope.allSubscriptions = data;
 		}).error(function() {
-			alert("Cannot get active subscription information");
+			alert("Cannot get subscription information");
 		});
 		$state.go('role.phoenix.subscription.list');
 	    }

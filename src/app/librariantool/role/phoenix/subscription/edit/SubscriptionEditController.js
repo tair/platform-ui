@@ -29,7 +29,7 @@ angular.module('platform-ui.librariantool.role.phoenix.subscription.edit').contr
                        "endDate":$scope.setEndDate,
                 };
                 $http({
-                        url: $scope.apiUri+'/partners/edit/'+'?partnerId='+$scope.partnerId,
+                        url: $scope.apiUri+'/subscriptions/edit/'+'?partnerId='+$scope.partnerId,
                         method: 'PUT',
                         data: postData,
                 }).success(function(){
