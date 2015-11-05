@@ -48,10 +48,13 @@
                     <div class="row"><div class="col-xs-12 lt-font lt-theme-font-color lt-font-aliasing" style="font-size: 24px;">
                         {{p.partnerId}}
                     </div></div>
+                    <div class="row"><div class="col-xs-12 lt-font lt-theme-font-color lt-font-aliasing" style="font-size: 24px;">
+                        SubscriptionId: {{p.subscriptionId}}
+                    </div></div>
                 </div>
                 <div class="{{uiparams.expcolwidth}}">
                     <div class="row">
-                        {{getExpDate(p.subscriptionId) | date:'fullDate'}}
+                        {{getExpDate(p.partnerId) | date:'fullDate'}}
                     </div>
                 </div>
                 <div class="{{uiparams.actionscolwidth}}">
