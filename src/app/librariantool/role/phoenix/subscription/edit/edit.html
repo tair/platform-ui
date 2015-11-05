@@ -6,7 +6,7 @@
 	<div class="panel-body" style="padding: 0px;">
 		<div class="row">
 			<div class="{{uiparams.colwidth}}">
-				<form ng-submit="requestRenewal()">
+				<form ng-submit="editSubscription()">
 					<div class="row"><div class="col-xs-12">
 						{{partner.name}}
 					</div></div>
@@ -17,7 +17,7 @@
 				        <label class="control-label">Set expiration date:</label>
 				    </div></div>
 				    <div class="row"><div class="col-xs-12">
-			            <input type='text' class="" id='datepicker' placeholder="Please choose a date"/>			
+			            <input type='text' class="" id='datepicker' placeholder="Please choose a date" ng-model="setEndDate"/>			
 					</div></div>
 					<div class="row"><div class="col-xs-12">
 					<textarea ng-model="comments" placeholder="Comments:"></textarea>

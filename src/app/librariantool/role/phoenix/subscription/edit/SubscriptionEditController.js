@@ -24,17 +24,13 @@ angular.module('platform-ui.librariantool.role.phoenix.subscription.edit').contr
 		$state.go('role.phoenix.subscription.list');
 	    };
 
-	    $scope.requestRenewal = function() {
+	    $scope.editSubscription = function() {
 		postData = {
-                        "partnerName": $scope.partner.name,
-                        "name": $scope.user.name,
-                        "email": $scope.user.email,
-                        "institution": $scope.user.institution,
-                        "comments": $scope.comments,
+                       "endDate":$scope.setEndDate,
                 };
                 $http({
-                        url: $scope.apiUri+'/subscriptions/edit/',
-                        method: 'POST',
+                        url: $scope.apiUri+'/partners/edit/'+'?partnerId='+$scope.partnerId,
+                        method: 'PUT',
                         data: postData,
                 }).success(function(){
                         alert("Edit Successful");
@@ -60,14 +56,7 @@ angular.module('platform-ui.librariantool.role.phoenix.subscription.edit').contr
 		}).error(function() {
 			alert("Cannot get partner information");
 		});
-		$http({
-                        url: $scope.apiUri+'/credentials?username='+$cookies.username,
-                        method: 'GET',
-                }).success(function(data, status, headers, config){
-                        $scope.user = data[0];
-                }).error(function() {
-                        alert("User information failed to retrieve");
-                });
+		
 	    }
 	}
 ]);
