@@ -102,33 +102,33 @@ angular.module('platform-ui.librariantool.role.consortium.manage.consortium').co
             }
 
             function init() {
-		$scope.setTitle(ConsortiumManageConsortiumModel.title);
-                $scope.consortiums = ConsortiumManageConsortiumModel.consortiums;
-                $scope.adding = false;
+                $scope.setTitle(ConsortiumManageConsortiumModel.title);
+    	        $scope.consortiums = ConsortiumManageConsortiumModel.consortiums;
+    	        $scope.adding = false;
                 $scope.searchTerm = null;
                 $http({
-                    //url: $scope.apiUri+'/parties/consortiuminstitutions/'+$cookies.credentialId+'/?partyId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+                    // TODO: 2015-11-04: YM: It's unclear why does the next line use $cookies.credentialId in the URI path (as opposed to consortium.partyId).
                     url: $scope.apiUri+'/parties/consortiuminstitutions/'+$cookies.credentialId+'/?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
-		    method: 'GET'
-		}).success(function(data, status, headers, config){
-		    $scope.consortiums = [];
-		    for (var i=0; i < data.length; i++) {
-			entry = data[i];
-			entry['state'] = null;
-			entry['id'] = entry['partyId'];
-			$scope.consortiums.push(entry);
-		    }
-		}).error(function() {
-		    alert("Could not get consortium institutions");
-		});
+                    method: 'GET'
+                }).success(function(data, status, headers, config){
+                    $scope.consortiums = [];
+                    for (var i=0; i < data.length; i++) {
+                        entry = data[i];
+                        entry['state'] = null;
+                        entry['id'] = entry['partyId'];
+                        $scope.consortiums.push(entry);
+                    }
+                }).error(function() {
+                    alert("Could not get consortium institutions");
+                });
                 $http({
-		    url: $scope.apiUri+'/parties/?partyId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
-		    method: 'GET'
-		}).success(function(data, status, headers, config){
-		    $scope.party = data[0];
-		}).error(function() {
-		    alert("Cannot get party information");
-		});
-	    }
+                    url: $scope.apiUri+'/parties/?partyId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+                    method: 'GET'
+                }).success(function(data, status, headers, config){
+                    $scope.party = data[0];
+                }).error(function() {
+                    alert("Cannot get party information");
+                });
+    	    }
 	}
 ]);
