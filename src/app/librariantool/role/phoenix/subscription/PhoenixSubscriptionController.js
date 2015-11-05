@@ -27,7 +27,7 @@ angular.module('platform-ui.librariantool.role.phoenix.subscription').controller
 		$scope.activeSubscriptions = PhoenixSubscriptionModel.activeSubscriptions;
 		$scope.uiparams = PhoenixSubscriptionModel.uiparams;
 		$http({
-			url: $scope.apiUri+'/partners/?authority=amdin',
+			url: $scope.apiUri+'/partners/?authority=admin',
 			method: 'GET',
 		}).success(function(data, status, headers, config) {
 			$scope.partners = data;
@@ -35,7 +35,7 @@ angular.module('platform-ui.librariantool.role.phoenix.subscription').controller
 			alert("Cannot get partner information");
 		});
 		$http({
-			url: $scope.apiUri+'/subscriptions/activesubscriptions/'+$cookies.credentialId+'/',
+			url: $scope.apiUri+'/subscriptions/activesubscriptions/'+$cookies.credentialId+'/?authority=admin',
 			method: 'GET',
 		}).success(function(data, status, headers, config) {
 			$scope.activeSubscriptions = data;
