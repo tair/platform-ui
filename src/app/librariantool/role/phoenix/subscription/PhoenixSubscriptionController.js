@@ -27,7 +27,7 @@ angular.module('platform-ui.librariantool.role.phoenix.subscription').controller
 		$scope.activeSubscriptions = PhoenixSubscriptionModel.activeSubscriptions;
 		$scope.uiparams = PhoenixSubscriptionModel.uiparams;
 		$http({
-			url: $scope.apiUri+'/partners/',
+			url: $scope.apiUri+'/partners/?authority=amdin',
 			method: 'GET',
 		}).success(function(data, status, headers, config) {
 			$scope.partners = data;
