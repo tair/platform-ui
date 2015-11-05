@@ -37,10 +37,10 @@ angular.module('platform-ui.librariantool.role.phoenix.subscription.edit').contr
                         method: 'POST',
                         data: postData,
                 }).success(function(){
-                        alert("Hey there, we will get back to you shortly");
+                        alert("Edit Successful");
                         $scope.comments = null;
                 }).error(function() {
-                        alert("Renewal request not sent");
+                        alert("Edit Falied");
                 });
 		return true;
 	    };

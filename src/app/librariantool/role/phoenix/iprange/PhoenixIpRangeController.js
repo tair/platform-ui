@@ -171,7 +171,7 @@ angular.module('platform-ui.librariantool.role.phoenix.iprange').controller(
 	    
 	    // init
             $http({
-                url: $scope.apiUri+'/parties/ipranges/?partyId='+$cookies.partyId+'&secret_key='+encodeURIComponent($cookies.secret_key+'&authority=admin'),
+                url: $scope.apiUri+'/parties/ipranges/?authority=admin'),
                 method: 'GET',
             }).success(function(data, status, headers, config){
 		$scope.ipranges = [];
