@@ -43,7 +43,9 @@ angular.module('platform-ui.librariantool.role.phoenix.subscription.list').contr
 //			$state.go('role.phoenix.subscription.request', {'partnerId': id});
 //		}
 	    } 
-	
+	    $scope.licenseAction_sub = function(id,sub_id){
+	    	$state.go('role.phoenix.subscription.edit', {'partnerId':id,'subscriptionid': sub_id})
+	    }
 	    $scope.listPartners = function(partners) {
 		var ret = [];
 		for (var i=0; i<partners.length; i++) {

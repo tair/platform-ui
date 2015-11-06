@@ -25,11 +25,15 @@ angular.module('platform-ui.librariantool.role.phoenix.subscription.edit').contr
 	    };
 
 	    $scope.editSubscription = function() {
+	    formatedEndDate = $scope.setEndDate.split("/")[2]+'-'+
+	    $scope.setEndDate.split("/")[0]+'-'+
+	    $scope.setEndDate.split("/")[1]+' '+
+	    '12:00:00.0';
 		postData = {
-                       "endDate":$scope.setEndDate,
+                       "endDate":formatedEndDate,
                 };
                 $http({
-                        url: $scope.apiUri+'/subscriptions/edit/'+'?partnerId='+$scope.partnerId,
+                        url: $scope.apiUri+'/subscriptions/edit/'+'?subscriptionId='+$scope.subscriptionId,
                         method: 'PUT',
                         data: postData,
                 }).success(function(){
@@ -48,6 +52,7 @@ angular.module('platform-ui.librariantool.role.phoenix.subscription.edit').contr
 		$scope.setTitle(SubscriptionEditModel.title);
 		$scope.uiparams = SubscriptionEditModel.uiparams;
 		$scope.partnerId = $location.search()['partnerId'];
+		$scope.subscriptionId = $location.search()['subscriptionId'];
 		$http({
 			url: $scope.apiUri+'/partners?partnerId='+$scope.partnerId,
 			method: 'GET',
@@ -56,6 +61,15 @@ angular.module('platform-ui.librariantool.role.phoenix.subscription.edit').contr
 		}).error(function() {
 			alert("Cannot get partner information");
 		});
+		
+		$http({
+			url: $scope.apiUri+'/subscriptions/?subscriptionId='+$scope.subscriptionId,
+			method: 'GET',
+		}).success(function(data, status, headers, config) {
+			$scope.subscription = data;
+		}).error(function() {
+			alert("Cannot get subscription information");
+		})
 		
 	    }
 	}
