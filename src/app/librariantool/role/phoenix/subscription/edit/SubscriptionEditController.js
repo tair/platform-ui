@@ -36,8 +36,9 @@ angular.module('platform-ui.librariantool.role.phoenix.subscription.edit').contr
                         url: $scope.apiUri+'/subscriptions/edit/'+'?subscriptionId='+$scope.subscriptionId,
                         method: 'PUT',
                         data: postData,
-                }).success(function(){
-                        alert("Edit Successful");
+                        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                }).success(function(data, status, headers, config){
+                        alert("Edit Successful! New expiration date: "+ data['endDate']);
                         $scope.comments = null;
                 }).error(function() {
                         alert("Edit Falied");
