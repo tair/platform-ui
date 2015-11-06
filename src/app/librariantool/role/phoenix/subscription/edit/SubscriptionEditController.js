@@ -25,7 +25,7 @@ angular.module('platform-ui.librariantool.role.phoenix.subscription.edit').contr
 	    };
 
 	    $scope.editSubscription = function() {
-	    formatedEndDate = $scope.setEndDate.split("/")[2]+'-'+
+	    var formatedEndDate = $scope.setEndDate.split("/")[2]+'-'+
 	    $scope.setEndDate.split("/")[0]+'-'+
 	    $scope.setEndDate.split("/")[1]+' '+
 	    '12:00:00.0';
