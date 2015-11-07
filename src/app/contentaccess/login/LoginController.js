@@ -9,6 +9,7 @@ angular.module('platform-ui.contentaccess.login').controller(
 	/* Dependencies */
 	[
 	'$scope',
+	'$window',
 	'$http',
 	'$cookies',
 	'$location',
@@ -17,7 +18,7 @@ angular.module('platform-ui.contentaccess.login').controller(
 	'LoginModel',
 
 	/* Controller Definition */
-	function ($scope, $http, $cookies, $location, $state, Title, LoginModel) {
+	function ($scope, $window, $http, $cookies, $location, $state, Title, LoginModel) {
 		init();
 
 	    var getPartnerUriFromRedirect = function(){
