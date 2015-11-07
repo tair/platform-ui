@@ -37,7 +37,8 @@ angular.module('platform-ui.contentaccess.login').controller(
 		    },
 		    method: 'POST',
 		}).success(function(data, status){
-		    $scope.tabPage = '2';
+            $window.location.href = $scope.redirectNoEncode;
+		    //$scope.tabPage = '2';
 		}).error(function(data, status){
 		    alert("cookies error, data " + data + ", status " + status);
 		});
@@ -53,7 +54,6 @@ angular.module('platform-ui.contentaccess.login').controller(
 				$cookies.credentialId = data["credentialId"];//for user andreydemo credentialId is set to Credential.partyId=31300
 				$cookies.secretKey = data["secretKey"];
 			    callProxy(data);
-			    $window.location.href = $scope.redirectNoEncode;
 				//$state.go("login.success");
 				//alert('Login successful: '+$cookies.secretKey);
 			}).error(function(data, status, headers, config){
