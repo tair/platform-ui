@@ -122,6 +122,7 @@ angular.module('platform-ui.contentaccess.login').controller(
 	            	console.log('status',status);
 	                console.log('data',data);
 	                //$scope.formdata.emailsent = true;
+	                $scope.formdata.email=data["useremail"]
 	                maskedEmail = maskEmail($scope.formdata.email);
 	                bootbox.alert("A temporary password has be emailed to your address "+maskedEmail);
 	            }).error(function(data, status, headers, config){
