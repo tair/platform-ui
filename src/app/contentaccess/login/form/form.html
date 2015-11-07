@@ -22,45 +22,38 @@
 			<div class="row">
 				<div class="col-xs-10" style="float: none; margin-left: auto; margin-right: auto;">
 					<form method="POST" ng-submit="login()">
+						
 						<div class="row" style="height: 35px;"></div>
 						
+						<!-- UID FIELD -->
 						<div class="row">
-							<div class="col-xs-12 text-center form-group">
-								<input type="text" name="user" class="form-control" ng-model="formdata.user" placeholder="Username" style="width: 100%; border-radius: 0px;" required>
+							<div class="col-xs-14 text-center form-group">
+							<input type="text" name="user" class="form-control" ng-model="formdata.user" placeholder="Username" style="width: 100%; border-radius: 0px;" required>
 							</div>
 						</div>
 						
+						<!-- PWD FIELD -->
 						<div class="row">
-							<div class="col-xs-12 text-center form-group">
-								<input type="password" name="password" class="form-control" ng-model="formdata.password" placeholder="Password" style="width: 100%; border-radius: 0px;" required>
+							<div class="col-xs-14 text-left form-group">
+							<input type="password" name="password" class="form-control" ng-model="formdata.password" placeholder="Password" style="width: 100%; border-radius: 0px;" required>
+							<font size="2"><a href="" ng-click="resetpwd()">Reset password.</a></font>
+							</div>
 						</div>
 						
-						<div class="row" style="height: 7px;">
-						</div>
-						<div class="row text-center">
-						<div class="col-xs-12">
+						<!-- LOG IN BTN -->
+						<div class="row">
+							<div class="col-xs-14 text-center form-group">
 							<button type="submit" class="btn btn-primary btn-primary-tair" style="width: 100%;">LOG IN</button>
+							</div>
 						</div>
 						
-						
-						<div class="row"></div>
-
-						<!-- reset pwd btn -->
-						<div class="row" style="height: 7px;">
-						</div>
-						<div class="row text-center">
-						<div class="col-xs-12">
-						<div>Forgotten password? : <a href="" ng-click="resetpwd()">Email me a temporary password.</a>
-						</div>
-
+						<!-- contat us -->
 						<div class="row">
+							<div class="col-xs-14 text-left form-group">
+							<font size="2">Please <a href="mailto:curator@arabidopsis.org?subject=Forgot Username&body=Please help with forgotten username!">contact us</a> if you forgot your username or your email has changed.</font>
+							</div>
 						</div>
-						<div>Forgot username? Email changed? : contact 
-						<a href="mailto:curator@arabidopsis.org?subject=Forgot Username&body=Please help with forgotten username!"> curator@arabidopsis.org</a>
-						</div>
-    					</div>
 						
-						</div>
 					</form>
 				</div>
 			</div>
