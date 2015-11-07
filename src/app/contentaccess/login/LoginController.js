@@ -21,12 +21,12 @@ angular.module('platform-ui.contentaccess.login').controller(
 		init();
 
 	    var getPartnerUriFromRedirect = function(){
-	    	$scope.formdata.emailsent = false;
+	    //$scope.formdata.emailsent = false;
 		arr = $scope.redirectNoEncode.split("/");
 		return arr[0]+"//"+arr[2];
 	    }
 	    var callProxy = function(data){
-	    	$scope.formdata.emailsent = false;
+	    //$scope.formdata.emailsent = false;
 		$http({
 		    url: getPartnerUriFromRedirect(),
 		    data: {
@@ -43,7 +43,6 @@ angular.module('platform-ui.contentaccess.login').controller(
 	    }
 	    
 		$scope.login = function() {
-			$scope.formdata.emailsent = false;
 			$http({
 				url: $scope.apiUri+'/credentials/login/?partnerId='+$scope.partnerId, //partnerId is tair
 				data: $scope.formdata,
@@ -59,14 +58,59 @@ angular.module('platform-ui.contentaccess.login').controller(
 			});
 		};
 		
-		$scope.sent = function(){
-			return $scope.formdata.emailsent;
-		}
+//		$scope.sent = function(){
+//			return $scope.formdata.emailsent;
+//		}
 		//vet PW-123
+		
+		maskEmail = function(originalEmail){
+			var beforeAt='',middle='',asterisk='',afterAt='',maskedEmail='';
+			//console.log('original email',originalEmail);
+	    	beforeAt = originalEmail.split("@")[0];
+	    	afterAt = originalEmail.split("@")[1];
+	    	//console.log('   beforeAt',beforeAt,'; beforeAtlength',beforeAt.length);
+	    	
+	    	//don't mask
+//	    	if (beforeAt.length<=2){
+//	    		return originalEmail;
+//	    	}
+	    	//a@yahoo.com => *@yahoo.com
+	    	if (beforeAt.length==1){
+	    		return "*@"+afterAt;
+	    	}
+	    	//ab@yahoo.com => a*@yahoo.com
+	    	if (beforeAt.length==2){
+	    		return beforeAt[0]+"*@"+afterAt;
+	    	}
+	    	//if we don't need to asteriks exactly each of n-2 chars between first and last char (where n is a lenth), 
+	    	//then we may return first***last@afterAt
+//	    	console.log('beforeAt[beforeAt.length-1](last char)='+beforeAt[beforeAt.length-1]);
+//	    	return beforeAt[0]+"***"+beforeAt[beforeAt.length-1]+"@"+afterAt;
+
+	    	//if we need to astriks exactly each char between first and last 
+            middle=beforeAt.substring(1,beforeAt.length-1);
+            //console.log('   middle',middle);
+            
+            for(i=middle.length;i>0;i--)
+              asterisk+='*';
+            
+            maskedBeforeAt = beforeAt.replace(middle, asterisk);
+            //console.log('   maskedBeforeAt',maskedBeforeAt);
+
+            maskedEmail = maskedBeforeAt+"@"+afterAt;
+            //console.log("   maskedEmail",maskedEmail);
+            
+            return maskedEmail;	
+		};
+		
 	    $scope.resetpwd = function() {
-	    	$scope.formdata.emailsent = false;
+	    	//email masking tests. to remove later
+		    console.log('a@arabi.com=>'+maskEmail("a@arabi.com"));
+		    console.log('ab@arabi.com=>'+maskEmail("ab@arabi.com"));
+		    console.log('abc@arabi.com=>'+maskEmail("abc@arabi.com"));
+		    console.log('abcd@arabi.com=>'+maskEmail("abcd@arabi.com"));
 	    	if ($scope.formdata.user === null) {
-	    		bootbox.alert("to reset password username is required");
+	    		bootbox.alert("to reset password username is required");//http://bootboxjs.com/
 	    		return;
 	    	}
 	    	//$scope.formdata.emailsent = true;
@@ -77,12 +121,12 @@ angular.module('platform-ui.contentaccess.login').controller(
 	            }).success(function(data, status, headers, config){
 	            	console.log('status',status);
 	                console.log('data',data);
-	                $scope.formdata.emailsent = true;
-	                $scope.formdata.email=data["useremail"].replace(/(?<=.).(?=[^@]*?.@)/i, "*");
-	                bootbox.alert("A temporary password has be emailed to your address "+$scope.formdata.email);//http://bootboxjs.com/
+	                //$scope.formdata.emailsent = true;
+	                maskedEmail = maskEmail($scope.formdata.email);
+	                bootbox.alert("A temporary password has be emailed to your address "+maskedEmail);
 	            }).error(function(data, status, headers, config){
 	            	bootbox.alert('Error. Password not updated');
-	            	$scope.formdata.emailsent = false;
+	            	//$scope.formdata.emailsent = false;
 	            	console.log('status',status);
 	                console.log('data',data);
 	            });
@@ -91,7 +135,7 @@ angular.module('platform-ui.contentaccess.login').controller(
 		function init() {
 			Title.setTitle(LoginModel.title);
 			$scope.formdata = LoginModel.formdata;
-			$scope.formdata.emailsent = false;
+			//$scope.formdata.emailsent = false;
 			$scope.partnerId = $location.search()['partnerId'];
 			$scope.redirect = $scope.getRedirect();
 		    $scope.redirectNoEncode = $scope.getRedirectNoEncode();
