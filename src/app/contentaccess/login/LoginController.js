@@ -66,9 +66,10 @@ angular.module('platform-ui.contentaccess.login').controller(
 	    $scope.resetpwd = function() {
 	    	$scope.formdata.emailsent = false;
 	    	if ($scope.formdata.user === null) {
-	    		alert("username is required");
+	    		bootbox.alert("to reset password username is required");
 	    		return;
 	    	}
+	    	//$scope.formdata.emailsent = true;
  	    	$http({
 	            	url:$scope.apiUri+'/credentials/resetPwd/?user='+$scope.formdata.user+'&partnerId='+$scope.partnerId,
 	   	            method:'PUT',
@@ -77,9 +78,10 @@ angular.module('platform-ui.contentaccess.login').controller(
 	            	console.log('status',status);
 	                console.log('data',data);
 	                $scope.formdata.emailsent = true;
-	                $scope.formdata.email=data["useremail"];
+	                $scope.formdata.email=data["useremail"].replaceAll("(?<=.).(?=[^@]*?.@)", "*");
+	                bootbox.alert("A temporary password has be emailed to your address "+$scope.formdata.email);//http://bootboxjs.com/
 	            }).error(function(data, status, headers, config){
-	            	alert('Error. Password not updated');
+	            	bootbox.alert('Error. Password not updated');
 	            	$scope.formdata.emailsent = false;
 	            	console.log('status',status);
 	                console.log('data',data);
