@@ -111,7 +111,7 @@ angular.module('platform-ui.contentaccess.login').controller(
 		    console.log('ab@arabi.com=>'+maskEmail("ab@arabi.com"));
 		    console.log('abc@arabi.com=>'+maskEmail("abc@arabi.com"));
 		    console.log('abcd@arabi.com=>'+maskEmail("abcd@arabi.com"));
-	    	if ($scope.formdata.user === null || $scope.formdata.user == 'undefined') {
+	    	if ($scope.formdata.user === null || $scope.formdata.user === undefined) {
 	    		bootbox.alert("To reset password username is required");//http://bootboxjs.com/
 	    		return;
 	    	}
