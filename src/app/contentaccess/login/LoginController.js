@@ -9,6 +9,7 @@ angular.module('platform-ui.contentaccess.login').controller(
 	/* Dependencies */
 	[
 	'$scope',
+	'$window',
 	'$http',
 	'$cookies',
 	'$location',
@@ -17,7 +18,7 @@ angular.module('platform-ui.contentaccess.login').controller(
 	'LoginModel',
 
 	/* Controller Definition */
-	function ($scope, $http, $cookies, $location, $state, Title, LoginModel) {
+	function ($scope, $window, $http, $cookies, $location, $state, Title, LoginModel) {
 		init();
 
 	    var getPartnerUriFromRedirect = function(){
@@ -36,7 +37,8 @@ angular.module('platform-ui.contentaccess.login').controller(
 		    },
 		    method: 'POST',
 		}).success(function(data, status){
-		    $scope.tabPage = '2';
+		    //$scope.tabPage = '2';                          // PW-147: YM: No more login confirmation page. 
+            $window.location.href = $scope.redirectNoEncode; // PW-147: YM: Redirecting back to the partner site.
 		}).error(function(data, status){
 		    alert("cookies error, data " + data + ", status " + status);
 		});
@@ -50,8 +52,8 @@ angular.module('platform-ui.contentaccess.login').controller(
 			}).success(function(data, status, headers, config){
 				$cookies.credentialId = data["credentialId"];//for user andreydemo credentialId is set to Credential.partyId=31300
 				$cookies.secretKey = data["secretKey"];
-			    	callProxy(data);
-				$state.go("login.success");
+			    callProxy(data);
+				//$state.go("login.success"); // PW-147: YM: No more login confirmation page.
 				//alert('Login successful: '+$cookies.secretKey);
 			}).error(function(data, status, headers, config){
 				alert('Login failed'+'\ndata: '+data+' status: '+status);

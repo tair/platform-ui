@@ -1,7 +1,8 @@
 <div style="height: 42px;" class="row"></div>
 	<div class="row">
+
+        <!-- PW-147: YM: Removing subscription-related panel (replacing it with left and right padding panels to keep the dimensions of the Login form).
 		<div class="col-xs-6">
-			<!--<div style="height: 55px;" class="row"></div>-->
 			<div class="row">
 				<div class="col-xs-offset-2 text-left subscription-body-heading">{{licenses[license].heading}}</div>
 			</div>
@@ -18,6 +19,10 @@
 			    <a href="#contentaccess/subscription?partnerId={{partnerId}}&redirect={{redirect}}"><button type="button" class="btn btn-success btn-success-tair">SUBSCRIBE</button></a>
 			</div></div>
 		</div>
+        -->
+
+        <div class="col-xs-3"/><!-- Left padding -->
+        
 		<div class="col-xs-6">
 			<div class="row">
 				<div class="col-xs-10" style="float: none; margin-left: auto; margin-right: auto;">
@@ -47,7 +52,7 @@
 							</div>
 						</div>
 						
-						<!-- contat us -->
+						<!-- contact us -->
 						<div class="row">
 							<div class="col-xs-14 text-left form-group">
 							<font size="2">Please <a href="mailto:curator@arabidopsis.org?subject=Forgot Username&body=Please help with forgotten username!">contact us</a> if you forgot your username or your email has changed.</font>
@@ -58,5 +63,8 @@
 				</div>
 			</div>
 		</div>
+    
+        <div class="col-xs-3"/><!-- Right padding -->
+    
 	</div>
 <div style="height: 50px;" class="row"></div>
