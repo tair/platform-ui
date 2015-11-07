@@ -44,7 +44,7 @@ angular.module(
 				}
 			}
 		}).state('role.phoenix.subscription.edit', {
-			url: '/edit?partnerId',
+			url: '/edit?partnerId&subscriptionId',
 			views: {
 				'pheonixSubscription': {
 					controller: 'SubscriptionEditController',

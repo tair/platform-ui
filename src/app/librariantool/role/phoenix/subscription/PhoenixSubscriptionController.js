@@ -34,15 +34,15 @@ angular.module('platform-ui.librariantool.role.phoenix.subscription').controller
 		}).error(function() {
 			alert("Cannot get partner information");
 		});
-		$http({
+// removed get activeSubscriptions info because this function only apply to a single party
+//		$http({
 //			url: $scope.apiUri+'/subscriptions/activesubscriptions/'+$cookies.credentialId+'/',
-			url: $scope.apiUri+'/subscriptions/activesubscriptions/credentialId/?authority=admin',
-			method: 'GET',
-		}).success(function(data, status, headers, config) {
-			$scope.activeSubscriptions = data;
-		}).error(function() {
-			alert("Cannot get active subscription information");
-		});
+//			method: 'GET',
+//		}).success(function(data, status, headers, config) {
+//			$scope.activeSubscriptions = data;
+//		}).error(function() {
+//			alert("Cannot get active subscription information");
+//		});
 		$http({
 			url: $scope.apiUri+'/subscriptions/getall/'+'?authority=admin',
 			method: 'GET',

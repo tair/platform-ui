@@ -37,7 +37,7 @@
 				</div>
 				<div class="{{uiparams.actionscolwidth}}">
 					<div class="row">
-                    <button type="button" class="btn btn-default" ng-click="licenseAction(p.partnerId);">{{licenseButton(p.partnerId)}}</button>
+                    <button type="button" class="btn btn-default" ng-click="licenseAction(p.partnerId);" ng-disable>{{licenseButton("partner")}}</button>
                     </div>
 				</div>
 			</div>
@@ -54,12 +54,12 @@
                 </div>
                 <div class="{{uiparams.expcolwidth}}">
                     <div class="row">
-                        {{getExpDate(p.partnerId) | date:'fullDate'}}
+                        {{p.endDate | date:'fullDate'}}
                     </div>
                 </div>
                 <div class="{{uiparams.actionscolwidth}}">
                     <div class="row">
-                    <button type="button" class="btn btn-default" ng-click="licenseAction(p.partnerId);">{{licenseButton(p.partnerId)}}</button>
+                    <button type="button" class="btn btn-default" ng-click="licenseAction_sub(p.partnerId,p.subscriptionId);">{{licenseButton("subscription")}}</button>
                     </div>
                 </div>
             </div>
