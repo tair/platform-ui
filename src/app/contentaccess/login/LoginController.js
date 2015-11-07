@@ -78,7 +78,7 @@ angular.module('platform-ui.contentaccess.login').controller(
 	            	console.log('status',status);
 	                console.log('data',data);
 	                $scope.formdata.emailsent = true;
-	                $scope.formdata.email=data["useremail"].replaceAll("(?<=.).(?=[^@]*?.@)", "*");
+	                $scope.formdata.email=data["useremail"].replace(/(?<=.).(?=[^@]*?.@)/i, "*");
 	                bootbox.alert("A temporary password has be emailed to your address "+$scope.formdata.email);//http://bootboxjs.com/
 	            }).error(function(data, status, headers, config){
 	            	bootbox.alert('Error. Password not updated');
