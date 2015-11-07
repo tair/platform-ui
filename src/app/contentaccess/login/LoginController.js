@@ -50,8 +50,9 @@ angular.module('platform-ui.contentaccess.login').controller(
 			}).success(function(data, status, headers, config){
 				$cookies.credentialId = data["credentialId"];//for user andreydemo credentialId is set to Credential.partyId=31300
 				$cookies.secretKey = data["secretKey"];
-			    	callProxy(data);
-				$state.go("login.success");
+			    callProxy(data);
+			    $window.location.href = $scope.redirectNoEncode;
+				//$state.go("login.success");
 				//alert('Login successful: '+$cookies.secretKey);
 			}).error(function(data, status, headers, config){
 				alert('Login failed'+'\ndata: '+data+' status: '+status);
