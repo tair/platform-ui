@@ -11,7 +11,8 @@ angular.module(
     /* Dependencies */
     [
 	'ui.router',
-	'service.title'
+	'service.title',
+	'service.dateformat'
     ])
     .config(
 	function ($stateProvider) {
