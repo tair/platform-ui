@@ -14,10 +14,11 @@ angular.module('platform-ui.librariantool.role.phoenix.subscription.list').contr
 	'$location',
 	'$state',
 	'Title',
+	'Dateformat',
 	'SubscriptionListModel',
 
 	/* Controller Definition */
-	function ($scope, $http, $cookies, $location, $state, Title, SubscriptionListModel) {
+	function ($scope, $http, $cookies, $location, $state, Title, Dateformat, SubscriptionListModel) {
 	    init();
 
 	    $scope.getExpDate = function(id) {
@@ -60,11 +61,36 @@ angular.module('platform-ui.librariantool.role.phoenix.subscription.list').contr
 		console.log(ret);
 		return ret;
 	    }
-
+	    $scope.createConfirm = function(){
+	    	var data = {				    
+				    partnerId:$scope.newSubscription['partnerId'],
+				    partyId:$scope.newSubscription['partyId'],
+				    startDate:$scope.dateFormat($scope.newSubscription['start']),
+				    endDate:$scope.dateFormat($scope.newSubscription['end']),
+				}
+	    	console.log(JSON.stringify(data));
+	    	$http({
+		        url: $scope.apiUri+'/subscriptions/',
+			    data:data,
+		        method: 'POST',
+			}).success(function(data, status, headers, config){
+			}).error(function(data, status, headers, config){
+		        alert("create subscription request failed");
+			});
+	    	$scope.allSubscriptions.unshift(angular.copy($scope.newSubscription));
+			$scope.newSubscription = null;
+			$scope.adding = false;
+	    }
 	    function init() {
 		console.log($state);
 		$scope.setTitle(SubscriptionListModel.title);
 		$scope.uiparams = SubscriptionListModel.uiparams;
+		$(function () {
+            $('#createStart').datepicker();
+        });
+		$(function () {
+            $('#createEnd').datepicker();
+        });
 	    }
 	}
 ]);
