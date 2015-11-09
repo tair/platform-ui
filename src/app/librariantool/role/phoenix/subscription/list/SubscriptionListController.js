@@ -65,8 +65,8 @@ angular.module('platform-ui.librariantool.role.phoenix.subscription.list').contr
 	    	var data = {				    
 				    partnerId:$scope.newSubscription['partnerId'],
 				    partyId:$scope.newSubscription['partyId'],
-				    startDate:$scope.dateFormat($scope.newSubscription['start']),
-				    endDate:$scope.dateFormat($scope.newSubscription['end']),
+				    startDate:Dateformat.formatDate($scope.newSubscription['start']),
+				    endDate:Dateformat.formatDate($scope.newSubscription['end']),
 				}
 	    	console.log(JSON.stringify(data));
 	    	$http({
