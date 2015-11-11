@@ -52,7 +52,7 @@ angular.module('platform-ui.librariantool.login').controller(
 					} else if (data[0].partyType=="staff") {
 					    $state.go("role.phoenix.manage");
 					} else {
-					    $state.go("role.institution.subscription");
+					    $state.go("role.institution.iprange");
 					}
 				    }).error(function() {});
                 }).error(function(data, status, headers, config){
