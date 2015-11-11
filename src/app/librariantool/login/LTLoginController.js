@@ -30,9 +30,10 @@ angular.module('platform-ui.librariantool.login').controller(
                     data: $scope.formdata,
                     method: 'POST',
                 }).success(function(data, status, headers, config){
-                    $cookies.credentialId = data["credentialId"]; //for user googlestaff it's Credential.partyId nad it's 42
+                    $cookies.credentialId = data["credentialId"]; //for user googlestaff it's Credential.partyId and it's 42
                     $cookies.secretKey = data["secretKey"];
 				    $cookies.username = data["username"];
+				    
 				    $http({
 					url: $scope.apiUri+'/parties?partyId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
 					method: 'GET'
@@ -51,7 +52,7 @@ angular.module('platform-ui.librariantool.login').controller(
 					} else if (data[0].partyType=="staff") {
 					    $state.go("role.phoenix.manage");
 					} else {
-					    $state.go("role.institution.iprange");
+					    $state.go("role.institution.subscription");
 					}
 				    }).error(function() {});
                 }).error(function(data, status, headers, config){
