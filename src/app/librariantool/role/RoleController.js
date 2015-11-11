@@ -42,7 +42,7 @@ angular.module('platform-ui.librariantool.role').controller(
 		alert("Cannot get user email info");
 	    });
             $http({
-                url: $scope.apiUri+'/parties/?partyId='+$cookies.credentialId+'credentialId'+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+                url: $scope.apiUri+'/parties/?partyId='+$cookies.credentialId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
                 method: 'GET',
             }).success(function(data, status, headers, config){
                 $scope.partyInfo = data[0];
