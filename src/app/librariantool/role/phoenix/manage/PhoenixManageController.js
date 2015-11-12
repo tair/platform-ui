@@ -159,18 +159,19 @@ angular.module('platform-ui.librariantool.role.phoenix.manage').controller(
                 url: $scope.apiUri+'/parties/ipranges/?partyId='+$cookies.credentialId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
                 method: 'GET',
             }).success(function(data, status, headers, config){
-		$scope.consortiums = data;
-//		for (var i = 0; i < data.length; i++) {
-//		    entry = data[i];
-//		    $scope.ipranges.push({
-//			ipRangeId:entry['ipRangeId'],
-//			start:entry['start'],
-//			end:entry['end'],
-//			name:entry['label'],
-//			partyId:entry['partyId'],
-//			state:null
-//		    });
-//		}
+		$scope.consortiums = [];
+		for (var i = 0; i < data.length; i++) {
+		    entry = data[i];
+		    $scope.ipranges.push({
+			partyId:entry['partyId'],
+			partyType:entry['partyType'],
+			name:entry['name'],
+			country:entry['country'],
+			display:entry['display'],
+			consortium:entry['consortium'],
+			state:null
+		    });
+		}
             }).error(function(data, status, headers, config){
 		alert("consortium request failed");
             });
