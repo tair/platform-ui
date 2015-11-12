@@ -162,7 +162,7 @@ angular.module('platform-ui.librariantool.role.phoenix.manage').controller(
 		$scope.consortiums = [];
 		for (var i = 0; i < data.length; i++) {
 		    entry = data[i];
-		    $scope.ipranges.push({
+		    $scope.consortiums.push({
 			partyId:entry['partyId'],
 			partyType:entry['partyType'],
 			name:entry['name'],
