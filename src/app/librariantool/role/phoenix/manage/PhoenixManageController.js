@@ -1,5 +1,5 @@
 /**
- * PhoenixIpRange Controller
+ * PhoenixConsortium Controller
  */
 
 angular.module('platform-ui.librariantool.role.phoenix.manage').controller(
@@ -91,7 +91,7 @@ angular.module('platform-ui.librariantool.role.phoenix.manage').controller(
                     consortium.state = "edit";
                     $scope.adding = false;
 		}
-		else if (iprange.state == "edit") {
+		else if (consortium.state == "edit") {
 		    // This is the confirm button at edit state
 		    data = {
 			name:consortium['name'],
@@ -127,7 +127,7 @@ angular.module('platform-ui.librariantool.role.phoenix.manage').controller(
                     alert("add consortium request failed");
 		});
 		
-                $scope.ipranges.unshift(angular.copy($scope.newConsortium));
+                $scope.consortiums.unshift(angular.copy($scope.newConsortium));
 		$scope.newConsortium = null;
 		$scope.adding = false;
 	    }
@@ -140,7 +140,7 @@ angular.module('platform-ui.librariantool.role.phoenix.manage').controller(
 	    $scope.removeConfirm = function(consortium) {
                 data = {};
                 $http({
-                    url: $scope.apiUri+'/parties/ipranges/'+'?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey)+'&partyId='+consortium['partyId'],
+                    url: $scope.apiUri+'/parties/'+'?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey)+'&partyId='+consortium['partyId'],
                     data:data,
                     method: 'DELETE',
                 }).success(function(data, status, headers, config){
@@ -156,7 +156,7 @@ angular.module('platform-ui.librariantool.role.phoenix.manage').controller(
 	    
 	    // init
             $http({
-                url: $scope.apiUri+'/parties/ipranges/?partyId='+$cookies.credentialId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+                url: $scope.apiUri+'/parties/?partyType=consortium'+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
                 method: 'GET',
             }).success(function(data, status, headers, config){
 		$scope.consortiums = [];
