@@ -55,8 +55,7 @@ angular.module('platform-ui.contentaccess.login').controller(
 				//alert('Login successful: '+$cookies.secretKey);
 			}).error(function(data, status, headers, config){
 				console.log('data='+data+';status='+status);
-				//message 'no such user' or 'message:"Incorrect password 356a192b7913b04c54574d18c28d46e6395428ab"
-				bootbox.alert('Login failed. '+data['message']);
+				bootbox.alert('The user name and password you entered don\'t match our records');
 			});
 		};
 		
