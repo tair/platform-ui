@@ -4,7 +4,7 @@
 
 angular.module('platform-ui.librariantool.role.phoenix.subscription.list').controller(
 	/* Name */
-	'SubscriptionListController',
+	'PhoenixSubscriptionListController',
 
 	/* Dependencies */
 	[
@@ -15,10 +15,10 @@ angular.module('platform-ui.librariantool.role.phoenix.subscription.list').contr
 	'$state',
 	'Title',
 	'Dateformat',
-	'SubscriptionListModel',
+	'PhoenixSubscriptionListModel',
 
 	/* Controller Definition */
-	function ($scope, $http, $cookies, $location, $state, Title, Dateformat, SubscriptionListModel) {
+	function ($scope, $http, $cookies, $location, $state, Title, Dateformat, PhoenixSubscriptionListModel) {
 	    init();
 
 	    $scope.getExpDate = function(id) {
@@ -83,8 +83,8 @@ angular.module('platform-ui.librariantool.role.phoenix.subscription.list').contr
 	    }
 	    function init() {
 		console.log($state);
-		$scope.setTitle(SubscriptionListModel.title);
-		$scope.uiparams = SubscriptionListModel.uiparams;
+		$scope.setTitle(PhoenixSubscriptionListModel.title);
+		$scope.uiparams = PhoenixSubscriptionListModel.uiparams;
 		$(function () {
             $('#createStart').datepicker();
         });

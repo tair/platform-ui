@@ -2,9 +2,9 @@
  * PhoenixIpRange Controller
  */
 
-angular.module('platform-ui.librariantool.role.phoenix.iprange').controller(
+angular.module('platform-ui.librariantool.role.phoenix.manage.institution').controller(
 	/* Name */
-	'PhoenixIpRangeController',
+	'PhoenixManageInstitutionController',
 
 	/* Dependencies */
 	[
@@ -14,23 +14,21 @@ angular.module('platform-ui.librariantool.role.phoenix.iprange').controller(
 	'$location',
 	'$state',
 	'Title',
-	'PhoenixIpRangeModel',
+	'PhoenixManageInstitutionModel',
 
 	/* Controller Definition */
-	function ($scope, $http, $cookies, $location, $state, Title, PhoenixIpRangeModel) {
-	    $scope.setTitle(PhoenixIpRangeModel.title);
-	    $scope.ipranges = PhoenixIpRangeModel.ipranges;
+	function ($scope, $http, $cookies, $location, $state, Title, PhoenixManageInstitutionModel) {
+	    $scope.setTitle(PhoenixManageInstitutionModel.title);
+	    $scope.institutions = PhoenixManageInstitutionModel.institutions;
 	    $scope.addGroupShow = "hidden";
 	    $scope.adding = false;
-	    $scope.newRange = PhoenixIpRangeModel.newRange;
+	    $scope.newRange = PhoenixManageInstitutionModel.newRange;
 	    $scope.removeRange = null;
 	    $scope.editRange = null;
 	    $scope.searchTerm = null;
-	    $scope.sortings = PhoenixIpRangeModel.sortings; //List of sorting objects which contain sortField and reverse attributes.
+	    $scope.sortings = PhoenixManageInstitutionModel.sortings; //List of sorting objects which contain sortField and reverse attributes.
 	    $scope.reverseField = $scope.sortings[0].reverse;
 	    $scope.sortField = $scope.sortings[0].sortField;
-	    $scope.partners = PhoenixIpRangeModel.partners;
-	    $scope.uiparams = PhoenixIpRangeModel.uiparams;
 	    
 	    //Sorting function for ng-click
 	    $scope.sortByField = function(sorting) {
@@ -170,7 +168,10 @@ angular.module('platform-ui.librariantool.role.phoenix.iprange').controller(
                 }
 		$scope.removeRange = null;
 	    }
-	    
+	    $scope.enterInstitution = function(){
+	    	$state.go("role.phoenix.iprange");
+	    	$state.currentTab = {label:"INSTITUTION", state:"role.phoenix.iprange"};
+	    }
 	    // init
             $http({
                 url: $scope.apiUri+'/parties/ipranges/getall/',

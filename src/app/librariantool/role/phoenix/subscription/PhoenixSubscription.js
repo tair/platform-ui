@@ -13,8 +13,6 @@ angular.module(
 	'ui.router',
 	'service.title',
 	'platform-ui.librariantool.role.phoenix.subscription.list',
-	'platform-ui.librariantool.role.phoenix.subscription.renewal',
-	'platform-ui.librariantool.role.phoenix.subscription.request',
 	'platform-ui.librariantool.role.phoenix.subscription.edit'
     ])
     .config(
@@ -23,24 +21,8 @@ angular.module(
 			url: '/list',
 			views: {
 				'pheonixSubscription': {
-					controller: 'SubscriptionListController',
+					controller: 'PhoenixSubscriptionListController',
 					templateUrl: 'librariantool/role/phoenix/subscription/list/list.html'
-				}
-			}
-		}).state('role.phoenix.subscription.renewal', {
-			url: '/renewal?partnerId',
-			views: {
-				'pheonixSubscription': {
-					controller: 'SubscriptionRenewalController',
-					templateUrl: 'librariantool/role/phoenix/subscription/renewal/renewal.html'
-				}
-			}
-		}).state('role.phoenix.subscription.request', {
-			url: '/request?partnerId',
-			views: {
-				'pheonixSubscription': {
-					controller: 'SubscriptionRequestController',
-					templateUrl: 'librariantool/role/phoenix/subscription/request/request.html'
 				}
 			}
 		}).state('role.phoenix.subscription.edit', {

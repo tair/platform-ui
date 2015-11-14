@@ -5,7 +5,7 @@
 
 angular.module('platform-ui.librariantool.role.phoenix.subscription.list').factory(
 	/* Name */
-	'SubscriptionListModel',
+	'PhoenixSubscriptionListModel',
 
 	/* Dependencies */
 	[

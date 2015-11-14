@@ -6,7 +6,7 @@
 
 angular.module(
     /* Name */
-    'platform-ui.librariantool.role.phoenix.subscription.request',
+    'platform-ui.librariantool.role.phoenix.manage.institution',
     
     /* Dependencies */
     [
