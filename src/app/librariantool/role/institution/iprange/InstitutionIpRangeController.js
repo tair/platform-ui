@@ -13,11 +13,12 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 	'$cookies',
 	'$location',
 	'$state',
+	'$filter',
 	'Title',
 	'InstitutionIpRangeModel',
 
 	/* Controller Definition */
-	function ($scope, $http, $cookies, $location, $state, Title, InstitutionIpRangeModel) {
+	function ($scope, $http, $cookies, $location, $state, $filter, Title, InstitutionIpRangeModel) {
 	    $scope.setTitle(InstitutionIpRangeModel.title);
 	    $scope.ipranges = InstitutionIpRangeModel.ipranges;
 	    $scope.addGroupShow = "hidden";
@@ -27,18 +28,26 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 	    $scope.editRange = null;
 	    $scope.searchTerm = null;
 	    $scope.sortings = InstitutionIpRangeModel.sortings; //List of sorting objects which contain sortField and reverse attributes.
-	    $scope.reverseField = $scope.sortings[0].reverse;
-	    $scope.sortField = $scope.sortings[0].sortField;
+	    $scope.reverse = $scope.sortings[0].reverse;
+	    $scope.predicate = $scope.sortings[0].predicate;
+	    
+	    //initializing orderBy function
+	    var orderBy = $filter('orderBy');
+	    $scope.order = function(predicate, reverse) {
+	      $scope.ipranges = orderBy($scope.ipranges, predicate, reverse);
+	    };
+	    $scope.order($scope.predicate,$scope.reverse);
 	    
 	    //Sorting function for ng-click
 	    $scope.sortByField = function(sorting) {
-	    	if ($scope.sortField!=sorting.sortField){
-	    	    $scope.sortField=sorting.sortField;
-	    	    $scope.reverseField=sorting.reverse;
+	    	if ($scope.predicate!=sorting.predicate){
+	    	    $scope.predicate=sorting.predicate;
+	    	    $scope.reverse=sorting.reverse;
 	    	}else{
 	    		sorting.reverse = !sorting.reverse;
-	    		$scope.reverseField=sorting.reverse;
+	    		$scope.reverse=sorting.reverse;
 	    	}
+	    	$scope.order($scope.predicate,$scope.reverse);
 	    }
 
 	    // CSS Logics as response to state changes.
