@@ -65,7 +65,7 @@ angular.module('platform-ui.contentaccess.subscription.individual').controller(
 		};
 
                 $scope.makeCharge = function(bool, next) {
-                        Stripe.setPublishableKey('pk_test_VEu0r74glZkzeT8IXLmXxojP');
+                        Stripe.setPublishableKey('pk_test_G0m3C0rAdy14HUMjGDn0Iqcq');
                         var stripeData = {
                                 name: $scope.formdata.firstname + ' ' + $scope.formdata.lastname,
                                 address_line1: $scope.formdata.street,
