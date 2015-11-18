@@ -8,22 +8,21 @@ angular.module('platform-ui').factory(
 
 	/* Dependencies */
 	[
-	 
+
+	'$scope',
 	'$http',
 
 	/* Controller */
-	function ($http) {
+	function ($scope, $http) {
 	    
 	    console.log('PlatformModel controller called');
 
-	    var config; 
-	    
         $http.get('/config/config.json').then(function(res) { 
             config = res.data[0];
-            console.log('DEBUG1: ' + config.paywallApiBaseUri)
+            $scope.paywallApiBaseUri = config.paywallApiBaseUri
         });
 
-        console.log('DEBUG2: ' + config.paywallApiBaseUri)
+        console.log('DEBUG2: ' + $scope.paywallApiBaseUri)
         
 	    return {
 		title: 'PW2 Angular App',
