@@ -8,6 +8,8 @@ angular.module('platform-ui').factory(
 
 	/* Dependencies */
 	[
+	 
+	'$http',
 
 	/* Controller */
 	function ($http) {
