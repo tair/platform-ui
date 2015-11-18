@@ -105,6 +105,8 @@ angular.module('platform-ui.contentaccess.subscription.individual').controller(
                                         method:'POST',
                                     }).success(function(data, status, headers, config) {
                                     }).error(function(data, status, headers, config) {
+                                    	console.log('data='+data+';status='+status);//PW-120
+                                    	bootbox.alert('Individual Subscription Error');//PW-120
                                     });
                                 }
                                 $scope.next(next);
