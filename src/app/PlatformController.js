@@ -32,7 +32,7 @@ angular.module('platform-ui').controller(
 		    return $location.search()['redirect'];
 	    }
 	}
-]).run(
+])/*.run(
         
     [
     '$scope', 
@@ -51,4 +51,4 @@ angular.module('platform-ui').controller(
         
     }
     ]
-);
+)*/;
