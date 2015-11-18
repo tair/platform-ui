@@ -19,14 +19,16 @@ angular.module('platform-ui').controller(
 	    
         $http.get('/config/config.json').then(function(res) { 
             config = res.data[0];
-            console.log( "PW-186 DEBUG:" + config.paywallApiBaseUri)
+            console.log( "PW-186 DEBUG:" + config.paywallApiBaseUri);
+            $scope.apiUri = config.paywallApiBaseUri;
+            $scope.stripePublishableKey = config.stripePublishableKey;
         });
 	    
 	    $scope.title = PlatformModel.title;
 	    $scope.brand = PlatformModel.brand;
 	    $scope.author = PlatformModel.author;
 	    $scope.menu = PlatformModel.menu;
-	    $scope.apiUri = PlatformModel.apiUri;
+	    //$scope.apiUri = PlatformModel.apiUri;
 	    $scope.getRedirect = function() {
 		return encodeURIComponent($location.search()['redirect']);
 	    }
