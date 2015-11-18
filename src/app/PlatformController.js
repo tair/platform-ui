@@ -35,7 +35,8 @@ angular.module('platform-ui').controller(
 ]).run(
         
     [
-
+     
+    '$rootScope',
     '$http', 
     
     function($rootScope, $http) {
