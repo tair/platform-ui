@@ -106,8 +106,8 @@ angular.module('platform-ui.contentaccess.subscription.individual').controller(
                                 method: 'POST',
                             }).success(function(data, status, headers, config) {
                             }).error(function(data, status, headers, config) {
-                                console.log('data='+data+';status='+status);//PW-120
-                                bootbox.alert('Individual Subscription Error');//PW-120
+                                console.log('data=' + data + ';status=' + status); //PW-120
+                                bootbox.alert('Individual Subscription Error'); //PW-120
                             });
                         }
                         $scope.next(next);
@@ -127,9 +127,8 @@ angular.module('platform-ui.contentaccess.subscription.individual').controller(
             $scope.selectedSubscription = IndividualModel.selectedSubscription;
             
             $http.get('/config/stripe.json').then(function(res) { 
-                //console.log('res=' + res);
                 $scope.stripePublishableKey = res.data[0].publishable_key; 
-                console.log('publishable_key=' + $scope.stripePublishableKey);
+                //console.log('publishable_key=' + $scope.stripePublishableKey);
             });
                  
         };
