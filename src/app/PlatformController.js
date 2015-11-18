@@ -26,16 +26,18 @@ angular.module('platform-ui').controller(
 	    $scope.author = PlatformModel.author;
 	    $scope.menu = PlatformModel.menu;
 	    $scope.getRedirect = function() {
-		return encodeURIComponent($location.search()['redirect']);
+		    return encodeURIComponent($location.search()['redirect']);
 	    }
 	    $scope.getRedirectNoEncode = function() {
-		return $location.search()['redirect'];
+		    return $location.search()['redirect'];
 	    }
 	}
 ]).run(
         
-    'PlatformRun',
-    ['$scope', '$http', 
+    [
+    '$scope', 
+    '$http', 
+    
     function($scope, $http) {
         
         console.log('DEBUG PW-186: PlatformController::run()');
