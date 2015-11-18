@@ -35,7 +35,7 @@ angular.module('platform-ui').controller(
 ]).run(
         
     'PlatformRun',
-    ['$scope', '$http' 
+    ['$scope', '$http', 
     function($scope, $http) {
         
         console.log('DEBUG PW-186: PlatformController::run()');
