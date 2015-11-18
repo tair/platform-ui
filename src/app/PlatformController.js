@@ -17,6 +17,8 @@ angular.module('platform-ui').controller(
 	/* Controller Definition */
 	function ($scope, $http, $cookies, $location, PlatformModel) {
 	    
+        $scope.apiUri = PlatformModel.apiUri; // PW-186: HACK: Workaround for the subsequent ASYNC HTTP request.
+
         $http.get('/config/config.json').then(function(res) { 
             config = res.data[0];
             console.log( "PW-186 DEBUG:" + config.paywallApiBaseUri);
@@ -28,7 +30,6 @@ angular.module('platform-ui').controller(
 	    $scope.brand = PlatformModel.brand;
 	    $scope.author = PlatformModel.author;
 	    $scope.menu = PlatformModel.menu;
-	    //$scope.apiUri = PlatformModel.apiUri;
 	    $scope.getRedirect = function() {
 		return encodeURIComponent($location.search()['redirect']);
 	    }
