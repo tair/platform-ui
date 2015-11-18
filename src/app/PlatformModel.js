@@ -11,6 +11,9 @@ angular.module('platform-ui').factory(
 
 	/* Controller */
 	function () {
+	    
+	    console.log('PlatformModel controller called');
+	    
 	    return {
 		title: 'PW2 Angular App',
 		brand: 'Platform UI',
