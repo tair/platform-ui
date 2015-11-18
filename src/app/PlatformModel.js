@@ -10,10 +10,16 @@ angular.module('platform-ui').factory(
 	[
 
 	/* Controller */
-	function () {
+	function ($http) {
 	    
 	    console.log('PlatformModel controller called');
+
+	    var config; 
 	    
+        $http.get('/config/config.json').then(function(res) { 
+            config = res.data[0]; 
+        });
+
 	    return {
 		title: 'PW2 Angular App',
 		brand: 'Platform UI',
