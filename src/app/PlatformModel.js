@@ -19,16 +19,19 @@ angular.module('platform-ui').factory(
 	    var config; 
 	    
         $http.get('/config/config.json').then(function(res) { 
-            config = res.data[0]; 
+            config = res.data[0];
+            console.log('DEBUG1: ' + config.paywallApiBaseUri)
         });
 
+        console.log('DEBUG2: ' + config.paywallApiBaseUri)
+        
 	    return {
 		title: 'PW2 Angular App',
 		brand: 'Platform UI',
 		author: 'Getexp',
 		uiDomain: '.arabidopsis.org',
-        apiUri: config.paywallApiBaseUri,
-        //apiUri: 'https://demoapi.arabidopsis.org',
+        //apiUri: config.paywallApiBaseUri,
+        apiUri: 'https://demoapi.arabidopsis.org',
 		//apiUri: 'http://steveapi.steveatgetexp.com',
 	    };
 	}
