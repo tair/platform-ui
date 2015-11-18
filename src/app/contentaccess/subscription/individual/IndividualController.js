@@ -88,15 +88,15 @@ angular.module('platform-ui.contentaccess.subscription.individual').controller(
                             $http({
                                 url: $scope.apiUri + '/subscriptions/payments/',
                                 data: {
-                                    'stripeToken':response.id,
-                                    'price':$scope.info.subtotal,
-                                    'termId':$scope.selectedSubscription.subscriptionTermId,
-                                    'quantity':$scope.info.numOfSubscribers,
-                                    'email':$scope.formdata.email,
-                                    'firstName':$scope.formdata.firstname,
-                                    'lastName':$scope.formdata.lastname,
+                                    'stripeToken': response.id,
+                                    'price': $scope.info.subtotal,
+                                    'termId': $scope.selectedSubscription.subscriptionTermId,
+                                    'quantity': $scope.info.numOfSubscribers,
+                                    'email': $scope.formdata.email,
+                                    'firstName': $scope.formdata.firstname,
+                                    'lastName': $scope.formdata.lastname,
                                     'institute': $scope.formdata.institution,
-                                    'street':$scope.formdata.street,
+                                    'street': $scope.formdata.street,
                                     'city': $scope.formdata.city,
                                     'state': $scope.formdata.state,
                                     'country': $scope.formdata.country,
@@ -106,6 +106,8 @@ angular.module('platform-ui.contentaccess.subscription.individual').controller(
                                 method: 'POST',
                             }).success(function(data, status, headers, config) {
                             }).error(function(data, status, headers, config) {
+                                console.log('data='+data+';status='+status);//PW-120
+                                bootbox.alert('Individual Subscription Error');//PW-120
                             });
                         }
                         $scope.next(next);
