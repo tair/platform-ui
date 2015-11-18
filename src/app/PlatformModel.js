@@ -9,20 +9,19 @@ angular.module('platform-ui').factory(
 	/* Dependencies */
 	[
 
-	'$scope',
 	'$http',
 
 	/* Controller */
-	function ($scope, $http) {
+	function ($http) {
 	    
 	    console.log('PlatformModel controller called');
 
         $http.get('/config/config.json').then(function(res) { 
             config = res.data[0];
-            $scope.paywallApiBaseUri = config.paywallApiBaseUri
+            //$scope.paywallApiBaseUri = config.paywallApiBaseUri
         });
 
-        console.log('DEBUG2: ' + $scope.paywallApiBaseUri)
+        //console.log('DEBUG2: ' + $scope.paywallApiBaseUri)
         
 	    return {
 		title: 'PW2 Angular App',
