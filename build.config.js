@@ -20,7 +20,8 @@ module.exports = {
 		root: 'src',
 
 		static_files: [
-			'assets/**/*',
+            'assets/**/*',
+            'config/**/*',
 			'lib/**/.htaccess',
 			'api/**/*.py'
 		],
