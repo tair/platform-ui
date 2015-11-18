@@ -32,23 +32,22 @@ angular.module('platform-ui').controller(
 		    return $location.search()['redirect'];
 	    }
 	}
-])/*.run(
+]).run(
         
     [
-    '$scope', 
+
     '$http', 
     
-    function($scope, $http) {
+    function($rootScope, $http) {
         
         console.log('DEBUG PW-186: PlatformController::run()');
 
         $http.get('/config/config.json').then(function(res) { 
             config = res.data[0];
             console.log( "PW-186 DEBUG:" + config.paywallApiBaseUri);
-            $scope.apiUri = config.paywallApiBaseUri;
-            $scope.stripePublishableKey = config.stripePublishableKey;
+            $rootScope.apiUri = config.paywallApiBaseUri;
+            $rootScope.stripePublishableKey = config.stripePublishableKey;
         });
         
     }
-    ]
-)*/;
+]);
