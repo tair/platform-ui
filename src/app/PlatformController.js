@@ -33,6 +33,9 @@ angular.module('platform-ui').controller(
 	    }
 	}
 ]).run(
+        
+    'PlatformRun',
+    ['$scope', '$http' 
     function($scope, $http) {
         
         console.log('DEBUG PW-186: PlatformController::run()');
@@ -45,4 +48,5 @@ angular.module('platform-ui').controller(
         });
         
     }
+    ]
 );
