@@ -66,7 +66,7 @@ angular.module('platform-ui.contentaccess.subscription.individual').controller(
             };
 
             $scope.makeCharge = function(bool, next) {
-                Stripe.setPublishableKey('pk_test_G0m3C0rAdy14HUMjGDn0Iqcq');
+                Stripe.setPublishableKey($scope.stripePublishableKey);
                 var stripeData = {
                     name: $scope.formdata.firstname + ' ' + $scope.formdata.lastname,
                     address_line1: $scope.formdata.street,
@@ -126,8 +126,8 @@ angular.module('platform-ui.contentaccess.subscription.individual').controller(
             $scope.info = IndividualModel.info;
             $scope.selectedSubscription = IndividualModel.selectedSubscription;
             
-            $http.get('/config/stripe.TEST.json').then(function(res) { 
-                console.log('res=' + res);
+            $http.get('/config/stripe.json').then(function(res) { 
+                //console.log('res=' + res);
                 $scope.stripePublishableKey = res.data[0].publishable_key; 
                 console.log('publishable_key=' + $scope.stripePublishableKey);
             });
