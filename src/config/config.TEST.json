@@ -1,0 +1,6 @@
+[ 
+    { 
+        "stripePublishableKey" : "pk_test_G0m3C0rAdy14HUMjGDn0Iqcq",
+        "paywallApiBaseUri"    : "https://demoapi.arabidopsis.org" 
+    } 
+]
