@@ -19,7 +19,7 @@ angular.module('platform-ui').controller(
 	    
 	    console.log('DEBUG PW-186: PlatformController::controller()');
 	    
-        //$scope.apiUri = PlatformModel.apiUri; // PW-186: HACK: Workaround for the subsequent ASYNC HTTP request.
+        $scope.apiUri = PlatformModel.apiUri; // PW-186: HACK: Workaround for the subsequent ASYNC HTTP request.
 
 	    $scope.title = PlatformModel.title;
 	    $scope.brand = PlatformModel.brand;
