@@ -18,11 +18,10 @@ angular.module('platform-ui.librariantool.role.phoenix.iprange').controller(
 
 	/* Controller Definition */
 	function ($scope, $http, $cookies, $location, $state, Title, PhoenixIpRangeModel) {
-		$scope.selected = undefined;
-		  $scope.states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
-	    $scope.setTitle(PhoenixIpRangeModel.title);
+		$scope.setTitle(PhoenixIpRangeModel.title);
 	    $scope.ipranges = PhoenixIpRangeModel.ipranges;
 	    $scope.institutions = PhoenixIpRangeModel.institutions;
+	    $scope.institution = null;
 	    $scope.partyId = null;
 	    $scope.addGroupShow = "hidden";
 	    $scope.adding = false;
@@ -198,6 +197,13 @@ angular.module('platform-ui.librariantool.role.phoenix.iprange').controller(
             });
 	    }
 	    }
+	    
+	    $scope.$watch(function(scope) { return scope.institution },
+	              function(newValue, oldValue) {
+	                  $scope.partyId = newValue.partyId;
+	                  getIpRanges();
+	              }
+	             );
 	    //init
 	    $http({
         	url: $scope.apiUri+'/parties/?partyType=organization&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),

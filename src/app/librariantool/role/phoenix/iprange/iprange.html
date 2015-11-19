@@ -23,7 +23,7 @@
         <span class="glyphicon glyphicon-triangle-bottom lt-admin-groups-title-glyphicon" ng-show="sortField==sorting.sortField&&reverseField"></span>
         <span class="glyphicon glyphicon-invisible lt-admin-groups-title-glyphicon" ng-hide="sortField==sorting.sortField" ng-repeat-end></span>
       </div>
-      <input type="text" ng-model="partyId" uib-typeahead="institution.partyId as institution.name for institution in institutions | filter:{name:$viewValue} | limitTo:8">
+      <input type="text" ng-model="institution" uib-typeahead="institution as institution.name for institution in institutions | filter:{name:$viewValue} | limitTo:8">
     </div>
 
     <div class="lt-admin-right-subpanel">
