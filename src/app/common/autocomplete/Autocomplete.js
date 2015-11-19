@@ -32,3 +32,29 @@ angular.module('autocompletecountries', []).directive(
         };
     }
 );
+
+//generic autocomplete 
+angular.module('autoComplete', []).directive(
+	/* Name */
+	'autoComplete', 
+	
+	function($timeout) {
+	    return function(scope, iElement, iAttrs) {
+	            iElement.autocomplete({
+	            	minLength:3,
+	                source: function (request, response) {
+	                    response($.map(scope[iAttrs.uiItems], function (value, key) {
+	                        return {
+	                            label: value.name,
+	                            value: value.partyId,
+	                        }
+	                    }));
+	                
+	            },
+	                select: function(event, ui) {
+	                    
+	                }
+	            });
+	        };
+    }
+);
