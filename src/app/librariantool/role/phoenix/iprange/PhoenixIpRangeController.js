@@ -18,7 +18,7 @@ angular.module('platform-ui.librariantool.role.phoenix.iprange').controller(
 
 	/* Controller Definition */
 	function ($scope, $http, $cookies, $location, $state, Title, PhoenixIpRangeModel) {
-		getIpRanges();
+		init();
 		$scope.setTitle(PhoenixIpRangeModel.title);
 	    $scope.ipranges = PhoenixIpRangeModel.ipranges;
 	    $scope.institutions = PhoenixIpRangeModel.institutions;
@@ -205,7 +205,32 @@ angular.module('platform-ui.librariantool.role.phoenix.iprange').controller(
 	                  $scope.getIpRanges();
 	              }
 	             );
+	    function getIpRanges(){
+	    	if($scope.partyId != null){
+	            $http({
+	            	url: $scope.apiUri+'/parties/ipranges/?partyId='+$scope.partyId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+	                method: 'GET',
+	            }).success(function(data, status, headers, config){
+			$scope.ipranges = [];
+			for (var i = 0; i < data.length; i++) {
+			    entry = data[i];
+			    $scope.ipranges.push({
+				ipRangeId:entry['ipRangeId'],
+				start:entry['start'],
+				end:entry['end'],
+				name:entry['label'],
+				partyId:entry['partyId'],
+				state:null
+			    });
+			}
+	            }).error(function(data, status, headers, config){
+			alert("ip range request failed");
+	            });
+		    }
+	    }
 	    //init
+	    function init(){
+	    getIpRanges();
 	    $http({
         	url: $scope.apiUri+'/parties/?partyType=organization&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
             method: 'GET',
@@ -221,5 +246,6 @@ angular.module('platform-ui.librariantool.role.phoenix.iprange').controller(
 	        }).error(function(data, status, headers, config){
 		alert("ip range request failed");
 	        });
+	    }
 	}
 ]);
