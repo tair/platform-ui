@@ -15,6 +15,95 @@ angular.module('platform-ui.librariantool.role.phoenix.iprange').factory(
 		    title: 'INSTITUTION',
 		    newRange: {'name':null, 'start':null, 'end':null},
 //		    ipranges: [],
+		    institutions: [
+		                   {
+		                	    "partyId": 10,
+		                	    "partyType": "organization",
+		                	    "name": "Tibet Academy of Agricultural Research Institute",
+		                	    "country": 126,
+		                	    "display": true,
+		                	    "consortium": null
+		                	  },
+		                	  {
+		                	    "partyId": 11,
+		                	    "partyType": "organization",
+		                	    "name": "Wuhan Institue of Botany, CAS",
+		                	    "country": 126,
+		                	    "display": true,
+		                	    "consortium": null
+		                	  },
+		                	  {
+		                	    "partyId": 12,
+		                	    "partyType": "organization",
+		                	    "name": "Yunnan Academy of Agricutural Sciences",
+		                	    "country": 126,
+		                	    "display": true,
+		                	    "consortium": null
+		                	  },
+		                	  {
+		                	    "partyId": 13,
+		                	    "partyType": "organization",
+		                	    "name": "Zhejiang Normal University",
+		                	    "country": 126,
+		                	    "display": true,
+		                	    "consortium": null
+		                	  },
+		                	  {
+		                	    "partyId": 14,
+		                	    "partyType": "organization",
+		                	    "name": "Targenomix",
+		                	    "country": null,
+		                	    "display": false,
+		                	    "consortium": null
+		                	  },
+		                	  {
+		                	    "partyId": 15,
+		                	    "partyType": "organization",
+		                	    "name": "James Madison University",
+		                	    "country": 169,
+		                	    "display": true,
+		                	    "consortium": null
+		                	  },
+		                	  {
+		                	    "partyId": 16,
+		                	    "partyType": "organization",
+		                	    "name": "University of Colorado at Boulder",
+		                	    "country": 169,
+		                	    "display": true,
+		                	    "consortium": null
+		                	  },
+		                	  {
+		                	    "partyId": 17,
+		                	    "partyType": "organization",
+		                	    "name": "University of Lausanne",
+		                	    "country": 158,
+		                	    "display": true,
+		                	    "consortium": null
+		                	  },
+		                	  {
+		                	    "partyId": 18,
+		                	    "partyType": "organization",
+		                	    "name": "Beijing University of Agriculture",
+		                	    "country": 126,
+		                	    "display": true,
+		                	    "consortium": null
+		                	  },
+		                	  {
+		                	    "partyId": 19,
+		                	    "partyType": "organization",
+		                	    "name": "China University of Science and Technology",
+		                	    "country": 126,
+		                	    "display": true,
+		                	    "consortium": null
+		                	  },
+		                	  {
+		                	    "partyId": 20,
+		                	    "partyType": "organization",
+		                	    "name": "Cibus LLC",
+		                	    "country": 126,
+		                	    "display": true,
+		                	    "consortium": null
+		                	  }],
 		    ipranges: [
 			{'name':'Randomly Randomized Randomness', 'start':'123.45.67', 'end':'89.12.345', 'state':null},
 			{'name':'Organized Orange Organs' , 'start':'123.45.67', 'end':'89.12.345', 'state':null},

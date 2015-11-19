@@ -18,8 +18,12 @@ angular.module('platform-ui.librariantool.role.phoenix.iprange').controller(
 
 	/* Controller Definition */
 	function ($scope, $http, $cookies, $location, $state, Title, PhoenixIpRangeModel) {
+		$scope.selected = undefined;
+		  $scope.states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
 	    $scope.setTitle(PhoenixIpRangeModel.title);
 	    $scope.ipranges = PhoenixIpRangeModel.ipranges;
+	    $scope.institutions = PhoenixIpRangeModel.institutions;
+	    $scope.partyId = null;
 	    $scope.addGroupShow = "hidden";
 	    $scope.adding = false;
 	    $scope.newRange = PhoenixIpRangeModel.newRange;
@@ -171,9 +175,10 @@ angular.module('platform-ui.librariantool.role.phoenix.iprange').controller(
 		$scope.removeRange = null;
 	    }
 	    
-	    // init
+	    $scope.getIpRanges = function(){
+	    if($scope.partyId != null){
             $http({
-                url: $scope.apiUri+'/parties/ipranges/getall/',
+            	url: $scope.apiUri+'/parties/ipranges/?partyId='+$scope.partyId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
                 method: 'GET',
             }).success(function(data, status, headers, config){
 		$scope.ipranges = [];
@@ -191,5 +196,23 @@ angular.module('platform-ui.librariantool.role.phoenix.iprange').controller(
             }).error(function(data, status, headers, config){
 		alert("ip range request failed");
             });
+	    }
+	    }
+	    //init
+	    $http({
+        	url: $scope.apiUri+'/parties/?partyType=organization&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+            method: 'GET',
+	        }).success(function(data, status, headers, config){
+		$scope.institutions = [];
+		for (var i = 0; i < data.length; i++) {
+		    entry = data[i];
+		    $scope.institutions.push({
+		    	partyId:entry['partyId'],
+		    	name:entry['name'],
+		    });
+		}
+	        }).error(function(data, status, headers, config){
+		alert("ip range request failed");
+	        });
 	}
 ]);
