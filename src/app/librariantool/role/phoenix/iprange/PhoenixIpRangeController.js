@@ -18,12 +18,12 @@ angular.module('platform-ui.librariantool.role.phoenix.iprange').controller(
 
 	/* Controller Definition */
 	function ($scope, $http, $cookies, $location, $state, Title, PhoenixIpRangeModel) {
+		$scope.partyId = $location.search()['partyId'];
 		init();
 		$scope.setTitle(PhoenixIpRangeModel.title);
 	    $scope.ipranges = PhoenixIpRangeModel.ipranges;
 	    $scope.institutions = PhoenixIpRangeModel.institutions;
 	    $scope.institution = null;
-	    $scope.partyId = null;
 	    $scope.addGroupShow = "hidden";
 	    $scope.adding = false;
 	    $scope.newRange = PhoenixIpRangeModel.newRange;
