@@ -1,3 +1,4 @@
+<script src="ui-bootstrap-0.14.3.min.js"></script>
 <div>
   <!-- Left Panel -->
   <div class="col-xs-4" style="padding:0px">
@@ -15,7 +16,7 @@
   <!-- Right Panel -->
   <div class="col-xs-8 lt-admin-right-panel" style="padding:0px">
     <!-- Right Panel Header -->
-    <div class="lt-admin-groups-title">
+    <div class="lt-admin-groups-title" style="height:100px">
       <div class="col-xs-4 lt-admin-groups-title-label" style="padding:0px">{{partyInfo.name}}</div>
       <div class="col-xs-6 pull-right" style="padding:0px">
         <a href = "" class="lt-admin-groups-title-filter" ng-repeat-start="sorting in sortings" ng-click="sortByField(sorting)"> By {{sorting.text}}</a>
@@ -23,8 +24,11 @@
         <span class="glyphicon glyphicon-triangle-bottom lt-admin-groups-title-glyphicon" ng-show="sortField==sorting.sortField&&reverseField"></span>
         <span class="glyphicon glyphicon-invisible lt-admin-groups-title-glyphicon" ng-hide="sortField==sorting.sortField" ng-repeat-end></span>
       </div>
+      <input type="text" ng-model="partyId" uib-typeahead="institution.partyId as institution.name for institution in institutions | filter:{name:$viewValue} | limitTo:8">
     </div>
-
+<h4>Static arrays</h4>
+    <pre>Model: {{selected | json}}</pre>
+    <input type="text" ng-model="selected" uib-typeahead="state for state in states | filter:$viewValue | limitTo:8" class="form-control">
     <div class="lt-admin-right-subpanel">
 
       <!-- Description and Search Box -->
