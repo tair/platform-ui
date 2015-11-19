@@ -201,7 +201,7 @@ angular.module('platform-ui.librariantool.role.phoenix.iprange').controller(
 	    $scope.$watch(function(scope) { return scope.institution },
 	              function(newValue, oldValue) {
 	                  $scope.partyId = newValue.partyId;
-	                  getIpRanges();
+	                  $scope.getIpRanges();
 	              }
 	             );
 	    //init
