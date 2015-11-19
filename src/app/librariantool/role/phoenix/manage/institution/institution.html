@@ -46,9 +46,9 @@
 	</div>
       </div>
       
-      <!-- IP Range List -->
+      <!-- Institution List -->
       <div ng-repeat="institution in institutions | filter:searchTerm | orderBy:sortField:reverseField">
-	<div class="row" ng-class="groupsListCss(institution.state)" ng-mouseover="groupsMoveOver(institution)" ng-mouseleave="groupsMoveOut(institution)" ng-click="enterInstitution()">
+	<div class="row" ng-class="groupsListCss(institution.state)" ng-mouseover="groupsMoveOver(institution)" ng-mouseleave="groupsMoveOut(institution)" ng-click="enterInstitution(institution.partyId)">
 	  <div class="col-xs-9" style="padding:0px">
 	    <div><input ng-class="groupsListLabelCss(institution.state)" style="width:300px" ng-model="institution.name" ng-readonly="!(institution.state=='edit')"></input></div>
 	    <div class="lt-admin-groups-list-values">

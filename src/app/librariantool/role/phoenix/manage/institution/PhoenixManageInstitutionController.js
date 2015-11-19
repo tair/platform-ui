@@ -168,8 +168,8 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
                 }
 		$scope.removeRange = null;
 	    }
-	    $scope.enterInstitution = function(){
-	    	$state.go("role.phoenix.iprange");
+	    $scope.enterInstitution = function(partyId){
+	    	$state.go("role.phoenix.iprange", {partyId : partyId});
 	    	$state.currentTab = {label:"INSTITUTION", state:"role.phoenix.iprange"};
 	    }
 	    // init

@@ -18,6 +18,7 @@ angular.module('platform-ui.librariantool.role.phoenix.iprange').controller(
 
 	/* Controller Definition */
 	function ($scope, $http, $cookies, $location, $state, Title, PhoenixIpRangeModel) {
+		getIpRanges();
 		$scope.setTitle(PhoenixIpRangeModel.title);
 	    $scope.ipranges = PhoenixIpRangeModel.ipranges;
 	    $scope.institutions = PhoenixIpRangeModel.institutions;
