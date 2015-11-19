@@ -60,7 +60,7 @@ angular.module('platform-ui.librariantool.role.consortium.manage.consortium').co
 		    partyType: 'institution',
 		}
 		$http({
-                    url: $scope.apiUri+'/parties/?partyId='+$scope.selectedInstitution.partyId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+                    url: $scope.apiUri+'/parties/?partyId='+$scope.selectedInstitution.partyId+'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
 		    data:data,
                     method: 'POST',
 		}).success(function(data, status, headers, config){
@@ -82,7 +82,7 @@ angular.module('platform-ui.librariantool.role.consortium.manage.consortium').co
                     label:iprange['name'],
                 };*/
                 $http({
-                    url: $scope.apiUri+'/parties/?partyId='+consortium.partyId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+                    url: $scope.apiUri+'/parties/?partyId='+consortium.partyId+'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
                     method: 'DELETE',
                 }).success(function(data, status, headers, config){
                 }).error(function(data, status, headers, config){
@@ -122,7 +122,7 @@ angular.module('platform-ui.librariantool.role.consortium.manage.consortium').co
                     alert("Could not get consortium institutions");
                 });
                 $http({
-                    url: $scope.apiUri+'/parties/?partyId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+                    url: $scope.apiUri+'/parties/?partyId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
                     method: 'GET'
                 }).success(function(data, status, headers, config){
                     $scope.party = data[0];

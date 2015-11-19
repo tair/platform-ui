@@ -40,10 +40,7 @@ angular.module(
                         controller: 'PhoenixManageInstitutionController',
                         templateUrl: 'librariantool/role/phoenix/manage/institution/institution.html'
 		    }
-		},
-        params: {
-        	partyId : null
-        }
+		}
 	    })
 	});
 

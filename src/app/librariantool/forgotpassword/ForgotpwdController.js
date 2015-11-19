@@ -32,7 +32,7 @@ angular.module('platform-ui.librariantool.forgotpassword').controller(
                     $cookies.secretKey = data["secretKey"];
 		    $cookies.username = data["username"];
 		    $http({
-			url: $scope.apiUri+'/parties?partyId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+			url: $scope.apiUri+'/parties?partyId='+$cookies.credentialId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
 			method: 'GET'
 		    }).success(function(data, status, headers, config){
 			if (data[0].partyType=="consortium") {
