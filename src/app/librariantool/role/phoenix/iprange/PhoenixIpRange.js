@@ -12,7 +12,6 @@ angular.module(
     [
 	'ui.router',
 	'service.title',
-	'ui.bootstrap'
     ])
     .config(
 	function ($stateProvider) {
