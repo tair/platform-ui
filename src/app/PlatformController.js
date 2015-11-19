@@ -32,7 +32,7 @@ angular.module('platform-ui').controller(
 		    return $location.search()['redirect'];
 	    }
 	}
-]).run(  // PW-186: Experimental code below. Does not work yet.
+]).run(
         
     [
      

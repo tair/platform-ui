@@ -61,10 +61,9 @@ angular.module(
 	.run(
 		function ($rootScope, $http, Title, PlatformModel) {
 			
-			/**
-			 * Set title
-			 */
-			$http({
+	        console.log('DEBUG PW-186: PlatformModel::run()');
+
+	        $http({
 				url: PlatformModel.apiUri+'/cookies/get/',
 				method: 'GET'
 			}).success(function(data, status, headers, config) {
