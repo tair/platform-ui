@@ -126,8 +126,8 @@ angular.module('platform-ui.contentaccess.subscription.individual').controller(
             $scope.info = IndividualModel.info;
             $scope.selectedSubscription = IndividualModel.selectedSubscription;
             
-            $http.get('/config/stripe.json').then(function(res) { 
-                $scope.stripePublishableKey = res.data[0].publishable_key; 
+            $http.get('/config/config.json').then(function(res) { 
+                $scope.stripePublishableKey = res.data[0].stripePublishableKey; 
                 //console.log('publishable_key=' + $scope.stripePublishableKey);
             });
                  

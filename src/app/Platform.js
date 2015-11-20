@@ -62,6 +62,17 @@ angular.module(
 		function ($rootScope, $http, Title, PlatformModel) {
 			
 	        console.log('DEBUG PW-186: PlatformModel::run()');
+	        
+	        jQuery.ajax({ 
+	            url: '/config/config.json', 
+	            async: false,
+	            success: function(res) {
+	                config = res.data[0];
+	                console.log( "DEBUG PW-186: " + config.paywallApiBaseUri);
+	                $rootScope.apiUri = config.paywallApiBaseUri;
+	                $rootScope.stripePublishableKey = config.stripePublishableKey;
+	            }
+	        });
 
 	        $http({
 				url: PlatformModel.apiUri+'/cookies/get/',

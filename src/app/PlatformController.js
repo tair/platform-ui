@@ -45,7 +45,7 @@ angular.module('platform-ui').controller(
 
         $http.get('/config/config.json').then(function(res) { 
             config = res.data[0];
-            console.log( "PW-186 DEBUG:" + config.paywallApiBaseUri);
+            console.log( "DEBUG PW-186: " + config.paywallApiBaseUri);
             $rootScope.apiUri = config.paywallApiBaseUri;
             $rootScope.stripePublishableKey = config.stripePublishableKey;
         });
