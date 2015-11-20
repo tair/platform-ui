@@ -19,7 +19,7 @@ angular.module('platform-ui').controller(
 	    
 	    console.log('DEBUG PW-186: PlatformController::controller()');
 	    
-        $scope.apiUri = PlatformModel.apiUri; // PW-186: HACK: Workaround for the subsequent ASYNC HTTP request.
+        //$scope.apiUri = PlatformModel.apiUri; // PW-186: HACK: Workaround for the subsequent ASYNC HTTP request.
 
 	    $scope.title = PlatformModel.title;
 	    $scope.brand = PlatformModel.brand;
@@ -32,23 +32,4 @@ angular.module('platform-ui').controller(
 		    return $location.search()['redirect'];
 	    }
 	}
-]).run(
-        
-    [
-     
-    '$rootScope',
-    '$http', 
-    
-    function($rootScope, $http) {
-        
-        console.log('DEBUG PW-186: PlatformController::run()');
-
-        $http.get('/config/config.json').then(function(res) { 
-            config = res.data[0];
-            console.log( "DEBUG PW-186: " + config.paywallApiBaseUri);
-            $rootScope.apiUri = config.paywallApiBaseUri;
-            $rootScope.stripePublishableKey = config.stripePublishableKey;
-        });
-        
-    }
 ]);
