@@ -60,7 +60,7 @@ angular.module('platform-ui.contentaccess.subscription.individual').controller(
                 if ($scope.info.numOfSubscribers < 0)
                     return 0;
                 var num = Math.round($scope.info.numOfSubscribers);
-                var ret = $scope.selectedSubscription.groupDiscountPercentage>0 ? ( (num >= 2) ? $scope.selectedSubscription.price*num*(1-($scope.selectedSubscription.groupDiscountPercentage/100)) : $scope.selectedSubscription.price*num) : $scope.selectedSubscription.price*num;
+                var ret = $scope.selectedSubscription.groupDiscountPercentage>0 ? ( (num > 1) ? $scope.selectedSubscription.price*num*(1-($scope.selectedSubscription.groupDiscountPercentage/100)) : $scope.selectedSubscription.price*num) : $scope.selectedSubscription.price*num;
                 $scope.info.subtotal = Math.round(ret*100)/100;
                 return $scope.info.subtotal;
             };
@@ -126,10 +126,10 @@ angular.module('platform-ui.contentaccess.subscription.individual').controller(
             $scope.info = IndividualModel.info;
             $scope.selectedSubscription = IndividualModel.selectedSubscription;
             
-            $http.get('/config/config.json').then(function(res) { 
-                $scope.stripePublishableKey = res.data[0].stripePublishableKey; 
-                //console.log('publishable_key=' + $scope.stripePublishableKey);
-            });
+//            $http.get('/config/config.json').then(function(res) { 
+//                $scope.stripePublishableKey = res.data[0].stripePublishableKey; 
+//                //console.log('publishable_key=' + $scope.stripePublishableKey);
+//            });
                  
         };
         

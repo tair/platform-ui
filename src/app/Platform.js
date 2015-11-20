@@ -61,21 +61,24 @@ angular.module(
 	.run(
 		function ($rootScope, $http, Title, PlatformModel) {
 			
-	        console.log('DEBUG PW-186: PlatformModel::run()');
+	        console.log('DEBUG PW-186: Platform::run()');
 	        
+	        // PW-186: YM: 2015-11-19: HACK: A synchronous HTTP request is considered to be a "bad practice". 
+	        // However, in this particular case we cannot afford any refactoring 
+	        // and this "bad practice" appears to be the most practical solution I could come up with.
 	        jQuery.ajax({ 
 	            url: '/config/config.json', 
 	            async: false,
 	            success: function(data) {
 	                config = data[0];
-	                console.log( "DEBUG PW-186: " + config.paywallApiBaseUri);
+	                console.log( "DEBUG PW-186: Paywall API base URI: " + config.paywallApiBaseUri);
 	                $rootScope.apiUri = config.paywallApiBaseUri;
 	                $rootScope.stripePublishableKey = config.stripePublishableKey;
 	            }
 	        });
 
 	        $http({
-				url: PlatformModel.apiUri+'/cookies/get/',
+				url: $rootScope.apiUri + '/cookies/get/',
 				method: 'GET'
 			}).success(function(data, status, headers, config) {
 				document.cookie='csrftoken='+data['csrftoken']+';domain='+PlatformModel.uiDomain+';path=/';
