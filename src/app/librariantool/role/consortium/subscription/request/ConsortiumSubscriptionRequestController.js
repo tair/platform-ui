@@ -33,7 +33,7 @@ angular.module('platform-ui.librariantool.role.consortium.subscription.request')
                         "comments": $scope.comments,
                 };
                 $http({
-                        url: $scope.apiUri+'/subscriptions/request/',
+                        url: $scope.apiUri+'/subscriptions/request/'+'?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
                         method: 'POST',
                         data: postData,
                 }).success(function(){

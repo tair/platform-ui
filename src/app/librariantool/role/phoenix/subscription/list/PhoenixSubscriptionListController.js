@@ -70,7 +70,7 @@ angular.module('platform-ui.librariantool.role.phoenix.subscription.list').contr
 				}
 	    	console.log(JSON.stringify(data));
 	    	$http({
-		        url: $scope.apiUri+'/subscriptions/',
+		        url: $scope.apiUri+'/subscriptions/?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
 			    data:data,
 		        method: 'POST',
 			}).success(function(data, status, headers, config){

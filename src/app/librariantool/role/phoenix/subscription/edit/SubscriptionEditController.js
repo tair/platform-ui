@@ -33,7 +33,7 @@ angular.module('platform-ui.librariantool.role.phoenix.subscription.edit').contr
                        "endDate":formatedEndDate,
                 };
                 $http({
-                        url: $scope.apiUri+'/subscriptions/edit/'+'?subscriptionId='+$scope.subscriptionId,
+                        url: $scope.apiUri+'/subscriptions/edit/'+'?subscriptionId='+$scope.subscriptionId+'credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
                         method: 'PUT',
                         data: postData,
                         headers: {'Content-Type': 'application/x-www-form-urlencoded'}
@@ -64,7 +64,7 @@ angular.module('platform-ui.librariantool.role.phoenix.subscription.edit').contr
 		});
 		
 		$http({
-			url: $scope.apiUri+'/subscriptions/?subscriptionId='+$scope.subscriptionId,
+			url: $scope.apiUri+'/subscriptions/?subscriptionId='+$scope.subscriptionId+'credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
 			method: 'GET',
 		}).success(function(data, status, headers, config) {
 			$scope.subscription = data;

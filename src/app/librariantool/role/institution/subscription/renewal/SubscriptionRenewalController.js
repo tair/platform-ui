@@ -33,7 +33,7 @@ angular.module('platform-ui.librariantool.role.institution.subscription.renewal'
 			"comments": $scope.comments,
 		};
 		$http({
-			url: $scope.apiUri+'/subscriptions/renew/',
+			url: $scope.apiUri+'/subscriptions/renew/'+'?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
 			method: 'POST',
 			data: postData,
 		}).success(function(){
