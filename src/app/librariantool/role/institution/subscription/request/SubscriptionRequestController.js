@@ -58,7 +58,7 @@ angular.module('platform-ui.librariantool.role.institution.subscription.request'
 			alert("Cannot get partner information");
 		});
 		$http({
-                        url: $scope.apiUri+'/credentials?username='+$cookies.username,
+                        url: $scope.apiUri+'/credentials?username='+$cookies.username+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
                         method: 'GET',
                 }).success(function(data, status, headers, config){
                         $scope.user = data[0];

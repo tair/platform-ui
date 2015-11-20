@@ -36,7 +36,7 @@ angular.module('platform-ui.librariantool.role.phoenix.profile').controller(
 					}
 				}
 				$http({
-					url: $scope.apiUri+'/credentials/?username='+$cookies.username,
+					url: $scope.apiUri+'/credentials/?username='+$cookies.username+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
 					data: put_data,
 					method: 'PUT',
 					headers: {'Content-Type': 'application/x-www-form-urlencoded'},
@@ -72,7 +72,7 @@ angular.module('platform-ui.librariantool.role.phoenix.profile').controller(
 	    		$scope.setTitle(PhoenixProfileModel.title);
 	    		$scope.user = PhoenixProfileModel.user;
 			$http({
-				url: $scope.apiUri+'/credentials/?username='+$cookies.username,
+				url: $scope.apiUri+'/credentials/?username='+$cookies.username+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
 				method: 'GET',
 			}).success(function(data, status, headers, config) {
 				$scope.user.name = data[0].name;
