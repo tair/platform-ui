@@ -409,7 +409,8 @@ module.exports = function ( grunt ) {
 			assets: {
 				files: [ 
 					'src/assets/**/*',
-					'src/lib/**/*',
+                    'src/config/**/*',
+                    'src/lib/**/*',
 					'src/api/*'
 				],
 				tasks: [ 'copy:build_static', 'shell:assets' ]

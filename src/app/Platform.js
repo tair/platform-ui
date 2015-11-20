@@ -61,22 +61,28 @@ angular.module(
 	.run(
 		function ($rootScope, $http, Title, PlatformModel) {
 			
-	        console.log('DEBUG PW-186: Platform::run()');
-	        
+		    // Load server-specific configurable parameters.
+		    //
 	        // PW-186: YM: 2015-11-19: HACK: A synchronous HTTP request is considered to be a "bad practice". 
 	        // However, in this particular case we cannot afford any refactoring 
 	        // and this "bad practice" appears to be the most practical solution I could come up with.
+		    //
+		    // P.S. Not sure this is the best place to make this synchronous call. Perhaps it should be in the .run() of some other module.
+		    //
+	        // P.P.S. Some "good practice" solutions are nicely summarized in this discussion:
+		    // http://stackoverflow.com/questions/27050496/run-controllers-only-after-initialization-is-complete-in-angularjs/27050497#27050497
 	        jQuery.ajax({ 
 	            url: '/config/config.json', 
 	            async: false,
 	            success: function(data) {
 	                config = data[0];
-	                console.log( "DEBUG PW-186: Paywall API base URI: " + config.paywallApiBaseUri);
 	                $rootScope.apiUri = config.paywallApiBaseUri;
 	                $rootScope.stripePublishableKey = config.stripePublishableKey;
 	            }
 	        });
 
+	        // CSRF ceremonies
+	        //
 	        $http({
 				url: $rootScope.apiUri + '/cookies/get/',
 				method: 'GET'
@@ -87,5 +93,6 @@ angular.module(
 				alert("Unable to get CSRF cookie");
 			});
 
+	        // 
 			Title.setSuffix(' | ' + PlatformModel.brand);
 		});

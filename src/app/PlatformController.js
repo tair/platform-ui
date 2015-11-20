@@ -17,8 +17,6 @@ angular.module('platform-ui').controller(
 	/* Controller Definition */
 	function ($scope, $http, $cookies, $location, PlatformModel) {
 	    
-	    console.log('DEBUG PW-186: PlatformController::controller()');
-	    
 	    $scope.title = PlatformModel.title;
 	    $scope.brand = PlatformModel.brand;
 	    $scope.author = PlatformModel.author;
