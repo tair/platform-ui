@@ -66,8 +66,8 @@ angular.module(
 	        jQuery.ajax({ 
 	            url: '/config/config.json', 
 	            async: false,
-	            success: function(res) {
-	                config = res.data[0];
+	            success: function(data) {
+	                config = data[0];
 	                console.log( "DEBUG PW-186: " + config.paywallApiBaseUri);
 	                $rootScope.apiUri = config.paywallApiBaseUri;
 	                $rootScope.stripePublishableKey = config.stripePublishableKey;
