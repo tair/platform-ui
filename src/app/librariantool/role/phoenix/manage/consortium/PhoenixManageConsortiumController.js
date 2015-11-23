@@ -13,11 +13,12 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.consortium').contr
 	'$cookies',
 	'$location',
 	'$state',
+	'$filter',
 	'Title',
 	'PhoenixManageConsortiumModel',
 
 	/* Controller Definition */
-	function ($scope, $http, $cookies, $location, $state, Title, PhoenixManageConsortiumModel) {
+	function ($scope, $http, $cookies, $location, $state, $filter, Title, PhoenixManageConsortiumModel) {
 		$scope.setTitle(PhoenixManageConsortiumModel.title);
 		$scope.consortiums = PhoenixManageConsortiumModel.consortiums;
 	    $scope.addGroupShow = "hidden";
@@ -26,19 +27,27 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.consortium').contr
 	    $scope.removeConsortium = null;
 	    $scope.editConsortium = null;
 	    $scope.searchTerm = null;
-	    $scope.sortings = PhoenixManageConsortiumModel.sortings; //List of sorting objects which contain sortField and reverse attributes.
-	    $scope.reverseField = $scope.sortings[0].reverse;
-	    $scope.sortField = $scope.sortings[0].sortField;
+	    $scope.sortings = PhoenixManageConsortiumModel.sortings; //List of sorting objects which contain predicate and reverse attributes.
+	    $scope.reverse = $scope.sortings[0].reverse;
+	    $scope.predicate = $scope.sortings[0].predicate;
+	    
+	  //initializing orderBy function
+	    var orderBy = $filter('orderBy');
+	    $scope.order = function(predicate, reverse) {
+	      $scope.consortiums = orderBy($scope.consortiums, predicate, reverse);
+	    };
+	    $scope.order($scope.predicate,$scope.reverse);
 	    
 	    //Sorting function for ng-click
 	    $scope.sortByField = function(sorting) {
-	    	if ($scope.sortField!=sorting.sortField){
-	    	    $scope.sortField=sorting.sortField;
-	    	    $scope.reverseField=sorting.reverse;
+	    	if ($scope.predicate!=sorting.predicate){
+	    	    $scope.predicate=sorting.predicate;
+	    	    $scope.reverse=sorting.reverse;
 	    	}else{
 	    		sorting.reverse = !sorting.reverse;
-	    		$scope.reverseField=sorting.reverse;
+	    		$scope.reverse=sorting.reverse;
 	    	}
+	    	$scope.order($scope.predicate,$scope.reverse);
 	    }
 
 	    // CSS Logics as response to state changes.
@@ -153,8 +162,10 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.consortium').contr
                 }
 		$scope.removeConsortium = null;
 	    }
-	    $scope.enterConsortium = function(){
-	    	$state.go('role.phoenix.manage.institution');
+	    $scope.enterConsortium = function(consortium){
+	    	if(!(consortium.state=='edit')){
+	    		$state.go('role.phoenix.manage.institution', {'partyId':consortium.partyId});
+	    	}
 	    }
 	    // init
             $http({

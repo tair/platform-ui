@@ -35,7 +35,8 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.consortium').facto
 			            	  }
 			            	],
         	sortings: [
- 		              {sortField:'name', reverse:false, text:"Name"},
+ 		              {predicate:'name', reverse:false, text:"Name"},
+ 		              {predicate:'partyId', reverse:false, text:"Party ID"}
  		              ]
 		};
 	}
