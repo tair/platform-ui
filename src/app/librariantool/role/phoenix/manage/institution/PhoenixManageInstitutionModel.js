@@ -58,8 +58,8 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').fact
 		                	  }
 		                	],
 		    sortings: [
-		              {sortField:'start', reverse:false, text:"start IP"},
-		              {sortField:'name', reverse:false, text:"Label"}
+			          {predicate:'name', reverse:false, text:"Name"},
+		              {predicate:'partyId', reverse:false, text:"Party ID"},
 		              ]
 		};
 	}

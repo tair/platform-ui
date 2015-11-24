@@ -15,16 +15,16 @@
       <div class="col-xs-4 lt-admin-groups-title-label" style="padding:0px">{{partyInfo.name}}</div>
       <div class="col-xs-6 pull-right" style="padding:0px">
         <a href = "" class="lt-admin-groups-title-filter" ng-repeat-start="sorting in sortings" ng-click="sortByField(sorting)"> By {{sorting.text}}</a>
-        <span class="glyphicon glyphicon-triangle-top lt-admin-groups-title-glyphicon" ng-show="sortField==sorting.sortField&&!reverseField"></span>
-        <span class="glyphicon glyphicon-triangle-bottom lt-admin-groups-title-glyphicon" ng-show="sortField==sorting.sortField&&reverseField"></span>
-        <span class="glyphicon glyphicon-invisible lt-admin-groups-title-glyphicon" ng-hide="sortField==sorting.sortField" ng-repeat-end></span>
+        <span class="glyphicon glyphicon-triangle-top lt-admin-groups-title-glyphicon" ng-show="predicate==sorting.predicate&&!reverse"></span>
+        <span class="glyphicon glyphicon-triangle-bottom lt-admin-groups-title-glyphicon" ng-show="predicate==sorting.predicate&&reverse"></span>
+        <span class="glyphicon glyphicon-invisible lt-admin-groups-title-glyphicon" ng-hide="predicate==sorting.predicate" ng-repeat-end></span>
       </div>
     </div>
 
     <div class="lt-admin-right-subpanel">
 
       <!-- Description and Search Box -->
-      <div class="lt-admin-groups-description">Add new IP ranges from the left action panel. Click on already existing IP ranges to edit or delete them.</div>
+      <div class="lt-admin-groups-description">Add new institution from the left action panel. Click on already existing institutions to edit or delete them.</div>
       <div class="lt-admin-groups-search">
         <span>Search</span>
         <span><input style="width:468px" placeholder="Enter institution name or ID number" ng-model="searchTerm"></input></span>
@@ -47,14 +47,14 @@
       </div>
       
       <!-- Institution List -->
-      <div ng-repeat="institution in institutions | filter:searchTerm | orderBy:sortField:reverseField">
-	<div class="row" ng-class="groupsListCss(institution.state)" ng-mouseover="groupsMoveOver(institution)" ng-mouseleave="groupsMoveOut(institution)" ng-click="enterInstitution(institution.partyId)">
+      <div ng-repeat="institution in institutions | filter:searchTerm">
+	<div class="row" ng-class="groupsListCss(institution.state)" ng-mouseover="groupsMoveOver(institution)" ng-mouseleave="groupsMoveOut(institution)" ng-click="enterInstitution(institution)">
 	  <div class="col-xs-9" style="padding:0px">
 	    <div><input ng-class="groupsListLabelCss(institution.state)" style="width:300px" ng-model="institution.name" ng-readonly="!(institution.state=='edit')"></input></div>
 	    <div class="lt-admin-groups-list-values">
-	      <span><input ng-class="groupsListStartCss(institution.state)" ng-model="institution.start" ng-readonly="!(institution.state=='edit')"></input></span> 
-	      <span>-</span> 
-	      <span><input ng-class="groupsListEndCss(institution.state)" ng-model="institution.end" ng-readonly="!(institution.state=='edit')"></input></span>
+	    <div class="lt-admin-groups-list-values">
+              <input class="lt-admin-groups-list-values-input" ng-model="institution.partyId" ng-readonly="true"></input>
+        </div>
 	  </div>
 	  </div>
 	  <div class="col-xs-3" style="margin-top:18px;padding:0px" ng-class="groupsListGlyphiconCss(institution.state)">

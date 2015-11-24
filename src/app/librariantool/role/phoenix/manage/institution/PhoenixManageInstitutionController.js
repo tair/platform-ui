@@ -13,11 +13,12 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 	'$cookies',
 	'$location',
 	'$state',
+	'$filter',
 	'Title',
 	'PhoenixManageInstitutionModel',
 
 	/* Controller Definition */
-	function ($scope, $http, $cookies, $location, $state, Title, PhoenixManageInstitutionModel) {
+	function ($scope, $http, $cookies, $location, $state, $filter, Title, PhoenixManageInstitutionModel) {
 	    $scope.setTitle(PhoenixManageInstitutionModel.title);
 	    $scope.institutions = PhoenixManageInstitutionModel.institutions;
 	    $scope.addGroupShow = "hidden";
@@ -26,19 +27,27 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 	    $scope.removeRange = null;
 	    $scope.editRange = null;
 	    $scope.searchTerm = null;
-	    $scope.sortings = PhoenixManageInstitutionModel.sortings; //List of sorting objects which contain sortField and reverse attributes.
-	    $scope.reverseField = $scope.sortings[0].reverse;
-	    $scope.sortField = $scope.sortings[0].sortField;
+	    $scope.sortings = PhoenixManageInstitutionModel.sortings; //List of sorting objects which contain predicate and reverse attributes.
+	    $scope.reverse = $scope.sortings[0].reverse;
+	    $scope.predicate = $scope.sortings[0].predicate;
+	    
+	  //initializing orderBy function
+	    var orderBy = $filter('orderBy');
+	    $scope.order = function(predicate, reverse) {
+	      $scope.institutions = orderBy($scope.institutions, predicate, reverse);
+	    };
+	    $scope.order($scope.predicate,$scope.reverse);
 	    
 	    //Sorting function for ng-click
 	    $scope.sortByField = function(sorting) {
-	    	if ($scope.sortField!=sorting.sortField){
-	    	    $scope.sortField=sorting.sortField;
-	    	    $scope.reverseField=sorting.reverse;
+	    	if ($scope.predicate!=sorting.predicate){
+	    	    $scope.predicate=sorting.predicate;
+	    	    $scope.reverse=sorting.reverse;
 	    	}else{
 	    		sorting.reverse = !sorting.reverse;
-	    		$scope.reverseField=sorting.reverse;
+	    		$scope.reverse=sorting.reverse;
 	    	}
+	    	$scope.order($scope.predicate,$scope.reverse);
 	    }
 
 	    // CSS Logics as response to state changes.
@@ -168,13 +177,16 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
                 }
 		$scope.removeRange = null;
 	    }
-	    $scope.enterInstitution = function(partyId){
-	    	$state.go("role.phoenix.iprange", {partyId : partyId});
-	    	$state.currentTab = {label:"INSTITUTION", state:"role.phoenix.iprange"};
+	    $scope.enterInstitution = function(institution){
+	    	if(!(institution.state=='edit')){
+	    	$state.go("role.phoenix.institution", {'partyId' : institution.partyId});
+	    	$state.currentTab = {label:"INSTITUTION", state:"role.phoenix.institution"};
+	    	}
 	    }
 	    // init
+	    $scope.consortiumId = $location.search()['consortiumId'];
             $http({
-                url: $scope.apiUri+'/parties/ipranges/getall/',
+            	url: $scope.apiUri+'/parties/?consortium='+$scope.consortiumId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
                 method: 'GET',
             }).success(function(data, status, headers, config){
 		$scope.ipranges = [];

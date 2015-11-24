@@ -12,7 +12,7 @@ angular.module(
     [
 	'ui.router',
 	'service.title',
-	'platform-ui.librariantool.role.phoenix.iprange',
+	'platform-ui.librariantool.role.phoenix.institution',
 	'platform-ui.librariantool.role.phoenix.manage',
 	'platform-ui.librariantool.role.phoenix.subscription',
 	'platform-ui.librariantool.role.phoenix.profile',
@@ -35,12 +35,12 @@ angular.module(
 			templateUrl: 'librariantool/role/phoenix/manage/manage.html'
 		    }
 		}
-            }).state('role.phoenix.iprange', {
-        		url: '/iprange',
+            }).state('role.phoenix.institution', {
+        		url: '/institution?partyId',
         		views: {
         		    'phoenix': {
-        			controller: 'PhoenixIpRangeController',
-        			templateUrl: 'librariantool/role/phoenix/iprange/iprange.html'
+        			controller: 'PhoenixInstitutionController',
+        			templateUrl: 'librariantool/role/phoenix/institution/institution.html'
         		    }
         		}
                     }).state('role.phoenix.subscription', {
