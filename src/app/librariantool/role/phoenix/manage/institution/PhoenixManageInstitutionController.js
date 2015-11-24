@@ -1,5 +1,5 @@
 /**
- * PhoenixIpRange Controller
+ * PhoenixInstitution Controller
  */
 
 angular.module('platform-ui.librariantool.role.phoenix.manage.institution').controller(
@@ -66,53 +66,49 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 
 
 	    // Events that change states
-            $scope.groupsMoveOver = function(iprange) {
-                if (iprange.state == null && !$scope.adding) {
-                    iprange.state = "selected";
+            $scope.groupsMoveOver = function(institution) {
+                if (institution.state == null && !$scope.adding) {
+                    institution.state = "selected";
                 }
             }
-            $scope.groupsMoveOut = function(iprange) {
-                if (iprange.state == "selected" && !$scope.adding) {
-                    iprange.state = null;
+            $scope.groupsMoveOut = function(institution) {
+                if (institution.state == "selected" && !$scope.adding) {
+                    institution.state = null;
                 }
             }
-	    $scope.right = function(iprange) {
-		if (iprange.state == "selected") {
+	    $scope.right = function(institution) {
+		if (institution.state == "selected") {
 		    // this is the trash button at normal state
-                    iprange.state = "remove";
+                    institution.state = "remove";
 		}
-		else if (iprange.state == "edit") {
+		else if (institution.state == "edit") {
 		    // this is the "x" button at edit state
 		    if ($scope.editRange) {
-			iprange.name = $scope.editRange.name;
-			iprange.start = $scope.editRange.start;
-			iprange.end = $scope.editRange.end;
+			institution.name = $scope.editRange.name;
+			institution.start = $scope.editRange.start;
+			institution.end = $scope.editRange.end;
 			$scope.editRange = null;
 		    }
-		    iprange.state = null;
-		} else if (iprange.state == "remove") {
+		    institution.state = null;
+		} else if (institution.state == "remove") {
 		    // this is the cancel button at remove state.
-		    iprange.state = null;
+		    institution.state = null;
 		}
 	    }
-	    $scope.left = function(iprange) {
-		if (iprange.state == "selected") {
+	    $scope.left = function(institution) {
+		if (institution.state == "selected") {
 		    // This is the edit button at normal state.
-                    $scope.editRange = angular.copy(iprange);
-                    iprange.state = "edit";
+                    $scope.editRange = angular.copy(institution);
+                    institution.state = "edit";
                     $scope.adding = false;
 		}
-		else if (iprange.state == "edit") {
+		else if (institution.state == "edit") {
 		    // This is the confirm button at edit state
 		    data = {
-			ipRangeId:iprange['ipRangeId'],
-			start:iprange['start'],
-			end:iprange['end'],
-			partyId:iprange['partyId'],
-			label:iprange['name'],
+			name:institution['name'],
 		    };
 		    $http({
-			url: $scope.apiUri+'/parties/ipranges/?partyId='+$cookies.partyId+'&secret_key='+encodeURIComponent($cookies.secret_key)+'&ipRangeId='+iprange['ipRangeId'],
+			url: $scope.apiUri+'/parties/?credentialId='+$cookies.partyId+'&secret_key='+encodeURIComponent($cookies.secret_key)+'&partyId='+institution['partyId'],
 			data: data,
 			method: 'PUT',
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
@@ -120,12 +116,12 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 		    }).error(function(data, status, headers, config){
 			alert("ip range request failed");
 		    });
-		    iprange.state = null;
+		    institution.state = null;
 		    $scope.editRange = null;
-		} else if (iprange.state == "remove") {
+		} else if (institution.state == "remove") {
 		    // this is the remove button at remove state
-		    $scope.removeConfirm(iprange);
-		    iprange.state = null;
+		    $scope.removeConfirm(institution);
+		    institution.state = null;
 		}
 	    }
 	    $scope.addConfirm = function() {
@@ -142,7 +138,7 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
                     method: 'POST',
 		}).success(function(data, status, headers, config){
 		}).error(function(data, status, headers, config){
-                    alert("ip range request failed");
+                    alert("institution request failed");
 		});
 		
                 $scope.ipranges.unshift(angular.copy($scope.newRange));
@@ -151,29 +147,21 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 	    }
 	    $scope.reset = function() {
 		$scope.adding = false;
-		for (i=0; i<$scope.ipranges.length; i++) {
-		    $scope.ipranges[i].state=null;
+		for (i=0; i<$scope.institutions.length; i++) {
+		    $scope.institutions[i].state=null;
 		}
 	    }
-	    $scope.removeConfirm = function(iprange) {
-                data = {
-                    ipRangeId:iprange['ipRangeId'],
-                    start:iprange['start'],
-                    end:iprange['end'],
-                    partyId:iprange['partyId'],
-                    label:iprange['name'],
-                };
+	    $scope.removeConfirm = function(institution) {
                 $http({
-                    url: $scope.apiUri+'/parties/ipranges/?partyId='+$cookies.partyId+'&secret_key='+encodeURIComponent($cookies.secret_key)+'&ipRangeId='+data['ipRangeId'],
-                    data:data,
+                    url: $scope.apiUri+'/parties/?credentialId='+$cookies.credentialId+'&secret_key='+encodeURIComponent($cookies.secret_key)+'&partyId='+institution['partyId'],
                     method: 'DELETE',
                 }).success(function(data, status, headers, config){
                 }).error(function(data, status, headers, config){
-                    alert("ip range request failed");
+                    alert("institution request failed");
                 });
-                var index = $scope.ipranges.indexOf(iprange);
+                var index = $scope.institutions.indexOf(institution);
                 if (index > -1) {
-                    $scope.ipranges.splice(index,1);
+                    $scope.institutions.splice(index,1);
                 }
 		$scope.removeRange = null;
 	    }
@@ -189,20 +177,21 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
             	url: $scope.apiUri+'/parties/?consortium='+$scope.consortiumId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
                 method: 'GET',
             }).success(function(data, status, headers, config){
-		$scope.ipranges = [];
+		$scope.institutions = [];
 		for (var i = 0; i < data.length; i++) {
 		    entry = data[i];
-		    $scope.ipranges.push({
-			ipRangeId:entry['ipRangeId'],
-			start:entry['start'],
-			end:entry['end'],
-			name:entry['label'],
+		    $scope.institutions.push({
 			partyId:entry['partyId'],
+			partyType:entry['partyType'],
+			name:entry['name'],
+			country:entry['country'],
+			display:entry['display'],
+			consortium:entry['consortium'],
 			state:null
 		    });
 		}
             }).error(function(data, status, headers, config){
-		alert("ip range request failed");
+		alert("institution request failed");
             });
 	}
 ]);
