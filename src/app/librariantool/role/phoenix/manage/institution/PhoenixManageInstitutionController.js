@@ -53,6 +53,9 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 			console.log(ret);
 			return ret;
 		    }
+	    $scope.licenseButton = function(id) {
+			return "Edit";
+		    };
 	    
 	  //initializing orderBy function
 	    var orderBy = $filter('orderBy');

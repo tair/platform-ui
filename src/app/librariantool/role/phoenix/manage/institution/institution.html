@@ -4,11 +4,15 @@
     <div class="lt-admin-action-label">ACTIONS</div>
     <div ng-class="actionButtonAddCss(adding)" ng-click="reset(); adding=true">
       <span class="glyphicon glyphicon-plus text-center" ng-class="actionButtonGlyphiconAddCss(adding)" style="margin-top:-1px"></span>
-      <span class="text-center" ng-class="actionButtonLabelAddCss(adding)" style="margin-top:-1px">ADD IP RANGE</span>
+      <span class="text-center" ng-class="actionButtonLabelAddCss(adding)" style="margin-top:-1px">ADD INSTITUTION</span>
     </div>
-    <div ng-class="actionButtonAddCss(adding)" ng-click="back()">
-      <span class="glyphicon glyphicon-arrow-left text-center" ng-class="actionButtonGlyphiconAddCss(adding)" style="margin-top:-1px"></span>
-      <span class="text-center" ng-class="actionButtonLabelAddCss(adding)" style="margin-top:-1px">BACK</span>
+    <div ng-class="actionButtonAddCss(adding)" ng-click="reset(); adding=true">
+      <span class="glyphicon glyphicon-plus text-center" ng-class="actionButtonGlyphiconAddCss(adding)" style="margin-top:-1px"></span>
+      <span class="text-center" ng-class="actionButtonLabelAddCss(adding)" style="margin-top:-1px">ADD SUBSCRIPTION</span>
+    </div>
+    <div ng-class="actionButtonAddCss(false)" ng-click="back()">
+      <span class="glyphicon glyphicon-arrow-left text-center" ng-class="actionButtonGlyphiconAddCss(false)" style="margin-top:-1px"></span>
+      <span class="text-center" ng-class="actionButtonLabelAddCss(false)" style="margin-top:-1px">BACK</span>
     </div>
   </div>
 
@@ -26,16 +30,9 @@
     </div>
 
     <div class="lt-admin-right-subpanel">
-
-      <!-- Description and Search Box -->
-      <div class="lt-admin-groups-description">Add new institution from the left action panel. Click on already existing institutions to edit or delete them.</div>
-      <div class="lt-admin-groups-search">
-        <span>Search</span>
-        <span><input style="width:468px" placeholder="Enter institution name or ID number" ng-model="searchTerm"></input></span>
-      </div>
-
-		<!-- subscription list -->
-		<div class="lt-institution-subscription-list" ng-repeat="p in listPartners(partners)" style="height:100px">
+    
+    <!-- subscription list -->
+        <div class="lt-institution-subscription-list" ng-repeat="p in listPartners(partners)" style="height:100px;width:571px">
             <div class="row">
                 <div class="{{uiparams.partnercolwidth}}">
                     <div class="row"><div class="col-xs-12 lt-font lt-theme-font-color lt-font-aliasing" style="font-size: 24px;">
@@ -58,21 +55,23 @@
                 </div>
                 <div class="{{uiparams.actionscolwidth}}">
                     <div class="row">
-                        <button type="button" class="btn btn-default" ng-click="licenseAction(p.partnerId);">{{licenseButton(p.partnerId)}}</button>
+                        <button type="button" class="center-block btn btn-default" ng-click="licenseAction(p.partnerId);">{{licenseButton(p.partnerId)}}</button>
                     </div>
                 </div>
             </div>
         </div>
+
+      <!-- Description and Search Box -->
+      <div class="lt-admin-groups-description">Add new institution from the left action panel. Click on already existing institutions to edit or delete them.</div>
+      <div class="lt-admin-groups-search">
+        <span>Search</span>
+        <span><input style="width:468px" placeholder="Enter institution name or ID number" ng-model="searchTerm"></input></span>
+      </div>
         
-      <!-- Add IP Range -->
+      <!-- Add Institution -->
       <div class="lt-admin-groups-list-edit" ng-class="groupsAddCss(adding)">
 	<div class="col-xs-9" style="padding:0px">
-          <div><input class="lt-admin-groups-list-label-edit" style="width:300px" placeholder="Enter IP Range Label (optional)" ng-model="newRange.name"></input></div>
-	  <div class="lt-admin-groups-list-values">
-            <span><input class="lt-ip-groups-list-start-edit" placeholder="Starting IP" ng-model="newRange.start"></input></span>
-	    <span>-</span>
-	    <span><input class="lt-ip-groups-list-end-edit" placeholder="Ending IP" ng-model="newRange.end"></input></span>
-	  </div>
+          <div><input class="lt-admin-groups-list-label-edit" style="width:300px" placeholder="Enter Institution Name" ng-model="newRange.name"></input></div>
 	</div>
 	<div class="col-xs-3 lt-admin-groups-list-glyphicon-container" style="padding:0px">
           <div class="pull-right glyphicon glyphicon-remove lt-glyphicon-green text-center" style="margin-right:10px" ng-click="$event.stopPropagation(); adding=false"></div>
