@@ -34,7 +34,7 @@ angular.module(
                     }
                 }
             }).state('role.phoenix.manage.institution', {
-		url: '/institution?consortiumId',
+		url: '/institution?consortiumId&consortiumName',
 		views: {
 		    'manage': {
                         controller: 'PhoenixManageInstitutionController',

@@ -21,6 +21,10 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 		$scope.partyId = $location.search()['partyId'];
 		init();
 		$scope.setTitle(PhoenixInstitutionModel.title);
+		$scope.institutionName = $location.search()['institutionName'];
+		if ($scope.institutionName != null){
+			$scope.setTitle($scope.institutionName);
+		}
 	    $scope.ipranges = PhoenixInstitutionModel.ipranges;
 	    $scope.institutions = PhoenixInstitutionModel.institutions;
 	    $scope.institution = null;
