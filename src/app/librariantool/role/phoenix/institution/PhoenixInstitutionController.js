@@ -37,8 +37,35 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	    $scope.sortings = PhoenixInstitutionModel.sortings; //List of sorting objects which contain sortField and reverse attributes.
 	    $scope.reverseField = $scope.sortings[0].reverse;
 	    $scope.sortField = $scope.sortings[0].sortField;
+	    
+	  //for institution searchbox
+	    $scope.searchstate = 'selected';
+	    
+	  //for subscription list
+	    $scope.activeSubscriptions = PhoenixInstitutionModel.activeSubscriptions;
 	    $scope.partners = PhoenixInstitutionModel.partners;
 	    $scope.uiparams = PhoenixInstitutionModel.uiparams;
+	    
+	    $scope.getExpDate = function(id) {
+			if (id in $scope.activeSubscriptions) {
+				return $scope.activeSubscriptions[id].endDate;
+			}
+			return "Unlicensed";
+		    };
+		    
+	    $scope.listPartners = function(partners) {
+			var ret = [];
+			for (var i=0; i<partners.length; i++) {
+			    if (partners[i].partnerId!="phoenix") {
+				ret.push(partners[i]);
+			    }
+			}
+			console.log(ret);
+			return ret;
+		    }
+	    $scope.licenseButton = function(id) {
+			return "Edit";
+		    };
 	    
 	    //Sorting function for ng-click
 	    $scope.sortByField = function(sorting) {
@@ -206,6 +233,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	    $scope.$watch(function(scope) { return scope.institution },
 	              function(newValue, oldValue) {
 	                  $scope.partyId = newValue.partyId;
+	                  $scope.setTitle(newValue.name);
 	                  $scope.getIpRanges();
 	              }
 	             );
