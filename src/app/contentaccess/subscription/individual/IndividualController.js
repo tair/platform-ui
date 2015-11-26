@@ -81,6 +81,8 @@ angular.module('platform-ui.contentaccess.subscription.individual').controller(
                 Stripe.card.createToken(stripeData, function(status, response) {
                     if (response.error) {
                         $scope.stripeerrors = ''+response.error.message;
+                        console.log('response=' + response + ';status=' + status); //PW-193
+                        bootbox.alert('Create token Error'); //PW-193
                     } else {
                         $scope.stripeerrors = null;
                         $scope.last4 = response.card.last4;
