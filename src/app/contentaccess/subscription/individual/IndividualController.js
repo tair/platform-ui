@@ -82,7 +82,7 @@ angular.module('platform-ui.contentaccess.subscription.individual').controller(
                     if (response.error) {
                         $scope.stripeerrors = ''+response.error.message;
                         console.log('response=' + response.error.message + ';status=' + status); //PW-193
-                        bootbox.alert('Create token Error'); //PW-193
+                        bootbox.alert(response.error.message + ' status=' + status); //PW-193 TBD what exact error msg to show here
                     } else {
                         $scope.stripeerrors = null;
                         $scope.last4 = response.card.last4;
