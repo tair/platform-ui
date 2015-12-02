@@ -74,7 +74,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
                     partyType:$scope.newInstitution['partyType']
                 };
                 $http({
-                    url: $scope.apiUri+'/parties/?&secret_key='+encodeURIComponent($cookies.secret_key)+'&credentialId='+$cookies.credentialId,
+                    url: $scope.apiUri+'/parties/?secretKey='+encodeURIComponent($cookies.secret_key)+'&credentialId='+$cookies.credentialId,
                     data:data,
                     method: 'POST',
                 }).success(function(data, status, headers, config){
@@ -213,7 +213,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 			label:iprange['name'],
 		    };
 		    $http({
-			url: $scope.apiUri+'/parties/ipranges/?partyId='+$cookies.partyId+'&secret_key='+encodeURIComponent($cookies.secret_key)+'&ipRangeId='+iprange['ipRangeId'],
+			url: $scope.apiUri+'/parties/ipranges/?partyId='+$cookies.partyId+'&secretKey='+encodeURIComponent($cookies.secret_key)+'&ipRangeId='+iprange['ipRangeId'],
 			data: data,
 			method: 'PUT',
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
@@ -238,7 +238,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 		    label:$scope.newRange['name'],
 		}
 		$http({
-                    url: $scope.apiUri+'/parties/ipranges/?partyId='+$cookies.partyId+'&secret_key='+encodeURIComponent($cookies.secret_key),
+                    url: $scope.apiUri+'/parties/ipranges/?partyId='+$cookies.partyId+'&secretKey='+encodeURIComponent($cookies.secret_key),
                     data:data,
                     method: 'POST',
 		}).success(function(data, status, headers, config){
@@ -271,7 +271,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
                     label:iprange['name'],
                 };
                 $http({
-                    url: $scope.apiUri+'/parties/ipranges/?partyId='+$cookies.partyId+'&secret_key='+encodeURIComponent($cookies.secret_key)+'&ipRangeId='+data['ipRangeId'],
+                    url: $scope.apiUri+'/parties/ipranges/?partyId='+$cookies.partyId+'&secretKey'+encodeURIComponent($cookies.secret_key)+'&ipRangeId='+data['ipRangeId'],
                     data:data,
                     method: 'DELETE',
                 }).success(function(data, status, headers, config){
