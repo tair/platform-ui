@@ -14,6 +14,8 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').factory(
 		return {
 		    title: 'INSTITUTION',
 		    newRange: {'name':null, 'start':null, 'end':null},
+		    newSubscription: {'partnerId':null, 'start':null, 'end':null},
+		    newInstitution: {'partyType':'organization', 'name':null},
 //		    ipranges: [],
 		    institutions: [
 		                   {
@@ -159,7 +161,27 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').factory(
 		    sortings: [
 		              {sortField:'start', reverse:false, text:"start IP"},
 		              {sortField:'name', reverse:false, text:"Label"}
-		              ]
+		              ],
+          consortiums: [
+		              {
+		            	    "partyId": 31272,
+		            	    "partyType": "consortium",
+		            	    "name": "UC consortium",
+		            	    "country": 219,
+		            	    "display": true,
+		            	    "consortium": null,
+		            	    "state": null
+		            	  },
+		            	  {
+		            	    "partyId": 31273,
+		            	    "partyType": "consortium",
+		            	    "name": "Unbelievable Consortium",
+		            	    "country": 219,
+		            	    "display": true,
+		            	    "consortium": null,
+		            	    "state":null
+		            	  }
+		            	],
 		};
 	}
 ]);
