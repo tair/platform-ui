@@ -305,6 +305,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 			$scope.subAdding = false;
 	    }
 	    //get subscription end date
+	    $scope.getSubscriptionEndDate = function(){
 	    $http({
 			url: $scope.apiUri+'/partners/',
 			method: 'GET',
@@ -313,14 +314,17 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 		}).error(function() {
 			alert("Cannot get partner information");
 		});
+	    if($scope.partyId != null){
 		$http({
-			url: $scope.apiUri+'/subscriptions/activesubscriptions/'+$cookies.credentialId+'/',
+			url: $scope.apiUri+'/subscriptions/activesubscriptions/'+$scope.partyId+'/',
 			method: 'GET',
 		}).success(function(data, status, headers, config) {
 			$scope.activeSubscriptions = data;
 		}).error(function() {
 			alert("Cannot get active subscription information");
 		});
+	    }
+	    }
 	    //get ip ranges
 	    $scope.getIpRanges = function(){
 	    if($scope.partyId != null){
@@ -351,6 +355,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	                  $scope.partyId = newValue.partyId;
 	                  $scope.setTitle(newValue.name);
 	                  $scope.getIpRanges();
+	                  $scope.getSubscriptionEndDate;
 	              }
 	             );
 	    function getIpRanges(){
