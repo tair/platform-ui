@@ -35,7 +35,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	    $scope.newRange = PhoenixInstitutionModel.newRange;
 	    $scope.removeRange = null;
 	    $scope.editRange = null;
-	    //new subscription
+	    //subscription
 	    $scope.newSubscription = PhoenixInstitutionModel.newSubscription;
 	    //new institution
 	    $scope.newInstitution = PhoenixInstitutionModel.newInstitution;
@@ -304,6 +304,24 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 			$scope.newSubscription = null;
 			$scope.subAdding = false;
 	    }
+	    //get subscription end date
+	    $http({
+			url: $scope.apiUri+'/partners/',
+			method: 'GET',
+		}).success(function(data, status, headers, config) {
+			$scope.partners = data;
+		}).error(function() {
+			alert("Cannot get partner information");
+		});
+		$http({
+			url: $scope.apiUri+'/subscriptions/activesubscriptions/'+$cookies.credentialId+'/',
+			method: 'GET',
+		}).success(function(data, status, headers, config) {
+			$scope.activeSubscriptions = data;
+		}).error(function() {
+			alert("Cannot get active subscription information");
+		});
+	    //get ip ranges
 	    $scope.getIpRanges = function(){
 	    if($scope.partyId != null){
             $http({
