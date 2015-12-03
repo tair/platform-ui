@@ -230,15 +230,14 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 		}
 	    }
 	    $scope.addConfirm = function() {
-		//alert("Nothing is added!");
 		var data = {
 		    start:$scope.newRange['start'],
 		    end:$scope.newRange['end'],
-		    partyId:$cookies.partyId,
+		    partyId:$scope.institution.partyId,
 		    label:$scope.newRange['name'],
 		}
 		$http({
-                    url: $scope.apiUri+'/parties/ipranges/?partyId='+$cookies.partyId+'&secretKey='+encodeURIComponent($cookies.secret_key),
+                    url: $scope.apiUri+'/parties/ipranges/?partyId='+$scope.institution.partyId+'&secretKey='+encodeURIComponent($cookies.secret_key)+'&credentialId='+$cookies.credentialId,
                     data:data,
                     method: 'POST',
 		}).success(function(data, status, headers, config){
