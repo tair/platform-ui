@@ -55,7 +55,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	    	bootbox.dialog({
 	    		  title: "Create a new Institution",
 	    		  message: "<div ng-controller='PhoenixInstitutionController' style='padding:0px'>" +
-	    		  		"<input ng-class='groupsListLabelCss(true)' type='text' ng-model='newInstitution'" +
+	    		  		"<input ng-class='groupsListLabelCss(true)' type='text' ng-model='newInstitution.name'" +
 	    		  		"placeholder='Input instituion name'></input></div>",
 	    		  buttons: {
 	                    success: {
@@ -305,7 +305,6 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 			$scope.subAdding = false;
 	    }
 	    //get subscription end date
-	    $scope.getSubscriptionEndDate = function(){
 	    $http({
 			url: $scope.apiUri+'/partners/',
 			method: 'GET',
@@ -314,6 +313,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 		}).error(function() {
 			alert("Cannot get partner information");
 		});
+	    $scope.getSubscriptionEndDate = function(){	    
 	    if($scope.partyId != null){
 		$http({
 			url: $scope.apiUri+'/subscriptions/activesubscriptions/'+$scope.partyId+'/',
@@ -355,7 +355,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	                  $scope.partyId = newValue.partyId;
 	                  $scope.setTitle(newValue.name);
 	                  $scope.getIpRanges();
-	                  $scope.getSubscriptionEndDate;
+	                  $scope.getSubscriptionEndDate();
 	              }
 	             );
 	    function getIpRanges(){
