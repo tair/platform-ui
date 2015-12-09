@@ -23,7 +23,9 @@ angular.module('platform-ui.contentaccess.login').controller(
 
 	    var getPartnerUriFromRedirect = function(){
 	    	arr = $scope.redirectNoEncode.split("/");
+	    	bootbox.alert("arr="+arr[0]+"//"+arr[2]);
 	    	return arr[0]+"//"+arr[2];
+	    	
 	    }
 	    
 	    var callProxy = function(data){
