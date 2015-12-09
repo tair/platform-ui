@@ -22,10 +22,10 @@ angular.module('platform-ui.contentaccess.login').controller(
 		init();
 
 	    var getPartnerUriFromRedirect = function(){
+	    	console.log("$scope.redirectNoEncode (before split)="+$scope.redirectNoEncode); //PW-218
 	    	arr = $scope.redirectNoEncode.split("/");
-	    	console.log("arr console="+arr[0]+"//"+arr[2]);
+	    	console.log("arr (after split)="+arr[0]+"//"+arr[2]); //PW-218
 	    	return arr[0]+"//"+arr[2];
-	    	
 	    }
 	    
 	    var callProxy = function(data){
@@ -38,13 +38,17 @@ angular.module('platform-ui.contentaccess.login').controller(
 		    },
 		    method: 'POST',
 		}).success(function(data, status){
+			//PW-218
+			console.log("Login success. $scope.redirectNoEncode="+$scope.redirectNoEncode); //PW-218
 		    //$scope.tabPage = '2';                          // PW-147: YM: No more login confirmation page. 
             $window.location.href = $scope.redirectNoEncode; // PW-147: YM: Redirecting back to the partner site.
 		}).error(function(data, status){
 			//vet PW-218 more correct and more detailed error message.
-			bootbox.alert("callProxy/redirect error. data=" + data + " status=" + status + 
-					" getPartnerUriFromRedirect="+getPartnerUriFromRedirect + 
-					" $scope.redirectNoEncode="+$scope.redirectNoEncode);
+			//more user friendly error message... Not the final version...
+			bootbox.alert("Login failed. Can not set authentication cookies for "+ 
+					//" getPartnerUriFromRedirect="+getPartnerUriFromRedirect + 
+					//" $scope.redirectNoEncode="+
+					$scope.redirectNoEncode);
 		});
 	    }
 	    
