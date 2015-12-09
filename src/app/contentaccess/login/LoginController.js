@@ -22,9 +22,12 @@ angular.module('platform-ui.contentaccess.login').controller(
 		init();
 
 	    var getPartnerUriFromRedirect = function(){
-		arr = $scope.redirectNoEncode.split("/");
-		return arr[0]+"//"+arr[2];
+	    	console.log("$scope.redirectNoEncode (before split)="+$scope.redirectNoEncode); //PW-218
+	    	arr = $scope.redirectNoEncode.split("/");
+	    	console.log("arr (after split)="+arr[0]+"//"+arr[2]); //PW-218
+	    	return arr[0]+"//"+arr[2];
 	    }
+	    
 	    var callProxy = function(data){
 		$http({
 		    url: getPartnerUriFromRedirect(),
@@ -35,10 +38,14 @@ angular.module('platform-ui.contentaccess.login').controller(
 		    },
 		    method: 'POST',
 		}).success(function(data, status){
+			//PW-218
+			console.log("Login success. $scope.redirectNoEncode="+$scope.redirectNoEncode); //PW-218
 		    //$scope.tabPage = '2';                          // PW-147: YM: No more login confirmation page. 
             $window.location.href = $scope.redirectNoEncode; // PW-147: YM: Redirecting back to the partner site.
 		}).error(function(data, status){
-			bootbox.alert("cookies error, data " + data + ", status " + status);
+			//vet PW-218 more correct and more detailed error message.
+			//more user friendly error message... Not the final version...
+			bootbox.alert("Cannot log in, problem setting up redirect to "+ $scope.redirectNoEncode + "; please report error to curator@arabidopsis.org and try logging in directly from the TAIR menu");
 		});
 	    }
 	    
