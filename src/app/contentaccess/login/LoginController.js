@@ -40,9 +40,9 @@ angular.module('platform-ui.contentaccess.login').controller(
             $window.location.href = $scope.redirectNoEncode; // PW-147: YM: Redirecting back to the partner site.
 		}).error(function(data, status){
 			//vet PW-218 more correct and more detailed error message.
-			bootbox.alert("callProxy/redirect error. data=" + data + ", status=" + status + 
-					"getPartnerUriFromRedirect="+getPartnerUriFromRedirect + 
-					"$scope.redirectNoEncode="+$scope.redirectNoEncode);
+			bootbox.alert("callProxy/redirect error. data=" + data + " status=" + status + 
+					" getPartnerUriFromRedirect="+getPartnerUriFromRedirect + 
+					" $scope.redirectNoEncode="+$scope.redirectNoEncode);
 		});
 	    }
 	    
