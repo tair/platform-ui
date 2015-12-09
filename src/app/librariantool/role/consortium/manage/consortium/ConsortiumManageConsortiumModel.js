@@ -13,8 +13,8 @@ angular.module('platform-ui.librariantool.role.consortium.manage.consortium').fa
 	function () {
 		return {
                     title: 'Consortium Manager',
-		    consortiums: []
-                    /*consortiums: [
+//		    consortiums: []
+                    institutions: [
                         {'name':'UC Berekeley', 'id':'Institution #1', 'state':null},
                         {'name':'Stanford University', 'id':'Institution #2', 'state':null},
                         {'name':'MIT', 'id':'Institution #3', 'state':null},
@@ -22,7 +22,11 @@ angular.module('platform-ui.librariantool.role.consortium.manage.consortium').fa
                         {'name':'UC Davis', 'id':'Institution #5', 'state':null},
                         {'name':'UC San Diego', 'id':'Institution #6', 'state':null},
                         {'name':'UC Santa Clara', 'id':'Institution #6', 'state':null},
-                    ]*/
+                    ],
+                    sortings: [
+         		              {predicate:'id', reverse:false, text:"ID"},
+         		              {predicate:'name', reverse:false, text:"Name"}
+         		              ]
 		};
 	}
 ]);
