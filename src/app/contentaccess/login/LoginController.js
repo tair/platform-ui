@@ -22,9 +22,10 @@ angular.module('platform-ui.contentaccess.login').controller(
 		init();
 
 	    var getPartnerUriFromRedirect = function(){
-		arr = $scope.redirectNoEncode.split("/");
-		return arr[0]+"//"+arr[2];
+	    	arr = $scope.redirectNoEncode.split("/");
+	    	return arr[0]+"//"+arr[2];
 	    }
+	    
 	    var callProxy = function(data){
 		$http({
 		    url: getPartnerUriFromRedirect(),
@@ -38,7 +39,10 @@ angular.module('platform-ui.contentaccess.login').controller(
 		    //$scope.tabPage = '2';                          // PW-147: YM: No more login confirmation page. 
             $window.location.href = $scope.redirectNoEncode; // PW-147: YM: Redirecting back to the partner site.
 		}).error(function(data, status){
-			bootbox.alert("cookies error, data " + data + ", status " + status);
+			//vet PW-218 more correct and more detailed error message.
+			bootbox.alert("callProxy/redirect error. data=" + data + " status=" + status + 
+					" getPartnerUriFromRedirect="+getPartnerUriFromRedirect + 
+					" $scope.redirectNoEncode="+$scope.redirectNoEncode);
 		});
 	    }
 	    
