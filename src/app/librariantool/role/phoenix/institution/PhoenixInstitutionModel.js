@@ -14,6 +14,8 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').factory(
 		return {
 		    title: 'INSTITUTION',
 		    newRange: {'name':null, 'start':null, 'end':null},
+		    newSubscription: {'partnerId':null, 'start':null, 'end':null},
+		    newInstitution: {'partyType':'organization', 'name':null},
 //		    ipranges: [],
 		    institutions: [
 		                   {
@@ -135,6 +137,22 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').factory(
 		            	    "termOfServiceUri": "https://www.google.com/intl/en/policies/terms/?fg=1"
 		            	  }
 		            	],
+		            	activeSubscriptions: {
+		      				"tair": {
+		      					"subscriptionId": 3994,
+		      					"partyId": 35846,
+		      					"partnerId": "tair",
+		      	 				"startDate": "2014-04-01T12:00:00Z",
+		      					"endDate": "2017-03-31T12:00:00Z"
+		      				},
+		      				"cdiff": {
+		      					"subscriptionId": 13994,
+		      					"partyId": 35846,
+		      					"partnerId": "cdiff",
+		      					"startDate": "2012-04-01T12:00:00Z",
+		      					"endDate": "2018-03-31T12:00:00Z"
+		      				},
+		      			},
         	uiparams: {
 				"partnercolwidth": 'col-xs-5',
 				"expcolwidth": 'col-xs-3',
@@ -143,7 +161,27 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').factory(
 		    sortings: [
 		              {sortField:'start', reverse:false, text:"start IP"},
 		              {sortField:'name', reverse:false, text:"Label"}
-		              ]
+		              ],
+          consortiums: [
+		              {
+		            	    "partyId": 31272,
+		            	    "partyType": "consortium",
+		            	    "name": "UC consortium",
+		            	    "country": 219,
+		            	    "display": true,
+		            	    "consortium": null,
+		            	    "state": null
+		            	  },
+		            	  {
+		            	    "partyId": 31273,
+		            	    "partyType": "consortium",
+		            	    "name": "Unbelievable Consortium",
+		            	    "country": 219,
+		            	    "display": true,
+		            	    "consortium": null,
+		            	    "state":null
+		            	  }
+		            	],
 		};
 	}
 ]);

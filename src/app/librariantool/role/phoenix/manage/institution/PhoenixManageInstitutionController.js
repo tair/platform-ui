@@ -31,6 +31,32 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 	    $scope.reverse = $scope.sortings[0].reverse;
 	    $scope.predicate = $scope.sortings[0].predicate;
 	    
+	    //for subscription list
+	    $scope.activeSubscriptions = PhoenixManageInstitutionModel.activeSubscriptions;
+	    $scope.partners = PhoenixManageInstitutionModel.partners;
+	    $scope.uiparams = PhoenixManageInstitutionModel.uiparams;
+	    
+	    $scope.getExpDate = function(id) {
+			if (id in $scope.activeSubscriptions) {
+				return $scope.activeSubscriptions[id].endDate;
+			}
+			return "Unlicensed";
+		    };
+		    
+	    $scope.listPartners = function(partners) {
+			var ret = [];
+			for (var i=0; i<partners.length; i++) {
+			    if (partners[i].partnerId!="phoenix") {
+				ret.push(partners[i]);
+			    }
+			}
+			console.log(ret);
+			return ret;
+		    }
+	    $scope.licenseButton = function(id) {
+			return "Edit";
+		    };
+	    
 	  //initializing orderBy function
 	    var orderBy = $filter('orderBy');
 	    $scope.order = function(predicate, reverse) {
@@ -167,12 +193,17 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 	    }
 	    $scope.enterInstitution = function(institution){
 	    	if(!(institution.state=='edit')){
-	    	$state.go("role.phoenix.institution", {'partyId' : institution.partyId});
-	    	$state.currentTab = {label:"INSTITUTION", state:"role.phoenix.institution"};
+			    $state.currentTab = {label:"INSTITUTION", state:"role.phoenix.institution"};
+		    	$state.go("role.phoenix.institution", {'partyId' : institution.partyId, 'institutionName':institution.name});
 	    	}
+	    }
+	    $scope.back = function(){
+	    	$state.go("role.phoenix.manage.consortium");
 	    }
 	    // init
 	    $scope.consortiumId = $location.search()['consortiumId'];
+	    $scope.consortiumName = $location.search()['consortiumName'];
+	    $scope.setTitle($scope.consortiumName);
             $http({
             	url: $scope.apiUri+'/parties/?consortium='+$scope.consortiumId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
                 method: 'GET',
