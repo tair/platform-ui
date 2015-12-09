@@ -45,10 +45,7 @@ angular.module('platform-ui.contentaccess.login').controller(
 		}).error(function(data, status){
 			//vet PW-218 more correct and more detailed error message.
 			//more user friendly error message... Not the final version...
-			bootbox.alert("Login failed. Can not set authentication cookies for "+ 
-					//" getPartnerUriFromRedirect="+getPartnerUriFromRedirect + 
-					//" $scope.redirectNoEncode="+
-					$scope.redirectNoEncode);
+			bootbox.alert("Cannot log in, problem setting up redirect to "+ $scope.redirectNoEncode + "; please report error to curator@arabidopsis.org and try logging in directly from the TAIR menu");
 		});
 	    }
 	    
