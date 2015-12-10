@@ -115,7 +115,7 @@ angular.module('platform-ui.librariantool.role.consortium.manage.consortium').co
 		}).success(function(data, status, headers, config){
 			createdInstitution = data;
 		}).error(function(data, status, headers, config){
-                    alert("party request failed");
+                    alert("create new institution request failed");
 		});
 		var data = {
 				consortiumId : $cookies.credentialId,
@@ -127,7 +127,7 @@ angular.module('platform-ui.librariantool.role.consortium.manage.consortium').co
             method: 'PUT',
 			}).success(function(data, status, headers, config){
 			}).error(function(data, status, headers, config){
-			            alert("party request failed");
+			            alert("add institution request failed");
 			});
                 $scope.institutions.unshift(angular.copy($scope.newInstitution));
                 $scope.newInstitution = null;
