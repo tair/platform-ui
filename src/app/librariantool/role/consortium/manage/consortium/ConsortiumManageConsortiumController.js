@@ -122,7 +122,7 @@ angular.module('platform-ui.librariantool.role.consortium.manage.consortium').co
 				action : 'add'
 		}
 		$http({
-            url: $scope.apiUri+'parties/consortiums/?partyId='+createdInstitution.partyId +'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+            url: $scope.apiUri+'/parties/consortiums/?partyId='+createdInstitution.partyId +'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
             data:data,
             method: 'PUT',
 			}).success(function(data, status, headers, config){
