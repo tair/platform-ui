@@ -166,7 +166,7 @@ angular.module('platform-ui.librariantool.role.consortium.manage.consortium').co
         	    $scope.editConsortium = null;
                 $http({
                     // TODO: 2015-11-04: YM: It's unclear why does the next line use $cookies.credentialId in the URI path (as opposed to consortium.partyId).
-                    url: $scope.apiUri+'/parties/consortiuminstitutions/'+$cookies.credentialId+'/?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+                    url: $scope.apiUri+'/parties/affiliations/?partyId='+$cookies.credentialId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
                     method: 'GET'
                 }).success(function(data, status, headers, config){
                     $scope.institutions = [];
