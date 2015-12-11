@@ -157,6 +157,7 @@ angular.module('platform-ui.librariantool.role.consortium.manage.consortium').co
             }
 
             function init() {
+            	$scope.createdPartyId = null;
                 $scope.setTitle(ConsortiumManageConsortiumModel.title);
     	        $scope.institutions = ConsortiumManageConsortiumModel.institutions;
     	        $scope.adding = false;
