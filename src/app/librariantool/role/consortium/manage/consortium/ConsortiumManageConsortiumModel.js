@@ -15,13 +15,13 @@ angular.module('platform-ui.librariantool.role.consortium.manage.consortium').fa
                     title: 'Consortium Manager',
 //		    consortiums: []
                     institutions: [
-                        {'name':'UC Berekeley', 'id':'Institution #1', 'state':null},
-                        {'name':'Stanford University', 'id':'Institution #2', 'state':null},
-                        {'name':'MIT', 'id':'Institution #3', 'state':null},
-                        {'name':'UCLA', 'id':'Institution #4', 'state':null},
-                        {'name':'UC Davis', 'id':'Institution #5', 'state':null},
-                        {'name':'UC San Diego', 'id':'Institution #6', 'state':null},
-                        {'name':'UC Santa Clara', 'id':'Institution #6', 'state':null},
+                        {'name':'UC Berekeley', 'partyId':'Institution #1', 'state':null},
+                        {'name':'Stanford University', 'partyId':'Institution #2', 'state':null},
+                        {'name':'MIT', 'partyId':'Institution #3', 'state':null},
+                        {'name':'UCLA', 'partyId':'Institution #4', 'state':null},
+                        {'name':'UC Davis', 'partyId':'Institution #5', 'state':null},
+                        {'name':'UC San Diego', 'partyId':'Institution #6', 'state':null},
+                        {'name':'UC Santa Clara', 'partyId':'Institution #6', 'state':null},
                     ],
                     sortings: [
          		              {predicate:'id', reverse:false, text:"ID"},
