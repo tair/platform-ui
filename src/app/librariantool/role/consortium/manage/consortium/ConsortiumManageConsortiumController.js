@@ -104,7 +104,7 @@ angular.module('platform-ui.librariantool.role.consortium.manage.consortium').co
         		}
         	    }
             $scope.addConfirm = function() {
-        var createdInstitution = null;
+        $scope.createdInstitution = null;
 		var data = {
 		    name: $scope.newInstitution['name'],
 		    partyType: 'organization',
@@ -114,7 +114,7 @@ angular.module('platform-ui.librariantool.role.consortium.manage.consortium').co
                     data:data,
                     method: 'POST',
 		}).success(function(data, status, headers, config){
-			createdInstitution = data;
+			$scope.createdInstitution = data;
 		}).error(function(data, status, headers, config){
                     alert("create new institution request failed");
 		});
@@ -123,7 +123,7 @@ angular.module('platform-ui.librariantool.role.consortium.manage.consortium').co
 				action : 'add'
 		}
 		$http({
-            url: $scope.apiUri+'/parties/consortiums/?partyId='+createdInstitution.partyId +'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+            url: $scope.apiUri+'/parties/consortiums/?partyId='+$scope.createdInstitution.partyId +'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
             data:data,
             method: 'PUT',
 			}).success(function(data, status, headers, config){
@@ -174,7 +174,6 @@ angular.module('platform-ui.librariantool.role.consortium.manage.consortium').co
                     for (var i=0; i < data.length; i++) {
                         entry = data[i];
                         entry['state'] = null;
-                        entry['id'] = entry['partyId'];
                         $scope.institutions.push(entry);
                     }
                 }).error(function() {
