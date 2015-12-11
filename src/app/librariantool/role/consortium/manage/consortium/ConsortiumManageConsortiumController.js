@@ -104,6 +104,7 @@ angular.module('platform-ui.librariantool.role.consortium.manage.consortium').co
         		}
         	    }
             $scope.addConfirm = function() {
+        var createdInstitution = null;
 		var data = {
 		    name: $scope.newInstitution['name'],
 		    partyType: 'organization',
@@ -113,7 +114,7 @@ angular.module('platform-ui.librariantool.role.consortium.manage.consortium').co
                     data:data,
                     method: 'POST',
 		}).success(function(data, status, headers, config){
-			var createdInstitution = data;
+			createdInstitution = data;
 		}).error(function(data, status, headers, config){
                     alert("create new institution request failed");
 		});
