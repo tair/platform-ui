@@ -104,7 +104,6 @@ angular.module('platform-ui.librariantool.role.consortium.manage.consortium').co
         		}
         	    }
             $scope.addConfirm = function() {
-        $scope.createdInstitution = null;
 		var data = {
 		    name: $scope.newInstitution['name'],
 		    partyType: 'organization',
