@@ -114,6 +114,7 @@ angular.module('platform-ui.librariantool.role.consortium.manage.consortium').co
                     method: 'POST',
 		}).success(function(data, status, headers, config){
 			$scope.createdPartyId = data['partyId'];
+			alert("partyId created: "+data['partyId']);
 		}).error(function(data, status, headers, config){
                     alert("create new institution request failed");
 		});
