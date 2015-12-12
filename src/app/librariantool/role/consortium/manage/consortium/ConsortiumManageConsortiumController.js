@@ -104,34 +104,34 @@ angular.module('platform-ui.librariantool.role.consortium.manage.consortium').co
         		}
         	    }
             $scope.addConfirm = function() {
-		var data = {
-		    name: $scope.newInstitution['name'],
-		    partyType: 'organization',
-		}
-		$http({
-                    url: $scope.apiUri+'/parties/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
-                    data:data,
-                    method: 'POST',
-		}).success(function(data, status, headers, config){
-			$scope.createdInstitution = data;
-			$scope.createdInstitution['state'] = null;
-			$scope.institutions.unshift(angular.copy($scope.createdInstitution));
-			var data = {
-					consortiumId : $cookies.credentialId,
-					action : 'add'
-			}
-			$http({
-	            url: $scope.apiUri+'/parties/consortiums/?partyId='+$scope.createdInstituion.partyId +'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
-	            data:data,
-	            method: 'PUT',
-	            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+				var data = {
+				    name: $scope.newInstitution['name'],
+				    partyType: 'organization',
+				}
+				$http({
+		                    url: $scope.apiUri+'/parties/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+		                    data:data,
+		                    method: 'POST',
 				}).success(function(data, status, headers, config){
+					$scope.createdInstitution = data;
+					$scope.createdInstitution['state'] = null;
+					$scope.institutions.unshift(angular.copy($scope.createdInstitution));
+					var data = {
+							consortiumId : $cookies.credentialId,
+							action : 'add'
+					}
+				$http({
+		            url: $scope.apiUri+'/parties/consortiums/?partyId='+$scope.createdInstitution.partyId +'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+		            data:data,
+		            method: 'PUT',
+		            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+					}).success(function(data, status, headers, config){
+					}).error(function(data, status, headers, config){
+					            alert("add institution request failed");
+					});
 				}).error(function(data, status, headers, config){
-				            alert("add institution request failed");
+		                    alert("create new institution request failed");
 				});
-		}).error(function(data, status, headers, config){
-                    alert("create new institution request failed");
-		});
                 
                 $scope.newInstitution = null;
                 $scope.adding = false;
@@ -164,6 +164,10 @@ angular.module('platform-ui.librariantool.role.consortium.manage.consortium').co
                 }).error(function(data, status, headers, config){
                     alert("institution remove request failed");
                 });
+            	var index = $scope.institutions.indexOf(institution);
+                if (index > -1) {
+                    $scope.institutions.splice(index,1);
+                }
             }
             $scope.reset = function() {
                 $scope.adding = false;
