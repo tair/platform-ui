@@ -113,13 +113,14 @@ angular.module('platform-ui.librariantool.role.consortium.manage.consortium').co
                     data:data,
                     method: 'POST',
 		}).success(function(data, status, headers, config){
-			$scope.createdPartyId = data['partyId'];
+			$scope.createdInstitution = data;
+			$scope.institutions.unshift(angular.copy($scope.newInstitution));
 			var data = {
 					consortiumId : $cookies.credentialId,
 					action : 'add'
 			}
 			$http({
-	            url: $scope.apiUri+'/parties/consortiums/?partyId='+$scope.createdPartyId +'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+	            url: $scope.apiUri+'/parties/consortiums/?partyId='+$scope.createdInstituion.partyId +'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
 	            data:data,
 	            method: 'PUT',
 	            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
@@ -130,7 +131,7 @@ angular.module('platform-ui.librariantool.role.consortium.manage.consortium').co
 		}).error(function(data, status, headers, config){
                     alert("create new institution request failed");
 		});
-                $scope.institutions.unshift(angular.copy($scope.newInstitution));
+                
                 $scope.newInstitution = null;
                 $scope.adding = false;
             }
