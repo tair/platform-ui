@@ -69,9 +69,9 @@ angular.module('platform-ui.librariantool.role.consortium.manage.consortium').co
         			$scope.editInstitution = null;
         		    }
         		    institution.state = null;
-        		} else if (consortium.state == "remove") {
+        		} else if (institution.state == "remove") {
         		    // this is the cancel button at remove state.
-        		    consortium.state = null;
+        		    institution.state = null;
         		}
         	    }
             $scope.left = function(institution) {
@@ -99,7 +99,7 @@ angular.module('platform-ui.librariantool.role.consortium.manage.consortium').co
         		    $scope.editInstitution = null;
         		} else if (institution.state == "remove") {
         		    // this is the remove button at remove state
-        		    $scope.removeConfirm(institution);
+        		    $scope.deleteAffiliation(institution);
         		    institution.state = null;
         		}
         	    }
@@ -150,7 +150,21 @@ angular.module('platform-ui.librariantool.role.consortium.manage.consortium').co
                     $scope.institutions.splice(index,1);
                 }
             }
-
+            $scope.deleteAffiliation = function(institution){
+            	var data = {
+            			consortiumId: $cookies.credentialId,
+            			action: 'remove'
+            	}
+            	$http({
+            		url: $scope.apiUri+'/parties/consortiums/?partyId='+institution.partyId+'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+            		data:data,
+    	            method: 'PUT',
+    	            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            	}).success(function(data, status, headers, config){
+                }).error(function(data, status, headers, config){
+                    alert("institution remove request failed");
+                });
+            }
             $scope.reset = function() {
                 $scope.adding = false;
                 for (i=0; i<$scope.institutions.length; i++) {
@@ -166,7 +180,7 @@ angular.module('platform-ui.librariantool.role.consortium.manage.consortium').co
         	    $scope.sortings = ConsortiumManageConsortiumModel.sortings; //List of sorting objects which contain sortField and reverse attributes.
         	    $scope.reverse = $scope.sortings[0].reverse;
         	    $scope.predicate = $scope.sortings[0].predicate;
-        	    $scope.editConsortium = null;
+        	    $scope.editInstitution = null;
                 $http({
                     // TODO: 2015-11-04: YM: It's unclear why does the next line use $cookies.credentialId in the URI path (as opposed to consortium.partyId).
                     url: $scope.apiUri+'/parties/affiliations/?partyId='+$cookies.credentialId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
