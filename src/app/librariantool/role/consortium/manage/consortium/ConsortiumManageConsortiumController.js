@@ -113,8 +113,7 @@ angular.module('platform-ui.librariantool.role.consortium.manage.consortium').co
                     data:data,
                     method: 'POST',
 		}).success(function(data, status, headers, config){
-			$scope.createdInstitution['name'] = data['name'];
-			$scope.createdInstitution['partyId'] = data['partyId'];
+			$scope.createdInstitution = data;
 			$scope.createdInstitution['state'] = null;
 			$scope.institutions.unshift(angular.copy($scope.createdInstitution));
 			var data = {
