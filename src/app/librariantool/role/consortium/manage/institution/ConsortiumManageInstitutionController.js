@@ -162,7 +162,7 @@ angular.module('platform-ui.librariantool.role.consortium.manage.institution').c
 
             // init
 	    $http({
-                url: $scope.apiUri+'/parties/ipranges/?partyId='+$scope.selectedInstitution.partyId+'&credentialId='+$scope.selectedInstitution.partyId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+                url: $scope.apiUri+'/parties/ipranges/?partyId='+$scope.selectedInstitution.partyId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
                 method: 'GET',
             }).success(function(data, status, headers, config){
                 $scope.ipranges = [];
