@@ -16,10 +16,12 @@
   <div class="col-xs-8 lt-admin-right-panel" style="padding:0px">
     <!-- Right Panel Header -->
     <div class="lt-admin-groups-title">
-      <div class="col-xs-4 lt-admin-groups-title-label" style="padding:0px">{{selectedInstitution.name}}</div>
-      <div class="col-xs-4 pull-right" style="padding:0px">
-        <span class="pull-right glyphicon glyphicon-triangle-bottom lt-admin-groups-title-glyphicon"></span>
-        <span class="pull-right text-right lt-admin-groups-title-filter"> By Start IP</span>
+      <div class="col-xs-4 lt-admin-groups-title-label" style="padding:0px">{{partyInfo.name}}</div>
+      <div class="col-xs-6 pull-right" style="padding:0px">
+        <a href = "" class="lt-admin-groups-title-filter" ng-repeat-start="sorting in sortings" ng-click="sortByField(sorting)"> By {{sorting.text}}</a>
+        <span class="glyphicon glyphicon-triangle-top lt-admin-groups-title-glyphicon" ng-show="predicate==sorting.predicate&&!reverse"></span>
+        <span class="glyphicon glyphicon-triangle-bottom lt-admin-groups-title-glyphicon" ng-show="predicate==sorting.predicate&&reverse"></span>
+        <span class="glyphicon glyphicon-invisible lt-admin-groups-title-glyphicon" ng-hide="predicate==sorting.predicate" ng-repeat-end></span>
       </div>
     </div>
 
