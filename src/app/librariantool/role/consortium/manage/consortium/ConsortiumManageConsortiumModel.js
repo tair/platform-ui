@@ -24,7 +24,7 @@ angular.module('platform-ui.librariantool.role.consortium.manage.consortium').fa
                         {'name':'UC Santa Clara', 'partyId':'Institution #6', 'state':null},
                     ],
                     sortings: [
-         		              {predicate:'id', reverse:false, text:"ID"},
+         		              {predicate:'partyId', reverse:false, text:"ID"},
          		              {predicate:'name', reverse:false, text:"Name"}
          		              ]
 		};
