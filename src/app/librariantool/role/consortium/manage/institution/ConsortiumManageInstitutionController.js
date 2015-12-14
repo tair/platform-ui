@@ -13,11 +13,12 @@ angular.module('platform-ui.librariantool.role.consortium.manage.institution').c
 	'$cookies',
 	'$location',
 	'$state',
+	'$filter',
 	'Title',
 	'ConsortiumManageInstitutionModel',
 
 	/* Controller Definition */
-	function ($scope, $http, $cookies, $location, $state, Title, ConsortiumManageInstitutionModel) {
+	function ($scope, $http, $cookies, $location, $state, $filter, Title, ConsortiumManageInstitutionModel) {
             $scope.setTitle($scope.selectedInstitution.name);
             $scope.ipranges = ConsortiumManageInstitutionModel.ipranges;
             $scope.addGroupShow = "hidden";
@@ -26,6 +27,28 @@ angular.module('platform-ui.librariantool.role.consortium.manage.institution').c
             $scope.removeRange = null;
             $scope.editRange = null;
             $scope.searchTerm = null;
+            $scope.sortings = ConsortiumManageInstitutionModel.sortings; //List of sorting objects which contain sortField and reverse attributes.
+    	    $scope.reverse = $scope.sortings[0].reverse;
+    	    $scope.predicate = $scope.sortings[0].predicate;
+    	    
+    	    //initializing orderBy function
+    	    var orderBy = $filter('orderBy');
+    	    $scope.order = function(predicate, reverse) {
+    	      $scope.ipranges = orderBy($scope.ipranges, predicate, reverse);
+    	    };
+    	    $scope.order($scope.predicate,$scope.reverse);
+    	    
+    	    //Sorting function for ng-click
+    	    $scope.sortByField = function(sorting) {
+    	    	if ($scope.predicate!=sorting.predicate){
+    	    	    $scope.predicate=sorting.predicate;
+    	    	    $scope.reverse=sorting.reverse;
+    	    	}else{
+    	    		sorting.reverse = !sorting.reverse;
+    	    		$scope.reverse=sorting.reverse;
+    	    	}
+    	    	$scope.order($scope.predicate,$scope.reverse);
+    	    }
 
             // CSS Logics as response to state changes.
 	    $scope.groupsListStartCss = function(state) {
