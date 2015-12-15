@@ -70,7 +70,7 @@ angular.module('platform-ui.librariantool.role.consortium.profile').controller(
                         $scope.setTitle(ConsortiumProfileModel.title);
                         $scope.user = ConsortiumProfileModel.user;
                         $http({
-                                url: $scope.apiUri+'/credentials/?username='+$cookies.username+'&credentialId='+$scope.selectedInstitution.partyId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+                                url: $scope.apiUri+'/credentials/?username='+$cookies.username+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
                                 method: 'GET',
                         }).success(function(data, status, headers, config) {
                                 $scope.user.name = data[0].name;
