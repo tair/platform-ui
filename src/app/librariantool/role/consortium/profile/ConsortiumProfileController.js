@@ -34,7 +34,7 @@ angular.module('platform-ui.librariantool.role.consortium.profile').controller(
                                         }
                                 }
                                 $http({
-                                        url: $scope.apiUri+'/credentials/?username='+$cookies.username+'&partyId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+                                        url: $scope.apiUri+'/credentials/profile/?partyId='+$cookies.credentialId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
                                         data: put_data,
                                         method: 'PUT',
                                         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
