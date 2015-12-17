@@ -12,7 +12,7 @@ angular.module('platform-ui.librariantool.role.consortium.usage').factory(
 
 	function () {
 		return {
-			title: 'Consortium',
+			title: 'USAGE',
 			uiparams: {
 				"colwidth": 'col-xs-11',
 			},
