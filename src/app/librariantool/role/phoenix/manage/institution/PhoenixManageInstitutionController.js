@@ -205,7 +205,7 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 	    $scope.consortiumName = $location.search()['consortiumName'];
 	    $scope.setTitle($scope.consortiumName);
             $http({
-            	url: $scope.apiUri+'/parties/?consortium='+$scope.consortiumId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+            	url: $scope.apiUri+'/parties/affiliations/?partyId='+$scope.consortiumId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
                 method: 'GET',
             }).success(function(data, status, headers, config){
 		$scope.institutions = [];
@@ -217,7 +217,6 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 			name:entry['name'],
 			country:entry['country'],
 			display:entry['display'],
-			consortium:entry['consortium'],
 			state:null
 		    });
 		}
