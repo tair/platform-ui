@@ -13,7 +13,7 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').fact
 	function () {
 		return {
 		    title: 'UC Consortium',
-		    newRange: {'name':null, 'start':null, 'end':null},
+		    newInstitution: {'name':null, 'country':null},
 		    institutions:[
 		                  {
 		                	    "partyId": 55,
