@@ -165,6 +165,19 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 			$scope.createdInstitution = data;
 			$scope.createdInstitution['state'] = null;
 			$scope.institutions.unshift(angular.copy($scope.createdInstitution));
+			var data = {
+					consortiumId : $cookies.consortiumId,
+					action : 'add'
+			}
+		$http({
+            url: $scope.apiUri+'/parties/consortiums/?partyId='+$scope.createdInstitution.partyId +'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+            data:data,
+            method: 'PUT',
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+			}).success(function(data, status, headers, config){
+			}).error(function(data, status, headers, config){
+			            alert("add institution request failed");
+			});
 		}).error(function(data, status, headers, config){
             alert("new institution request failed");
 		});		            
