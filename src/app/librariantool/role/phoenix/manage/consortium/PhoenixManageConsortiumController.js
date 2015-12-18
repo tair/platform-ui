@@ -132,11 +132,11 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.consortium').contr
 		    data:data,
                     method: 'POST',
 		}).success(function(data, status, headers, config){
+			$scope.newConsortium['partyId'] = data['partyId'];
+            $scope.consortiums.unshift(angular.copy($scope.newConsortium));
 		}).error(function(data, status, headers, config){
                     alert("add consortium request failed");
 		});
-		
-                $scope.consortiums.unshift(angular.copy($scope.newConsortium));
 		$scope.newConsortium = null;
 		$scope.adding = false;
 	    }
