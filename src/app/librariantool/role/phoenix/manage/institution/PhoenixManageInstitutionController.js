@@ -22,8 +22,9 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 	    $scope.setTitle(PhoenixManageInstitutionModel.title);
 	    $scope.institutions = PhoenixManageInstitutionModel.institutions;
 	    $scope.addGroupShow = "hidden";
-	    $scope.adding = false;
-	    $scope.newRange = PhoenixManageInstitutionModel.newRange;
+	    $scope.InsAdding = false;
+	    $scope.SubAdding = false;
+	    $scope.newInstitution = PhoenixManageInstitutionModel.newInstitution;
 	    $scope.removeRange = null;
 	    $scope.editRange = null;
 	    $scope.searchTerm = null;
@@ -93,12 +94,12 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 
 	    // Events that change states
             $scope.groupsMoveOver = function(institution) {
-                if (institution.state == null && !$scope.adding) {
+                if (institution.state == null && !$scope.InsAdding) {
                     institution.state = "selected";
                 }
             }
             $scope.groupsMoveOut = function(institution) {
-                if (institution.state == "selected" && !$scope.adding) {
+                if (institution.state == "selected" && !$scope.InsAdding) {
                     institution.state = null;
                 }
             }
@@ -126,7 +127,7 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 		    // This is the edit button at normal state.
                     $scope.editRange = angular.copy(institution);
                     institution.state = "edit";
-                    $scope.adding = false;
+                    $scope.InsAdding = false;
 		}
 		else if (institution.state == "edit") {
 		    // This is the confirm button at edit state
@@ -153,26 +154,25 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 	    $scope.addConfirm = function() {
 		//alert("Nothing is added!");
 		var data = {
-		    start:$scope.newRange['start'],
-		    end:$scope.newRange['end'],
-		    partyId:$cookies.partyId,
-		    label:$scope.newRange['name'],
+		    name:$scope.newInstitution['name'],
+		    partyType:'organization'
 		}
 		$http({
-                    url: $scope.apiUri+'/parties/ipranges/?partyId='+$cookies.partyId+'&secret_key='+encodeURIComponent($cookies.secret_key),
+            url: $scope.apiUri+'/parties/?credentialId='+$cookies.credentialId+'&secret_key='+encodeURIComponent($cookies.secret_key),
 		    data:data,
-                    method: 'POST',
+            method: 'POST',
 		}).success(function(data, status, headers, config){
+			$scope.createdInstitution = data;
+			$scope.createdInstitution['state'] = null;
+			$scope.institutions.unshift(angular.copy($scope.createdInstitution));
 		}).error(function(data, status, headers, config){
-                    alert("institution request failed");
-		});
-		
-                $scope.ipranges.unshift(angular.copy($scope.newRange));
-		$scope.newRange = null;
-		$scope.adding = false;
+            alert("new institution request failed");
+		});		            
+			$scope.newInstitution = null;
+			$scope.InsAdding = false;
 	    }
 	    $scope.reset = function() {
-		$scope.adding = false;
+		$scope.InsAdding = false;
 		for (i=0; i<$scope.institutions.length; i++) {
 		    $scope.institutions[i].state=null;
 		}
