@@ -147,7 +147,7 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 		    $scope.editRange = null;
 		} else if (institution.state == "remove") {
 		    // this is the remove button at remove state
-		    $scope.removeConfirm(institution);
+		    $scope.deleteAffiliation(institution);
 		    institution.state = null;
 		}
 	    }
@@ -190,6 +190,25 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 		    $scope.institutions[i].state=null;
 		}
 	    }
+	    $scope.deleteAffiliation = function(institution){
+        	var data = {
+        			consortiumId: $cookies.consortiumId,
+        			action: 'remove'
+        	}
+        	$http({
+        		url: $scope.apiUri+'/parties/consortiums/?partyId='+institution.partyId+'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+        		data:data,
+	            method: 'PUT',
+	            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        	}).success(function(data, status, headers, config){
+            }).error(function(data, status, headers, config){
+                alert("institution remove request failed");
+            });
+        	var index = $scope.institutions.indexOf(institution);
+            if (index > -1) {
+                $scope.institutions.splice(index,1);
+            }
+        }
 	    $scope.removeConfirm = function(institution) {
                 $http({
                     url: $scope.apiUri+'/parties/?credentialId='+$cookies.credentialId+'&secret_key='+encodeURIComponent($cookies.secret_key)+'&partyId='+institution['partyId'],
