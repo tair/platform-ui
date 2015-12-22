@@ -65,7 +65,28 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 	    $scope.licenseButton = function(id) {
 			return "Edit";
 		    };
-	    
+	    $scope.createConfirm = function(){
+	    	var data = {				    
+				    partnerId:$scope.newSubscription['partnerId'],
+				    partyId:$scope.consortiumId,
+				    startDate:Dateformat.formatDate($scope.newSubscription['start']),
+				    endDate:Dateformat.formatDate($scope.newSubscription['end']),
+				}
+	    	console.log(JSON.stringify(data));
+	    	$http({
+		        url: $scope.apiUri+'/subscriptions/?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+			    data:data,
+		        method: 'POST',
+			}).success(function(data, status, headers, config){
+				$scope.createdSubscription = data;
+				$scope.partners.unshift(angular.copy($scope.ceatedSubscription));
+			}).error(function(data, status, headers, config){
+		        alert("create subscription request failed");
+			});
+//		    	$scope.partners.unshift(angular.copy($scope.newSubscription));
+			$scope.newSubscription = null;
+			$scope.Subadding = false;
+	    }
 	  //initializing orderBy function
 	    var orderBy = $filter('orderBy');
 	    $scope.order = function(predicate, reverse) {
@@ -240,26 +261,7 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 	    $scope.back = function(){
 	    	$state.go("role.phoenix.manage.consortium");
 	    }
-	    $scope.createConfirm = function(){
-	    	var data = {				    
-				    partnerId:$scope.newSubscription['partnerId'],
-				    partyId:$scope.consortiumId,
-				    startDate:Dateformat.formatDate($scope.newSubscription['start']),
-				    endDate:Dateformat.formatDate($scope.newSubscription['end']),
-				}
-	    	console.log(JSON.stringify(data));
-	    	$http({
-		        url: $scope.apiUri+'/subscriptions/?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
-			    data:data,
-		        method: 'POST',
-			}).success(function(data, status, headers, config){
-			}).error(function(data, status, headers, config){
-		        alert("create subscription request failed");
-			});
-	    	$scope.allSubscriptions.unshift(angular.copy($scope.newSubscription));
-			$scope.newSubscription = null;
-			$scope.adding = false;
-	    }
+	    
 	    // init
 	    $scope.consortiumId = $location.search()['consortiumId'];
 	    $scope.consortiumName = $location.search()['consortiumName'];
