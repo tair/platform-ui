@@ -293,5 +293,11 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 		}).error(function() {
 			alert("Cannot get partner information");
 		});
+        $(function () {
+            $('#createStart').datepicker();
+        });
+		$(function () {
+            $('#createEnd').datepicker();
+        });
 	}
 ]);
