@@ -37,13 +37,21 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 	    $scope.partners = PhoenixManageInstitutionModel.partners;
 	    $scope.uiparams = PhoenixManageInstitutionModel.uiparams;
 	    
+	    $http({
+            url: $scope.apiUri+'/subscriptions/activesubscriptions/'+$cookies.credentialId+'/',
+            method: 'GET',
+	    }).success(function(data, status, headers, config) {
+	            $scope.activeSubscriptions = data;
+	    }).error(function() {
+	            alert("Cannot get active subscription information");
+	    });
 	    $scope.getExpDate = function(id) {
 			if (id in $scope.activeSubscriptions) {
 				return $scope.activeSubscriptions[id].endDate;
 			}
 			return "Unlicensed";
 		    };
-		    
+		
 	    $scope.listPartners = function(partners) {
 			var ret = [];
 			for (var i=0; i<partners.length; i++) {
@@ -232,6 +240,26 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 	    $scope.back = function(){
 	    	$state.go("role.phoenix.manage.consortium");
 	    }
+	    $scope.createConfirm = function(){
+	    	var data = {				    
+				    partnerId:$scope.newSubscription['partnerId'],
+				    partyId:$scope.consortiumId,
+				    startDate:Dateformat.formatDate($scope.newSubscription['start']),
+				    endDate:Dateformat.formatDate($scope.newSubscription['end']),
+				}
+	    	console.log(JSON.stringify(data));
+	    	$http({
+		        url: $scope.apiUri+'/subscriptions/?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+			    data:data,
+		        method: 'POST',
+			}).success(function(data, status, headers, config){
+			}).error(function(data, status, headers, config){
+		        alert("create subscription request failed");
+			});
+	    	$scope.allSubscriptions.unshift(angular.copy($scope.newSubscription));
+			$scope.newSubscription = null;
+			$scope.adding = false;
+	    }
 	    // init
 	    $scope.consortiumId = $location.search()['consortiumId'];
 	    $scope.consortiumName = $location.search()['consortiumName'];
@@ -255,5 +283,13 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
             }).error(function(data, status, headers, config){
 		alert("institution request failed");
             });
+        $http({
+			url: $scope.apiUri+'/partners/'+'?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+			method: 'GET',
+		}).success(function(data, status, headers, config) {
+			$scope.partners = data;
+		}).error(function() {
+			alert("Cannot get partner information");
+		});
 	}
 ]);
