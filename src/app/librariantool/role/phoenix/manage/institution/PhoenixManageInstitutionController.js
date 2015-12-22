@@ -15,10 +15,11 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 	'$state',
 	'$filter',
 	'Title',
+	'Dateformat',
 	'PhoenixManageInstitutionModel',
 
 	/* Controller Definition */
-	function ($scope, $http, $cookies, $location, $state, $filter, Title, PhoenixManageInstitutionModel) {
+	function ($scope, $http, $cookies, $location, $state, $filter, Title, Dateformat, PhoenixManageInstitutionModel) {
 	    $scope.setTitle(PhoenixManageInstitutionModel.title);
 	    $scope.institutions = PhoenixManageInstitutionModel.institutions;
 	    $scope.addGroupShow = "hidden";
