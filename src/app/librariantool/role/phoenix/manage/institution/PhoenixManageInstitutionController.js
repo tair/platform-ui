@@ -222,7 +222,7 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 	    }
 	    $scope.deleteAffiliation = function(institution){
         	var data = {
-        			consortiumId: $cookies.consortiumId,
+        			consortiumId: $scope.consortiumId,
         			action: 'remove'
         	}
         	$http({
