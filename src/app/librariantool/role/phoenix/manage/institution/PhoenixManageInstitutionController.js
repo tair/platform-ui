@@ -196,7 +196,7 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 			$scope.createdInstitution['state'] = null;
 			$scope.institutions.unshift(angular.copy($scope.createdInstitution));
 			var data = {
-					consortiumId : $cookies.consortiumId,
+					consortiumId : $scope.consortiumId,
 					action : 'add'
 			}
 		$http({
