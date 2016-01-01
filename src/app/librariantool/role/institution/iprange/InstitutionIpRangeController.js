@@ -142,7 +142,7 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
                     method: 'POST',
 		}).success(function(data, status, headers, config){
 		}).error(function(data, status, headers, config){
-                    alert("ip range request failed");
+                    alert("add ip range request failed");
 		});
 		
                 $scope.ipranges.unshift(angular.copy($scope.newRange));
