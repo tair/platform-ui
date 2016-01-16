@@ -63,6 +63,14 @@ angular.module(
 						templateUrl: 'contentaccess/list/list.html'
 					}
 				}
+			}).state('guide', {
+				url: '/contentaccess/guide',
+				views: {
+					'main': {
+						controller: 'GuideController',
+						templateUrl: 'contentaccess/guide/guide.html'
+					}
+				}
 			});
 		});
 
