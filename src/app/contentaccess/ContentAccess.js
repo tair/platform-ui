@@ -17,6 +17,7 @@ angular.module(
 	'platform-ui.contentaccess.metering',
 	'platform-ui.contentaccess.activation',
 	'platform-ui.contentaccess.list',
+	'platform-ui.contentaccess.guide',
 	])
 	.config(
 		function ($stateProvider) {
