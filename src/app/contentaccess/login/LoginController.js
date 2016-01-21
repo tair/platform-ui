@@ -117,7 +117,7 @@ angular.module('platform-ui.contentaccess.login').controller(
 	                maskedEmail = maskEmail($scope.formdata.email);
 	                bootbox.alert("A temporary password has be emailed to your address "+maskedEmail);
 	            }).error(function(data, status, headers, config){
-	            	bootbox.alert('Error. Password not updated');
+	            	bootbox.alert('User '+$scope.formdata.user+' not found; username is case sensitive');
 	            	console.log('status',status);
 	                console.log('data',data);
 	            });
@@ -129,6 +129,7 @@ angular.module('platform-ui.contentaccess.login').controller(
 			$scope.partnerId = $location.search()['partnerId'];
 			$scope.redirect = $scope.getRedirect();
 		    $scope.redirectNoEncode = $scope.getRedirectNoEncode();
+		    //console.out("$scope.getRedirectNoEncode()"+$scope.getRedirectNoEncode()); vet maybe it make sense to output it into console
 			$http({
 				url: $scope.apiUri+'/partners/descriptions/?partnerId='+$scope.partnerId+'&includeText=True',
 				method:'GET',
