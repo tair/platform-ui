@@ -16,9 +16,10 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 	'$filter',
 	'Title',
 	'InstitutionIpRangeModel',
+	'IpValidator',
 
 	/* Controller Definition */
-	function ($scope, $http, $cookies, $location, $state, $filter, Title, InstitutionIpRangeModel) {
+	function ($scope, $http, $cookies, $location, $state, $filter, Title, InstitutionIpRangeModel, IpValidator) {
 	    $scope.setTitle(InstitutionIpRangeModel.title);
 	    $scope.ipranges = InstitutionIpRangeModel.ipranges;
 	    $scope.addGroupShow = "hidden";
@@ -104,6 +105,19 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 		}
 		else if (iprange.state == "edit") {
 		    // This is the confirm button at edit state
+			if(!IpValidator.ValidateIpAddress(iprange['start'])){
+		    	alert("invalid starting IP");
+		    	return;
+		    };
+		    if(!IpValidator.ValidateIpAddress(iprange['end'])){
+		    	alert("invalid ending IP");
+		    	return;
+		    };
+		    if(iprange['start']>iprange['end']){
+		    	alert("start cannot be greater than end");
+		    	return;
+		    }
+			
 		    data = {
 			ipRangeId:iprange['ipRangeId'],
 			start:iprange['start'],
@@ -129,6 +143,18 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 		}
 	    }
 	    $scope.addConfirm = function() {
+	    if(!IpValidator.ValidateIpAddress($scope.newRange['start'])){
+	    	alert("invalid starting IP");
+	    	return;
+	    };
+	    if(!IpValidator.ValidateIpAddress($scope.newRange['end'])){
+	    	alert("invalid ending IP");
+	    	return;
+	    };
+	    if($scope.newRange['start']>$scope.newRange['end']){
+	    	alert("start cannot be greater than end");
+	    	return;
+	    }
 		//alert("Nothing is added!");
 		var data = {
 		    start:$scope.newRange['start'],
