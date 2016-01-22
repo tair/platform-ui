@@ -17,6 +17,7 @@ angular.module(
 	'platform-ui.contentaccess.metering',
 	'platform-ui.contentaccess.activation',
 	'platform-ui.contentaccess.list',
+	'platform-ui.contentaccess.guide',
 	])
 	.config(
 		function ($stateProvider) {
@@ -61,6 +62,14 @@ angular.module(
 					'main': {
 						controller: 'ListController',
 						templateUrl: 'contentaccess/list/list.html'
+					}
+				}
+			}).state('guide', {
+				url: '/contentaccess/guide',
+				views: {
+					'main': {
+						controller: 'GuideController',
+						templateUrl: 'contentaccess/guide/guide.html'
 					}
 				}
 			});
