@@ -182,6 +182,33 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 		}
 	    }
 	    $scope.addConfirm = function() {
+	    	return
+	    	if($scope.newInstitution['name']){
+	    		$scope.addConfirm2($scope.newInstitution['name']);
+	    	}else{
+	    		$scope.addConfirm1();
+	    	}
+	    }
+	    $scope.addConfirm2 = function(foundName) {
+	    	//$http
+	    	$scope.foundInstitution = data;
+			$scope.foundInstitution['state'] = null;
+			$scope.institutions.unshift(angular.copy($scope.foundInstitution));
+			var data = {
+					consortiumId : $scope.consortiumId,
+					action : 'add'
+			}
+	    	$http({
+	            url: $scope.apiUri+'/parties/consortiums/?partyId='+$scope.foundInstitution.partyId +'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+	            data:data,
+	            method: 'PUT',
+	            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+				}).success(function(data, status, headers, config){
+				}).error(function(data, status, headers, config){
+				            alert("add existing institution request failed");
+				});
+	    }
+	    $scope.addConfirm1 = function() {
 		//alert("Nothing is added!");
 		var data = {
 		    name:$scope.newInstitution['name'],
@@ -206,7 +233,7 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 			}).success(function(data, status, headers, config){
 			}).error(function(data, status, headers, config){
-			            alert("add institution request failed");
+			            alert("add new institution request failed");
 			});
 		}).error(function(data, status, headers, config){
             alert("new institution request failed");
