@@ -14,7 +14,8 @@
     <div class="lt-admin-groups-title">
       <div class="col-xs-4 lt-admin-groups-title-label" style="padding:0px">{{partyInfo.name}}</div>
       <div class="col-xs-6 pull-right" style="padding:0px">
-        <a href = "" class="lt-admin-groups-title-filter" ng-repeat-start="sorting in sortings" ng-click="sortByField(sorting)"> By {{sorting.text}}</a>
+      <span class="lt-admin-groups-title-filter">Sort By: </span>
+        <a href = "" class="lt-admin-groups-title-filter" ng-repeat-start="sorting in sortings" ng-click="sortByField(sorting)">{{sorting.text}}</a>
         <span class="glyphicon glyphicon-triangle-top lt-admin-groups-title-glyphicon" ng-show="predicate==sorting.predicate&&!reverse"></span>
         <span class="glyphicon glyphicon-triangle-bottom lt-admin-groups-title-glyphicon" ng-show="predicate==sorting.predicate&&reverse"></span>
         <span class="glyphicon glyphicon-invisible lt-admin-groups-title-glyphicon" ng-hide="predicate==sorting.predicate" ng-repeat-end></span>
@@ -27,7 +28,7 @@
       <div class="lt-admin-groups-description">Add new IP ranges from the left action panel. Click on already existing IP ranges to edit or delete them.</div>
       <div class="lt-admin-groups-search">
         <span>Search</span>
-        <span><input style="width:468px" placeholder="Enter institution name or ID number" ng-model="searchTerm"></input></span>
+        <span><input style="width:468px" placeholder="Search for IP Range Label or IP address number" ng-model="searchTerm"></input></span>
       </div>
 
       <!-- Add IP Range -->
