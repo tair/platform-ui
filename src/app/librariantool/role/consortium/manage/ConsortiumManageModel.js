@@ -13,6 +13,7 @@ angular.module('platform-ui.librariantool.role.consortium.manage').factory(
 	function () {
 	    return {
 		'selectedInstitution':{
+			'partyId': 2,
 		    'name':'getexp inc',
 		    'state':null,
 		},

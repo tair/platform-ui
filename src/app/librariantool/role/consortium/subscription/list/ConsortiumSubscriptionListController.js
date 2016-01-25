@@ -13,11 +13,12 @@ angular.module('platform-ui.librariantool.role.consortium.subscription.list').co
 	'$cookies',
 	'$location',
 	'$state',
+	'$filter',
 	'Title',
 	'ConsortiumSubscriptionListModel',
 
 	/* Controller Definition */
-	function ($scope, $http, $cookies, $location, $state, Title, ConsortiumSubscriptionListModel) {
+	function ($scope, $http, $cookies, $location, $state, $filter, Title, ConsortiumSubscriptionListModel) {
 	    init();
 
 	    $scope.getExpDate = function(id) {

@@ -15,15 +15,17 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 	'$state',
 	'$filter',
 	'Title',
+	'Dateformat',
 	'PhoenixManageInstitutionModel',
 
 	/* Controller Definition */
-	function ($scope, $http, $cookies, $location, $state, $filter, Title, PhoenixManageInstitutionModel) {
+	function ($scope, $http, $cookies, $location, $state, $filter, Title, Dateformat, PhoenixManageInstitutionModel) {
 	    $scope.setTitle(PhoenixManageInstitutionModel.title);
 	    $scope.institutions = PhoenixManageInstitutionModel.institutions;
 	    $scope.addGroupShow = "hidden";
-	    $scope.adding = false;
-	    $scope.newRange = PhoenixManageInstitutionModel.newRange;
+	    $scope.InsAdding = false;
+	    $scope.SubAdding = false;
+	    $scope.newInstitution = PhoenixManageInstitutionModel.newInstitution;
 	    $scope.removeRange = null;
 	    $scope.editRange = null;
 	    $scope.searchTerm = null;
@@ -36,13 +38,21 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 	    $scope.partners = PhoenixManageInstitutionModel.partners;
 	    $scope.uiparams = PhoenixManageInstitutionModel.uiparams;
 	    
+	    $http({
+            url: $scope.apiUri+'/subscriptions/activesubscriptions/'+$cookies.credentialId+'/',
+            method: 'GET',
+	    }).success(function(data, status, headers, config) {
+	            $scope.activeSubscriptions = data;
+	    }).error(function() {
+	            alert("Cannot get active subscription information");
+	    });
 	    $scope.getExpDate = function(id) {
 			if (id in $scope.activeSubscriptions) {
 				return $scope.activeSubscriptions[id].endDate;
 			}
 			return "Unlicensed";
 		    };
-		    
+		
 	    $scope.listPartners = function(partners) {
 			var ret = [];
 			for (var i=0; i<partners.length; i++) {
@@ -56,7 +66,28 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 	    $scope.licenseButton = function(id) {
 			return "Edit";
 		    };
-	    
+	    $scope.createConfirm = function(){
+	    	var data = {				    
+				    partnerId:$scope.newSubscription['partnerId'],
+				    partyId:$scope.consortiumId,
+				    startDate:Dateformat.formatDate($scope.newSubscription['start']),
+				    endDate:Dateformat.formatDate($scope.newSubscription['end']),
+				}
+	    	console.log(JSON.stringify(data));
+	    	$http({
+		        url: $scope.apiUri+'/subscriptions/?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+			    data:data,
+		        method: 'POST',
+			}).success(function(data, status, headers, config){
+				$scope.createdSubscription = data;
+				$scope.partners.unshift(angular.copy($scope.ceatedSubscription));
+			}).error(function(data, status, headers, config){
+		        alert("create subscription request failed");
+			});
+//		    	$scope.partners.unshift(angular.copy($scope.newSubscription));
+			$scope.newSubscription = null;
+			$scope.Subadding = false;
+	    }
 	  //initializing orderBy function
 	    var orderBy = $filter('orderBy');
 	    $scope.order = function(predicate, reverse) {
@@ -93,12 +124,12 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 
 	    // Events that change states
             $scope.groupsMoveOver = function(institution) {
-                if (institution.state == null && !$scope.adding) {
+                if (institution.state == null && !$scope.InsAdding) {
                     institution.state = "selected";
                 }
             }
             $scope.groupsMoveOut = function(institution) {
-                if (institution.state == "selected" && !$scope.adding) {
+                if (institution.state == "selected" && !$scope.InsAdding) {
                     institution.state = null;
                 }
             }
@@ -126,7 +157,7 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 		    // This is the edit button at normal state.
                     $scope.editRange = angular.copy(institution);
                     institution.state = "edit";
-                    $scope.adding = false;
+                    $scope.InsAdding = false;
 		}
 		else if (institution.state == "edit") {
 		    // This is the confirm button at edit state
@@ -146,37 +177,95 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 		    $scope.editRange = null;
 		} else if (institution.state == "remove") {
 		    // this is the remove button at remove state
-		    $scope.removeConfirm(institution);
+		    $scope.deleteAffiliation(institution);
 		    institution.state = null;
 		}
 	    }
 	    $scope.addConfirm = function() {
+	    	return
+	    	if($scope.newInstitution['name']){
+	    		$scope.addConfirm2($scope.newInstitution['name']);
+	    	}else{
+	    		$scope.addConfirm1();
+	    	}
+	    }
+	    $scope.addConfirm2 = function(foundName) {
+	    	//$http
+	    	$scope.foundInstitution = data;
+			$scope.foundInstitution['state'] = null;
+			$scope.institutions.unshift(angular.copy($scope.foundInstitution));
+			var data = {
+					consortiumId : $scope.consortiumId,
+					action : 'add'
+			}
+	    	$http({
+	            url: $scope.apiUri+'/parties/consortiums/?partyId='+$scope.foundInstitution.partyId +'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+	            data:data,
+	            method: 'PUT',
+	            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+				}).success(function(data, status, headers, config){
+				}).error(function(data, status, headers, config){
+				            alert("add existing institution request failed");
+				});
+	    }
+	    $scope.addConfirm1 = function() {
 		//alert("Nothing is added!");
 		var data = {
-		    start:$scope.newRange['start'],
-		    end:$scope.newRange['end'],
-		    partyId:$cookies.partyId,
-		    label:$scope.newRange['name'],
+		    name:$scope.newInstitution['name'],
+		    partyType:'organization'
 		}
 		$http({
-                    url: $scope.apiUri+'/parties/ipranges/?partyId='+$cookies.partyId+'&secret_key='+encodeURIComponent($cookies.secret_key),
+            url: $scope.apiUri+'/parties/?credentialId='+$cookies.credentialId+'&secret_key='+encodeURIComponent($cookies.secret_key),
 		    data:data,
-                    method: 'POST',
+            method: 'POST',
 		}).success(function(data, status, headers, config){
+			$scope.createdInstitution = data;
+			$scope.createdInstitution['state'] = null;
+			$scope.institutions.unshift(angular.copy($scope.createdInstitution));
+			var data = {
+					consortiumId : $scope.consortiumId,
+					action : 'add'
+			}
+		$http({
+            url: $scope.apiUri+'/parties/consortiums/?partyId='+$scope.createdInstitution.partyId +'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+            data:data,
+            method: 'PUT',
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+			}).success(function(data, status, headers, config){
+			}).error(function(data, status, headers, config){
+			            alert("add new institution request failed");
+			});
 		}).error(function(data, status, headers, config){
-                    alert("institution request failed");
-		});
-		
-                $scope.ipranges.unshift(angular.copy($scope.newRange));
-		$scope.newRange = null;
-		$scope.adding = false;
+            alert("new institution request failed");
+		});		            
+			$scope.newInstitution = null;
+			$scope.InsAdding = false;
 	    }
 	    $scope.reset = function() {
-		$scope.adding = false;
+		$scope.InsAdding = false;
 		for (i=0; i<$scope.institutions.length; i++) {
 		    $scope.institutions[i].state=null;
 		}
 	    }
+	    $scope.deleteAffiliation = function(institution){
+        	var data = {
+        			consortiumId: $scope.consortiumId,
+        			action: 'remove'
+        	}
+        	$http({
+        		url: $scope.apiUri+'/parties/consortiums/?partyId='+institution.partyId+'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+        		data:data,
+	            method: 'PUT',
+	            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        	}).success(function(data, status, headers, config){
+            }).error(function(data, status, headers, config){
+                alert("institution remove request failed");
+            });
+        	var index = $scope.institutions.indexOf(institution);
+            if (index > -1) {
+                $scope.institutions.splice(index,1);
+            }
+        }
 	    $scope.removeConfirm = function(institution) {
                 $http({
                     url: $scope.apiUri+'/parties/?credentialId='+$cookies.credentialId+'&secret_key='+encodeURIComponent($cookies.secret_key)+'&partyId='+institution['partyId'],
@@ -200,12 +289,13 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 	    $scope.back = function(){
 	    	$state.go("role.phoenix.manage.consortium");
 	    }
+	    
 	    // init
 	    $scope.consortiumId = $location.search()['consortiumId'];
 	    $scope.consortiumName = $location.search()['consortiumName'];
 	    $scope.setTitle($scope.consortiumName);
             $http({
-            	url: $scope.apiUri+'/parties/?consortium='+$scope.consortiumId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+            	url: $scope.apiUri+'/parties/affiliations/?partyId='+$scope.consortiumId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
                 method: 'GET',
             }).success(function(data, status, headers, config){
 		$scope.institutions = [];
@@ -217,12 +307,25 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 			name:entry['name'],
 			country:entry['country'],
 			display:entry['display'],
-			consortium:entry['consortium'],
 			state:null
 		    });
 		}
             }).error(function(data, status, headers, config){
 		alert("institution request failed");
             });
+        $http({
+			url: $scope.apiUri+'/partners/'+'?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+			method: 'GET',
+		}).success(function(data, status, headers, config) {
+			$scope.partners = data;
+		}).error(function() {
+			alert("Cannot get partner information");
+		});
+        $(function () {
+            $('#createStart').datepicker();
+        });
+		$(function () {
+            $('#createEnd').datepicker();
+        });
 	}
 ]);

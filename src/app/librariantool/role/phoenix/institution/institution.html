@@ -98,6 +98,30 @@
             </div>
         </div>
         
+<!-- Subscription List -->
+        <div class="lt-institution-subscription-list" ng-repeat="p in listPartners(partners)" style="height:100px;width:571px">
+            <div class="row">
+                <div class="{{uiparams.partnercolwidth}}">
+                    <div class="row"><div class="col-xs-12 lt-font lt-theme-font-color lt-font-aliasing" style="font-size: 24px;">
+                        {{p.name}} <img src={{p.logoUri}} alt="partner" width="87" height="61">
+                    </div></div>
+                    <div class="row"><div class="col-xs-12 lt-font lt-font-aliasing" style="font-size: 16px; color: #858585;">
+                        {{p.description}}
+                    </div></div>
+                </div>
+                <div class="{{uiparams.expcolwidth}}">
+                    <div class="row">
+                        {{getExpDate(p.partnerId) | date:'fullDate'}}
+                    </div>
+                </div>
+                <div class="{{uiparams.actionscolwidth}}">
+                    <div class="row">
+                    <button type="button" class="center-block btn btn-default" ng-click="licenseAction(p.partnerId);" ng-disabled>UC Consortium</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
       <!-- Description and Search Box -->
       <div class="lt-admin-groups-description">Add new IP ranges from the left action panel. Click on already existing IP ranges to edit or delete them.</div>
       <div class="lt-admin-groups-search">

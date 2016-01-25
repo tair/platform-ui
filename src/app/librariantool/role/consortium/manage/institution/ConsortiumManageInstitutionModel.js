@@ -14,7 +14,7 @@ angular.module('platform-ui.librariantool.role.consortium.manage.institution').f
 		return {
                     title: 'IP RANGE',
                     newRange: {'name':null, 'start':null, 'end':null},
-		    ipranges: []
+		    ipranges: [],
                     /*ipranges: [
                         {'name':'Randomly Randomized Randomness', 'start':'123.45.67', 'end':'89.12.345', 'state':null},
                         {'name':'Organized Orange Organs' , 'start':'123.45.67', 'end':'89.12.345', 'state':null},
@@ -26,6 +26,10 @@ angular.module('platform-ui.librariantool.role.consortium.manage.institution').f
                         {'name':'Cat Catches Catfish', 'start':'132.42.34', 'end':'12.123.3.52', 'state':null},
                         {'name':'Catastrophically Catalized Cataclysm', 'start':'132.42.34', 'end':'12.123.3.52', 'state':null},
                     ]*/
+            sortings: [
+ 		              {predicate:'start', reverse:false, text:"start IP"},
+ 		              {predicate:'name', reverse:false, text:"Label"}
+ 		              ]
 		};
 	}
 ]);
