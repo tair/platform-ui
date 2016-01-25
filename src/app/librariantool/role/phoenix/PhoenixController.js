@@ -19,7 +19,7 @@ angular.module('platform-ui.librariantool.role.phoenix').controller(
 	/* Controller Definition */
 	function ($scope, $http, $cookies, $location, $state, Title, PhoenixModel) {
 		if(!$cookies.credentialId || !$cookies.secretKey){
-			$state.go('platform-ui.librariantool.login');
+			$state.go('ltlogin');
 		}
             $scope.currentTab = PhoenixModel.currentTab;
             $scope.tabs = PhoenixModel.tabs;
