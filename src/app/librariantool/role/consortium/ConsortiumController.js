@@ -19,7 +19,7 @@ angular.module('platform-ui.librariantool.role.consortium').controller(
 	/* Controller Definition */
 	function ($scope, $http, $cookies, $location, $state, Title, ConsortiumModel) {
 		if(!$cookies.credentialId || !$cookies.secretKey){
-			$state.go('platform-ui.librariantool.login');
+			$state.go('ltlogin');
 		}
             $scope.currentTab = ConsortiumModel.currentTab;
             $scope.tabs = ConsortiumModel.tabs;
