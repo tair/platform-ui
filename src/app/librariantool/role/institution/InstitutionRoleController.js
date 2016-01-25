@@ -19,7 +19,7 @@ angular.module('platform-ui.librariantool.role.institution').controller(
 	/* Controller Definition */
 	function ($scope, $http, $cookies, $location, $state, Title, InstitutionRoleModel) {
 		if(!$cookies.credentialId || !$cookies.secretKey){
-			$state.go('platform-ui.librariantool.login');
+			$state.go('ltlogin');
 		}
 	    $scope.currentTab = InstitutionRoleModel.currentTab;
 	    $scope.tabs = InstitutionRoleModel.tabs;
