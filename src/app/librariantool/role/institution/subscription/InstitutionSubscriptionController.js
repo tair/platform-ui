@@ -42,7 +42,7 @@ angular.module('platform-ui.librariantool.role.institution.subscription').contro
 		}).error(function() {
 			alert("Cannot get active subscription information");
 		});
-		$state.go('role.institution.subscription.list');
+//		$state.go('role.institution.subscription.list');
 	    }
 	}
 ]);
