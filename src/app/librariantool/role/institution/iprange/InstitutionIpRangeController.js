@@ -106,15 +106,19 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 		else if (iprange.state == "edit") {
 		    // This is the confirm button at edit state
 			if(!IpValidator.ValidateIpAddress(iprange['start'])){
-		    	alert("invalid starting IP");
+		    	alert("Invalid starting IP");
 		    	return;
 		    };
 		    if(!IpValidator.ValidateIpAddress(iprange['end'])){
-		    	alert("invalid ending IP");
+		    	alert("Invalid ending IP");
 		    	return;
 		    };
-		    if(iprange['start']>iprange['end']){
-		    	alert("start cannot be greater than end");
+		    if(IpValidator.ValidateIpAddress(iprange['start'])!=IpValidator.ValidateIpAddress(iprange['end'])){
+		    	alert("Invalid IP address");
+		    	return;
+		    }
+		    if(!IpValidator.CompareIpAddress(iprange['start'],iprange['end'])){
+		    	alert("Starting IP cannot be greater than ending IP");
 		    	return;
 		    }
 			
@@ -143,18 +147,22 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 		}
 	    }
 	    $scope.addConfirm = function() {
-	    if(!IpValidator.ValidateIpAddress($scope.newRange['start'])){
-	    	alert("invalid starting IP");
-	    	return;
-	    };
-	    if(!IpValidator.ValidateIpAddress($scope.newRange['end'])){
-	    	alert("invalid ending IP");
-	    	return;
-	    };
-	    if($scope.newRange['start']>$scope.newRange['end']){
-	    	alert("start cannot be greater than end");
-	    	return;
-	    }
+	    	if(!IpValidator.ValidateIpAddress($scope.newRange['start'])){
+		    	alert("Invalid starting IP");
+		    	return;
+		    };
+		    if(!IpValidator.ValidateIpAddress($scope.newRange['end'])){
+		    	alert("Invalid ending IP");
+		    	return;
+		    };
+		    if(IpValidator.ValidateIpAddress($scope.newRange['start'])!=IpValidator.ValidateIpAddress($scope.newRange['end'])){
+		    	alert("Invalid IP address");
+		    	return;
+		    }
+		    if(!IpValidator.CompareIpAddress($scope.newRange['start'],$scope.newRange['end'])){
+		    	alert("Starting IP cannot be greater than ending IP");
+		    	return;
+		    }
 		//alert("Nothing is added!");
 		var data = {
 		    start:$scope.newRange['start'],
