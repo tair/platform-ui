@@ -14,6 +14,7 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').fact
 		return {
 		    title: 'UC Consortium',
 		    newInstitution: {'name':null, 'country':null},
+		    foundInstitution: {'name':null, 'partyId':null, 'state':null},
 		    institutions:[
 		                  {
 		                	    "partyId": 55,

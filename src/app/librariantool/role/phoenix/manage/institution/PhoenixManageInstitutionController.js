@@ -27,6 +27,7 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 	    $scope.InsAdding = false;
 	    $scope.SubAdding = false;
 	    $scope.newInstitution = PhoenixManageInstitutionModel.newInstitution;
+	    $scope.foundInstitution = PhoenixManageInstitutionModel.foundInstitution;
 	    $scope.removeRange = null;
 	    $scope.editRange = null;
 	    $scope.searchTerm = null;
