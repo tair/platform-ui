@@ -197,8 +197,6 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 	    $scope.addConfirm2 = function() {
 			$scope.foundInstitution['state'] = null;
 			$scope.institutions.unshift(angular.copy($scope.foundInstitution));
-			$scope.newInstitution = null;
-			$scope.insAdding = false;
 			var data = {
 					consortiumId : $scope.consortiumId,
 					action : 'add'
@@ -212,6 +210,8 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 				}).error(function(data, status, headers, config){
 				            alert("add existing institution request failed");
 				});
+			$scope.newInstitution = null;
+			$scope.InsAdding = false;
 	    }
 	    $scope.addConfirm1 = function() {
 		//alert("Nothing is added!");
@@ -227,8 +227,6 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 			$scope.createdInstitution = data;
 			$scope.createdInstitution['state'] = null;
 			$scope.institutions.unshift(angular.copy($scope.createdInstitution));
-			$scope.newInstitution = null;
-			$scope.insAdding = false;
 			var data = {
 					consortiumId : $scope.consortiumId,
 					action : 'add'
