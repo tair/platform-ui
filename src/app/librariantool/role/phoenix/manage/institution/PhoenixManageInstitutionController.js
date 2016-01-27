@@ -22,6 +22,7 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 	function ($scope, $http, $cookies, $location, $state, $filter, Title, Dateformat, PhoenixManageInstitutionModel) {
 	    $scope.setTitle(PhoenixManageInstitutionModel.title);
 	    $scope.institutions = PhoenixManageInstitutionModel.institutions;
+	    $scope.allInstitutions = PhoenixManageInstitutionModel.allInstitutions;
 	    $scope.addGroupShow = "hidden";
 	    $scope.InsAdding = false;
 	    $scope.SubAdding = false;
@@ -182,16 +183,17 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 		}
 	    }
 	    $scope.addConfirm = function() {
-	    	return
-	    	if($scope.newInstitution['name']){
-	    		$scope.addConfirm2($scope.newInstitution['name']);
-	    	}else{
-	    		$scope.addConfirm1();
+	    	for(var i = 0; i < $scope.allInstitutions.length; i++){
+	    		if($scope.allInstitutions[i].name == $scope.newInstitution['name']){
+	    				$scope.foundInstitution['partyId'] = $scope.allInstitutions[i].partyId;
+	    				$scope.foundInstitution['name'] = $scope.allInstitutions[i].name;
+	    				$scope.addConfirm2();
+	    				return;
+	    		}
 	    	}
+	    	$scope.addConfirm1();
 	    }
-	    $scope.addConfirm2 = function(foundName) {
-	    	//$http
-	    	$scope.foundInstitution = data;
+	    $scope.addConfirm2 = function() {
 			$scope.foundInstitution['state'] = null;
 			$scope.institutions.unshift(angular.copy($scope.foundInstitution));
 			var data = {
@@ -321,6 +323,21 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 		}).error(function() {
 			alert("Cannot get partner information");
 		});
+        $http({
+        	url: $scope.apiUri+'/parties/?partyType=organization&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+            method: 'GET',
+	        }).success(function(data, status, headers, config){
+		$scope.allInstitutions = [];
+		for (var i = 0; i < data.length; i++) {
+		    entry = data[i];
+		    $scope.allInstitutions.push({
+		    	partyId:entry['partyId'],
+		    	name:entry['name'],
+		    });
+		}
+	        }).error(function(data, status, headers, config){
+		alert("institutions request failed");
+	        });
         $(function () {
             $('#createStart').datepicker();
         });
