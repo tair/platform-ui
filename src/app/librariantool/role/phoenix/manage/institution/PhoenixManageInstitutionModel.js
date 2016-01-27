@@ -56,6 +56,23 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').fact
 		                	    "consortium": 31272
 		                	  }
 		                	],
+		    allInstitutions: [{
+        	    "partyId": 58,
+        	    "partyType": "organization",
+        	    "name": "UC Santa Cruz",
+        	    "country": 169,
+        	    "display": true,
+        	    "consortium": 31272
+        	  },
+        	  {
+        	    "partyId": 31275,
+        	    "partyType": "organization",
+        	    "name": "UC Los Angeles",
+        	    "country": 169,
+        	    "display": true,
+        	    "consortium": 31272
+        	  }
+        	],
 		    sortings: [
 			          {predicate:'name', reverse:false, text:"Name"},
 		              {predicate:'partyId', reverse:false, text:"Party ID"},
