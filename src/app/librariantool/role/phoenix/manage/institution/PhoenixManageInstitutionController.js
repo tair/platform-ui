@@ -197,6 +197,8 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 	    $scope.addConfirm2 = function() {
 			$scope.foundInstitution['state'] = null;
 			$scope.institutions.unshift(angular.copy($scope.foundInstitution));
+			$scope.newInstitution = null;
+			$scope.insAdding = false;
 			var data = {
 					consortiumId : $scope.consortiumId,
 					action : 'add'
@@ -225,6 +227,8 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 			$scope.createdInstitution = data;
 			$scope.createdInstitution['state'] = null;
 			$scope.institutions.unshift(angular.copy($scope.createdInstitution));
+			$scope.newInstitution = null;
+			$scope.insAdding = false;
 			var data = {
 					consortiumId : $scope.consortiumId,
 					action : 'add'
