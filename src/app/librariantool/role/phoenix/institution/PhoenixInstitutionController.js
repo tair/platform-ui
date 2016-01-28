@@ -417,7 +417,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	        });
 	    //get consortium list of the current institution
 	    $http({
-            url: $scope.apiUri+'/parties/consortiums/?partyId='+$scope.institution.partyId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+            url: $scope.apiUri+'/parties/consortiums/?partyId='+$scope.partyId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
             method: 'GET',
         }).success(function(data, status, headers, config){
 	$scope.consortiums = [];
