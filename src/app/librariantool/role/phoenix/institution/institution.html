@@ -98,7 +98,8 @@
             </div>
         </div>
         
-<!-- Subscription List -->
+<!-- Consortia's Subscription List -->
+<div ng-repeat="consortium in consortiums">
         <div class="lt-institution-subscription-list" ng-repeat="p in listPartners(partners)" style="height:100px;width:571px">
             <div class="row">
                 <div class="{{uiparams.partnercolwidth}}">
@@ -111,7 +112,7 @@
                 </div>
                 <div class="{{uiparams.expcolwidth}}">
                     <div class="row">
-                        {{getExpDate(p.partnerId) | date:'fullDate'}}
+                        {{getConsExpDate(p.partnerId) | date:'fullDate'}}
                     </div>
                 </div>
                 <div class="{{uiparams.actionscolwidth}}">
@@ -121,7 +122,24 @@
                 </div>
             </div>
         </div>
-        
+        </div>
+
+      <!-- Consortium List -->
+      <div ng-repeat="consortium in consortiums | filter:searchTerm">
+    <div class="row" ng-class="groupsListCss(consortium.state)" ng-mouseover="groupsMoveOver(consortium)" ng-mouseleave="groupsMoveOut(consortium)" ng-click="enterConsortium(consortium)">
+      <div class="col-xs-9" style="padding:0px">
+        <div><input ng-class="groupsListLabelCss(consortium.state)" style="width:300px" ng-model="consortium.name" ng-readonly="!(consortium.state=='edit')"></input></div>
+        <div class="lt-admin-groups-list-values">
+              <input class="lt-admin-groups-list-values-input" ng-model="consortium.partyId" ng-readonly="true"></input>
+        </div>
+      </div>
+      <div class="col-xs-3" style="margin-top:18px;padding:0px" ng-class="groupsListGlyphiconCss(consortium.state)">
+        <div class="pull-right glyphicon text-center" ng-class="groupsListGlyphiconRightCss(consortium.state)" style="margin-right:10px" ng-click="$event.stopPropagation(); right(consortium);"></div>
+        <div class="pull-right glyphicon text-center" ng-class="groupsListGlyphiconLeftCss(consortium.state)" style="margin-right:10px" ng-click="$event.stopPropagation(); left(consortium);"></div>
+      </div>
+    </div>
+      </div>
+            
       <!-- Description and Search Box -->
       <div class="lt-admin-groups-description">Add new IP ranges from the left action panel. Click on already existing IP ranges to edit or delete them.</div>
       <div class="lt-admin-groups-search">
