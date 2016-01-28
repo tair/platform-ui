@@ -99,6 +99,7 @@
         </div>
         
 <!-- Consortia's Subscription List -->
+<div ng-repeat="consortium in consortiums">
         <div class="lt-institution-subscription-list" ng-repeat="p in listPartners(partners)" style="height:100px;width:571px">
             <div class="row">
                 <div class="{{uiparams.partnercolwidth}}">
@@ -111,7 +112,7 @@
                 </div>
                 <div class="{{uiparams.expcolwidth}}">
                     <div class="row">
-                        {{getExpDate(p.partnerId) | date:'fullDate'}}
+                        {{getConsExpDate(p.partnerId) | date:'fullDate'}}
                     </div>
                 </div>
                 <div class="{{uiparams.actionscolwidth}}">
@@ -120,6 +121,7 @@
                     </div>
                 </div>
             </div>
+        </div>
         </div>
 
       <!-- Consortium List -->
