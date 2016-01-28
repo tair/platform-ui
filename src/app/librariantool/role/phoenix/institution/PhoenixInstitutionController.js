@@ -416,6 +416,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 		alert("ip range request failed");
 	        });
 	    //get consortium list of the current institution
+	    if($scope.partyId != null){
 	    $http({
             url: $scope.apiUri+'/parties/consortiums/?partyId='+$scope.partyId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
             method: 'GET',
@@ -436,6 +437,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
         }).error(function(data, status, headers, config){
 	alert("consortium request failed");
         });
+	    }
 	    $(function () {
             $('#createStart').datepicker();
         });
