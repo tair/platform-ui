@@ -97,8 +97,9 @@
                 </div>
             </div>
         </div>
-        
+  
 <!-- Consortia's Subscription List -->
+<!--      
 <div ng-repeat="consortium in consortiums">
         <div class="lt-institution-subscription-list" ng-repeat="p in listPartners(partners)" style="height:100px;width:571px">
             <div class="row">
@@ -117,13 +118,13 @@
                 </div>
                 <div class="{{uiparams.actionscolwidth}}">
                     <div class="row">
-                    <button type="button" class="center-block btn btn-default" ng-click="licenseAction(p.partnerId);" ng-disabled>UC Consortium</button>
+                    <button type="button" class="center-block btn btn-default" ng-click="licenseAction(p.partnerId);" ng-disabled>{{consortium.name}}</button>
                     </div>
                 </div>
             </div>
         </div>
         </div>
-        
+ -->         
       <!-- Consortium List -->
       <div ng-repeat="consortium in consortiums | filter:searchTerm">
     <div class="row" ng-class="groupsListCss(consortium.state)" ng-mouseover="groupsMoveOver(consortium)" ng-mouseleave="groupsMoveOut(consortium)" ng-click="enterConsortium(consortium)">
