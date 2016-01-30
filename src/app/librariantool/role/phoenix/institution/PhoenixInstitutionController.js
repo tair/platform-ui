@@ -366,14 +366,14 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	    }
 	    }
 	    
-	    $scope.$watch(function(scope) { return scope.institution },
-	              function(newValue, oldValue) {
-	                  $scope.partyId = newValue.partyId;
-	                  $scope.setTitle(newValue.name);
-	                  $scope.getIpRanges();
-	                  $scope.getSubscriptionEndDate();
-	              }
-	             );
+//	    $scope.$watch(function(scope) { return scope.institution },
+//	              function(newValue, oldValue) {
+//	                  $scope.partyId = newValue.partyId;
+//	                  $scope.setTitle(newValue.name);
+//	                  $scope.getIpRanges();
+//	                  $scope.getSubscriptionEndDate();
+//	              }
+//	             );
 	    function getIpRanges(){
 	    	if($scope.partyId != null){
 	            $http({
