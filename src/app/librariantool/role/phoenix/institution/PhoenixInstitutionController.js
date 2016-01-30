@@ -341,6 +341,14 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 //			});
 				return "Unlicensed";
 	    }
+	    
+	    //Consortium subscription list enter consortium
+	    $scope.enterConsortium = function(consortium){
+	    	if(!(consortium.state=='edit')){
+			    $state.currentTab = {label:"CONSORTIUM", state:"role.phoenix.manage"};
+		    	$state.go("role.phoenix.manage.institution", {'consortiumId' : consortium.partyId, 'consortiumName':consortium.name});
+	    	}
+	    }
 	    //get ip ranges
 	    $scope.getIpRanges = function(){
 	    if($scope.partyId != null){
