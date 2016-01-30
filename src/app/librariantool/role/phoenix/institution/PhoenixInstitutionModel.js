@@ -153,6 +153,22 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').factory(
 		      					"endDate": "2018-03-31T12:00:00Z"
 		      				},
 		      			},
+		      			consortiumSubscriptions: {
+		      				"tair": {
+		      					"subscriptionId": 3994,
+		      					"partyId": 35846,
+		      					"partnerId": "tair",
+		      	 				"startDate": "2014-04-01T12:00:00Z",
+		      					"endDate": "2017-03-31T12:00:00Z"
+		      				},
+		      				"cdiff": {
+		      					"subscriptionId": 13994,
+		      					"partyId": 35846,
+		      					"partnerId": "cdiff",
+		      					"startDate": "2012-04-01T12:00:00Z",
+		      					"endDate": "2018-03-31T12:00:00Z"
+		      				},
+		      			},
         	uiparams: {
 				"partnercolwidth": 'col-xs-5',
 				"expcolwidth": 'col-xs-3',

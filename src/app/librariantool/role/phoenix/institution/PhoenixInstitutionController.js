@@ -116,6 +116,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	    
 	  //for subscription list
 	    $scope.activeSubscriptions = PhoenixInstitutionModel.activeSubscriptions;
+	    $scope.consortiumSubscriptions = PhoenixInstitutionModel.consortiumSubscriptions;
 	    $scope.partners = PhoenixInstitutionModel.partners;
 	    $scope.uiparams = PhoenixInstitutionModel.uiparams;
 	    
@@ -324,23 +325,21 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 		});
 	    }
 	    }
-	    //get partners by consortium
-	    
-	    
-//	    $scope.getConsExpDate = function(consortium, id){
-//	    	$http({
-//				url: $scope.apiUri+'/subscriptions/activesubscriptions/'+consortium.partyId+'/',
-//				method: 'GET',
-//			}).success(function(data, status, headers, config) {
-//				$scope.consortiumSubscriptions = data;
-//				if (id in $scope.consortiumSubscriptions) {
-//					return $scope.consortiumSubscriptions[id].endDate;
-//				}
-//			}).error(function() {
-//				alert("Cannot get active subscription information");
-//			});
-//				return "Unlicensed";
-//	    }
+	    //get partners by consortium	    
+	    $scope.getConsExpDate = function(consortium, id){
+	    	$http({
+				url: $scope.apiUri+'/subscriptions/activesubscriptions/'+consortium.partyId+'/',
+				method: 'GET',
+			}).success(function(data, status, headers, config) {
+				$scope.consortiumSubscriptions = data;
+				if (id in $scope.consortiumSubscriptions) {
+					return $scope.consortiumSubscriptions[id].endDate;
+				}
+			}).error(function() {
+				alert("Cannot get active subscription information");
+			});
+				return "Unlicensed";
+	    }
 	    //get ip ranges
 	    $scope.getIpRanges = function(){
 	    if($scope.partyId != null){
