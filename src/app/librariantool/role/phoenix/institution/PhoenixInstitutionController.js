@@ -327,6 +327,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	    }
 	    //get partners by consortium	    
 	    $scope.getConsExpDate = function(consortium, id){
+	    	alert(consortium['partyId']);
 	    	$http({
 				url: $scope.apiUri+'/subscriptions/activesubscriptions/'+consortium['partyId']+'/',
 				method: 'GET',
