@@ -345,7 +345,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	    //Consortium subscription list enter consortium
 	    $scope.enterConsortium = function(consortium){
 	    	if(!(consortium.state=='edit')){
-			    $state.currentTab = {label:"CONSORTIUM", state:"role.phoenix.manage"};
+//			    $state.currentTab = {label:"CONSORTIUM", state:"role.phoenix.manage"};
 		    	$state.go("role.phoenix.manage.institution", {'consortiumId' : consortium.partyId, 'consortiumName':consortium.name});
 	    	}
 	    }
