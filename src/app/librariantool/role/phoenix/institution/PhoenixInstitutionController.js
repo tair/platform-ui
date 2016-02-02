@@ -30,6 +30,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	    $scope.institution = null;
 	    //consortia initialization
 	    $scope.consortiums = PhoenixInstitutionModel.consortiums;
+	    $scope.newConsortium = PhoenixInstitutionModel.newConsortium;
 	    $scope.addGroupShow = "hidden";
 	    //new ip range
 	    $scope.newRange = PhoenixInstitutionModel.newRange;
@@ -87,28 +88,6 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
                 }).error(function(data, status, headers, config){
                     alert("institution creation request failed");
                 });
-	    }
-	    //consortium actions
-	    $scope.consortiumAction = function(){
-	    	bootbox.dialog({
-	    		  title: "Consortium actions",
-	    		  message: "<div ng-app='platform-ui.librariantool.role.phoenix.institution' ng-controller='PhoenixInstitutionController' ng-repeat='consortium in consortiums | filter:searchTerm'>" +
-	    		  		"<div class='row' ng-class='groupsListCss(consortium.state)' ng-mouseover='groupsMoveOver(consortium)' ng-mouseleave='groupsMoveOut(consortium)' ng-click='enterConsortium(consortium)'><div class='col-xs-9' style='padding:0px'>" +
-	    		  		"<div><input ng-class='groupsListLabelCss(consortium.state)' style='width:300px' ng-model='consortium.name' ng-readonly='!(consortium.state=='edit')'></input></div>" +
-	    		  		"<div class='lt-admin-groups-list-values'>" +
-	    		  		"<input class='lt-admin-groups-list-values-input' ng-model='consortium.partyId' ng-readonly='true'></input>" +
-	    		  		"</div></div><div class='col-xs-3' style='margin-top:18px;padding:0px' ng-class='groupsListGlyphiconCss(consortium.state)'>" +
-	    		  		"<div class='pull-right glyphicon text-center' ng-class='groupsListGlyphiconRightCss(consortium.state)' style='margin-right:10px' ng-click='$event.stopPropagation(); right(consortium);'></div>" +
-	    		  		"<div class='pull-right glyphicon text-center' ng-class='groupsListGlyphiconLeftCss(consortium.state)' style='margin-right:10px' ng-click='$event.stopPropagation(); left(consortium);'></div>" +
-	    		  		"</div></div></div>",
-	    		  buttons: {
-	                    success: {
-	                        label: "Add",
-	                        className: "btn-success",
-	                        callback: function(){}                      
-	                    }
-	                }
-	    		});
 	    }
 	    
 	  //for institution searchbox
@@ -341,7 +320,70 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 //			});
 				return "Unlicensed";
 	    }
-	    
+	    //add consortium
+	    $scope.consAddConfirm = function() {
+	    	for(var i = 0; i < $scope.allConsortiums.length; i++){
+	    		if($scope.allConsortiums[i].name == $scope.newConsortium['name']){
+	    				$scope.foundConsortium['partyId'] = $scope.allConsortiums[i].partyId;
+	    				$scope.foundConsortium['name'] = $scope.allConsortiums[i].name;
+	    				$scope.addConfirm2();
+	    				return;
+	    		}
+	    	}
+	    	$scope.addConfirm1();
+	    }
+	    $scope.addConfirm2 = function() {
+			$scope.foundConsortium['state'] = null;
+			$scope.consortiums.unshift(angular.copy($scope.foundConsortium));
+			var data = {
+					consortiumId : $scope.foundConsortium['partyId'],
+					action : 'add'
+			}
+	    	$http({
+	            url: $scope.apiUri+'/parties/consortiums/?partyId='+$scope.partyId +'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+	            data:data,
+	            method: 'PUT',
+	            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+				}).success(function(data, status, headers, config){
+				}).error(function(data, status, headers, config){
+				            alert("add to existing consortium request failed");
+				});
+			$scope.newConsortium = null;
+			$scope.consAdding = false;
+	    }
+	    $scope.addConfirm1 = function() {
+		//alert("Nothing is added!");
+		var data = {
+		    name:$scope.newConsortium['name'],
+		    partyType:'consortium'
+		}
+		$http({
+            url: $scope.apiUri+'/parties/?credentialId='+$cookies.credentialId+'&secret_key='+encodeURIComponent($cookies.secret_key),
+		    data:data,
+            method: 'POST',
+		}).success(function(data, status, headers, config){
+			$scope.createdConsortium = data;
+			$scope.createdConsortium['state'] = null;
+			$scope.consortiums.unshift(angular.copy($scope.createdConsortium));
+			var data = {
+					consortiumId : $scope.createdConsortium.partyId,
+					action : 'add'
+			}
+		$http({
+            url: $scope.apiUri+'/parties/consortiums/?partyId='+$scope.partyId +'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+            data:data,
+            method: 'PUT',
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+			}).success(function(data, status, headers, config){
+			}).error(function(data, status, headers, config){
+			            alert("add to new consortium request failed");
+			});
+		}).error(function(data, status, headers, config){
+            alert("new consortium request failed");
+		});		            
+			$scope.newConsortium = null;
+			$scope.consAdding = false;
+	    }
 	    //Consortium subscription list enter consortium
 	    $scope.enterConsortium = function(consortium){
 	    	if(!(consortium.state=='edit')){
@@ -469,6 +511,21 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	alert("consortium request failed");
         });
 	    }
+	    $http({
+        	url: $scope.apiUri+'/parties/?partyType=consortium&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+            method: 'GET',
+	        }).success(function(data, status, headers, config){
+		$scope.allConsortiums = [];
+		for (var i = 0; i < data.length; i++) {
+		    entry = data[i];
+		    $scope.allConsortiums.push({
+		    	partyId:entry['partyId'],
+		    	name:entry['name'],
+		    });
+		}
+	        }).error(function(data, status, headers, config){
+		alert("all consortiums request failed");
+	        });
 	    $(function () {
             $('#createStart').datepicker();
         });

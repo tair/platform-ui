@@ -14,6 +14,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').factory(
 		return {
 		    title: 'INSTITUTION',
 		    newRange: {'name':null, 'start':null, 'end':null},
+		    newConsortium: {'name':null, 'partyId':null},
 		    newSubscription: {'partnerId':null, 'start':null, 'end':null},
 		    newInstitution: {'partyType':'organization', 'name':null},
 //		    ipranges: [],
