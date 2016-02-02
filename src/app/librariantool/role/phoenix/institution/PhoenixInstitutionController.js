@@ -380,6 +380,29 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	                  $scope.setTitle(newValue.name);
 	                  $scope.getIpRanges();
 	                  $scope.getSubscriptionEndDate();
+	                //get consortium list of the current institution
+	          	    if($scope.partyId != null){
+	          	    $http({
+	                      url: $scope.apiUri+'/parties/consortiums/?partyId='+$scope.partyId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+	                      method: 'GET',
+	                  }).success(function(data, status, headers, config){
+	          	$scope.consortiums = [];
+	          	for (var i = 0; i < data.length; i++) {
+	          	    entry = data[i];
+	          	    $scope.consortiums.push({
+	          		partyId:entry['partyId'],
+	          		partyType:entry['partyType'],
+	          		name:entry['name'],
+	          		country:entry['country'],
+	          		display:entry['display'],
+	          		consortium:entry['consortium'],	
+	          		state:null
+	          	    });
+	          	}
+	                  }).error(function(data, status, headers, config){
+	          	alert("consortium request failed");
+	                  });
+	          	    }
 	              }
 	             );
 	    function getIpRanges(){
