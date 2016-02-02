@@ -326,13 +326,13 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	    		if($scope.allConsortiums[i].name == $scope.newConsortium['name']){
 	    				$scope.foundConsortium['partyId'] = $scope.allConsortiums[i].partyId;
 	    				$scope.foundConsortium['name'] = $scope.allConsortiums[i].name;
-	    				$scope.addConfirm2();
+	    				$scope.consAddConfirm2();
 	    				return;
 	    		}
 	    	}
-	    	$scope.addConfirm1();
+	    	$scope.consAddConfirm1();
 	    }
-	    $scope.addConfirm2 = function() {
+	    $scope.consAddConfirm2 = function() {
 			$scope.foundConsortium['state'] = null;
 			$scope.consortiums.unshift(angular.copy($scope.foundConsortium));
 			var data = {
@@ -351,7 +351,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 			$scope.newConsortium = null;
 			$scope.consAdding = false;
 	    }
-	    $scope.addConfirm1 = function() {
+	    $scope.consAddConfirm1 = function() {
 		//alert("Nothing is added!");
 		var data = {
 		    name:$scope.newConsortium['name'],
