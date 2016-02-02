@@ -31,6 +31,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	    //consortia initialization
 	    $scope.consortiums = PhoenixInstitutionModel.consortiums;
 	    $scope.newConsortium = PhoenixInstitutionModel.newConsortium;
+	    $scope.foundConsortium = PhoenixInstitutionModel.foundConsortium;
 	    $scope.addGroupShow = "hidden";
 	    //new ip range
 	    $scope.newRange = PhoenixInstitutionModel.newRange;
