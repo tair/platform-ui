@@ -6,9 +6,9 @@
 	<div class="panel-heading subscription-panel-heading">
 	  <div class="row">
 	    <div class="col-xs-2" style="float: right">
-	      <img src={{partner.logoUri}} style="height:30px; float:right"></img>
-            </div>
-            <div class="col-xs-8 text-center" style="float: none; margin-left: auto; margin-right: auto; padding-top: 20px;">
+          <a href="{{partner.homeUri}}" title="{{partner.name}} home page"><img src="{{partner.logoUri}}" alt="{{partner.name}} logo" style="height:30px; float:right"/></a>
+        </div>
+        <div class="col-xs-8 text-center" style="float: none; margin-left: auto; margin-right: auto; padding-top: 20px;">
 	      Academic Institutional {{partner.name}} Subscribers
 	    </div>
 	  </div>
@@ -16,6 +16,8 @@
 	<!-- Body -->
         <div style="padding-top: 30px;" class="panel-body">
         <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Academic users in mainland China are covered by a national subscription through the National Science and Technology Library (NSTL). Academic users in Switzerland are covered by a national subscription through the Swiss Institute of Bioinformatics (SIB). If you are an academic user in China or Switzerland, you do not need to purchase an individual or lab subscription. </p>
+		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If your institution appears on this list and you are experiencing access problems, 
+				please see our <a href="#contentaccess/guide?partnerId={{partnerId}}">guide to troubleshooting access issues.</a></p>	  
 	  <br/>
 	  <form class="form-horizontal">
 	  <div class="form-group col-xs-6 pull-right">

@@ -20,6 +20,7 @@ angular.module('platform-ui.contentaccess.subscription').factory(
 		    partnerId: 'tair',
 		    name: 'TAIR',
 		    logoUri: 'https://s3-us-west-2.amazonaws.com/pw2-logo/yfd.png',
+		    homeUri: 'http://brokenuri.com',
 		    termOfServiceUri: 'http://thisisanotherbrokenuri.com',
 		},
 		

@@ -4,12 +4,13 @@
 			<div class="panel-heading metering-panel-heading">
 				<div class="row">
 					<div class="col-xs-2 text-right" style="float: right;">
-						<img src={{partner.logoUri}} style="height:30px; float:right"></img>
+                      <a href="{{partner.homeUri}}" title="{{partner.name}} home page"><img src="{{partner.logoUri}}" alt="{{partner.name}} logo" style="height:30px; float:right"/></a>
 					</div>
 					<div class="col-xs-9" style="float: none; margin-left: auto; margin-right: auto; padding-top: 20px;">
 						<div class="row">
 							<div class="col-xs-3 text-center">
-								<i class="fa fa-exclamation-triangle fa-4x text-danger"></i>
+							<!-- http://stackoverflow.com/questions/26669964/how-to-debug-font-awesome-icons -->
+								<i class="fa fa-exclamation-triangle fa-3x" style="color: red;"></i>
 							</div>
 							<div class="col-xs-9 text-left">
 								<div class="row" style="height: 10px;"></div>
@@ -36,45 +37,67 @@
 							</ul>
 						</div>
 					</div>
+					
 					<div class="col-xs-6" style="padding-left: 73px;">
-						<div class="row"><div class="col-xs-12">
-							<div class="metering-body-text">To gain unlimited access, please</div>
-						</div></div>
+					<!-- To gain unlimited access, please -->
 						<div class="row" style="height: 15px;"></div>
-						<div class="row"><div class="col-xs-12">
-							<a href="#contentaccess/subscription?partnerId={{partnerId}}&redirect={{redirect}}" class="btn btn-success btn-success-tair">SUBSCRIBE</a>
-						</div></div>
-						<div class="row" style="height: 32px;"></div>
-						<div class="row"><div class="col-xs-12">
-							<div class="metering-body-text">Already have a subscription?</div>
-						</div></div>
-						<div class="row" style="height: 14px;"></div>
-						<div class="row"><div class="col-xs-12">
-							<a href="#contentaccess/login?partnerId={{partnerId}}&redirect={{redirect}}"  class="btn btn-success btn-primary-tair">LOG IN</a>
-						</div></div>
+						<div class="row"><div class="col-xs-12"><div class="metering-body-text">To gain unlimited access, please</div></div></div>
+						<div class="row" style="height: 8px;"></div>
+						<!-- SUBSCRIBE BTN-->
+						<div class="row"><div class="col-xs-12"><a href="#contentaccess/subscription?partnerId={{partnerId}}&redirect={{redirect}}" class="btn btn-success btn-success-tair">SUBSCRIBE</a></div></div>
+
+					<!-- Has your institution subscribed? -->
+					    <div class="row" style="height: 15px;"></div>
+						<div class="row"><div class="col-xs-12"><div class="metering-body-text">Has your institution subscribed?</div></div></div>
+						<div class="row" style="height: 8px;"></div>
+						<!-- VIEW LIST BTN	-->
+						<div class="row"><div class="col-xs-12"><a href="#contentaccess/list?partnerId={{partnerId}}" class="btn btn-success btn-success-tair">VIEW LIST</a></div></div>
+					
+					<!-- Already have a subscription? -->
+						<div class="row" style="height: 15px;"></div>
+						<div class="row"><div class="col-xs-12"><div class="metering-body-text">Already have a subscription?</div></div></div>
+						<div class="row" style="height: 8px;"></div>
+						<!--  LOGIN BTN	-->
+						<div class="row"><div class="col-xs-12"><a href="#contentaccess/login?partnerId={{partnerId}}&redirect={{redirect}}"  class="btn btn-success btn-primary-tair">LOG IN</a></div></div>
+					
+					<!--  KEEP BROWSING or BACK BTNS -->
 						<div class="row" style="height: 10px;"></div>
 						<div class="row"><div class="col-xs-12">
 							<a href="{{ redirectNoEncode }}" ng-if="exceed!='true'"><button class="btn btn-default btn-default-tair">KEEP BROWSING</button></a>
 							<a href="{{ redirectNoEncode }}" ng-if="exceed=='true'"><button class="btn btn-default btn-default-tair">BACK</button></a>
 						</div></div>
 					</div>
+					
 				</div>
 				<div class="row" style="height: 41px;"></div>
 			</div>
 		</div>
 	</div></div>
+	
+	
+	
 	<div class="row"><div class="col-xs-12">
 		<div style="width: 697px; display: block; margin-left: auto; margin-right: auto;">
+			
 			<div class="row">
-				<div class="col-xs-4 text-right" style="float: right;">
-					<div class="col-xs-6" >
+				<div class="col-xs-12 text-right" style="float: right;">
+					
+					<div class="col-xs-8" >
+						<div class="row text-right" style="padding-top:15px;color:#bbc9cf;">
+						View our <a href="#contentaccess/guide?partnerId={{partnerId}}">Guide to Troubleshooting Access Issues</a>
+						</div>
+					</div>
+					
+					<div class="col-xs-2" >
 						<div class="row text-right" style="padding-top:15px;color:#bbc9cf;">
 							Powered by
 						</div>
 					</div>
-					<div class="col-xs-6">
+					
+					<div class="col-xs-2">
 						<img src="assets/Phoenix.png">
 					</div>
+					
 				</div>
 			</div>
                 </div>
