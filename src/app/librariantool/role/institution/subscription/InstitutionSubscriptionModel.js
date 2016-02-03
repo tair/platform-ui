@@ -13,8 +13,8 @@ angular.module('platform-ui.librariantool.role.institution.subscription').factor
 	function () {
 		return {
 			title: 'SUBSCRIPTION',
-			partners: [],
-			/*partners: [
+//			partners: [],
+			partners: [
     					{
 					        "partnerId": "cdiff",
 					        "name": "CDIFF",
@@ -43,9 +43,9 @@ angular.module('platform-ui.librariantool.role.institution.subscription').factor
         					"termOfServiceUri": "https://www.google.com/intl/en/policies/terms/?fg=1",
 						"description": "Description of YFD"
     					}
-				],*/
-			activeSubscriptions: {},
-			/*activeSubscriptions: {
+				],
+//			activeSubscriptions: {},
+			activeSubscriptions: {
 				"tair": {
 					"subscriptionId": 3994,
 					"partyId": 35846,
@@ -60,7 +60,7 @@ angular.module('platform-ui.librariantool.role.institution.subscription').factor
 					"startDate": "2012-04-01T12:00:00Z",
 					"endDate": "2018-03-31T12:00:00Z"
 				},
-			},*/
+			},
 		};
 	}
 ]);
