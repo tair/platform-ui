@@ -322,6 +322,41 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 				return "Unlicensed";
 	    }
 	    //add consortium
+	    $scope.consright = function(consortium) {
+			if (consortium.state == "selected") {
+			    // this is the trash button at normal state
+	                    consortium.state = "remove";
+			} else if (consortium.state == "remove") {
+			    // this is the cancel button at remove state.
+			    consortium.state = null;
+			}
+		    }
+		    $scope.consleft = function(consortium) {
+		    	if (consortium.state == "remove") {
+			    // this is the remove button at remove state
+			    $scope.consRemoveConfirm(consortium);
+			    consortium.state = null;
+			}
+		    }
+		$scope.consRemoveConfirm = function(consortium) {
+        	var data = {
+        			consortiumId: consortium.partyId,
+        			action: 'remove'
+        	}
+        	$http({
+        		url: $scope.apiUri+'/parties/consortiums/?partyId='+$scope.partyId+'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+        		data:data,
+	            method: 'PUT',
+	            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        	}).success(function(data, status, headers, config){
+            }).error(function(data, status, headers, config){
+                alert("consortium affiliation remove request failed");
+            });
+        	var index = $scope.consortiums.indexOf(consortium);
+            if (index > -1) {
+                $scope.consortiums.splice(index,1);
+            }
+		}
 	    $scope.consAddConfirm = function() {
 	    	for(var i = 0; i < $scope.allConsortiums.length; i++){
 	    		if($scope.allConsortiums[i].name == $scope.newConsortium['name']){
