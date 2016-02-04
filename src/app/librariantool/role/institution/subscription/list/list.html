@@ -18,7 +18,7 @@
 			<div class="row">
 				<div class="{{uiparams.partnercolwidth}}">
 					<div class="row"><div class="col-xs-12 lt-font lt-theme-font-color lt-font-aliasing" style="font-size: 24px;">
-						{{p.name}} <img src={{p.logoUri}} alt="partner" width="87" height="61">
+						{{p.name}} <img src={{p.logoUri}} alt="partner" style="max-width:87px; max-height:61px;">
 					</div></div>
 					<div class="row"><div class="col-xs-12 lt-font lt-font-aliasing" style="font-size: 16px; color: #858585;">
 						{{p.description}}
@@ -31,14 +31,10 @@
 					</div></div>
 				</div>
 				<div class="{{uiparams.expcolwidth}}">
-					<div class="row">
 						{{getExpDate(p.partnerId) | date:'fullDate'}}
-					</div>
 				</div>
-				<div class="{{uiparams.actionscolwidth}}">
-					<div class="row">
-						<button type="button" class="btn btn-default" ng-click="licenseAction(p.partnerId);">{{licenseButton(p.partnerId)}}</button>
-					</div>
+				<div class="{{uiparams.actionscolwidth}}">			
+						<button type="button" class="btn btn-default" ng-click="licenseAction(p.partnerId);">{{licenseButton(p.partnerId)}}</button>					
 				</div>
 			</div>
 		</div>
