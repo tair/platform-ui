@@ -65,11 +65,9 @@ angular.module('platform-ui.contentaccess.subscription.individual.term').control
 		    	//vet PW-251
 		    	debugMsg='1.1 $scope.partnerId NULL. it is initialised with $stateParams.partnerId which is '+$stateParams.partnerId;
 		    	console.log(debugMsg);
-				bootbox.alert(debugMsg);//leave for now
 		    } else {
 		    	debugMsg = '1.2 $scope.partnerId is '+ $scope.partnerId+ ' and $stateParams.partnerId is '+ $stateParams.partnerId;
 		    	console.log(debugMsg);
-		    	//bootbox.alert(debugMsg);
 		    }
 	    	
 	    	//2.
@@ -82,16 +80,14 @@ angular.module('platform-ui.contentaccess.subscription.individual.term').control
 			    	//vet PW-251
 				    debugMsg = '2.1. OK $scope.partner is '+$scope.partner;
 			    	console.log(debugMsg);
-			    	//bootbox.alert(debugMsg);
 				}).error(function(data, status, headers, config) {
-					debugMsg = '2.2. ERROR $scope.partner is '+$scope.partner;
+					debugMsg = '2.2. ERROR with $scope.partner';
 			    	console.log(debugMsg);
-			    	bootbox.alert(debugMsg); //leave for now
+			    	bootbox.alert(debugMsg);
                 });
 		    } else {
 		    	debugMsg = '2.3. $scope.partner is '+$scope.partner;
 		    	console.log(debugMsg);
-		    	//bootbox.alert(debugMsg);
 		    }
 		    //3. initialise with default values
 		    	//PW-215 that's the place where wrong default values are assigned
@@ -112,7 +108,7 @@ angular.module('platform-ui.contentaccess.subscription.individual.term').control
                 }).error(function(data, status, headers, config) {
                 	debugMsg = '4.2. ERROR $scope.subscriptions is '+$scope.subscriptions;
     		    	console.log(debugMsg);
-    		    	bootbox.alert(debugMsg);//leave for now
+    		    	bootbox.alert(debugMsg);
                 });
 	    };
 	}
