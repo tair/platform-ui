@@ -74,6 +74,7 @@ angular.module(
 	        jQuery.ajax({ 
 	            url: '/config/config.json', 
 	            async: false,
+	            cache: false, // PW-256: This is the simplest fix for the cases when the server returns HTTP 304 code and blank payload.
 	            success: function(data) {
 	                config = data[0];
 	                $rootScope.apiUri = config.paywallApiBaseUri;
