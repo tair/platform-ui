@@ -68,7 +68,7 @@ angular.module('platform-ui.contentaccess.subscription.individual.term').control
 		    	//alert is not good to show for users but very useful to show for developers/debugging
 				bootbox.alert(debugMsg);//TODO comment out for release
 		    } else {
-		    	debugMsg = '1.2 $scope.partnerId is '+ $scope.partnerId+ ' and $stateParams.partnerId is'+ $stateParams.partnerId;
+		    	debugMsg = '1.2 $scope.partnerId is '+ $scope.partnerId+ ' and $stateParams.partnerId is '+ $stateParams.partnerId;
 		    	console.log(debugMsg);
 		    	bootbox.alert(debugMsg);//TODO comment out for release
 		    }
@@ -111,7 +111,7 @@ angular.module('platform-ui.contentaccess.subscription.individual.term').control
     		    	console.log(debugMsg);
     		    	bootbox.alert(debugMsg);//TODO comment out for release
                 }).error(function(data, status, headers, config) {
-                	debugMsg = '4.1. ERROR $scope.subscriptions is '+$scope.subscriptions;
+                	debugMsg = '4.2. ERROR $scope.subscriptions is '+$scope.subscriptions;
     		    	console.log(debugMsg);
     		    	bootbox.alert(debugMsg);//TODO comment out for release
                 });
