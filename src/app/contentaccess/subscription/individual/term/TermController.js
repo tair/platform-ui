@@ -59,21 +59,20 @@ angular.module('platform-ui.contentaccess.subscription.individual.term').control
 	    
 	    function init() {
 	    	var debugMsg='';
-	    	//1. inialize $scope.partnerId with $stateParams.partnerId if the $scope.partnerId is NULL
+	    	//1.
 	    	if($scope.partnerId == null){
 		    	$scope.partnerId = $stateParams.partnerId;
 		    	//vet PW-251
 		    	debugMsg='1.1 $scope.partnerId NULL. it is initialised with $stateParams.partnerId which is '+$stateParams.partnerId;
 		    	console.log(debugMsg);
-		    	//alert is not good to show for users but very useful to show for developers/debugging
-				bootbox.alert(debugMsg);//TODO comment out for release
+				bootbox.alert(debugMsg);//leave for now
 		    } else {
 		    	debugMsg = '1.2 $scope.partnerId is '+ $scope.partnerId+ ' and $stateParams.partnerId is '+ $stateParams.partnerId;
 		    	console.log(debugMsg);
-		    	bootbox.alert(debugMsg);//TODO comment out for release
+		    	//bootbox.alert(debugMsg);
 		    }
 	    	
-	    	//2. get partner details
+	    	//2.
 		    if($scope.partner == null){
 		    	$http({
 				    url:$scope.apiUri+'/partners/?partnerId='+$scope.partnerId,
@@ -83,16 +82,16 @@ angular.module('platform-ui.contentaccess.subscription.individual.term').control
 			    	//vet PW-251
 				    debugMsg = '2.1. OK $scope.partner is '+$scope.partner;
 			    	console.log(debugMsg);
-			    	bootbox.alert(debugMsg);
+			    	//bootbox.alert(debugMsg);
 				}).error(function(data, status, headers, config) {
 					debugMsg = '2.2. ERROR $scope.partner is '+$scope.partner;
 			    	console.log(debugMsg);
-			    	bootbox.alert(debugMsg);//TODO comment out for release
+			    	bootbox.alert(debugMsg); //leave for now
                 });
 		    } else {
 		    	debugMsg = '2.3. $scope.partner is '+$scope.partner;
 		    	console.log(debugMsg);
-		    	bootbox.alert(debugMsg);//TODO comment out for release
+		    	//bootbox.alert(debugMsg);
 		    }
 		    //3. initialise with default values
 		    	//PW-215 that's the place where wrong default values are assigned
@@ -109,11 +108,11 @@ angular.module('platform-ui.contentaccess.subscription.individual.term').control
                 	$scope.subscriptions = data; //vet PW-215 here the default values are being rewritten with correct values
                 	debugMsg = '4.1. OK $scope.subscriptions is '+$scope.subscriptions;
     		    	console.log(debugMsg);
-    		    	bootbox.alert(debugMsg);//TODO comment out for release
+    		    	//bootbox.alert(debugMsg);
                 }).error(function(data, status, headers, config) {
                 	debugMsg = '4.2. ERROR $scope.subscriptions is '+$scope.subscriptions;
     		    	console.log(debugMsg);
-    		    	bootbox.alert(debugMsg);//TODO comment out for release
+    		    	bootbox.alert(debugMsg);//leave for now
                 });
 	    };
 	}
