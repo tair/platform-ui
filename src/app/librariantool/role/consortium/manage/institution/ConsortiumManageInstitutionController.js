@@ -13,12 +13,13 @@ angular.module('platform-ui.librariantool.role.consortium.manage.institution').c
 	'$cookies',
 	'$location',
 	'$state',
+	'$filter',
 	'Title',
 	'ConsortiumManageInstitutionModel',
 
 	/* Controller Definition */
-	function ($scope, $http, $cookies, $location, $state, Title, ConsortiumManageInstitutionModel) {
-            $scope.setTitle(ConsortiumManageInstitutionModel.title);
+	function ($scope, $http, $cookies, $location, $state, $filter, Title, ConsortiumManageInstitutionModel) {
+            $scope.setTitle($scope.selectedInstitution.name);
             $scope.ipranges = ConsortiumManageInstitutionModel.ipranges;
             $scope.addGroupShow = "hidden";
             $scope.adding = false;
@@ -26,6 +27,28 @@ angular.module('platform-ui.librariantool.role.consortium.manage.institution').c
             $scope.removeRange = null;
             $scope.editRange = null;
             $scope.searchTerm = null;
+            $scope.sortings = ConsortiumManageInstitutionModel.sortings; //List of sorting objects which contain sortField and reverse attributes.
+    	    $scope.reverse = $scope.sortings[0].reverse;
+    	    $scope.predicate = $scope.sortings[0].predicate;
+    	    
+    	    //initializing orderBy function
+    	    var orderBy = $filter('orderBy');
+    	    $scope.order = function(predicate, reverse) {
+    	      $scope.ipranges = orderBy($scope.ipranges, predicate, reverse);
+    	    };
+    	    $scope.order($scope.predicate,$scope.reverse);
+    	    
+    	    //Sorting function for ng-click
+    	    $scope.sortByField = function(sorting) {
+    	    	if ($scope.predicate!=sorting.predicate){
+    	    	    $scope.predicate=sorting.predicate;
+    	    	    $scope.reverse=sorting.reverse;
+    	    	}else{
+    	    		sorting.reverse = !sorting.reverse;
+    	    		$scope.reverse=sorting.reverse;
+    	    	}
+    	    	$scope.order($scope.predicate,$scope.reverse);
+    	    }
 
             // CSS Logics as response to state changes.
 	    $scope.groupsListStartCss = function(state) {
@@ -162,7 +185,7 @@ angular.module('platform-ui.librariantool.role.consortium.manage.institution').c
 
             // init
 	    $http({
-                url: $scope.apiUri+'/parties/ipranges/?partyId='+$scope.selectedInstitution.partyId+'&credentialId='+$scope.selectedInstitution.partyId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+                url: $scope.apiUri+'/parties/ipranges/?partyId='+$scope.selectedInstitution.partyId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
                 method: 'GET',
             }).success(function(data, status, headers, config){
                 $scope.ipranges = [];

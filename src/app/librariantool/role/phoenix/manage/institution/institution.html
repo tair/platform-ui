@@ -2,13 +2,13 @@
   <!-- Left Panel -->
   <div class="col-xs-4" style="padding:0px">
     <div class="lt-admin-action-label">ACTIONS</div>
-    <div ng-class="actionButtonAddCss(adding)" ng-click="reset(); adding=true">
-      <span class="glyphicon glyphicon-plus text-center" ng-class="actionButtonGlyphiconAddCss(adding)" style="margin-top:-1px"></span>
-      <span class="text-center" ng-class="actionButtonLabelAddCss(adding)" style="margin-top:-1px">ADD INSTITUTION</span>
+    <div ng-class="actionButtonAddCss(InsAdding)" ng-click="reset(); InsAdding=true">
+      <span class="glyphicon glyphicon-plus text-center" ng-class="actionButtonGlyphiconAddCss(InsAdding)" style="margin-top:-1px"></span>
+      <span class="text-center" ng-class="actionButtonLabelAddCss(InsAdding)" style="margin-top:-1px">ADD INSTITUTION</span>
     </div>
-    <div ng-class="actionButtonAddCss(adding)" ng-click="reset(); adding=true">
-      <span class="glyphicon glyphicon-plus text-center" ng-class="actionButtonGlyphiconAddCss(adding)" style="margin-top:-1px"></span>
-      <span class="text-center" ng-class="actionButtonLabelAddCss(adding)" style="margin-top:-1px">ADD SUBSCRIPTION</span>
+    <div ng-class="actionButtonAddCss(SubAdding)" ng-click="reset(); SubAdding=true">
+      <span class="glyphicon glyphicon-plus text-center" ng-class="actionButtonGlyphiconAddCss(SubAdding)" style="margin-top:-1px"></span>
+      <span class="text-center" ng-class="actionButtonLabelAddCss(SubAdding)" style="margin-top:-1px">ADD SUBSCRIPTION</span>
     </div>
     <div ng-class="actionButtonAddCss(false)" ng-click="back()">
       <span class="glyphicon glyphicon-arrow-left text-center" ng-class="actionButtonGlyphiconAddCss(false)" style="margin-top:-1px"></span>
@@ -31,6 +31,23 @@
 
     <div class="lt-admin-right-subpanel">
     
+                  <!-- Add Subscription -->
+      <div class="lt-admin-groups-list-edit" style="height:100px" ng-class="groupsAddCss(SubAdding)">
+    <div class="col-xs-9" style="padding:0px">
+      <select class="lt-admin-groups-list-label-edit" style="width:300px" ng-options="p.partnerId as p.name for p in partners" ng-model="newSubscription.partnerId">
+        <option value="">-- choose a partner --</option>
+      </select>
+      <div class="lt-admin-groups-list-values">
+        <span><input id="createStart" class="lt-ip-groups-list-start-edit" placeholder="Set Start Date" ng-model="newSubscription.start"></input></span>
+        <span>-</span>
+        <span><input id="createEnd" class="lt-ip-groups-list-end-edit" placeholder="Set End Date" ng-model="newSubscription.end"></input></span>
+      </div>
+    </div>
+    <div class="col-xs-3 lt-admin-groups-list-glyphicon-container" style="padding:0px">
+          <div class="pull-right glyphicon glyphicon-remove lt-glyphicon-green text-center" style="margin-right:10px" ng-click="$event.stopPropagation(); SubAdding=false"></div>
+          <div class="pull-right glyphicon glyphicon-ok lt-glyphicon-green text-center" style="margin-right:10px" ng-click="$event.stopPropagation(); createConfirm()"></div>
+    </div>
+      </div>
     <!-- subscription list -->
         <div class="lt-institution-subscription-list" ng-repeat="p in listPartners(partners)" style="height:100px;width:571px">
             <div class="row">
@@ -69,12 +86,12 @@
       </div>
         
       <!-- Add Institution -->
-      <div class="lt-admin-groups-list-edit" ng-class="groupsAddCss(adding)">
+      <div class="lt-admin-groups-list-edit" ng-class="groupsAddCss(InsAdding)">
 	<div class="col-xs-9" style="padding:0px">
-          <div><input class="lt-admin-groups-list-label-edit" style="width:300px" placeholder="Enter Institution Name" ng-model="newRange.name"></input></div>
+          <div><input class="lt-admin-groups-list-label-edit" style="width:300px" placeholder="Enter Institution Name" ng-model="newInstitution.name" uib-typeahead="institution.name for institution in allInstitutions | filter:{name:$viewValue} | limitTo:8"></input></div>
 	</div>
 	<div class="col-xs-3 lt-admin-groups-list-glyphicon-container" style="padding:0px">
-          <div class="pull-right glyphicon glyphicon-remove lt-glyphicon-green text-center" style="margin-right:10px" ng-click="$event.stopPropagation(); adding=false"></div>
+          <div class="pull-right glyphicon glyphicon-remove lt-glyphicon-green text-center" style="margin-right:10px" ng-click="$event.stopPropagation(); InsAdding=false"></div>
           <div class="pull-right glyphicon glyphicon-ok lt-glyphicon-green text-center" style="margin-right:10px" ng-click="$event.stopPropagation(); addConfirm()"></div>
 	</div>
       </div>

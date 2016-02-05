@@ -47,7 +47,7 @@ angular.module('platform-ui.librariantool.role.institution.usage').controller(
 		$scope.uiparams = InstitutionUsageModel.uiparams;
 		$scope.postData = InstitutionUsageModel.postData;
 		$http({
-			url: $scope.apiUri+'/credentials/?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+			url: $scope.apiUri+'/credentials/?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey)+'&partyId='+$cookies.credentialId,
 			method: 'GET',
 		}).success(function(data, status, headers, config) {
 			$scope.postData.institution = data[0].institution;

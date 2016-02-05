@@ -13,7 +13,8 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').fact
 	function () {
 		return {
 		    title: 'UC Consortium',
-		    newRange: {'name':null, 'start':null, 'end':null},
+		    newInstitution: {'name':null, 'country':null},
+		    foundInstitution: {'name':null, 'partyId':null, 'state':null},
 		    institutions:[
 		                  {
 		                	    "partyId": 55,
@@ -56,6 +57,23 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').fact
 		                	    "consortium": 31272
 		                	  }
 		                	],
+		    allInstitutions: [{
+        	    "partyId": 58,
+        	    "partyType": "organization",
+        	    "name": "UC Santa Cruz",
+        	    "country": 169,
+        	    "display": true,
+        	    "consortium": 31272
+        	  },
+        	  {
+        	    "partyId": 31275,
+        	    "partyType": "organization",
+        	    "name": "UC Los Angeles",
+        	    "country": 169,
+        	    "display": true,
+        	    "consortium": 31272
+        	  }
+        	],
 		    sortings: [
 			          {predicate:'name', reverse:false, text:"Name"},
 		              {predicate:'partyId', reverse:false, text:"Party ID"},

@@ -31,9 +31,9 @@
       <span class="glyphicon glyphicon-plus text-center" ng-class="actionButtonGlyphiconAddCss(insAdding)" style="margin-top:-1px"></span>
       <span class="text-center" ng-class="actionButtonLabelAddCss(insAdding)" style="margin-top:-1px">NEW INSTITUTION</span>
     </div>
-    <div ng-class="actionButtonAddCss(consEdit)" ng-click="reset(consEdit); consortiumAction()" style="width:220px">
-      <span class="glyphicon glyphicon-edit text-center" ng-class="actionButtonGlyphiconAddCss(consEdit)" style="margin-top:-1px"></span>
-      <span class="text-center" ng-class="actionButtonLabelAddCss(consEdit)" style="margin-top:-1px">EDIT CONSORTIUM</span>
+    <div ng-class="actionButtonAddCss(consAdding)" ng-click="reset(consAdding); consAdding=true" style="width:220px">
+      <span class="glyphicon glyphicon-plus text-center" ng-class="actionButtonGlyphiconAddCss(consAdding)" style="margin-top:-1px"></span>
+      <span class="text-center" ng-class="actionButtonLabelAddCss(consAdding)" style="margin-top:-1px">ADD CONSORTIUM</span>
     </div>
   </div>
   
@@ -97,7 +97,60 @@
                 </div>
             </div>
         </div>
-        
+  
+<!-- Consortia's Subscription List -->    
+<div ng-repeat="consortium in consortiums">
+        <div class="lt-institution-subscription-list" ng-repeat="p in listPartners(partners)" style="height:100px;width:571px">
+            <div class="row">
+                <div class="{{uiparams.partnercolwidth}}">
+                    <div class="row"><div class="col-xs-12 lt-font lt-theme-font-color lt-font-aliasing" style="font-size: 24px;">
+                        {{p.name}} <img src={{p.logoUri}} alt="partner" width="87" height="61">
+                    </div></div>
+                    <div class="row"><div class="col-xs-12 lt-font lt-font-aliasing" style="font-size: 16px; color: #858585;">
+                        {{p.description}}
+                    </div></div>
+                </div>
+                <div class="{{uiparams.expcolwidth}}">
+                    <div class="row">
+                        {{getConsExpDate(consortium, p.partnerId) | date:'fullDate'}}
+                    </div>
+                </div>
+                <div class="{{uiparams.actionscolwidth}}">
+                    <div class="row">
+                    <button type="button" class="center-block btn btn-default" ng-click="enterConsortium(consortium);" ng-disabled>{{consortium.name}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+      
+      <!-- Add Consortium -->
+      <div class="lt-admin-groups-list-edit" ng-class="groupsAddCss(consAdding)">
+    <div class="col-xs-9" style="padding:0px">
+          <div><input class="lt-admin-groups-list-label-edit" style="width:300px" placeholder="Enter Consortium Name" ng-model="newConsortium.name" uib-typeahead="consortium.name for consortium in allConsortiums | filter:{name:$viewValue} | limitTo:8"></input></div>
+    </div>
+    <div class="col-xs-3 lt-admin-groups-list-glyphicon-container" style="padding:0px">
+          <div class="pull-right glyphicon glyphicon-remove lt-glyphicon-green text-center" style="margin-right:10px" ng-click="$event.stopPropagation(); consAdding=false"></div>
+          <div class="pull-right glyphicon glyphicon-ok lt-glyphicon-green text-center" style="margin-right:10px" ng-click="$event.stopPropagation(); consAddConfirm()"></div>
+    </div>
+      </div>
+      
+      <!-- Consortium List -->
+      <div ng-repeat="consortium in consortiums | filter:searchTerm">
+    <div class="row" ng-class="groupsListCss(consortium.state)" ng-mouseover="groupsMoveOver(consortium)" ng-mouseleave="groupsMoveOut(consortium)" ng-click="enterConsortium(consortium)">
+      <div class="col-xs-9" style="padding:0px">
+        <div><input ng-class="groupsListLabelCss(consortium.state)" style="width:300px" ng-model="consortium.name" ng-readonly="!(consortium.state=='edit')"></input></div>
+        <div class="lt-admin-groups-list-values">
+              <input class="lt-admin-groups-list-values-input" ng-model="consortium.partyId" ng-readonly="true"></input>
+        </div>
+      </div>
+      <div class="col-xs-3" style="margin-top:18px;padding:0px" ng-class="groupsListGlyphiconCss(consortium.state)">
+        <div class="pull-right glyphicon text-center" ng-class="groupsListGlyphiconRightCss(consortium.state)" style="margin-right:10px" ng-click="$event.stopPropagation(); consright(consortium);"></div>
+        <div class="pull-right glyphicon text-center" ng-class="groupsListGlyphiconLeftCss(consortium.state)" style="margin-right:10px" ng-click="$event.stopPropagation(); consleft(consortium);"></div>
+      </div>
+    </div>
+      </div>
+            
       <!-- Description and Search Box -->
       <div class="lt-admin-groups-description">Add new IP ranges from the left action panel. Click on already existing IP ranges to edit or delete them.</div>
       <div class="lt-admin-groups-search">
