@@ -8,42 +8,7 @@
 <!-- Body -->
 <div class="lt-login-panel center-block">
   <div class="row" style="height:38px"></div>
-  <form ng-submit="login()">
-    <div class="row"><input class="text-left lt-login-input-box center-block" placeholder="sergei@getexp.com" ng-model="formdata.user"></input></div>
-    <div class="row lt-gap"></div>
-    <div class="row"><input class="text-left lt-login-input-box center-block" placeholder="********" ng-model="formdata.password" type="password"></input></div>
-    
-    <div class="row" style="height:16px"></div>
-    <div class="row">
-      <div class="checkbox center-block" style="width:240px">
-	<label class="lt-login-remember">
-	  <input type="checkbox" value="">
-	  remember me
-	</label>
-	<a class="text-right pull-right lt-login-forgot" ui-sref="forgotPwd">forgot password?</a>
-      </div>
-    </div>
-    <div class="row" style="height:32px"></div>
-    <div class="row"><button class="text-center lt-login-login-btn center-block lt-color">LOG IN</button></div>
-    <div class="row lt-gap"></div>
-    <div class="row"><button type="button" class="text-center lt-login-req-btn center-block" ng-click="requestAccount()">REQUEST ACCOUNT</button></div>
-    <div class="row" style="height:42px"></div>
-  </form>
-  <div class="lt-login-description text-center">
-    The Librarian Tool helps you manage your subscription to databases offered by <br/>
-    Phoenix Bioinformatics. You can use the Librarian Tool to:<br/>
-    <br/>
-    - View subscriptions <br/>
-    - Manage your institution's IP address ranges <br/>
-    - View and request usage report <br/>
-    New feature will be added as we continue to develop this tool. <br/>
-    <br/>
-    Access to the Tool is given during account setup. If you need to request access<br/>
-    to the Librarian Tool, please contact Phoenix Bioinformatics.
-  </div>
-  <br/><br/>
-  <a class="center-block text-center" style="width:240px" href="mailto:info@phoenixbioinformatics.org">info@phoenixbioinformatics.org</a>
-  <div class="row" style="height:100px"></div>
+  <div ui-view="ltlogin"></div>
   <!-- Power By -->
   <div class="center-block">
     <div class="col-xs-6" >
