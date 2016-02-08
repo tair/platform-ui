@@ -20,7 +20,10 @@ angular.module('platform-ui.librariantool.login.page').controller(
 	function ($scope, $http, $cookies, $location, $state, Title, LTLoginPageModel) {
 	    $scope.formdata = LTLoginPageModel.formdata;
 	    $scope.requestAccount = function() {
-		$state.go('ltlogin.requestaccount');
+	    	$state.go('ltlogin.requestaccount');
+	    }
+	    $scope.forgotPassword = function() {
+	    	$state.go('ltlogin.forgotpassword.sendlink');
 	    }
 	    
 	    $scope.login = function() {
