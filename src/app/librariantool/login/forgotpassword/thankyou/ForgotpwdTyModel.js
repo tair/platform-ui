@@ -3,9 +3,9 @@
  * Model for root /index.html template that wraps every other view.
  */
 
-angular.module('platform-ui.librariantool.forgotpassword').factory(
+angular.module('platform-ui.librariantool.login.forgotpassword.thankyou').factory(
 	/* Name */
-	'ForgotpwdModel',
+	'ForgotpwdTyModel',
 
 	/* Dependencies */
 	[

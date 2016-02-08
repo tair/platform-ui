@@ -14,7 +14,6 @@ angular.module(
 	'service.title',
 	'platform-ui.librariantool.login',
 	'platform-ui.librariantool.role',
-	'platform-ui.librariantool.forgotpassword'
     ])
     .config(
 	function ($stateProvider) {
@@ -34,14 +33,6 @@ angular.module(
 			templateUrl: 'librariantool/role/role.html'
 		    }
 		}
-	    }).state('forgotPwd', {
-			url: '/librariantool/forgotpwd',
-			views: {
-			    'main': {
-				controller: 'ForgotpwdController',
-				templateUrl: 'librariantool/forgotpassword/Forgotpwd.html'
-			    }
-			}
-		    });
+	    });
 	});
 
