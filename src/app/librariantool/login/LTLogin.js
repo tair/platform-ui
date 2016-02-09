@@ -44,7 +44,7 @@ angular.module(
 			}
 		}).state('ltlogin.forgotpassword', {
 			abstract: true,
-			url: '/forgotpassowrd',
+			url: '/forgotpassword',
 			views: {
 				'ltlogin': {
 					controller: 'ForgotpwdController',
