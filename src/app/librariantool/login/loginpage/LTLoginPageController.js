@@ -19,6 +19,13 @@ angular.module('platform-ui.librariantool.login.page').controller(
 	/* Controller Definition */
 	function ($scope, $http, $cookies, $location, $state, Title, LTLoginPageModel) {
 	    $scope.formdata = LTLoginPageModel.formdata;
+	    if(localStorage.getItem("username")){
+	    	$scope.formdata["user"] = localStorage.getItem("username");
+	    }
+	    if(localStorage.getItem("passowrd")){
+	    	$scope.formdata["password"] = localStorage.getItem("password");
+	    }
+	    
 	    $scope.requestAccount = function() {
 	    	$state.go('ltlogin.requestaccount');
 	    }
@@ -36,7 +43,11 @@ angular.module('platform-ui.librariantool.login.page').controller(
                     $cookies.credentialId = data["credentialId"]; //for user googlestaff it's Credential.partyId and it's 42
                     $cookies.secretKey = data["secretKey"];
 				    $cookies.username = data["username"];
-				    
+			    	if($scope.remember == true){
+			    		localStorage.setItem("username", data["username"]);
+			    		localStorage.setItem("password", data["password"]);
+			    		localStorage.setItem("remember", true);
+			    	}
 				    $http({
 					url: $scope.apiUri+'/parties?partyId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
 					method: 'GET'
@@ -62,5 +73,6 @@ angular.module('platform-ui.librariantool.login.page').controller(
                     alert('Login failed');
                 });
 	    }
+	    
 	}
 ]);
