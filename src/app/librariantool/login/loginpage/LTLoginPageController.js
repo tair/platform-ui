@@ -19,10 +19,10 @@ angular.module('platform-ui.librariantool.login.page').controller(
 	/* Controller Definition */
 	function ($scope, $http, $cookies, $location, $state, Title, LTLoginPageModel) {
 	    $scope.formdata = LTLoginPageModel.formdata;
-	    if(localStorage.getItem("username")!=null){
+	    if(localStorage.getItem("username")){
 	    	$scope.formdata["user"] = localStorage.getItem("username");
 	    }
-	    if(localStorage.getItem("password")!=null){
+	    if(localStorage.getItem("password")){
 	    	$scope.formdata["password"] = localStorage.getItem("password");
 	    }
 	    if(localStorage.getItem("remember")){
@@ -53,9 +53,9 @@ angular.module('platform-ui.librariantool.login.page').controller(
 			    		localStorage.setItem("password", $scope.formdata["password"]);
 			    		localStorage.setItem("remember", true);
 			    	}else{
-			    		localStorage.setItem("username", null);
-			    		localStorage.setItem("password", null);
-			    		localStorage.setItem("remember", false);
+			    		localStorage.removeItem("username");
+			    		localStorage.removeItem("password");
+			    		localStorage.removeItem("remember");
 			    	}
 				    $http({
 					url: $scope.apiUri+'/parties?partyId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
