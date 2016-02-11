@@ -22,13 +22,12 @@ angular.module('platform-ui.librariantool.login.page').controller(
 	    if(localStorage.getItem("username")){
 	    	$scope.formdata["user"] = localStorage.getItem("username");
 	    }
-	    if(localStorage.getItem("passowrd")){
+	    if(localStorage.getItem("password")){
 	    	$scope.formdata["password"] = localStorage.getItem("password");
 	    }
 	    if(localStorage.getItem("remember")){
 	    	$scope.remember = true;
-	    }
-	    
+	    }	    
 	    
 	    $scope.requestAccount = function() {
 	    	$state.go('ltlogin.requestaccount');
