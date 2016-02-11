@@ -25,6 +25,10 @@ angular.module('platform-ui.librariantool.login.page').controller(
 	    if(localStorage.getItem("passowrd")){
 	    	$scope.formdata["password"] = localStorage.getItem("password");
 	    }
+	    if(localStorage.getItem("remember")){
+	    	$scope.remember = true;
+	    }
+	    
 	    
 	    $scope.requestAccount = function() {
 	    	$state.go('ltlogin.requestaccount');
@@ -44,8 +48,8 @@ angular.module('platform-ui.librariantool.login.page').controller(
                     $cookies.secretKey = data["secretKey"];
 				    $cookies.username = data["username"];
 			    	if($scope.remember == true){
-			    		localStorage.setItem("username", data["username"]);
-			    		localStorage.setItem("password", data["password"]);
+			    		localStorage.setItem("username", $scope.formdata["user"]);
+			    		localStorage.setItem("password", $scope.formdata["password"]);
 			    		localStorage.setItem("remember", true);
 			    	}
 				    $http({
