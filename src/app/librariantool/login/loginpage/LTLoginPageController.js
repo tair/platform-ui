@@ -50,6 +50,10 @@ angular.module('platform-ui.librariantool.login.page').controller(
 			    		localStorage.setItem("username", $scope.formdata["user"]);
 			    		localStorage.setItem("password", $scope.formdata["password"]);
 			    		localStorage.setItem("remember", true);
+			    	}else{
+			    		localStorage.setItem("username", null);
+			    		localStorage.setItem("password", null);
+			    		localStorage.setItem("remember", false);
 			    	}
 				    $http({
 					url: $scope.apiUri+'/parties?partyId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
