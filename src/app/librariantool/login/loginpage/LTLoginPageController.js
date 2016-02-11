@@ -19,14 +19,16 @@ angular.module('platform-ui.librariantool.login.page').controller(
 	/* Controller Definition */
 	function ($scope, $http, $cookies, $location, $state, Title, LTLoginPageModel) {
 	    $scope.formdata = LTLoginPageModel.formdata;
-	    if(localStorage.getItem("username")){
+	    if(localStorage.getItem("username")!=null){
 	    	$scope.formdata["user"] = localStorage.getItem("username");
 	    }
-	    if(localStorage.getItem("password")){
+	    if(localStorage.getItem("password")!=null){
 	    	$scope.formdata["password"] = localStorage.getItem("password");
 	    }
 	    if(localStorage.getItem("remember")){
 	    	$scope.remember = true;
+	    }else{
+	    	$scope.remember = false;
 	    }	    
 	    
 	    $scope.requestAccount = function() {
