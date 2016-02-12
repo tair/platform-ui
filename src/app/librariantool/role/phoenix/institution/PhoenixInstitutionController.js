@@ -308,17 +308,19 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	    //get partners by consortium	    
 	    $scope.getConsExpDate = function(consortium, id){
 //	    	alert(consortium['partyId']);
-//	    	$http({
-//				url: $scope.apiUri+'/subscriptions/activesubscriptions/'+consortium['partyId']+'/',
-//				method: 'GET',
-//			}).success(function(data, status, headers, config) {
-//				$scope.consortiumSubscriptions = data;
-//				if (id in $scope.consortiumSubscriptions) {
-//					return $scope.consortiumSubscriptions[id].endDate;
-//				}
-//			}).error(function() {
-//				alert("Cannot get active subscription information");
-//			});
+	    	$http({
+				url: $scope.apiUri+'/subscriptions/activesubscriptions/'+consortium['partyId']+'/',
+				method: 'GET',
+			}).success(function(data, status, headers, config) {
+				$scope.consortiumSubscriptions = data;
+				if (id in $scope.consortiumSubscriptions) {
+					return $scope.consortiumSubscriptions[id].endDate;
+				}else{
+					return "Unlicensed";
+				}
+			}).error(function() {
+				alert("Cannot get active subscription information");
+			});
 				return "Unlicensed";
 	    }
 	    //add consortium
