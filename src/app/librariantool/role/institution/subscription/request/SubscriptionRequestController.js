@@ -41,7 +41,7 @@ angular.module('platform-ui.librariantool.role.institution.subscription.request'
 //                        alert("Hey there, we will get back to you shortly");
                         $scope.comments = null;
                 }).error(function() {
-                        alert("Renewal request not sent");
+                        alert("Request quote request not sent");
                 });
 		return true;
 	    };
