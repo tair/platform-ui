@@ -14,10 +14,11 @@
 						partner.description
 					</div></div>
 					<textarea ng-model="comments"></textarea>
-					<button type="button" ng-click="back()">GO BACK</button>
+					<button type="button" ng-click="back();successMessage = ''">GO BACK</button>
 					<button type="submit">REQUEST</button>
 				</form>
 			</div>
 		</div>
+		<div class="row" ng-model="successMessage"></div>
 	</div>
 </div>
