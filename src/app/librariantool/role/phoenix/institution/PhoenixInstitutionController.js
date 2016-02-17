@@ -107,17 +107,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 			}
 			return "Unlicensed";
 		    };
-		    
-	    $scope.listPartners = function(partners) {
-			var ret = [];
-			for (var i=0; i<partners.length; i++) {
-			    if (partners[i].partnerId!="phoenix") {
-				ret.push(partners[i]);
-			    }
-			}
-			console.log(ret);
-			return ret;
-		    }
+
 	    $scope.licenseButton = function(id) {
 			return "Edit";
 		    };
@@ -565,7 +555,17 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	        }).error(function(data, status, headers, config){
 		alert("all consortiums request failed");
 	        });
-	    //get consortium subscription list
+	    //get consortium subscription list	    
+	    $scope.listPartners = function(partners) {
+			var ret = [];
+			for (var i=0; i<partners.length; i++) {
+			    if (partners[i].partnerId!="phoenix") {
+				ret.push(partners[i]);
+			    }
+			}
+			console.log(ret);
+			return ret;
+		    }
 	    $scope.listPartners = $scope.listPartners($scope.partners);
 	    for(var i = 0; i < $scope.consortiums.length; i++){
 	    	for(var j = 0; j < $scope.listPartners.length; j++){
