@@ -99,29 +99,27 @@
         </div>
   
 <!-- Consortia's Subscription List -->    
-<div ng-repeat="consortium in consortiums">
-        <div class="lt-institution-subscription-list" ng-repeat="p in listPartners(partners)" style="height:100px;width:571px">
+        <div class="lt-institution-subscription-list" ng-repeat="consSubscription in consSubList" style="height:100px;width:571px">
             <div class="row">
                 <div class="{{uiparams.partnercolwidth}}">
                     <div class="row"><div class="col-xs-12 lt-font lt-theme-font-color lt-font-aliasing" style="font-size: 24px;">
-                        {{p.name}} <img src={{p.logoUri}} alt="partner" width="87" height="61">
+                        {{consSubscription.name}} <img src={{consSubscription.logoUri}} alt="partner" width="87" height="61">
                     </div></div>
                     <div class="row"><div class="col-xs-12 lt-font lt-font-aliasing" style="font-size: 16px; color: #858585;">
-                        {{p.description}}
+                        {{consSubscription.description}}
                     </div></div>
                 </div>
                 <div class="{{uiparams.expcolwidth}}">
                     <div class="row">
-                        {{getConsExpDate(consortium, p.partnerId) | date:'fullDate'}}
+                        {{consSubscription.endDate | date:'fullDate'}}
                     </div>
                 </div>
                 <div class="{{uiparams.actionscolwidth}}">
                     <div class="row">
-                    <button type="button" class="center-block btn btn-default" ng-click="enterConsortium(consortium);" ng-disabled>{{consortium.name}}</button>
+                    <button type="button" class="center-block btn btn-default" ng-click="enterConsortium(consSubscription.consortium);" ng-disabled>{{consSubscription.consortium.name}}</button>
                     </div>
                 </div>
             </div>
-        </div>
         </div>
       
       <!-- Add Consortium -->

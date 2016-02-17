@@ -19,6 +19,32 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').factory(
 		    newSubscription: {'partnerId':null, 'start':null, 'end':null},
 		    newInstitution: {'partyType':'organization', 'name':null},
 //		    ipranges: [],
+		    consSubList:[
+		                  {
+		            	    "consortiumName": "InstitutionModelCons1",
+		            	    "endDate": "Dec 31, 2020",
+		            	    "partnerId": "phoenix",
+		            	    "name": "Phoenix",
+		            	    "logoUri": "https://s3-us-west-2.amazonaws.com/pw2-logo/yfd.png",
+		            	    "termOfServiceUri": "https://www.google.com/intl/en/policies/terms/?fg=1"
+		            	  },
+		            	  {
+		            		"consortiumName": "InstitutionModelCons2",
+		            		"endDate": "Dec 31, 2020",
+		            	    "partnerId": "tair",
+		            	    "name": "TAIR",
+		            	    "logoUri": "https://s3-us-west-2.amazonaws.com/pw2-logo/logo2.gif",
+		            	    "termOfServiceUri": "https://www.arabidopsis.org/doc/about/tair_terms_of_use/417"
+		            	  },
+		            	  {
+		            		"consortiumName": "InstitutionModelCons3",
+		            		"endDate": "Dec 31, 2020",
+		            	    "partnerId": "yfd",
+		            	    "name": "YFD",
+		            	    "logoUri": "https://s3-us-west-2.amazonaws.com/pw2-logo/yfd.png",
+		            	    "termOfServiceUri": "https://www.google.com/intl/en/policies/terms/?fg=1"
+		            	  }
+		            	],
 		    institutions: [
 		                   {
 		                	    "partyId": 10,
