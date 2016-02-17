@@ -566,7 +566,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 		alert("all consortiums request failed");
 	        });
 	    //get consortium subscription list
-	    $scope.listPartners = listPartners(partners);
+	    $scope.listPartners = $scope.listPartners(partners);
 	    for(var i = 0; i < $scope.consortiums.length; i++){
 	    	for(var j = 0; j < $scope.listPartners.length; j++){
 	    		$http({
