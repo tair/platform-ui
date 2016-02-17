@@ -566,7 +566,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 		alert("all consortiums request failed");
 	        });
 	    //get consortium subscription list
-	    $scope.listPartners = $scope.listPartners(partners);
+	    $scope.listPartners = $scope.listPartners($scope.partners);
 	    for(var i = 0; i < $scope.consortiums.length; i++){
 	    	for(var j = 0; j < $scope.listPartners.length; j++){
 	    		$http({
@@ -582,9 +582,9 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 		    		$scope.consSubList.push({
 		    			"consortium": $scope.consortiums[i],
 	            	    "endDate": endDate,
-	            	    "partnerId": partner.partnerId,
-	            	    "name": partner.name,
-	            	    "logoUri": partner.logoUri,
+	            	    "partnerId": $scope.listPartners[j].partnerId,
+	            	    "name": $scope.listPartners[j].name,
+	            	    "logoUri": $scope.listPartners[j].logoUri,
 	    		})
 				}).error(function() {
 					alert("Cannot get active subscription information");
