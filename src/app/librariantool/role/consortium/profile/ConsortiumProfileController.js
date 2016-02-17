@@ -70,10 +70,11 @@ angular.module('platform-ui.librariantool.role.consortium.profile').controller(
                         $scope.setTitle(ConsortiumProfileModel.title);
                         $scope.user = ConsortiumProfileModel.user;
                         $http({
+                        		//https://demoapi.arabidopsis.org/credentials/?username=andreylib&credentialId=32669&secretKey=Ac76mZWyaI2dcVn5HZeXwVQb5xE%3D
                                 url: $scope.apiUri+'/credentials/?username='+$cookies.username+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
                                 method: 'GET',
                         }).success(function(data, status, headers, config) {
-                                $scope.user.name = data[0].name;
+                                $scope.user.name = data[0].name;//PW-161 name
                                 $scope.user.username = data[0].username;
                                 $scope.user.email = data[0].email;
                                 $scope.user.institution = data[0].institution;
