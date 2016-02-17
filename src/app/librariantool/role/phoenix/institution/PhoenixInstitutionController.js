@@ -39,6 +39,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	    $scope.editRange = null;
 	    //subscription
 	    $scope.newSubscription = PhoenixInstitutionModel.newSubscription;
+	    $scope.consSubList = PhoenixInstitutionModel.consSubList;
 	    //new institution
 	    $scope.newInstitution = PhoenixInstitutionModel.newInstitution;
 	    //searching and sorting
@@ -322,7 +323,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 				alert("Cannot get active subscription information");
 			});
 				return "Unlicensed";
-	    }
+	    }	    
 	    //add consortium
 	    $scope.consright = function(consortium) {
 			if (consortium.state == "selected") {
@@ -564,6 +565,32 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	        }).error(function(data, status, headers, config){
 		alert("all consortiums request failed");
 	        });
+	    //get consortium subscription list
+	    $scope.listPartners = listPartners(partners);
+	    for(var i = 0; i < $scope.consortiums.length; i++){
+	    	for(var j = 0; j < $scope.listPartners.length; j++){
+	    		$http({
+					url: $scope.apiUri+'/subscriptions/activesubscriptions/'+$scope.consortiums[i].partyId+'/',
+					method: 'GET',
+				}).success(function(data, status, headers, config) {
+					$scope.consortiumSubscriptions = data;
+					if (scope.listPartners[j].partnerId in $scope.consortiumSubscriptions) {
+						var endDate =  $scope.consortiumSubscriptions[scope.listPartners[j].partnerId].endDate;
+					}else{
+						var endDate =  "Unlicensed";
+					}
+		    		$scope.consSubList.push({
+		    			"consortium": $scope.consortiums[i],
+	            	    "endDate": endDate,
+	            	    "partnerId": partner.partnerId,
+	            	    "name": partner.name,
+	            	    "logoUri": partner.logoUri,
+	    		})
+				}).error(function() {
+					alert("Cannot get active subscription information");
+				});
+	    	}
+	    }
 	    $(function () {
             $('#createStart').datepicker();
         });
