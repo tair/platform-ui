@@ -1,16 +1,19 @@
 <!-- Header Panel -->
 <div class="lt-navbar-top lt-color">
-  <div class="row" style="height:20px"></div>
-  <div class="center-block lt-navbar-panel">   
-    <div class="col-xs-4 lt-navbar-tool-text" ng-click="home()">
-    <img src="assets/Phoenix.png"/>
-      ADMIN TOOL
+  <div class="row" style="height:32px"></div>
+  <div class="center-block lt-navbar-panel">
+    <div class="col-xs-4">
+	    <div class="pull-left">
+	      <img src="assets/Phoenix.png"/ style="margin-top: -20px;margin-right: 11px;">
+	    </div>
+      <div class="pull-left lt-navbar-tool-text" ng-click="home()">ADMIN TOOL</div>
     </div>
-    <div class="col-xs-4 pull-right">
+    <div class="col-xs-4 pull-right" style="margin-top: -3px;">
       <div class="pull-right lt-navbar-status" ng-click="logout()">Log out</div>
       <div class="pull-right lt-navbar-email">{{email}}</div>
     </div>
   </div>
+  <div class="row" style="height:13px"></div>
 </div>
 <div class="lt-navbar-bottom">
   <div class="row" style="height:95px"></div>
