@@ -315,8 +315,8 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 			}).success(function(data, status, headers, config) {
 				$scope.consortiumSubscriptions = data;
 				for(var j = 0; j < $scope.listedPartners.length; j++){
-					if (scope.listedPartners[j].partnerId in $scope.consortiumSubscriptions) {
-						var endDate =  $scope.consortiumSubscriptions[scope.listedPartners[j].partnerId].endDate;
+					if ($scope.listedPartners[j].partnerId in $scope.consortiumSubscriptions) {
+						var endDate =  $scope.consortiumSubscriptions[$scope.listedPartners[j].partnerId].endDate;
 					}else{
 						var endDate =  "Unlicensed";
 					}
