@@ -41,7 +41,7 @@ angular.module('platform-ui.librariantool.role.institution.profile').controller(
 					method: 'PUT',
 					headers: {'Content-Type': 'application/x-www-form-urlencoded'},
 				}).success(function(){
-
+					bootbox.alert("Successfuly Updated!");
 				}).error(function() {
 					alert("Failed to update user info");
 				});
