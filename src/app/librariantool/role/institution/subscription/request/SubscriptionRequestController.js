@@ -27,7 +27,7 @@ angular.module('platform-ui.librariantool.role.institution.subscription.request'
 	    $scope.requestQuote = function() {
 		postData = {
                         "partnerName": $scope.partner.name,
-                        "name": $scope.user.name,
+                        "name": $scope.user.name,//PW-161 name
                         "email": $scope.user.email,
                         "institution": $scope.user.institution,
                         "comments": $scope.comments,
