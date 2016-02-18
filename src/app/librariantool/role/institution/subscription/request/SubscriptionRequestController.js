@@ -24,7 +24,7 @@ angular.module('platform-ui.librariantool.role.institution.subscription.request'
 		$state.go('role.institution.subscription.list');
 	    };
 
-	    $scope.requestRenewal = function() {
+	    $scope.requestQuote = function() {
 		postData = {
                         "partnerName": $scope.partner.name,
                         "name": $scope.user.name,

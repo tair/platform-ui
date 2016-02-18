@@ -14,7 +14,7 @@ angular.module('platform-ui.librariantool.role.institution.subscription.renewal'
 		return {
 			title: 'SUBSCRIPTION',
 			uiparams: {
-				"colwidth": 'col-xs-9',
+				"colwidth": 'col-xs-11',
 			}
 		};
 	}
