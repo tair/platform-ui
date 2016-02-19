@@ -311,7 +311,26 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 			return ret;
 		    }
 //	    $scope.listedPartners = $scope.listPartners($scope.partners);
-	    $scope.listedPartners = $scope.partners;
+	    $scope.listedPartners = [
+{
+"partnerId": "phoenix",
+"name": "Phoenix",
+"logoUri": "https://s3-us-west-2.amazonaws.com/pw2-logo/yfd.png",
+"termOfServiceUri": "https://www.google.com/intl/en/policies/terms/?fg=1"
+},
+{
+"partnerId": "tair",
+"name": "TAIR",
+"logoUri": "https://s3-us-west-2.amazonaws.com/pw2-logo/logo2.gif",
+"termOfServiceUri": "https://www.arabidopsis.org/doc/about/tair_terms_of_use/417"
+},
+{
+"partnerId": "yfd",
+"name": "YFD",
+"logoUri": "https://s3-us-west-2.amazonaws.com/pw2-logo/yfd.png",
+"termOfServiceUri": "https://www.google.com/intl/en/policies/terms/?fg=1"
+}
+],
 	    $scope.consSubList = [];
 	    for(var i = 0; i < $scope.consortiums.length; i++){
 	    	$http({
