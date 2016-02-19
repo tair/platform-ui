@@ -14,7 +14,7 @@ angular.module('platform-ui.librariantool.role.consortium.profile').factory(
 		return {
 			title: 'Consortium',
 			user: {
-				"name": null,
+				"name": "test",
 				"username": null,
 				"institution": null,
 				"email": null,
