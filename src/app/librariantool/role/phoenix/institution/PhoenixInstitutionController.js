@@ -18,8 +18,9 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 
 	/* Controller Definition */
 	function ($scope, $http, $cookies, $location, $state, Title, Dateformat, PhoenixInstitutionModel) {
-		$scope.partyId = $location.search()['partyId'];
+		
 		init();
+		$scope.partyId = $location.search()['partyId'];
 		$scope.setTitle(PhoenixInstitutionModel.title);
 		$scope.institutionName = $location.search()['institutionName'];
 		if ($scope.institutionName != null){
@@ -331,6 +332,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 "termOfServiceUri": "https://www.google.com/intl/en/policies/terms/?fg=1"
 }
 ],
+$scope.consortiums = [{"partyId": 31767, "partyType": "consortium", "name": "consortium31767", "country": 62, "display": true, "consortiums": []}, {"partyId": 32673, "partyType": "consortium", "name": "testcons", "country": null, "display": false, "consortiums": []}];
 	    $scope.consSubList = [];
 	    for(var i = 0; i < $scope.consortiums.length; i++){
 	    	$http({
