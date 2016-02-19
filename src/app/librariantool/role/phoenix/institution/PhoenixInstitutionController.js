@@ -304,10 +304,14 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 				ret.push(partners[i]);
 			    }
 			}
-			console.log(ret);
+			for(var i = 0; i< ret.length; i++){
+				console.log(ret[i])
+			}
+//			console.log(ret);
 			return ret;
 		    }
 	    $scope.listedPartners = $scope.listPartners($scope.partners);
+//	    $scope.listedPartners = $scope.partners;
 	    $scope.consSubList = [];
 	    for(var i = 0; i < $scope.consortiums.length; i++){
 	    	$http({
@@ -574,7 +578,14 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	        }).error(function(data, status, headers, config){
 		alert("all consortiums request failed");
 	        });
-	    
+	    $http({
+			url: $scope.apiUri+'/partners/',
+			method: 'GET',
+		}).success(function(data, status, headers, config) {
+			$scope.partners = data;
+		}).error(function() {
+			alert("Cannot get partner information");
+		});
 	    $(function () {
             $('#createStart').datepicker();
         });
