@@ -22,7 +22,7 @@ angular.module('platform-ui.librariantool.role.consortium.profile').controller(
 		$scope.edit_fields = function() {
                         if ($scope.edit==true) {
                                 if (!validateInfo()) {
-                                        alert("Information not valid");
+                                		bootbox.alert("Information not valid");
                                         return false;
                                 }
                                 //Save info
@@ -39,9 +39,9 @@ angular.module('platform-ui.librariantool.role.consortium.profile').controller(
                                         method: 'PUT',
                                         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                                 }).success(function(){
-                                	bootbox.alert("Successfuly Updated!");
+                                	bootbox.alert("Consortium Successfuly Updated!");
                                 }).error(function() {
-                                        alert("Failed to update user info");
+                                	bootbox.alert("Failed to update user info");
                                 });
                         }
                         $scope.edit = !$scope.edit;
@@ -74,19 +74,21 @@ angular.module('platform-ui.librariantool.role.consortium.profile').controller(
                                 url: $scope.apiUri+'/credentials/?username='+$cookies.username+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
                                 method: 'GET',
                         }).success(function(data, status, headers, config) {
-
-                        	$scope.user.name = "andrey";
-                        	
-                			//PW-161 get name from Party table
+                        	//$scope.user.name = "andrey";PW-161 not needed here, it was just an experiment
+                        	//PW-161 calling parties/?partiId WS from within success of /credentials/?username WS
+                        	//PW-161 get name from Party table
                             $http({
                                 url: $scope.apiUri+'/parties/?partyId='+$cookies.credentialId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
                                 method: 'GET',
                             }).success(function(data, status, headers, config){
                             	$scope.user.name = data[0].name;//PW-161
                             }).error(function(data, status, headers, config){
-                                alert("partyId failed");
+                            	errMsg = "Failed to get party information from Party tbl.";
+                            	bootbox.alert(errMsg);
+                                wsURL = $scope.apiUri+'/parties/?partyId='+$cookies.credentialId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey);
+                                console.log(errMsg+" "+wsUrl);
                             });
-                            //
+ 
                                 $scope.user.username = data[0].username;
                                 $scope.user.email = data[0].email;
                                 $scope.user.institution = data[0].institution;
@@ -100,7 +102,10 @@ angular.module('platform-ui.librariantool.role.consortium.profile').controller(
                                 console.log($scope.user);
                                 console.log($scope.userprev);
                         }).error(function() {
-                                alert("Failed to get party information");
+                        		errMsg = "Failed to get party information from Credential tbl.";
+                        		bootbox.alert(errMsg);
+                                wsURL = $scope.apiUri+'/credentials/?username='+$cookies.username+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey);
+                                console.log(errMsg+" "+wsUrl);
                         });
 
                         $scope.edit = false;
