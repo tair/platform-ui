@@ -308,6 +308,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 			return ret;
 		    }
 	    $scope.listedPartners = $scope.listPartners($scope.partners);
+	    $scope.consSubList = [];
 	    for(var i = 0; i < $scope.consortiums.length; i++){
 	    	$http({
 				url: $scope.apiUri+'/subscriptions/activesubscriptions/'+$scope.consortiums[i].partyId+'/',
