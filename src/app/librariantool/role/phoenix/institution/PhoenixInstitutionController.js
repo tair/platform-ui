@@ -333,24 +333,6 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 				alert("Cannot get active subscription information");
 			});
 	    }
-	    //get partners by consortium	    
-//	    $scope.getConsExpDate = function(consortium, id){
-//	    	alert(consortium['partyId']);
-//	    	$http({
-//				url: $scope.apiUri+'/subscriptions/activesubscriptions/'+consortium['partyId']+'/',
-//				method: 'GET',
-//			}).success(function(data, status, headers, config) {
-//				$scope.consortiumSubscriptions = data;
-//				if (id in $scope.consortiumSubscriptions) {
-//					return $scope.consortiumSubscriptions[id].endDate;
-//				}else{
-//					return "Unlicensed";
-//				}
-//			}).error(function() {
-//				alert("Cannot get active subscription information");
-//			});
-//				return "Unlicensed";
-//	    }	    
 	    //add consortium
 	    $scope.consright = function(consortium) {
 			if (consortium.state == "selected") {
@@ -503,7 +485,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	          		name:entry['name'],
 	          		country:entry['country'],
 	          		display:entry['display'],
-	          		consortium:entry['consortium'],	
+//	          		consortium:entry['consortium'],	
 	          		state:null
 	          	    });
 	          	}
@@ -569,7 +551,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 		name:entry['name'],
 		country:entry['country'],
 		display:entry['display'],
-		consortium:entry['consortium'],	
+//		consortium:entry['consortium'],	
 		state:null
 	    });
 	}
