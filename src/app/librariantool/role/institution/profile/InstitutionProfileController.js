@@ -76,6 +76,18 @@ angular.module('platform-ui.librariantool.role.institution.profile').controller(
 	    	function init() {
 	    		$scope.setTitle(InstitutionProfileModel.title);
 	    		$scope.user = InstitutionProfileModel.user;
+	    	
+				//PW-161 get name from Party table
+	            $http({
+	                url: $scope.apiUri+'/parties/?partyId='+$cookies.credentialId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+	                method: 'GET',
+	            }).success(function(data, status, headers, config){
+	            	$scope.user.name = data[0].name;
+	            }).error(function(data, status, headers, config){
+	                alert("partyId failed");
+	            });
+	            //
+	            
 			$http({
 				url: $scope.apiUri+'/credentials/?username='+$cookies.username+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
 				method: 'GET',
@@ -85,8 +97,12 @@ angular.module('platform-ui.librariantool.role.institution.profile').controller(
 				$scope.user.email = data[0].email;
 				$scope.user.institution = data[0].institution;
 				$scope.user.password = "random";
+				
 				$scope.userprev = {};
-				for(k in $scope.user) $scope.userprev[k] = $scope.user[k];
+				
+				for(k in $scope.user) 
+					$scope.userprev[k] = $scope.user[k];
+				
 				$scope.email_validate = $scope.user.email;
 				$scope.email_validate_prev = $scope.email_validate;
 				$scope.password_validate = $scope.user.password;
@@ -96,16 +112,7 @@ angular.module('platform-ui.librariantool.role.institution.profile').controller(
 			}).error(function() {
 				alert("Failed to get party information");
 			});
-			//PW-161 get name from Party table
-            $http({
-                url: $scope.apiUri+'/parties/?partyId='+$cookies.credentialId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
-                method: 'GET',
-            }).success(function(data, status, headers, config){
-            	$scope.user.name = data[0].name;//PW-161
-            }).error(function(data, status, headers, config){
-                alert("partyId failed");
-            });
-            //
+
 	    		$scope.edit = false;
 			$scope.uiparams = InstitutionProfileModel.uiparams;
 	    	}
