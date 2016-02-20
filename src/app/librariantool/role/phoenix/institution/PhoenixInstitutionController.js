@@ -343,16 +343,17 @@ $scope.consortiums = [{"partyId": 31767, "partyType": "consortium", "name": "con
 				for(var j = 0; j < $scope.listedPartners.length; j++){
 					if ($scope.listedPartners[j].partnerId in $scope.consortiumSubscriptions) {
 						var endDate =  $scope.consortiumSubscriptions[$scope.listedPartners[j].partnerId].endDate;
+			    		$scope.consSubList.push({
+//			    			"consortium": $scope.consortiums[i],
+			    			"consortium": {"partyId": 31767, "partyType": "consortium", "name": "consortium31767", "country": 62, "display": true, "consortiums": []},
+		            	    "endDate": endDate,
+		            	    "partnerId": $scope.listedPartners[j].partnerId,
+		            	    "name": $scope.listedPartners[j].name,
+		            	    "logoUri": $scope.listedPartners[j].logoUri,
+			    		})
 					}else{
 						var endDate =  "Unlicensed";
 					}
-		    		$scope.consSubList.push({
-		    			"consortium": $scope.consortiums[i],
-	            	    "endDate": endDate,
-	            	    "partnerId": $scope.listedPartners[j].partnerId,
-	            	    "name": $scope.listedPartners[j].name,
-	            	    "logoUri": $scope.listedPartners[j].logoUri,
-		    		})
 				}
 			}).error(function() {
 				alert("Cannot get active subscription information");
