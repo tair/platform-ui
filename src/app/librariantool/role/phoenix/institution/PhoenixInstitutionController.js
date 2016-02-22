@@ -66,13 +66,46 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	                        label: "Create",
 	                        className: "btn-success",
 	                        callback: function(){
-	                            $scope.createInstitution();
+	                            //$scope.createInstitutionParty();
+	                        	$scope.createInstitutionPartyAndCredential();
 	                        }
 	                    }
 	                }
 	    		});
 	    }
-	    $scope.createInstitution = function(){
+	    //vet PW-161 
+	    /* https://demoapi.arabidopsis.org/credentials/
+	    	WS creates Credential and Party
+	     */
+	    $scope.createInstitutionPartyAndCredential = function(){
+	    	data = {
+	    			username:$scope.newInstitution['name'],
+                    //partyType:$scope.newInstitution['partyType']
+	    			password:'0319', //should come from UI PW-82
+	    			email:'a@a.com', 
+			    	institution:'inst',
+			    	partnerId:'phoenix',
+			    	//userIdentifier not passed
+			    	name:'firstlast',
+			    	partyType:'organization',//
+                };
+                $http({
+                    url: $scope.apiUri+'/credentials/',
+                    data:data,
+                    method: 'POST',
+                }).success(function(data, status, headers, config){
+                	$scope.partyId = data['partyId'];
+                	$scope.institution = {
+                			partyId:data['partyId'],
+                			name:data['username']
+                	}
+                	bootbox.alert("created: username="+data['username']+" partyId="+data['partyId']+" partnerId="+data['partnerId']+" institution="+data['institution']);
+                }).error(function(data, status, headers, config){
+                	bootbox.alert("institution creation request failed");
+                });
+	    }
+	    //vet PW-161 not used
+	    $scope.createInstitutionParty = function(){
 	    	data = {
                     name:$scope.newInstitution['name'],
                     partyType:$scope.newInstitution['partyType']
@@ -93,6 +126,10 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
                 });
 	    }
 	    
+	    
+	    //vet PW-161 
+	    //POST https://demoapi.arabidopsis.org/credentials/
+	    	
 	  //for institution searchbox
 	    $scope.searchstate = 'selected';
 	    
