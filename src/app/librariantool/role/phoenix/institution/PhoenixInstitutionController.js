@@ -97,10 +97,9 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
                 			partyId:data['partyId'],
                 			name:data['username']
                 	}
-                	
-                	alert("created: "+data['username']);
+                	bootbox.alert("created: username="+data['username']+" partyId="+data['partyId']+" partnerId="+data['partnerId']+" institution="+data['institution']);
                 }).error(function(data, status, headers, config){
-                    alert("institution creation request failed");
+                	bootbox.alert("institution creation request failed");
                 });
 	    }
 	    //vet PW-161 not used
