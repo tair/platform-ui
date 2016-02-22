@@ -35,6 +35,7 @@ angular.module('platform-ui.librariantool.role.phoenix.profile').controller(
 						$scope.userprev[k] = $scope.user[k];
 					}
 				}
+				//vet PW-161 put_data.user.userIdentifier needed!!!
 				$http({
 					url: $scope.apiUri+'/credentials/?username='+$cookies.username+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
 					data: put_data,
