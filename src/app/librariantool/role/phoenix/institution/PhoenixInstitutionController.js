@@ -56,19 +56,21 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	    $scope.addInstitutionBox = function(){
 	    	bootbox.dialog({
 	    		  title: "Create a new Institution",
-	    		  message: "<div ng-controller='PhoenixInstitutionController' style='padding:0px'>" +
-	    		  		"<input " +
-	    		  		"ng-class='groupsListLabelCss(true)' " +
+	  	    		  message: "<div " +
+	  	    		  	"ng-controller='PhoenixInstitutionController' style='padding:0px'>" +
 	    		  		
+	  	    		  	"<input ng-class='groupsListLabelCss(true)' " +
 	    		  		"type='text' " +
-	    		  		"ng-model='newInstitution.name'" + 
+	    		  		"ng-model='newInstitution.name'" +
 	    		  		"placeholder='Input instituion name'>" +
-	    		  		
-	    		  		"type='text' " +
-	    		  		"ng-model='newInstitution.password'" + 
-	    		  		"placeholder='Input instituion password'>" +
-	    		  		
 	    		  		"</input>" +
+	    		  		
+	  	    		  	"<input ng-class='groupsListLabelCss(true)' " +
+	    		  		"type='text' " +
+	    		  		"ng-model='newInstitution.password'" +
+	    		  		"placeholder='Input instituion password'>" +
+	    		  		"</input>" +
+	    		  		
 	    		  		"</div>",
 	    		  buttons: {
 	                    success: {
