@@ -7,7 +7,7 @@
         <div class="row" style="height: 23px;"></div>
         <div class="row" style="height: 23px">
             <div class="{{uiparams.colwidth}} block-center text-center lt-font lt-font-color lt-font-aliasing" style="font-size: 36px;">
-                Request Renewal for {{partner.name}}
+                Request Renewal Quote for {{partner.name}} Subscription
             </div>
         </div>
         <div class="row" style="height: 34px;"></div>
@@ -15,7 +15,7 @@
         <div class="row">
             <div class="{{uiparams.colwidth}} block-center text-left">
                 <div class="row"><div class="col-xs-12">
-                    Comments(Optional)
+                    Comments (Optional)
                 </div></div>
                 <div class="row"><div class="col-xs-12">
                     <textarea style="resize: none; height: 90px; width: 755px;" ng-model="comments"></textarea>
@@ -39,29 +39,3 @@
         </div>
     </div>
 </div>
-<!-- 
-<div class="row" style="height: 56px;"></div>
-<div class="panel panel-default block-center" style="width: 860px;">
-	<div class="panel-heading lt-institution-profile-panel-heading lt-font-bold lt-font-aliasing" style="font-size: 16px; color: #ffffff;">
-		LICENSE RENEWAL
-	</div>
-	<div class="panel-body" style="padding: 0px;">
-		<div class="row">
-			<div class="{{uiparams.colwidth}}">
-				<form ng-submit="requestRenewal()">
-					<div class="row"><div class="col-xs-12">
-						{{partner.name}}
-					</div></div>
-					<div class="row"><div class="col-xs-12">
-						Partner description
-					</div></div>
-					<textarea ng-model="comments"></textarea>
-					<button type="button" ng-click="back();successMessage=''">GO BACK</button>
-					<button type="submit">REQUEST RENEWAL</button>
-				</form>
-			</div>
-		</div>
-		<div class="row">{{successMessage}}</div>
-	</div>
-</div>
- -->
