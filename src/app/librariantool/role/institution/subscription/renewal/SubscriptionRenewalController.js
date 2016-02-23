@@ -38,7 +38,6 @@ angular.module('platform-ui.librariantool.role.institution.subscription.renewal'
 			data: postData,
 		}).success(function(){
 			$scope.successMessage = "Thank you for your request! We will get back to you shortly.";
-//			alert("Hey there, we will get back to you shortly");
 			$scope.comments = null;
 		}).error(function() {
 			alert("Renewal request not sent");
