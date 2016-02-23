@@ -2,3 +2,6 @@ bin
 .project
 .settings/
 .tern-project
+/src/app/librariantool/.DS_Store
+/src/lib/.DS_Store
+/src/lib/css/.DS_Store

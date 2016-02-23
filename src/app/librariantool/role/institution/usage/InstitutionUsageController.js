@@ -54,6 +54,12 @@ angular.module('platform-ui.librariantool.role.institution.usage').controller(
 		}).error(function() {
 			alert("failed to get party information");
 		});
+		$(function () {
+            $('#startDate').datepicker();
+        });
+		$(function () {
+            $('#endDate').datepicker();
+        });
 	    }
 	}
 ]);
