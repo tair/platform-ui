@@ -11,14 +11,19 @@ angular.module('platform-ui.librariantool.role.institution').controller(
 	'$scope',
 	'$http',
 	'$cookies',
+	'$cookieStore',
 	'$location',
 	'$state',
 	'Title',
 	'InstitutionRoleModel',
 
 	/* Controller Definition */
-	function ($scope, $http, $cookies, $location, $state, Title, InstitutionRoleModel) {
-	    $scope.currentTab = InstitutionRoleModel.currentTab;
+	function ($scope, $http, $cookies, $cookieStore, $location, $state, Title, InstitutionRoleModel) {
+		if($cookieStore.get('currentTab')){
+			$scope.currentTab = $cookieStore.get('currentTab');
+		}else{
+			$scope.currentTab = InstitutionRoleModel.currentTab;
+		}
 	    $scope.tabs = InstitutionRoleModel.tabs;
 	    $scope.navbarLabel = function(tab) {
 		if (tab.label == $scope.currentTab.label) {
@@ -35,6 +40,7 @@ angular.module('platform-ui.librariantool.role.institution').controller(
 	    $scope.toTab = function(tab) {
 		$state.go(tab.state);
 		$scope.currentTab = tab;
+		$cookieStore.put('currentTab', $scope.currentTab);
 	    }
 	}
 ]);
