@@ -24,7 +24,7 @@ angular.module('platform-ui.librariantool.role.institution.subscription.request'
 		$state.go('role.institution.subscription.list');
 	    };
 
-	    $scope.requestRenewal = function() {
+	    $scope.requestQuote = function() {
 		postData = {
                         "partnerName": $scope.partner.name,
                         "name": $scope.user.name,//PW-161 name
@@ -37,10 +37,10 @@ angular.module('platform-ui.librariantool.role.institution.subscription.request'
                         method: 'POST',
                         data: postData,
                 }).success(function(){
-                        alert("Hey there, we will get back to you shortly");
+                		$scope.successMessage = "Thank you for your request! We will get back to you shortly.";
                         $scope.comments = null;
                 }).error(function() {
-                        alert("Renewal request not sent");
+                        alert("Request quote request not sent");
                 });
 		return true;
 	    };

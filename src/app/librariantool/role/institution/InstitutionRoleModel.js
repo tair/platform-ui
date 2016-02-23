@@ -16,7 +16,7 @@ angular.module('platform-ui.librariantool.role.institution').factory(
 		    currentTab: {label:"IP RANGE", state:"role.institution.iprange"},
 		    tabs: [
 			{label:"IP RANGE", state:"role.institution.iprange"},
-			{label:"SUBSCRIPTION", state:"role.institution.subscription.list"},
+			{label:"SUBSCRIPTION", state:"role.institution.subscription"},
 			{label:"USAGE", state:"role.institution.usage"},
 			{label:"PROFILE", state:"role.institution.profile"},
 		    ]
