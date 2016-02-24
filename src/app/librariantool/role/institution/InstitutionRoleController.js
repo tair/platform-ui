@@ -18,7 +18,7 @@ angular.module('platform-ui.librariantool.role.institution').controller(
 	'InstitutionRoleModel',
 
 	/* Controller Definition */
-	function ($scope, $http, $cookies, $location, $state, Title, InstitutionRoleModel) {
+	function ($scope, $http, $cookies, $cookieStore, $location, $state, Title, InstitutionRoleModel) {
 		if(!$cookies.credentialId || !$cookies.secretKey){
 			$state.go('ltlogin');
 		}
