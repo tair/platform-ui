@@ -33,9 +33,9 @@ angular.module('platform-ui.librariantool.role.consortium.profile').controller(
                                                 $scope.userprev[k] = $scope.user[k];
                                         }
                                 }
-                                put_data["partyId"]=$cookies.credentialId;//vet
-                                put_data["username"]=$cookie.username;
-                                put_data["partnerId"]=$scope.user.partnerId;
+                                put_data["partyId"]  = $cookies.credentialId;//vet
+                                put_data["username"] = $cookies.username;
+                                put_data["partnerId"]= $scope.user.partnerId;
                                 $http({
                                         //vet pw-161 UI url: $scope.apiUri+'/credentials/profile/?partyId='+$cookies.credentialId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
                                         url: $scope.apiUri+'/parties/consortiums/?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
