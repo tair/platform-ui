@@ -33,8 +33,10 @@ angular.module('platform-ui.librariantool.role.consortium.profile').controller(
                                                 $scope.userprev[k] = $scope.user[k];
                                         }
                                 }
+                                put_data["partyId"]=$cookies.credentialId;//vet
                                 $http({
-                                        url: $scope.apiUri+'/credentials/profile/?partyId='+$cookies.credentialId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+                                        //vet pw-161 UI url: $scope.apiUri+'/credentials/profile/?partyId='+$cookies.credentialId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+                                        url: $scope.apiUri+'/parties/consortiums/?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
                                         data: put_data,
                                         method: 'PUT',
                                         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
@@ -78,14 +80,15 @@ angular.module('platform-ui.librariantool.role.consortium.profile').controller(
                         	//PW-161 calling parties/?partiId WS from within success of /credentials/?username WS
                         	//PW-161 get name from Party table
                             $http({
-                                url: $scope.apiUri+'/parties/?partyId='+$cookies.credentialId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
-                                method: 'GET',
+                                //vet pw-161 UI url: $scope.apiUri+'/parties/?partyId='+$cookies.credentialId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+                            	url: $scope.apiUri+'/parties/consortiums/?partyId='+$cookies.credentialId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+                            	method: 'GET',
                             }).success(function(data, status, headers, config){
                             	$scope.user.name = data[0].name;//PW-161
                             }).error(function(data, status, headers, config){
                             	errMsg = "Failed to get party information from Party tbl.";
                             	bootbox.alert(errMsg);
-                                wsURL = $scope.apiUri+'/parties/?partyId='+$cookies.credentialId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey);
+                                wsURL = $scope.apiUri+'/parties/consortiums/?partyId='+$cookies.credentialId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey);
                                 console.log(errMsg+" "+wsUrl);
                             });
  
@@ -102,7 +105,7 @@ angular.module('platform-ui.librariantool.role.consortium.profile').controller(
                                 console.log($scope.user);
                                 console.log($scope.userprev);
                         }).error(function() {
-                        		errMsg = "Failed to get party information from Credential tbl.";
+                        		errMsg = "Failed to get consortium.";
                         		bootbox.alert(errMsg);
                                 wsURL = $scope.apiUri+'/credentials/?username='+$cookies.username+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey);
                                 console.log(errMsg+" "+wsUrl);
