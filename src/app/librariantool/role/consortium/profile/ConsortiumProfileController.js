@@ -34,6 +34,8 @@ angular.module('platform-ui.librariantool.role.consortium.profile').controller(
                                         }
                                 }
                                 put_data["partyId"]=$cookies.credentialId;//vet
+                                put_date["username"]=$cookie.username;
+                                put_data["partnerId"]=$scope.user.partnerId;
                                 $http({
                                         //vet pw-161 UI url: $scope.apiUri+'/credentials/profile/?partyId='+$cookies.credentialId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
                                         url: $scope.apiUri+'/parties/consortiums/?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
@@ -85,6 +87,7 @@ angular.module('platform-ui.librariantool.role.consortium.profile').controller(
                             	method: 'GET',
                             }).success(function(data, status, headers, config){
                             	$scope.user.name = data[0].name;//PW-161
+                            	$scope.user.partnerId = data[1].partnerId;
                             }).error(function(data, status, headers, config){
                             	errMsg = "Failed to get party information from Party tbl.";
                             	bootbox.alert(errMsg);
