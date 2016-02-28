@@ -33,7 +33,7 @@ angular.module('platform-ui.librariantool.role.consortium.profile').controller(
                                                 $scope.userprev[k] = $scope.user[k];
                                         }
                                 }
-                                //put_data["partyId"]  = $cookies.credentialId;
+                                put_data["partyId"]  = $scope.user.partyId; //$cookies.credentialId;
                                 //put_data["username"] = $scope.user.username;
                                 //put_data["partnerId"]= $scope.user.partnerId;
                                 $http({
@@ -53,7 +53,8 @@ angular.module('platform-ui.librariantool.role.consortium.profile').controller(
 
 		$scope.cancel = function() {
                         $scope.edit = false;
-                        for(k in $scope.userprev) $scope.user[k] = $scope.userprev[k];
+                        for(k in $scope.userprev) 
+                        	$scope.user[k] = $scope.userprev[k];
                         $scope.email_validate = $scope.email_validate_prev;
                         $scope.password_validate = $scope.password_validate_prev;
                 }
@@ -125,7 +126,7 @@ angular.module('platform-ui.librariantool.role.consortium.profile').controller(
                                 console.log($scope.userprev);
                                 
                             }).error(function(data, status, headers, config){
-                            	errMsg = "Failed to get party information from Party tbl.";
+                            	errMsg = "GET /parties/consortiums/ Failed";
                             	bootbox.alert(errMsg);
                             });
 
