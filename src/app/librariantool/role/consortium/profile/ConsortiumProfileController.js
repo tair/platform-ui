@@ -33,7 +33,7 @@ angular.module('platform-ui.librariantool.role.consortium.profile').controller(
                                                 $scope.userprev[k] = $scope.user[k];
                                         }
                                 }
-                                put_data["partyId"]  = $cookies.credentialId;//vet
+                                put_data["partyId"]  = $cookies.credentialId;
                                 put_data["username"] = $cookies.username;
                                 put_data["partnerId"]= $scope.user.partnerId;
                                 $http({
@@ -74,50 +74,63 @@ angular.module('platform-ui.librariantool.role.consortium.profile').controller(
                         $scope.setTitle(ConsortiumProfileModel.title);
                         $scope.user = ConsortiumProfileModel.user;
                         $http({
-                        		//https://demoapi.arabidopsis.org/credentials/?username=andreylib&credentialId=32669&secretKey=Ac76mZWyaI2dcVn5HZeXwVQb5xE%3D
-                                url: $scope.apiUri+'/credentials/?username='+$cookies.username+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+                                //url: $scope.apiUri+'/credentials/?username='+$cookies.username+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+                        	    url: $scope.apiUri+'/parties/consortiums/?partyId='+$cookies.credentialId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
                                 method: 'GET',
                         }).success(function(data, status, headers, config) {
-                        	//$scope.user.name = "andrey";PW-161 not needed here, it was just an experiment
-                        	//PW-161 calling parties/?partiId WS from within success of /credentials/?username WS
-                        	//PW-161 get name from Party table
-                            $http({
-                                //vet pw-161 UI url: $scope.apiUri+'/parties/?partyId='+$cookies.credentialId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
-                            	url: $scope.apiUri+'/parties/consortiums/?partyId='+$cookies.credentialId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
-                            	method: 'GET',
-                            }).success(function(data, status, headers, config){
-                            	$scope.user.name = data[0].name;//PW-161
-                            	$scope.user.partnerId = data[1].partnerId;
-                            }).error(function(data, status, headers, config){
-                            	errMsg = "Failed to get party information from Party tbl.";
-                            	bootbox.alert(errMsg);
-                                wsURL = $scope.apiUri+'/parties/consortiums/?partyId='+$cookies.credentialId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey);
-                                console.log(errMsg+" "+wsUrl);
-                            });
- 
-                                $scope.user.username = data[0].username;
-                                $scope.user.email = data[0].email;
-                                $scope.user.institution = data[0].institution;
-                                $scope.user.password = "random";
+                            	/*
+                            	     {
+									    "partyId": 2,
+									    "partyType": "user",
+									    "name": "Google Staf6",
+									    "country": 170,
+									    "display": false,
+									    "consortiums": []
+									  },
+									  {
+									    "username": "googlestaff",
+									    "password": "4b919cea2835bf20e4c9576e107c4eaf42682a11",
+									    "email": "andrey@arabidopsis.org",
+									    "institution": "Google",
+									    "partyId": 2,
+									    "partnerId": "phoenix",
+									    "userIdentifier": "123456789"
+									  }
+                            	 */
+                        		$scope.user.partyId = data[0].partyId;
+                        		$scope.user.partyType = data[0].partyType;
+                            	$scope.user.name = data[0].name;
+                            	$scope.user.country = data[0].country;
+                            	$scope.user.display = data[0].display;
+                            	$scope.user.consortiums = data[0].consortiums;
+                            	
+                            	$scope.user.username = data[1].username;
+                            	$scope.user.password = "random";
+                                $scope.user.email = data[1].email;
+                                $scope.user.institution = data[1].institution;
+                                //$scope.user.partyId = data[1].partyId;
+                                $scope.user.partnerId = data[1].partnerId;
+                                $scope.user.userIdentifier = data[1].userIdentifier;
+                                
                                 $scope.userprev = {};
-                                for(k in $scope.user) $scope.userprev[k] = $scope.user[k];
+                                for(k in $scope.user) 
+                                	$scope.userprev[k] = $scope.user[k];
+                                
                                 $scope.email_validate = $scope.user.email;
                                 $scope.email_validate_prev = $scope.email_validate;
                                 $scope.password_validate = $scope.user.password;
                                 $scope.password_validate_prev = $scope.password_validate;
+                                
                                 console.log($scope.user);
                                 console.log($scope.userprev);
-                        }).error(function() {
-                        		errMsg = "Failed to get consortium.";
-                        		bootbox.alert(errMsg);
-                                wsURL = $scope.apiUri+'/credentials/?username='+$cookies.username+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey);
-                                console.log(errMsg+" "+wsUrl);
-                        });
+                                
+                            }).error(function(data, status, headers, config){
+                            	errMsg = "Failed to get party information from Party tbl.";
+                            	bootbox.alert(errMsg);
+                            });
 
                         $scope.edit = false;
                         $scope.uiparams = ConsortiumProfileModel.uiparams;
                 }
-
-		
 	}
 ]);
