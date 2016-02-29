@@ -107,10 +107,12 @@ angular.module('platform-ui.librariantool.role.consortium.manage.consortium').co
 				var data = {
 				    name: $scope.newInstitution['name'],
 				    partyType: 'organization',
+				    //TODO PW-82/PW-161 Credential.username is required
 				}
 				$http({
-		                    url: $scope.apiUri+'/parties/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
-		                    data:data,
+		                    //url: $scope.apiUri+'/parties/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+					 		url: $scope.apiUri+'/parties/institutions/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+					 		data:data,
 		                    method: 'POST',
 				}).success(function(data, status, headers, config){
 					$scope.createdInstitution = data;
@@ -121,8 +123,10 @@ angular.module('platform-ui.librariantool.role.consortium.manage.consortium').co
 							action : 'add'
 					}
 				$http({
-		            url: $scope.apiUri+'/parties/consortiums/?partyId='+$scope.createdInstitution.partyId +'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
-		            data:data,
+					//TODO PW-82/PW-161. partyId is FORM DATA, not query string parameter. 
+		            //url: $scope.apiUri+'/parties/consortiums/?partyId='+$scope.createdInstitution.partyId +'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+					url: $scope.apiUri+'/parties/consortiums/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+					data:data,
 		            method: 'PUT',
 		            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 					}).success(function(data, status, headers, config){
@@ -156,7 +160,9 @@ angular.module('platform-ui.librariantool.role.consortium.manage.consortium').co
             			action: 'remove'
             	}
             	$http({
-            		url: $scope.apiUri+'/parties/consortiums/?partyId='+institution.partyId+'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+            		//TODO PW-82/PW-161. partyId is FORM DATA, not query string parameter. 
+            		//url: $scope.apiUri+'/parties/consortiums/?partyId='+institution.partyId+'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+            		url: $scope.apiUri+'/parties/consortiums/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
             		data:data,
     	            method: 'PUT',
     	            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
