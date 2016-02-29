@@ -12,7 +12,6 @@ angular.module(
     [
 	'ui.router',
 	'service.title',
-	'service.credentialloader',
     ])
     .config(
 	function ($stateProvider) {
