@@ -400,7 +400,9 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
         			action: 'remove'
         	}
         	$http({
-        		url: $scope.apiUri+'/parties/consortiums/?partyId='+$scope.partyId+'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+        		//TODO PW-82. partyId is FORM DATA, not query string parameter. 
+        		//url: $scope.apiUri+'/parties/consortiums/?partyId='+$scope.partyId+'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+        		url: $scope.apiUri+'/parties/consortiums/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
         		data:data,
 	            method: 'PUT',
 	            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
@@ -434,8 +436,10 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 					action : 'add'
 			}
 	    	$http({
-	            url: $scope.apiUri+'/parties/consortiums/?partyId='+$scope.partyId +'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
-	            data:data,
+	    		//TODO PW-82. partyId is FORM DATA, not query string parameter.
+	            //url: $scope.apiUri+'/parties/consortiums/?partyId='+$scope.partyId +'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+	    		url: $scope.apiUri+'/parties/consortiums/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+	    		data:data,
 	            method: 'PUT',
 	            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 				}).success(function(data, status, headers, config){
@@ -466,7 +470,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 		}
 		
 		$http({
-			//PW-161
+			//PW-161/PW-82
             //url: $scope.apiUri+'/parties/?credentialId='+$cookies.credentialId+'&secret_key='+encodeURIComponent($cookies.secret_key),
 			url: $scope.apiUri+'/parties/consortiums/?secretKey='+encodeURIComponent($cookies.secret_key)+'&credentialId='+$cookies.credentialId,
 		    data:data,
@@ -484,7 +488,9 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 		
 		//TODO to be replaced by new affiliation WS
 		$http({
-            url: $scope.apiUri+'/parties/consortiums/?partyId='+$scope.partyId +'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+			//TODO PW-82. partyId is FORM DATA, not query string parameter. 
+            //url: $scope.apiUri+'/parties/consortiums/?partyId='+$scope.partyId +'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+            url: $scope.apiUri+'/parties/consortiums/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
             data:data,
             method: 'PUT',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
