@@ -121,7 +121,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	  			  	//Credential table: id, username, password, email, institution, partyId, partnerId, userIdentifier
 
 	    			//TODO PW-82 this still does not work - values entered by user in popup is not being passed here.
-	    			username:$scope.newInstitution['username'],//Credential.username, required
+	    			username:"andrvetinst", //$scope.newInstitution['username'],//Credential.username, required
 	    			partnerId:"phoenix", //tair or phoenix //Credential.partnerId, required
 	    			partyType:"organization", // or institution ? Party.partyType, required
 	    			
@@ -462,7 +462,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 		    name:$scope.newConsortium['name'],//Party.name //optional
 		    partyType:'consortium',//Party.partyType, required
 		    
-			//username:$scope.newConsortium['username'],//Credential.username MUST COME FROM UI, required
+			username: "andrcons", //$scope.newConsortium['username'],//TODO Credential.username MUST COME FROM UI, required
 			partnerId:"phoenix", //tair or phoenix //Credential.partnerId, required
 
 			//email:$scope.newConsortium['email'],//Credential.email //optional
