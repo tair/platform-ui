@@ -11,14 +11,28 @@ angular.module('platform-ui.librariantool.role.consortium').controller(
 	'$scope',
 	'$http',
 	'$cookies',
+	'$window',
 	'$location',
 	'$state',
 	'Title',
 	'ConsortiumModel',
 
 	/* Controller Definition */
-	function ($scope, $http, $cookies, $location, $state, Title, ConsortiumModel) {
-		if(!$cookies.credentialId || !$cookies.secretKey){
+	function ($scope, $http, $cookies, $window, $location, $state, Title, ConsortiumModel) {
+//		if(!$cookies.credentialId || !$cookies.secretKey){
+//			$state.go('ltlogin');
+//		}
+		if(!$cookies.credentialId){
+			$scope.credentialId = $cookies.credentialId;
+		}else if(!$window.sessionStorage.credentialId){
+			$scope.credentialId = $window.sessionStorage.credentialId;
+		}
+		if(!$cookies.secretKey){
+			$scope.secretKey = $cookies.secretKey;
+		}else if(!$window.sessionStorage.secretKey){
+			$scope.secretKey = $window.sessionStorage.secretKey;
+		}
+		if(!$scope.credentialId || !$scope.secretKey){
 			$state.go('ltlogin');
 		}
             $scope.currentTab = ConsortiumModel.currentTab;
