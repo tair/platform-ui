@@ -15,11 +15,10 @@ angular.module('platform-ui.librariantool.login.page').controller(
 	'$location',
 	'$state',
 	'Title',
-	'CredentialLoader',
 	'LTLoginPageModel',
 
 	/* Controller Definition */
-	function ($scope, $http, $cookies, $window, $location, $state, Title, CredentialLoader, LTLoginPageModel) {
+	function ($scope, $http, $cookies, $window, $location, $state, Title, LTLoginPageModel) {
 	    $scope.formdata = LTLoginPageModel.formdata;
 //	    if(localStorage.getItem("username")){
 //	    	$scope.formdata["user"] = localStorage.getItem("username");
@@ -65,17 +64,16 @@ angular.module('platform-ui.librariantool.login.page').controller(
 			    		$window.sessionStorage.username = data["username"];
 			    		localStorage.removeItem("remember");
 			    	}
-//			    	if($cookies.credentialId!=null){
-//						$scope.credentialId = $cookies.credentialId;
-//					}else if($window.sessionStorage.credentialId!=null){
-//						$scope.credentialId = $window.sessionStorage.credentialId;
-//					}
-//					if($cookies.secretKey!=null){
-//						$scope.secretKey = $cookies.secretKey;
-//					}else if($window.sessionStorage.secretKey!=null){
-//						$scope.secretKey = $window.sessionStorage.secretKey;
-//					}
-			    	$scope.loadCredential();
+			    	if($cookies.credentialId!=null){
+						$scope.credentialId = $cookies.credentialId;
+					}else if($window.sessionStorage.credentialId!=null){
+						$scope.credentialId = $window.sessionStorage.credentialId;
+					}
+					if($cookies.secretKey!=null){
+						$scope.secretKey = $cookies.secretKey;
+					}else if($window.sessionStorage.secretKey!=null){
+						$scope.secretKey = $window.sessionStorage.secretKey;
+					}
 				    $http({
 					url: $scope.apiUri+'/parties/?partyId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
 					method: 'GET'
