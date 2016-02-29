@@ -11,13 +11,14 @@ angular.module('platform-ui.librariantool.login.page').controller(
 	'$scope',
 	'$http',
 	'$cookies',
+	'$window',
 	'$location',
 	'$state',
 	'Title',
 	'LTLoginPageModel',
 
 	/* Controller Definition */
-	function ($scope, $http, $cookies, $location, $state, Title, LTLoginPageModel) {
+	function ($scope, $http, $cookies, $window, $location, $state, Title, LTLoginPageModel) {
 	    $scope.formdata = LTLoginPageModel.formdata;
 //	    if(localStorage.getItem("username")){
 //	    	$scope.formdata["user"] = localStorage.getItem("username");
@@ -52,16 +53,15 @@ angular.module('platform-ui.librariantool.login.page').controller(
                     data: $scope.formdata,
                     method: 'POST',
                 }).success(function(data, status, headers, config){
-                    $cookies.credentialId = data["credentialId"]; //for user googlestaff it's Credential.partyId and it's 42
-                    $cookies.secretKey = data["secretKey"];
-				    $cookies.username = data["username"];
 			    	if($scope.remember == true){
-//			    		localStorage.setItem("username", $scope.formdata["user"]);
-//			    		localStorage.setItem("password", $scope.formdata["password"]);
+	                    $cookies.credentialId = data["credentialId"]; //for user googlestaff it's Credential.partyId and it's 42
+	                    $cookies.secretKey = data["secretKey"];
+					    $cookies.username = data["username"];
 			    		localStorage.setItem("remember", true);
 			    	}else{
-//			    		localStorage.removeItem("username");
-//			    		localStorage.removeItem("password");
+			    		$window.sessionStorage.credentialId = data["credentialId"]; //for user googlestaff it's Credential.partyId and it's 42
+			    		$window.sessionStorage.secretKey = data["secretKey"];
+			    		$window.sessionStorage.username = data["username"];
 			    		localStorage.removeItem("remember");
 			    	}
 				    $http({

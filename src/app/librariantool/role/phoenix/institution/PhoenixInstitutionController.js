@@ -57,16 +57,12 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	  //add institution    
 	    $scope.addInstitutionBox = function(){
 	    	/*
-	    	 * Party table: partyId, partyType, display, name, countryId
-			   Credentials table: id, username, password, email, institution, partyId, partnerId, userIdentifier
-
 			  #PW-161 POST https://demoapi.arabidopsis.org/parties/consortiums/?credentialId=2&secretKey=7DgskfEF7jeRGn1h%2B5iDCpvIkRA%3D
-    			#NOTE ?/ in parties/consortiums/?credentialId=
     			#FORM DATA
 			        #username required
 			        #password NOT required (latest requirement change)
 			        #partnerId required (tair/phoenix); (username+partnerId) must make a unique set.
-			        #partyType required and must be "consortium"
+			        #partyType required ("consortium"/"organization")
         
 	    	 */
 	    	bootbox.dialog({
@@ -77,8 +73,9 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	  	    		  	"<input ng-class='groupsListLabelCss(true)' " +
 	    		  		"type='text' " +
 	    		  		"ng-model='newInstitution.username'" +
-	    		  		"placeholder='Input institution username (required)'>" +
+	    		  		"placeholder='Institution username (required)'>" +
 	    		  		"</input>" +
+	    		  		
 	    		  		//Credential.password //not needed
 //	  	    		  	"<input ng-class='groupsListLabelCss(true)' " +
 //	    		  		"type='text' " +
@@ -90,30 +87,22 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	  	    		  	"<input ng-class='groupsListLabelCss(true)' " +
 	    		  		"type='text' " +
 	    		  		"ng-model='newInstitution.email'" +
-	    		  		"placeholder='Input instituion email (optional)'>" +
+	    		  		"placeholder='Instituion email (optional)'>" +
 	    		  		"</input>" +
 	    		  		
 	    		  		//Credential.institution
 	  	    		  	"<input ng-class='groupsListLabelCss(true)' " +
 	    		  		"type='text' " +
 	    		  		"ng-model='newInstitution.institution'" +
-	    		  		"placeholder='Input instituion (optional)'>" +
+	    		  		"placeholder='Instituion (optional)'>" +
 	    		  		"</input>" +
 	    		  		
-	    		  		//Credential.partyId (int) generated
-	    			    //Credential.partnerId (phoenix or tair)
-	    			    //Credential.userIdentifier (int) not needed
-	    			    
-	    		  		//Party.partyId (int) generated
-	    		  		//Party.partyType 'intitution' or 'organization'? //TODO
 	    		  		//Party.name (example Google Staf)
 	  	    		  	"<input ng-class='groupsListLabelCss(true)' " +
 	    		  		"type='text' " +
 	    		  		"ng-model='newInstitution.name'" +
-	    		  		"placeholder='Input institution name (optional)'>" +
+	    		  		"placeholder='Institution name (optional)'>" +
 	    		  		"</input>" +
-	    			    //Party.country (int)
-	    			    //Party.display (true/false)
 	    		  		
 	    		  		"</div>",
 	    		  buttons: {
@@ -121,7 +110,6 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	                        label: "Create",
 	                        className: "btn-success",
 	                        callback: function(){
-	                            //$scope.createInstitutionParty();
 	                        	$scope.createInstitutionPartyAndCredential();
 	                        }
 	                    }
@@ -133,16 +121,15 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	    	data = {
 	   	    	  	//Party table: partyId, partyType, display, name, countryId
 	  			  	//Credential table: id, username, password, email, institution, partyId, partnerId, userIdentifier
+
+	    			//TODO PW-82 this still does not work - values entered by user in popup is not being passed here.
+	    			username:$scope.newInstitution['username'],//Credential.username, required
+	    			partnerId:"phoenix", //tair or phoenix //Credential.partnerId, required
+	    			partyType:"organization", // or institution ? Party.partyType, required
 	    			
-	    			//required FORM DATA for POST
-	    			username:$scope.newInstitution['username'],//Credential.username
-	    			partnerId:"phoenix", //tair or phoenix //Credential.partnerId
-	    			partyType:"organization", // or institution ? Party.partyType
-	    			
-	    			//optional FORM DATA for POST
-	    			email:$scope.newInstitution['email'],//Credential.email
-			    	institution:$scope.newInstitution['institution'],//Credential.institution
-			    	name:$scope.newInstitution['name'],//Party.name
+	    			email:$scope.newInstitution['email'],//Credential.email, optional
+			    	institution:$scope.newInstitution['institution'],//Credential.institution, optinal
+			    	name:$scope.newInstitution['name'],//Party.name, optional
                 };
                 $http({
                 	//http://demoapi.arabidopsis.org/parties/institutions/?credentialId=2&secretKey=7DgskfEF7jeRGn1h%2B5iDCpvIkRA%3D
@@ -156,32 +143,11 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
                 			partyId:data['partyId'],
                 			name:data['username'] //???
                 	}
-                	bootbox.alert("created: username="+data['username']+" partyId="+data['partyId']+" partnerId="+data['partnerId']+" institution="+data['institution']+" name="+data['name']);
+                	bootbox.alert("New Institution created: username="+data['username']+" partyId="+data['partyId']+" partnerId="+data['partnerId']+" institution="+data['institution']+" name="+data['name']);
                 }).error(function(data, status, headers, config){
                 	bootbox.alert("institution creation request failed");
                 });
 	    }
-	    //vet PW-161 not used
-//	    $scope.createInstitutionParty = function(){
-//	    	data = {
-//                    name:$scope.newInstitution['name'],
-//                    partyType:$scope.newInstitution['partyType']
-//                };
-//                $http({
-//                    url: $scope.apiUri+'/parties/?secretKey='+encodeURIComponent($cookies.secret_key)+'&credentialId='+$cookies.credentialId,
-//                    data:data,
-//                    method: 'POST',
-//                }).success(function(data, status, headers, config){
-//                	$scope.partyId = data['partyId'];
-//                	$scope.institution = {
-//                			partyId:data['partyId'],
-//                			name:data['name']
-//                	}
-//                	alert("created: "+data['name']);
-//                }).error(function(data, status, headers, config){
-//                    alert("institution creation request failed");
-//                });
-//	    }
 	    	
 	  //for institution searchbox
 	    $scope.searchstate = 'selected';
@@ -490,12 +456,14 @@ $scope.consortiums = [{"partyId": 31767, "partyType": "consortium", "name": "con
 	    		if($scope.allConsortiums[i].name == $scope.newConsortium['name']){
 	    				$scope.foundConsortium['partyId'] = $scope.allConsortiums[i].partyId;
 	    				$scope.foundConsortium['name'] = $scope.allConsortiums[i].name;
-	    				$scope.consAddConfirm2();
+	    				$scope.consAddConfirm2();//updating existing consortium
 	    				return;
 	    		}
 	    	}
-	    	$scope.consAddConfirm1();
+	    	$scope.consAddConfirm1();//creating brand new consortium
 	    }
+	    
+	    //updating existing consortium
 	    $scope.consAddConfirm2 = function() {
 			$scope.foundConsortium['state'] = null;
 			$scope.consortiums.unshift(angular.copy($scope.foundConsortium));
@@ -509,23 +477,41 @@ $scope.consortiums = [{"partyId": 31767, "partyType": "consortium", "name": "con
 	            method: 'PUT',
 	            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 				}).success(function(data, status, headers, config){
+					
 				}).error(function(data, status, headers, config){
 				            alert("add to existing consortium request failed");
 				});
 			$scope.newConsortium = null;
 			$scope.consAdding = false;
 	    }
+	    
+	    //creating new consortium
 	    $scope.consAddConfirm1 = function() {
 		//alert("Nothing is added!");
 		var data = {
-		    name:$scope.newConsortium['name'],
-		    partyType:'consortium'
+			//Party table: partyId, partyType, display, name, countryId
+			//Credential table: id, username, password, email, institution, partyId, partnerId, userIdentifier
+			
+			//TODO PW-82 this still does not work - values entered by user in popup is not being passed here.
+		    name:$scope.newConsortium['name'],//Party.name //optional
+		    partyType:'consortium',//Party.partyType, required
+		    
+			//username:$scope.newConsortium['username'],//Credential.username MUST COME FROM UI, required
+			partnerId:"phoenix", //tair or phoenix //Credential.partnerId, required
+
+			//email:$scope.newConsortium['email'],//Credential.email //optional
+		    //institution:$scope.newConsortium['institution'],//Credential.institution //optional
 		}
+		
 		$http({
-            url: $scope.apiUri+'/parties/?credentialId='+$cookies.credentialId+'&secret_key='+encodeURIComponent($cookies.secret_key),
+			//PW-161
+            //url: $scope.apiUri+'/parties/?credentialId='+$cookies.credentialId+'&secret_key='+encodeURIComponent($cookies.secret_key),
+			url: $scope.apiUri+'/parties/consortiums/?secretKey='+encodeURIComponent($cookies.secret_key)+'&credentialId='+$cookies.credentialId,
 		    data:data,
             method: 'POST',
 		}).success(function(data, status, headers, config){
+			bootbox.alert("New Consortium created: username="+data['username']+" partyId="+data['partyId']+" partnerId="+data['partnerId']+" institution="+data['institution']+" name="+data['name']);
+			//TODO
 			$scope.createdConsortium = data;
 			$scope.createdConsortium['state'] = null;
 			$scope.consortiums.unshift(angular.copy($scope.createdConsortium));
@@ -533,6 +519,8 @@ $scope.consortiums = [{"partyId": 31767, "partyType": "consortium", "name": "con
 					consortiumId : $scope.createdConsortium.partyId,
 					action : 'add'
 			}
+		
+		//TODO to be replaced by new affiliation WS
 		$http({
             url: $scope.apiUri+'/parties/consortiums/?partyId='+$scope.partyId +'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
             data:data,
