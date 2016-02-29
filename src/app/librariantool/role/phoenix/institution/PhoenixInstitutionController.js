@@ -123,7 +123,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	  			  	//Credential table: id, username, password, email, institution, partyId, partnerId, userIdentifier
 
 	    			//TODO PW-82 this still does not work - values entered by user in popup is not being passed here.
-	    			username:$scope.newInstitution['username'],//Credential.username, required
+	    			username:"andrvetinst", //$scope.newInstitution['username'],//Credential.username, required
 	    			partnerId:"phoenix", //tair or phoenix //Credential.partnerId, required
 	    			partyType:"organization", // or institution ? Party.partyType, required
 	    			
@@ -133,7 +133,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
                 };
                 $http({
                 	//http://demoapi.arabidopsis.org/parties/institutions/?credentialId=2&secretKey=7DgskfEF7jeRGn1h%2B5iDCpvIkRA%3D
-                    url: $scope.apiUri+'/parties/institutions/?secretKey='+encodeURIComponent($cookies.secret_key)+'&credentialId='+$cookies.credentialId,
+                    url: $scope.apiUri+'/parties/institutions/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
                 	//url: $scope.apiUri+'/credentials/',
                     data:data,
                     method: 'POST',
@@ -242,7 +242,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 			label:iprange['name'],
 		    };
 		    $http({
-			url: $scope.apiUri+'/parties/ipranges/?partyId='+$cookies.partyId+'&secretKey='+encodeURIComponent($cookies.secret_key)+'&ipRangeId='+iprange['ipRangeId'],
+			url: $scope.apiUri+'/parties/ipranges/?partyId='+$cookies.partyId+'&secretKey='+encodeURIComponent($cookies.secretKey)+'&ipRangeId='+iprange['ipRangeId'],
 			data: data,
 			method: 'PUT',
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
@@ -266,7 +266,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 		    label:$scope.newRange['name'],
 		}
 		$http({
-                    url: $scope.apiUri+'/parties/ipranges/?partyId='+$scope.institution.partyId+'&secretKey='+encodeURIComponent($cookies.secret_key)+'&credentialId='+$cookies.credentialId,
+                    url: $scope.apiUri+'/parties/ipranges/?partyId='+$scope.institution.partyId+'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
                     data:data,
                     method: 'POST',
 		}).success(function(data, status, headers, config){
@@ -299,7 +299,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
                     label:iprange['name'],
                 };
                 $http({
-                    url: $scope.apiUri+'/parties/ipranges/?partyId='+$cookies.partyId+'&secretKey'+encodeURIComponent($cookies.secret_key)+'&ipRangeId='+data['ipRangeId'],
+                    url: $scope.apiUri+'/parties/ipranges/?partyId='+$cookies.partyId+'&secretKey'+encodeURIComponent($cookies.secretKey)+'&ipRangeId='+data['ipRangeId'],
                     data:data,
                     method: 'DELETE',
                 }).success(function(data, status, headers, config){
@@ -500,7 +500,7 @@ $scope.consortiums = [{"partyId": 31767, "partyType": "consortium", "name": "con
 		    name:$scope.newConsortium['name'],//Party.name //optional
 		    partyType:'consortium',//Party.partyType, required
 		    
-			//username:$scope.newConsortium['username'],//Credential.username MUST COME FROM UI, required
+			username: "andrcons", //$scope.newConsortium['username'],//TODO Credential.username MUST COME FROM UI, required
 			partnerId:"phoenix", //tair or phoenix //Credential.partnerId, required
 
 			//email:$scope.newConsortium['email'],//Credential.email //optional
@@ -509,8 +509,8 @@ $scope.consortiums = [{"partyId": 31767, "partyType": "consortium", "name": "con
 		
 		$http({
 			//PW-161/PW-82
-            //url: $scope.apiUri+'/parties/?credentialId='+$cookies.credentialId+'&secret_key='+encodeURIComponent($cookies.secret_key),
-			url: $scope.apiUri+'/parties/consortiums/?secretKey='+encodeURIComponent($cookies.secret_key)+'&credentialId='+$cookies.credentialId,
+            //url: $scope.apiUri+'/parties/?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+			url: $scope.apiUri+'/parties/consortiums/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
 		    data:data,
             method: 'POST',
 		}).success(function(data, status, headers, config){

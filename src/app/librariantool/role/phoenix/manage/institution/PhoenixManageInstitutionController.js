@@ -167,7 +167,7 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 			name:institution['name'],
 		    };
 		    $http({
-			url: $scope.apiUri+'/parties/?credentialId='+$cookies.partyId+'&secret_key='+encodeURIComponent($cookies.secret_key)+'&partyId='+institution['partyId'],
+			url: $scope.apiUri+'/parties/?credentialId='+$cookies.partyId+'&secretKey='+encodeURIComponent($cookies.secretKey)+'&partyId='+institution['partyId'],
 			data: data,
 			method: 'PUT',
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
@@ -223,8 +223,8 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 		    partyType:'organization'
 		}
 		$http({
-            //url: $scope.apiUri+'/parties/?credentialId='+$cookies.credentialId+'&secret_key='+encodeURIComponent($cookies.secret_key),
-			url: $scope.apiUri+'/parties/institutions/?credentialId='+$cookies.credentialId+'&secret_key='+encodeURIComponent($cookies.secret_key),
+            //url: $scope.apiUri+'/parties/?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+			url: $scope.apiUri+'/parties/institutions/?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
 			data:data,
             method: 'POST',
 		}).success(function(data, status, headers, config){
@@ -281,7 +281,7 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
         }
 	    $scope.removeConfirm = function(institution) {
                 $http({
-                    url: $scope.apiUri+'/parties/?credentialId='+$cookies.credentialId+'&secret_key='+encodeURIComponent($cookies.secret_key)+'&partyId='+institution['partyId'],
+                    url: $scope.apiUri+'/parties/?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey)+'&partyId='+institution['partyId'],
                     method: 'DELETE',
                 }).success(function(data, status, headers, config){
                 }).error(function(data, status, headers, config){
