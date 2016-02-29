@@ -37,7 +37,7 @@ angular.module('platform-ui.librariantool.role.institution.profile').controller(
 				}
                 put_data["partyId"]  = $scope.user.partyId; //$cookies.credentialId;
                 //put_data["username"] = $scope.user.username;
-                //put_data["partnerId"]= $scope.user.partnerId;				
+                put_data["partnerId"]= $scope.user.partnerId;				
 				$http({
 					//url: $scope.apiUri+'/credentials/profile/?partyId='+$cookies.credentialId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
 					url: $scope.apiUri+'/parties/institutions/?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
