@@ -110,12 +110,12 @@ angular.module('platform-ui.librariantool.role.phoenix.profile').controller(
                                 console.log($scope.userprev);
                                 
                             }).error(function(data, status, headers, config){
-                            	errMsg = "GET /parties/consortiums/ Failed";
+                            	errMsg = "GET /parties/institutions/ Failed";
                             	bootbox.alert(errMsg);
                             });
 
                         $scope.edit = false;
-                        $scope.uiparams = ConsortiumProfileModel.uiparams;
+                        $scope.uiparams = PhoenixProfileModel.uiparams;
                 }
 	}
 ]);
