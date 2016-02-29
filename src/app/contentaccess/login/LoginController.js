@@ -55,7 +55,7 @@ angular.module('platform-ui.contentaccess.login').controller(
 				data: $scope.formdata,
 				method: 'POST',
 			}).success(function(data, status, headers, config){
-				$cookies.credentialId = data["credentialId"];//for user andreydemo credentialId is set to Credential.partyId=31300
+				$cookies.credentialId = data["credentialId"];//Credential.partyId
 				$cookies.secretKey = data["secretKey"];
 			    callProxy(data);
 				//$state.go("login.success"); // PW-147: YM: No more login confirmation page.
