@@ -36,8 +36,9 @@ angular.module('platform-ui.librariantool.role.phoenix.profile').controller(
 					}
 				}
                 put_data["partyId"]  = $scope.user.partyId; //$cookies.credentialId;
-                //put_data["username"] = $scope.user.username;
+                put_data["username"] = $scope.user.username;
                 put_data["partnerId"]= $scope.user.partnerId;
+                put_data["password"]= $scope.user.password;
 				$http({
 					//url: $scope.apiUri+'/credentials/?username='+$cookies.username+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
 					url: $scope.apiUri+'/parties/institutions/?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
