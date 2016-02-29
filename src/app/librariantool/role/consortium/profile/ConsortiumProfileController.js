@@ -33,7 +33,8 @@ angular.module('platform-ui.librariantool.role.consortium.profile').controller(
                                                 $scope.userprev[k] = $scope.user[k];
                                         }
                                 }
-                                put_data["partyId"]  = $scope.user.partyId; //$cookies.credentialId;
+                                //should work
+                                //put_data["partyId"]  = $scope.user.partyId; //$cookies.credentialId;
                                 //put_data["username"] = $scope.user.username;
                                 //put_data["partnerId"]= $scope.user.partnerId;
                                 $http({
