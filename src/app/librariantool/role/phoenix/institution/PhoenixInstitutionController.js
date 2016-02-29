@@ -56,22 +56,64 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	    
 	  //add institution    
 	    $scope.addInstitutionBox = function(){
+	    	/*
+	    	 * Party table: partyId, partyType, display, name, countryId
+			   Credentials table: id, username, password, email, institution, partyId, partnerId, userIdentifier
+
+			  #PW-161 POST https://demoapi.arabidopsis.org/parties/consortiums/?credentialId=2&secretKey=7DgskfEF7jeRGn1h%2B5iDCpvIkRA%3D
+    			#NOTE ?/ in parties/consortiums/?credentialId=
+    			#FORM DATA
+			        #username required
+			        #password NOT required (latest requirement change)
+			        #partnerId required (tair/phoenix); (username+partnerId) must make a unique set.
+			        #partyType required and must be "consortium"
+        
+	    	 */
 	    	bootbox.dialog({
 	    		  title: "Create a new Institution",
 	  	    		  message: "<div " +
 	  	    		  	"ng-controller='PhoenixInstitutionController' style='padding:0px'>" +
+	    		  		//Credential.username required
+	  	    		  	"<input ng-class='groupsListLabelCss(true)' " +
+	    		  		"type='text' " +
+	    		  		"ng-model='newInstitution.username'" +
+	    		  		"placeholder='Input institution username (required)'>" +
+	    		  		"</input>" +
+	    		  		//Credential.password //not needed
+//	  	    		  	"<input ng-class='groupsListLabelCss(true)' " +
+//	    		  		"type='text' " +
+//	    		  		"ng-model='newInstitution.password'" +
+//	    		  		"placeholder='Input instituion password'>" +
+//	    		  		"</input>" +
 	    		  		
+	    		  		//Credential.email
+	  	    		  	"<input ng-class='groupsListLabelCss(true)' " +
+	    		  		"type='text' " +
+	    		  		"ng-model='newInstitution.email'" +
+	    		  		"placeholder='Input instituion email (optional)'>" +
+	    		  		"</input>" +
+	    		  		
+	    		  		//Credential.institution
+	  	    		  	"<input ng-class='groupsListLabelCss(true)' " +
+	    		  		"type='text' " +
+	    		  		"ng-model='newInstitution.institution'" +
+	    		  		"placeholder='Input instituion (optional)'>" +
+	    		  		"</input>" +
+	    		  		
+	    		  		//Credential.partyId (int) generated
+	    			    //Credential.partnerId (phoenix or tair)
+	    			    //Credential.userIdentifier (int) not needed
+	    			    
+	    		  		//Party.partyId (int) generated
+	    		  		//Party.partyType 'intitution' or 'organization'? //TODO
+	    		  		//Party.name (example Google Staf)
 	  	    		  	"<input ng-class='groupsListLabelCss(true)' " +
 	    		  		"type='text' " +
 	    		  		"ng-model='newInstitution.name'" +
-	    		  		"placeholder='Input instituion name'>" +
+	    		  		"placeholder='Input institution name (optional)'>" +
 	    		  		"</input>" +
-	    		  		
-	  	    		  	"<input ng-class='groupsListLabelCss(true)' " +
-	    		  		"type='text' " +
-	    		  		"ng-model='newInstitution.password'" +
-	    		  		"placeholder='Input instituion password'>" +
-	    		  		"</input>" +
+	    			    //Party.country (int)
+	    			    //Party.display (true/false)
 	    		  		
 	    		  		"</div>",
 	    		  buttons: {
@@ -86,62 +128,60 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	                }
 	    		});
 	    }
-	    //vet PW-161 
-	    /* https://demoapi.arabidopsis.org/credentials/
-	    	WS creates Credential and Party
-	     */
+	
 	    $scope.createInstitutionPartyAndCredential = function(){
 	    	data = {
-	    			username:$scope.newInstitution['name'],
-                    //partyType:$scope.newInstitution['partyType']
-	    			password:'0319', //should come from UI PW-82
-	    			email:'a@a.com', 
-			    	institution:'inst',
-			    	partnerId:'phoenix',
-			    	//userIdentifier not passed
-			    	name:'firstlast',
-			    	partyType:'organization',//
+	   	    	  	//Party table: partyId, partyType, display, name, countryId
+	  			  	//Credential table: id, username, password, email, institution, partyId, partnerId, userIdentifier
+	    			
+	    			//required FORM DATA for POST
+	    			username:$scope.newInstitution['username'],//Credential.username
+	    			partnerId:"phoenix", //tair or phoenix //Credential.partnerId
+	    			partyType:"organization", // or institution ? Party.partyType
+	    			
+	    			//optional FORM DATA for POST
+	    			email:$scope.newInstitution['email'],//Credential.email
+			    	institution:$scope.newInstitution['institution'],//Credential.institution
+			    	name:$scope.newInstitution['name'],//Party.name
                 };
                 $http({
-                    url: $scope.apiUri+'/credentials/',
+                	//http://demoapi.arabidopsis.org/parties/institutions/?credentialId=2&secretKey=7DgskfEF7jeRGn1h%2B5iDCpvIkRA%3D
+                    url: $scope.apiUri+'/parties/institutions/?secretKey='+encodeURIComponent($cookies.secret_key)+'&credentialId='+$cookies.credentialId,
+                	//url: $scope.apiUri+'/credentials/',
                     data:data,
                     method: 'POST',
                 }).success(function(data, status, headers, config){
                 	$scope.partyId = data['partyId'];
                 	$scope.institution = {
                 			partyId:data['partyId'],
-                			name:data['username']
+                			name:data['username'] //???
                 	}
-                	bootbox.alert("created: username="+data['username']+" partyId="+data['partyId']+" partnerId="+data['partnerId']+" institution="+data['institution']);
+                	bootbox.alert("created: username="+data['username']+" partyId="+data['partyId']+" partnerId="+data['partnerId']+" institution="+data['institution']+" name="+data['name']);
                 }).error(function(data, status, headers, config){
                 	bootbox.alert("institution creation request failed");
                 });
 	    }
 	    //vet PW-161 not used
-	    $scope.createInstitutionParty = function(){
-	    	data = {
-                    name:$scope.newInstitution['name'],
-                    partyType:$scope.newInstitution['partyType']
-                };
-                $http({
-                    url: $scope.apiUri+'/parties/?secretKey='+encodeURIComponent($cookies.secret_key)+'&credentialId='+$cookies.credentialId,
-                    data:data,
-                    method: 'POST',
-                }).success(function(data, status, headers, config){
-                	$scope.partyId = data['partyId'];
-                	$scope.institution = {
-                			partyId:data['partyId'],
-                			name:data['name']
-                	}
-                	alert("created: "+data['name']);
-                }).error(function(data, status, headers, config){
-                    alert("institution creation request failed");
-                });
-	    }
-	    
-	    
-	    //vet PW-161 
-	    //POST https://demoapi.arabidopsis.org/credentials/
+//	    $scope.createInstitutionParty = function(){
+//	    	data = {
+//                    name:$scope.newInstitution['name'],
+//                    partyType:$scope.newInstitution['partyType']
+//                };
+//                $http({
+//                    url: $scope.apiUri+'/parties/?secretKey='+encodeURIComponent($cookies.secret_key)+'&credentialId='+$cookies.credentialId,
+//                    data:data,
+//                    method: 'POST',
+//                }).success(function(data, status, headers, config){
+//                	$scope.partyId = data['partyId'];
+//                	$scope.institution = {
+//                			partyId:data['partyId'],
+//                			name:data['name']
+//                	}
+//                	alert("created: "+data['name']);
+//                }).error(function(data, status, headers, config){
+//                    alert("institution creation request failed");
+//                });
+//	    }
 	    	
 	  //for institution searchbox
 	    $scope.searchstate = 'selected';
