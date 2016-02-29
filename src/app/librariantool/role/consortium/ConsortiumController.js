@@ -22,14 +22,14 @@ angular.module('platform-ui.librariantool.role.consortium').controller(
 //		if(!$cookies.credentialId || !$cookies.secretKey){
 //			$state.go('ltlogin');
 //		}
-		if(!$cookies.credentialId){
+		if($cookies.credentialId!=null){
 			$scope.credentialId = $cookies.credentialId;
-		}else if(!$window.sessionStorage.credentialId){
+		}else if($window.sessionStorage.credentialId!=null){
 			$scope.credentialId = $window.sessionStorage.credentialId;
 		}
-		if(!$cookies.secretKey){
+		if($cookies.secretKey!=null){
 			$scope.secretKey = $cookies.secretKey;
-		}else if(!$window.sessionStorage.secretKey){
+		}else if($window.sessionStorage.secretKey!=null){
 			$scope.secretKey = $window.sessionStorage.secretKey;
 		}
 		if(!$scope.credentialId || !$scope.secretKey){
