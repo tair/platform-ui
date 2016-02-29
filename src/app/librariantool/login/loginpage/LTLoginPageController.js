@@ -65,7 +65,7 @@ angular.module('platform-ui.librariantool.login.page').controller(
 			    		localStorage.removeItem("remember");
 			    	}
 				    $http({
-					url: $scope.apiUri+'/parties?partyId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+					url: $scope.apiUri+'/parties/?partyId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
 					method: 'GET'
 				    }).success(function(data, status, headers, config){
 //				    	select distinct partyType from  demo1.Party
