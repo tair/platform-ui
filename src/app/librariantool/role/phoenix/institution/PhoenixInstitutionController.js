@@ -123,7 +123,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	  			  	//Credential table: id, username, password, email, institution, partyId, partnerId, userIdentifier
 
 	    			//TODO PW-82 this still does not work - values entered by user in popup is not being passed here.
-	    			username:"andrinst", //temporarly hardcoded. $scope.newInstitution['username'],//Credential.username, required
+	    			username:"andrvetinst", //temporarly hardcoded. $scope.newInstitution['username'],//Credential.username, required
 	    			partnerId:"phoenix", //tair or phoenix //Credential.partnerId, required
 	    			partyType:"organization", // or institution ? Party.partyType, required
 	    			
@@ -138,14 +138,26 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
                     data:data,
                     method: 'POST',
                 }).success(function(data, status, headers, config){
-                	$scope.partyId = data['partyId'];
+                	$scope.partyId = data[0]['partyId'];
                 	$scope.institution = {
-                			partyId:data['partyId'],
-                			name:data['username'] //???
+                			//0 Party
+		                	country: data[0].country,
+		                	display: data[0].display,
+		                	name: data[0].name, //Party.name
+		                	partyId: data[0].partyId,
+		                	partyType: data[0].partyType,
+		                	//1 Credential
+		                	email: data[1].email,
+		                	institution: data[1].institution,
+		                	partnerId: data[1].partnerId,
+		                	partyId: data[1].partyId,
+		                	userIdentifier: data[1].userIdentifier,
+		                	username: data[1].username,//Credential.username
                 	}
-                	bootbox.alert("New Institution created: username="+data['username']+" partyId="+data['partyId']+" partnerId="+data['partnerId']+" institution="+data['institution']+" name="+data['name']);
+                	bootbox.alert("New Institution created: username="+data[1].username+" partyId="+data[0].partyId+ " partyType="+data[0].partyType+
+                			" partnerId="+data[1].partnerId+" institution="+data[1].institution+" name="+data[0].name);
                 }).error(function(data, status, headers, config){
-                	bootbox.alert("institution creation request failed");
+                	bootbox.alert("institution creation request failed with "+status);
                 });
 	    }
 	    	
@@ -497,10 +509,10 @@ $scope.consortiums = [{"partyId": 31767, "partyType": "consortium", "name": "con
 			//Credential table: id, username, password, email, institution, partyId, partnerId, userIdentifier
 			
 			//TODO PW-82 this still does not work - values entered by user in popup is not being passed here.
-		    name:$scope.newConsortium['name'],//Party.name //optional
+		    name:$scope.newConsortium['name'],//Party.name //optional for WS. comes from UI already
 		    partyType:'consortium',//Party.partyType, required
 		    
-			username: "andrcons", //temporarly hardcoded. $scope.newConsortium['username'],//TODO Credential.username MUST COME FROM UI, required
+			username: "andrvetcons", //temporarly hardcoded. $scope.newConsortium['username'],//TODO Credential.username MUST COME FROM UI, required
 			partnerId:"phoenix", //tair or phoenix //Credential.partnerId, required
 
 			//email:$scope.newConsortium['email'],//Credential.email //optional
@@ -514,8 +526,8 @@ $scope.consortiums = [{"partyId": 31767, "partyType": "consortium", "name": "con
 		    data:data,
             method: 'POST',
 		}).success(function(data, status, headers, config){
-			bootbox.alert("New Consortium created: username="+data['username']+" partyId="+data['partyId']+" partnerId="+data['partnerId']+" institution="+data['institution']+" name="+data['name']);
-			//TODO
+			
+			//old code. TODO by PW-82
 			$scope.createdConsortium = data;
 			$scope.createdConsortium['state'] = null;
 			$scope.consortiums.unshift(angular.copy($scope.createdConsortium));
@@ -523,6 +535,28 @@ $scope.consortiums = [{"partyId": 31767, "partyType": "consortium", "name": "con
 					consortiumId : $scope.createdConsortium.partyId,
 					action : 'add'
 			}
+			
+			//new code
+           	$scope.partyId = data[0]['partyId'];
+        	$scope.createdConsortium = {
+        			//0 Party
+                	country: data[0].country,
+                	display: data[0].display,
+                	name: data[0].name, //Party.name
+                	partyId: data[0].partyId,
+                	partyType: data[0].partyType,
+                	//1 Credential
+                	email: data[1].email,
+                	institution: data[1].institution,
+                	partnerId: data[1].partnerId,
+                	partyId: data[1].partyId,
+                	userIdentifier: data[1].userIdentifier,
+                	username: data[1].username,//Credential.username
+        	}
+			
+			bootbox.alert("New Consortium created: username="+data[1].username+" partyId="+data[0].partyId+ " partyType="+data[0].partyType+
+					" partnerId="+data[1].partnerId+" institution="+data[1].institution+" name="+data[0].name);
+
 		
 		//TODO to be replaced by new affiliation WS
 		$http({
