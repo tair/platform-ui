@@ -27,16 +27,25 @@ angular.module('platform-ui.librariantool.role.consortium.profile').controller(
                                 }
                                 //Save info
                                 put_data = {}
+				//put original values from GET
+                put_data["partyId"]  = $scope.user.partyId; //$cookies.credentialId;
+                put_data["username"] = $scope.user.username;
+                put_data["partnerId"]= $scope.user.partnerId;
+                put_data["password"]= $scope.user.password;
+                
+                //rewrite with new from UI
+                forceReSignIn = false;                     
                                 for(k in $scope.user) {
-                                        if ($scope.userprev[k] != $scope.user[k]) {
-                                                put_data[k] = $scope.user[k];
-                                                $scope.userprev[k] = $scope.user[k];
-                                        }
+                                    if ($scope.userprev[k] != $scope.user[k]) {
+                                    put_data[k] = $scope.user[k];
+                                    if (k == 'username' || k == 'password')
+									{
+										forceReSignIn = true;
+									}
+                                    $scope.userprev[k] = $scope.user[k];
+                                    }
                                 }
-                                put_data["partyId"]  = $scope.user.partyId; //$cookies.credentialId;
-                                //put_data["username"] = $scope.user.username;
-                                put_data["partnerId"]= $scope.user.partnerId;
-                                //put_data["password"]= $scope.user.password;
+
                                 $http({
                                         //vet pw-161 UI url: $scope.apiUri+'/credentials/profile/?partyId='+$cookies.credentialId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
                                         url: $scope.apiUri+'/parties/consortiums/?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
@@ -44,9 +53,14 @@ angular.module('platform-ui.librariantool.role.consortium.profile').controller(
                                         method: 'PUT',
                                         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                                 }).success(function(){
-                                	bootbox.alert("Consortium Successfuly Updated!");
+                                	bootbox.alert("Consortium Profile Successfuly Updated" + (forceReSignIn ? ". Please re-login":"!") );
+                                	if (forceReSignIn) {
+                                		//$cookieStore.remove("credentialId");
+                                		//$cookieStore.remove("secretKey");
+                                		$scope.home();
+                                	}
                                 }).error(function() {
-                                	bootbox.alert("Failed to update user info");
+                                	bootbox.alert("Failed to update Consortium Profile");
                                 });
                         }
                         $scope.edit = !$scope.edit;
@@ -61,6 +75,11 @@ angular.module('platform-ui.librariantool.role.consortium.profile').controller(
                 }
 
                 function validateInfo() {
+                	if ($scope.user.email.$invalid) {
+						console.log("User email is invalid");
+						alert("Email not valid");
+						return false;
+					}
                         if ($scope.user.email!=$scope.email_validate) {
                                 console.log("User email is "+$scope.user.email+" and validate email is "+$scope.email_validate);
                                 return false;
@@ -69,6 +88,12 @@ angular.module('platform-ui.librariantool.role.consortium.profile').controller(
                                 console.log("User password is "+$scope.user.password+" and validate password is "+$scope.password_validate);
                                 return false;
                         }
+			       if ($scope.user.password==null || $scope.user.password=="" 
+				       || $scope.password_validate==null || $scope.password_validate=="") {
+						bootbox.alert("error: password can not be empty");
+						console.log("error: password can not be empty");
+					return false;
+					}                      
                         return true;
                 }
 
@@ -80,25 +105,6 @@ angular.module('platform-ui.librariantool.role.consortium.profile').controller(
                         	    url: $scope.apiUri+'/parties/consortiums/?partyId='+$cookies.credentialId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
                                 method: 'GET',
                         }).success(function(data, status, headers, config) {
-                            	/*
-                            	     {
-									    "partyId": 2,
-									    "partyType": "user",
-									    "name": "Google Staf6",
-									    "country": 170,
-									    "display": false,
-									    "consortiums": []
-									  },
-									  {
-									    "username": "googlestaff",
-									    "password": "4b919cea2835bf20e4c9576e107c4eaf42682a11",
-									    "email": "andrey@arabidopsis.org",
-									    "institution": "Google",
-									    "partyId": 2,
-									    "partnerId": "phoenix",
-									    "userIdentifier": "123456789"
-									  }
-                            	 */
                         		$scope.user.partyId = data[0].partyId;
                         		$scope.user.partyType = data[0].partyType;
                             	$scope.user.name = data[0].name;

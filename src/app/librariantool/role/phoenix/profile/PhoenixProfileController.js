@@ -29,16 +29,24 @@ angular.module('platform-ui.librariantool.role.phoenix.profile').controller(
 				}
 				//Save info
 				put_data = {}
+				//put original values from GET
+                put_data["partyId"]  = $scope.user.partyId; //$cookies.credentialId;
+                put_data["username"] = $scope.user.username;
+                put_data["partnerId"]= $scope.user.partnerId;
+                put_data["password"]= $scope.user.password;
+                
+                //rewrite with new from UI
+                forceReSignIn = false;
 				for(k in $scope.user) {
 					if ($scope.userprev[k] != $scope.user[k]) {
 						put_data[k] = $scope.user[k];
 						$scope.userprev[k] = $scope.user[k];
+						if (k == 'username' || k == 'password')
+							{
+							forceReSignIn = true;
+							}
 					}
 				}
-                put_data["partyId"]  = $scope.user.partyId; //$cookies.credentialId;
-                //put_data["username"] = $scope.user.username;
-                put_data["partnerId"]= $scope.user.partnerId;
-                //put_data["password"]= $scope.user.password;
 				$http({
 					//url: $scope.apiUri+'/credentials/?username='+$cookies.username+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
 					url: $scope.apiUri+'/parties/institutions/?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
@@ -46,9 +54,14 @@ angular.module('platform-ui.librariantool.role.phoenix.profile').controller(
 					method: 'PUT',
 					headers: {'Content-Type': 'application/x-www-form-urlencoded'},
 				}).success(function(){
-					bootbox.alert("Successfuly Updated!");
+					bootbox.alert("Phoenix Staff Profile Successfuly Updated" + (forceReSignIn ? ". Please re-login":"!") );
+					if (forceReSignIn) {
+						//$cookieStore.remove("credentialId");
+						//$cookieStore.remove("secretKey");
+						$scope.home();
+					}
 				}).error(function() {
-					alert("Failed to update user info");
+					bootbox.alert("Failed to update Phoenix Staff Profile");
 				});
 			}
 			$scope.edit = !$scope.edit;
@@ -63,12 +76,23 @@ angular.module('platform-ui.librariantool.role.phoenix.profile').controller(
 		}
 
 		function validateInfo() {
+			if ($scope.user.email.$invalid) {
+				console.log("User email is invalid");
+				alert("Email not valid");
+				return false;
+			}
 			if ($scope.user.email!=$scope.email_validate) {
 				console.log("User email is "+$scope.user.email+" and validate email is "+$scope.email_validate);
 				return false;
 			}
 			if ($scope.user.password!=$scope.password_validate) {
 				console.log("User password is "+$scope.user.password+" and validate password is "+$scope.password_validate);
+				return false;
+			}
+			if ($scope.user.password==null || $scope.user.password=="" 
+				|| $scope.password_validate==null || $scope.password_validate=="") {
+				bootbox.alert("error: password can not be empty");
+				console.log("error: password can not be empty");
 				return false;
 			}
 			return true;

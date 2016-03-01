@@ -1,5 +1,5 @@
 /**
- * InstitutionIpRange Controller
+ * InstitutionProfileController
  */
 
 angular.module('platform-ui.librariantool.role.institution.profile').controller(
@@ -56,14 +56,14 @@ angular.module('platform-ui.librariantool.role.institution.profile').controller(
 					method: 'PUT',
 					headers: {'Content-Type': 'application/x-www-form-urlencoded'},
 				}).success(function(){
-					bootbox.alert("Successfuly Updated! Please sign-in again");
+					bootbox.alert("Institution Profile Successfuly Updated" + (forceReSignIn ? ". Please re-login":"!") );
 					if (forceReSignIn) {
 						//$cookieStore.remove("credentialId");
 						//$cookieStore.remove("secretKey");
 						$scope.home();
 					}
 				}).error(function() {
-					alert("Failed to update user info");
+					bootbox.alert("Failed to update Institution Profile");
 				});
 			}
 			$scope.edit = !$scope.edit;
