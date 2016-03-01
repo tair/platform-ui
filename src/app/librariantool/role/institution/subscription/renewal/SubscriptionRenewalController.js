@@ -33,7 +33,7 @@ angular.module('platform-ui.librariantool.role.institution.subscription.renewal'
 			"comments": $scope.comments,
 		};
 		$http({
-			url: $scope.apiUri+'/subscriptions/renew/'+'?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+			url: $scope.apiUri+'/subscriptions/renew/'+'?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
 			method: 'POST',
 			data: postData,
 		}).success(function(){
@@ -69,7 +69,7 @@ angular.module('platform-ui.librariantool.role.institution.subscription.renewal'
 			alert("Cannot get partner information");
 		});
 		$http({
-			url: $scope.apiUri+'/credentials?username='+$cookies.username+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+			url: $scope.apiUri+'/credentials?username='+$cookies.username+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
 			method: 'GET',
 		}).success(function(data, status, headers, config){
 			$scope.user = data[0];
