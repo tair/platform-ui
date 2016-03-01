@@ -93,6 +93,17 @@ angular.module('platform-ui.librariantool.role.institution.profile').controller(
 				$scope.password_validate_prev = $scope.password_validate;
 				console.log($scope.user);
 				console.log($scope.userprev);
+			    //load credential
+			    if($cookies.credentialId!=null){
+					$scope.credentialId = $cookies.credentialId;
+				}else if($window.sessionStorage.credentialId!=null){
+					$scope.credentialId = $window.sessionStorage.credentialId;
+				}
+				if($cookies.secretKey!=null){
+					$scope.secretKey = $cookies.secretKey;
+				}else if($window.sessionStorage.secretKey!=null){
+					$scope.secretKey = $window.sessionStorage.secretKey;
+				}
 			}).error(function() {
 				alert("Failed to get party information");
 			});

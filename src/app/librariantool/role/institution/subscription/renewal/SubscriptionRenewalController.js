@@ -33,7 +33,7 @@ angular.module('platform-ui.librariantool.role.institution.subscription.renewal'
 			"comments": $scope.comments,
 		};
 		$http({
-			url: $scope.apiUri+'/subscriptions/renew/'+'?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+			url: $scope.apiUri+'/subscriptions/renew/'+'?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
 			method: 'POST',
 			data: postData,
 		}).success(function(){
@@ -49,6 +49,17 @@ angular.module('platform-ui.librariantool.role.institution.subscription.renewal'
 		$scope.setTitle(SubscriptionRenewalModel.title);
 		$scope.uiparams = SubscriptionRenewalModel.uiparams;
 		$scope.partnerId = $location.search()['partnerId'];
+	    //load credential
+	    if($cookies.credentialId!=null){
+			$scope.credentialId = $cookies.credentialId;
+		}else if($window.sessionStorage.credentialId!=null){
+			$scope.credentialId = $window.sessionStorage.credentialId;
+		}
+		if($cookies.secretKey!=null){
+			$scope.secretKey = $cookies.secretKey;
+		}else if($window.sessionStorage.secretKey!=null){
+			$scope.secretKey = $window.sessionStorage.secretKey;
+		}
 		$http({
 			url: $scope.apiUri+'/partners?partnerId='+$scope.partnerId,
 			method: 'GET',
@@ -58,7 +69,7 @@ angular.module('platform-ui.librariantool.role.institution.subscription.renewal'
 			alert("Cannot get partner information");
 		});
 		$http({
-			url: $scope.apiUri+'/credentials?username='+$cookies.username+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+			url: $scope.apiUri+'/credentials?username='+$cookies.username+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
 			method: 'GET',
 		}).success(function(data, status, headers, config){
 			$scope.user = data[0];

@@ -31,7 +31,17 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 	    $scope.sortings = InstitutionIpRangeModel.sortings; //List of sorting objects which contain sortField and reverse attributes.
 	    $scope.reverse = $scope.sortings[0].reverse;
 	    $scope.predicate = $scope.sortings[0].predicate;
-	    
+	    //load credential
+	    if($cookies.credentialId!=null){
+			$scope.credentialId = $cookies.credentialId;
+		}else if($window.sessionStorage.credentialId!=null){
+			$scope.credentialId = $window.sessionStorage.credentialId;
+		}
+		if($cookies.secretKey!=null){
+			$scope.secretKey = $cookies.secretKey;
+		}else if($window.sessionStorage.secretKey!=null){
+			$scope.secretKey = $window.sessionStorage.secretKey;
+		}
 	    //initializing orderBy function
 	    var orderBy = $filter('orderBy');
 	    $scope.order = function(predicate, reverse) {
