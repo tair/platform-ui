@@ -36,9 +36,9 @@ angular.module('platform-ui.librariantool.role.institution.profile').controller(
 					}
 				}
                 put_data["partyId"]  = $scope.user.partyId; //$cookies.credentialId;
-                put_data["username"] = $scope.user.username;
+                //put_data["username"] = $scope.user.username;
                 put_data["partnerId"]= $scope.user.partnerId;
-                put_data["password"]= $scope.user.password;
+                //put_data["password"]= $scope.user.password;
 				$http({
 					//url: $scope.apiUri+'/credentials/profile/?partyId='+$cookies.credentialId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
 					url: $scope.apiUri+'/parties/institutions/?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
@@ -97,7 +97,7 @@ angular.module('platform-ui.librariantool.role.institution.profile').controller(
                             	$scope.user.consortiums = data[0].consortiums;
                             	
                             	$scope.user.username = data[1].username;
-                            	$scope.user.password = "random";
+                            	//$scope.user.password = "random";
                                 $scope.user.email = data[1].email;
                                 $scope.user.institution = data[1].institution;
                                 //$scope.user.partyId = data[1].partyId;
