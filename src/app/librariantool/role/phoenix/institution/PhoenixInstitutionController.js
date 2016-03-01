@@ -54,15 +54,6 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	    
 	  //add institution    
 	    $scope.addInstitutionBox = function(){
-	    	/*
-			  #PW-161 POST https://demoapi.arabidopsis.org/parties/consortiums/?credentialId=2&secretKey=7DgskfEF7jeRGn1h%2B5iDCpvIkRA%3D
-    			#FORM DATA
-			        #username required
-			        #password NOT required (latest requirement change)
-			        #partnerId required (tair/phoenix); (username+partnerId) must make a unique set.
-			        #partyType required ("consortium"/"organization")
-        
-	    	 */
 	    	bootbox.dialog({
 	    		  title: "Create a new Institution",
 	  	    		  message: "<div " +
@@ -130,7 +121,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 			    	name:$scope.newInstitution['name'],//Party.name, optional
                 };
                 $http({
-                	//http://demoapi.arabidopsis.org/parties/institutions/?credentialId=2&secretKey=7DgskfEF7jeRGn1h%2B5iDCpvIkRA%3D
+                	//POST http://demoapi.arabidopsis.org/parties/institutions/?credentialId=2&secretKey=7DgskfEF7jeRGn1h%2B5iDCpvIkRA%3D
                     url: $scope.apiUri+'/parties/institutions/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
                 	//url: $scope.apiUri+'/credentials/',
                     data:data,
@@ -483,7 +474,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 		
 		$http({
 			//PW-161/PW-82
-            //url: $scope.apiUri+'/parties/?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+            //POST url: $scope.apiUri+'/parties/?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
 			url: $scope.apiUri+'/parties/consortiums/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
 		    data:data,
             method: 'POST',
