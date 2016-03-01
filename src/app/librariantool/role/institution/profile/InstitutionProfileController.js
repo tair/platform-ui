@@ -29,16 +29,20 @@ angular.module('platform-ui.librariantool.role.institution.profile').controller(
 				}
 				//Save info
 				put_data = {}
+				//put original values from GET
+                put_data["partyId"]  = $scope.user.partyId; //$cookies.credentialId;
+                put_data["username"] = $scope.user.username;
+                put_data["partnerId"]= $scope.user.partnerId;
+                //put_data["password"]= $scope.user.password;
+                
+                //rewrite with new from UI
 				for(k in $scope.user) {
 					if ($scope.userprev[k] != $scope.user[k]) {
 						put_data[k] = $scope.user[k];
 						$scope.userprev[k] = $scope.user[k];
 					}
 				}
-                put_data["partyId"]  = $scope.user.partyId; //$cookies.credentialId;
-                //put_data["username"] = $scope.user.username;
-                put_data["partnerId"]= $scope.user.partnerId;
-                //put_data["password"]= $scope.user.password;
+
 				$http({
 					//url: $scope.apiUri+'/credentials/profile/?partyId='+$cookies.credentialId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
 					url: $scope.apiUri+'/parties/institutions/?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
