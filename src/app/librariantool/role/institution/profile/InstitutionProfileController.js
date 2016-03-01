@@ -90,6 +90,12 @@ angular.module('platform-ui.librariantool.role.institution.profile').controller(
 				console.log("User password is "+$scope.user.password+" and validate password is "+$scope.password_validate);
 				return false;
 			}
+			if ($scope.user.password==null || $scope.user.password=="" 
+				|| $scope.password_validate==null || $scope.password_validate=="") {
+				bootbox.alert("error: password can not be empty");
+				console.log("error: password can not be empty");
+				return false;
+			}
 			return true;
 		}
 
