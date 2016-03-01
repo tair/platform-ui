@@ -1,5 +1,5 @@
 /**
- * InstitutionIpRange Controller
+ * InstitutionProfileController
  */
 
 angular.module('platform-ui.librariantool.role.institution.profile').controller(
@@ -11,13 +11,14 @@ angular.module('platform-ui.librariantool.role.institution.profile').controller(
 	'$scope',
 	'$http',
 	'$cookies',
+	'$window',
 	'$location',
 	'$state',
 	'Title',
 	'InstitutionProfileModel',
 
 	/* Controller Definition */
-	function ($scope, $http, $cookies, $location, $state, Title, InstitutionProfileModel) {
+	function ($scope, $http, $cookies, $window, $location, $state, Title, InstitutionProfileModel) {
 	    	init();
 		console.log($scope.uiparams.colwidth);
 		
@@ -55,14 +56,14 @@ angular.module('platform-ui.librariantool.role.institution.profile').controller(
 					method: 'PUT',
 					headers: {'Content-Type': 'application/x-www-form-urlencoded'},
 				}).success(function(){
-					bootbox.alert("Successfuly Updated! Please sign-in again");
+					bootbox.alert("Institution Profile Successfuly Updated" + (forceReSignIn ? ". Please re-login":"!") );
 					if (forceReSignIn) {
 						//$cookieStore.remove("credentialId");
 						//$cookieStore.remove("secretKey");
 						$scope.home();
 					}
 				}).error(function() {
-					alert("Failed to update user info");
+					bootbox.alert("Failed to update Institution Profile");
 				});
 			}
 			$scope.edit = !$scope.edit;
@@ -102,11 +103,21 @@ angular.module('platform-ui.librariantool.role.institution.profile').controller(
 	    	function init() {
 	    		$scope.setTitle(InstitutionProfileModel.title);
 	    		$scope.user = InstitutionProfileModel.user;
-	    	
+	    		//load credential
+			    if($cookies.credentialId!=null){
+					$scope.credentialId = $cookies.credentialId;
+				}else if($window.sessionStorage.credentialId!=null){
+					$scope.credentialId = $window.sessionStorage.credentialId;
+				}
+				if($cookies.secretKey!=null){
+					$scope.secretKey = $cookies.secretKey;
+				}else if($window.sessionStorage.secretKey!=null){
+					$scope.secretKey = $window.sessionStorage.secretKey;
+				}
 
 	            $http({
 	            	//instead of /parties/?partyId= call /parties/institutions/?partyId
-	                url: $scope.apiUri+'/parties/institutions/?partyId='+$cookies.credentialId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+	                url: $scope.apiUri+'/parties/institutions/?partyId='+$scope.credentialId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
 	                method: 'GET',
 	            }).success(function(data, status, headers, config){
                         		$scope.user.partyId = data[0].partyId;
