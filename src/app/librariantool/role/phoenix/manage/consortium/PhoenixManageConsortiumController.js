@@ -106,7 +106,7 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.consortium').contr
 			name:consortium['name'],
 		    };
 		    $http({
-			url: $scope.apiUri+'/parties/'+'?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey)+'&partyId='+consortium['partyId'],
+			url: $scope.apiUri+'/parties/?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey)+'&partyId='+consortium['partyId'],
 			data: data,
 			method: 'PUT',
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
@@ -126,15 +126,48 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.consortium').contr
 		var data = {
 		    partyType:'consortium',
 		    name:$scope.newConsortium['name'],
+		    
+		    /* to continue after shared branch created...
+			username:"andrvetinst3", //temporarly hardcoded. $scope.newInstitution['username'],//Credential.username, required
+			partnerId:"phoenix", //tair or phoenix //Credential.partnerId, required
+			partyType:"organization", // or institution ? Party.partyType, required
+			
+			email:$scope.newInstitution['email'],//Credential.email, optional
+	    	institution:$scope.newInstitution['institution'],//Credential.institution, optinal
+	    	name:$scope.newInstitution['name'],//Party.name, optional
+	    	*/
+		    
 		}
 		$http({
-                    url: $scope.apiUri+'/parties/'+'?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
-		    data:data,
+                    //POST url: $scope.apiUri+'/parties/?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+					url: $scope.apiUri+'/parties/institutions/?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+					data:data,
                     method: 'POST',
 		}).success(function(data, status, headers, config){
+			
+			/*
+			//0 Party
+        	country: data[0].country,
+        	display: data[0].display,
+        	name: data[0].name, //Party.name
+        	partyId: data[0].partyId,
+        	partyType: data[0].partyType,
+        	//1 Credential
+        	email: data[1].email,
+        	institution: data[1].institution,
+        	partnerId: data[1].partnerId,
+        	partyId: data[1].partyId,
+        	userIdentifier: data[1].userIdentifier,
+        	username: data[1].username,//Credential.username
+
+	    	*/
+			
 			$scope.createdConsortium = data;
 			$scope.createdConsortium['state'] = null;
 			$scope.consortiums.unshift(angular.copy($scope.createdConsortium));
+			
+			
+			
 		}).error(function(data, status, headers, config){
                     alert("add consortium request failed");
 		});
@@ -150,7 +183,7 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.consortium').contr
 	    $scope.removeConfirm = function(consortium) {
                 data = {};
                 $http({
-                    url: $scope.apiUri+'/parties/'+'?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey)+'&partyId='+consortium['partyId'],
+                    url: $scope.apiUri+'/parties/credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey)+'&partyId='+consortium['partyId'],
                     data:data,
                     method: 'DELETE',
                 }).success(function(data, status, headers, config){
