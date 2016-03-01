@@ -11,6 +11,7 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 	'$scope',
 	'$http',
 	'$cookies',
+	'$window',
 	'$location',
 	'$state',
 	'$filter',
@@ -19,7 +20,7 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 	'IpValidator',
 
 	/* Controller Definition */
-	function ($scope, $http, $cookies, $location, $state, $filter, Title, InstitutionIpRangeModel, IpValidator) {
+	function ($scope, $http, $cookies, $window, $location, $state, $filter, Title, InstitutionIpRangeModel, IpValidator) {
 	    $scope.setTitle(InstitutionIpRangeModel.title);
 	    $scope.ipranges = InstitutionIpRangeModel.ipranges;
 	    $scope.addGroupShow = "hidden";

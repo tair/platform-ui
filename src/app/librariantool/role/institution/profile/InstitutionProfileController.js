@@ -11,13 +11,14 @@ angular.module('platform-ui.librariantool.role.institution.profile').controller(
 	'$scope',
 	'$http',
 	'$cookies',
+	'$window',
 	'$location',
 	'$state',
 	'Title',
 	'InstitutionProfileModel',
 
 	/* Controller Definition */
-	function ($scope, $http, $cookies, $location, $state, Title, InstitutionProfileModel) {
+	function ($scope, $http, $cookies, $window, $location, $state, Title, InstitutionProfileModel) {
 	    	init();
 		console.log($scope.uiparams.colwidth);
 		

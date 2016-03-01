@@ -11,13 +11,14 @@ angular.module('platform-ui.librariantool.role.institution.subscription.list').c
 	'$scope',
 	'$http',
 	'$cookies',
+	'$window',
 	'$location',
 	'$state',
 	'Title',
 	'SubscriptionListModel',
 
 	/* Controller Definition */
-	function ($scope, $http, $cookies, $location, $state, Title, SubscriptionListModel) {
+	function ($scope, $http, $cookies, $window, $location, $state, Title, SubscriptionListModel) {
 	    init();
 
 	    $scope.getExpDate = function(id) {
