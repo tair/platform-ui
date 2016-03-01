@@ -121,7 +121,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	  			  	//Credential table: id, username, password, email, institution, partyId, partnerId, userIdentifier
 
 	    			//TODO PW-82 this still does not work - values entered by user in popup is not being passed here.
-	    			username:"andrvetinst", //temporarly hardcoded. $scope.newInstitution['username'],//Credential.username, required
+	    			username:"andrvetinst3", //temporarly hardcoded. $scope.newInstitution['username'],//Credential.username, required
 	    			partnerId:"phoenix", //tair or phoenix //Credential.partnerId, required
 	    			partyType:"organization", // or institution ? Party.partyType, required
 	    			
@@ -155,7 +155,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
                 	bootbox.alert("New Institution created: username="+data[1].username+" partyId="+data[0].partyId+ " partyType="+data[0].partyType+
                 			" partnerId="+data[1].partnerId+" institution="+data[1].institution+" name="+data[0].name);
                 }).error(function(data, status, headers, config){
-                	bootbox.alert("institution creation request failed with "+status);
+                	bootbox.alert("institution creation failed with "+data.non_field_errors);
                 });
 	    }
 	    	
@@ -474,7 +474,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 		    name:$scope.newConsortium['name'],//Party.name //optional for WS. comes from UI already
 		    partyType:'consortium',//Party.partyType, required
 		    
-			username: "andrvetcons", //temporarly hardcoded. $scope.newConsortium['username'],//TODO Credential.username MUST COME FROM UI, required
+			username: "andrvetcons3", //temporarly hardcoded. $scope.newConsortium['username'],//TODO Credential.username MUST COME FROM UI, required
 			partnerId:"phoenix", //tair or phoenix //Credential.partnerId, required
 
 			//email:$scope.newConsortium['email'],//Credential.email //optional
@@ -488,16 +488,6 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 		    data:data,
             method: 'POST',
 		}).success(function(data, status, headers, config){
-			
-			//old code. TODO by PW-82
-			$scope.createdConsortium = data;
-			$scope.createdConsortium['state'] = null;
-			$scope.consortiums.unshift(angular.copy($scope.createdConsortium));
-			var data = {
-					consortiumId : $scope.createdConsortium.partyId,
-					action : 'add'
-			}
-			
 			//new code
            	$scope.partyId = data[0]['partyId'];
         	$scope.createdConsortium = {
@@ -515,10 +505,17 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
                 	userIdentifier: data[1].userIdentifier,
                 	username: data[1].username,//Credential.username
         	}
-			
 			bootbox.alert("New Consortium created: username="+data[1].username+" partyId="+data[0].partyId+ " partyType="+data[0].partyType+
 					" partnerId="+data[1].partnerId+" institution="+data[1].institution+" name="+data[0].name);
-
+			
+        	//old code. TODO by PW-82
+			$scope.createdConsortium = data;
+			$scope.createdConsortium['state'] = null;
+			$scope.consortiums.unshift(angular.copy($scope.createdConsortium));
+			var data = {
+					consortiumId : $scope.createdConsortium.partyId,
+					action : 'add'
+			}
 		
 		//TODO to be replaced by new affiliation WS
 		$http({
@@ -533,7 +530,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 			            alert("add to new consortium request failed");
 			});
 		}).error(function(data, status, headers, config){
-            alert("new consortium request failed");
+            alert("new consortium request failed with "+data.non_field_errors);
 		});		            
 			$scope.newConsortium = null;
 			$scope.consAdding = false;
