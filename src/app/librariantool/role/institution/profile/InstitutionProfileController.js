@@ -36,10 +36,15 @@ angular.module('platform-ui.librariantool.role.institution.profile').controller(
                 put_data["password"]= $scope.user.password;
                 
                 //rewrite with new from UI
+                forceReSignIn = false;
 				for(k in $scope.user) {
 					if ($scope.userprev[k] != $scope.user[k]) {
 						put_data[k] = $scope.user[k];
 						$scope.userprev[k] = $scope.user[k];
+						if (k == 'username' || k == 'password')
+							{
+							forceReSignIn = true;
+							}
 					}
 				}
 
@@ -51,9 +56,11 @@ angular.module('platform-ui.librariantool.role.institution.profile').controller(
 					headers: {'Content-Type': 'application/x-www-form-urlencoded'},
 				}).success(function(){
 					bootbox.alert("Successfuly Updated! Please sign-in again");
-					//$cookieStore.remove("credentialId");
-					//$cookieStore.remove("secretKey");
-					$scope.home();
+					if (forceReSignIn) {
+						//$cookieStore.remove("credentialId");
+						//$cookieStore.remove("secretKey");
+						$scope.home();
+					}
 				}).error(function() {
 					alert("Failed to update user info");
 				});
