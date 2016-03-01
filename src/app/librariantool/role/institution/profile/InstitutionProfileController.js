@@ -33,7 +33,7 @@ angular.module('platform-ui.librariantool.role.institution.profile').controller(
                 put_data["partyId"]  = $scope.user.partyId; //$cookies.credentialId;
                 put_data["username"] = $scope.user.username;
                 put_data["partnerId"]= $scope.user.partnerId;
-                //put_data["password"]= $scope.user.password;
+                put_data["password"]= $scope.user.password;
                 
                 //rewrite with new from UI
 				for(k in $scope.user) {
