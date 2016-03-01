@@ -124,49 +124,46 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.consortium').contr
 	    }
 	    $scope.addConfirm = function() {
 		var data = {
-		    partyType:'consortium',
-		    name:$scope.newConsortium['name'],
-		    
-		    /* to continue after shared branch created...
-			username:"andrvetinst3", //temporarly hardcoded. $scope.newInstitution['username'],//Credential.username, required
+		    //Party table: partyId, partyType, display, name, countryId
+			//Credential table: id, username, password, email, institution, partyId, partnerId, userIdentifier
+			//TODO PW-82 this still does not work - values entered by user in popup is not being passed here.
+		    name:$scope.newConsortium['name'],//Party.name //optional for WS. shoudl come from UI
+		    partyType:'consortium',//Party.partyType, required
+			username: "andrvet_cons_ph_manage_cons", //temporarly hardcoded. $scope.newConsortium['username'],//TODO Credential.username MUST COME FROM UI, required
 			partnerId:"phoenix", //tair or phoenix //Credential.partnerId, required
-			partyType:"organization", // or institution ? Party.partyType, required
-			
-			email:$scope.newInstitution['email'],//Credential.email, optional
-	    	institution:$scope.newInstitution['institution'],//Credential.institution, optinal
-	    	name:$scope.newInstitution['name'],//Party.name, optional
-	    	*/
-		    
+			//email:$scope.newConsortium['email'],//Credential.email //optional
+		    //institution:$scope.newConsortium['institution'],//Credential.institution //optional
 		}
 		$http({
                     //POST url: $scope.apiUri+'/parties/?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
-					url: $scope.apiUri+'/parties/institutions/?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+					url: $scope.apiUri+'/parties/consortiums/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
 					data:data,
                     method: 'POST',
 		}).success(function(data, status, headers, config){
-			
-			/*
-			//0 Party
-        	country: data[0].country,
-        	display: data[0].display,
-        	name: data[0].name, //Party.name
-        	partyId: data[0].partyId,
-        	partyType: data[0].partyType,
-        	//1 Credential
-        	email: data[1].email,
-        	institution: data[1].institution,
-        	partnerId: data[1].partnerId,
-        	partyId: data[1].partyId,
-        	userIdentifier: data[1].userIdentifier,
-        	username: data[1].username,//Credential.username
-
-	    	*/
-			
-			$scope.createdConsortium = data;
+			//new code
+           	//$scope.partyId = data[0]['partyId'];
+        	$scope.createdConsortium = {
+        			//0 Party
+                	country: data[0].country,
+                	display: data[0].display,
+                	name: data[0].name, //Party.name
+                	partyId: data[0].partyId,
+                	partyType: data[0].partyType,
+                	//1 Credential
+                	email: data[1].email,
+                	institution: data[1].institution,
+                	partnerId: data[1].partnerId,
+                	partyId: data[1].partyId,
+                	userIdentifier: data[1].userIdentifier,
+                	username: data[1].username,//Credential.username
+        	}
+			//$scope.createdConsortium = data;
+        	
+        	bootbox.alert("New Consortium created: username="+data[1].username+" partyId="+data[0].partyId+ " partyType="+data[0].partyType+
+					" partnerId="+data[1].partnerId+" institution="+data[1].institution+" name="+data[0].name);
+        	
 			$scope.createdConsortium['state'] = null;
 			$scope.consortiums.unshift(angular.copy($scope.createdConsortium));
-			
-			
 			
 		}).error(function(data, status, headers, config){
                     alert("add consortium request failed");
