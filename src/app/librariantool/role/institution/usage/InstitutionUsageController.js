@@ -11,13 +11,14 @@ angular.module('platform-ui.librariantool.role.institution.usage').controller(
 	'$scope',
 	'$http',
 	'$cookies',
+	'$window',
 	'$location',
 	'$state',
 	'Title',
 	'InstitutionUsageModel',
 
 	/* Controller Definition */
-	function ($scope, $http, $cookies, $location, $state, Title, InstitutionUsageModel) {
+	function ($scope, $http, $cookies, $window, $location, $state, Title, InstitutionUsageModel) {
 	    init();
 
 	    $scope.validateForm = function() {

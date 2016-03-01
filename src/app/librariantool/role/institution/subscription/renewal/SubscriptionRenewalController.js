@@ -11,13 +11,14 @@ angular.module('platform-ui.librariantool.role.institution.subscription.renewal'
 	'$scope',
 	'$http',
 	'$cookies',
+	'$window',
 	'$location',
 	'$state',
 	'Title',
 	'SubscriptionRenewalModel',
 
 	/* Controller Definition */
-	function ($scope, $http, $cookies, $location, $state, Title, SubscriptionRenewalModel) {
+	function ($scope, $http, $cookies, $window, $location, $state, Title, SubscriptionRenewalModel) {
 	    init();
 	
 	    $scope.back = function() {

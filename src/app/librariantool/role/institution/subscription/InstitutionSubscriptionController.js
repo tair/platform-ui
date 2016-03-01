@@ -11,13 +11,14 @@ angular.module('platform-ui.librariantool.role.institution.subscription').contro
 	'$scope',
 	'$http',
 	'$cookies',
+	'$window',
 	'$location',
 	'$state',
 	'Title',
 	'InstitutionSubscriptionModel',
 
 	/* Controller Definition */
-	function ($scope, $http, $cookies, $location, $state, Title, InstitutionSubscriptionModel) {
+	function ($scope, $http, $cookies, $window, $location, $state, Title, InstitutionSubscriptionModel) {
 	    init();
 
 	    function init() {
