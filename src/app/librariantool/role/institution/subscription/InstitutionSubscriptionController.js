@@ -26,6 +26,17 @@ angular.module('platform-ui.librariantool.role.institution.subscription').contro
 		$scope.partners = InstitutionSubscriptionModel.partners;
 		$scope.activeSubscriptions = InstitutionSubscriptionModel.activeSubscriptions;
 		$scope.uiparams = InstitutionSubscriptionModel.uiparams;
+	    //load credential
+	    if($cookies.credentialId!=null){
+			$scope.credentialId = $cookies.credentialId;
+		}else if($window.sessionStorage.credentialId!=null){
+			$scope.credentialId = $window.sessionStorage.credentialId;
+		}
+		if($cookies.secretKey!=null){
+			$scope.secretKey = $cookies.secretKey;
+		}else if($window.sessionStorage.secretKey!=null){
+			$scope.secretKey = $window.sessionStorage.secretKey;
+		}
 		$http({
 			url: $scope.apiUri+'/partners/',
 			method: 'GET',
@@ -35,7 +46,7 @@ angular.module('platform-ui.librariantool.role.institution.subscription').contro
 			alert("Cannot get partner information");
 		});
 		$http({
-			url: $scope.apiUri+'/subscriptions/activesubscriptions/'+$cookies.credentialId+'/',
+			url: $scope.apiUri+'/subscriptions/activesubscriptions/'+$scope.credentialId+'/',
 			method: 'GET',
 		}).success(function(data, status, headers, config) {
 			$scope.activeSubscriptions = data;
