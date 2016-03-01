@@ -56,15 +56,6 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	    
 	  //add institution    
 	    $scope.addInstitutionBox = function(){
-	    	/*
-			  #PW-161 POST https://demoapi.arabidopsis.org/parties/consortiums/?credentialId=2&secretKey=7DgskfEF7jeRGn1h%2B5iDCpvIkRA%3D
-    			#FORM DATA
-			        #username required
-			        #password NOT required (latest requirement change)
-			        #partnerId required (tair/phoenix); (username+partnerId) must make a unique set.
-			        #partyType required ("consortium"/"organization")
-        
-	    	 */
 	    	bootbox.dialog({
 	    		  title: "Create a new Institution",
 	  	    		  message: "<div " +
@@ -123,7 +114,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	  			  	//Credential table: id, username, password, email, institution, partyId, partnerId, userIdentifier
 
 	    			//TODO PW-82 this still does not work - values entered by user in popup is not being passed here.
-	    			username:"andrvetinst3", //temporarly hardcoded. $scope.newInstitution['username'],//Credential.username, required
+	    			username:"andrvet_inst_ph_inst", //temporarly hardcoded. $scope.newInstitution['username'],//Credential.username, required
 	    			partnerId:"phoenix", //tair or phoenix //Credential.partnerId, required
 	    			partyType:"organization", // or institution ? Party.partyType, required
 	    			
@@ -132,7 +123,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 			    	name:$scope.newInstitution['name'],//Party.name, optional
                 };
                 $http({
-                	//http://demoapi.arabidopsis.org/parties/institutions/?credentialId=2&secretKey=7DgskfEF7jeRGn1h%2B5iDCpvIkRA%3D
+                	//POST http://demoapi.arabidopsis.org/parties/institutions/?credentialId=2&secretKey=7DgskfEF7jeRGn1h%2B5iDCpvIkRA%3D
                     url: $scope.apiUri+'/parties/institutions/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
                 	//url: $scope.apiUri+'/credentials/',
                     data:data,
@@ -512,7 +503,7 @@ $scope.consortiums = [{"partyId": 31767, "partyType": "consortium", "name": "con
 		    name:$scope.newConsortium['name'],//Party.name //optional for WS. comes from UI already
 		    partyType:'consortium',//Party.partyType, required
 		    
-			username: "andrvetcons3", //temporarly hardcoded. $scope.newConsortium['username'],//TODO Credential.username MUST COME FROM UI, required
+			username: "andrvet_cons_ph_inst", //temporarly hardcoded. $scope.newConsortium['username'],//TODO Credential.username MUST COME FROM UI, required
 			partnerId:"phoenix", //tair or phoenix //Credential.partnerId, required
 
 			//email:$scope.newConsortium['email'],//Credential.email //optional
@@ -521,7 +512,7 @@ $scope.consortiums = [{"partyId": 31767, "partyType": "consortium", "name": "con
 		
 		$http({
 			//PW-161/PW-82
-            //url: $scope.apiUri+'/parties/?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+            //POST url: $scope.apiUri+'/parties/?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
 			url: $scope.apiUri+'/parties/consortiums/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
 		    data:data,
             method: 'POST',
