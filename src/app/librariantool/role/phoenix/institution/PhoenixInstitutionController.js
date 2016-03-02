@@ -56,15 +56,6 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	    
 	  //add institution    
 	    $scope.addInstitutionBox = function(){
-	    	/*
-			  #PW-161 POST https://demoapi.arabidopsis.org/parties/consortiums/?credentialId=2&secretKey=7DgskfEF7jeRGn1h%2B5iDCpvIkRA%3D
-    			#FORM DATA
-			        #username required
-			        #password NOT required (latest requirement change)
-			        #partnerId required (tair/phoenix); (username+partnerId) must make a unique set.
-			        #partyType required ("consortium"/"organization")
-        
-	    	 */
 	    	bootbox.dialog({
 	    		  title: "Create a new Institution",
 	  	    		  message: "<div " +
@@ -132,7 +123,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 			    	name:$scope.newInstitution['name'],//Party.name, optional
                 };
                 $http({
-                	//http://demoapi.arabidopsis.org/parties/institutions/?credentialId=2&secretKey=7DgskfEF7jeRGn1h%2B5iDCpvIkRA%3D
+                	//POST http://demoapi.arabidopsis.org/parties/institutions/?credentialId=2&secretKey=7DgskfEF7jeRGn1h%2B5iDCpvIkRA%3D
                     url: $scope.apiUri+'/parties/institutions/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
                 	//url: $scope.apiUri+'/credentials/',
                     data:data,
@@ -446,16 +437,15 @@ $scope.consortiums = [{"partyId": 31767, "partyType": "consortium", "name": "con
 		    }
 		$scope.consRemoveConfirm = function(consortium) {
         	var data = {
-        			consortiumId: consortium.partyId,
-        			action: 'remove'
+        			parentPartyId: consortium.partyId,
+        			childPartyId: $scope.partyId
         	}
         	$http({
         		//TODO PW-82. partyId is FORM DATA, not query string parameter. 
         		//url: $scope.apiUri+'/parties/consortiums/?partyId='+$scope.partyId+'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
-        		url: $scope.apiUri+'/parties/consortiums/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+        		url: $scope.apiUri+'/parties/affiliation/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
         		data:data,
-	            method: 'PUT',
-	            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+	            method: 'DELETE',
         	}).success(function(data, status, headers, config){
             }).error(function(data, status, headers, config){
                 alert("consortium affiliation remove request failed");
@@ -482,15 +472,14 @@ $scope.consortiums = [{"partyId": 31767, "partyType": "consortium", "name": "con
 			$scope.foundConsortium['state'] = null;
 			$scope.consortiums.unshift(angular.copy($scope.foundConsortium));
 			var data = {
-					consortiumId : $scope.foundConsortium['partyId'],
-					action : 'add'
+					parentPartyId : $scope.foundConsortium['partyId'],
+					childPartyId : $scope.partyId,
 			}
 	    	$http({
 	    		//TODO PW-82. partyId is FORM DATA, not query string parameter.
-	            //url: $scope.apiUri+'/parties/consortiums/?partyId='+$scope.partyId +'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
-	    		url: $scope.apiUri+'/parties/consortiums/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+	            url: $scope.apiUri+'/parties/affiliations/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
 	    		data:data,
-	            method: 'PUT',
+	            method: 'POST',
 	            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 				}).success(function(data, status, headers, config){
 					
@@ -521,7 +510,7 @@ $scope.consortiums = [{"partyId": 31767, "partyType": "consortium", "name": "con
 		
 		$http({
 			//PW-161/PW-82
-            //url: $scope.apiUri+'/parties/?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+            //POST url: $scope.apiUri+'/parties/?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
 			url: $scope.apiUri+'/parties/consortiums/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
 		    data:data,
             method: 'POST',
@@ -551,18 +540,17 @@ $scope.consortiums = [{"partyId": 31767, "partyType": "consortium", "name": "con
 			$scope.createdConsortium['state'] = null;
 			$scope.consortiums.unshift(angular.copy($scope.createdConsortium));
 			var data = {
-					consortiumId : $scope.createdConsortium.partyId,
-					action : 'add'
+					parentPartyId : $scope.createdConsortium.partyId,
+					childPartyId : $scope.partyId,
 			}
 		
 		//TODO to be replaced by new affiliation WS
 		$http({
 			//TODO PW-82. partyId is FORM DATA, not query string parameter. 
             //url: $scope.apiUri+'/parties/consortiums/?partyId='+$scope.partyId +'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
-            url: $scope.apiUri+'/parties/consortiums/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+            url: $scope.apiUri+'/parties/affiliations/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
             data:data,
-            method: 'PUT',
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            method: 'POST',
 			}).success(function(data, status, headers, config){
 			}).error(function(data, status, headers, config){
 			            alert("add to new consortium request failed");
