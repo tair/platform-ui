@@ -18,8 +18,9 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 
 	/* Controller Definition */
 	function ($scope, $http, $cookies, $location, $state, Title, Dateformat, PhoenixInstitutionModel) {
-		$scope.partyId = $location.search()['partyId'];
+		
 		init();
+		$scope.partyId = $location.search()['partyId'];
 		$scope.setTitle(PhoenixInstitutionModel.title);
 		$scope.institutionName = $location.search()['institutionName'];
 		if ($scope.institutionName != null){
@@ -39,6 +40,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	    $scope.editRange = null;
 	    //subscription
 	    $scope.newSubscription = PhoenixInstitutionModel.newSubscription;
+	    $scope.consSubList = PhoenixInstitutionModel.consSubList;
 	    //new institution
 	    $scope.newInstitution = PhoenixInstitutionModel.newInstitution;
 	    //searching and sorting
@@ -163,17 +165,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 			}
 			return "Unlicensed";
 		    };
-		    
-	    $scope.listPartners = function(partners) {
-			var ret = [];
-			for (var i=0; i<partners.length; i++) {
-			    if (partners[i].partnerId!="phoenix") {
-				ret.push(partners[i]);
-			    }
-			}
-			console.log(ret);
-			return ret;
-		    }
+
 	    $scope.licenseButton = function(id) {
 			return "Edit";
 		    };
@@ -362,21 +354,67 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 		});
 	    }
 	    }
-	    //get partners by consortium	    
-	    $scope.getConsExpDate = function(consortium, id){
-//	    	alert(consortium['partyId']);
-//	    	$http({
-//				url: $scope.apiUri+'/subscriptions/activesubscriptions/'+consortium['partyId']+'/',
-//				method: 'GET',
-//			}).success(function(data, status, headers, config) {
-//				$scope.consortiumSubscriptions = data;
-//				if (id in $scope.consortiumSubscriptions) {
-//					return $scope.consortiumSubscriptions[id].endDate;
-//				}
-//			}).error(function() {
-//				alert("Cannot get active subscription information");
-//			});
-				return "Unlicensed";
+	  //get consortium subscription list	    
+	    $scope.listPartners = function(partners) {
+			var ret = [];
+			for (var i=0; i<partners.length; i++) {
+			    if (partners[i].partnerId!="phoenix") {
+				ret.push(partners[i]);
+			    }
+			}
+			for(var i = 0; i< ret.length; i++){
+				console.log(ret[i])
+			}
+//			console.log(ret);
+			return ret;
+		    }
+//	    $scope.listedPartners = $scope.listPartners($scope.partners);
+	    $scope.listedPartners = [
+{
+"partnerId": "phoenix",
+"name": "Phoenix",
+"logoUri": "https://s3-us-west-2.amazonaws.com/pw2-logo/yfd.png",
+"termOfServiceUri": "https://www.google.com/intl/en/policies/terms/?fg=1"
+},
+{
+"partnerId": "tair",
+"name": "TAIR",
+"logoUri": "https://s3-us-west-2.amazonaws.com/pw2-logo/logo2.gif",
+"termOfServiceUri": "https://www.arabidopsis.org/doc/about/tair_terms_of_use/417"
+},
+{
+"partnerId": "yfd",
+"name": "YFD",
+"logoUri": "https://s3-us-west-2.amazonaws.com/pw2-logo/yfd.png",
+"termOfServiceUri": "https://www.google.com/intl/en/policies/terms/?fg=1"
+}
+],
+$scope.consortiums = [{"partyId": 31767, "partyType": "consortium", "name": "consortium31767", "country": 62, "display": true, "consortiums": []}, {"partyId": 32673, "partyType": "consortium", "name": "testcons", "country": null, "display": false, "consortiums": []}];
+	    $scope.consSubList = [];
+	    for(var i = 0; i < $scope.consortiums.length; i++){
+	    	$http({
+				url: $scope.apiUri+'/subscriptions/activesubscriptions/'+$scope.consortiums[i].partyId+'/',
+				method: 'GET',
+			}).success(function(data, status, headers, config) {
+				$scope.consortiumSubscriptions = data;
+				for(var j = 0; j < $scope.listedPartners.length; j++){
+					if ($scope.listedPartners[j].partnerId in $scope.consortiumSubscriptions) {
+						var endDate =  $scope.consortiumSubscriptions[$scope.listedPartners[j].partnerId].endDate;
+			    		$scope.consSubList.push({
+//			    			"consortium": $scope.consortiums[i],
+			    			"consortium": {"partyId": 31767, "partyType": "consortium", "name": "consortium31767", "country": 62, "display": true, "consortiums": []},
+		            	    "endDate": endDate,
+		            	    "partnerId": $scope.listedPartners[j].partnerId,
+		            	    "name": $scope.listedPartners[j].name,
+		            	    "logoUri": $scope.listedPartners[j].logoUri,
+			    		})
+					}else{
+						var endDate =  "Unlicensed";
+					}
+				}
+			}).error(function() {
+				alert("Cannot get active subscription information");
+			});
 	    }
 	    //add consortium
 	    $scope.consright = function(consortium) {
@@ -397,15 +435,13 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 		    }
 		$scope.consRemoveConfirm = function(consortium) {
         	var data = {
-        			consortiumId: consortium.partyId,
-        			action: 'remove'
+        			parentPartyId: consortium.partyId,
+        			childPartyId: $scope.partyId
         	}
         	$http({
-        		//TODO PW-82. partyId is FORM DATA, not query string parameter. 
-        		url: $scope.apiUri+'/parties/consortiums/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+        		url: $scope.apiUri+'/parties/affiliation/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
         		data:data,
-	            method: 'PUT',
-	            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+	            method: 'DELETE',
         	}).success(function(data, status, headers, config){
             }).error(function(data, status, headers, config){
                 alert("consortium affiliation remove request failed");
@@ -432,14 +468,13 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 			$scope.foundConsortium['state'] = null;
 			$scope.consortiums.unshift(angular.copy($scope.foundConsortium));
 			var data = {
-					consortiumId : $scope.foundConsortium['partyId'],
-					action : 'add'
+					parentPartyId : $scope.foundConsortium['partyId'],
+					childPartyId : $scope.partyId,
 			}
 	    	$http({
-	    		//TODO PW-82. partyId is FORM DATA, not query string parameter.
-	    		url: $scope.apiUri+'/parties/consortiums/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+	            url: $scope.apiUri+'/parties/affiliations/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
 	    		data:data,
-	            method: 'PUT',
+	            method: 'POST',
 	            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 				}).success(function(data, status, headers, config){
 					
@@ -499,17 +534,15 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 			$scope.createdConsortium['state'] = null;
 			$scope.consortiums.unshift(angular.copy($scope.createdConsortium));
 			var data = {
-					consortiumId : $scope.createdConsortium.partyId,
-					action : 'add'
+					parentPartyId : $scope.createdConsortium.partyId,
+					childPartyId : $scope.partyId,
 			}
 		
 		//TODO to be replaced by new affiliation WS
 		$http({
-			//TODO PW-82. partyId is FORM DATA, not query string parameter. 
-            url: $scope.apiUri+'/parties/consortiums/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+            url: $scope.apiUri+'/parties/affiliations/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
             data:data,
-            method: 'PUT',
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            method: 'POST',
 			}).success(function(data, status, headers, config){
 			}).error(function(data, status, headers, config){
 			            alert("add to new consortium request failed");
@@ -561,7 +594,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	                //get consortium list of the current institution
 	          	    if($scope.partyId != null){
 	          	    $http({
-	                      url: $scope.apiUri+'/parties/consortiums/?partyId='+$scope.partyId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+	                      url: $scope.apiUri+'/parties/affiliations/?partyId='+$scope.partyId+'partyType=organization'+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
 	                      method: 'GET',
 	                  }).success(function(data, status, headers, config){
 	          	$scope.consortiums = [];
@@ -573,7 +606,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	          		name:entry['name'],
 	          		country:entry['country'],
 	          		display:entry['display'],
-	          		consortium:entry['consortium'],	
+//	          		consortium:entry['consortium'],	
 	          		state:null
 	          	    });
 	          	}
@@ -627,7 +660,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	    //get consortium list of the current institution
 	    if($scope.partyId != null){
 	    $http({
-            url: $scope.apiUri+'/parties/consortiums/?partyId='+$scope.partyId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+            url: $scope.apiUri+'/parties/affiliations/?partyId='+$scope.partyId+'patyType=organization'+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
             method: 'GET',
         }).success(function(data, status, headers, config){
 	$scope.consortiums = [];
@@ -639,7 +672,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 		name:entry['name'],
 		country:entry['country'],
 		display:entry['display'],
-		consortium:entry['consortium'],	
+//		consortium:entry['consortium'],	
 		state:null
 	    });
 	}
@@ -662,6 +695,14 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	        }).error(function(data, status, headers, config){
 		alert("all consortiums request failed");
 	        });
+	    $http({
+			url: $scope.apiUri+'/partners/',
+			method: 'GET',
+		}).success(function(data, status, headers, config) {
+			$scope.partners = data;
+		}).error(function() {
+			alert("Cannot get partner information");
+		});
 	    $(function () {
             $('#createStart').datepicker();
         });
