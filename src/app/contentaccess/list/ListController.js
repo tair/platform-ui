@@ -10,6 +10,7 @@ angular.module('platform-ui.contentaccess.list').controller(
 	[
 	'$http',
 	'$scope',
+	'$cookies',
 	'$location',
 	"$timeout",
 	'Title',
@@ -40,8 +41,9 @@ angular.module('platform-ui.contentaccess.list').controller(
 		}).success(function(data, status, headers, config) {
 		    $scope.partner = data[0];
 		});
-		$http({
-                    url:$scope.apiUri+'/parties/organizations?partnerId='+$scope.partnerId,
+		$http({ 
+				//PW-161 /parties/organizations
+	           url:$scope.apiUri+'/parties/institutions/?partnerId='+$scope.partnerId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
                     method:'GET',
                 }).success(function(data, status, headers, config) {
                     $scope.institutions = data.sort(sortfunction);
