@@ -123,9 +123,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 			    	name:$scope.newInstitution['name'],//Party.name, optional
                 };
                 $http({
-                	//POST http://demoapi.arabidopsis.org/parties/institutions/?credentialId=2&secretKey=7DgskfEF7jeRGn1h%2B5iDCpvIkRA%3D
                     url: $scope.apiUri+'/parties/institutions/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
-                	//url: $scope.apiUri+'/credentials/',
                     data:data,
                     method: 'POST',
                 }).success(function(data, status, headers, config){
@@ -442,7 +440,6 @@ $scope.consortiums = [{"partyId": 31767, "partyType": "consortium", "name": "con
         	}
         	$http({
         		//TODO PW-82. partyId is FORM DATA, not query string parameter. 
-        		//url: $scope.apiUri+'/parties/consortiums/?partyId='+$scope.partyId+'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
         		url: $scope.apiUri+'/parties/affiliation/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
         		data:data,
 	            method: 'DELETE',
@@ -476,7 +473,6 @@ $scope.consortiums = [{"partyId": 31767, "partyType": "consortium", "name": "con
 					childPartyId : $scope.partyId,
 			}
 	    	$http({
-	    		//TODO PW-82. partyId is FORM DATA, not query string parameter.
 	            url: $scope.apiUri+'/parties/affiliations/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
 	    		data:data,
 	            method: 'POST',
@@ -510,7 +506,6 @@ $scope.consortiums = [{"partyId": 31767, "partyType": "consortium", "name": "con
 		
 		$http({
 			//PW-161/PW-82
-            //POST url: $scope.apiUri+'/parties/?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
 			url: $scope.apiUri+'/parties/consortiums/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
 		    data:data,
             method: 'POST',
@@ -544,10 +539,8 @@ $scope.consortiums = [{"partyId": 31767, "partyType": "consortium", "name": "con
 					childPartyId : $scope.partyId,
 			}
 		
-		//TODO to be replaced by new affiliation WS
+		
 		$http({
-			//TODO PW-82. partyId is FORM DATA, not query string parameter. 
-            //url: $scope.apiUri+'/parties/consortiums/?partyId='+$scope.partyId +'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
             url: $scope.apiUri+'/parties/affiliations/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
             data:data,
             method: 'POST',

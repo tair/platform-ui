@@ -203,7 +203,6 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 			}
 	    	$http({
 	    		//TODO PW-82. partyId is FORM DATA, not query string parameter.
-	            //url: $scope.apiUri+'/parties/consortiums/?partyId='+$scope.foundInstitution.partyId +'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
 	    		url: $scope.apiUri+'/parties/consortiums/?' +'secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
 	    		data:data,
 	            method: 'PUT',
@@ -231,7 +230,6 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 	    	name:$scope.newInstitution['name'],//Party.name, optional
 		}
 		$http({
-            //url: $scope.apiUri+'/parties/?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
 			url: $scope.apiUri+'/parties/institutions/?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
 			data:data,
             method: 'POST',
@@ -268,8 +266,7 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 			
 		$http({
 			//TODO PW-82. partyId is FORM DATA, not query string parameter.
-            //url: $scope.apiUri+'/parties/consortiums/?partyId='+$scope.createdInstitution.partyId +'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
-			url: $scope.apiUri+'/parties/consortiums/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+            url: $scope.apiUri+'/parties/consortiums/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
 			data:data,
             method: 'PUT',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
@@ -296,7 +293,6 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
         	}
         	$http({
         		//TODO PW-82. partyId is FORM DATA, not query string parameter.
-        		//url: $scope.apiUri+'/parties/consortiums/?partyId='+institution.partyId+'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
         		url: $scope.apiUri+'/parties/consortiums/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
         		data:data,
 	            method: 'PUT',
