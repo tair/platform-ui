@@ -594,7 +594,7 @@ $scope.consortiums = [{"partyId": 31767, "partyType": "consortium", "name": "con
 	                //get consortium list of the current institution
 	          	    if($scope.partyId != null){
 	          	    $http({
-	                      url: $scope.apiUri+'/parties/affiliations/?partyId='+$scope.partyId+'partyType=organization'+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+	                      url: $scope.apiUri+'/parties/affiliations/?partyId='+$scope.partyId+'&partyType=organization'+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
 	                      method: 'GET',
 	                  }).success(function(data, status, headers, config){
 	          	$scope.consortiums = [];
@@ -660,7 +660,7 @@ $scope.consortiums = [{"partyId": 31767, "partyType": "consortium", "name": "con
 	    //get consortium list of the current institution
 	    if($scope.partyId != null){
 	    $http({
-            url: $scope.apiUri+'/parties/affiliations/?partyId='+$scope.partyId+'patyType=organization'+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+            url: $scope.apiUri+'/parties/affiliations/?partyId='+$scope.partyId+'&patyType=organization'+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
             method: 'GET',
         }).success(function(data, status, headers, config){
 	$scope.consortiums = [];
