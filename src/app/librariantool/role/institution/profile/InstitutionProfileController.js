@@ -116,7 +116,6 @@ angular.module('platform-ui.librariantool.role.institution.profile').controller(
 				}
 
 	            $http({
-	            	//instead of /parties/?partyId= call /parties/institutions/?partyId
 	                url: $scope.apiUri+'/parties/institutions/?partyId='+$scope.credentialId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
 	                method: 'GET',
 	            }).success(function(data, status, headers, config){

@@ -135,7 +135,6 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.consortium').contr
 		    //institution:$scope.newConsortium['institution'],//Credential.institution //optional
 		}
 		$http({
-                    //POST url: $scope.apiUri+'/parties/?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
 					url: $scope.apiUri+'/parties/consortiums/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
 					data:data,
                     method: 'POST',

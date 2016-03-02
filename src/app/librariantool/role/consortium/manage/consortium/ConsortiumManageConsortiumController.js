@@ -110,7 +110,6 @@ angular.module('platform-ui.librariantool.role.consortium.manage.consortium').co
 				    //TODO PW-82/PW-161 Credential.username is required
 				}
 				$http({
-		                    //url: $scope.apiUri+'/parties/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
 					 		url: $scope.apiUri+'/parties/institutions/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
 					 		data:data,
 		                    method: 'POST',
@@ -124,7 +123,6 @@ angular.module('platform-ui.librariantool.role.consortium.manage.consortium').co
 					}
 				$http({
 					//TODO PW-82/PW-161. partyId is FORM DATA, not query string parameter. 
-		            //url: $scope.apiUri+'/parties/consortiums/?partyId='+$scope.createdInstitution.partyId +'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
 					url: $scope.apiUri+'/parties/consortiums/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
 					data:data,
 		            method: 'PUT',
@@ -161,7 +159,6 @@ angular.module('platform-ui.librariantool.role.consortium.manage.consortium').co
             	}
             	$http({
             		//TODO PW-82/PW-161. partyId is FORM DATA, not query string parameter. 
-            		//url: $scope.apiUri+'/parties/consortiums/?partyId='+institution.partyId+'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
             		url: $scope.apiUri+'/parties/consortiums/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
             		data:data,
     	            method: 'PUT',
