@@ -439,7 +439,7 @@ $scope.consortiums = [{"partyId": 31767, "partyType": "consortium", "name": "con
         			childPartyId: $scope.partyId
         	}
         	$http({
-        		url: $scope.apiUri+'/parties/affiliation/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+        		url: $scope.apiUri+'/parties/affiliations/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
         		data:data,
 	            method: 'DELETE',
         	}).success(function(data, status, headers, config){
