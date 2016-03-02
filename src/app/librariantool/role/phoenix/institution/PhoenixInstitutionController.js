@@ -436,8 +436,8 @@ $scope.consortiums = [{"partyId": 31767, "partyType": "consortium", "name": "con
 		$scope.consRemoveConfirm = function(consortium) {
         	var data = {
         			parentPartyId: consortium.partyId,
-        			childPartyId: $scope.partyId
-        	}
+        			childPartyId: $scope.partyId,
+        	};
         	$http({
         		url: $scope.apiUri+'/parties/affiliations/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
         		data:data,
