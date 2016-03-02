@@ -438,8 +438,8 @@ $scope.consortiums = [{"partyId": 31767, "partyType": "consortium", "name": "con
 		$scope.consRemoveConfirm = function(consortium) {
         	var data = {
         			parentPartyId: consortium.partyId,
-        			childPartyId: $scope.partyId
-        	}
+        			childPartyId: $scope.partyId,
+        	};
         	$http({
         		//TODO PW-82. partyId is FORM DATA, not query string parameter. 
         		//url: $scope.apiUri+'/parties/consortiums/?partyId='+$scope.partyId+'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
