@@ -18,8 +18,9 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 
 	/* Controller Definition */
 	function ($scope, $http, $cookies, $location, $state, Title, Dateformat, PhoenixInstitutionModel) {
-		$scope.partyId = $location.search()['partyId'];
+		
 		init();
+		$scope.partyId = $location.search()['partyId'];
 		$scope.setTitle(PhoenixInstitutionModel.title);
 		$scope.institutionName = $location.search()['institutionName'];
 		if ($scope.institutionName != null){
@@ -39,6 +40,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	    $scope.editRange = null;
 	    //subscription
 	    $scope.newSubscription = PhoenixInstitutionModel.newSubscription;
+	    $scope.consSubList = PhoenixInstitutionModel.consSubList;
 	    //new institution
 	    $scope.newInstitution = PhoenixInstitutionModel.newInstitution;
 	    //searching and sorting
@@ -56,41 +58,98 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	    $scope.addInstitutionBox = function(){
 	    	bootbox.dialog({
 	    		  title: "Create a new Institution",
-	    		  message: "<div ng-controller='PhoenixInstitutionController' style='padding:0px'>" +
-	    		  		"<input ng-class='groupsListLabelCss(true)' type='text' ng-model='newInstitution.name'" +
-	    		  		"placeholder='Input instituion name'></input></div>",
+	  	    		  message: "<div " +
+	  	    		  	"ng-controller='PhoenixInstitutionController' style='padding:0px'>" +
+	    		  		//Credential.username required
+	  	    		  	"<input ng-class='groupsListLabelCss(true)' " +
+	    		  		"type='text' " +
+	    		  		"ng-model='newInstitution.username'" +
+	    		  		"placeholder='Institution username (required)'>" +
+	    		  		"</input>" +
+	    		  		
+	    		  		//Credential.password //not needed
+//	  	    		  	"<input ng-class='groupsListLabelCss(true)' " +
+//	    		  		"type='text' " +
+//	    		  		"ng-model='newInstitution.password'" +
+//	    		  		"placeholder='Input instituion password'>" +
+//	    		  		"</input>" +
+	    		  		
+	    		  		//Credential.email
+	  	    		  	"<input ng-class='groupsListLabelCss(true)' " +
+	    		  		"type='text' " +
+	    		  		"ng-model='newInstitution.email'" +
+	    		  		"placeholder='Instituion email (optional)'>" +
+	    		  		"</input>" +
+	    		  		
+	    		  		//Credential.institution
+	  	    		  	"<input ng-class='groupsListLabelCss(true)' " +
+	    		  		"type='text' " +
+	    		  		"ng-model='newInstitution.institution'" +
+	    		  		"placeholder='Instituion (optional)'>" +
+	    		  		"</input>" +
+	    		  		
+	    		  		//Party.name (example Google Staf)
+	  	    		  	"<input ng-class='groupsListLabelCss(true)' " +
+	    		  		"type='text' " +
+	    		  		"ng-model='newInstitution.name'" +
+	    		  		"placeholder='Institution name (optional)'>" +
+	    		  		"</input>" +
+	    		  		
+	    		  		"</div>",
 	    		  buttons: {
 	                    success: {
 	                        label: "Create",
 	                        className: "btn-success",
 	                        callback: function(){
-	                            $scope.createInstitution();
+	                        	$scope.createInstitutionPartyAndCredential();
 	                        }
 	                    }
 	                }
 	    		});
 	    }
-	    $scope.createInstitution = function(){
+	
+	    $scope.createInstitutionPartyAndCredential = function(){
 	    	data = {
-                    name:$scope.newInstitution['name'],
-                    partyType:$scope.newInstitution['partyType']
+	   	    	  	//Party table: partyId, partyType, display, name, countryId
+	  			  	//Credential table: id, username, password, email, institution, partyId, partnerId, userIdentifier
+
+	    			//TODO PW-82 this still does not work - values entered by user in popup is not being passed here.
+	    			username:"andrvet_inst_ph_inst", //temporarly hardcoded. $scope.newInstitution['username'],//Credential.username, required
+	    			partnerId:"phoenix", //tair or phoenix //Credential.partnerId, required
+	    			partyType:"organization", // or institution ? Party.partyType, required
+	    			
+	    			email:$scope.newInstitution['email'],//Credential.email, optional
+			    	institution:$scope.newInstitution['institution'],//Credential.institution, optinal
+			    	name:$scope.newInstitution['name'],//Party.name, optional
                 };
                 $http({
-                    url: $scope.apiUri+'/parties/?secretKey='+encodeURIComponent($cookies.secret_key)+'&credentialId='+$cookies.credentialId,
+                    url: $scope.apiUri+'/parties/institutions/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
                     data:data,
                     method: 'POST',
                 }).success(function(data, status, headers, config){
-                	$scope.partyId = data['partyId'];
+                	$scope.partyId = data[0]['partyId'];
                 	$scope.institution = {
-                			partyId:data['partyId'],
-                			name:data['name']
+                			//0 Party
+		                	country: data[0].country,
+		                	display: data[0].display,
+		                	name: data[0].name, //Party.name
+		                	partyId: data[0].partyId,
+		                	partyType: data[0].partyType,
+		                	//1 Credential
+		                	email: data[1].email,
+		                	institution: data[1].institution,
+		                	partnerId: data[1].partnerId,
+		                	partyId: data[1].partyId,
+		                	userIdentifier: data[1].userIdentifier,
+		                	username: data[1].username,//Credential.username
                 	}
-                	alert("created: "+data['name']);
+                	bootbox.alert("New Institution created: username="+data[1].username+" partyId="+data[0].partyId+ " partyType="+data[0].partyType+
+                			" partnerId="+data[1].partnerId+" institution="+data[1].institution+" name="+data[0].name);
                 }).error(function(data, status, headers, config){
-                    alert("institution creation request failed");
+                	bootbox.alert("institution creation failed with "+data.non_field_errors);
                 });
 	    }
-	    
+	    	
 	  //for institution searchbox
 	    $scope.searchstate = 'selected';
 	    
@@ -106,17 +165,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 			}
 			return "Unlicensed";
 		    };
-		    
-	    $scope.listPartners = function(partners) {
-			var ret = [];
-			for (var i=0; i<partners.length; i++) {
-			    if (partners[i].partnerId!="phoenix") {
-				ret.push(partners[i]);
-			    }
-			}
-			console.log(ret);
-			return ret;
-		    }
+
 	    $scope.licenseButton = function(id) {
 			return "Edit";
 		    };
@@ -194,7 +243,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 			label:iprange['name'],
 		    };
 		    $http({
-			url: $scope.apiUri+'/parties/ipranges/?partyId='+$cookies.partyId+'&secretKey='+encodeURIComponent($cookies.secret_key)+'&ipRangeId='+iprange['ipRangeId'],
+			url: $scope.apiUri+'/parties/ipranges/?partyId='+$cookies.partyId+'&secretKey='+encodeURIComponent($cookies.secretKey)+'&ipRangeId='+iprange['ipRangeId'],
 			data: data,
 			method: 'PUT',
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
@@ -218,7 +267,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 		    label:$scope.newRange['name'],
 		}
 		$http({
-                    url: $scope.apiUri+'/parties/ipranges/?partyId='+$scope.institution.partyId+'&secretKey='+encodeURIComponent($cookies.secret_key)+'&credentialId='+$cookies.credentialId,
+                    url: $scope.apiUri+'/parties/ipranges/?partyId='+$scope.institution.partyId+'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
                     data:data,
                     method: 'POST',
 		}).success(function(data, status, headers, config){
@@ -251,7 +300,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
                     label:iprange['name'],
                 };
                 $http({
-                    url: $scope.apiUri+'/parties/ipranges/?partyId='+$cookies.partyId+'&secretKey'+encodeURIComponent($cookies.secret_key)+'&ipRangeId='+data['ipRangeId'],
+                    url: $scope.apiUri+'/parties/ipranges/?partyId='+$cookies.partyId+'&secretKey'+encodeURIComponent($cookies.secretKey)+'&ipRangeId='+data['ipRangeId'],
                     data:data,
                     method: 'DELETE',
                 }).success(function(data, status, headers, config){
@@ -305,21 +354,67 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 		});
 	    }
 	    }
-	    //get partners by consortium	    
-	    $scope.getConsExpDate = function(consortium, id){
-//	    	alert(consortium['partyId']);
-//	    	$http({
-//				url: $scope.apiUri+'/subscriptions/activesubscriptions/'+consortium['partyId']+'/',
-//				method: 'GET',
-//			}).success(function(data, status, headers, config) {
-//				$scope.consortiumSubscriptions = data;
-//				if (id in $scope.consortiumSubscriptions) {
-//					return $scope.consortiumSubscriptions[id].endDate;
-//				}
-//			}).error(function() {
-//				alert("Cannot get active subscription information");
-//			});
-				return "Unlicensed";
+	  //get consortium subscription list	    
+	    $scope.listPartners = function(partners) {
+			var ret = [];
+			for (var i=0; i<partners.length; i++) {
+			    if (partners[i].partnerId!="phoenix") {
+				ret.push(partners[i]);
+			    }
+			}
+			for(var i = 0; i< ret.length; i++){
+				console.log(ret[i])
+			}
+//			console.log(ret);
+			return ret;
+		    }
+//	    $scope.listedPartners = $scope.listPartners($scope.partners);
+	    $scope.listedPartners = [
+{
+"partnerId": "phoenix",
+"name": "Phoenix",
+"logoUri": "https://s3-us-west-2.amazonaws.com/pw2-logo/yfd.png",
+"termOfServiceUri": "https://www.google.com/intl/en/policies/terms/?fg=1"
+},
+{
+"partnerId": "tair",
+"name": "TAIR",
+"logoUri": "https://s3-us-west-2.amazonaws.com/pw2-logo/logo2.gif",
+"termOfServiceUri": "https://www.arabidopsis.org/doc/about/tair_terms_of_use/417"
+},
+{
+"partnerId": "yfd",
+"name": "YFD",
+"logoUri": "https://s3-us-west-2.amazonaws.com/pw2-logo/yfd.png",
+"termOfServiceUri": "https://www.google.com/intl/en/policies/terms/?fg=1"
+}
+],
+$scope.consortiums = [{"partyId": 31767, "partyType": "consortium", "name": "consortium31767", "country": 62, "display": true, "consortiums": []}, {"partyId": 32673, "partyType": "consortium", "name": "testcons", "country": null, "display": false, "consortiums": []}];
+	    $scope.consSubList = [];
+	    for(var i = 0; i < $scope.consortiums.length; i++){
+	    	$http({
+				url: $scope.apiUri+'/subscriptions/activesubscriptions/'+$scope.consortiums[i].partyId+'/',
+				method: 'GET',
+			}).success(function(data, status, headers, config) {
+				$scope.consortiumSubscriptions = data;
+				for(var j = 0; j < $scope.listedPartners.length; j++){
+					if ($scope.listedPartners[j].partnerId in $scope.consortiumSubscriptions) {
+						var endDate =  $scope.consortiumSubscriptions[$scope.listedPartners[j].partnerId].endDate;
+			    		$scope.consSubList.push({
+//			    			"consortium": $scope.consortiums[i],
+			    			"consortium": {"partyId": 31767, "partyType": "consortium", "name": "consortium31767", "country": 62, "display": true, "consortiums": []},
+		            	    "endDate": endDate,
+		            	    "partnerId": $scope.listedPartners[j].partnerId,
+		            	    "name": $scope.listedPartners[j].name,
+		            	    "logoUri": $scope.listedPartners[j].logoUri,
+			    		})
+					}else{
+						var endDate =  "Unlicensed";
+					}
+				}
+			}).error(function() {
+				alert("Cannot get active subscription information");
+			});
 	    }
 	    //add consortium
 	    $scope.consright = function(consortium) {
@@ -340,14 +435,13 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 		    }
 		$scope.consRemoveConfirm = function(consortium) {
         	var data = {
-        			consortiumId: consortium.partyId,
-        			action: 'remove'
+        			parentPartyId: consortium.partyId,
+        			childPartyId: $scope.partyId
         	}
         	$http({
-        		url: $scope.apiUri+'/parties/consortiums/?partyId='+$scope.partyId+'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+        		url: $scope.apiUri+'/parties/affiliations/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
         		data:data,
-	            method: 'PUT',
-	            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+	            method: 'DELETE',
         	}).success(function(data, status, headers, config){
             }).error(function(data, status, headers, config){
                 alert("consortium affiliation remove request failed");
@@ -362,60 +456,99 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	    		if($scope.allConsortiums[i].name == $scope.newConsortium['name']){
 	    				$scope.foundConsortium['partyId'] = $scope.allConsortiums[i].partyId;
 	    				$scope.foundConsortium['name'] = $scope.allConsortiums[i].name;
-	    				$scope.consAddConfirm2();
+	    				$scope.consAddConfirm2();//updating existing consortium
 	    				return;
 	    		}
 	    	}
-	    	$scope.consAddConfirm1();
+	    	$scope.consAddConfirm1();//creating brand new consortium
 	    }
+	    
+	    //updating existing consortium
 	    $scope.consAddConfirm2 = function() {
 			$scope.foundConsortium['state'] = null;
 			$scope.consortiums.unshift(angular.copy($scope.foundConsortium));
 			var data = {
-					consortiumId : $scope.foundConsortium['partyId'],
-					action : 'add'
+					parentPartyId : $scope.foundConsortium['partyId'],
+					childPartyId : $scope.partyId,
 			}
 	    	$http({
-	            url: $scope.apiUri+'/parties/consortiums/?partyId='+$scope.partyId +'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
-	            data:data,
-	            method: 'PUT',
+	            url: $scope.apiUri+'/parties/affiliations/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+	    		data:data,
+	            method: 'POST',
 	            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 				}).success(function(data, status, headers, config){
+					
 				}).error(function(data, status, headers, config){
 				            alert("add to existing consortium request failed");
 				});
 			$scope.newConsortium = null;
 			$scope.consAdding = false;
 	    }
+	    
+	    //creating new consortium
 	    $scope.consAddConfirm1 = function() {
 		//alert("Nothing is added!");
 		var data = {
-		    name:$scope.newConsortium['name'],
-		    partyType:'consortium'
+			//Party table: partyId, partyType, display, name, countryId
+			//Credential table: id, username, password, email, institution, partyId, partnerId, userIdentifier
+			
+			//TODO PW-82 this still does not work - values entered by user in popup is not being passed here.
+		    name:$scope.newConsortium['name'],//Party.name //optional for WS. comes from UI already
+		    partyType:'consortium',//Party.partyType, required
+		    
+			username: "andrvet_cons_ph_inst", //temporarly hardcoded. $scope.newConsortium['username'],//TODO Credential.username MUST COME FROM UI, required
+			partnerId:"phoenix", //tair or phoenix //Credential.partnerId, required
+
+			//email:$scope.newConsortium['email'],//Credential.email //optional
+		    //institution:$scope.newConsortium['institution'],//Credential.institution //optional
 		}
+		
 		$http({
-            url: $scope.apiUri+'/parties/?credentialId='+$cookies.credentialId+'&secret_key='+encodeURIComponent($cookies.secret_key),
+			//PW-161/PW-82
+			url: $scope.apiUri+'/parties/consortiums/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
 		    data:data,
             method: 'POST',
 		}).success(function(data, status, headers, config){
+			//new code
+           	$scope.partyId = data[0]['partyId'];
+        	$scope.createdConsortium = {
+        			//0 Party
+                	country: data[0].country,
+                	display: data[0].display,
+                	name: data[0].name, //Party.name
+                	partyId: data[0].partyId,
+                	partyType: data[0].partyType,
+                	//1 Credential
+                	email: data[1].email,
+                	institution: data[1].institution,
+                	partnerId: data[1].partnerId,
+                	partyId: data[1].partyId,
+                	userIdentifier: data[1].userIdentifier,
+                	username: data[1].username,//Credential.username
+        	}
+			bootbox.alert("New Consortium created: username="+data[1].username+" partyId="+data[0].partyId+ " partyType="+data[0].partyType+
+					" partnerId="+data[1].partnerId+" institution="+data[1].institution+" name="+data[0].name);
+			
+        	//old code. TODO by PW-82
 			$scope.createdConsortium = data;
 			$scope.createdConsortium['state'] = null;
 			$scope.consortiums.unshift(angular.copy($scope.createdConsortium));
 			var data = {
-					consortiumId : $scope.createdConsortium.partyId,
-					action : 'add'
+					parentPartyId : $scope.createdConsortium.partyId,
+					childPartyId : $scope.partyId,
 			}
+		
+		//TODO to be replaced by new affiliation WS
 		$http({
-            url: $scope.apiUri+'/parties/consortiums/?partyId='+$scope.partyId +'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+            url: $scope.apiUri+'/parties/affiliations/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
             data:data,
-            method: 'PUT',
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            method: 'POST',
 			}).success(function(data, status, headers, config){
 			}).error(function(data, status, headers, config){
 			            alert("add to new consortium request failed");
 			});
 		}).error(function(data, status, headers, config){
-            alert("new consortium request failed");
+            alert("new consortium request failed with "+data.non_field_errors);
 		});		            
 			$scope.newConsortium = null;
 			$scope.consAdding = false;
@@ -461,7 +594,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	                //get consortium list of the current institution
 	          	    if($scope.partyId != null){
 	          	    $http({
-	                      url: $scope.apiUri+'/parties/consortiums/?partyId='+$scope.partyId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+	                      url: $scope.apiUri+'/parties/affiliations/?partyId='+$scope.partyId+'&partyType=organization'+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
 	                      method: 'GET',
 	                  }).success(function(data, status, headers, config){
 	          	$scope.consortiums = [];
@@ -473,7 +606,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	          		name:entry['name'],
 	          		country:entry['country'],
 	          		display:entry['display'],
-	          		consortium:entry['consortium'],	
+//	          		consortium:entry['consortium'],	
 	          		state:null
 	          	    });
 	          	}
@@ -527,7 +660,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	    //get consortium list of the current institution
 	    if($scope.partyId != null){
 	    $http({
-            url: $scope.apiUri+'/parties/consortiums/?partyId='+$scope.partyId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+            url: $scope.apiUri+'/parties/affiliations/?partyId='+$scope.partyId+'&patyType=organization'+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
             method: 'GET',
         }).success(function(data, status, headers, config){
 	$scope.consortiums = [];
@@ -539,7 +672,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 		name:entry['name'],
 		country:entry['country'],
 		display:entry['display'],
-		consortium:entry['consortium'],	
+//		consortium:entry['consortium'],	
 		state:null
 	    });
 	}
@@ -562,6 +695,14 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	        }).error(function(data, status, headers, config){
 		alert("all consortiums request failed");
 	        });
+	    $http({
+			url: $scope.apiUri+'/partners/',
+			method: 'GET',
+		}).success(function(data, status, headers, config) {
+			$scope.partners = data;
+		}).error(function() {
+			alert("Cannot get partner information");
+		});
 	    $(function () {
             $('#createStart').datepicker();
         });

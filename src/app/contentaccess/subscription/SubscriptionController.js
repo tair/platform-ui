@@ -11,6 +11,7 @@ angular.module('platform-ui.contentaccess.subscription').controller(
 	'$http',
 	'$scope',
 	'$location',
+	'$cookies',
 	'$state',
 	'Title',
 	'SubscriptionModel',
@@ -54,7 +55,8 @@ angular.module('platform-ui.contentaccess.subscription').controller(
 		    $scope.partner = data[0];
 		});
 		$http({
-                    url:$scope.apiUri+'/parties/organizations/',
+					//PW-161 url:$scope.apiUri+'/parties/organizations/',
+					url:$scope.apiUri+'/parties/institutions/?partnerId='+$scope.partnerId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
                     method:'GET',
                 }).success(function(data, status, headers, config) {
                     $scope.institutions = data;
