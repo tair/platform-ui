@@ -437,7 +437,7 @@ $scope.consortiums = [{"partyId": 31767, "partyType": "consortium", "name": "con
 		    }
 		$scope.consRemoveConfirm = function(consortium) {
         	var data = {
-        			parentPartyId: consortium.partyId,
+        			parentPartyId: consortium['partyId'],
         			childPartyId: $scope.partyId,
         	};
         	$http({
