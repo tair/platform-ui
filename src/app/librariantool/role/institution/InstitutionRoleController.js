@@ -50,5 +50,6 @@ angular.module('platform-ui.librariantool.role.institution').controller(
 		$state.go(tab.state);
 		$scope.currentTab = tab;
 	    }
+	    $state.go($scope.currentTab.state);
 	}
 ]);
