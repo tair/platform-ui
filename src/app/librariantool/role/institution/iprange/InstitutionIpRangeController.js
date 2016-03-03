@@ -32,6 +32,7 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 	    $scope.sortings = InstitutionIpRangeModel.sortings; //List of sorting objects which contain sortField and reverse attributes.
 	    $scope.reverse = $scope.sortings[0].reverse;
 	    $scope.predicate = $scope.sortings[0].predicate;
+	    $scope.currentTab = InstitutionIpRangeModel.currentTab;
 	    //load credential
 	    if($cookies.credentialId!=null){
 			$scope.credentialId = $cookies.credentialId;
