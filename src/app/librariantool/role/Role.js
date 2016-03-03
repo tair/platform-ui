@@ -12,7 +12,7 @@ angular.module(
     [
 	'ui.router',
 	'service.title',
-        'platform-ui.librariantool.role.institution',
+    'platform-ui.librariantool.role.institution',
 	'platform-ui.librariantool.role.consortium',
 	'platform-ui.librariantool.role.phoenix',
     ])

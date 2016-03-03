@@ -1,7 +1,7 @@
   <form ng-submit="login()">
-    <div class="row"><input class="text-left lt-login-input-box center-block" placeholder="sergei@getexp.com" ng-model="formdata.user"></input></div>
+    <div class="row"><input class="text-left lt-login-input-box center-block" placeholder="name@example.com" ng-model="formdata.user" name="username"></input></div>
     <div class="row lt-gap"></div>
-    <div class="row"><input class="text-left lt-login-input-box center-block" placeholder="********" ng-model="formdata.password" type="password"></input></div>
+    <div class="row"><input class="text-left lt-login-input-box center-block" placeholder="********" ng-model="formdata.password" type="password" name="passwords"></input></div>
     
     <div class="row" style="height:16px"></div>
     <div class="row">
@@ -20,8 +20,8 @@
     <div class="row" style="height:42px"></div>
   </form>
     <div class="lt-login-description text-center">
-    The Librarian Tool helps you manage your subscription to databases offered by <br/>
-    Phoenix Bioinformatics. You can use the Librarian Tool to:<br/>
+    The Admin Tool helps you manage your subscription to databases offered by <br/>
+    Phoenix Bioinformatics. You can use the Admin Tool to:<br/>
     <br/>
     View subscriptions <br/>
     Manage your institution's IP address ranges <br/>
@@ -29,7 +29,7 @@
     New feature will be added as we continue to develop this tool. <br/>
     <br/>
     Access to the Tool is given during account setup. If you need to request access<br/>
-    to the Librarian Tool, please contact Phoenix Bioinformatics.
+    to the Admin Tool, please contact Phoenix Bioinformatics.
   </div>
     <br/><br/>
   <a class="center-block text-center" style="width:240px" href="mailto:info@phoenixbioinformatics.org">info@phoenixbioinformatics.org</a>
