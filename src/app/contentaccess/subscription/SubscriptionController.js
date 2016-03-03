@@ -36,7 +36,7 @@ angular.module('platform-ui.contentaccess.subscription').controller(
 	    }
 
 	    function init() {
-                Title.setTitle(SubscriptionModel.title);
+                //Title.setTitle(SubscriptionModel.title);//PW-264
                 $scope.initialheading = SubscriptionModel.initialheading;
                 $scope.currentTab = SubscriptionModel.currentTab;
                 $scope.tabs = SubscriptionModel.tabs;
