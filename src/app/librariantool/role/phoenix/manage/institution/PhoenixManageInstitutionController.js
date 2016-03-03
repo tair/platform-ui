@@ -199,7 +199,7 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 			$scope.institutions.unshift(angular.copy($scope.foundInstitution));
 			var data = {
 					parentPartyId : $scope.consortiumId,
-					chilPartyId : $scope.foundInstitution.partyId,
+					childPartyId : $scope.foundInstitution.partyId,
 			}
 	    	$http({
 	    		url: $scope.apiUri+'/parties/affiliations/?' +'secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
@@ -257,7 +257,7 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 			$scope.institutions.unshift(angular.copy($scope.createdInstitution));
 			var data = {
 					parentPartyId : $scope.consortiumId,
-					childPartyId : 'add'
+					childPartyId : $scope.createdInstitution.partyId,
 			}
 			
 			
