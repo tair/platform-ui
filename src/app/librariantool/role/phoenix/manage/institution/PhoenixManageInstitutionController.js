@@ -198,15 +198,13 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 			$scope.foundInstitution['state'] = null;
 			$scope.institutions.unshift(angular.copy($scope.foundInstitution));
 			var data = {
-					consortiumId : $scope.consortiumId,
-					action : 'add'
+					parentPartyId : $scope.consortiumId,
+					chilPartyId : $scope.foundInstitution.partyId,
 			}
 	    	$http({
-	    		//TODO PW-82. partyId is FORM DATA, not query string parameter.
-	    		url: $scope.apiUri+'/parties/consortiums/?' +'secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+	    		url: $scope.apiUri+'/parties/affiliations/?' +'secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
 	    		data:data,
-	            method: 'PUT',
-	            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+	            method: 'POST',
 				}).success(function(data, status, headers, config){
 				}).error(function(data, status, headers, config){
 				            alert("add existing institution request failed");
@@ -258,18 +256,16 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 			$scope.createdInstitution['state'] = null;
 			$scope.institutions.unshift(angular.copy($scope.createdInstitution));
 			var data = {
-					consortiumId : $scope.consortiumId,
-					action : 'add'
+					parentPartyId : $scope.consortiumId,
+					childPartyId : 'add'
 			}
 			
 			
 			
 		$http({
-			//TODO PW-82. partyId is FORM DATA, not query string parameter.
-            url: $scope.apiUri+'/parties/consortiums/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+            url: $scope.apiUri+'/parties/affiliations/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
 			data:data,
-            method: 'PUT',
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            method: 'POST',
 			}).success(function(data, status, headers, config){
 			}).error(function(data, status, headers, config){
 			            alert("add new institution request failed");
@@ -288,15 +284,13 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 	    }
 	    $scope.deleteAffiliation = function(institution){
         	var data = {
-        			consortiumId: $scope.consortiumId,
-        			action: 'remove'
+        			parentPartyId: $scope.consortiumId,
+        			childPartyId: institution.partyId,
         	}
         	$http({
-        		//TODO PW-82. partyId is FORM DATA, not query string parameter.
-        		url: $scope.apiUri+'/parties/consortiums/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+        		url: $scope.apiUri+'/parties/affiliations/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
         		data:data,
-	            method: 'PUT',
-	            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+	            method: 'DELETE',
         	}).success(function(data, status, headers, config){
             }).error(function(data, status, headers, config){
                 alert("institution remove request failed");
