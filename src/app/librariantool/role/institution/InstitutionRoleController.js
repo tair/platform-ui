@@ -20,9 +20,6 @@ angular.module('platform-ui.librariantool.role.institution').controller(
 
 	/* Controller Definition */
 	function ($scope, $http, $cookies, $cookieStore, $window, $location, $state, Title, InstitutionRoleModel) {
-//		if(!$cookies.credentialId || !$cookies.secretKey){
-//			$state.go('ltlogin');
-//		}
 		if($cookies.credentialId!=null){
 			$scope.credentialId = $cookies.credentialId;
 		}else if($window.sessionStorage.credentialId!=null){
@@ -35,11 +32,6 @@ angular.module('platform-ui.librariantool.role.institution').controller(
 		}
 		if(!$scope.credentialId || !$scope.secretKey){
 			$state.go('ltlogin');
-		}
-		if($cookieStore.get('currentTab')){
-			$scope.currentTab = $cookieStore.get('currentTab');
-		}else{
-			$scope.currentTab = InstitutionRoleModel.currentTab;
 		}
 	    $scope.tabs = InstitutionRoleModel.tabs;
 	    $scope.navbarLabel = function(tab) {
@@ -57,7 +49,6 @@ angular.module('platform-ui.librariantool.role.institution').controller(
 	    $scope.toTab = function(tab) {
 		$state.go(tab.state);
 		$scope.currentTab = tab;
-		$cookieStore.put('currentTab', $scope.currentTab);
 	    }
 	}
 ]);
