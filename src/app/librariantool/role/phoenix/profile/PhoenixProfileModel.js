@@ -14,11 +14,19 @@ angular.module('platform-ui.librariantool.role.phoenix.profile').factory(
 		return {
 			title: 'PROFILE',
 			user: {
-				"name": null,
-				"username": null,
-				"institution": null,
-				"email": null,
-				"password": null,
+				"partyId": null,
+				"partyType": null,
+				"country": null,
+				"display": null,
+				"consortiums": null,
+				
+			    "username": null,
+			    "password": null,
+			    "email": null,
+			    "institution": null,
+			    //"partyId": null,
+			    "partnerId": null,
+			    "userIdentifier": null,
 			},
 			uiparams: {
 				"colwidth": 'col-xs-7',

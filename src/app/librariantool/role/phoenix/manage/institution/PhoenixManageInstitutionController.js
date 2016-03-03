@@ -167,7 +167,7 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 			name:institution['name'],
 		    };
 		    $http({
-			url: $scope.apiUri+'/parties/?credentialId='+$cookies.partyId+'&secret_key='+encodeURIComponent($cookies.secret_key)+'&partyId='+institution['partyId'],
+			url: $scope.apiUri+'/parties/?credentialId='+$cookies.partyId+'&secretKey='+encodeURIComponent($cookies.secretKey)+'&partyId='+institution['partyId'],
 			data: data,
 			method: 'PUT',
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
@@ -202,8 +202,9 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 					action : 'add'
 			}
 	    	$http({
-	            url: $scope.apiUri+'/parties/consortiums/?partyId='+$scope.foundInstitution.partyId +'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
-	            data:data,
+	    		//TODO PW-82. partyId is FORM DATA, not query string parameter.
+	    		url: $scope.apiUri+'/parties/consortiums/?' +'secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+	    		data:data,
 	            method: 'PUT',
 	            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 				}).success(function(data, status, headers, config){
@@ -216,14 +217,43 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 	    $scope.addConfirm1 = function() {
 		//alert("Nothing is added!");
 		var data = {
-		    name:$scope.newInstitution['name'],
-		    partyType:'organization'
+	    	//Party table: partyId, partyType, display, name, countryId
+			//Credential table: id, username, password, email, institution, partyId, partnerId, userIdentifier
+
+			//TODO PW-82 this still does not work - values entered by user in popup is not being passed here.
+			username:"andrvet_inst_ph_manage_inst", //temporarly hardcoded. $scope.newInstitution['username'],//Credential.username, required
+			partnerId:"phoenix", //tair or phoenix //Credential.partnerId, required
+			partyType:"organization", // or institution ? Party.partyType, required
+			
+			email:$scope.newInstitution['email'],//Credential.email, optional
+	    	institution:$scope.newInstitution['institution'],//Credential.institution, optinal
+	    	name:$scope.newInstitution['name'],//Party.name, optional
 		}
 		$http({
-            url: $scope.apiUri+'/parties/?credentialId='+$cookies.credentialId+'&secret_key='+encodeURIComponent($cookies.secret_key),
-		    data:data,
+			url: $scope.apiUri+'/parties/institutions/?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+			data:data,
             method: 'POST',
 		}).success(function(data, status, headers, config){
+			//new code
+			//$scope.partyId = data[0]['partyId'];
+        	$scope.createdInstitution = {
+        			//0 Party
+                	country: data[0].country,
+                	display: data[0].display,
+                	name: data[0].name, //Party.name
+                	partyId: data[0].partyId,
+                	partyType: data[0].partyType,
+                	//1 Credential
+                	email: data[1].email,
+                	institution: data[1].institution,
+                	partnerId: data[1].partnerId,
+                	partyId: data[1].partyId,
+                	userIdentifier: data[1].userIdentifier,
+                	username: data[1].username,//Credential.username
+        	}
+        	bootbox.alert("New Institution created: username="+data[1].username+" partyId="+data[0].partyId+ " partyType="+data[0].partyType+
+        			" partnerId="+data[1].partnerId+" institution="+data[1].institution+" name="+data[0].name);
+        	//old code 
 			$scope.createdInstitution = data;
 			$scope.createdInstitution['state'] = null;
 			$scope.institutions.unshift(angular.copy($scope.createdInstitution));
@@ -231,9 +261,13 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 					consortiumId : $scope.consortiumId,
 					action : 'add'
 			}
+			
+			
+			
 		$http({
-            url: $scope.apiUri+'/parties/consortiums/?partyId='+$scope.createdInstitution.partyId +'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
-            data:data,
+			//TODO PW-82. partyId is FORM DATA, not query string parameter.
+            url: $scope.apiUri+'/parties/consortiums/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+			data:data,
             method: 'PUT',
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 			}).success(function(data, status, headers, config){
@@ -258,7 +292,8 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
         			action: 'remove'
         	}
         	$http({
-        		url: $scope.apiUri+'/parties/consortiums/?partyId='+institution.partyId+'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+        		//TODO PW-82. partyId is FORM DATA, not query string parameter.
+        		url: $scope.apiUri+'/parties/consortiums/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
         		data:data,
 	            method: 'PUT',
 	            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
@@ -273,7 +308,7 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
         }
 	    $scope.removeConfirm = function(institution) {
                 $http({
-                    url: $scope.apiUri+'/parties/?credentialId='+$cookies.credentialId+'&secret_key='+encodeURIComponent($cookies.secret_key)+'&partyId='+institution['partyId'],
+                    url: $scope.apiUri+'/parties/?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey)+'&partyId='+institution['partyId'],
                     method: 'DELETE',
                 }).success(function(data, status, headers, config){
                 }).error(function(data, status, headers, config){
