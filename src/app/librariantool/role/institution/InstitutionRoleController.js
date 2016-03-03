@@ -11,7 +11,6 @@ angular.module('platform-ui.librariantool.role.institution').controller(
 	'$scope',
 	'$http',
 	'$cookies',
-	'$cookieStore',
 	'$window',
 	'$location',
 	'$state',
@@ -19,7 +18,7 @@ angular.module('platform-ui.librariantool.role.institution').controller(
 	'InstitutionRoleModel',
 
 	/* Controller Definition */
-	function ($scope, $http, $cookies, $cookieStore, $window, $location, $state, Title, InstitutionRoleModel) {
+	function ($scope, $http, $cookies, $window, $location, $state, Title, InstitutionRoleModel) {
 		if($cookies.credentialId!=null){
 			$scope.credentialId = $cookies.credentialId;
 		}else if($window.sessionStorage.credentialId!=null){
@@ -34,7 +33,11 @@ angular.module('platform-ui.librariantool.role.institution').controller(
 			$state.go('ltlogin');
 		}
 		$scope.tabs = InstitutionRoleModel.tabs;
-	    $scope.currentTab = InstitutionRoleModel.currentTab;
+		if($window.sessionStorage.currentTab){
+			$scope.currentTab = $window.sessionStorage.currentTab;
+		}else{
+			$scope.currentTab = InstitutionRoleModel.currentTab;
+		}
 	    $scope.navbarLabel = function(tab) {
 		if (tab.label == $scope.currentTab.label) {
 		    return "lt-navbar-label-highlight";
@@ -50,6 +53,7 @@ angular.module('platform-ui.librariantool.role.institution').controller(
 	    $scope.toTab = function(tab) {
 		$state.go(tab.state);
 		$scope.currentTab = tab;
+		$window.sessionStorage.currentTab = tab;s
 	    }
 	    $state.go($scope.currentTab.state);
 	}
