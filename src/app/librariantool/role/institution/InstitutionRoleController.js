@@ -34,7 +34,7 @@ angular.module('platform-ui.librariantool.role.institution').controller(
 		}
 		$scope.tabs = InstitutionRoleModel.tabs;
 		if($window.sessionStorage.currentTab){
-			$scope.currentTab = $window.sessionStorage.currentTab;
+			$scope.currentTab = JSON.parse($window.sessionStorage.currentTab);
 		}else{
 			$scope.currentTab = InstitutionRoleModel.currentTab;
 		}
@@ -53,7 +53,7 @@ angular.module('platform-ui.librariantool.role.institution').controller(
 	    $scope.toTab = function(tab) {
 		$state.go(tab.state);
 		$scope.currentTab = tab;
-		$window.sessionStorage.currentTab = tab;s
+		$window.sessionStorage.currentTab = JSON.stringify(tab);
 	    }
 	    $state.go($scope.currentTab.state);
 	}
