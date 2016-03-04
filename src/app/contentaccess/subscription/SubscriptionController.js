@@ -43,7 +43,7 @@ angular.module('platform-ui.contentaccess.subscription').controller(
 		$scope.templates = SubscriptionModel.templates;
 		$scope.partnerId = $location.search()['partnerId'];//TODO: need to use $stateParams in the future
 		$scope.partner = SubscriptionModel.partner;
-		$scope.institutions = SubscriptionModel.institutions;
+		//$scope.institutions = SubscriptionModel.institutions;
 		$scope.countries = SubscriptionModel.countries;
 		$scope.redirect = $scope.getRedirectNoEncode();
 		$scope.redirect = decodeURIComponent($scope.redirect);
@@ -54,13 +54,13 @@ angular.module('platform-ui.contentaccess.subscription').controller(
 		}).success(function(data, status, headers, config) {
 		    $scope.partner = data[0];
 		});
-		$http({
-					//PW-161 url:$scope.apiUri+'/parties/organizations/',
-					url:$scope.apiUri+'/parties/institutions/?partnerId='+$scope.partnerId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
-                    method:'GET',
-                }).success(function(data, status, headers, config) {
-                    $scope.institutions = data;
-                });
+//		$http({
+//					//PW-161 url:$scope.apiUri+'/parties/organizations/',
+//					url:$scope.apiUri+'/parties/institutions/?partnerId='+$scope.partnerId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+//                    method:'GET',
+//                }).success(function(data, status, headers, config) {
+//                    $scope.institutions = data;
+//                });
 		$http({
                     url:$scope.apiUri+'/parties/countries/',
                     method:'GET',
