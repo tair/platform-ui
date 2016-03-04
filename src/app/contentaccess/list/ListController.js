@@ -33,8 +33,8 @@ angular.module('platform-ui.contentaccess.list').controller(
 	    }
 	    
 	    function init() {
-	    	$scope.setTitle('University List'); //ListModel.title
-	    		//Title.setTitle('University List');
+	    	//$scope.setTitle('University List'); //ListModel.title
+	    	//Title.setTitle('University List');
 		$scope.partnerId = $location.search()['partnerId'];
 		$http({
 		    url:$scope.apiUri+'/partners/?partnerId='+$scope.partnerId,
