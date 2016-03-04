@@ -17,7 +17,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').factory(
 		    newConsortium: {'name':null, 'partyId':null},
 		    foundConsortium: {'partyId':null, 'name':null, 'state':null},
 		    newSubscription: {'partnerId':null, 'start':null, 'end':null},
-		    newInstitution: {'partyType':'organization', 'name':null},
+		    newInstitution: {'partyType':'organization', 'name':null, 'username':null, },
 //		    ipranges: [],
 		    consSubList:[
 //		                  {
