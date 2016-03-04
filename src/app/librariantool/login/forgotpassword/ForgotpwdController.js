@@ -30,7 +30,7 @@ angular.module('platform-ui.librariantool.login.forgotpassword').controller(
                 }).success(function(data, status, headers, config){
                 	$state.go('ltlogin.forgotpassword.thankyou', {'email':$scope.email});
                 }).error(function(data, status, headers, config){
-                	if(data[0]['error'] == 'Cannot find registered email address.'){
+                	if(data['error'] == 'Cannot find registered email address.'){
                 		$scope.invalidEmailMsg = true;
                 	}
 //                    alert('Sending email failed');
