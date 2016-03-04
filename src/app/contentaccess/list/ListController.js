@@ -42,9 +42,9 @@ angular.module('platform-ui.contentaccess.list').controller(
 		    $scope.partner = data[0];
 		});
 		$http({ 
-				//PW-161 /parties/organizations
-	           url:$scope.apiUri+'/parties/institutions/?partnerId='+$scope.partnerId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
-                    method:'GET',
+				//vet PW-265
+				url:$scope.apiUri+'/parties/organizations?partnerId='+$scope.partnerId,
+				method:'GET',
                 }).success(function(data, status, headers, config) {
                     $scope.institutions = data.sort(sortfunction);
                 });
