@@ -44,7 +44,7 @@ angular.module('platform-ui.contentaccess.list').controller(
 		});
 		$http({ 
 				//vet PW-265
-				url:$scope.apiUri+'/parties/organizations?partnerId='+$scope.partnerId,
+				url:$scope.apiUri+'/parties/organizations/?partnerId='+$scope.partnerId,
 				method:'GET',
                 }).success(function(data, status, headers, config) {
                     $scope.institutions = data.sort(sortfunction);
