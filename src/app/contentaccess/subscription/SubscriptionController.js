@@ -55,8 +55,7 @@ angular.module('platform-ui.contentaccess.subscription').controller(
 		    $scope.partner = data[0];
 		});
 		$http({
-					//PW-161 url:$scope.apiUri+'/parties/organizations/',
-					url:$scope.apiUri+'/parties/institutions/?partnerId='+$scope.partnerId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+					url:$scope.apiUri+'/parties/organizations/', //needed for PW-266
                     method:'GET',
                 }).success(function(data, status, headers, config) {
                     $scope.institutions = data;
