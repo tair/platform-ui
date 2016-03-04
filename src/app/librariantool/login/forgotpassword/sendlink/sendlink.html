@@ -4,7 +4,8 @@
      <div class="lt-login-description text-center">
     Please enter your email address
      </div>
-    <input class="text-left lt-login-input-box center-block" placeholder="sergei@getexp.com" ng-model="email"></input>
+    <input class="text-left lt-login-input-box center-block" placeholder="user@school.edu" ng-model="email"></input>
+    <div class="lt-login-description text-center" ng-show="invalidEmailMsg">Sorry, that email address is not found in our system. Please contact us at info@phoenixbioinformatics.org with any questions.</div>
     </div>
     <div class="row" style="height:32px"></div>
     <div class="row"><button class="text-center lt-login-login-btn center-block lt-color">Proceed</button></div>
