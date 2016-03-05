@@ -36,6 +36,11 @@
       <span class="text-center" ng-class="actionButtonLabelAddCss(consAdding)" style="margin-top:-1px">ADD CONSORTIUM</span>
     </div>
   </div>
+  <div>
+  <input placeholder="username" ng-model="newInstitution.username"></input>
+  <input placeholder="name" ng-model="newInstitution.name"></input>
+  <button ng-click="$scope.createInstitutionPartyAndCredential();">Create</button>
+  </div>
   
   <!-- Right Panel -->
   <div class="col-xs-8 lt-admin-right-panel" style="padding:0px">
