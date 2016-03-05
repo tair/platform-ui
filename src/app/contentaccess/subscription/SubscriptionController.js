@@ -11,7 +11,7 @@ angular.module('platform-ui.contentaccess.subscription').controller(
 	'$http',
 	'$scope',
 	'$location',
-	'$cookies',
+	//'$cookies',
 	'$state',
 	'Title',
 	'SubscriptionModel',
@@ -36,14 +36,14 @@ angular.module('platform-ui.contentaccess.subscription').controller(
 	    }
 
 	    function init() {
-                //Title.setTitle(SubscriptionModel.title);//PW-264
+                Title.setTitle(SubscriptionModel.title);//PW-264
                 $scope.initialheading = SubscriptionModel.initialheading;
                 $scope.currentTab = SubscriptionModel.currentTab;
                 $scope.tabs = SubscriptionModel.tabs;
 		$scope.templates = SubscriptionModel.templates;
 		$scope.partnerId = $location.search()['partnerId'];//TODO: need to use $stateParams in the future
 		$scope.partner = SubscriptionModel.partner;
-		//$scope.institutions = SubscriptionModel.institutions;
+		$scope.institutions = SubscriptionModel.institutions;
 		$scope.countries = SubscriptionModel.countries;
 		$scope.redirect = $scope.getRedirectNoEncode();
 		$scope.redirect = decodeURIComponent($scope.redirect);
