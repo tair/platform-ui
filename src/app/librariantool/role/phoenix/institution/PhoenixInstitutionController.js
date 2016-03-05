@@ -557,7 +557,7 @@ $scope.consortiums = [{"partyId": 31767, "partyType": "consortium", "name": "con
 	    $scope.enterConsortium = function(consortium){
 	    	if(!(consortium.state=='edit')){
 //			    $state.currentTab = {label:"CONSORTIUM", state:"role.phoenix.manage"};
-	    		window.location.href="manage/institution?consortiumId=31767&consortiumName=consortium31767";
+	    		window.location.href="#/librariantool/role/phoenix/manage/institution?consortiumId=31767&consortiumName=consortium31767";
 //		    	$state.transitionTo("role.phoenix.manage.institution", {'consortiumId' : consortium.partyId, 'consortiumName':consortium.name});
 	    	}
 	    }
