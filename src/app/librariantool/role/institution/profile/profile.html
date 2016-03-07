@@ -20,7 +20,7 @@
 							Institution Name
 						</div></div>
 						<div class="row text-left"><div class="col-xs-12"><!-- PW-161 name -->
-						<p ng-show="!edit">{{user.name}}</p>
+						    <p ng-show="!edit">{{user.name}}</p>
 							<input type="text" class="lt-institution-profile-input" ng-model="user.name" ng-hide="!edit" ng-class=" edit == false ? 'lt-no-border' : 'lt-with-border' "></input>
 						</div></div>
 					</div>
@@ -29,7 +29,8 @@
 							User Name
 						</div></div>
 						<div class="row text-left"><div class="col-xs-12">
-							<input type="text" class="lt-institution-profile-input" ng-model="user.username" ng-trim="true" ng-disabled="!edit" ng-class=" edit == false ? 'lt-no-border' : 'lt-with-border' "></input>
+						    <p ng-show="!edit">{{user.username}}</p>
+							<input type="text" class="lt-institution-profile-input" ng-model="user.username" ng-trim="true" ng-hide="!edit" ng-class=" edit == false ? 'lt-no-border' : 'lt-with-border' "></input>
 						</div></div>
 					</div>
 				</div>
@@ -44,7 +45,8 @@
 							Email
 						</div></div>
 						<div class="row text-left"><div class="col-xs-12">
-							<input type="email" class="lt-institution-profile-input" ng-model="user.email" ng-disabled="!edit" ng-class=" edit == false ? 'lt-no-border' : 'lt-with-border' "></input>
+						    <p ng-show="!edit">{{user.email}}</p>
+							<input type="email" class="lt-institution-profile-input" ng-model="user.email" ng-hide="!edit" ng-class=" edit == false ? 'lt-no-border' : 'lt-with-border' "></input>
 						</div></div>
 						<div class="row" style="height: 10px;"></div>
 						<div class="row text-left"><div class="col-xs-12">
