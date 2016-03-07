@@ -13,6 +13,7 @@ angular.module('platform-ui.librariantool.role.institution.iprange').factory(
 	function () {
 		return {
 		    title: 'IP RANGE',
+		    currentTab: {label:"IP RANGE", state:"role.institution.iprange"},
 		    newRange: {'name':null, 'start':null, 'end':null},
 //		    ipranges: [],
 		    ipranges: [
