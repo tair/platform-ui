@@ -34,7 +34,7 @@ angular.module('platform-ui.librariantool.role.institution.usage').controller(
 						method: 'POST',
 						data: $scope.postData,
 					}).success(function() {
-						alert("Your request has been recieved. We will get back to you shortly.");
+						alert("Your request has been received. We will get back to you shortly.");
 						$scope.postData.startDate = null;
 						$scope.postData.endDate = null;
 						$scope.postData.comments = null;
