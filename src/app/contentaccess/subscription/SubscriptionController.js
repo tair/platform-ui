@@ -11,7 +11,7 @@ angular.module('platform-ui.contentaccess.subscription').controller(
 	'$http',
 	'$scope',
 	'$location',
-	'$cookies',
+	//'$cookies',
 	'$state',
 	'Title',
 	'SubscriptionModel',
@@ -36,7 +36,7 @@ angular.module('platform-ui.contentaccess.subscription').controller(
 	    }
 
 	    function init() {
-                Title.setTitle(SubscriptionModel.title);
+                Title.setTitle(SubscriptionModel.title);//PW-264
                 $scope.initialheading = SubscriptionModel.initialheading;
                 $scope.currentTab = SubscriptionModel.currentTab;
                 $scope.tabs = SubscriptionModel.tabs;
@@ -55,8 +55,7 @@ angular.module('platform-ui.contentaccess.subscription').controller(
 		    $scope.partner = data[0];
 		});
 		$http({
-					//PW-161 url:$scope.apiUri+'/parties/organizations/',
-					url:$scope.apiUri+'/parties/institutions/?partnerId='+$scope.partnerId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+					url:$scope.apiUri+'/parties/organizations/', //needed for PW-266
                     method:'GET',
                 }).success(function(data, status, headers, config) {
                     $scope.institutions = data;
