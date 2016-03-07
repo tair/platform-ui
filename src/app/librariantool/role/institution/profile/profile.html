@@ -11,21 +11,17 @@
 			</div>
 		</div>
 		<div class="row" style="height: 6px;"></div>
-		<div class="row">
-			<div class="{{uiparams.colwidth}} block-center text-center lt-font lt-font-aliasing" style="font-size: 16px; color: #868686;">
-				{{user.institution}}
-			</div>
-		</div>
 		<div class="row" style="height: 54px;"></div>
 		<div class="row">
 			<div class="{{uiparams.colwidth}} block-center">
 				<div class="row">
 					<div class="col-xs-5 block-left">
 						<div class="row text-left lt-font lt-font-aliasing" style="font-size: 16px; color: #868686;"><div class="col-xs-12">
-							Full Name
+							Institution Name
 						</div></div>
 						<div class="row text-left"><div class="col-xs-12"><!-- PW-161 name -->
-							<input type="text" class="lt-institution-profile-input" ng-model="user.name" ng-disabled="!edit" ng-class=" edit == false ? 'lt-no-border' : 'lt-with-border' "></input>
+						<p ng-show="!edit">{{user.name}}</p>
+							<input type="text" class="lt-institution-profile-input" ng-model="user.name" ng-hide="!edit" ng-class=" edit == false ? 'lt-no-border' : 'lt-with-border' "></input>
 						</div></div>
 					</div>
 					<div class="col-xs-5 block-right">
