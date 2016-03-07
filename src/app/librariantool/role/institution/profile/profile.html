@@ -20,7 +20,8 @@
 							Institution Name
 						</div></div>
 						<div class="row text-left"><div class="col-xs-12"><!-- PW-161 name -->
-							<input type="text" class="lt-institution-profile-input" ng-model="user.name" ng-disabled="!edit" ng-class=" edit == false ? 'lt-no-border' : 'lt-with-border' "></input>
+						<p ng-show="!edit">{{user.name}}</p>
+							<input type="text" class="lt-institution-profile-input" ng-model="user.name" ng-hide="!edit" ng-class=" edit == false ? 'lt-no-border' : 'lt-with-border' "></input>
 						</div></div>
 					</div>
 					<div class="col-xs-5 block-right">
