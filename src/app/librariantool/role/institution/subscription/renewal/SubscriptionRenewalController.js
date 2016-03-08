@@ -28,7 +28,8 @@ angular.module('platform-ui.librariantool.role.institution.subscription.renewal'
 	    $scope.requestRenewal = function() {
 	 	postData = {
 			"partnerName": $scope.partner.name,
-			"name": $scope.user.name, //PW-161 name
+//			"name": $scope.user.name, 
+			//PW-161 name
 			"email": $scope.user.email,
 			"institution": $scope.user.institution,
 			"comments": $scope.comments,
