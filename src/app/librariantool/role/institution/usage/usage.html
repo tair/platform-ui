@@ -25,10 +25,13 @@
 				<div class="row">
 					<div class="col-xs-4">
 						<div class="row"><div class="col-xs-12">
-							Institution
+							Partner
 						</div></div>
 						<div class="row"><div class="col-xs-12">
-							<input type="text" ng-model="postData.institution" disabled></input>
+							<!--dropdown here. correct controller and backend afterwards-->
+							<select class="lt-admin-groups-list-label-edit" ng-options="p.partnerId as p.name for p in partners" ng-model="postData.partnerId">
+						        <option value="">-- choose a partner --</option>
+						      </select>
 						</div></div>
 					</div>
 					<div class="col-xs-4">

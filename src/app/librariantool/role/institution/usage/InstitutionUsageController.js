@@ -66,6 +66,14 @@ angular.module('platform-ui.librariantool.role.institution.usage').controller(
 			}).error(function() {
 				alert("failed to get party information");
 			});
+			$http({
+				url: $scope.apiUri+'/partners/',
+				method: 'GET',
+			}).success(function(data, status, headers, config) {
+				$scope.partners = data;
+			}).error(function() {
+				alert("Cannot get partner information");
+			});
 			$(function () {
 	            $('#startDate').datepicker();
 	        });
