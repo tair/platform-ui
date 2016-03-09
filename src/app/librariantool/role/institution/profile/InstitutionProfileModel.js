@@ -22,7 +22,7 @@ angular.module('platform-ui.librariantool.role.institution.profile').factory(
 				"consortiums": null,
 				
 			    "username": null,
-			    "password": null,
+//			    "password": null,
 			    "email": null,
 			    "institution": null,
 			    //"partyId": null,
