@@ -31,7 +31,7 @@
 							<!-- <select class="lt-admin-groups-list-label-edit" style="width:200px;height:26px;margin:0px" ng-options="p.partnerId as p.name for p in partners" ng-model="postData.partnerId">
 						        <option value="">-- choose a partner --</option>
 						    </select> -->
-						    <input ng-model="postData.partner" uib-typeahead="p.name for p in partners | filter:{name:$viewValue} | limitTo:8">
+						    <input ng-model="postData.partner" uib-typeahead="p.name for p in partners | filter:{name:$viewValue} | limitTo:8" required>
 						    </input>						    
 						</div></div>
 					</div>
