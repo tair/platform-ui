@@ -61,6 +61,9 @@ angular.module('platform-ui.librariantool.role.institution.subscription.request'
 		}else if($window.sessionStorage.secretKey!=null){
 			$scope.secretKey = $window.sessionStorage.secretKey;
 		}
+		if(!$scope.credentialId || !$scope.secretKey){
+			$state.go('ltlogin');
+		}
 		$http({
 			url: $scope.apiUri+'/partners?partnerId='+$scope.partnerId,
 			method: 'GET',

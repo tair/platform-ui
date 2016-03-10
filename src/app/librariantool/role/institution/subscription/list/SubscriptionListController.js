@@ -70,6 +70,9 @@ angular.module('platform-ui.librariantool.role.institution.subscription.list').c
 		}else if($window.sessionStorage.secretKey!=null){
 			$scope.secretKey = $window.sessionStorage.secretKey;
 		}
+		if(!$scope.credentialId || !$scope.secretKey){
+			$state.go('ltlogin');
+		}
 	    }
 	}
 ]);
