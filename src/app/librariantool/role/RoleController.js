@@ -48,7 +48,7 @@ angular.module('platform-ui.librariantool.role').controller(
 
 	    $scope.partyInfo = RoleModel.partyInfo;
 	    $http({
-		url: $scope.apiUri+'/credentials/?username='+$scope.username+'&secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$cookies.credentialId,
+		url: $scope.apiUri+'/credentials/?username='+$cookies.username+'&secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
 		method: 'GET',
 	    }).success(function(data, status, headers, config) {
 	    	$scope.email = data[0].email;
@@ -56,7 +56,7 @@ angular.module('platform-ui.librariantool.role').controller(
 		alert("Cannot get user email info");
 	    });
             $http({
-                url: $scope.apiUri+'/parties/?partyId='+$scope.credentialId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+                url: $scope.apiUri+'/parties/?partyId='+$scope.credentialId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
                 method: 'GET',
             }).success(function(data, status, headers, config){
                 $scope.partyInfo = data[0];
