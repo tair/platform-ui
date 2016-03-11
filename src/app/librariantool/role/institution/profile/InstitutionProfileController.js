@@ -32,7 +32,9 @@ angular.module('platform-ui.librariantool.role.institution.profile').controller(
 				put_data = {}
 				//put original values from GET
                 put_data["partyId"]  = $scope.user.partyId; //$cookies.credentialId;
+				if($scope.user.username != undefined && $scope.user.username !=null &&$scope.user.username != ""){
                 put_data["username"] = $scope.user.username;
+				}
                 put_data["partnerId"]= $scope.user.partnerId;
                 if($scope.user.password != undefined && $scope.user.password !=null &&$scope.user.password != ""){
                 	put_data["password"]= $scope.user.password;
