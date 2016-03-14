@@ -43,6 +43,18 @@ angular.module('platform-ui.librariantool.role.institution.subscription').contro
 			method: 'GET',
 		}).success(function(data, status, headers, config) {
 			$scope.partners = data;
+			/*
+			 *  homeUri: "https://demotair.arabidopsis.org"
+				logoUri: "https://s3-us-west-2.amazonaws.com/pw2-logo/logo2.gif"
+				name: "TAIR"
+				partnerId: "tair"
+				termOfServiceUri: "https://demotair.arabidopsis.org/doc/about/tai
+			 */ //TODO
+			//if (data[1].partnerId == "tair")
+			if (data['partnerId'] == "tair")
+				$scope.partners['description']="Genome database for the reference plant Arabidopsis thaliana";
+			else
+				$scope.partners['description']="test description.";
 		}).error(function() {
 			alert("Cannot get partner information");
 		});
