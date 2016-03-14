@@ -42,19 +42,26 @@ angular.module('platform-ui.librariantool.role.institution.subscription').contro
 			url: $scope.apiUri+'/partners/',
 			method: 'GET',
 		}).success(function(data, status, headers, config) {
-			$scope.partners = data;
-			/*
-			 *  homeUri: "https://demotair.arabidopsis.org"
+			//$scope.partners = data;
+			/* PW-271
+			    homeUri: "https://demotair.arabidopsis.org"
 				logoUri: "https://s3-us-west-2.amazonaws.com/pw2-logo/logo2.gif"
 				name: "TAIR"
 				partnerId: "tair"
-				termOfServiceUri: "https://demotair.arabidopsis.org/doc/about/tai
-			 */ //TODO
-			//if (data[1].partnerId == "tair")
-			if (data['partnerId'] == "tair")
-				$scope.partners['description']="Genome database for the reference plant Arabidopsis thaliana";
-			else
-				$scope.partners['description']="test description.";
+				termOfServiceUri: "https://demotair.arabidopsis.org/doc/about/tair
+			 */
+            $scope.partners = [];
+            for (var i = 0; i < data.length; i++) {
+                entry = data[i];
+                $scope.partners.push({
+                	homeUri:entry['homeUri'],
+                	logoUri:entry['logoUri'],
+                	name:entry['name'],
+                	partnerId:entry['partnerId'],
+                	termOfServiceUri:entry['termOfServiceUri'],
+                	description: ( entry['partnerId']=="tair" ? "Genome database for the reference plant Arabidopsis thaliana":"test description"),
+                });
+		}
 		}).error(function() {
 			alert("Cannot get partner information");
 		});
