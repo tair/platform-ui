@@ -18,15 +18,11 @@
 			<div class="row">
 				<div class="{{uiparams.partnercolwidth}}">
 					<div class="row"><div class="col-xs-12 lt-font lt-theme-font-color lt-font-aliasing" style="font-size: 24px;">
-						{{p.name}} <img src={{p.logoUri}} alt="partner" style="max-width:87px; max-height:61px;">
+						{{p.name}} <a href={{p.homeUri}}> 
+						<img src={{p.logoUri}} alt="partner" style="max-width:87px; max-height:61px;"></a>
 					</div></div>
 					<div class="row"><div class="col-xs-12 lt-font lt-font-aliasing" style="font-size: 16px; color: #858585;">
 						{{p.description}}
-						
-						<!-- PW-139 test to see partnerId
-						description to be taken via
-						https://demoapi.arabidopsis.org/partners/descriptions/?partnerId=tair&includeText=True
-						-->
 						{{p.partnerId}}
 					</div></div>
 				</div>
