@@ -42,14 +42,6 @@ angular.module('platform-ui.librariantool.role.institution.subscription').contro
 			url: $scope.apiUri+'/partners/',
 			method: 'GET',
 		}).success(function(data, status, headers, config) {
-			//$scope.partners = data;
-			/* PW-271
-			    homeUri: "https://demotair.arabidopsis.org"
-				logoUri: "https://s3-us-west-2.amazonaws.com/pw2-logo/logo2.gif"
-				name: "TAIR"
-				partnerId: "tair"
-				termOfServiceUri: "https://demotair.arabidopsis.org/doc/about/tair
-			 */
             $scope.partners = [];
             for (var i = 0; i < data.length; i++) {
                 entry = data[i];
@@ -59,6 +51,7 @@ angular.module('platform-ui.librariantool.role.institution.subscription').contro
                 	name:entry['name'],
                 	partnerId:entry['partnerId'],
                 	termOfServiceUri:entry['termOfServiceUri'],
+                	//should come from Partner.description tbl.column but we don't have it currently PW-271
                 	description: ( entry['partnerId']=="tair" ? "Genome database for the reference plant Arabidopsis thaliana":"test description"),
                 });
 		}

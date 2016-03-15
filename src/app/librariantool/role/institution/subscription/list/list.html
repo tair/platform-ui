@@ -17,18 +17,26 @@
 		<div class="lt-institution-subscription-list" ng-repeat="p in listPartners(partners)">
 			<div class="row">
 				<div class="{{uiparams.partnercolwidth}}">
-					<div class="row"><div class="col-xs-12 lt-font lt-theme-font-color lt-font-aliasing" style="font-size: 24px;">
-						{{p.name}} <a href={{p.homeUri}} target="_blank"> 
-						<img src={{p.logoUri}} alt="partner" style="max-width:87px; max-height:61px;"></a>
-					</div></div>
-					<div class="row"><div class="col-xs-12 lt-font lt-font-aliasing" style="font-size: 16px; color: #858585;">
-						{{p.description}}
-						{{p.partnerId}}
-					</div></div>
+					<!-- name, logo -->
+					<div class="row">
+						<div class="col-xs-12 lt-font lt-theme-font-color lt-font-aliasing" style="font-size: 24px;">
+						{{p.name}} <a href={{p.homeUri}} target="_blank"><img src={{p.logoUri}} alt="partner" style="max-width:87px; max-height:61px;"></a>
+						</div>
+					</div>
+					<!-- description -->
+					<div class="row">
+						<div class="col-xs-12 lt-font lt-font-aliasing" style="font-size: 16px; color: #858585; width:500px;">
+							{{p.description}}
+						</div>
+					</div>
 				</div>
+				
+				<!-- exp date -->
 				<div class="{{uiparams.expcolwidth}}">
 						{{getExpDate(p.partnerId) | date:'fullDate'}}
 				</div>
+				
+				<!-- btn -->
 				<div class="{{uiparams.actionscolwidth}}">			
 						<button type="button" class="btn btn-default" ng-click="licenseAction(p.partnerId);">{{licenseButton(p.partnerId)}}</button>					
 				</div>
