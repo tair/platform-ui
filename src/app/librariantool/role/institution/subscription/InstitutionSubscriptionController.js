@@ -51,8 +51,7 @@ angular.module('platform-ui.librariantool.role.institution.subscription').contro
                 	name:entry['name'],
                 	partnerId:entry['partnerId'],
                 	termOfServiceUri:entry['termOfServiceUri'],
-                	//should come from Partner.description tbl.column but we don't have it currently PW-271
-                	description: ( entry['partnerId']=="tair" ? "Genome database for the reference plant Arabidopsis thaliana":"test description"),
+                	description:entry['description'],//Partner.description tbl.column PW-271
                 });
 		}
 		}).error(function() {
