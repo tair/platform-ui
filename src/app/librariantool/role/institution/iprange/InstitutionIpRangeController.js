@@ -11,6 +11,7 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 	'$scope',
 	'$http',
 	'$cookies',
+	'$window',
 	'$location',
 	'$state',
 	'$filter',
@@ -19,7 +20,7 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 	'IpValidator',
 
 	/* Controller Definition */
-	function ($scope, $http, $cookies, $location, $state, $filter, Title, InstitutionIpRangeModel, IpValidator) {
+	function ($scope, $http, $cookies, $window, $location, $state, $filter, Title, InstitutionIpRangeModel, IpValidator) {
 	    $scope.setTitle(InstitutionIpRangeModel.title);
 	    $scope.ipranges = InstitutionIpRangeModel.ipranges;
 	    $scope.addGroupShow = "hidden";
@@ -31,7 +32,17 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 	    $scope.sortings = InstitutionIpRangeModel.sortings; //List of sorting objects which contain sortField and reverse attributes.
 	    $scope.reverse = $scope.sortings[0].reverse;
 	    $scope.predicate = $scope.sortings[0].predicate;
-	    
+	    //load credential
+	    if($cookies.credentialId!=null){
+			$scope.credentialId = $cookies.credentialId;
+		}else if($window.sessionStorage.credentialId!=null){
+			$scope.credentialId = $window.sessionStorage.credentialId;
+		}
+		if($cookies.secretKey!=null){
+			$scope.secretKey = $cookies.secretKey;
+		}else if($window.sessionStorage.secretKey!=null){
+			$scope.secretKey = $window.sessionStorage.secretKey;
+		}
 	    //initializing orderBy function
 	    var orderBy = $filter('orderBy');
 	    $scope.order = function(predicate, reverse) {
@@ -130,7 +141,7 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 			label:iprange['name'],
 		    };
 		    $http({
-			url: $scope.apiUri+'/parties/ipranges/?partyId='+$cookies.credentialId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey)+'&ipRangeId='+iprange['ipRangeId'],
+			url: $scope.apiUri+'/parties/ipranges/?partyId='+$scope.credentialId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&ipRangeId='+iprange['ipRangeId'],
 			data: data,
 			method: 'PUT',
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
@@ -167,11 +178,11 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 		var data = {
 		    start:$scope.newRange['start'],
 		    end:$scope.newRange['end'],
-		    partyId:$cookies.credentialId,
+		    partyId:$scope.credentialId,
 		    label:$scope.newRange['name'],
 		}
 		$http({
-                    url: $scope.apiUri+'/parties/ipranges/?partyId='+$cookies.credentialId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+                    url: $scope.apiUri+'/parties/ipranges/?partyId='+$scope.credentialId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
 		    data:data,
                     method: 'POST',
 		}).success(function(data, status, headers, config){
@@ -198,7 +209,7 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
                     label:iprange['name'],
                 };
                 $http({
-                    url: $scope.apiUri+'/parties/ipranges/?partyId='+$cookies.credentialId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey)+'&ipRangeId='+data['ipRangeId'],
+                    url: $scope.apiUri+'/parties/ipranges/?partyId='+$scope.credentialId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&ipRangeId='+data['ipRangeId'],
                     data:data,
                     method: 'DELETE',
                 }).success(function(data, status, headers, config){
@@ -214,7 +225,7 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 	    
 	    // init
             $http({
-                url: $scope.apiUri+'/parties/ipranges/?partyId='+$cookies.credentialId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+                url: $scope.apiUri+'/parties/ipranges/?partyId='+$scope.credentialId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
                 method: 'GET',
             }).success(function(data, status, headers, config){
 		$scope.ipranges = [];
