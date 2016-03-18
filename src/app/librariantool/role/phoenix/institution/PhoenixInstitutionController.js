@@ -58,7 +58,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	    $scope.addInstitutionBox = function(){
 	    	bootbox.dialog({
 	    		  title: "Create a new Institution",
-	  	    		  message: "<div " +
+	  	    		  message: "<div " + "ng-app='platform-ui.librariantool.role.phoenix.institution' "+
 	  	    		  	"ng-controller='PhoenixInstitutionController' style='padding:0px'>" +
 	    		  		//Credential.username required
 	  	    		  	"<input ng-class='groupsListLabelCss(true)' " +
@@ -557,7 +557,8 @@ $scope.consortiums = [{"partyId": 31767, "partyType": "consortium", "name": "con
 	    $scope.enterConsortium = function(consortium){
 	    	if(!(consortium.state=='edit')){
 //			    $state.currentTab = {label:"CONSORTIUM", state:"role.phoenix.manage"};
-		    	$state.go("role.phoenix.manage.institution", {'consortiumId' : consortium.partyId, 'consortiumName':consortium.name});
+	    		window.location.href="#/librariantool/role/phoenix/manage/institution?consortiumId=31767&consortiumName=consortium31767";
+//		    	$state.transitionTo("role.phoenix.manage.institution", {'consortiumId' : consortium.partyId, 'consortiumName':consortium.name});
 	    	}
 	    }
 	    //get ip ranges

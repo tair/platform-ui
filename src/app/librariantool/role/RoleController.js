@@ -20,7 +20,18 @@ angular.module('platform-ui.librariantool.role').controller(
 
 	/* Controller Definition */
 	function ($scope, $http, $cookies, $window, $location, $state, Title, RoleModel, $cookieStore) {
-	    $scope.title = RoleModel.title;
+		//load credential info
+		if($cookies.credentialId!=null){
+			$scope.credentialId = $cookies.credentialId;
+		}else if($window.sessionStorage.credentialId!=null){
+			$scope.credentialId = $window.sessionStorage.credentialId;
+		}
+		if($cookies.secretKey!=null){
+			$scope.secretKey = $cookies.secretKey;
+		}else if($window.sessionStorage.secretKey!=null){
+			$scope.secretKey = $window.sessionStorage.secretKey;
+		}
+		$scope.title = RoleModel.title;
 	    $scope.home = function() {
 		window.location.href='#/librariantool/login';
 	    }
@@ -37,7 +48,7 @@ angular.module('platform-ui.librariantool.role').controller(
 
 	    $scope.partyInfo = RoleModel.partyInfo;
 	    $http({
-		url: $scope.apiUri+'/credentials/?username='+$cookies.username+'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+		url: $scope.apiUri+'/credentials/?username='+$cookies.username+'&secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
 		method: 'GET',
 	    }).success(function(data, status, headers, config) {
 	    	$scope.email = data[0].email;
@@ -45,7 +56,7 @@ angular.module('platform-ui.librariantool.role').controller(
 		alert("Cannot get user email info");
 	    });
             $http({
-                url: $scope.apiUri+'/parties/?partyId='+$cookies.credentialId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+                url: $scope.apiUri+'/parties/?partyId='+$scope.credentialId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
                 method: 'GET',
             }).success(function(data, status, headers, config){
                 $scope.partyInfo = data[0];

@@ -1,13 +1,14 @@
 <div class="row" style="height:38px"></div>
   <form ng-submit="forgotPwd()">
     <div class="row">
+     <div class="lt-login-description text-center" ng-show="invalidEmailMsg">Sorry, that email address is not found in our system. Please contact us at <a href="mailto:info@phoenixbioinformatics.org">info@phoenixbioinformatics.org</a> with any questions.</div>
      <div class="lt-login-description text-center">
     Please enter your email address
      </div>
-    <input class="text-left lt-login-input-box center-block" placeholder="sergei@getexp.com" ng-model="email"></input>
+    <input class="text-left lt-login-input-box center-block" placeholder="user@school.edu" ng-model="email"></input>
     </div>
     <div class="row" style="height:32px"></div>
-    <div class="row"><button class="text-center lt-login-login-btn center-block lt-color">Proceed</button></div>
+    <div class="row"><button class="text-center lt-login-login-btn center-block lt-color">Reset Password</button></div>
     <div class="row lt-gap"></div>
     <div class="row"><button type="button" class="text-center lt-login-req-btn center-block" ng-click="back()">Back</button></div>
     <div class="row" style="height:42px"></div>

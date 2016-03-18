@@ -34,10 +34,11 @@ angular.module('platform-ui.librariantool.role.institution.usage').controller(
 						method: 'POST',
 						data: $scope.postData,
 					}).success(function() {
-						alert("Your request has been recieved. We will get back to you shortly.");
+						alert("Your request has been received. We will get back to you shortly.");
 						$scope.postData.startDate = null;
 						$scope.postData.endDate = null;
 						$scope.postData.comments = null;
+						$scope.postData.partner = null;
 					}).error(function() {
 						alert("Form submit failed");
 					});
@@ -58,6 +59,9 @@ angular.module('platform-ui.librariantool.role.institution.usage').controller(
 			}else if($window.sessionStorage.secretKey!=null){
 				$scope.secretKey = $window.sessionStorage.secretKey;
 			}
+			if(!$scope.credentialId || !$scope.secretKey){
+				$state.go('ltlogin');
+			}
 			$http({
 				url: $scope.apiUri+'/credentials/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+$scope.credentialId,
 				method: 'GET',
@@ -65,6 +69,14 @@ angular.module('platform-ui.librariantool.role.institution.usage').controller(
 				$scope.postData.institution = data[0].institution;
 			}).error(function() {
 				alert("failed to get party information");
+			});
+			$http({
+				url: $scope.apiUri+'/partners/',
+				method: 'GET',
+			}).success(function(data, status, headers, config) {
+				$scope.partners = data;
+			}).error(function() {
+				alert("Cannot get partner information");
 			});
 			$(function () {
 	            $('#startDate').datepicker();

@@ -27,11 +27,14 @@ angular.module('platform-ui.librariantool.login.forgotpassword').controller(
                     url: $scope.apiUri+'/subscriptions/institutions1/',
                     data: data,
                     method: 'POST',
-                }).success(function(data, status, headers, config){   
+                }).success(function(data, status, headers, config){
+                	$state.go('ltlogin.forgotpassword.thankyou', {'email':$scope.email});
                 }).error(function(data, status, headers, config){
-                    alert('Sending email failed');
-                });
-				$state.go('ltlogin.forgotpassword.thankyou', {'email':$scope.email});
+                	if(data['error'] == 'Cannot find registered email address.'){
+                		$scope.invalidEmailMsg = true;
+                	}
+//                    alert('Sending email failed');
+                });				
 			}else{
 				alert("Please enter your email address!")
 			}
