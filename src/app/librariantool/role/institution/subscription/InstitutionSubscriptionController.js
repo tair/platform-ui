@@ -42,7 +42,18 @@ angular.module('platform-ui.librariantool.role.institution.subscription').contro
 			url: $scope.apiUri+'/partners/',
 			method: 'GET',
 		}).success(function(data, status, headers, config) {
-			$scope.partners = data;
+            $scope.partners = [];
+            for (var i = 0; i < data.length; i++) {
+                entry = data[i];
+                $scope.partners.push({
+                	homeUri:entry['homeUri'],
+                	logoUri:entry['logoUri'],
+                	name:entry['name'],
+                	partnerId:entry['partnerId'],
+                	termOfServiceUri:entry['termOfServiceUri'],
+                	description:entry['description'],//Partner.description tbl.column PW-271
+                });
+		}
 		}).error(function() {
 			alert("Cannot get partner information");
 		});
