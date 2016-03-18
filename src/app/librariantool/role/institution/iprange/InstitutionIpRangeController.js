@@ -21,6 +21,9 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 
 	/* Controller Definition */
 	function ($scope, $http, $cookies, $window, $location, $state, $filter, Title, InstitutionIpRangeModel, IpValidator) {
+		if(!$scope.credentialId || !$scope.secretKey){
+			$state.go('ltlogin');
+		}
 	    $scope.setTitle(InstitutionIpRangeModel.title);
 	    $scope.ipranges = InstitutionIpRangeModel.ipranges;
 	    $scope.addGroupShow = "hidden";
@@ -33,17 +36,6 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 	    $scope.reverse = $scope.sortings[0].reverse;
 	    $scope.predicate = $scope.sortings[0].predicate;
 	    $scope.currentTab = InstitutionIpRangeModel.currentTab;
-	    //load credential
-	    if($cookies.credentialId!=null){
-			$scope.credentialId = $cookies.credentialId;
-		}else if($window.sessionStorage.credentialId!=null){
-			$scope.credentialId = $window.sessionStorage.credentialId;
-		}
-		if($cookies.secretKey!=null){
-			$scope.secretKey = $cookies.secretKey;
-		}else if($window.sessionStorage.secretKey!=null){
-			$scope.secretKey = $window.sessionStorage.secretKey;
-		}
 	    //initializing orderBy function
 	    var orderBy = $filter('orderBy');
 	    $scope.order = function(predicate, reverse) {

@@ -32,9 +32,13 @@ angular.module('platform-ui.librariantool.role.institution.profile').controller(
 				put_data = {}
 				//put original values from GET
                 put_data["partyId"]  = $scope.user.partyId; //$cookies.credentialId;
+				if($scope.user.username != undefined && $scope.user.username !=null &&$scope.user.username != ""){
                 put_data["username"] = $scope.user.username;
+				}
                 put_data["partnerId"]= $scope.user.partnerId;
-                put_data["password"]= $scope.user.password;
+                if($scope.user.password != undefined && $scope.user.password !=null &&$scope.user.password != ""){
+                	put_data["password"]= $scope.user.password;
+                }
                 
                 //rewrite with new from UI
                 forceReSignIn = false;
@@ -51,7 +55,7 @@ angular.module('platform-ui.librariantool.role.institution.profile').controller(
 
 				$http({
 					//url: $scope.apiUri+'/credentials/profile/?partyId='+$cookies.credentialId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
-					url: $scope.apiUri+'/parties/institutions/?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+					url: $scope.apiUri+'/parties/institutions/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
 					data: put_data,
 					method: 'PUT',
 					headers: {'Content-Type': 'application/x-www-form-urlencoded'},
@@ -91,12 +95,12 @@ angular.module('platform-ui.librariantool.role.institution.profile').controller(
 				console.log("User password is "+$scope.user.password+" and validate password is "+$scope.password_validate);
 				return false;
 			}
-			if ($scope.user.password==null || $scope.user.password=="" 
-				|| $scope.password_validate==null || $scope.password_validate=="") {
-				bootbox.alert("error: password can not be empty");
-				console.log("error: password can not be empty");
-				return false;
-			}
+//			if ($scope.user.password==null || $scope.user.password=="" 
+//				|| $scope.password_validate==null || $scope.password_validate=="") {
+//				bootbox.alert("error: password can not be empty");
+//				console.log("error: password can not be empty");
+//				return false;
+//			}
 			return true;
 		}
 
@@ -104,18 +108,9 @@ angular.module('platform-ui.librariantool.role.institution.profile').controller(
 	    		$scope.setTitle(InstitutionProfileModel.title);
 	    		$scope.currentTab = InstitutionProfileModel.currentTab;
 	    		$scope.user = InstitutionProfileModel.user;
-	    		//load credential
-			    if($cookies.credentialId!=null){
-					$scope.credentialId = $cookies.credentialId;
-				}else if($window.sessionStorage.credentialId!=null){
-					$scope.credentialId = $window.sessionStorage.credentialId;
+				if(!$scope.credentialId || !$scope.secretKey){
+					$state.go('ltlogin');
 				}
-				if($cookies.secretKey!=null){
-					$scope.secretKey = $cookies.secretKey;
-				}else if($window.sessionStorage.secretKey!=null){
-					$scope.secretKey = $window.sessionStorage.secretKey;
-				}
-
 	            $http({
 	                url: $scope.apiUri+'/parties/institutions/?partyId='+$scope.credentialId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
 	                method: 'GET',

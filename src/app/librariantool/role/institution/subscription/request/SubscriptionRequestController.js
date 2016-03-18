@@ -28,7 +28,7 @@ angular.module('platform-ui.librariantool.role.institution.subscription.request'
 	    $scope.requestQuote = function() {
 		postData = {
                         "partnerName": $scope.partner.name,
-                        "name": $scope.user.name,//PW-161 name
+//                        "name": $scope.user.name,//PW-161 name
                         "email": $scope.user.email,
                         "institution": $scope.user.institution,
                         "comments": $scope.comments,
@@ -50,16 +50,8 @@ angular.module('platform-ui.librariantool.role.institution.subscription.request'
 		$scope.setTitle(SubscriptionRequestModel.title);
 		$scope.uiparams = SubscriptionRequestModel.uiparams;
 		$scope.partnerId = $location.search()['partnerId'];
-	    //load credential
-	    if($cookies.credentialId!=null){
-			$scope.credentialId = $cookies.credentialId;
-		}else if($window.sessionStorage.credentialId!=null){
-			$scope.credentialId = $window.sessionStorage.credentialId;
-		}
-		if($cookies.secretKey!=null){
-			$scope.secretKey = $cookies.secretKey;
-		}else if($window.sessionStorage.secretKey!=null){
-			$scope.secretKey = $window.sessionStorage.secretKey;
+		if(!$scope.credentialId || !$scope.secretKey){
+			$state.go('ltlogin');
 		}
 		$http({
 			url: $scope.apiUri+'/partners?partnerId='+$scope.partnerId,
