@@ -16,7 +16,6 @@ angular.module(
 	'platform-ui.librariantool.role.institution.subscription',
 	'platform-ui.librariantool.role.institution.profile',
 	'platform-ui.librariantool.role.institution.usage',
-	'ngCookies',
     ])
     .config(
 	function ($stateProvider) {
