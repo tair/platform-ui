@@ -59,15 +59,17 @@ angular.module('ipvalidator', []).service(
 	    if (IPv4Pattern.test(start) && IPv4Pattern.test(end)) {
 	      length = 4;
 	      bit = 10;
+	      limit_blocks = 2;
 	      l1 = start.split('.');
 	      l2 = end.split('.');
 	    } else if (IPv6Pattern.test(start) && IPv6Pattern.test(end)) {
 	      length = 8;
 	      bit = 16;
+	      limit_blocks = 1;
 	      l1 = start.split(':');
 	      l2 = end.split(':');
 	    }
-	    for (var i = 0; i < 2; i++) {
+	    for (var i = 0; i < length-limit_blocks; i++) {
 	      num1 = parseInt(l1[i], bit);
 	      num2 = parseInt(l2[i], bit);
 	      if(num1!=num2){
