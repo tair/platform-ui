@@ -125,7 +125,10 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 		    	alert("Starting IP cannot be greater than ending IP");
 		    	return;
 		    }
-			
+		    if (!IpValidator.IpRangeLimit(iprange['start'], iprange['end'])) {
+      	alert('IP range exceeds limit');
+      	return;
+      }	
 		    data = {
 			ipRangeId:iprange['ipRangeId'],
 			start:iprange['start'],
@@ -167,6 +170,10 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 		    	alert("Starting IP cannot be greater than ending IP");
 		    	return;
 		    }
+                    if (!IpValidator.IpRangeLimit(iprange['start'], iprange['end'])) {
+      	alert('IP range exceeds limit');
+      	return;
+      }
 		//alert("Nothing is added!");
 		var data = {
 		    start:$scope.newRange['start'],
