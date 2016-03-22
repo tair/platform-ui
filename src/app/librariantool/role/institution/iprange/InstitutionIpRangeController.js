@@ -170,7 +170,7 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 		    	alert("Starting IP cannot be greater than ending IP");
 		    	return;
 		    }
-                    if (!IpValidator.IpRangeLimit(iprange['start'], iprange['end'])) {
+                    if (!IpValidator.IpRangeLimit($scope.newRange['start'], $scope.newRange['end'])) {
       	alert('IP range exceeds limit');
       	return;
       }
