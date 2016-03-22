@@ -61,9 +61,9 @@ angular.module('platform-ui.librariantool.login.page').controller(
 			    	if($cookies.ui_credentialId!=null){
 						$scope.credentialId = $cookies.ui_credentialId;
 					}else if($window.sessionStorage.ui_credentialId!=null){
-						$scope.credentialId = $window.sessionStorage.ui_ui_secretKey;
+						$scope.credentialId = $window.sessionStorage.ui_secretKey;
 					}
-					if($cookies.secretKey!=null){
+					if($cookies.ui_secretKey!=null){
 						$scope.secretKey = $cookies.ui_secretKey;
 					}else if($window.sessionStorage.ui_secretKey!=null){
 						$scope.secretKey = $window.sessionStorage.ui_secretKey;
