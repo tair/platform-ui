@@ -31,7 +31,7 @@ angular.module('platform-ui.librariantool.role.institution.profile').controller(
 				//Save info
 				put_data = {}
 				//put original values from GET
-                put_data["partyId"]  = $scope.user.partyId; //$cookies.credentialId;
+                put_data["partyId"]  = $scope.user.partyId;
 				if($scope.user.username != undefined && $scope.user.username !=null &&$scope.user.username != ""){
                 put_data["username"] = $scope.user.username;
 				}
@@ -54,7 +54,6 @@ angular.module('platform-ui.librariantool.role.institution.profile').controller(
 				}
 
 				$http({
-					//url: $scope.apiUri+'/credentials/profile/?partyId='+$cookies.credentialId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
 					url: $scope.apiUri+'/parties/institutions/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
 					data: put_data,
 					method: 'PUT',
