@@ -179,7 +179,14 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 		    data:data,
                     method: 'POST',
 		}).success(function(data, status, headers, config){
-			$scope.ipranges.unshift(data);
+			$scope.ipranges.unshift({
+				ipRangeId:data['ipRangeId'],
+				start:data['start'],
+				end:data['end'],
+				name:data['label'],
+				partyId:data['partyId'],
+				state:null
+			    });
 		}).error(function(data, status, headers, config){
                     alert("add ip range request failed");
 		});      
