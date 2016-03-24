@@ -20,7 +20,10 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 
 	/* Controller Definition */
 	function ($scope, $http, $cookies, $location, $state, $filter, Title, Dateformat, PhoenixManageInstitutionModel) {
-	    $scope.setTitle(PhoenixManageInstitutionModel.title);
+		if(!$scope.credentialId || !$scope.secretKey){
+			$state.go('ltlogin');
+		}
+		$scope.setTitle(PhoenixManageInstitutionModel.title);
 	    $scope.institutions = PhoenixManageInstitutionModel.institutions;
 	    $scope.allInstitutions = PhoenixManageInstitutionModel.allInstitutions;
 	    $scope.addGroupShow = "hidden";
@@ -41,7 +44,7 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 	    $scope.uiparams = PhoenixManageInstitutionModel.uiparams;
 	    
 	    $http({
-            url: $scope.apiUri+'/subscriptions/activesubscriptions/'+$cookies.credentialId+'/',
+            url: $scope.apiUri+'/subscriptions/activesubscriptions/'+$scope.credentialId+'/',
             method: 'GET',
 	    }).success(function(data, status, headers, config) {
 	            $scope.activeSubscriptions = data;
@@ -77,7 +80,7 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 				}
 	    	console.log(JSON.stringify(data));
 	    	$http({
-		        url: $scope.apiUri+'/subscriptions/?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+		        url: $scope.apiUri+'/subscriptions/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
 			    data:data,
 		        method: 'POST',
 			}).success(function(data, status, headers, config){
@@ -167,7 +170,7 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 			name:institution['name'],
 		    };
 		    $http({
-			url: $scope.apiUri+'/parties/?credentialId='+$cookies.partyId+'&secretKey='+encodeURIComponent($cookies.secretKey)+'&partyId='+institution['partyId'],
+			url: $scope.apiUri+'/parties/?credentialId='+$cookies.partyId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+institution['partyId'],
 			data: data,
 			method: 'PUT',
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
@@ -202,7 +205,7 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 					childPartyId : $scope.foundInstitution.partyId,
 			}
 	    	$http({
-	    		url: $scope.apiUri+'/parties/affiliations/?' +'secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+	    		url: $scope.apiUri+'/parties/affiliations/?' +'secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
 	    		data:data,
 	            method: 'POST',
 				}).success(function(data, status, headers, config){
@@ -228,7 +231,7 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 	    	name:$scope.newInstitution['name'],//Party.name, optional
 		}
 		$http({
-			url: $scope.apiUri+'/parties/institutions/?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+			url: $scope.apiUri+'/parties/institutions/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
 			data:data,
             method: 'POST',
 		}).success(function(data, status, headers, config){
@@ -263,7 +266,7 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 			
 			
 		$http({
-            url: $scope.apiUri+'/parties/affiliations/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+            url: $scope.apiUri+'/parties/affiliations/?secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
 			data:data,
             method: 'POST',
 			}).success(function(data, status, headers, config){
@@ -288,7 +291,7 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
         			childPartyId: institution.partyId,
         	}
         	$http({
-        		url: $scope.apiUri+'/parties/affiliations/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+        		url: $scope.apiUri+'/parties/affiliations/?secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
         		data:data,
 	            method: 'DELETE',
         	}).success(function(data, status, headers, config){
@@ -302,7 +305,7 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
         }
 	    $scope.removeConfirm = function(institution) {
                 $http({
-                    url: $scope.apiUri+'/parties/?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey)+'&partyId='+institution['partyId'],
+                    url: $scope.apiUri+'/parties/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+institution['partyId'],
                     method: 'DELETE',
                 }).success(function(data, status, headers, config){
                 }).error(function(data, status, headers, config){
@@ -329,7 +332,7 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 	    $scope.consortiumName = $location.search()['consortiumName'];
 	    $scope.setTitle($scope.consortiumName);
             $http({
-            	url: $scope.apiUri+'/parties/affiliations/?partyId='+$scope.consortiumId+'&partyType=consortium'+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+            	url: $scope.apiUri+'/parties/affiliations/?partyId='+$scope.consortiumId+'&partyType=consortium'+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
                 method: 'GET',
             }).success(function(data, status, headers, config){
 		$scope.institutions = [];
@@ -348,7 +351,7 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 		alert("institution request failed");
             });
         $http({
-			url: $scope.apiUri+'/partners/'+'?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+			url: $scope.apiUri+'/partners/'+'?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
 			method: 'GET',
 		}).success(function(data, status, headers, config) {
 			$scope.partners = data;
@@ -356,7 +359,7 @@ angular.module('platform-ui.librariantool.role.phoenix.manage.institution').cont
 			alert("Cannot get partner information");
 		});
         $http({
-        	url: $scope.apiUri+'/parties/?partyType=organization&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+        	url: $scope.apiUri+'/parties/?partyType=organization&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
             method: 'GET',
 	        }).success(function(data, status, headers, config){
 		$scope.allInstitutions = [];
