@@ -123,7 +123,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 			    	name:$scope.newInstitution['name'],//Party.name, optional
                 };
                 $http({
-                    url: $scope.apiUri+'/parties/institutions/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+                    url: $scope.apiUri+'/parties/institutions/?secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
                     data:data,
                     method: 'POST',
                 }).success(function(data, status, headers, config){
@@ -243,7 +243,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 			label:iprange['name'],
 		    };
 		    $http({
-			url: $scope.apiUri+'/parties/ipranges/?partyId='+$cookies.partyId+'&secretKey='+encodeURIComponent($cookies.secretKey)+'&ipRangeId='+iprange['ipRangeId'],
+			url: $scope.apiUri+'/parties/ipranges/?partyId='+$cookies.partyId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&ipRangeId='+iprange['ipRangeId'],
 			data: data,
 			method: 'PUT',
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
@@ -267,7 +267,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 		    label:$scope.newRange['name'],
 		}
 		$http({
-                    url: $scope.apiUri+'/parties/ipranges/?partyId='+$scope.institution.partyId+'&secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+                    url: $scope.apiUri+'/parties/ipranges/?partyId='+$scope.institution.partyId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
                     data:data,
                     method: 'POST',
 		}).success(function(data, status, headers, config){
@@ -300,7 +300,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
                     label:iprange['name'],
                 };
                 $http({
-                    url: $scope.apiUri+'/parties/ipranges/?partyId='+$cookies.partyId+'&secretKey'+encodeURIComponent($cookies.secretKey)+'&ipRangeId='+data['ipRangeId'],
+                    url: $scope.apiUri+'/parties/ipranges/?partyId='+$cookies.partyId+'&secretKey'+encodeURIComponent($scope.secretKey)+'&ipRangeId='+data['ipRangeId'],
                     data:data,
                     method: 'DELETE',
                 }).success(function(data, status, headers, config){
@@ -323,7 +323,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 				}
 	    	console.log(JSON.stringify(data));
 	    	$http({
-		        url: $scope.apiUri+'/subscriptions/?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+		        url: $scope.apiUri+'/subscriptions/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
 			    data:data,
 		        method: 'POST',
 			}).success(function(data, status, headers, config){
@@ -439,7 +439,7 @@ $scope.consortiums = [{"partyId": 31767, "partyType": "consortium", "name": "con
         			childPartyId: $scope.partyId,
         	};
         	$http({
-        		url: $scope.apiUri+'/parties/affiliations/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+        		url: $scope.apiUri+'/parties/affiliations/?secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
         		data:data,
 	            method: 'DELETE',
         	}).success(function(data, status, headers, config){
@@ -472,7 +472,7 @@ $scope.consortiums = [{"partyId": 31767, "partyType": "consortium", "name": "con
 					childPartyId : $scope.partyId,
 			}
 	    	$http({
-	            url: $scope.apiUri+'/parties/affiliations/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+	            url: $scope.apiUri+'/parties/affiliations/?secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
 	    		data:data,
 	            method: 'POST',
 	            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
@@ -505,7 +505,7 @@ $scope.consortiums = [{"partyId": 31767, "partyType": "consortium", "name": "con
 		
 		$http({
 			//PW-161/PW-82
-			url: $scope.apiUri+'/parties/consortiums/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+			url: $scope.apiUri+'/parties/consortiums/?secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
 		    data:data,
             method: 'POST',
 		}).success(function(data, status, headers, config){
@@ -540,7 +540,7 @@ $scope.consortiums = [{"partyId": 31767, "partyType": "consortium", "name": "con
 		
 		
 		$http({
-            url: $scope.apiUri+'/parties/affiliations/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+            url: $scope.apiUri+'/parties/affiliations/?secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
             data:data,
             method: 'POST',
 			}).success(function(data, status, headers, config){
@@ -565,7 +565,7 @@ $scope.consortiums = [{"partyId": 31767, "partyType": "consortium", "name": "con
 	    $scope.getIpRanges = function(){
 	    if($scope.partyId != null){
             $http({
-            	url: $scope.apiUri+'/parties/ipranges/?partyId='+$scope.partyId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+            	url: $scope.apiUri+'/parties/ipranges/?partyId='+$scope.partyId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
                 method: 'GET',
             }).success(function(data, status, headers, config){
 		$scope.ipranges = [];
@@ -595,7 +595,7 @@ $scope.consortiums = [{"partyId": 31767, "partyType": "consortium", "name": "con
 	                //get consortium list of the current institution
 	          	    if($scope.partyId != null){
 	          	    $http({
-	                      url: $scope.apiUri+'/parties/affiliations/?partyId='+$scope.partyId+'&partyType=organization'+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+	                      url: $scope.apiUri+'/parties/affiliations/?partyId='+$scope.partyId+'&partyType=organization'+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
 	                      method: 'GET',
 	                  }).success(function(data, status, headers, config){
 	          	$scope.consortiums = [];
@@ -620,7 +620,7 @@ $scope.consortiums = [{"partyId": 31767, "partyType": "consortium", "name": "con
 	    function getIpRanges(){
 	    	if($scope.partyId != null){
 	            $http({
-	            	url: $scope.apiUri+'/parties/ipranges/?partyId='+$scope.partyId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+	            	url: $scope.apiUri+'/parties/ipranges/?partyId='+$scope.partyId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
 	                method: 'GET',
 	            }).success(function(data, status, headers, config){
 			$scope.ipranges = [];
@@ -642,9 +642,12 @@ $scope.consortiums = [{"partyId": 31767, "partyType": "consortium", "name": "con
 	    }
 	    //init
 	    function init(){
+			if(!$scope.credentialId || !$scope.secretKey){
+				$state.go('ltlogin');
+			}
 	    getIpRanges();
 	    $http({
-        	url: $scope.apiUri+'/parties/?partyType=organization&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+        	url: $scope.apiUri+'/parties/?partyType=organization&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
             method: 'GET',
 	        }).success(function(data, status, headers, config){
 		$scope.institutions = [];
@@ -661,7 +664,7 @@ $scope.consortiums = [{"partyId": 31767, "partyType": "consortium", "name": "con
 	    //get consortium list of the current institution
 	    if($scope.partyId != null){
 	    $http({
-            url: $scope.apiUri+'/parties/affiliations/?partyId='+$scope.partyId+'&patyType=organization'+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+            url: $scope.apiUri+'/parties/affiliations/?partyId='+$scope.partyId+'&patyType=organization'+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
             method: 'GET',
         }).success(function(data, status, headers, config){
 	$scope.consortiums = [];
@@ -682,7 +685,7 @@ $scope.consortiums = [{"partyId": 31767, "partyType": "consortium", "name": "con
         });
 	    }
 	    $http({
-        	url: $scope.apiUri+'/parties/?partyType=consortium&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+        	url: $scope.apiUri+'/parties/?partyType=consortium&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
             method: 'GET',
 	        }).success(function(data, status, headers, config){
 		$scope.allConsortiums = [];

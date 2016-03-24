@@ -17,7 +17,10 @@ angular.module('platform-ui.librariantool.role.phoenix.manage').controller(
 	'PhoenixManageModel',
 
 	/* Controller Definition */
-	function ($scope, $http, $cookies, $location, $state, Title, PhoenixManageModel) {
+	function ($scope, $http, $cookies, $location, $state, Title, PhoenixManageModel) {		
+		if(!$scope.credentialId || !$scope.secretKey){
+			$state.go('ltlogin');
+		}
 		$scope.setTitle(PhoenixManageModel.title);
 	    $scope.selectedInstitution = PhoenixManageModel.selectedInstitution;
 	    $scope.setInstitution = function(institution) {
