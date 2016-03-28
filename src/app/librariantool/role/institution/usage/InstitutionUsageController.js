@@ -39,6 +39,7 @@ angular.module('platform-ui.librariantool.role.institution.usage').controller(
 						$scope.postData.endDate = null;
 						$scope.postData.comments = null;
 						$scope.postData.partner = null;
+						$scope.postData.name = null;
 					}).error(function() {
 						alert("Form submit failed");
 					});
