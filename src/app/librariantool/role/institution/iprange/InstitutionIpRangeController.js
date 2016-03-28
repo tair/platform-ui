@@ -126,7 +126,7 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 		    	return;
 		    }
 		    if (!IpValidator.IpRangeLimit(iprange['start'], iprange['end'])) {
-      	alert('IP range exceeds limit');
+      	alert('IP range is too large, please enter a smaller IP range.  Please contact us at info@phoenixbioinformatics.org with any questions.');
       	return;
       }	
 		    data = {
@@ -171,7 +171,7 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 		    	return;
 		    }
                     if (!IpValidator.IpRangeLimit($scope.newRange['start'], $scope.newRange['end'])) {
-      	alert('IP range exceeds limit');
+      	alert('IP range is too large, please enter a smaller IP range.  Please contact us at info@phoenixbioinformatics.org with any questions.');
       	return;
       }
 		//alert("Nothing is added!");
