@@ -61,7 +61,7 @@ angular.module('platform-ui.librariantool.login.page').controller(
 			    	if($cookies.org_phoenixbioinformatics_ui_credentialId!=null){
 						$scope.credentialId = $cookies.org_phoenixbioinformatics_ui_credentialId;
 					}else if($window.sessionStorage.org_phoenixbioinformatics_ui_credentialId!=null){
-						$scope.credentialId = $window.sessionStorage.org_phoenixbioinformatics_ui_secretKey;
+						$scope.credentialId = $window.sessionStorage.org_phoenixbioinformatics_ui_credentialId;
 					}
 					if($cookies.org_phoenixbioinformatics_ui_secretKey!=null){
 						$scope.secretKey = $cookies.org_phoenixbioinformatics_ui_secretKey;
