@@ -21,25 +21,25 @@ angular.module('platform-ui.librariantool.role').controller(
 	/* Controller Definition */
 	function ($scope, $http, $cookies, $window, $location, $state, Title, RoleModel, $cookieStore) {
 		//load credential info
-		if($cookies.credentialId!=null){
-			$scope.credentialId = $cookies.credentialId;
-		}else if($window.sessionStorage.credentialId!=null){
-			$scope.credentialId = $window.sessionStorage.credentialId;
+		if($cookies.org_phoenixbioinformatics_ui_credentialId!=null){
+			$scope.credentialId = $cookies.org_phoenixbioinformatics_ui_credentialId;
+		}else if($window.sessionStorage.org_phoenixbioinformatics_ui_credentialId!=null){
+			$scope.credentialId = $window.sessionStorage.org_phoenixbioinformatics_ui_credentialId;
 		}
-		if($cookies.secretKey!=null){
-			$scope.secretKey = $cookies.secretKey;
-		}else if($window.sessionStorage.secretKey!=null){
-			$scope.secretKey = $window.sessionStorage.secretKey;
+		if($cookies.org_phoenixbioinformatics_ui_secretKey!=null){
+			$scope.secretKey = $cookies.org_phoenixbioinformatics_ui_secretKey;
+		}else if($window.sessionStorage.org_phoenixbioinformatics_ui_secretKey!=null){
+			$scope.secretKey = $window.sessionStorage.org_phoenixbioinformatics_ui_secretKey;
 		}
 		$scope.title = RoleModel.title;
 	    $scope.home = function() {
 		window.location.href='#/librariantool/login';
 	    }
 	    $scope.logout = function() {
-		$cookieStore.remove("credentialId");
-		$cookieStore.remove("secretKey");
-		delete $window.sessionStorage.credentialId;
-		delete $window.sessionStorage.secretKey;
+		$cookieStore.remove("org_phoenixbioinformatics_ui_credentialId");
+		$cookieStore.remove("org_phoenixbioinformatics_ui_secretKey");
+		delete $window.sessionStorage.org_phoenixbioinformatics_ui_credentialId;
+		delete $window.sessionStorage.org_phoenixbioinformatics_ui_secretKey;
 		$scope.home();
 	    }
 	    $scope.setTitle = function(title) {

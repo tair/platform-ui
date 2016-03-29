@@ -20,12 +20,6 @@ angular.module('platform-ui.librariantool.login.page').controller(
 	/* Controller Definition */
 	function ($scope, $http, $cookies, $window, $location, $state, Title, LTLoginPageModel) {
 	    $scope.formdata = LTLoginPageModel.formdata;
-//	    if(localStorage.getItem("username")){
-//	    	$scope.formdata["user"] = localStorage.getItem("username");
-//	    }
-//	    if(localStorage.getItem("password")){
-//	    	$scope.formdata["password"] = localStorage.getItem("password");
-//	    }
 	    if(localStorage.getItem("remember")){
 	    	$scope.remember = true;
 	    }else{
@@ -54,25 +48,25 @@ angular.module('platform-ui.librariantool.login.page').controller(
                     method: 'POST',
                 }).success(function(data, status, headers, config){
 			    	if($scope.remember == true){
-	                    $cookies.credentialId = data["credentialId"]; //for user googlestaff it's Credential.partyId and it's 42
-	                    $cookies.secretKey = data["secretKey"];
+	                    $cookies.org_phoenixbioinformatics_ui_credentialId = data["credentialId"]; //for user googlestaff it's Credential.partyId and it's 42
+	                    $cookies.org_phoenixbioinformatics_ui_secretKey = data["secretKey"];
 					    $cookies.username = data["username"];
 			    		localStorage.setItem("remember", true);
 			    	}else{
-			    		$window.sessionStorage.credentialId = data["credentialId"]; //for user googlestaff it's Credential.partyId and it's 42
-			    		$window.sessionStorage.secretKey = data["secretKey"];
+			    		$window.sessionStorage.org_phoenixbioinformatics_ui_credentialId = data["credentialId"]; //for user googlestaff it's Credential.partyId and it's 42
+			    		$window.sessionStorage.org_phoenixbioinformatics_ui_secretKey = data["secretKey"];
 			    		$window.sessionStorage.username = data["username"];
 			    		localStorage.removeItem("remember");
 			    	}
-			    	if($cookies.credentialId!=null){
-						$scope.credentialId = $cookies.credentialId;
-					}else if($window.sessionStorage.credentialId!=null){
-						$scope.credentialId = $window.sessionStorage.credentialId;
+			    	if($cookies.org_phoenixbioinformatics_ui_credentialId!=null){
+						$scope.credentialId = $cookies.org_phoenixbioinformatics_ui_credentialId;
+					}else if($window.sessionStorage.org_phoenixbioinformatics_ui_credentialId!=null){
+						$scope.credentialId = $window.sessionStorage.org_phoenixbioinformatics_ui_credentialId;
 					}
-					if($cookies.secretKey!=null){
-						$scope.secretKey = $cookies.secretKey;
-					}else if($window.sessionStorage.secretKey!=null){
-						$scope.secretKey = $window.sessionStorage.secretKey;
+					if($cookies.org_phoenixbioinformatics_ui_secretKey!=null){
+						$scope.secretKey = $cookies.org_phoenixbioinformatics_ui_secretKey;
+					}else if($window.sessionStorage.org_phoenixbioinformatics_ui_secretKey!=null){
+						$scope.secretKey = $window.sessionStorage.org_phoenixbioinformatics_ui_secretKey;
 					}
 				    $http({
 					url: $scope.apiUri+'/parties/?partyId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,

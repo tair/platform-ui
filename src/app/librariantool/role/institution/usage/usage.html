@@ -23,7 +23,7 @@
 		<div class="row">
 			<div class="{{uiparams.colwidth}} block-center text-left">
 				<div class="row">
-					<div class="col-xs-4">
+					<div class="col-xs-6">
 						<div class="row"><div class="col-xs-12">
 							Product Name
 						</div></div>
@@ -35,7 +35,16 @@
 						    </input>						    
 						</div></div>
 					</div>
-					<div class="col-xs-4">
+					<div class="col-xs-6">
+                        <div class="row"><div class="col-xs-12">
+                            Your Name
+                        </div></div>
+                        <div class="row"><div class="col-xs-12">
+                            <input ng-model="postData.name" required>
+                            </input>                            
+                        </div></div>
+                    </div>
+					<div class="col-xs-6">
 						<div class="row"><div class="col-xs-12">
 							Desired Statistics Start Date
 						</div></div>
@@ -43,7 +52,7 @@
 							<input id="startDate" ng-model="postData.startDate" required></input>
 						</div></div>
 					</div>
-					<div class="col-xs-4">
+					<div class="col-xs-6">
 						<div class="row"><div class="col-xs-12">
 							Desired Statistics End Date
 						</div></div>

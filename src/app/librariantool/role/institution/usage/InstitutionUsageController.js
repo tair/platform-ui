@@ -39,6 +39,7 @@ angular.module('platform-ui.librariantool.role.institution.usage').controller(
 						$scope.postData.endDate = null;
 						$scope.postData.comments = null;
 						$scope.postData.partner = null;
+						$scope.postData.name = null;
 					}).error(function() {
 						alert("Form submit failed");
 					});
@@ -48,17 +49,6 @@ angular.module('platform-ui.librariantool.role.institution.usage').controller(
 	    	$scope.setTitle(InstitutionUsageModel.title);
 			$scope.uiparams = InstitutionUsageModel.uiparams;
 			$scope.postData = InstitutionUsageModel.postData;
-			//load credential
-		    if($cookies.credentialId!=null){
-				$scope.credentialId = $cookies.credentialId;
-			}else if($window.sessionStorage.credentialId!=null){
-				$scope.credentialId = $window.sessionStorage.credentialId;
-			}
-			if($cookies.secretKey!=null){
-				$scope.secretKey = $cookies.secretKey;
-			}else if($window.sessionStorage.secretKey!=null){
-				$scope.secretKey = $window.sessionStorage.secretKey;
-			}
 			if(!$scope.credentialId || !$scope.secretKey){
 				$state.go('ltlogin');
 			}
