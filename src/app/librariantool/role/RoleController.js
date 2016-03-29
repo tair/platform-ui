@@ -21,15 +21,15 @@ angular.module('platform-ui.librariantool.role').controller(
 	/* Controller Definition */
 	function ($scope, $http, $cookies, $window, $location, $state, Title, RoleModel, $cookieStore) {
 		//load credential info
-		if($cookies.ui_credentialId!=null){
-			$scope.credentialId = $cookies.ui_credentialId;
-		}else if($window.sessionStorage.ui_credentialId!=null){
-			$scope.credentialId = $window.sessionStorage.ui_credentialId;
+		if($cookies.org_phoenixbioinformatics_ui_credentialId!=null){
+			$scope.credentialId = $cookies.org_phoenixbioinformatics_ui_credentialId;
+		}else if($window.sessionStorage.org_phoenixbioinformatics_ui_credentialId!=null){
+			$scope.credentialId = $window.sessionStorage.org_phoenixbioinformatics_ui_credentialId;
 		}
-		if($cookies.ui_secretKey!=null){
-			$scope.secretKey = $cookies.ui_secretKey;
-		}else if($window.sessionStorage.ui_secretKey!=null){
-			$scope.secretKey = $window.sessionStorage.ui_secretKey;
+		if($cookies.org_phoenixbioinformatics_ui_secretKey!=null){
+			$scope.secretKey = $cookies.org_phoenixbioinformatics_ui_secretKey;
+		}else if($window.sessionStorage.org_phoenixbioinformatics_ui_secretKey!=null){
+			$scope.secretKey = $window.sessionStorage.org_phoenixbioinformatics_ui_secretKey;
 		}
 		$scope.title = RoleModel.title;
 	    $scope.home = function() {
