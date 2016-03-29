@@ -34,7 +34,7 @@ angular.module('platform-ui.librariantool.role.institution').controller(
 		}
 		$scope.tabs = InstitutionRoleModel.tabs;
 		if($window.sessionStorage.currentTab!=null
-			&&$window.sessionStorage!=undefined){
+			&&$window.sessionStorage.currentTab!=undefined){
 			$scope.currentTab = JSON.parse($window.sessionStorage.currentTab);
 		}else{
 			$scope.currentTab = InstitutionRoleModel.currentTab;

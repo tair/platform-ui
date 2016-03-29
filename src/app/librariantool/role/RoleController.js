@@ -36,10 +36,10 @@ angular.module('platform-ui.librariantool.role').controller(
 		window.location.href='#/librariantool/login';
 	    }
 	    $scope.logout = function() {
-		$cookieStore.remove("credentialId");
-		$cookieStore.remove("secretKey");
-		delete $window.sessionStorage.credentialId;
-		delete $window.sessionStorage.secretKey;
+		$cookieStore.remove("org_phoenixbioinformatics_ui_credentialId");
+		$cookieStore.remove("org_phoenixbioinformatics_ui_secretKey");
+		delete $window.sessionStorage.org_phoenixbioinformatics_ui_credentialId;
+		delete $window.sessionStorage.org_phoenixbioinformatics_ui_secretKey;
 		$scope.home();
 	    }
 	    $scope.setTitle = function(title) {
