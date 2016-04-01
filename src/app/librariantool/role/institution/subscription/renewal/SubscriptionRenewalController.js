@@ -48,7 +48,6 @@ angular.module('platform-ui.librariantool.role.institution.subscription.renewal'
 	    };
 
 	    function init() {
-		$scope.setTitle(SubscriptionRenewalModel.title);
 		$scope.uiparams = SubscriptionRenewalModel.uiparams;
 		$scope.partnerId = $location.search()['partnerId'];
 		if(!$scope.credentialId || !$scope.secretKey){

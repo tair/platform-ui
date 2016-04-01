@@ -55,15 +55,16 @@ angular.module('platform-ui.librariantool.role').controller(
 	    }).error(function() {
 		alert("Cannot get user email info");
 	    });
-            $http({
-                url: $scope.apiUri+'/parties/?partyId='+$scope.credentialId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
-                method: 'GET',
-            }).success(function(data, status, headers, config){
-                $scope.partyInfo = data[0];
-            }).error(function(data, status, headers, config){
-                alert("partyId failed");
-            });
+        $http({
+            url: $scope.apiUri+'/parties/?partyId='+$scope.credentialId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
+            method: 'GET',
+        }).success(function(data, status, headers, config){
+            $scope.partyInfo = data[0];
+        }).error(function(data, status, headers, config){
+            alert("partyId failed");
+        });
 
+		$scope.title = $scope.partyInfo.name;
 
 	    // CSS Logics common to all admin pages in different roles:
             $scope.groupsAddCss = function(adding) {

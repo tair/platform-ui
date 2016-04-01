@@ -57,7 +57,6 @@ angular.module('platform-ui.librariantool.role.institution.subscription.list').c
 
 	    function init() {
 		console.log($state);
-		$scope.setTitle(SubscriptionListModel.title);
 		$scope.uiparams = SubscriptionListModel.uiparams;
 		if(!$scope.credentialId || !$scope.secretKey){
 			$state.go('ltlogin');

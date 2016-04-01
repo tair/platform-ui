@@ -47,7 +47,6 @@ angular.module('platform-ui.librariantool.role.institution.subscription.request'
 	    };
 
 	    function init() {
-		$scope.setTitle(SubscriptionRequestModel.title);
 		$scope.uiparams = SubscriptionRequestModel.uiparams;
 		$scope.partnerId = $location.search()['partnerId'];
 		if(!$scope.credentialId || !$scope.secretKey){

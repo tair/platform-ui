@@ -23,7 +23,6 @@ angular.module('platform-ui.librariantool.role.institution.subscription').contro
 
 	    function init() {
 		console.log($state);
-		$scope.setTitle(InstitutionSubscriptionModel.title);
 		$scope.partners = InstitutionSubscriptionModel.partners;
 		$scope.activeSubscriptions = InstitutionSubscriptionModel.activeSubscriptions;
 		$scope.uiparams = InstitutionSubscriptionModel.uiparams;
