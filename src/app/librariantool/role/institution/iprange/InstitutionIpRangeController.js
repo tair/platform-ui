@@ -23,16 +23,7 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 	function ($scope, $http, $cookies, $window, $location, $state, $filter, Title, InstitutionIpRangeModel, IpValidator) {
 		if(!$scope.credentialId || !$scope.secretKey){
 			$state.go('ltlogin');
-		}
-		$http({
-            url: $scope.apiUri+'/parties/?partyId='+$scope.credentialId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
-            method: 'GET',
-        }).success(function(data, status, headers, config){
-            $scope.partyInfo = data[0];
-            $scope.setTitle($scope.partyInfo.name);
-        }).error(function(data, status, headers, config){
-            alert("partyId failed");
-        });		
+		}	
 	    $scope.ipranges = InstitutionIpRangeModel.ipranges;
 	    $scope.addGroupShow = "hidden";
 	    $scope.adding = false;
