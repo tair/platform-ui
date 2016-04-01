@@ -109,7 +109,6 @@ angular.module('platform-ui.librariantool.role.institution.profile').controller(
 				if(!$scope.credentialId || !$scope.secretKey){
 					$state.go('ltlogin');
 				}
-				$scope.setTitle($scope.partyInfo.name);
 	            $http({
 	                url: $scope.apiUri+'/parties/institutions/?partyId='+$scope.credentialId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
 	                method: 'GET',
