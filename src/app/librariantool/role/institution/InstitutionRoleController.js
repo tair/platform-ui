@@ -32,7 +32,6 @@ angular.module('platform-ui.librariantool.role.institution').controller(
 		if(!$scope.credentialId || !$scope.secretKey){
 			$state.go('ltlogin');
 		}
-		$scope.title = $scope.partyInfo.name;
 		$scope.tabs = InstitutionRoleModel.tabs;
 		if($window.sessionStorage.currentTab!=null
 			&&$window.sessionStorage.currentTab!=undefined){

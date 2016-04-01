@@ -56,6 +56,7 @@ angular.module('platform-ui.librariantool.role.institution.subscription.list').c
 	    }
 
 	    function init() {
+		$scope.setTitle($scope.partyInfo.name);
 		console.log($state);
 		$scope.uiparams = SubscriptionListModel.uiparams;
 		if(!$scope.credentialId || !$scope.secretKey){
