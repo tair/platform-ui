@@ -24,6 +24,7 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 		if(!$scope.credentialId || !$scope.secretKey){
 			$state.go('ltlogin');
 		}
+		$scope.setTitle($scope.partyInfo.name);
 	    $scope.ipranges = InstitutionIpRangeModel.ipranges;
 	    $scope.addGroupShow = "hidden";
 	    $scope.adding = false;

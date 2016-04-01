@@ -64,8 +64,6 @@ angular.module('platform-ui.librariantool.role').controller(
             alert("partyId failed");
         });
 
-		$scope.title = $scope.partyInfo.name;
-
 	    // CSS Logics common to all admin pages in different roles:
             $scope.groupsAddCss = function(adding) {
                 if (adding) {
