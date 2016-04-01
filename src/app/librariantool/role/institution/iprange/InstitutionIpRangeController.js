@@ -24,8 +24,15 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 		if(!$scope.credentialId || !$scope.secretKey){
 			$state.go('ltlogin');
 		}
-		$scope.setTitle(InstitutionIpRangeModel.title);
-//		$scope.setTitle($scope.partyInfo.name);
+		$http({
+            url: $scope.apiUri+'/parties/?partyId='+$scope.credentialId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
+            method: 'GET',
+        }).success(function(data, status, headers, config){
+            $scope.partyInfo = data[0];
+            $scope.setTitle($scope.partyInfo.name);
+        }).error(function(data, status, headers, config){
+            alert("partyId failed");
+        });		
 	    $scope.ipranges = InstitutionIpRangeModel.ipranges;
 	    $scope.addGroupShow = "hidden";
 	    $scope.adding = false;
