@@ -50,6 +50,6 @@ angular.module('platform-ui.librariantool.role.consortium').factory(
             }
           ];
         }
-		};
+		}};
 	}
 ]);
