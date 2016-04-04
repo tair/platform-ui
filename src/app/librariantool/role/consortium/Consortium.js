@@ -23,18 +23,18 @@ angular.module(
                 url: '/',
                 views: {
                     'consortium': {
-                        controller: 'ConsortiumManageController',
-                        templateUrl: 'librariantool/role/consortium/manage/manage.html'
+                        controller: 'ConsortiumInstitutionController',
+                        templateUrl: 'librariantool/role/consortium/institution/institution.html'
                     }
                 }
-            }).state('role.consortium.manage', {
-		url: '/manage',
-		views: {
-		    'consortium': {
-			controller: 'ConsortiumManageController',
-			templateUrl: 'librariantool/role/consortium/manage/manage.html'
-		    }
-		}
+            }).state('role.consortium.institution', {
+                url: '/institution',
+                views: {
+                    'consortium': {
+                        controller: 'ConsortiumInstitutionController',
+                        templateUrl: 'librariantool/role/consortium/institution/institution.html'
+                    }
+                }
             }).state('role.consortium.subscription', {
                 url: '/subscription',
                 views: {
