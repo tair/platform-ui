@@ -52,6 +52,7 @@ angular.module('platform-ui.librariantool.role.institution.usage').controller(
 //			if(!$scope.credentialId || !$scope.secretKey){
 //				$state.go('ltlogin');
 //			}
+			
 			//get institution name
 			$http({
 				url: $scope.apiUri+'/parties/institutions/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+$scope.institutionId,
