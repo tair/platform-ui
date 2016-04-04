@@ -19,9 +19,6 @@ angular.module('platform-ui.librariantool.role.consortium').controller(
 
 	/* Controller Definition */
 	function ($scope, $http, $cookies, $window, $location, $state, Title, ConsortiumModel) {
-//		if(!$cookies.credentialId || !$cookies.secretKey){
-//			$state.go('ltlogin');
-//		}
 		if($cookies.credentialId!=null){
 			$scope.credentialId = $cookies.credentialId;
 		}else if($window.sessionStorage.credentialId!=null){
@@ -32,20 +29,21 @@ angular.module('platform-ui.librariantool.role.consortium').controller(
 		}else if($window.sessionStorage.secretKey!=null){
 			$scope.secretKey = $window.sessionStorage.secretKey;
 		}
-		if(!$scope.credentialId || !$scope.secretKey){
-			$state.go('ltlogin');
-		}
-            $scope.currentTab = ConsortiumModel.currentTab;
-            $scope.tabs = ConsortiumModel.getTabs($scope.role);
-            $scope.navbarLabel = function(tab) {
-                if (tab.label == $scope.currentTab.label) {
-                    return "lt-navbar-label-highlight";
-                }
-                return "lt-navbar-label";
+//		if(!$scope.credentialId || !$scope.secretKey){
+//			$state.go('ltlogin');
+//		}
+//		$scope.title = setTitle(ConsortiumModel.title);
+        $scope.currentTab = ConsortiumModel.currentTab;
+        $scope.tabs = ConsortiumModel.getTabs($scope.role);
+        $scope.navbarLabel = function(tab) {
+            if (tab.label == $scope.currentTab.label) {
+                return "lt-navbar-label-highlight";
             }
-            $scope.clickTab = function(tab) {
-                $state.go(tab.state);
-                $scope.currentTab = tab;
-            }
+            return "lt-navbar-label";
+        }
+        $scope.clickTab = function(tab) {
+            $state.go(tab.state);
+            $scope.currentTab = tab;
+        }
 	}
 ]);

@@ -29,9 +29,9 @@ angular.module('platform-ui.librariantool.role.phoenix').controller(
 		}else if($window.sessionStorage.secretKey!=null){
 			$scope.secretKey = $window.sessionStorage.secretKey;
 		}
-		if(!$scope.credentialId || !$scope.secretKey){
-			$state.go('ltlogin');
-		}
+//		if(!$scope.credentialId || !$scope.secretKey){
+//			$state.go('ltlogin');
+//		}
             $scope.currentTab = PhoenixModel.currentTab;
             $scope.tabs = PhoenixModel.tabs;
             $scope.navbarLabel = function(tab) {

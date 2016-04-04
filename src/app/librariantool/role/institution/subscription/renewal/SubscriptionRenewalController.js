@@ -50,9 +50,9 @@ angular.module('platform-ui.librariantool.role.institution.subscription.renewal'
 	    function init() {
 		$scope.uiparams = SubscriptionRenewalModel.uiparams;
 		$scope.partnerId = $location.search()['partnerId'];
-		if(!$scope.credentialId || !$scope.secretKey){
-			$state.go('ltlogin');
-		}
+//		if(!$scope.credentialId || !$scope.secretKey){
+//			$state.go('ltlogin');
+//		}
 		$http({
 			url: $scope.apiUri+'/partners?partnerId='+$scope.partnerId,
 			method: 'GET',

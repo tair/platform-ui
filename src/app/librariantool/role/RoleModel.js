@@ -12,7 +12,8 @@ angular.module('platform-ui.librariantool.role').factory(
 
 	function () {
 		return {
-		    title: 'Role',
+//		    title: 'Role',
+		    title: 'UC Consortium',
 		    navbarTitle: 'ROLE',
 		    email: null,
 		    partyInfo: {},

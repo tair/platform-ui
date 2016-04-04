@@ -98,7 +98,7 @@ angular.module('platform-ui.librariantool.role.consortium.profile').controller(
                 }
 
 		function init() {
-                        $scope.setTitle(ConsortiumProfileModel.title);
+//                        $scope.setTitle(ConsortiumProfileModel.title);
                         $scope.user = ConsortiumProfileModel.user;
                         $http({
                                 //url: $scope.apiUri+'/credentials/?username='+$cookies.username+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),

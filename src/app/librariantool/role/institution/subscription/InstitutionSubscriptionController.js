@@ -26,9 +26,9 @@ angular.module('platform-ui.librariantool.role.institution.subscription').contro
 		$scope.partners = InstitutionSubscriptionModel.partners;
 		$scope.activeSubscriptions = InstitutionSubscriptionModel.activeSubscriptions;
 		$scope.uiparams = InstitutionSubscriptionModel.uiparams;
-		if(!$scope.credentialId || !$scope.secretKey){
-			$state.go('ltlogin');
-		}
+//		if(!$scope.credentialId || !$scope.secretKey){
+//			$state.go('ltlogin');
+//		}
 		$http({
 			url: $scope.apiUri+'/partners/',
 			method: 'GET',

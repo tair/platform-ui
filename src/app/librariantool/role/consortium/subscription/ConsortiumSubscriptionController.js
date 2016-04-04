@@ -22,7 +22,7 @@ angular.module('platform-ui.librariantool.role.consortium.subscription').control
         
             function init() {
                 console.log($state);
-                $scope.setTitle(ConsortiumSubscriptionModel.title);
+//                $scope.setTitle(ConsortiumSubscriptionModel.title);
                 $scope.partners = ConsortiumSubscriptionModel.partners;
                 $scope.activeSubscriptions = ConsortiumSubscriptionModel.activeSubscriptions;
                 $scope.uiparams = ConsortiumSubscriptionModel.uiparams;
