@@ -60,6 +60,7 @@ angular.module('platform-ui.librariantool.role').controller(
             method: 'GET',
         }).success(function(data, status, headers, config){
             $scope.partyInfo = data[0];
+            $scope.title = $scope.partyInfo.name;
         }).error(function(data, status, headers, config){
             alert("partyId failed");
         });

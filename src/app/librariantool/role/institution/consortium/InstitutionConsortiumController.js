@@ -9,7 +9,7 @@ angular.module('platform-ui.librariantool.role.institution.consortium').controll
   'Title',
   'InstitutionConsortiumModel',
   function ($scope, $http, $cookies, $window, $location, $state, $filter, Title, InstitutionConsortiumModel, IpValidator) {
-    $scope.setTitle(InstitutionConsortiumModel.title);
+//    $scope.setTitle(InstitutionConsortiumModel.title);
     $scope.ipranges = InstitutionConsortiumModel.ipranges;
     $scope.addGroupShow = 'hidden';
     $scope.adding = false;

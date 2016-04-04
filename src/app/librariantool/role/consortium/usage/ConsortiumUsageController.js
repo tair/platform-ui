@@ -40,7 +40,7 @@ angular.module('platform-ui.librariantool.role.consortium.usage').controller(
 					});
 				};
 		function init() {
-			$scope.setTitle(ConsortiumUsageModel.title);
+//			$scope.setTitle(ConsortiumUsageModel.title);
 			$scope.uiparams = ConsortiumUsageModel.uiparams;
 			$scope.postData = ConsortiumUsageModel.postData;
 			$http({

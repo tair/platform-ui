@@ -48,9 +48,9 @@ angular.module('platform-ui.librariantool.role.institution.usage').controller(
 	    function init() {
 			$scope.uiparams = InstitutionUsageModel.uiparams;
 			$scope.postData = InstitutionUsageModel.postData;
-			if(!$scope.credentialId || !$scope.secretKey){
-				$state.go('ltlogin');
-			}
+//			if(!$scope.credentialId || !$scope.secretKey){
+//				$state.go('ltlogin');
+//			}
 			$http({
 				url: $scope.apiUri+'/credentials/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+$scope.credentialId,
 				method: 'GET',

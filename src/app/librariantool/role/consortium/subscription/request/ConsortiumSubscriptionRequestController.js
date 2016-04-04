@@ -46,7 +46,7 @@ angular.module('platform-ui.librariantool.role.consortium.subscription.request')
 	    };
 
 	    function init() {
-		$scope.setTitle(ConsortiumSubscriptionRequestModel.title);
+//		$scope.setTitle(ConsortiumSubscriptionRequestModel.title);
 		$scope.uiparams = ConsortiumSubscriptionRequestModel.uiparams;
 		$scope.partnerId = $location.search()['partnerId'];
 		$http({

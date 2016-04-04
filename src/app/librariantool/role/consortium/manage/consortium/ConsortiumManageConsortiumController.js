@@ -180,7 +180,7 @@ angular.module('platform-ui.librariantool.role.consortium.manage.consortium').co
             }
 
             function init() {
-                $scope.setTitle(ConsortiumManageConsortiumModel.title);
+//                $scope.setTitle(ConsortiumManageConsortiumModel.title);
     	        $scope.institutions = ConsortiumManageConsortiumModel.institutions;
     	        $scope.adding = false;
                 $scope.searchTerm = null;

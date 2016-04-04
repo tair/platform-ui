@@ -29,18 +29,12 @@ angular.module('platform-ui.librariantool.role.institution').controller(
 		}else if($window.sessionStorage.org_phoenixbioinformatics_ui_secretKey!=null){
 			$scope.secretKey = $window.sessionStorage.org_phoenixbioinformatics_ui_secretKey;
 		}
-		if(!$scope.credentialId || !$scope.secretKey){
-			$state.go('ltlogin');
+//		if(!$scope.credentialId || !$scope.secretKey){
+//			$state.go('ltlogin');
+//		}
+		if($scope.title){
+			$scope.setTitle($scope.title);
 		}
-		$http({
-            url: $scope.apiUri+'/parties/?partyId='+$scope.credentialId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
-            method: 'GET',
-        }).success(function(data, status, headers, config){
-            $scope.partyInfo = data[0];
-            $scope.setTitle($scope.partyInfo.name);
-        }).error(function(data, status, headers, config){
-            alert("partyId failed");
-        });	
 		$scope.tabs = InstitutionRoleModel.getTabs($scope.role);
 		if($window.sessionStorage.currentTab!=null
 			&&$window.sessionStorage.currentTab!=undefined){
