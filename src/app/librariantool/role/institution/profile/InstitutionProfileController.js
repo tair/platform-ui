@@ -104,7 +104,6 @@ angular.module('platform-ui.librariantool.role.institution.profile').controller(
 		}
 
 	    	function init() {
-	    		$scope.setTitle(InstitutionProfileModel.title);
 	    		$scope.currentTab = InstitutionProfileModel.currentTab;
 	    		$scope.user = InstitutionProfileModel.user;
 				if(!$scope.credentialId || !$scope.secretKey){
