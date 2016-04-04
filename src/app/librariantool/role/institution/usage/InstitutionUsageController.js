@@ -58,6 +58,7 @@ angular.module('platform-ui.librariantool.role.institution.usage').controller(
 				method: 'GET',
 			}).success(function(data, status, headers, config) {
 				$scope.postData.institution = data[0].name;
+				$scope.postData.email = data[0].email;
 			}).error(function() {
 				alert("failed to get party information");
 			});
