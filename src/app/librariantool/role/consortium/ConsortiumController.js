@@ -36,7 +36,7 @@ angular.module('platform-ui.librariantool.role.consortium').controller(
 			$state.go('ltlogin');
 		}
             $scope.currentTab = ConsortiumModel.currentTab;
-            $scope.tabs = ConsortiumModel.tabs;
+            $scope.tabs = ConsortiumModel.getTabs($scope.role);
             $scope.navbarLabel = function(tab) {
                 if (tab.label == $scope.currentTab.label) {
                     return "lt-navbar-label-highlight";

@@ -17,7 +17,6 @@ angular.module('platform-ui.librariantool.role.phoenix').factory(
                     tabs: [
                         {label:"INSTITUTION", state:"role.phoenix.institution"},
                         {label:"CONSORTIUM", state:"role.phoenix.manage"},
-                        {label:"SUBSCRIPTION", state:"role.phoenix.subscription"},
                         {label:"PROFILE", state:"role.phoenix.profile"},
                     ]
 		};
