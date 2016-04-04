@@ -14,12 +14,42 @@ angular.module('platform-ui.librariantool.role.consortium').factory(
 		return {
 		    title: 'Consortium',
                     currentTab: {label:"MANAGE INSTITUTION", state:"role.consortium.manage"},
-                    tabs: [
-                        {label:"MANAGE INSTITUTION", state:"role.consortium.manage"},
-                        {label:"SUBSCRIPTION", state:"role.consortium.subscription"},
-                        {label:"USAGE", state:"role.consortium.usage"},
-                        {label:"PROFILE", state:"role.consortium.profile"},
-                    ]
+                    getTabs: function (role) {
+        if (role == 'admin') {
+          return [
+            {
+              label: 'INSTITUTION',
+              state: 'role.consortium.institution'
+            },
+            {
+              label: 'SUBSCRIPTION',
+              state: 'role.consortium.subscription'
+            },
+            {
+              label: 'PROFILE',
+              state: 'role.consortium.profile'
+            }
+          ];
+        } else {
+          return [
+            {
+              label: 'INSTITUTION',
+              state: 'role.consortium.institution'
+            },
+            {
+              label: 'SUBSCRIPTION',
+              state: 'role.consortium.subscription'
+            },
+            {
+              label: 'USAGE',
+              state: 'role.consortium.usage'
+            },
+            {
+              label: 'PROFILE',
+              state: 'role.consortium.profile'
+            }
+          ];
+        }
 		};
 	}
 ]);

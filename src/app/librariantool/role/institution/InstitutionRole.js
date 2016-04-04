@@ -13,6 +13,7 @@ angular.module(
 	'ui.router',
 	'service.title',
 	'platform-ui.librariantool.role.institution.iprange',
+	'platform-ui.librariantool.role.institution.consortium',
 	'platform-ui.librariantool.role.institution.subscription',
 	'platform-ui.librariantool.role.institution.profile',
 	'platform-ui.librariantool.role.institution.usage',
@@ -34,8 +35,16 @@ angular.module(
 			controller: 'InstitutionIpRangeController',
 			templateUrl: 'librariantool/role/institution/iprange/iprange.html'
 		    }
-		}
-            }).state('role.institution.subscription', {
+		  }
+        }).state('role.institution.consortium', {
+    	  url: '/consortium',
+    	  views: {
+       	 	'institution': {
+        	  controller: 'InstitutionConsortiumController',
+       	   	  templateUrl: 'librariantool/role/institution/consortium/consortium.html'
+       	    }
+      	  }
+    	}).state('role.institution.subscription', {
                 url: '/subscription',
                 views: {
                     'institution': {

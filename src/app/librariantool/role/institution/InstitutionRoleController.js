@@ -41,7 +41,7 @@ angular.module('platform-ui.librariantool.role.institution').controller(
         }).error(function(data, status, headers, config){
             alert("partyId failed");
         });	
-		$scope.tabs = InstitutionRoleModel.tabs;
+		$scope.tabs = InstitutionRoleModel.getTabs($scope.role);
 		if($window.sessionStorage.currentTab!=null
 			&&$window.sessionStorage.currentTab!=undefined){
 			$scope.currentTab = JSON.parse($window.sessionStorage.currentTab);
