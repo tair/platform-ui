@@ -10,9 +10,10 @@ angular.module('platform-ui.librariantool').controller(
 	[
 	'$scope',
 	'Title',
+	'CurrentTab',
 	'LibrarianToolModel',
 
 	/* Controller Definition */
-	function ($scope, Title, LibrarianToolModel) {
+	function ($scope, Title, CurrentTab, LibrarianToolModel) {
 	}
 ]);

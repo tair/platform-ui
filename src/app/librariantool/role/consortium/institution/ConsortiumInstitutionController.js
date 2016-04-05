@@ -15,11 +15,13 @@ angular.module('platform-ui.librariantool.role.consortium.institution').controll
 	'$state',
 	'$filter',
 	'Title',
+	'CurrentTab',
 	'ConsortiumInstitutionModel',
 
 	/* Controller Definition */
-	function ($scope, $http, $cookies, $location, $state, $filter, Title, ConsortiumInstitutionModel) {
+	function ($scope, $http, $cookies, $location, $state, $filter, Title, CurrentTab, ConsortiumInstitutionModel) {
 //	    $scope.setTitle(ConsortiumInstitutionModel.title);
+		CurrentTab.setCurrentTab(ConsortiumInstitutionModel.currentTab);
 	    $scope.institutions = ConsortiumInstitutionModel.institutions;
 	    $scope.allInstitutions = ConsortiumInstitutionModel.allInstitutions;
 	    $scope.addGroupShow = "hidden";
@@ -294,6 +296,7 @@ angular.module('platform-ui.librariantool.role.consortium.institution').controll
 	    $scope.enterInstitution = function(institution){
 	    	if(!(institution.state=='edit')){
 		    	$state.go("role.institution", {'partyId' : institution.partyId, 'institutionName':institution.name});
+				institution.state = null;
 	    	}
 	    }
 	    

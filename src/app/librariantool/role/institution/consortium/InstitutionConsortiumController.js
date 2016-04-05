@@ -1,4 +1,8 @@
-angular.module('platform-ui.librariantool.role.institution.consortium').controller('InstitutionConsortiumController', [
+angular.module('platform-ui.librariantool.role.institution.consortium').controller(
+  //Name
+  'InstitutionConsortiumController', 
+  //Dependencies
+  [
   '$scope',
   '$http',
   '$cookies',

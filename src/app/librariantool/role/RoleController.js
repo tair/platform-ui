@@ -15,11 +15,12 @@ angular.module('platform-ui.librariantool.role').controller(
 	'$location',
 	'$state',
 	'Title',
+	'CurrentTab',
 	'RoleModel',
 	'$cookieStore',
 
 	/* Controller Definition */
-	function ($scope, $http, $cookies, $window, $location, $state, Title, RoleModel, $cookieStore) {
+	function ($scope, $http, $cookies, $window, $location, $state, Title, CurrentTab, RoleModel, $cookieStore) {
 		//load credential info
 		if($cookies.org_phoenixbioinformatics_ui_credentialId!=null){
 			$scope.credentialId = $cookies.org_phoenixbioinformatics_ui_credentialId;
@@ -45,7 +46,6 @@ angular.module('platform-ui.librariantool.role').controller(
 	    $scope.setTitle = function(title) {
 		$scope.title = title;
 	    }
-
 	    $scope.partyInfo = RoleModel.partyInfo;
 	    $http({
 		url: $scope.apiUri+'/credentials/?username='+$cookies.username+'&secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,

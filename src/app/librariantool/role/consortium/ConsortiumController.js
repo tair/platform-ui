@@ -15,10 +15,11 @@ angular.module('platform-ui.librariantool.role.consortium').controller(
 	'$location',
 	'$state',
 	'Title',
+	'CurrentTab',
 	'ConsortiumModel',
 
 	/* Controller Definition */
-	function ($scope, $http, $cookies, $window, $location, $state, Title, ConsortiumModel) {
+	function ($scope, $http, $cookies, $window, $location, $state, Title, CurrentTab, ConsortiumModel) {
 		if($cookies.credentialId!=null){
 			$scope.credentialId = $cookies.credentialId;
 		}else if($window.sessionStorage.credentialId!=null){
@@ -33,7 +34,11 @@ angular.module('platform-ui.librariantool.role.consortium').controller(
 //			$state.go('ltlogin');
 //		}
 //		$scope.title = setTitle(ConsortiumModel.title);
-        $scope.currentTab = ConsortiumModel.currentTab;
+//        $scope.setCurrentTab(ConsortiumModel.currentTab);
+		$scope.currentTab = ConsortiumModel.currentTab;
+	    $scope.setCurrentTab = function(currentTab){
+	    	$scope.currentTab = currentTab;
+	    }
         $scope.tabs = ConsortiumModel.getTabs($scope.role);
         $scope.navbarLabel = function(tab) {
             if (tab.label == $scope.currentTab.label) {
@@ -41,6 +46,12 @@ angular.module('platform-ui.librariantool.role.consortium').controller(
             }
             return "lt-navbar-label";
         }
+        $scope.navbarLine = function(tab) {
+                if (tab.label == $scope.currentTab.label) {
+                    return "show";
+                }
+                return "hide";
+	    }
         $scope.clickTab = function(tab) {
             $state.go(tab.state);
             $scope.currentTab = tab;
