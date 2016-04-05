@@ -11,46 +11,69 @@ angular.module('platform-ui.librariantool.role.consortium.usage').controller(
 	'$scope',
 	'$http',
 	'$cookies',
+	'$window',
 	'$location',
 	'$state',
 	'Title',
 	'ConsortiumUsageModel',
 
 	/* Controller Definition */
-	function ($scope, $http, $cookies, $location, $state, Title, ConsortiumUsageModel) {
-		init();
-		$scope.validateForm = function() {
-					if ($scope.endDate >= $scope.startDate)
-						return true;
+	function ($scope, $http, $cookies, $window, $location, $state, Title, ConsortiumUsageModel) {
+	    init();
+
+	    $scope.validateForm = function() {
+					if ($scope.postData.endDate >= $scope.postData.startDate)
+						return true;	
 					alert("End date must be greater than start date");
 					return false;
-				};
-		$scope.requestUsage = function() {
+	    			};
+
+	    $scope.requestUsage = function() {
 					$http({
-						url: $scope.apiUri+'/parties/usage/?partyId='+$scope.selectedInstitution.partyId+'credentialId='+$scope.selectedInstitution.partyId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+						url: $scope.apiUri+'/parties/usage/?partyId='+$scope.credentialId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
 						method: 'POST',
 						data: $scope.postData,
 					}).success(function() {
-						alert("Your request has been recieved. We will get back to you shortly.");
+						alert("Your request has been received. We will get back to you shortly.");
 						$scope.postData.startDate = null;
 						$scope.postData.endDate = null;
 						$scope.postData.comments = null;
+						$scope.postData.partner = null;
+						$scope.postData.name = null;
 					}).error(function() {
 						alert("Form submit failed");
 					});
 				};
-		function init() {
-//			$scope.setTitle(ConsortiumUsageModel.title);
+
+	    function init() {
+	    	$scope.setCurrentTab(ConsortiumUsageModel.currentTab);
 			$scope.uiparams = ConsortiumUsageModel.uiparams;
 			$scope.postData = ConsortiumUsageModel.postData;
+//			if(!$scope.credentialId || !$scope.secretKey){
+//				$state.go('ltlogin');
+//			}
 			$http({
-				url: $scope.apiUri+'/credentials/?partyId='+$scope.selectedInstitution.partyId+'credentialId='+$scope.selectedInstitution.partyId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+				url: $scope.apiUri+'/credentials/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+$scope.credentialId,
 				method: 'GET',
 			}).success(function(data, status, headers, config) {
 				$scope.postData.institution = data[0].institution;
 			}).error(function() {
 				alert("failed to get party information");
 			});
-		}
+			$http({
+				url: $scope.apiUri+'/partners/',
+				method: 'GET',
+			}).success(function(data, status, headers, config) {
+				$scope.partners = data;
+			}).error(function() {
+				alert("Cannot get partner information");
+			});
+			$(function () {
+	            $('#startDate').datepicker();
+	        });
+			$(function () {
+	            $('#endDate').datepicker();
+	        });
+	    }
 	}
 ]);

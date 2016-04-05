@@ -12,7 +12,8 @@ angular.module('platform-ui.librariantool.role.consortium.profile').factory(
 
 	function () {
 		return {
-			title: 'Consortium',
+			title: 'PROFILE',
+			currentTab: {label:"PROFILE", state:"role.consortium.profile"},
 //			user: {
 //				"partyId": null,
 //				"partyType": null,
@@ -42,6 +43,7 @@ angular.module('platform-ui.librariantool.role.consortium.profile').factory(
 			    //"partyId": null,
 			    "partnerId": null,
 			    "userIdentifier": null,
+			    "name": 'UC consortium',
 			},
 			uiparams: {
 				"colwidth": 'col-xs-7',

@@ -1,5 +1,5 @@
 /**
- * ConsortiumIpRange Controller
+ * ConsortiumProfileController
  */
 
 angular.module('platform-ui.librariantool.role.consortium.profile').controller(
@@ -11,100 +11,110 @@ angular.module('platform-ui.librariantool.role.consortium.profile').controller(
 	'$scope',
 	'$http',
 	'$cookies',
+	'$window',
 	'$location',
 	'$state',
 	'Title',
+	'CurrentTab',
 	'ConsortiumProfileModel',
 
 	/* Controller Definition */
-	function ($scope, $http, $cookies, $location, $state, Title, ConsortiumProfileModel) {
-		init();
+	function ($scope, $http, $cookies, $window, $location, $state, Title, CurrentTab, ConsortiumProfileModel) {
+	    	init();
+		console.log($scope.uiparams.colwidth);
+		
 		$scope.edit_fields = function() {
-                        if ($scope.edit==true) {
-                                if (!validateInfo()) {
-                                		bootbox.alert("Information not valid");
-                                        return false;
-                                }
-                                //Save info
-                                put_data = {}
+			if ($scope.edit==true) {
+				if (!validateInfo()) {
+					alert("Information not valid");
+					return false;
+				}
+				//Save info
+				put_data = {}
 				//put original values from GET
-                put_data["partyId"]  = $scope.user.partyId; //$cookies.credentialId;
+                put_data["partyId"]  = $scope.user.partyId;
+				if($scope.user.username != undefined && $scope.user.username !=null &&$scope.user.username != ""){
                 put_data["username"] = $scope.user.username;
+				}
                 put_data["partnerId"]= $scope.user.partnerId;
-                put_data["password"]= $scope.user.password;
+                if($scope.user.password != undefined && $scope.user.password !=null &&$scope.user.password != ""){
+                	put_data["password"]= $scope.user.password;
+                }
                 
                 //rewrite with new from UI
-                forceReSignIn = false;                     
-                                for(k in $scope.user) {
-                                    if ($scope.userprev[k] != $scope.user[k]) {
-                                    put_data[k] = $scope.user[k];
-                                    if (k == 'username' || k == 'password')
-									{
-										forceReSignIn = true;
-									}
-                                    $scope.userprev[k] = $scope.user[k];
-                                    }
-                                }
+                forceReSignIn = false;
+				for(k in $scope.user) {
+					if ($scope.userprev[k] != $scope.user[k]) {
+						put_data[k] = $scope.user[k];
+						$scope.userprev[k] = $scope.user[k];
+						if (k == 'username' || k == 'password')
+							{
+							forceReSignIn = true;
+							}
+					}
+				}
 
-                                $http({
-                                        //vet pw-161 UI url: $scope.apiUri+'/credentials/profile/?partyId='+$cookies.credentialId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
-                                        url: $scope.apiUri+'/parties/consortiums/?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
-                                        data: put_data,
-                                        method: 'PUT',
-                                        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-                                }).success(function(){
-                                	bootbox.alert("Consortium Profile Successfuly Updated" + (forceReSignIn ? ". Please re-login":"!") );
-                                	if (forceReSignIn) {
-                                		//$cookieStore.remove("credentialId");
-                                		//$cookieStore.remove("secretKey");
-                                		$scope.home();
-                                	}
-                                }).error(function() {
-                                	bootbox.alert("Failed to update Consortium Profile");
-                                });
-                        }
-                        $scope.edit = !$scope.edit;
-                }
+				$http({
+					url: $scope.apiUri+'/parties/institutions/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
+					data: put_data,
+					method: 'PUT',
+					headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+				}).success(function(){
+					bootbox.alert("Institution Profile Successfuly Updated" + (forceReSignIn ? ". Please re-login":"!") );
+					if (forceReSignIn) {
+						//$cookieStore.remove("credentialId");
+						//$cookieStore.remove("secretKey");
+						$scope.home();
+					}
+				}).error(function() {
+					bootbox.alert("Failed to update Institution Profile");
+				});
+			}
+			$scope.edit = !$scope.edit;
+		}
 
 		$scope.cancel = function() {
-                        $scope.edit = false;
-                        for(k in $scope.userprev) 
-                        	$scope.user[k] = $scope.userprev[k];
-                        $scope.email_validate = $scope.email_validate_prev;
-                        $scope.password_validate = $scope.password_validate_prev;
-                }
+			$scope.edit = false;
+			for(k in $scope.userprev) 
+				$scope.user[k] = $scope.userprev[k];
+			$scope.email_validate = $scope.email_validate_prev;
+			$scope.password_validate = $scope.password_validate_prev;
+		}
 
-                function validateInfo() {
-                	if ($scope.user.email.$invalid) {
-						console.log("User email is invalid");
-						alert("Email not valid");
-						return false;
-					}
-                        if ($scope.user.email!=$scope.email_validate) {
-                                console.log("User email is "+$scope.user.email+" and validate email is "+$scope.email_validate);
-                                return false;
-                        }
-                        if ($scope.user.password!=$scope.password_validate) {
-                                console.log("User password is "+$scope.user.password+" and validate password is "+$scope.password_validate);
-                                return false;
-                        }
-			       if ($scope.user.password==null || $scope.user.password=="" 
-				       || $scope.password_validate==null || $scope.password_validate=="") {
-						bootbox.alert("error: password can not be empty");
-						console.log("error: password can not be empty");
-					return false;
-					}                      
-                        return true;
-                }
+		function validateInfo() {
+			if ($scope.user.email.$invalid) {
+				console.log("User email is invalid");
+				alert("Email not valid");
+				return false;
+			}
+			if ($scope.user.email!=$scope.email_validate) {
+				console.log("User email is "+$scope.user.email+" and validate email is "+$scope.email_validate);
+				return false;
+			}
+			if ($scope.user.password!=$scope.password_validate) {
+				console.log("User password is "+$scope.user.password+" and validate password is "+$scope.password_validate);
+				return false;
+			}
+//			if ($scope.user.password==null || $scope.user.password=="" 
+//				|| $scope.password_validate==null || $scope.password_validate=="") {
+//				bootbox.alert("error: password can not be empty");
+//				console.log("error: password can not be empty");
+//				return false;
+//			}
+			return true;
+		}
 
-		function init() {
-//                        $scope.setTitle(ConsortiumProfileModel.title);
-                        $scope.user = ConsortiumProfileModel.user;
-                        $http({
-                                //url: $scope.apiUri+'/credentials/?username='+$cookies.username+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
-                        	    url: $scope.apiUri+'/parties/consortiums/?partyId='+$cookies.credentialId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
-                                method: 'GET',
-                        }).success(function(data, status, headers, config) {
+	    	function init() {
+	    		$scope.setCurrentTab(ConsortiumProfileModel.currentTab);
+//	    		$scope.setTitle(ConsortiumProfileModel.currentTab);
+	    		$scope.user = ConsortiumProfileModel.user;
+//				if(!$scope.credentialId || !$scope.secretKey){
+//					$state.go('ltlogin');
+//				}
+	            $http({
+	                url: $scope.apiUri+'/parties/institutions/?partyId='+$scope.credentialId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
+	                method: 'GET',
+	            }).success(function(data, status, headers, config){
                         		$scope.user.partyId = data[0].partyId;
                         		$scope.user.partyType = data[0].partyType;
                             	$scope.user.name = data[0].name;
@@ -133,7 +143,7 @@ angular.module('platform-ui.librariantool.role.consortium.profile').controller(
                                 console.log($scope.userprev);
                                 
                             }).error(function(data, status, headers, config){
-                            	errMsg = "GET /parties/consortiums/ Failed";
+                            	errMsg = "GET /parties/institutions/ Failed";
                             	bootbox.alert(errMsg);
                             });
 

@@ -12,6 +12,7 @@ angular.module(
     [
 	'ui.router',
 	'service.title',
+	'service.currenttab',
 	'platform-ui.librariantool.role.consortium.institution',
 	'platform-ui.librariantool.role.consortium.subscription',
 	'platform-ui.librariantool.role.consortium.profile',

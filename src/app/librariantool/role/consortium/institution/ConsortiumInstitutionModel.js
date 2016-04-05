@@ -13,6 +13,7 @@ angular.module('platform-ui.librariantool.role.consortium.institution').factory(
 	function () {
 		return {
 		    title: 'INSTITUTION',
+		    currentTab: {label: 'INSTITUTION', state: 'role.consortium.institution'},
 		    newInstitution: {'name':null, 'country':null},
 		    foundInstitution: {'name':null, 'partyId':null, 'state':null},
 		    institutions:[
@@ -44,14 +45,6 @@ angular.module('platform-ui.librariantool.role.consortium.institution').factory(
 		                	    "partyId": 58,
 		                	    "partyType": "organization",
 		                	    "name": "UC Santa Cruz",
-		                	    "country": 169,
-		                	    "display": true,
-		                	    "consortium": 31272
-		                	  },
-		                	  {
-		                	    "partyId": 31275,
-		                	    "partyType": "organization",
-		                	    "name": "UC Los Angeles",
 		                	    "country": 169,
 		                	    "display": true,
 		                	    "consortium": 31272
