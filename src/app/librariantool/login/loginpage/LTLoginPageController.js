@@ -56,6 +56,7 @@ angular.module('platform-ui.librariantool.login.page').controller(
 			    		$window.sessionStorage.org_phoenixbioinformatics_ui_credentialId = data["credentialId"]; //for user googlestaff it's Credential.partyId and it's 42
 			    		$window.sessionStorage.org_phoenixbioinformatics_ui_secretKey = data["secretKey"];
 //			    		$window.sessionStorage.username = data["username"];
+			    		$cookies.username = data["username"];
 			    		localStorage.removeItem("remember");
 			    	}
 			    	if($cookies.org_phoenixbioinformatics_ui_credentialId!=null){
