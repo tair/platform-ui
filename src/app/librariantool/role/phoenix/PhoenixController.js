@@ -32,6 +32,11 @@ angular.module('platform-ui.librariantool.role.phoenix').controller(
 //		if(!$scope.credentialId || !$scope.secretKey){
 //			$state.go('ltlogin');
 //		}
+		$scope.setTitle(PhoenixModel.title);
+	    $scope.setCurrentTab = function(currentTab){
+	    	$scope.currentTab = currentTab;
+	    }
+		$scope.setPhoenix(false);
             $scope.currentTab = PhoenixModel.currentTab;
             $scope.tabs = PhoenixModel.tabs;
             $scope.navbarLabel = function(tab) {

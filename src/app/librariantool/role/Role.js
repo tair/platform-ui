@@ -40,6 +40,9 @@ angular.module(
                 }
             }).state('role.consortium', {
                 url: '/consortium',
+                params: {
+                	title: null,
+                },
                 views: {
                     'role': {
                         controller: 'ConsortiumController',

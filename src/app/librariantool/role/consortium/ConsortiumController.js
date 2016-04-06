@@ -34,6 +34,11 @@ angular.module('platform-ui.librariantool.role.consortium').controller(
 //			$state.go('ltlogin');
 //		}
 		$scope.setTitle(ConsortiumModel.title);
+		$scope.title = $state.params.title;
+		if($scope.title){
+			$scope.setTitle($scope.title);
+		}
+		$scope.setPhoenix(true);
 		$scope.currentTab = ConsortiumModel.currentTab;
 	    $scope.setCurrentTab = function(currentTab){
 	    	$scope.currentTab = currentTab;
