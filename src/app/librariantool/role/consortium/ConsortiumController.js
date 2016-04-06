@@ -38,6 +38,7 @@ angular.module('platform-ui.librariantool.role.consortium').controller(
 	    $scope.setCurrentTab = function(currentTab){
 	    	$scope.currentTab = currentTab;
 	    }
+	    $scope.setConsortium(false);
         $scope.tabs = ConsortiumModel.getTabs($scope.role);
         $scope.navbarLabel = function(tab) {
             if (tab.label == $scope.currentTab.label) {

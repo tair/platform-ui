@@ -46,6 +46,18 @@ angular.module('platform-ui.librariantool.role').controller(
 	    $scope.setTitle = function(title) {
 		$scope.title = title;
 	    }
+		$scope.backToConsortium = function(){
+			$state.go('role.consortium.institution');
+		}
+		$scope.backToPhoenix = function(){
+			$state.go('role.phoenix.institution');
+		}
+		$scope.setConsortium = function(bool){
+			$scope.isConsortium = bool;
+		}
+		$scope.setPhoenix = function(bool){
+			$scope.isPhoenix = bool;
+		}
 	    $scope.partyInfo = RoleModel.partyInfo;
 	    $http({
 		url: $scope.apiUri+'/credentials/?username='+$cookies.username+'&secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
