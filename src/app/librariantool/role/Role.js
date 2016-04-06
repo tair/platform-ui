@@ -29,6 +29,9 @@ angular.module(
                 }
             }).state('role.institution', {
                 url: '/institution',
+                params: {
+                	title: null,
+                },
                 views: {
                     'role': {
                         controller: 'InstitutionRoleController',
