@@ -12,7 +12,7 @@ angular.module('platform-ui.librariantool.role.consortium').factory(
 
 	function () {
 		return {
-		    title: 'Consortium',
+		    title: 'UC Consortium',
                     currentTab: {label:"INSTITUTION", state:"role.consortium.institution"},
                     getTabs: function (role) {
         if (role == 'admin') {

@@ -32,6 +32,7 @@ angular.module('platform-ui.librariantool.role.institution').controller(
 //		if(!$scope.credentialId || !$scope.secretKey){
 //			$state.go('ltlogin');
 //		}
+		$scope.title = $state.params.title;
 		if($scope.title){
 			$scope.setTitle($scope.title);
 		}
