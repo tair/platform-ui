@@ -36,6 +36,7 @@ angular.module('platform-ui.librariantool.role.institution').controller(
 		if($scope.title){
 			$scope.setTitle($scope.title);
 		}
+		$scope.setConsortium(true);
 		$scope.tabs = InstitutionRoleModel.getTabs($scope.role);
 		if($window.sessionStorage.currentTab!=null
 			&&$window.sessionStorage.currentTab!=undefined){
