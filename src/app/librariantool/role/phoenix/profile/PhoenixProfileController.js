@@ -99,7 +99,8 @@ angular.module('platform-ui.librariantool.role.phoenix.profile').controller(
 		}
 
 	    	function init() {
-	    		$scope.setTitle(PhoenixProfileModel.title);
+//	    		$scope.setTitle(PhoenixProfileModel.title);
+	    		$scope.setCurrentTab(PhoenixProfileModel.currentTab);
 	    		$scope.user = PhoenixProfileModel.user;
 			$http({
 				//url: $scope.apiUri+'/credentials/?username='+$cookies.username+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
@@ -135,7 +136,7 @@ angular.module('platform-ui.librariantool.role.phoenix.profile').controller(
                                 
                             }).error(function(data, status, headers, config){
                             	errMsg = "GET /parties/institutions/ Failed";
-                            	bootbox.alert(errMsg);
+//                            	bootbox.alert(errMsg);
                             });
 
                         $scope.edit = false;

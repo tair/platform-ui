@@ -43,6 +43,7 @@ angular.module('platform-ui.librariantool.role').controller(
 		delete $window.sessionStorage.org_phoenixbioinformatics_ui_secretKey;
 		$scope.home();
 	    }
+	    $scope.role = "admin";
 	    $scope.setTitle = function(title) {
 		$scope.title = title;
 	    }
@@ -50,7 +51,7 @@ angular.module('platform-ui.librariantool.role').controller(
 			$state.go('role.consortium.institution');
 		}
 		$scope.backToPhoenix = function(){
-			$state.go('role.phoenix.institution');
+			$state.go('role.phoenix.consortium');
 		}
 		$scope.setConsortium = function(bool){
 			$scope.isConsortium = bool;

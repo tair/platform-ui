@@ -142,7 +142,7 @@ angular.module('platform-ui.librariantool.role.institution.profile').controller(
                                 
                             }).error(function(data, status, headers, config){
                             	errMsg = "GET /parties/institutions/ Failed";
-                            	bootbox.alert(errMsg);
+//                            	bootbox.alert(errMsg);
                             });
 
                         $scope.edit = false;

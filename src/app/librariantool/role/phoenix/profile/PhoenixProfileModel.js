@@ -13,6 +13,7 @@ angular.module('platform-ui.librariantool.role.phoenix.profile').factory(
 	function () {
 		return {
 			title: 'PROFILE',
+			currentTab: {label:"PROFILE", state:"role.phoenix.profile"},
 			user: {
 				"partyId": null,
 				"partyType": null,
