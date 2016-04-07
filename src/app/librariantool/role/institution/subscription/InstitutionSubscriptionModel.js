@@ -12,7 +12,10 @@ angular.module('platform-ui.librariantool.role.institution.subscription').factor
 
 	function () {
 		return {
-			title: 'SUBSCRIPTION',
+			currentTab: {
+              label: 'SUBSCRIPTION',
+              state: 'role.institution.subscription'
+            },
 //			partners: [],
 			partners: [
     					{

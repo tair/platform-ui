@@ -12,7 +12,7 @@ angular.module('platform-ui.librariantool.role.institution.usage').factory(
 
 	function () {
 		return {
-			title: 'USAGE',
+			currentTab: {label: 'USAGE', state: 'role.institution.usage'},
 			uiparams: {
 				"colwidth": 'col-xs-11',
 			},

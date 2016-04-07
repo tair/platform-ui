@@ -36,14 +36,13 @@ angular.module('platform-ui.librariantool.role.institution').controller(
 		if($scope.title){
 			$scope.setTitle($scope.title);
 		}
+		$scope.currentTab = InstitutionRoleModel.currentTab;
+		$scope.setCurrentTab = function(currentTab){
+			$scope.currentTab = currentTab;
+		}
 		$scope.setPhoenix(true);
 		$scope.tabs = InstitutionRoleModel.getTabs($scope.role);
-		if($window.sessionStorage.currentTab!=null
-			&&$window.sessionStorage.currentTab!=undefined){
-			$scope.currentTab = JSON.parse($window.sessionStorage.currentTab);
-		}else{
-			$scope.currentTab = InstitutionRoleModel.currentTab;
-		}
+
 	    $scope.navbarLabel = function(tab) {
 		if (tab.label == $scope.currentTab.label) {
 		    return "lt-navbar-label-highlight";
@@ -61,6 +60,6 @@ angular.module('platform-ui.librariantool.role.institution').controller(
 		$scope.currentTab = tab;
 		$window.sessionStorage.currentTab = JSON.stringify(tab);
 	    }
-	    $state.go($scope.currentTab.state);
+	    // $state.go($scope.currentTab.state);
 	}
 ]);

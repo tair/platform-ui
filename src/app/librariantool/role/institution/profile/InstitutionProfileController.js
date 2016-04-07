@@ -104,7 +104,7 @@ angular.module('platform-ui.librariantool.role.institution.profile').controller(
 		}
 
 	    	function init() {
-	    		$scope.currentTab = InstitutionProfileModel.currentTab;
+	    		$scope.setCurrentTab(InstitutionProfileModel.currentTab);
 	    		$scope.user = InstitutionProfileModel.user;
 //				if(!$scope.credentialId || !$scope.secretKey){
 //					$state.go('ltlogin');

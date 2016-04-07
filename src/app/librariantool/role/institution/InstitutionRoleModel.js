@@ -12,7 +12,6 @@ angular.module('platform-ui.librariantool.role.institution').factory(
 
 	function () {
 		return {
-		    title: 'Institution',
 		    currentTab: {label:"IP RANGE", state:"role.institution.iprange"},
 		    getTabs: function (role) {
         if (role == 'admin') {

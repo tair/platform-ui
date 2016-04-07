@@ -12,8 +12,7 @@ angular.module('platform-ui.librariantool.role.institution.consortium').factory(
 
 	function () {
 		return {
-			title: 'CONSORTIUM',
-			currentTab: {label:"CONSORTIUM", state:"role.phoenix.consortium"},
+			currentTab: {label:"CONSORTIUM", state:"role.institution.consortium"},
 			newConsortium: {"name":null,"country":null},
 			consortiums: [
 			              {

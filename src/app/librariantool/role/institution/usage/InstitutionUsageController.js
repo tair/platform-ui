@@ -46,6 +46,7 @@ angular.module('platform-ui.librariantool.role.institution.usage').controller(
 				};
 
 	    function init() {
+	    	$scope.setCurrentTab(InstitutionUsageModel.currentTab);
 			$scope.uiparams = InstitutionUsageModel.uiparams;
 			$scope.postData = InstitutionUsageModel.postData;
 //			if(!$scope.credentialId || !$scope.secretKey){
