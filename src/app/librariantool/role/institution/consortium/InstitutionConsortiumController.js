@@ -1,10 +1,10 @@
 /**
- * PhoenixConsortium Controller
+ * InstitutionConsortium Controller
  */
 
-angular.module('platform-ui.librariantool.role.phoenix.consortium').controller(
+angular.module('platform-ui.librariantool.role.institution.consortium').controller(
 	/* Name */
-	'PhoenixConsortiumController',
+	'InstitutionConsortiumController',
 
 	/* Dependencies */
 	[
@@ -15,20 +15,20 @@ angular.module('platform-ui.librariantool.role.phoenix.consortium').controller(
 	'$state',
 	'$filter',
 	'Title',
-	'PhoenixConsortiumModel',
+	'InstitutionConsortiumModel',
 
 	/* Controller Definition */
-	function ($scope, $http, $cookies, $location, $state, $filter, Title, PhoenixConsortiumModel) {
-//		$scope.setTitle(PhoenixConsortiumModel.title);
-		$scope.setCurrentTab(PhoenixConsortiumModel.currentTab);
-		$scope.consortiums = PhoenixConsortiumModel.consortiums;
+	function ($scope, $http, $cookies, $location, $state, $filter, Title, InstitutionConsortiumModel) {
+//		$scope.setTitle(InstitutionConsortiumModel.title);
+//		$scope.setCurrentTab(InstitutionConsortiumModel.currentTab);
+		$scope.consortiums = InstitutionConsortiumModel.consortiums;
 	    $scope.addGroupShow = "hidden";
 	    $scope.adding = false;
-	    $scope.newConsortium = PhoenixConsortiumModel.newConsortium;
+	    $scope.newConsortium = InstitutionConsortiumModel.newConsortium;
 	    $scope.removeConsortium = null;
 	    $scope.editConsortium = null;
 	    $scope.searchTerm = null;
-	    $scope.sortings = PhoenixConsortiumModel.sortings; //List of sorting objects which contain predicate and reverse attributes.
+	    $scope.sortings = InstitutionConsortiumModel.sortings; //List of sorting objects which contain predicate and reverse attributes.
 	    $scope.reverse = $scope.sortings[0].reverse;
 	    $scope.predicate = $scope.sortings[0].predicate;
 	    
