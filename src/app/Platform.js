@@ -91,7 +91,7 @@ angular.module(
 				document.cookie='csrftoken='+data['csrftoken']+';domain='+PlatformModel.uiDomain+';path=/';
 				$http.defaults.headers.post['X-CSRFToken'] = data['csrftoken'];
 			}).error(function() {
-				alert("Unable to get CSRF cookie");
+				alert("Cannot access API server");
 			});
 
 	        // 
