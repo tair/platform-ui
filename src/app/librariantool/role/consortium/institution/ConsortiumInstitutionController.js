@@ -1,5 +1,5 @@
 /**
- * PhoenixInstitution Controller
+ * ConsortiumInstitution Controller
  */
 
 angular.module('platform-ui.librariantool.role.consortium.institution').controller(
@@ -14,61 +14,24 @@ angular.module('platform-ui.librariantool.role.consortium.institution').controll
 	'$location',
 	'$state',
 	'$filter',
-	'Title',
 	'CurrentTab',
 	'ConsortiumInstitutionModel',
 
 	/* Controller Definition */
-	function ($scope, $http, $cookies, $location, $state, $filter, Title, CurrentTab, ConsortiumInstitutionModel) {
-//	    $scope.setTitle(ConsortiumInstitutionModel.title);
+	function ($scope, $http, $cookies, $location, $state, $filter, CurrentTab, ConsortiumInstitutionModel) {
 		CurrentTab.setCurrentTab(ConsortiumInstitutionModel.currentTab);
 	    $scope.institutions = ConsortiumInstitutionModel.institutions;
 	    $scope.allInstitutions = ConsortiumInstitutionModel.allInstitutions;
-	    $scope.addGroupShow = "hidden";
-	    $scope.InsAdding = false;
-	    $scope.SubAdding = false;
+	    $scope.adding = false;
 	    $scope.newInstitution = ConsortiumInstitutionModel.newInstitution;
 	    $scope.foundInstitution = ConsortiumInstitutionModel.foundInstitution;
-	    $scope.removeRange = null;
-	    $scope.editRange = null;
+	    $scope.removeInstitution = null;
+	    $scope.editInstitution = null;
 	    $scope.searchTerm = null;
 	    $scope.sortings = ConsortiumInstitutionModel.sortings; //List of sorting objects which contain predicate and reverse attributes.
 	    $scope.reverse = $scope.sortings[0].reverse;
 	    $scope.predicate = $scope.sortings[0].predicate;
 	    
-	    //for subscription list
-	    $scope.activeSubscriptions = ConsortiumInstitutionModel.activeSubscriptions;
-	    $scope.partners = ConsortiumInstitutionModel.partners;
-	    $scope.uiparams = ConsortiumInstitutionModel.uiparams;
-	    
-	    $http({
-            url: $scope.apiUri+'/subscriptions/activesubscriptions/'+$cookies.credentialId+'/',
-            method: 'GET',
-	    }).success(function(data, status, headers, config) {
-	            $scope.activeSubscriptions = data;
-	    }).error(function() {
-	            alert("Cannot get active subscription information");
-	    });
-	    $scope.getExpDate = function(id) {
-			if (id in $scope.activeSubscriptions) {
-				return $scope.activeSubscriptions[id].endDate;
-			}
-			return "Unlicensed";
-		    };
-		
-	    $scope.listPartners = function(partners) {
-			var ret = [];
-			for (var i=0; i<partners.length; i++) {
-			    if (partners[i].partnerId!="phoenix") {
-				ret.push(partners[i]);
-			    }
-			}
-			console.log(ret);
-			return ret;
-		    }
-	    $scope.licenseButton = function(id) {
-			return "Edit";
-		    };
 	  //initializing orderBy function
 	    var orderBy = $filter('orderBy');
 	    $scope.order = function(predicate, reverse) {
@@ -105,15 +68,17 @@ angular.module('platform-ui.librariantool.role.consortium.institution').controll
 
 	    // Events that change states
             $scope.groupsMoveOver = function(institution) {
-                if (institution.state == null && !$scope.InsAdding) {
+                if (institution.state == null && !$scope.adding) {
                     institution.state = "selected";
                 }
             }
             $scope.groupsMoveOut = function(institution) {
-                if (institution.state == "selected" && !$scope.InsAdding) {
+                if (institution.state == "selected" && !$scope.adding) {
                     institution.state = null;
                 }
             }
+            
+        //right button for list item
 	    $scope.right = function(institution) {
 		if (institution.state == "selected") {
 		    // this is the trash button at normal state
@@ -121,12 +86,10 @@ angular.module('platform-ui.librariantool.role.consortium.institution').controll
 		}
 		else if (institution.state == "edit") {
 		    // this is the "x" button at edit state
-		    if ($scope.editRange) {
-			institution.name = $scope.editRange.name;
-			institution.start = $scope.editRange.start;
-			institution.end = $scope.editRange.end;
-			$scope.editRange = null;
-		    }
+//		    if ($scope.editInstitution) {
+//			institution.name = $scope.editInstitution.name;
+//			$scope.editInstitution = null;
+//		    }
 		    institution.state = null;
 		} else if (institution.state == "remove") {
 		    // this is the cancel button at remove state.
@@ -136,17 +99,18 @@ angular.module('platform-ui.librariantool.role.consortium.institution').controll
 	    $scope.left = function(institution) {
 		if (institution.state == "selected") {
 		    // This is the edit button at normal state.
-                    $scope.editRange = angular.copy(institution);
+                    $scope.editInstitution = angular.copy(institution);
                     institution.state = "edit";
-                    $scope.InsAdding = false;
+                    $scope.adding = false;
 		}
 		else if (institution.state == "edit") {
 		    // This is the confirm button at edit state
 		    data = {
 			name:institution['name'],
+			partyId:institution['partyId'],
 		    };
 		    $http({
-			url: $scope.apiUri+'/parties/?credentialId='+$cookies.partyId+'&secretKey='+encodeURIComponent($cookies.secretKey)+'&partyId='+institution['partyId'],
+			url: $scope.apiUri+'/parties/institutions/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+institution['partyId'],
 			data: data,
 			method: 'PUT',
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
@@ -155,7 +119,7 @@ angular.module('platform-ui.librariantool.role.consortium.institution').controll
 			alert("ip range request failed");
 		    });
 		    institution.state = null;
-		    $scope.editRange = null;
+		    $scope.editInstitution = null;
 		} else if (institution.state == "remove") {
 		    // this is the remove button at remove state
 		    $scope.deleteAffiliation(institution);
@@ -181,7 +145,7 @@ angular.module('platform-ui.librariantool.role.consortium.institution').controll
 					childPartyId : $scope.foundInstitution.partyId,
 			}
 	    	$http({
-	    		url: $scope.apiUri+'/parties/affiliations/?' +'secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+	    		url: $scope.apiUri+'/parties/affiliations/?' +'secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
 	    		data:data,
 	            method: 'POST',
 				}).success(function(data, status, headers, config){
@@ -189,7 +153,7 @@ angular.module('platform-ui.librariantool.role.consortium.institution').controll
 				            alert("add existing institution request failed");
 				});
 			$scope.newInstitution = null;
-			$scope.InsAdding = false;
+			$scope.adding = false;
 	    }
 	    $scope.addConfirm1 = function() {
 		//alert("Nothing is added!");
@@ -207,7 +171,7 @@ angular.module('platform-ui.librariantool.role.consortium.institution').controll
 	    	name:$scope.newInstitution['name'],//Party.name, optional
 		}
 		$http({
-			url: $scope.apiUri+'/parties/institutions/?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+			url: $scope.apiUri+'/parties/institutions/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
 			data:data,
             method: 'POST',
 		}).success(function(data, status, headers, config){
@@ -242,7 +206,7 @@ angular.module('platform-ui.librariantool.role.consortium.institution').controll
 			
 			
 		$http({
-            url: $scope.apiUri+'/parties/affiliations/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+            url: $scope.apiUri+'/parties/affiliations/?secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
 			data:data,
             method: 'POST',
 			}).success(function(data, status, headers, config){
@@ -253,10 +217,10 @@ angular.module('platform-ui.librariantool.role.consortium.institution').controll
             alert("new institution request failed");
 		});		            
 			$scope.newInstitution = null;
-			$scope.InsAdding = false;
+			$scope.adding = false;
 	    }
 	    $scope.reset = function() {
-		$scope.InsAdding = false;
+		$scope.adding = false;
 		for (i=0; i<$scope.institutions.length; i++) {
 		    $scope.institutions[i].state=null;
 		}
@@ -267,7 +231,7 @@ angular.module('platform-ui.librariantool.role.consortium.institution').controll
         			childPartyId: institution.partyId,
         	}
         	$http({
-        		url: $scope.apiUri+'/parties/affiliations/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+        		url: $scope.apiUri+'/parties/affiliations/?secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
         		data:data,
 	            method: 'DELETE',
         	}).success(function(data, status, headers, config){
@@ -281,7 +245,7 @@ angular.module('platform-ui.librariantool.role.consortium.institution').controll
         }
 	    $scope.removeConfirm = function(institution) {
                 $http({
-                    url: $scope.apiUri+'/parties/?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey)+'&partyId='+institution['partyId'],
+                    url: $scope.apiUri+'/parties/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+institution['partyId'],
                     method: 'DELETE',
                 }).success(function(data, status, headers, config){
                 }).error(function(data, status, headers, config){
@@ -291,7 +255,7 @@ angular.module('platform-ui.librariantool.role.consortium.institution').controll
                 if (index > -1) {
                     $scope.institutions.splice(index,1);
                 }
-		$scope.removeRange = null;
+		$scope.removeInstitution = null;
 	    }
 	    $scope.enterInstitution = function(institution){
 	    	if(!(institution.state=='edit')){
@@ -306,7 +270,7 @@ angular.module('platform-ui.librariantool.role.consortium.institution').controll
 	    $scope.consortiumName = $location.search()['consortiumName'];
 //	    $scope.setTitle($scope.consortiumName);
             $http({
-            	url: $scope.apiUri+'/parties/affiliations/?partyId='+$scope.consortiumId+'&partyType=consortium'+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+            	url: $scope.apiUri+'/parties/affiliations/?partyId='+$scope.consortiumId+'&partyType=consortium'+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
                 method: 'GET',
             }).success(function(data, status, headers, config){
 		$scope.institutions = [];
@@ -325,7 +289,7 @@ angular.module('platform-ui.librariantool.role.consortium.institution').controll
 		alert("institution request failed");
             });
         $http({
-			url: $scope.apiUri+'/partners/'+'?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+			url: $scope.apiUri+'/partners/'+'?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
 			method: 'GET',
 		}).success(function(data, status, headers, config) {
 			$scope.partners = data;
@@ -333,7 +297,7 @@ angular.module('platform-ui.librariantool.role.consortium.institution').controll
 			alert("Cannot get partner information");
 		});
         $http({
-        	url: $scope.apiUri+'/parties/?partyType=organization&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+        	url: $scope.apiUri+'/parties/?partyType=organization&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
             method: 'GET',
 	        }).success(function(data, status, headers, config){
 		$scope.allInstitutions = [];

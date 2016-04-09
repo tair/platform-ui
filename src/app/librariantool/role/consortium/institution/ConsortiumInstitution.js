@@ -11,7 +11,6 @@ angular.module(
     /* Dependencies */
     [
 	'ui.router',
-	'service.title',
 	'service.currenttab'
     ])
     .config(
