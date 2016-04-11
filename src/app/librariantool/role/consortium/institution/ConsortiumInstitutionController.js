@@ -131,13 +131,13 @@ angular.module('platform-ui.librariantool.role.consortium.institution').controll
 	    		if($scope.allInstitutions[i].name == $scope.newInstitution['name']){
 	    				$scope.foundInstitution['partyId'] = $scope.allInstitutions[i].partyId;
 	    				$scope.foundInstitution['name'] = $scope.allInstitutions[i].name;
-	    				$scope.addConfirm2();
+	    				$scope.addExtInstitution();
 	    				return;
 	    		}
 	    	}
-	    	$scope.addConfirm1();
+	    	alert("Institution does not exist. Please contact info@phoenixbioinformatics.org.");
 	    }
-	    $scope.addConfirm2 = function() {
+	    $scope.addExtInstitution = function() {
 			$scope.foundInstitution['state'] = null;
 			$scope.institutions.unshift(angular.copy($scope.foundInstitution));
 			var data = {
@@ -152,70 +152,6 @@ angular.module('platform-ui.librariantool.role.consortium.institution').controll
 				}).error(function(data, status, headers, config){
 				            alert("add existing institution request failed");
 				});
-			$scope.newInstitution = null;
-			$scope.adding = false;
-	    }
-	    $scope.addConfirm1 = function() {
-		//alert("Nothing is added!");
-		var data = {
-	    	//Party table: partyId, partyType, display, name, countryId
-			//Credential table: id, username, password, email, institution, partyId, partnerId, userIdentifier
-
-			//TODO PW-82 this still does not work - values entered by user in popup is not being passed here.
-			username:"andrvet_inst_ph_manage_inst", //temporarly hardcoded. $scope.newInstitution['username'],//Credential.username, required
-			partnerId:"phoenix", //tair or phoenix //Credential.partnerId, required
-			partyType:"organization", // or institution ? Party.partyType, required
-			
-			email:$scope.newInstitution['email'],//Credential.email, optional
-	    	institution:$scope.newInstitution['institution'],//Credential.institution, optinal
-	    	name:$scope.newInstitution['name'],//Party.name, optional
-		}
-		$http({
-			url: $scope.apiUri+'/parties/institutions/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
-			data:data,
-            method: 'POST',
-		}).success(function(data, status, headers, config){
-			//new code
-			//$scope.partyId = data[0]['partyId'];
-        	$scope.createdInstitution = {
-        			//0 Party
-                	country: data[0].country,
-                	display: data[0].display,
-                	name: data[0].name, //Party.name
-                	partyId: data[0].partyId,
-                	partyType: data[0].partyType,
-                	//1 Credential
-                	email: data[1].email,
-                	institution: data[1].institution,
-                	partnerId: data[1].partnerId,
-                	partyId: data[1].partyId,
-                	userIdentifier: data[1].userIdentifier,
-                	username: data[1].username,//Credential.username
-        	}
-        	bootbox.alert("New Institution created: username="+data[1].username+" partyId="+data[0].partyId+ " partyType="+data[0].partyType+
-        			" partnerId="+data[1].partnerId+" institution="+data[1].institution+" name="+data[0].name);
-        	//old code 
-			$scope.createdInstitution = data;
-			$scope.createdInstitution['state'] = null;
-			$scope.institutions.unshift(angular.copy($scope.createdInstitution));
-			var data = {
-					parentPartyId : $scope.consortiumId,
-					childPartyId : $scope.createdInstitution.partyId,
-			}
-			
-			
-			
-		$http({
-            url: $scope.apiUri+'/parties/affiliations/?secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
-			data:data,
-            method: 'POST',
-			}).success(function(data, status, headers, config){
-			}).error(function(data, status, headers, config){
-			            alert("add new institution request failed");
-			});
-		}).error(function(data, status, headers, config){
-            alert("new institution request failed");
-		});		            
 			$scope.newInstitution = null;
 			$scope.adding = false;
 	    }
@@ -243,20 +179,6 @@ angular.module('platform-ui.librariantool.role.consortium.institution').controll
                 $scope.institutions.splice(index,1);
             }
         }
-	    $scope.removeConfirm = function(institution) {
-                $http({
-                    url: $scope.apiUri+'/parties/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+institution['partyId'],
-                    method: 'DELETE',
-                }).success(function(data, status, headers, config){
-                }).error(function(data, status, headers, config){
-                    alert("institution request failed");
-                });
-                var index = $scope.institutions.indexOf(institution);
-                if (index > -1) {
-                    $scope.institutions.splice(index,1);
-                }
-		$scope.removeInstitution = null;
-	    }
 	    $scope.enterInstitution = function(institution){
 	    	if(!(institution.state=='edit')){
 //	    		$state.go("role.institution", {'partyId' : institution.partyId, 'institutionName':institution.name});

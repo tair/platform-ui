@@ -15,5 +15,8 @@ angular.module('platform-ui.librariantool').controller(
 
 	/* Controller Definition */
 	function ($scope, Title, CurrentTab, LibrarianToolModel) {
+		$scope.setRole = function(role){
+			$scope.role = role;
+		}
 	}
 ]);

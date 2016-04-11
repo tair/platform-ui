@@ -35,6 +35,7 @@ angular.module('platform-ui.librariantool.role.consortium').controller(
 //		}
 		$scope.setTitle(ConsortiumModel.title);
 		$scope.title = $state.params.title;
+		$scope.consortiumId = $state.params.consortiumId;
 		if($scope.title){
 			$scope.setTitle($scope.title);
 		}

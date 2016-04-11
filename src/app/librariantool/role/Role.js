@@ -31,6 +31,7 @@ angular.module(
                 url: '/institution',
                 params: {
                 	title: null,
+                	institution: null,
                 },
                 views: {
                     'role': {
@@ -42,6 +43,7 @@ angular.module(
                 url: '/consortium',
                 params: {
                 	title: null,
+                	consortium: null,
                 },
                 views: {
                     'role': {

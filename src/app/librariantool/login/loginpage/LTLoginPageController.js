@@ -82,10 +82,13 @@ angular.module('platform-ui.librariantool.login.page').controller(
 //				    	institution  |
 				    	//for googlestaff "partyType" is "organization",
 					if (data[0].partyType=="consortium") {
-					    $state.go("role.consortium.manage");
+						$scope.setRole("consortium");
+					    $state.go("role.consortium");
 					} else if (data[0].partyType=="staff") {
-					    $state.go("role.phoenix.manage");
+						$scope.setRole("staff");
+					    $state.go("role.phoenix");
 					} else {
+						$scope.setRole("institution");
 					    $state.go("role.institution");
 					}
 				    }).error(function() {});

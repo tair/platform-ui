@@ -43,7 +43,6 @@ angular.module('platform-ui.librariantool.role').controller(
 		delete $window.sessionStorage.org_phoenixbioinformatics_ui_secretKey;
 		$scope.home();
 	    }
-	    $scope.role = "admin";
 	    $scope.setTitle = function(title) {
 		$scope.title = title;
 	    }
