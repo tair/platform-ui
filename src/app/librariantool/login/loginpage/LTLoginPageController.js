@@ -81,16 +81,14 @@ angular.module('platform-ui.librariantool.login.page').controller(
 //				    	staff        |
 //				    	institution  |
 				    	//for googlestaff "partyType" is "organization",
-					if (data[0].partyType=="consortium") {
-						$scope.setRole("consortium");
-					    $state.go("role.consortium");
-					} else if (data[0].partyType=="staff") {
-						$scope.setRole("staff");
-					    $state.go("role.phoenix");
-					} else {
-						$scope.setRole("institution");
-					    $state.go("role.institution");
-					}
+//					if (data[0].partyType=="consortium") {
+//					    $state.go("role.consortium");
+//					} else if (data[0].partyType=="staff") {
+//					    $state.go("role.phoenix");
+//					} else {
+//					    $state.go("role.institution");
+//					}
+						$state.go("role",{role:data[0].partyType});
 				    }).error(function() {});
                 }).error(function(data, status, headers, config){
                     alert('Login failed');

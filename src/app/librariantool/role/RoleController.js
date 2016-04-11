@@ -44,7 +44,7 @@ angular.module('platform-ui.librariantool.role').controller(
 		$scope.home();
 	    }
 	    $scope.setTitle = function(title) {
-		$scope.title = title;
+	    	$scope.title = title;
 	    }
 		$scope.backToConsortium = function(){
 			$state.go('role.consortium.institution');
@@ -150,5 +150,16 @@ angular.module('platform-ui.librariantool.role').controller(
                 }
                 return "lt-glyphicon";
             }
+
+    		$scope.role = $state.params.role;
+    		if(role=="staff"){
+    			$state.go("role.phoenix");
+    		}else if(role == "consortium"){
+    			$state.go("role.consortium");
+    		}else if(role == "institution"){
+    			$state.go("role.institution")
+    		}else{
+    			aleart("cannot recognize account type");
+    		}
 	}
 ]);

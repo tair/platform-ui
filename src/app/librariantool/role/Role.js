@@ -30,7 +30,6 @@ angular.module(
             }).state('role.institution', {
                 url: '/institution',
                 params: {
-                	title: null,
                 	institution: null,
                 },
                 views: {
@@ -42,7 +41,6 @@ angular.module(
             }).state('role.consortium', {
                 url: '/consortium',
                 params: {
-                	title: null,
                 	consortium: null,
                 },
                 views: {

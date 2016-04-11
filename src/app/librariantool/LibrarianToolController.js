@@ -9,12 +9,10 @@ angular.module('platform-ui.librariantool').controller(
 	/* Dependencies */
 	[
 	'$scope',
-	'Title',
-	'CurrentTab',
 	'LibrarianToolModel',
 
 	/* Controller Definition */
-	function ($scope, Title, CurrentTab, LibrarianToolModel) {
+	function ($scope, LibrarianToolModel) {
 		$scope.setRole = function(role){
 			$scope.role = role;
 		}

@@ -12,44 +12,44 @@ angular.module('platform-ui.librariantool.role.consortium').factory(
 
 	function () {
 		return {
-		    title: 'UC Consortium',
-                    currentTab: {label:"INSTITUTION", state:"role.consortium.institution"},
-                    getTabs: function (role) {
-        if (role == 'admin') {
-          return [
-            {
-              label: 'INSTITUTION',
-              state: 'role.consortium.institution'
-            },
-            {
-              label: 'SUBSCRIPTION',
-              state: 'role.consortium.subscription'
-            },
-            {
-              label: 'PROFILE',
-              state: 'role.consortium.profile'
-            }
-          ];
-        } else {
-          return [
-            {
-              label: 'INSTITUTION',
-              state: 'role.consortium.institution'
-            },
-            {
-              label: 'SUBSCRIPTION',
-              state: 'role.consortium.subscription'
-            },
-            {
-              label: 'USAGE',
-              state: 'role.consortium.usage'
-            },
-            {
-              label: 'PROFILE',
-              state: 'role.consortium.profile'
-            }
-          ];
-        }
-		}};
+		    title: 'Consortium Page',
+            currentTab: {label:"INSTITUTION", state:"role.consortium.institution"},
+            getTabs: function (role) {
+		        if (role == 'admin') {
+		          return [
+		            {
+		              label: 'INSTITUTION',
+		              state: 'role.consortium.institution'
+		            },
+		            {
+		              label: 'SUBSCRIPTION',
+		              state: 'role.consortium.subscription'
+		            },
+		            {
+		              label: 'PROFILE',
+		              state: 'role.consortium.profile'
+		            }
+		          ];
+		        } else {
+		          return [
+		            {
+		              label: 'INSTITUTION',
+		              state: 'role.consortium.institution'
+		            },
+		            {
+		              label: 'SUBSCRIPTION',
+		              state: 'role.consortium.subscription'
+		            },
+		            {
+		              label: 'USAGE',
+		              state: 'role.consortium.usage'
+		            },
+		            {
+		              label: 'PROFILE',
+		              state: 'role.consortium.profile'
+		            }
+		          ];
+		        }
+            }};
 	}
 ]);
