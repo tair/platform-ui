@@ -82,13 +82,15 @@ angular.module('platform-ui.librariantool.login.page').controller(
 //				    	institution  |
 				    	//for googlestaff "partyType" is "organization",
 //					if (data[0].partyType=="consortium") {
-//					    $state.go("role.consortium");
+//					    $state.go("role.consortium", {partyInfo:data[0]});
 //					} else if (data[0].partyType=="staff") {
-//					    $state.go("role.phoenix");
+//					    $state.go("role.phoenix", {partyInfo:data[0]});
+//					} else if (data[0].partyType=="organization"]){
+//					    $state.go("role.institution", {partyInfo:data[0]});
 //					} else {
-//					    $state.go("role.institution");
+//						alert("Cannot recognize account type.");
 //					}
-						$state.go("role",{role:data[0].partyType});
+						$state.go("role",{partyInfo:data[0]});
 				    }).error(function() {});
                 }).error(function(data, status, headers, config){
                     alert('Login failed');

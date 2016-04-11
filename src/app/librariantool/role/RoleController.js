@@ -67,15 +67,14 @@ angular.module('platform-ui.librariantool.role').controller(
 	    }).error(function() {
 		alert("Cannot get user email info");
 	    });
-        $http({
-            url: $scope.apiUri+'/parties/?partyId='+$scope.credentialId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
-            method: 'GET',
-        }).success(function(data, status, headers, config){
-            $scope.partyInfo = data[0];
-            $scope.title = $scope.partyInfo.name;
-        }).error(function(data, status, headers, config){
-            alert("partyId failed");
-        });
+//        $http({
+//            url: $scope.apiUri+'/parties/?partyId='+$scope.credentialId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
+//            method: 'GET',
+//        }).success(function(data, status, headers, config){
+//            $scope.partyInfo = data[0];
+//        }).error(function(data, status, headers, config){
+//            alert("partyId failed");
+//        });
 
 	    // CSS Logics common to all admin pages in different roles:
             $scope.groupsAddCss = function(adding) {
@@ -151,13 +150,14 @@ angular.module('platform-ui.librariantool.role').controller(
                 return "lt-glyphicon";
             }
 
-    		$scope.role = $state.params.role;
+    		$scope.partyInfo = $state.params.partyInfo;
+    		$scope.role = $scope.partyInfo.partyType;
     		if($scope.role == "staff"){
     			$state.go("role.phoenix");
     		}else if($scope.role == "consortium"){
-    			$state.go("role.consortium");
-    		}else if($scope.role == "institution"){
-    			$state.go("role.institution")
+    			$state.go("role.consortium",{consortium: $scope.partyInfo});
+    		}else if($scope.role == "organization"){
+    			$state.go("role.institution", {institution: $scope.partyInfo});
     		}else{
     			aleart("cannot recognize account type");
     		}

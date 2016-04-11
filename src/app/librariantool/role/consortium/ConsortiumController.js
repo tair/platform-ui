@@ -20,6 +20,7 @@ angular.module('platform-ui.librariantool.role.consortium').controller(
 
 	/* Controller Definition */
 	function ($scope, $http, $cookies, $window, $location, $state, Title, CurrentTab, ConsortiumModel) {
+		//load credentials
 		if($cookies.org_phoenixbioinformatics_ui_credentialId!=null){
 			$scope.credentialId = $cookies.org_phoenixbioinformatics_ui_credentialId;
 		}else if($window.sessionStorage.org_phoenixbioinformatics_ui_credentialId!=null){
@@ -30,7 +31,13 @@ angular.module('platform-ui.librariantool.role.consortium').controller(
 		}else if($window.sessionStorage.org_phoenixbioinformatics_ui_secretKey!=null){
 			$scope.secretKey = $window.sessionStorage.org_phoenixbioinformatics_ui_secretKey;
 		}
+		//check credentials
 //		if(!$scope.credentialId || !$scope.secretKey){
+//			$state.go('ltlogin');
+//		}
+		//check role
+//		if($scope.role != ("staff" || "consortium")){
+//			alert("Please use staff or consortium account to login.");
 //			$state.go('ltlogin');
 //		}
 		//set title or load default title
@@ -40,12 +47,15 @@ angular.module('platform-ui.librariantool.role.consortium').controller(
 		if($scope.title){
 			$scope.setTitle($scope.title);
 		}
-		$scope.setPhoenix(true);
+		if($scope.role == "staff") {
+			$scope.setPhoenix(true);
+		} else if ($scope.role = "consortium") {
+			$scope.setConsortium(false);
+		}
 		$scope.currentTab = ConsortiumModel.currentTab;
 	    $scope.setCurrentTab = function(currentTab){
 	    	$scope.currentTab = currentTab;
 	    }
-	    $scope.setConsortium(false);
         $scope.tabs = ConsortiumModel.getTabs($scope.role);
         $scope.navbarLabel = function(tab) {
             if (tab.label == $scope.currentTab.label) {

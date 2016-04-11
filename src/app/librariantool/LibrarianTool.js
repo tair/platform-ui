@@ -29,7 +29,7 @@ angular.module(
 	    }).state('role', {
 		url: '/librariantool/role',
 		params: {
-			role: null,
+			partyInfo: null,
 		},
 		views: {
 		    'main': {

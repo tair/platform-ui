@@ -21,6 +21,9 @@ angular.module(
 	function ($stateProvider) {
             $stateProvider.state('role.default', {
                 url: '',
+                params: {
+                	partyInfo: null,
+                },
                 views: {
                     'role': {
                         controller: 'InstitutionRoleController',
@@ -30,7 +33,7 @@ angular.module(
             }).state('role.institution', {
                 url: '/institution',
                 params: {
-                	institution: null,
+                	partyInfo: null,
                 },
                 views: {
                     'role': {
@@ -41,7 +44,7 @@ angular.module(
             }).state('role.consortium', {
                 url: '/consortium',
                 params: {
-                	consortium: null,
+                	partyInfo: null,
                 },
                 views: {
                     'role': {
@@ -51,6 +54,9 @@ angular.module(
                 }
             }).state('role.phoenix', {
                 url: '/phoenix',
+                paramas: {
+                	partyInfo: null,
+                }
                 views: {
                     'role': {
                         controller: 'PhoenixController',
