@@ -152,11 +152,11 @@ angular.module('platform-ui.librariantool.role').controller(
             }
 
     		$scope.role = $state.params.role;
-    		if(role=="staff"){
+    		if($scope.role == "staff"){
     			$state.go("role.phoenix");
-    		}else if(role == "consortium"){
+    		}else if($scope.role == "consortium"){
     			$state.go("role.consortium");
-    		}else if(role == "institution"){
+    		}else if($scope.role == "institution"){
     			$state.go("role.institution")
     		}else{
     			aleart("cannot recognize account type");
