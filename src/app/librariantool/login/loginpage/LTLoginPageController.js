@@ -42,6 +42,7 @@ angular.module('platform-ui.librariantool.login.page').controller(
 	    
 	    $scope.login = function() {
 		$scope.partnerId = "phoenix"; // should be phoenix eventually.
+		$scope.partyInfo = {};
                 $http({
                     url: $scope.apiUri+'/credentials/login/?partnerId='+$scope.partnerId, //phoenix
                     data: $scope.formdata,
@@ -50,12 +51,12 @@ angular.module('platform-ui.librariantool.login.page').controller(
 			    	if($scope.remember == true){
 	                    $cookies.org_phoenixbioinformatics_ui_credentialId = data["credentialId"]; //for user googlestaff it's Credential.partyId and it's 42
 	                    $cookies.org_phoenixbioinformatics_ui_secretKey = data["secretKey"];
-					    $cookies.username = data["username"];
+//					    $cookies.username = data["username"];
 			    		localStorage.setItem("remember", true);
 			    	}else{
 			    		$window.sessionStorage.org_phoenixbioinformatics_ui_credentialId = data["credentialId"]; //for user googlestaff it's Credential.partyId and it's 42
 			    		$window.sessionStorage.org_phoenixbioinformatics_ui_secretKey = data["secretKey"];
-			    		$window.sessionStorage.username = data["username"];
+//			    		$window.sessionStorage.username = data["username"];
 			    		localStorage.removeItem("remember");
 			    	}
 			    	if($cookies.org_phoenixbioinformatics_ui_credentialId!=null){
@@ -90,8 +91,24 @@ angular.module('platform-ui.librariantool.login.page').controller(
 //					} else {
 //						alert("Cannot recognize account type.");
 //					}
-						$state.go("role",{partyInfo:data[0]});
+//						$state.go("role",{partyInfo:data[0]});
+				    	$scope.partyInfo.partyId = data[0].partyId;
+				    	$scope.partyInfo.partyType = data[0].partyType;
+				    	$scope.partyInfo.display = data[0].display;
+				    	$scope.partyInfo.name = data[0].name;
+				    	$scope.partyInfo.countryId = data[0].countryId;
 				    }).error(function() {});
+				    $http({
+					url: $scope.apiUri+'/credentials/?partyId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
+					method: 'GET'
+				    }).success(function(data, status, headers, config){
+				    	$scope.partyInfo.username = data[0].username;
+				    	$scope.partyInfo.email = data[0].email;
+				    	$scope.partyInfo.institution = data[0].institution;
+				    	$scope.partyInfo.partnerId = data[0].partnerId;
+				    	$scope.partyInfo.userIdentifier = data[0].userIdentifier;
+				    }).error(function() {});
+				    $state.go('role', {partyInfo:$scope.partyInfo});
                 }).error(function(data, status, headers, config){
                     alert('Login failed');
                 });

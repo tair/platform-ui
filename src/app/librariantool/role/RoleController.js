@@ -59,14 +59,16 @@ angular.module('platform-ui.librariantool.role').controller(
 			$scope.isPhoenix = bool;
 		}
 	    $scope.partyInfo = RoleModel.partyInfo;
-	    $http({
-		url: $scope.apiUri+'/credentials/?username='+$cookies.username+'&secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
-		method: 'GET',
-	    }).success(function(data, status, headers, config) {
-	    	$scope.email = data[0].email;
-	    }).error(function() {
-		alert("Cannot get user email info");
-	    });
+	    $scope.partyInfo = $state.params.partyInfo;
+	    $scope.email = $scope.partyInfo.email;
+//	    $http({
+//		url: $scope.apiUri+'/credentials/?partyId='+$cookies.username+'&secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
+//		method: 'GET',
+//	    }).success(function(data, status, headers, config) {
+//	    	$scope.email = data[0].email;
+//	    }).error(function() {
+//		alert("Cannot get user email info");
+//	    });
 //        $http({
 //            url: $scope.apiUri+'/parties/?partyId='+$scope.credentialId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
 //            method: 'GET',
