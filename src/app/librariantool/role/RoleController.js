@@ -161,7 +161,7 @@ angular.module('platform-ui.librariantool.role').controller(
     		}else if($scope.role == "organization"){
     			$state.go("role.institution", {institution: $scope.partyInfo});
     		}else{
-    			aleart("cannot recognize account type");
+    			alert("cannot recognize account type");
     		}
 	}
 ]);
