@@ -63,12 +63,22 @@ angular.module('platform-ui.librariantool.role').controller(
 		}
 		//partyInfo and role initialization
 	    $scope.partyInfo = RoleModel.partyInfo;
+	    $scope.role = "";
 	    $http({
 			url: $scope.apiUri+'/parties/?partyId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
 			method: 'GET'
 		    }).success(function(data, status, headers, config){
 		    	$scope.partyInfo = data[0];
 				$scope.role = $scope.partyInfo['partyType'];
+				if($scope.role == "staff"){
+					$state.go("role.phoenix");
+				}else if($scope.role == "consortium"){
+					$state.go("role.consortium",{consortiumId: $scope.partyInfo.partyId});
+				}else if($scope.role == "organization"){
+					$state.go("role.institution", {institution: $scope.partyInfo});
+				}else{
+					alert("Cannot recognize account type");
+				}
 //		    	$cookies.partyInfo.partyId = data[0].partyId;
 //		    	$cookies.partyInfo.partyType = data[0].partyType;
 //		    	$cookies.partyInfo.display = data[0].display;
@@ -87,15 +97,7 @@ angular.module('platform-ui.librariantool.role').controller(
 //		    	$cookies.partyInfo.partnerId = data[0].partnerId;
 //		    	$cookies.partyInfo.userIdentifier = data[0].userIdentifier;
 		    }).error(function() {});
-		if($scope.role == "staff"){
-			$state.go("role.phoenix");
-		}else if($scope.role == "consortium"){
-			$state.go("role.consortium",{consortiumId: $scope.partyInfo.partyId});
-		}else if($scope.role == "organization"){
-			$state.go("role.institution", {institution: $scope.partyInfo});
-		}else{
-			alert("Cannot recognize account type");
-		}
+
 
 	    // CSS Logics common to all admin pages in different roles:
             $scope.groupsAddCss = function(adding) {
