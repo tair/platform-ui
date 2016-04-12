@@ -83,6 +83,7 @@ angular.module('platform-ui.librariantool.role').controller(
 		    	$scope.partyInfo.userIdentifier = data[0].userIdentifier;
 		    }).error(function() {});
 	    $scope.email = $scope.partyInfo['email'];
+	    alert($scope.partyInfo.email);
 		$scope.role = $scope.partyInfo['partyType'];
 		if($scope.role == "staff"){
 			$state.go("role.phoenix");
