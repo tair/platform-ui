@@ -133,19 +133,10 @@ angular.module('platform-ui.librariantool.role.phoenix.consortium').controller(
 	    }
 	    $scope.addConfirm = function() {
 		var data = {
-		    //Party table: partyId, partyType, display, name, countryId
-			//Credential table: id, username, password, email, institution, partyId, partnerId, userIdentifier
-		    name:$scope.newConsortium['name'],//Party.name //optional for WS. shoudl come from UI
-		    partyType:'consortium',//Party.partyType, required
-			username: "andrvet_cons_ph_manage_cons", //temporarly hardcoded. $scope.newConsortium['username'],
-			partnerId:"phoenix", //tair or phoenix //Credential.partnerId, required
-			//email:$scope.newConsortium['email'],//Credential.email //optional
-		    //institution:$scope.newConsortium['institution'],//Credential.institution //optional
-		}
-		var data = {
 				name: $scope.newConsortium['name'],
 				partyType:'consortium',
 				username: $scope.newConsortium['username'],
+				password: $scope.newConsortium['password'],
 				partnerId: 'phoenix',
 				email: $scope.newConsortium['email'],
 		}

@@ -31,10 +31,11 @@
       </div>
 
       <!-- Add Consortium -->
-      <div class="lt-admin-groups-list-edit" ng-class="groupsAddCss(adding)" style="height:300px">
+      <div class="lt-admin-groups-list-edit" ng-class="groupsAddCss(adding)" style="height:150px">
 	    <div class="col-xs-9" style="padding:0px">
-	      <div><input class="lt-admin-groups-list-label-edit" style="width:300px" placeholder="Enter Consortium Name" ng-model="newConsortium.name"></input></div>
-          <div><input class="lt-admin-groups-list-label-edit" style="width:300px" placeholder="Enter Username" ng-model="newConsortium.username"></input></div>
+	      <div><input class="lt-admin-groups-list-label-edit" style="width:300px" placeholder="Enter Consortium Name" ng-model="newConsortium.name" required></input></div>
+          <div><input class="lt-admin-groups-list-label-edit" style="width:300px" placeholder="Enter Username" ng-model="newConsortium.username" required></input></div>          
+          <div><input class="lt-admin-groups-list-label-edit" style="width:300px" placeholder="Enter Password" ng-model="newConsortium.password" required></input></div>
           <div><input class="lt-admin-groups-list-label-edit" style="width:300px" placeholder="Enter Email (optional)" ng-model="newConsortium.email"></input></div>
         </div>
 	    <div class="col-xs-3 lt-admin-groups-list-glyphicon-container" style="padding:0px">
