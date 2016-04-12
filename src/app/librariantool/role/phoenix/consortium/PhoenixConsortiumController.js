@@ -135,13 +135,19 @@ angular.module('platform-ui.librariantool.role.phoenix.consortium').controller(
 		var data = {
 		    //Party table: partyId, partyType, display, name, countryId
 			//Credential table: id, username, password, email, institution, partyId, partnerId, userIdentifier
-			//TODO PW-82 this still does not work - values entered by user in popup is not being passed here.
 		    name:$scope.newConsortium['name'],//Party.name //optional for WS. shoudl come from UI
 		    partyType:'consortium',//Party.partyType, required
-			username: "andrvet_cons_ph_manage_cons", //temporarly hardcoded. $scope.newConsortium['username'],//TODO Credential.username MUST COME FROM UI, required
+			username: "andrvet_cons_ph_manage_cons", //temporarly hardcoded. $scope.newConsortium['username'],
 			partnerId:"phoenix", //tair or phoenix //Credential.partnerId, required
 			//email:$scope.newConsortium['email'],//Credential.email //optional
 		    //institution:$scope.newConsortium['institution'],//Credential.institution //optional
+		}
+		var data = {
+				name: $scope.newConsortium['name'],
+				partyType:'consortium',
+				username: $scope.newConsortium['username'],
+				partnerId: 'phoenix',
+				email: $scope.newConsortium['email'],
 		}
 		$http({
 					url: $scope.apiUri+'/parties/consortiums/?secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
