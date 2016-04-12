@@ -30,7 +30,7 @@ angular.module('platform-ui.librariantool.role.phoenix.profile').controller(
 				//Save info
 				put_data = {}
 				//put original values from GET
-                put_data["partyId"]  = $scope.user.partyId; //$cookies.credentialId;
+                put_data["partyId"]  = $scope.user.partyId; //$scope.credentialId;
                 put_data["username"] = $scope.user.username;
                 put_data["partnerId"]= $scope.user.partnerId;
                 put_data["password"]= $scope.user.password;
@@ -48,16 +48,14 @@ angular.module('platform-ui.librariantool.role.phoenix.profile').controller(
 					}
 				}
 				$http({
-					//url: $scope.apiUri+'/credentials/?username='+$cookies.username+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
-					url: $scope.apiUri+'/parties/institutions/?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+					//url: $scope.apiUri+'/credentials/?username='+$cookies.username+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
+					url: $scope.apiUri+'/parties/institutions/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
 					data: put_data,
 					method: 'PUT',
 					headers: {'Content-Type': 'application/x-www-form-urlencoded'},
 				}).success(function(){
 					bootbox.alert("Phoenix Staff Profile Successfuly Updated" + (forceReSignIn ? ". Please re-login":"!") );
 					if (forceReSignIn) {
-						//$cookieStore.remove("credentialId");
-						//$cookieStore.remove("secretKey");
 						$scope.home();
 					}
 				}).error(function() {
@@ -103,8 +101,8 @@ angular.module('platform-ui.librariantool.role.phoenix.profile').controller(
 	    		$scope.setCurrentTab(PhoenixProfileModel.currentTab);
 	    		$scope.user = PhoenixProfileModel.user;
 			$http({
-				//url: $scope.apiUri+'/credentials/?username='+$cookies.username+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
-				url: $scope.apiUri+'/parties/institutions/?partyId='+$cookies.credentialId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+				//url: $scope.apiUri+'/credentials/?username='+$cookies.username+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
+				url: $scope.apiUri+'/parties/institutions/?partyId='+$scope.credentialId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
                 method: 'GET',
 			}).success(function(data, status, headers, config) {
                         		$scope.user.partyId = data[0].partyId;

@@ -115,7 +115,7 @@ angular.module('platform-ui.librariantool.role.phoenix.consortium').controller(
 			name:consortium['name'],
 		    };
 		    $http({
-			url: $scope.apiUri+'/parties/?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey)+'&partyId='+consortium['partyId'],
+			url: $scope.apiUri+'/parties/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+consortium['partyId'],
 			data: data,
 			method: 'PUT',
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
@@ -144,7 +144,7 @@ angular.module('platform-ui.librariantool.role.phoenix.consortium').controller(
 		    //institution:$scope.newConsortium['institution'],//Credential.institution //optional
 		}
 		$http({
-					url: $scope.apiUri+'/parties/consortiums/?secretKey='+encodeURIComponent($cookies.secretKey)+'&credentialId='+$cookies.credentialId,
+					url: $scope.apiUri+'/parties/consortiums/?secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
 					data:data,
                     method: 'POST',
 		}).success(function(data, status, headers, config){
@@ -188,7 +188,7 @@ angular.module('platform-ui.librariantool.role.phoenix.consortium').controller(
 	    $scope.removeConfirm = function(consortium) {
                 data = {};
                 $http({
-                    url: $scope.apiUri+'/parties/credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey)+'&partyId='+consortium['partyId'],
+                    url: $scope.apiUri+'/parties/credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+consortium['partyId'],
                     data:data,
                     method: 'DELETE',
                 }).success(function(data, status, headers, config){
@@ -208,7 +208,7 @@ angular.module('platform-ui.librariantool.role.phoenix.consortium').controller(
 //	    }
 	    // init
             $http({
-                url: $scope.apiUri+'/parties/?partyType=consortium'+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+                url: $scope.apiUri+'/parties/?partyType=consortium'+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
                 method: 'GET',
             }).success(function(data, status, headers, config){
 		$scope.consortiums = [];
