@@ -16,10 +16,11 @@ angular.module('platform-ui.librariantool.role.consortium').controller(
 	'$state',
 	'Title',
 	'CurrentTab',
+	'PageInfo',
 	'ConsortiumModel',
 
 	/* Controller Definition */
-	function ($scope, $http, $cookies, $window, $location, $state, Title, CurrentTab, ConsortiumModel) {
+	function ($scope, $http, $cookies, $window, $location, $state, Title, CurrentTab, PageInfo, ConsortiumModel) {
 		//load credentials
 		if($cookies.org_phoenixbioinformatics_ui_credentialId!=null){
 			$scope.credentialId = $cookies.org_phoenixbioinformatics_ui_credentialId;
@@ -44,8 +45,9 @@ angular.module('platform-ui.librariantool.role.consortium').controller(
 		$scope.setTitle(ConsortiumModel.title);
 		$scope.consortium = $state.params.consortium;
 		if($scope.consortium == null || $scope.consortium == undefined){
-			$scope.consortium = $scope.getPartyInfo();
+			$scope.consortium = PageInfo.getPageInfo();
 		}
+		PageInfo.setPageInfo($scope.consortium);
 		$scope.title = $scope.consortium.name;
 		if($scope.title){
 			$scope.setTitle($scope.title);
