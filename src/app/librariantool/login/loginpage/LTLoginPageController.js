@@ -68,6 +68,7 @@ angular.module('platform-ui.librariantool.login.page').controller(
 					}else if($window.sessionStorage.org_phoenixbioinformatics_ui_secretKey!=null){
 						$scope.secretKey = $window.sessionStorage.org_phoenixbioinformatics_ui_secretKey;
 					}
+					$cookies.partyInfo={};
 				    $http({
 						url: $scope.apiUri+'/parties/?partyId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
 						method: 'GET'
