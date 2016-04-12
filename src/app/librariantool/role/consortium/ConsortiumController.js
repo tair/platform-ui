@@ -43,7 +43,7 @@ angular.module('platform-ui.librariantool.role.consortium').controller(
 		//set title or load default title
 		$scope.setTitle(ConsortiumModel.title);
 		$scope.consortium = $state.params.consortium;
-		if(scope.consortium == null || $scope.consortium == undefined){
+		if($scope.consortium == null || $scope.consortium == undefined){
 			$scope.consortium = $scope.getPartyInfo();
 		}
 		$scope.title = $scope.consortium.name;
