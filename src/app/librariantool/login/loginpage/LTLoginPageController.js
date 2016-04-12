@@ -68,6 +68,27 @@ angular.module('platform-ui.librariantool.login.page').controller(
 					}else if($window.sessionStorage.org_phoenixbioinformatics_ui_secretKey!=null){
 						$scope.secretKey = $window.sessionStorage.org_phoenixbioinformatics_ui_secretKey;
 					}
+				    $http({
+						url: $scope.apiUri+'/parties/?partyId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
+						method: 'GET'
+					    }).success(function(data, status, headers, config){
+					    	$cookies.partyInfo.partyId = data[0].partyId;
+					    	$cookies.partyInfo.partyType = data[0].partyType;
+					    	$cookies.partyInfo.display = data[0].display;
+					    	$cookies.partyInfo.name = data[0].name;
+					    	$cookies.partyInfo.country = data[0].country;
+					    	$cookies.partyInfo.consortiums = data[0].consortiums;
+					    }).error(function() {});
+					    $http({
+						url: $scope.apiUri+'/credentials/?partyId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
+						method: 'GET'
+					    }).success(function(data, status, headers, config){
+					    	$cookies.partyInfo.username = data[0].username;
+					    	$cookies.partyInfo.email = data[0].email;
+					    	$cookies.partyInfo.institution = data[0].institution;
+					    	$cookies.partyInfo.partnerId = data[0].partnerId;
+					    	$cookies.partyInfo.userIdentifier = data[0].userIdentifier;
+					    }).error(function() {});
 				    $state.go('role');
                 }).error(function(data, status, headers, config){
                     alert('Login failed');
