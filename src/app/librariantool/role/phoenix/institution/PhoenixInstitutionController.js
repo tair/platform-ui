@@ -191,19 +191,14 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 			$scope.InsAdding = false;
 	    }
 	    $scope.addConfirm1 = function() {
-		//alert("Nothing is added!");
-		var data = {
 	    	//Party table: partyId, partyType, display, name, countryId
 			//Credential table: id, username, password, email, institution, partyId, partnerId, userIdentifier
-
-			//TODO PW-82 this still does not work - values entered by user in popup is not being passed here.
-			username:"andrvet_inst_ph_manage_inst", //temporarly hardcoded. $scope.newInstitution['username'],//Credential.username, required
-			partnerId:"phoenix", //tair or phoenix //Credential.partnerId, required
-			partyType:"organization", // or institution ? Party.partyType, required
-			
-			email:$scope.newInstitution['email'],//Credential.email, optional
-	    	institution:$scope.newInstitution['institution'],//Credential.institution, optinal
-	    	name:$scope.newInstitution['name'],//Party.name, optional
+		var data = {
+			username: $scope.newInstitution['username'],
+			partnerId:"phoenix",
+			partyType:"organization",
+			email: $scope.newInstitution['email'],//Credential.email, optional
+			name:$scope.newInstitution['name'],//Party.name, optional			
 		}
 		$http({
 			url: $scope.apiUri+'/parties/institutions/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
