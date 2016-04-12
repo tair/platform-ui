@@ -14,12 +14,11 @@ angular.module('platform-ui.librariantool.role.consortium.institution').controll
 	'$location',
 	'$state',
 	'$filter',
-	'CurrentTab',
 	'ConsortiumInstitutionModel',
 
 	/* Controller Definition */
-	function ($scope, $http, $cookies, $location, $state, $filter, CurrentTab, ConsortiumInstitutionModel) {
-		CurrentTab.setCurrentTab(ConsortiumInstitutionModel.currentTab);
+	function ($scope, $http, $cookies, $location, $state, $filter, ConsortiumInstitutionModel) {
+		$scope.setCurrentTab(ConsortiumInstitutionModel.currentTab);
 	    $scope.institutions = ConsortiumInstitutionModel.institutions;
 	    $scope.allInstitutions = ConsortiumInstitutionModel.allInstitutions;
 	    $scope.adding = false;

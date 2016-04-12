@@ -83,6 +83,5 @@ angular.module('platform-ui.librariantool.role.consortium').controller(
             $state.go(tab.state);
             $scope.currentTab = tab;
         }
-        $scope.toTab($scope.currentTab);
 	}
 ]);
