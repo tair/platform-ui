@@ -82,9 +82,8 @@ angular.module('platform-ui.librariantool.role').controller(
 		    	$scope.partyInfo.partnerId = data[0].partnerId;
 		    	$scope.partyInfo.userIdentifier = data[0].userIdentifier;
 		    }).error(function() {});
-	    $scope.email = $scope.partyInfo.email;
-		$scope.role = $scope.partyInfo.partyType;
-		$scope.role = "consortium";
+	    $scope.email = $scope.partyInfo['email'];
+		$scope.role = $scope.partyInfo['partyType'];
 		if($scope.role == "staff"){
 			$state.go("role.phoenix");
 		}else if($scope.role == "consortium"){

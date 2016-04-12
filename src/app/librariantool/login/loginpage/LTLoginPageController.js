@@ -42,7 +42,6 @@ angular.module('platform-ui.librariantool.login.page').controller(
 	    
 	    $scope.login = function() {
 		$scope.partnerId = "phoenix"; // should be phoenix eventually.
-		$scope.partyInfo = {};
                 $http({
                     url: $scope.apiUri+'/credentials/login/?partnerId='+$scope.partnerId, //phoenix
                     data: $scope.formdata,
