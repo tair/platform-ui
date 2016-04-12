@@ -305,7 +305,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	    $scope.consortiumName = $location.search()['consortiumName'];
 //	    $scope.setTitle($scope.consortiumName);
             $http({
-            	url: $scope.apiUri+'/parties/affiliations/?partyId='+$scope.consortiumId+'&partyType=consortium'+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
+            	url: $scope.apiUri+'/parties/?partyType=organization'+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
                 method: 'GET',
             }).success(function(data, status, headers, config){
 		$scope.institutions = [];
