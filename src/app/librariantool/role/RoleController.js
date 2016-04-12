@@ -60,6 +60,7 @@ angular.module('platform-ui.librariantool.role').controller(
 		}
 		
 	    $scope.partyInfo = RoleModel.partyInfo;
+	    $scope.role = "";
 	    $http({
 			url: $scope.apiUri+'/parties/?partyId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
 			method: 'GET'
