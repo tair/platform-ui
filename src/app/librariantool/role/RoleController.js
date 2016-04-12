@@ -63,34 +63,34 @@ angular.module('platform-ui.librariantool.role').controller(
 		}
 		//partyInfo and role initialization
 	    $scope.partyInfo = RoleModel.partyInfo;
-	    $scope.role = "";
 	    $http({
 			url: $scope.apiUri+'/parties/?partyId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
 			method: 'GET'
 		    }).success(function(data, status, headers, config){
-		    	$cookies.partyInfo.partyId = data[0].partyId;
-		    	$cookies.partyInfo.partyType = data[0].partyType;
-		    	$cookies.partyInfo.display = data[0].display;
-		    	$cookies.partyInfo.name = data[0].name;
-		    	$cookies.partyInfo.country = data[0].country;
-		    	$cookies.partyInfo.consortiums = data[0].consortiums;
+		    	$scope.partyInfo = data[0];
+				$scope.role = $scope.partyInfo['partyType'];
+//		    	$cookies.partyInfo.partyId = data[0].partyId;
+//		    	$cookies.partyInfo.partyType = data[0].partyType;
+//		    	$cookies.partyInfo.display = data[0].display;
+//		    	$cookies.partyInfo.name = data[0].name;
+//		    	$cookies.partyInfo.country = data[0].country;
+//		    	$cookies.partyInfo.consortiums = data[0].consortiums;
 		    }).error(function() {});
 		    $http({
 			url: $scope.apiUri+'/credentials/?partyId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
 			method: 'GET'
 		    }).success(function(data, status, headers, config){
-		    	$cookies.partyInfo.username = data[0].username;
-		    	$cookies.partyInfo.email = data[0].email;
-		    	$cookies.partyInfo.institution = data[0].institution;
-		    	$cookies.partyInfo.partnerId = data[0].partnerId;
-		    	$cookies.partyInfo.userIdentifier = data[0].userIdentifier;
+		    	$scope.email = data[0].email;
+//		    	$cookies.partyInfo.username = data[0].username;
+//		    	$cookies.partyInfo.email = data[0].email;
+//		    	$cookies.partyInfo.institution = data[0].institution;
+//		    	$cookies.partyInfo.partnerId = data[0].partnerId;
+//		    	$cookies.partyInfo.userIdentifier = data[0].userIdentifier;
 		    }).error(function() {});
-	    $scope.email = $cookies.partyInfo['email'];
-		$scope.role = $cookies.partyInfo['partyType'];
 		if($scope.role == "staff"){
 			$state.go("role.phoenix");
 		}else if($scope.role == "consortium"){
-			$state.go("role.consortium",{consortiumId: $cookies.partyInfo.partyId});
+			$state.go("role.consortium",{consortiumId: $scope.partyInfo.partyId});
 		}else if($scope.role == "organization"){
 			$state.go("role.institution", {institution: $scope.partyInfo});
 		}else{
