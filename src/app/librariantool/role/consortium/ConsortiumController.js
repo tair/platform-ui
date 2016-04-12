@@ -16,11 +16,10 @@ angular.module('platform-ui.librariantool.role.consortium').controller(
 	'$state',
 	'Title',
 	'CurrentTab',
-	'PageInfo',
 	'ConsortiumModel',
 
 	/* Controller Definition */
-	function ($scope, $http, $cookies, $window, $location, $state, Title, CurrentTab, PageInfo, ConsortiumModel) {
+	function ($scope, $http, $cookies, $window, $location, $state, Title, CurrentTab, ConsortiumModel) {
 		//load credentials
 		if($cookies.org_phoenixbioinformatics_ui_credentialId!=null){
 			$scope.credentialId = $cookies.org_phoenixbioinformatics_ui_credentialId;
@@ -43,12 +42,18 @@ angular.module('platform-ui.librariantool.role.consortium').controller(
 //		}
 		//set title or load default title
 		$scope.setTitle(ConsortiumModel.title);
-		$scope.consortium = $state.params.consortium;
-		if($scope.consortium == null || $scope.consortium == undefined){
-			$scope.consortium = PageInfo.getPageInfo();
-		}
-		PageInfo.setPageInfo($scope.consortium);
-		$scope.title = $scope.consortium.name;
+		$scope.consortiumId = $location.search()['consortiumId'];
+//		$scope.consortium = $state.params.consortium;
+//		if($scope.consortium == null || $scope.consortium == undefined){
+//			$scope.consortium = PageInfo.getPageInfo();
+//		}
+		$http({
+			url: $scope.apiUri+'/parties/consortiums?partyId='+$scope.consortiumId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
+			method: 'GET'
+		    }).success(function(data, status, headers, config){
+		    	$scope.consortium = data;
+		    }).error(function() {});
+		$scope.title = $scope.consortium[0].name;
 		if($scope.title){
 			$scope.setTitle($scope.title);
 		}

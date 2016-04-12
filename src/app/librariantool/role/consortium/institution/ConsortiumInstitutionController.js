@@ -188,12 +188,12 @@ angular.module('platform-ui.librariantool.role.consortium.institution').controll
 	    }
 	    
 	    // init
-	    $scope.consortiumId = $location.search()['consortiumId'];
-	    $scope.consortiumName = $location.search()['consortiumName'];
-	    $scope.consortium = $state.params.consortium;
+//	    $scope.consortiumId = $location.search()['consortiumId'];
+//	    $scope.consortiumName = $location.search()['consortiumName'];
+//	    $scope.consortium = $state.params.consortium;
 //	    $scope.setTitle($scope.consortiumName);
             $http({
-            	url: $scope.apiUri+'/parties/affiliations/?partyId='+$scope.consortium.partyId+'&partyType=consortium'+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
+            	url: $scope.apiUri+'/parties/affiliations/?partyId='+$scope.consortiumId+'&partyType=consortium'+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
                 method: 'GET',
             }).success(function(data, status, headers, config){
 		$scope.institutions = [];
