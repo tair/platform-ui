@@ -69,46 +69,7 @@ angular.module('platform-ui.librariantool.login.page').controller(
 					}else if($window.sessionStorage.org_phoenixbioinformatics_ui_secretKey!=null){
 						$scope.secretKey = $window.sessionStorage.org_phoenixbioinformatics_ui_secretKey;
 					}
-				    $http({
-					url: $scope.apiUri+'/parties/?partyId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
-					method: 'GET'
-				    }).success(function(data, status, headers, config){
-//				    	select distinct partyType from  demo1.Party
-//				    	partyType    |
-//				    	-------------|
-//				    	user         |
-//				    	organization |
-//				    	consortium   |
-//				    	staff        |
-//				    	institution  |
-				    	//for googlestaff "partyType" is "organization",
-//					if (data[0].partyType=="consortium") {
-//					    $state.go("role.consortium", {partyInfo:data[0]});
-//					} else if (data[0].partyType=="staff") {
-//					    $state.go("role.phoenix", {partyInfo:data[0]});
-//					} else if (data[0].partyType=="organization"]){
-//					    $state.go("role.institution", {partyInfo:data[0]});
-//					} else {
-//						alert("Cannot recognize account type.");
-//					}
-//						$state.go("role",{partyInfo:data[0]});
-				    	$scope.partyInfo.partyId = data[0].partyId;
-				    	$scope.partyInfo.partyType = data[0].partyType;
-				    	$scope.partyInfo.display = data[0].display;
-				    	$scope.partyInfo.name = data[0].name;
-				    	$scope.partyInfo.countryId = data[0].countryId;
-				    }).error(function() {});
-				    $http({
-					url: $scope.apiUri+'/credentials/?partyId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
-					method: 'GET'
-				    }).success(function(data, status, headers, config){
-				    	$scope.partyInfo.username = data[0].username;
-				    	$scope.partyInfo.email = data[0].email;
-				    	$scope.partyInfo.institution = data[0].institution;
-				    	$scope.partyInfo.partnerId = data[0].partnerId;
-				    	$scope.partyInfo.userIdentifier = data[0].userIdentifier;
-				    }).error(function() {});
-				    $state.go('role', {partyInfo:$scope.partyInfo});
+				    $state.go('role');
                 }).error(function(data, status, headers, config){
                     alert('Login failed');
                 });
