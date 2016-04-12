@@ -58,7 +58,7 @@ angular.module('platform-ui.librariantool.role').controller(
 		$scope.setPhoenix = function(bool){
 			$scope.isPhoenix = bool;
 		}
-		
+		//partyInfo and role initialization
 	    $scope.partyInfo = RoleModel.partyInfo;
 	    $scope.role = "";
 	    $http({
@@ -69,7 +69,8 @@ angular.module('platform-ui.librariantool.role').controller(
 		    	$scope.partyInfo.partyType = data[0].partyType;
 		    	$scope.partyInfo.display = data[0].display;
 		    	$scope.partyInfo.name = data[0].name;
-		    	$scope.partyInfo.countryId = data[0].countryId;
+		    	$scope.partyInfo.country = data[0].country;
+		    	$scope.partyInfo.consortiums = data[0].consortiums;
 		    }).error(function() {});
 		    $http({
 			url: $scope.apiUri+'/credentials/?partyId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
@@ -90,7 +91,7 @@ angular.module('platform-ui.librariantool.role').controller(
 		}else if($scope.role == "organization"){
 			$state.go("role.institution", {institution: $scope.partyInfo});
 		}else{
-			alert("cannot recognize account type");
+			alert("Cannot recognize account type");
 		}
 
 	    // CSS Logics common to all admin pages in different roles:
