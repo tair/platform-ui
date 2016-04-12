@@ -64,7 +64,7 @@
 						<div class="row" style="height: 10px;"></div>
 						<div class="row"><div class="col-xs-12">
 							<a href="{{ redirectNoEncode }}" ng-if="exceed!='true'"><button class="btn btn-default btn-default-tair">KEEP BROWSING</button></a>
-							<a href="{{ redirectNoEncode }}" ng-if="exceed=='true'"><button class="btn btn-default btn-default-tair">BACK</button></a>
+							<a href="javascript:history.back()" ng-if="exceed=='true'"><button class="btn btn-default btn-default-tair">BACK</button></a>
 						</div></div>
 					</div>
 					
