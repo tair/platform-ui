@@ -68,25 +68,25 @@ angular.module('platform-ui.librariantool.role').controller(
 			url: $scope.apiUri+'/parties/?partyId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
 			method: 'GET'
 		    }).success(function(data, status, headers, config){
-		    	$scope.partyInfo.partyId = data[0].partyId;
-		    	$scope.partyInfo.partyType = data[0].partyType;
-		    	$scope.partyInfo.display = data[0].display;
-		    	$scope.partyInfo.name = data[0].name;
-		    	$scope.partyInfo.country = data[0].country;
-		    	$scope.partyInfo.consortiums = data[0].consortiums;
+		    	$cookies.partyInfo.partyId = data[0].partyId;
+		    	$cookies.partyInfo.partyType = data[0].partyType;
+		    	$cookies.partyInfo.display = data[0].display;
+		    	$cookies.partyInfo.name = data[0].name;
+		    	$cookies.partyInfo.country = data[0].country;
+		    	$cookies.partyInfo.consortiums = data[0].consortiums;
 		    }).error(function() {});
 		    $http({
 			url: $scope.apiUri+'/credentials/?partyId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
 			method: 'GET'
 		    }).success(function(data, status, headers, config){
-		    	$scope.partyInfo.username = data[0].username;
-		    	$scope.partyInfo.email = data[0].email;
-		    	$scope.partyInfo.institution = data[0].institution;
-		    	$scope.partyInfo.partnerId = data[0].partnerId;
-		    	$scope.partyInfo.userIdentifier = data[0].userIdentifier;
+		    	$cookies.partyInfo.username = data[0].username;
+		    	$cookies.partyInfo.email = data[0].email;
+		    	$cookies.partyInfo.institution = data[0].institution;
+		    	$cookies.partyInfo.partnerId = data[0].partnerId;
+		    	$cookies.partyInfo.userIdentifier = data[0].userIdentifier;
 		    }).error(function() {});
-	    $scope.email = $scope.partyInfo['email'];
-		$scope.role = $scope.partyInfo['partyType'];
+	    $scope.email = $cookies.partyInfo['email'];
+		$scope.role = $cookies.partyInfo['partyType'];
 		if($scope.role == "staff"){
 			$state.go("role.phoenix");
 		}else if($scope.role == "consortium"){
