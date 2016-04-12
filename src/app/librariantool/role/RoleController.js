@@ -90,7 +90,7 @@ angular.module('platform-ui.librariantool.role').controller(
 		if($scope.role == "staff"){
 			$state.go("role.phoenix");
 		}else if($scope.role == "consortium"){
-			$state.go("role.consortium",{consortium: $scope.partyInfo});
+			$state.go("role.consortium",{consortiumId: $cookies.partyInfo.partyId});
 		}else if($scope.role == "organization"){
 			$state.go("role.institution", {institution: $scope.partyInfo});
 		}else{

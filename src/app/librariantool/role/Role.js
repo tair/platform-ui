@@ -39,10 +39,10 @@ angular.module(
                     }
                 }
             }).state('role.consortium', {
-                url: '/consortium',
-                params: {
-                	consortium: null,
-                },
+                url: '/consortium?consortiumId',
+//                params: {
+//                	consortium: null,
+//                },
                 views: {
                     'role': {
                         controller: 'ConsortiumController',
