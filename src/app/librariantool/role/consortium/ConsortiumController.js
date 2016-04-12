@@ -52,8 +52,9 @@ angular.module('platform-ui.librariantool.role.consortium').controller(
 			method: 'GET'
 		    }).success(function(data, status, headers, config){
 		    	$scope.consortium = data;
+		    	$scope.title = data[0].name;
 		    }).error(function() {});
-		$scope.title = $scope.consortium[0].name;
+//		$scope.title = $scope.consortium[0].name;
 		if($scope.title){
 			$scope.setTitle($scope.title);
 		}
@@ -83,5 +84,6 @@ angular.module('platform-ui.librariantool.role.consortium').controller(
             $state.go(tab.state);
             $scope.currentTab = tab;
         }
+        $state.go('role.consortium.institution')
 	}
 ]);
