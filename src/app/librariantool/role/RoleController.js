@@ -58,6 +58,9 @@ angular.module('platform-ui.librariantool.role').controller(
 		$scope.setPhoenix = function(bool){
 			$scope.isPhoenix = bool;
 		}
+		$scope.getPartyInfo = function(){
+			return $scope.partyInfo;
+		}
 		//partyInfo and role initialization
 	    $scope.partyInfo = RoleModel.partyInfo;
 	    $scope.role = "";
@@ -83,7 +86,6 @@ angular.module('platform-ui.librariantool.role').controller(
 		    	$scope.partyInfo.userIdentifier = data[0].userIdentifier;
 		    }).error(function() {});
 	    $scope.email = $scope.partyInfo['email'];
-	    alert($scope.partyInfo.email);
 		$scope.role = $scope.partyInfo['partyType'];
 		if($scope.role == "staff"){
 			$state.go("role.phoenix");
