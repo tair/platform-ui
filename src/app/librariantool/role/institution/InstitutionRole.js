@@ -21,7 +21,7 @@ angular.module(
     .config(
 	function ($stateProvider) {
             $stateProvider.state('role.institution.default', {
-                url: '/',
+                url: '',
                 views: {
                     'institution': {
                         controller: 'InstitutionIpRangeController',
