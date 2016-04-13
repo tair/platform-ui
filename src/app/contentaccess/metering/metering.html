@@ -64,7 +64,8 @@
 						<div class="row" style="height: 10px;"></div>
 						<div class="row"><div class="col-xs-12">
 							<a href="{{ redirectNoEncode }}" ng-if="exceed!='true'"><button class="btn btn-default btn-default-tair">KEEP BROWSING</button></a>
-							<a href="{{ redirectNoEncode }}" ng-if="exceed=='true'"><button class="btn btn-default btn-default-tair">BACK</button></a>
+							<!-- http://stackoverflow.com/questions/14815838/webkit-chrome-history-back-1-onclick-vs-href -->
+							<a href="#" onclick="window.history.back();return false;" ng-if="exceed=='true'"><button class="btn btn-default btn-default-tair">BACK</button></a>
 						</div></div>
 					</div>
 					
