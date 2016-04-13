@@ -75,17 +75,11 @@ angular.module('platform-ui.librariantool.role').controller(
 				}else if($scope.role == "consortium"){
 					$state.go("role.consortium",{consortiumId: $scope.partyInfo.partyId});
 				}else if($scope.role == "organization"){
-					$state.go("role.institution", {institution: $scope.partyInfo});
+					$state.go("role.institution", {institution: $scope.partyInfo.partyId});
 				}else{
 					alert("Cannot recognize account type");
-					$state.go("ltlogin");
+					$scope.logout();
 				}
-//		    	$cookies.partyInfo.partyId = data[0].partyId;
-//		    	$cookies.partyInfo.partyType = data[0].partyType;
-//		    	$cookies.partyInfo.display = data[0].display;
-//		    	$cookies.partyInfo.name = data[0].name;
-//		    	$cookies.partyInfo.country = data[0].country;
-//		    	$cookies.partyInfo.consortiums = data[0].consortiums;
 		    }).error(function() {});
 		    $http({
 			url: $scope.apiUri+'/credentials/?partyId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,

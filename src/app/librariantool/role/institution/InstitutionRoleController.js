@@ -19,6 +19,7 @@ angular.module('platform-ui.librariantool.role.institution').controller(
 
 	/* Controller Definition */
 	function ($scope, $http, $cookies, $window, $location, $state, Title, InstitutionRoleModel) {
+		//load credentials
 		if($cookies.org_phoenixbioinformatics_ui_credentialId!=null){
 			$scope.credentialId = $cookies.org_phoenixbioinformatics_ui_credentialId;
 		}else if($window.sessionStorage.org_phoenixbioinformatics_ui_credentialId!=null){
@@ -29,20 +30,40 @@ angular.module('platform-ui.librariantool.role.institution').controller(
 		}else if($window.sessionStorage.org_phoenixbioinformatics_ui_secretKey!=null){
 			$scope.secretKey = $window.sessionStorage.org_phoenixbioinformatics_ui_secretKey;
 		}
+		//check credentials
 //		if(!$scope.credentialId || !$scope.secretKey){
 //			$state.go('ltlogin');
 //		}
-		$scope.title = $state.params.title;
-		if($scope.title){
-			$scope.setTitle($scope.title);
+		//check role
+//		if($scope.role != ("staff" || "consortium" || "organization")){
+//			alert("Please use staff ,consortium or organization account to login.");
+//			$scope.logout();
+//		}
+		//set title
+		$scope.institutionId = $location.search()['institutionId'];
+		$http({
+			url: $scope.apiUri+'/parties/institutions?partyId='+$scope.institutionId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
+			method: 'GET'
+		    }).success(function(data, status, headers, config){
+		    	$scope.institution = data;
+		    	$scope.title = data[0].name;
+				if($scope.title){
+					$scope.setTitle($scope.title);
+				}
+		    }).error(function() {});
+		//display option of back button
+		if($scope.role == "staff") {
+			$scope.setPhoenix(true);
+		} else if ($scope.role = "consortium") {
+			$scope.setConsortium(true);
 		}
+		//set currentTab
 		$scope.currentTab = InstitutionRoleModel.currentTab;
 		$scope.setCurrentTab = function(currentTab){
 			$scope.currentTab = currentTab;
 		}
-		$scope.setPhoenix(true);
+		//tab content and style
 		$scope.tabs = InstitutionRoleModel.getTabs($scope.role);
-
 	    $scope.navbarLabel = function(tab) {
 		if (tab.label == $scope.currentTab.label) {
 		    return "lt-navbar-label-highlight";
@@ -55,11 +76,11 @@ angular.module('platform-ui.librariantool.role.institution').controller(
                 }
                 return "hide";
 	    }
+	    //tab action
 	    $scope.toTab = function(tab) {
 		$state.go(tab.state);
 		$scope.currentTab = tab;
-		$window.sessionStorage.currentTab = JSON.stringify(tab);
 	    }
-	    // $state.go($scope.currentTab.state);
+	    $state.go($scope.currentTab.state);
 	}
 ]);

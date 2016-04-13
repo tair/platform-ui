@@ -38,15 +38,11 @@ angular.module('platform-ui.librariantool.role.consortium').controller(
 		//check role
 //		if($scope.role != ("staff" || "consortium")){
 //			alert("Please use staff or consortium account to login.");
-//			$state.go('ltlogin');
+//			$scope.logout();
 //		}
-		//set title or load default title
+		//set title
 		$scope.setTitle(ConsortiumModel.title);
 		$scope.consortiumId = $location.search()['consortiumId'];
-//		$scope.consortium = $state.params.consortium;
-//		if($scope.consortium == null || $scope.consortium == undefined){
-//			$scope.consortium = PageInfo.getPageInfo();
-//		}
 		$http({
 			url: $scope.apiUri+'/parties/consortiums?partyId='+$scope.consortiumId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
 			method: 'GET'
@@ -57,15 +53,18 @@ angular.module('platform-ui.librariantool.role.consortium').controller(
 					$scope.setTitle($scope.title);
 				}
 		    }).error(function() {});
+		//display option of back button
 		if($scope.role == "staff") {
 			$scope.setPhoenix(true);
 		} else if ($scope.role = "consortium") {
 			$scope.setConsortium(false);
 		}
+		//set currentTab
 		$scope.currentTab = ConsortiumModel.currentTab;
 	    $scope.setCurrentTab = function(currentTab){
 	    	$scope.currentTab = currentTab;
 	    }
+	    //tab content and style
         $scope.tabs = ConsortiumModel.getTabs($scope.role);
         $scope.navbarLabel = function(tab) {
             if (tab.label == $scope.currentTab.label) {
@@ -79,6 +78,7 @@ angular.module('platform-ui.librariantool.role.consortium').controller(
                 }
                 return "hide";
 	    }
+        //tab action
         $scope.toTab = function(tab) {
             $state.go(tab.state);
             $scope.currentTab = tab;
