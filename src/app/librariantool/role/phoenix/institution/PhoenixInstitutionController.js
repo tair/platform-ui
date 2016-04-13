@@ -225,7 +225,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
         	bootbox.alert("New Institution created: username="+data[1].username+" partyId="+data[0].partyId+ " partyType="+data[0].partyType+
         			" partnerId="+data[1].partnerId+" institution="+data[1].institution+" name="+data[0].name);
         	//old code 
-			$scope.createdInstitution = data;
+//			$scope.createdInstitution = data;
 			$scope.createdInstitution['state'] = null;
 			$scope.institutions.unshift(angular.copy($scope.createdInstitution));
 			var data = {
