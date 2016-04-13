@@ -290,7 +290,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	    $scope.enterInstitution = function(institution){
 	    	if(!(institution.state=='edit')){
 //	    		$state.go("role.institution", {'partyId' : institution.partyId, 'institutionName':institution.name});
-	    		$state.go("role.institution", {title: institution.name});
+	    		$state.go("role.institution", {institutionId: institution.partyId});
 				institution.state = null;
 	    	}
 	    }
