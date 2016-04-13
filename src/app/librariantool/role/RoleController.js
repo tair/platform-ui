@@ -75,7 +75,7 @@ angular.module('platform-ui.librariantool.role').controller(
 				}else if($scope.role == "consortium"){
 					$state.go("role.consortium",{consortiumId: $scope.partyInfo.partyId});
 				}else if($scope.role == "organization"){
-					$state.go("role.institution", {institution: $scope.partyInfo.partyId});
+					$state.go("role.institution", {institutionId: $scope.partyInfo.partyId});
 				}else{
 					alert("Cannot recognize account type");
 					$scope.logout();
