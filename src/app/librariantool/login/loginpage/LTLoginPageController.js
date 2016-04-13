@@ -73,6 +73,7 @@ angular.module('platform-ui.librariantool.login.page').controller(
 						url: $scope.apiUri+'/parties/?partyId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
 						method: 'GET'
 					    }).success(function(data, status, headers, config){
+					    	$scope.partyInfo = data[0];
 							$scope.role = $scope.partyInfo['partyType'];
 							if($scope.role == "staff"){
 								$state.go("role.phoenix");
