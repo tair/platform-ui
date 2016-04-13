@@ -58,9 +58,7 @@ angular.module('platform-ui.librariantool.role.institution').controller(
 			$scope.setConsortium(true);
 		}
 		//set currentTab
-		if(!$scope.currentTab){
-			$scope.currentTab = InstitutionRoleModel.currentTab;
-		}
+		$scope.currentTab = InstitutionRoleModel.currentTab;
 		$scope.setCurrentTab = function(currentTab){
 			$scope.currentTab = currentTab;
 		}
@@ -83,6 +81,6 @@ angular.module('platform-ui.librariantool.role.institution').controller(
 		$state.go(tab.state);
 		$scope.currentTab = tab;
 	    }
-	    $state.go($scope.currentTab.state);
+//	    $state.go($scope.currentTab.state);
 	}
 ]);
