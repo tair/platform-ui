@@ -58,7 +58,9 @@ angular.module('platform-ui.librariantool.role.institution').controller(
 			$scope.setConsortium(true);
 		}
 		//set currentTab
-		$scope.currentTab = InstitutionRoleModel.currentTab;
+		if(!$scope.currentTab){
+			$scope.currentTab = InstitutionRoleModel.currentTab;
+		}
 		$scope.setCurrentTab = function(currentTab){
 			$scope.currentTab = currentTab;
 		}
