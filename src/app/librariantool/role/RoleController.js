@@ -78,6 +78,7 @@ angular.module('platform-ui.librariantool.role').controller(
 					$state.go("role.institution", {institution: $scope.partyInfo});
 				}else{
 					alert("Cannot recognize account type");
+					$state.go("ltlogin");
 				}
 //		    	$cookies.partyInfo.partyId = data[0].partyId;
 //		    	$cookies.partyInfo.partyType = data[0].partyType;
