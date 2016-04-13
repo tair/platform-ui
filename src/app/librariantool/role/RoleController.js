@@ -70,16 +70,16 @@ angular.module('platform-ui.librariantool.role').controller(
 		    }).success(function(data, status, headers, config){
 		    	$scope.partyInfo = data[0];
 				$scope.role = $scope.partyInfo['partyType'];
-				if($scope.role == "staff"){
-					$state.go("role.phoenix");
-				}else if($scope.role == "consortium"){
-					$state.go("role.consortium",{consortiumId: $scope.partyInfo.partyId});
-				}else if($scope.role == "organization"){
-					$state.go("role.institution.iprange", {institutionId: $scope.partyInfo.partyId});
-				}else{
-					alert("Cannot recognize account type");
-					$scope.logout();
-				}
+//				if($scope.role == "staff"){
+//					$state.go("role.phoenix");
+//				}else if($scope.role == "consortium"){
+//					$state.go("role.consortium",{consortiumId: $scope.partyInfo.partyId});
+//				}else if($scope.role == "organization"){
+//					$state.go("role.institution", {institutionId: $scope.partyInfo.partyId});
+//				}else{
+//					alert("Cannot recognize account type");
+//					$scope.logout();
+//				}
 		    }).error(function() {});
 		    $http({
 			url: $scope.apiUri+'/credentials/?partyId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,

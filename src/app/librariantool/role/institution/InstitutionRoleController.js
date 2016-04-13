@@ -57,11 +57,6 @@ angular.module('platform-ui.librariantool.role.institution').controller(
 		} else if ($scope.role = "consortium") {
 			$scope.setConsortium(true);
 		}
-		//set currentTab
-		$scope.currentTab = InstitutionRoleModel.currentTab;
-		$scope.setCurrentTab = function(currentTab){
-			$scope.currentTab = currentTab;
-		}
 		//tab content and style
 		$scope.tabs = InstitutionRoleModel.getTabs($scope.role);
 	    $scope.navbarLabel = function(tab) {
@@ -81,6 +76,11 @@ angular.module('platform-ui.librariantool.role.institution').controller(
 		$state.go(tab.state);
 		$scope.currentTab = tab;
 	    }
+	    //set currentTab
+//		$scope.currentTab = InstitutionRoleModel.currentTab;
+		$scope.setCurrentTab = function(currentTab){
+			$scope.currentTab = currentTab;
+		}
 //	    $state.go($scope.currentTab.state);
 	}
 ]);
