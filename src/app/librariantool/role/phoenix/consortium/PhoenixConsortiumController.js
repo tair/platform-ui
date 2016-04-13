@@ -81,7 +81,7 @@ angular.module('platform-ui.librariantool.role.phoenix.consortium').controller(
     	    $scope.enterConsortium = function(consortium){
     	    	if(!(consortium.state=='edit')){
 //    	    		$state.go("role.institution", {'partyId' : institution.partyId, 'institutionName':institution.name});
-    	    		$state.go("role.consortium.institution", {title: consortium.name});
+    	    		$state.go("role.consortium", {consortiumId: consortium.partyId});
     				consortium.state = null;
     	    	}
     	    }

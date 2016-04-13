@@ -16,39 +16,40 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').factory(
 		    currentTab: {label: 'INSTITUTION', state: 'role.consortium.institution'},
 		    newInstitution: {'name':null, 'country':null},
 		    foundInstitution: {'name':null, 'partyId':null, 'state':null},
+		    institutions:[],
 		    institutions:[
-		                  {
-		                	    "partyId": 55,
-		                	    "partyType": "organization",
-		                	    "name": "UC Davis",
-		                	    "country": 169,
-		                	    "display": true,
-		                	    "consortium": 31272
-		                	  },
-		                	  {
-		                	    "partyId": 56,
-		                	    "partyType": "organization",
-		                	    "name": "UC Los Angeles",
-		                	    "country": 169,
-		                	    "display": true,
-		                	    "consortium": 31272
-		                	  },
-		                	  {
-		                	    "partyId": 57,
-		                	    "partyType": "organization",
-		                	    "name": "UC Merced",
-		                	    "country": 169,
-		                	    "display": true,
-		                	    "consortium": 31272
-		                	  },
-		                	  {
-		                	    "partyId": 58,
-		                	    "partyType": "organization",
-		                	    "name": "UC Santa Cruz",
-		                	    "country": 169,
-		                	    "display": true,
-		                	    "consortium": 31272
-		                	  }
+//		                  {
+//		                	    "partyId": 55,
+//		                	    "partyType": "organization",
+//		                	    "name": "UC Davis",
+//		                	    "country": 169,
+//		                	    "display": true,
+//		                	    "consortium": 31272
+//		                	  },
+//		                	  {
+//		                	    "partyId": 56,
+//		                	    "partyType": "organization",
+//		                	    "name": "UC Los Angeles",
+//		                	    "country": 169,
+//		                	    "display": true,
+//		                	    "consortium": 31272
+//		                	  },
+//		                	  {
+//		                	    "partyId": 57,
+//		                	    "partyType": "organization",
+//		                	    "name": "UC Merced",
+//		                	    "country": 169,
+//		                	    "display": true,
+//		                	    "consortium": 31272
+//		                	  },
+//		                	  {
+//		                	    "partyId": 58,
+//		                	    "partyType": "organization",
+//		                	    "name": "UC Santa Cruz",
+//		                	    "country": 169,
+//		                	    "display": true,
+//		                	    "consortium": 31272
+//		                	  }
 		                	],
 		    allInstitutions: [{
         	    "partyId": 58,
