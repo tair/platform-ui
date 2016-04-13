@@ -21,7 +21,6 @@ angular.module('platform-ui.librariantool.role.institution.consortium').controll
 	function ($scope, $http, $cookies, $location, $state, $filter, Title, InstitutionConsortiumModel) {
 		$scope.setCurrentTab(InstitutionConsortiumModel.currentTab);
 		$scope.consortiums = InstitutionConsortiumModel.consortiums;
-	    $scope.addGroupShow = "hidden";
 	    $scope.adding = false;
 	    $scope.newConsortium = InstitutionConsortiumModel.newConsortium;
 	    $scope.removeConsortium = null;
