@@ -76,11 +76,11 @@ angular.module('platform-ui.librariantool.login.page').controller(
 					    	$scope.partyInfo = data[0];
 							$scope.role = $scope.partyInfo['partyType'];
 							if($scope.role == "staff"){
-								$state.go("role.phoenix");
+								$state.go("role.phoenix.institution");
 							}else if($scope.role == "consortium"){
-								$state.go("role.consortium",{consortiumId: $scope.partyInfo.partyId});
+								$state.go("role.consortium.institution",{consortiumId: $scope.partyInfo.partyId});
 							}else if($scope.role == "organization"){
-								$state.go("role.institution", {institutionId: $scope.partyInfo.partyId});
+								$state.go("role.institution.iprange", {institutionId: $scope.partyInfo.partyId});
 							}else{
 								alert("Cannot recognize account type");
 								$scope.logout();
