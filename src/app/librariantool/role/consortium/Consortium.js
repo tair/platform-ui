@@ -21,15 +21,17 @@ angular.module(
     ])
     .config(
 	function ($stateProvider) {
-            $stateProvider.state('role.consortium.default', {
-                url: '/',
-                views: {
-                    'consortium': {
-                        controller: 'ConsortiumInstitutionController',
-                        templateUrl: 'librariantool/role/consortium/institution/institution.html'
-                    }
-                }
-            }).state('role.consortium.institution', {
+            $stateProvider
+//            .state('role.consortium.default', {
+//                url: '/',
+//                views: {
+//                    'consortium': {
+//                        controller: 'ConsortiumInstitutionController',
+//                        templateUrl: 'librariantool/role/consortium/institution/institution.html'
+//                    }
+//                }
+//            })
+            .state('role.consortium.institution', {
                 url: '/institution',
                 views: {
                     'consortium': {

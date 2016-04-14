@@ -56,14 +56,9 @@ angular.module('platform-ui.librariantool.role.consortium').controller(
 		//display option of back button
 		if($scope.role == "staff") {
 			$scope.setPhoenix(true);
-		} else if ($scope.role = "consortium") {
+		} else if ($scope.role == "consortium") {
 			$scope.setConsortium(false);
 		}
-		//set currentTab
-		$scope.currentTab = ConsortiumModel.currentTab;
-	    $scope.setCurrentTab = function(currentTab){
-	    	$scope.currentTab = currentTab;
-	    }
 	    //tab content and style
         $scope.tabs = ConsortiumModel.getTabs($scope.role);
         $scope.navbarLabel = function(tab) {
@@ -83,6 +78,11 @@ angular.module('platform-ui.librariantool.role.consortium').controller(
             $state.go(tab.state);
             $scope.currentTab = tab;
         }
-        $state.go($scope.currentTab.state);
+		//set currentTab
+//		$scope.currentTab = ConsortiumModel.currentTab;
+	    $scope.setCurrentTab = function(currentTab){
+	    	$scope.currentTab = currentTab;
+	    }
+//        $state.go($scope.currentTab.state);
 	}
 ]);

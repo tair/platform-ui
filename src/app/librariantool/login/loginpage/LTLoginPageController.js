@@ -76,7 +76,7 @@ angular.module('platform-ui.librariantool.login.page').controller(
 					    	$scope.partyInfo = data[0];
 							$scope.role = $scope.partyInfo['partyType'];
 							if($scope.role == "staff"){
-								$state.go("role.phoenix.institution");
+								$state.go("role.phoenix.consortium");
 							}else if($scope.role == "consortium"){
 								$state.go("role.consortium.institution",{consortiumId: $scope.partyInfo.partyId});
 							}else if($scope.role == "organization"){
