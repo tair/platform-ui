@@ -54,7 +54,7 @@ angular.module('platform-ui.librariantool.role.institution').controller(
 		//display option of back button
 		if($scope.role == "staff") {
 			$scope.setPhoenix(true);
-		} else if ($scope.role = "consortium") {
+		} else if ($scope.role == "consortium") {
 			$scope.setConsortium(true);
 		}
 		//tab content and style
