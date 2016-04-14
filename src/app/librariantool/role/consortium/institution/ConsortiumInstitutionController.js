@@ -181,7 +181,7 @@ angular.module('platform-ui.librariantool.role.consortium.institution').controll
 	    $scope.enterInstitution = function(institution){
 	    	if(!(institution.state=='edit')){
 //	    		$state.go("role.institution", {'partyId' : institution.partyId, 'institutionName':institution.name});
-	    		$state.go("role.institution", {title: institution.name});
+	    		$state.go("role.institution.iprange", {institutionId: institution.partyId});
 				institution.state = null;
 	    	}
 	    }
