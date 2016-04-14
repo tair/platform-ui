@@ -21,7 +21,7 @@ angular.module(
 //    .config('$urlRouterProvider',function ($urlRouterProvider) {
 //		$urlRouterProvider.when('','/iprange');
 //    }) //TODO:use urlRouterProvider to set default state of role.institution
-    .config('$stateProvider',
+    .config(
 	function ($stateProvider) {
         $stateProvider.state('role.institution.iprange', {
 		url: '/iprange',
