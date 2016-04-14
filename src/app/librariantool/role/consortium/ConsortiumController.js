@@ -41,7 +41,6 @@ angular.module('platform-ui.librariantool.role.consortium').controller(
 //			$scope.logout();
 //		}
 		//set title
-		$scope.setTitle(ConsortiumModel.title);
 		$scope.consortiumId = $location.search()['consortiumId'];
 		$http({
 			url: $scope.apiUri+'/parties/consortiums?partyId='+$scope.consortiumId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,

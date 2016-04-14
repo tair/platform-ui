@@ -66,6 +66,7 @@ angular.module('platform-ui.librariantool.role').controller(
 			method: 'GET'
 		    }).success(function(data, status, headers, config){
 		    	$scope.partyInfo = data[0];
+		    	$scope.title = $scope.partyInfo['name'];
 				$scope.role = $scope.partyInfo['partyType'];
 //				if($scope.role == "staff"){
 //					$state.go("role.phoenix");

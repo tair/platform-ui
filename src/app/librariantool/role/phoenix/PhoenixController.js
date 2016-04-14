@@ -39,8 +39,7 @@ angular.module('platform-ui.librariantool.role.phoenix').controller(
 //		alert("Please use staff account to login.");
 //		$scope.logout();
 //	}
-		//set title
-		$scope.setTitle($scope.partyInfo.name);
+		//no need to set title, already set at role controller.
 		//display option of back button
 		$scope.setPhoenix(false);
         //tab content and style
