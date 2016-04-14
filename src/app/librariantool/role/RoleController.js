@@ -47,7 +47,7 @@ angular.module('platform-ui.librariantool.role').controller(
 	    	$scope.title = title;
 	    }
 		$scope.backToConsortium = function(){
-			$state.go('role.consortium.institution');
+			$state.go('role.consortium.institution', {consortiumId: $scope.credentialId});
 		}
 		$scope.backToPhoenix = function(){
 			$state.go('role.phoenix.consortium');
