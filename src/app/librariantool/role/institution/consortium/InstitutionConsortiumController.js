@@ -206,7 +206,7 @@ angular.module('platform-ui.librariantool.role.institution.consortium').controll
 //	    }
 	    // init
             $http({
-                url: $scope.apiUri+'/parties/affiliations?partyId='+$scope.institutionId +'partyType=organization'+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
+                url: $scope.apiUri+'/parties/affiliations?partyId='+$scope.institutionId +'&partyType=organization'+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
                 method: 'GET',
             }).success(function(data, status, headers, config){
 		$scope.consortiums = [];

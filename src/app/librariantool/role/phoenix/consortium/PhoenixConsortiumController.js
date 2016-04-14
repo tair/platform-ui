@@ -19,7 +19,6 @@ angular.module('platform-ui.librariantool.role.phoenix.consortium').controller(
 
 	/* Controller Definition */
 	function ($scope, $http, $cookies, $location, $state, $filter, Title, PhoenixConsortiumModel) {
-//		$scope.setTitle(PhoenixConsortiumModel.title);
 		$scope.setCurrentTab(PhoenixConsortiumModel.currentTab);
 		$scope.consortiums = PhoenixConsortiumModel.consortiums;
 	    $scope.addGroupShow = "hidden";

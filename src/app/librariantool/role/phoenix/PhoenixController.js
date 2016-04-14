@@ -30,25 +30,41 @@ angular.module('platform-ui.librariantool.role.phoenix').controller(
 		}else if($window.sessionStorage.org_phoenixbioinformatics_ui_secretKey!=null){
 			$scope.secretKey = $window.sessionStorage.org_phoenixbioinformatics_ui_secretKey;
 		}
+		//check credential info
 //		if(!$scope.credentialId || !$scope.secretKey){
 //			$state.go('ltlogin');
 //		}
-		$scope.setTitle(PhoenixModel.title);
+		//check role
+//		if($scope.role != ("staff")){
+//		alert("Please use staff account to login.");
+//		$scope.logout();
+//	}
+		//set title
+		$scope.setTitle($scope.partyInfo.name);
+		//display option of back button
+		$scope.setPhoenix(false);
+        //tab content and style
+        $scope.tabs = PhoenixModel.tabs;
+        $scope.navbarLabel = function(tab) {
+            if (tab.label == $scope.currentTab.label) {
+                return "lt-navbar-label-highlight";
+            }
+            return "lt-navbar-label";
+        }
+        $scope.navbarLine = function(tab) {
+            if (tab.label == $scope.currentTab.label) {
+                return "show";
+            }
+            return "hide";
+        }
+        //tab action
+        $scope.toTab = function(tab) {
+            $state.go(tab.state);
+            $scope.currentTab = tab;
+        }
+		//set currentTab
 	    $scope.setCurrentTab = function(currentTab){
 	    	$scope.currentTab = currentTab;
 	    }
-		$scope.setPhoenix(false);
-            $scope.currentTab = PhoenixModel.currentTab;
-            $scope.tabs = PhoenixModel.tabs;
-            $scope.navbarLabel = function(tab) {
-                if (tab.label == $scope.currentTab.label) {
-                    return "lt-navbar-label-highlight";
-                }
-                return "lt-navbar-label";
-            }
-            $scope.clickTab = function(tab) {
-                $state.go(tab.state);
-                $scope.currentTab = tab;
-            }
 	}
 ]);

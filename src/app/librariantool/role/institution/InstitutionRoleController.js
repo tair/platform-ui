@@ -77,10 +77,8 @@ angular.module('platform-ui.librariantool.role.institution').controller(
 		$scope.currentTab = tab;
 	    }
 	    //set currentTab
-//		$scope.currentTab = InstitutionRoleModel.currentTab;
 		$scope.setCurrentTab = function(currentTab){
 			$scope.currentTab = currentTab;
 		}
-//	    $state.go($scope.currentTab.state);
 	}
 ]);
