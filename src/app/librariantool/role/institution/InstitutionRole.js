@@ -18,10 +18,10 @@ angular.module(
 	'platform-ui.librariantool.role.institution.profile',
 	'platform-ui.librariantool.role.institution.usage',
     ])
-    .config(function ($urlRouterProvider) {
+    .config('$urlRouterProvider',function ($urlRouterProvider) {
 		$urlRouterProvider.when('','/iprange');
     })
-    .config(
+    .config('$stateProvider',
 	function ($stateProvider) {
         $stateProvider.state('role.institution.iprange', {
 		url: '/iprange',

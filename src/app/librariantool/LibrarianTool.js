@@ -17,11 +17,6 @@ angular.module(
 	'platform-ui.librariantool.role',
     ])
     .config(
-    		function($urlRouterProvider) {
-    			$urlRouterProvider.when('/librariantool/role/institution', '/librariantool/role/institution/iprange')
-    		}
-    )
-    .config(
 	function ($stateProvider) {
 	    $stateProvider.state('ltlogin', {
 		url: '/librariantool/login',
