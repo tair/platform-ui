@@ -21,15 +21,7 @@ angular.module(
     .config(
 	function ($stateProvider, $urlRouterProvider) {
 		$urlRouterProvider.when('','/iprange');
-            $stateProvider.state('role.institution.default', {
-                url: '',
-                views: {
-                    'institution': {
-                        controller: 'InstitutionIpRangeController',
-                        templateUrl: 'librariantool/role/institution/iprange/iprange.html'
-                    }
-                }
-            }).state('role.institution.iprange', {
+            $stateProvider.state('role.institution.iprange', {
 		url: '/iprange',
 		views: {
 		    'institution': {
