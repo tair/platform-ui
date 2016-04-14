@@ -19,7 +19,8 @@ angular.module(
 	'platform-ui.librariantool.role.institution.usage',
     ])
     .config(
-	function ($stateProvider) {
+	function ($stateProvider, $urlRouterProvider) {
+		$urlRouterProvider.when('','/iprange');
             $stateProvider.state('role.institution.default', {
                 url: '',
                 views: {
