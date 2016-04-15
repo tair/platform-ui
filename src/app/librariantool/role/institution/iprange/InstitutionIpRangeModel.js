@@ -14,7 +14,7 @@ angular.module('platform-ui.librariantool.role.institution.iprange').factory(
 		return {
 		    currentTab: {label:"IP RANGE", state:"role.institution.iprange"},
 		    newRange: {'name':null, 'start':null, 'end':null},
-//		    ipranges: [],
+		    ipranges: [],
 		    ipranges: [
 			{'name':'Randomly Randomized Randomness', 'start':'123.45.67', 'end':'89.12.345', 'state':null},
 			{'name':'Organized Orange Organs' , 'start':'123.45.67', 'end':'89.12.345', 'state':null},

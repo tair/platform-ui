@@ -164,6 +164,11 @@ module.exports = function ( grunt ) {
 					'src/lib/js/lodash.min.js',
 					'src/lib/js/ui-bootstrap-tpls-0.13.0.min.js',
 					'src/lib/js/bootbox.min.js',
+					//'src/lib/js/bootstrap-tooltip.js',
+					//'src/lib/js/bootstrap-confirmation.js',
+					//'src/lib/js/jquery-1.11.3.min.js',
+					//'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js',
+					//'src/lib/js/bootstrap-confirmation.js'
 					//'src/lib/js/angular-ui-router.min.js',
 					//'src/lib/js/ui-bootstrap-tpls-0.6.0.min.js',
 					//'src/lib/js/ui-utils.min.js',
