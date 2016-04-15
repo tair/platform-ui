@@ -24,7 +24,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	    $scope.institutions = PhoenixInstitutionModel.institutions;
 	    $scope.allInstitutions = PhoenixInstitutionModel.allInstitutions;
 	    $scope.addGroupShow = "hidden";
-	    $scope.InsAdding = false;
+	    $scope.adding = false;
 	    $scope.SubAdding = false;
 	    $scope.newInstitution = PhoenixInstitutionModel.newInstitution;
 	    $scope.foundInstitution = PhoenixInstitutionModel.foundInstitution;
@@ -104,12 +104,12 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 
 	    // Events that change states
             $scope.groupsMoveOver = function(institution) {
-                if (institution.state == null && !$scope.InsAdding) {
+                if (institution.state == null && !$scope.adding) {
                     institution.state = "selected";
                 }
             }
             $scope.groupsMoveOut = function(institution) {
-                if (institution.state == "selected" && !$scope.InsAdding) {
+                if (institution.state == "selected" && !$scope.adding) {
                     institution.state = null;
                 }
             }
@@ -137,7 +137,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 		    // This is the edit button at normal state.
                     $scope.editRange = angular.copy(institution);
                     institution.state = "edit";
-                    $scope.InsAdding = false;
+                    $scope.adding = false;
 		}
 		else if (institution.state == "edit") {
 		    // This is the confirm button at edit state
@@ -157,39 +157,39 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 		    $scope.editRange = null;
 		} else if (institution.state == "remove") {
 		    // this is the remove button at remove state
-		    $scope.deleteAffiliation(institution);
+		    $scope.removeConfirm(institution);
 		    institution.state = null;
 		}
 	    }
 	    $scope.addConfirm = function() {
-	    	for(var i = 0; i < $scope.allInstitutions.length; i++){
-	    		if($scope.allInstitutions[i].name == $scope.newInstitution['name']){
-	    				$scope.foundInstitution['partyId'] = $scope.allInstitutions[i].partyId;
-	    				$scope.foundInstitution['name'] = $scope.allInstitutions[i].name;
-	    				$scope.addConfirm2();
-	    				return;
-	    		}
-	    	}
+//	    	for(var i = 0; i < $scope.allInstitutions.length; i++){
+//	    		if($scope.allInstitutions[i].name == $scope.newInstitution['name']){
+//	    				$scope.foundInstitution['partyId'] = $scope.allInstitutions[i].partyId;
+//	    				$scope.foundInstitution['name'] = $scope.allInstitutions[i].name;
+//	    				$scope.addConfirm2();
+//	    				return;
+//	    		}
+//	    	}
 	    	$scope.addConfirm1();
 	    }
-	    $scope.addConfirm2 = function() {
-			$scope.foundInstitution['state'] = null;
-			$scope.institutions.unshift(angular.copy($scope.foundInstitution));
-			var data = {
-					parentPartyId : $scope.consortiumId,
-					childPartyId : $scope.foundInstitution.partyId,
-			}
-	    	$http({
-	    		url: $scope.apiUri+'/parties/affiliations/?' +'secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
-	    		data:data,
-	            method: 'POST',
-				}).success(function(data, status, headers, config){
-				}).error(function(data, status, headers, config){
-				            alert("add existing institution request failed");
-				});
-			$scope.newInstitution = null;
-			$scope.InsAdding = false;
-	    }
+//	    $scope.addConfirm2 = function() {
+//			$scope.foundInstitution['state'] = null;
+//			$scope.institutions.unshift(angular.copy($scope.foundInstitution));
+//			var data = {
+//					parentPartyId : $scope.consortiumId,
+//					childPartyId : $scope.foundInstitution.partyId,
+//			}
+//	    	$http({
+//	    		url: $scope.apiUri+'/parties/affiliations/?' +'secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
+//	    		data:data,
+//	            method: 'POST',
+//				}).success(function(data, status, headers, config){
+//				}).error(function(data, status, headers, config){
+//				            alert("add existing institution request failed");
+//				});
+//			$scope.newInstitution = null;
+//			$scope.adding = false;
+//	    }
 	    $scope.addConfirm1 = function() {
 	    	//Party table: partyId, partyType, display, name, countryId
 			//Credential table: id, username, password, email, institution, partyId, partnerId, userIdentifier
@@ -228,51 +228,51 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 //			$scope.createdInstitution = data;
 			$scope.createdInstitution['state'] = null;
 			$scope.institutions.unshift(angular.copy($scope.createdInstitution));
-			var data = {
-					parentPartyId : $scope.consortiumId,
-					childPartyId : $scope.createdInstitution.partyId,
-			}
+//			var data = {
+//					parentPartyId : $scope.consortiumId,
+//					childPartyId : $scope.createdInstitution.partyId,
+//			}
 			
 			
 			
-		$http({
-            url: $scope.apiUri+'/parties/affiliations/?secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
-			data:data,
-            method: 'POST',
-			}).success(function(data, status, headers, config){
-			}).error(function(data, status, headers, config){
-			            alert("add new institution request failed");
-			});
+//		$http({
+//            url: $scope.apiUri+'/parties/affiliations/?secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
+//			data:data,
+//            method: 'POST',
+//			}).success(function(data, status, headers, config){
+//			}).error(function(data, status, headers, config){
+//			            alert("add new institution request failed");
+//			});
 		}).error(function(data, status, headers, config){
             alert("new institution request failed");
 		});		            
 			$scope.newInstitution = null;
-			$scope.InsAdding = false;
+			$scope.adding = false;
 	    }
 	    $scope.reset = function() {
-		$scope.InsAdding = false;
+		$scope.adding = false;
 		for (i=0; i<$scope.institutions.length; i++) {
 		    $scope.institutions[i].state=null;
 		}
 	    }
-	    $scope.deleteAffiliation = function(institution){
-        	var data = {
-        			parentPartyId: $scope.consortiumId,
-        			childPartyId: institution.partyId,
-        	}
-        	$http({
-        		url: $scope.apiUri+'/parties/affiliations/?secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
-        		data:data,
-	            method: 'DELETE',
-        	}).success(function(data, status, headers, config){
-            }).error(function(data, status, headers, config){
-                alert("institution remove request failed");
-            });
-        	var index = $scope.institutions.indexOf(institution);
-            if (index > -1) {
-                $scope.institutions.splice(index,1);
-            }
-        }
+//	    $scope.deleteAffiliation = function(institution){
+//        	var data = {
+//        			parentPartyId: $scope.consortiumId,
+//        			childPartyId: institution.partyId,
+//        	}
+//        	$http({
+//        		url: $scope.apiUri+'/parties/affiliations/?secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
+//        		data:data,
+//	            method: 'DELETE',
+//        	}).success(function(data, status, headers, config){
+//            }).error(function(data, status, headers, config){
+//                alert("institution remove request failed");
+//            });
+//        	var index = $scope.institutions.indexOf(institution);
+//            if (index > -1) {
+//                $scope.institutions.splice(index,1);
+//            }
+//        }
 	    $scope.removeConfirm = function(institution) {
 	    	var data = {
 	    			partyId: institution.partyId,
