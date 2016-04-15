@@ -30,6 +30,7 @@ angular.module('platform-ui.librariantool.role.institution').controller(
 		}else if($window.sessionStorage.org_phoenixbioinformatics_ui_secretKey!=null){
 			$scope.secretKey = $window.sessionStorage.org_phoenixbioinformatics_ui_secretKey;
 		}
+		//PW-137 ltlogin
 		//check credentials
 //		if(!$scope.credentialId || !$scope.secretKey){
 //			$state.go('ltlogin');
