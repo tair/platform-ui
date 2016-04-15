@@ -146,7 +146,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 			partyId:institution['partyId'],
 		    };
 		    $http({
-			url: $scope.apiUri+'/parties/institution?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+institution['partyId'],
+			url: $scope.apiUri+'/parties/institution/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+institution['partyId'],
 			data: data,
 			method: 'PUT',
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
@@ -279,7 +279,8 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	    			partyId: institution.partyId,
 	    	}
                 $http({
-                    url: $scope.apiUri+'/parties/institutions?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+institution['partyId'],
+                    url: $scope.apiUri+'/parties/institutions/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+institution['partyId'],
+                    data: data,
                     method: 'DELETE',
                 }).success(function(data, status, headers, config){
                 }).error(function(data, status, headers, config){

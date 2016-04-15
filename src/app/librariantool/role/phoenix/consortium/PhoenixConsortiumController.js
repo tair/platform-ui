@@ -114,7 +114,7 @@ angular.module('platform-ui.librariantool.role.phoenix.consortium').controller(
 		    	partyId:consortium['partyId'],
 		    };
 		    $http({
-			url: $scope.apiUri+'/parties/consortiums?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+consortium['partyId'],
+			url: $scope.apiUri+'/parties/consortiums/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+consortium['partyId'],
 			data: data,
 			method: 'PUT',
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
@@ -187,7 +187,7 @@ angular.module('platform-ui.librariantool.role.phoenix.consortium').controller(
             		partyId : consortium.partyId,
                 };
                 $http({
-                    url: $scope.apiUri+'/parties/consortiums?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+consortium['partyId'],
+                    url: $scope.apiUri+'/parties/consortiums/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+consortium['partyId'],
                     data:data,
                     method: 'DELETE',
                 }).success(function(data, status, headers, config){
