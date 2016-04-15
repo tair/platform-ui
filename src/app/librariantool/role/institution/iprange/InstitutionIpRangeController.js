@@ -21,9 +21,10 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 
 	/* Controller Definition */
 	function ($scope, $http, $cookies, $window, $location, $state, $filter, Title, InstitutionIpRangeModel, IpValidator) {
-		if(!$scope.credentialId || !$scope.secretKey){
-			$state.go('ltlogin');
-		}	
+//PW-137 ltlogin
+//		if(!$scope.credentialId || !$scope.secretKey){
+//			$state.go('ltlogin');
+//		}	
 	    $scope.ipranges = InstitutionIpRangeModel.ipranges;
 	    $scope.addGroupShow = "hidden";
 	    $scope.adding = false;
@@ -80,6 +81,33 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
                     iprange.state = null;
                 }
             }
+            //PW-137
+            $scope.trash = function(iprange) {
+//            jQuery(this).confirmation(
+//            		{
+//            			onConfirm: function(event) 
+//            			{ $event.stopPropagation(); right(iprange);},
+//            			
+//            			onCancel: function(event) 
+//            			{ alert('cancel') }
+//            		}
+//            		);
+            
+         
+//            	$('body').confirmation({
+//        			selector: '[data-toggle="confirmation"]'
+//        		});
+          
+        		$('.confirmation-callback').confirmation({
+        			onConfirm: function() { alert('1confirm') },
+        			onCancel: function() { alert('2cancel') }
+        		});
+            	
+            	//actual removal; commented out for now
+    		   // $scope.removeConfirm(iprange);
+    		    iprange.state = null;
+            }
+            
 	    $scope.right = function(iprange) {
 		if (iprange.state == "selected") {
 		    // this is the trash button at normal state
@@ -125,9 +153,9 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 		    	return;
 		    }
 		    if (!IpValidator.IpRangeLimit(iprange['start'], iprange['end'])) {
-      	alert('IP range is too large, please enter a smaller IP range.  Please contact us at info@phoenixbioinformatics.org with any questions.');
-      	return;
-      }	
+		    	alert('IP range is too large, please enter a smaller IP range.  Please contact us at info@phoenixbioinformatics.org with any questions.');
+		    	return;
+		    }	
 		    data = {
 			ipRangeId:iprange['ipRangeId'],
 			start:iprange['start'],
@@ -152,6 +180,7 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 		    iprange.state = null;
 		}
 	    }
+	    
 	    $scope.addConfirm = function() {
 	    	if(!IpValidator.ValidateIpAddress($scope.newRange['start'])){
 		    	alert("Invalid starting IP");
