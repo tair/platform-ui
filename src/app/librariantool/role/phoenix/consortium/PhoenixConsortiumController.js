@@ -21,7 +21,7 @@ angular.module('platform-ui.librariantool.role.phoenix.consortium').controller(
 	function ($scope, $http, $cookies, $location, $state, $filter, Title, PhoenixConsortiumModel) {
 		$scope.setCurrentTab(PhoenixConsortiumModel.currentTab);
 		$scope.consortiums = PhoenixConsortiumModel.consortiums;
-	    $scope.addGroupShow = "hidden";
+//	    $scope.addGroupShow = "hidden";
 	    $scope.adding = false;
 	    $scope.newConsortium = PhoenixConsortiumModel.newConsortium;
 	    $scope.removeConsortium = null;
@@ -76,10 +76,9 @@ angular.module('platform-ui.librariantool.role.phoenix.consortium').controller(
                     consortium.state = null;
                 }
             }
-            
+        // click on consortium    
     	    $scope.enterConsortium = function(consortium){
     	    	if(!(consortium.state=='edit')){
-//    	    		$state.go("role.institution", {'partyId' : institution.partyId, 'institutionName':institution.name});
     	    		$state.go("role.consortium.institution", {consortiumId: consortium.partyId});
     				consortium.state = null;
     	    	}
@@ -111,10 +110,10 @@ angular.module('platform-ui.librariantool.role.phoenix.consortium').controller(
 		else if (consortium.state == "edit") {
 		    // This is the confirm button at edit state
 		    data = {
-			name:consortium['name'],
+			partyId:consortium['partyId'],
 		    };
 		    $http({
-			url: $scope.apiUri+'/parties/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+consortium['partyId'],
+			url: $scope.apiUri+'/parties/consortiums?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+consortium['partyId'],
 			data: data,
 			method: 'PUT',
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
@@ -181,10 +180,13 @@ angular.module('platform-ui.librariantool.role.phoenix.consortium').controller(
 		    $scope.consortiums[i].state=null;
 		}
 	    }
+	    // remove consortium
 	    $scope.removeConfirm = function(consortium) {
-                data = {};
+                data = {
+            		partyId : consortium.partyId,
+                };
                 $http({
-                    url: $scope.apiUri+'/parties/credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+consortium['partyId'],
+                    url: $scope.apiUri+'/parties/consortiums?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+consortium['partyId'],
                     data:data,
                     method: 'DELETE',
                 }).success(function(data, status, headers, config){
@@ -197,12 +199,7 @@ angular.module('platform-ui.librariantool.role.phoenix.consortium').controller(
                 }
 		$scope.removeConsortium = null;
 	    }
-//	    $scope.enterConsortium = function(consortium){
-//	    	if(!(consortium.state=='edit')){
-//	    		$state.go('role.phoenix.manage.institution', {'consortiumId':consortium.partyId, 'consortiumName':consortium.name});
-//	    	}
-//	    }
-	    // init
+	    // get all consortia
             $http({
                 url: $scope.apiUri+'/parties/?partyType=consortium'+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
                 method: 'GET',
