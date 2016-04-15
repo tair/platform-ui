@@ -274,6 +274,9 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
             }
         }
 	    $scope.removeConfirm = function(institution) {
+	    	var data = {
+	    			partyId: institution.partyId,
+	    	}
                 $http({
                     url: $scope.apiUri+'/parties/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+institution['partyId'],
                     method: 'DELETE',
@@ -296,9 +299,6 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	    }
 	    
 	    // init
-	    $scope.consortiumId = $location.search()['consortiumId'];
-	    $scope.consortiumName = $location.search()['consortiumName'];
-//	    $scope.setTitle($scope.consortiumName);
             $http({
             	url: $scope.apiUri+'/parties/?partyType=organization'+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
                 method: 'GET',
