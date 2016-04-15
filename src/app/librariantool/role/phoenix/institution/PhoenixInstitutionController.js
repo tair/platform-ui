@@ -279,7 +279,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 	    			partyId: institution.partyId,
 	    	}
                 $http({
-                    url: $scope.apiUri+'/parties/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+institution['partyId'],
+                    url: $scope.apiUri+'/parties/institutions?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+institution['partyId'],
                     method: 'DELETE',
                 }).success(function(data, status, headers, config){
                 }).error(function(data, status, headers, config){
