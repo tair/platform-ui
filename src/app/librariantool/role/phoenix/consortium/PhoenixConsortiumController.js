@@ -110,7 +110,8 @@ angular.module('platform-ui.librariantool.role.phoenix.consortium').controller(
 		else if (consortium.state == "edit") {
 		    // This is the confirm button at edit state
 		    data = {
-			partyId:consortium['partyId'],
+		    	name:consortium['name'],
+		    	partyId:consortium['partyId'],
 		    };
 		    $http({
 			url: $scope.apiUri+'/parties/consortiums?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+consortium['partyId'],

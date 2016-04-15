@@ -143,9 +143,10 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 		    // This is the confirm button at edit state
 		    data = {
 			name:institution['name'],
+			partyId:institution['partyId'],
 		    };
 		    $http({
-			url: $scope.apiUri+'/parties/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+institution['partyId'],
+			url: $scope.apiUri+'/parties/institution?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+institution['partyId'],
 			data: data,
 			method: 'PUT',
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
