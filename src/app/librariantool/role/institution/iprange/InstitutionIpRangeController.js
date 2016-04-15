@@ -81,7 +81,32 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
         	if (iprange.state == "selected" && !$scope.adding) {
         		iprange.state = null;
             }
-        }
+            //PW-137
+            $scope.trash = function(iprange) {
+//            jQuery(this).confirmation(
+//            		{
+//            			onConfirm: function(event) 
+//            			{ $event.stopPropagation(); right(iprange);},
+//            			
+//            			onCancel: function(event) 
+//            			{ alert('cancel') }
+//            		}
+//            		);
+            
+         
+//            	$('body').confirmation({
+//        			selector: '[data-toggle="confirmation"]'
+//        		});
+          
+        		$('.confirmation-callback').confirmation({
+        			onConfirm: function() { alert('1confirm') },
+        			onCancel: function() { alert('2cancel') }
+        		});
+            	
+            	//actual removal; commented out for now
+    		   // $scope.removeConfirm(iprange);
+    		    iprange.state = null;
+            }
         
 	    $scope.right = function(iprange) {
 	    	if (iprange.state == "selected") {

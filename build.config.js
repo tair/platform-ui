@@ -41,8 +41,12 @@ module.exports = {
 			'lib/js/angular-ui-router.min.js',
 			'lib/js/lodash.min.js',
 			'lib/js/ui-bootstrap-tpls-0.13.0.min.js',
-			'lib/js/bootbox.min.js'
-			//'lib/js/bootstrap-confirmation.js' //PW-137
+			'lib/js/bootbox.min.js',
+			//'lib/js/bootstrap-tooltip.js',
+			
+			//'lib/js/jquery-1.11.3.min.js',
+			//'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js',
+			//'lib/js/bootstrap-confirmation.js'
 		]
 	}
 };
