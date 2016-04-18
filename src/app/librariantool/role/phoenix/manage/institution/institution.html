@@ -1,0 +1,120 @@
+<div>
+  <!-- Left Panel -->
+  <div class="col-xs-4" style="padding:0px">
+    <div class="lt-admin-action-label">ACTIONS</div>
+    <div ng-class="actionButtonAddCss(InsAdding)" ng-click="reset(); InsAdding=true">
+      <span class="glyphicon glyphicon-plus text-center" ng-class="actionButtonGlyphiconAddCss(InsAdding)" style="margin-top:-1px"></span>
+      <span class="text-center" ng-class="actionButtonLabelAddCss(InsAdding)" style="margin-top:-1px">ADD INSTITUTION</span>
+    </div>
+    <div ng-class="actionButtonAddCss(SubAdding)" ng-click="reset(); SubAdding=true">
+      <span class="glyphicon glyphicon-plus text-center" ng-class="actionButtonGlyphiconAddCss(SubAdding)" style="margin-top:-1px"></span>
+      <span class="text-center" ng-class="actionButtonLabelAddCss(SubAdding)" style="margin-top:-1px">ADD SUBSCRIPTION</span>
+    </div>
+    <div ng-class="actionButtonAddCss(false)" ng-click="back()">
+      <span class="glyphicon glyphicon-arrow-left text-center" ng-class="actionButtonGlyphiconAddCss(false)" style="margin-top:-1px"></span>
+      <span class="text-center" ng-class="actionButtonLabelAddCss(false)" style="margin-top:-1px">BACK</span>
+    </div>
+  </div>
+
+  <!-- Right Panel -->
+  <div class="col-xs-8 lt-admin-right-panel" style="padding:0px">
+    <!-- Right Panel Header -->
+    <div class="lt-admin-groups-title">
+      <div class="col-xs-4 lt-admin-groups-title-label" style="padding:0px">{{partyInfo.name}}</div>
+      <div class="col-xs-6 pull-right" style="padding:0px">
+        <a href = "" class="lt-admin-groups-title-filter" ng-repeat-start="sorting in sortings" ng-click="sortByField(sorting)"> By {{sorting.text}}</a>
+        <span class="glyphicon glyphicon-triangle-top lt-admin-groups-title-glyphicon" ng-show="predicate==sorting.predicate&&!reverse"></span>
+        <span class="glyphicon glyphicon-triangle-bottom lt-admin-groups-title-glyphicon" ng-show="predicate==sorting.predicate&&reverse"></span>
+        <span class="glyphicon glyphicon-invisible lt-admin-groups-title-glyphicon" ng-hide="predicate==sorting.predicate" ng-repeat-end></span>
+      </div>
+    </div>
+
+    <div class="lt-admin-right-subpanel">
+    
+                  <!-- Add Subscription -->
+      <div class="lt-admin-groups-list-edit" style="height:100px" ng-class="groupsAddCss(SubAdding)">
+    <div class="col-xs-9" style="padding:0px">
+      <select class="lt-admin-groups-list-label-edit" style="width:300px" ng-options="p.partnerId as p.name for p in partners" ng-model="newSubscription.partnerId">
+        <option value="">-- choose a partner --</option>
+      </select>
+      <div class="lt-admin-groups-list-values">
+        <span><input id="createStart" class="lt-ip-groups-list-start-edit" placeholder="Set Start Date" ng-model="newSubscription.start"></input></span>
+        <span>-</span>
+        <span><input id="createEnd" class="lt-ip-groups-list-end-edit" placeholder="Set End Date" ng-model="newSubscription.end"></input></span>
+      </div>
+    </div>
+    <div class="col-xs-3 lt-admin-groups-list-glyphicon-container" style="padding:0px">
+          <div class="pull-right glyphicon glyphicon-remove lt-glyphicon-green text-center" style="margin-right:10px" ng-click="$event.stopPropagation(); SubAdding=false"></div>
+          <div class="pull-right glyphicon glyphicon-ok lt-glyphicon-green text-center" style="margin-right:10px" ng-click="$event.stopPropagation(); createConfirm()"></div>
+    </div>
+      </div>
+    <!-- subscription list -->
+        <div class="lt-institution-subscription-list" ng-repeat="p in listPartners(partners)" style="height:100px;width:571px">
+            <div class="row">
+                <div class="{{uiparams.partnercolwidth}}">
+                    <div class="row"><div class="col-xs-12 lt-font lt-theme-font-color lt-font-aliasing" style="font-size: 24px;">
+                        {{p.name}} <img src={{p.logoUri}} alt="partner" width="87" height="61">
+                    </div></div>
+                    <div class="row"><div class="col-xs-12 lt-font lt-font-aliasing" style="font-size: 16px; color: #858585;">
+                        {{p.description}}
+                        
+                        <!-- PW-139 test to see partnerId
+                        description to be taken via
+                        https://demoapi.arabidopsis.org/partners/descriptions/?partnerId=tair&includeText=True
+                        -->
+                        {{p.partnerId}}
+                    </div></div>
+                </div>
+                <div class="{{uiparams.expcolwidth}}">
+                    <div class="row">
+                        {{getExpDate(p.partnerId) | date:'fullDate'}}
+                    </div>
+                </div>
+                <div class="{{uiparams.actionscolwidth}}">
+                    <div class="row">
+                        <button type="button" class="center-block btn btn-default" ng-click="licenseAction(p.partnerId);">{{licenseButton(p.partnerId)}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+      <!-- Description and Search Box -->
+      <div class="lt-admin-groups-description">Add new institution from the left action panel. Click on already existing institutions to edit or delete them.</div>
+      <div class="lt-admin-groups-search">
+        <span>Search</span>
+        <span><input style="width:468px" placeholder="Enter institution name or ID number" ng-model="searchTerm"></input></span>
+      </div>
+        
+      <!-- Add Institution -->
+      <div class="lt-admin-groups-list-edit" ng-class="groupsAddCss(InsAdding)">
+	<div class="col-xs-9" style="padding:0px">
+          <div><input class="lt-admin-groups-list-label-edit" style="width:300px" placeholder="Enter Institution Name" ng-model="newInstitution.name" uib-typeahead="institution.name for institution in allInstitutions | filter:{name:$viewValue} | limitTo:8"></input></div>
+	</div>
+	<div class="col-xs-3 lt-admin-groups-list-glyphicon-container" style="padding:0px">
+          <div class="pull-right glyphicon glyphicon-remove lt-glyphicon-green text-center" style="margin-right:10px" ng-click="$event.stopPropagation(); InsAdding=false"></div>
+          <div class="pull-right glyphicon glyphicon-ok lt-glyphicon-green text-center" style="margin-right:10px" ng-click="$event.stopPropagation(); addConfirm()"></div>
+	</div>
+      </div>
+      
+      <!-- Institution List -->
+      <div ng-repeat="institution in institutions | filter:searchTerm">
+	<div class="row" ng-class="groupsListCss(institution.state)" ng-mouseover="groupsMoveOver(institution)" ng-mouseleave="groupsMoveOut(institution)" ng-click="enterInstitution(institution)">
+	  <div class="col-xs-9" style="padding:0px">
+	    <div><input ng-class="groupsListLabelCss(institution.state)" style="width:300px" ng-model="institution.name" ng-readonly="!(institution.state=='edit')"></input></div>
+	    <div class="lt-admin-groups-list-values">
+	    <div class="lt-admin-groups-list-values">
+              <input class="lt-admin-groups-list-values-input" ng-model="institution.partyId" ng-readonly="true"></input>
+        </div>
+	  </div>
+	  </div>
+	  <div class="col-xs-3" style="margin-top:18px;padding:0px" ng-class="groupsListGlyphiconCss(institution.state)">
+	  <div class="delete-label">Delete?</div>
+	    <div class="pull-right glyphicon text-center" ng-class="groupsListGlyphiconRightCss(institution.state)" style="margin-right:10px" ng-click="$event.stopPropagation(); right(institution);"></div>
+	    <div class="pull-right glyphicon text-center" ng-class="groupsListGlyphiconLeftCss(institution.state)" style="margin-right:10px" ng-click="$event.stopPropagation(); left(institution);"></div>
+	  </div>
+	</div>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -151,7 +151,7 @@ angular.module('platform-ui.librariantool.role').controller(
                 } else if (state == "edit") {
                     return "glyphicon-remove lt-glyphicon-green";
                 } else if (state == "remove") {
-                    return "glyphicon-remove lt-glyphicon-red";
+                    return "delete-no";//PW-137
                 }
 
             }
@@ -161,7 +161,7 @@ angular.module('platform-ui.librariantool.role').controller(
                 } else if (state == "edit") {
                     return "glyphicon-ok lt-glyphicon-green";
                 } else if (state == "remove") {
-                    return "glyphicon-ok lt-glyphicon-red";
+                    return "delete-yes";//PW-137
                 }
                 return "lt-glyphicon";
             }
