@@ -196,6 +196,7 @@ angular.module('platform-ui.librariantool.role.phoenix.institution').controller(
 			//Credential table: id, username, password, email, institution, partyId, partnerId, userIdentifier
 		var data = {
 			username: $scope.newInstitution['username'],
+			password: $scope.newInstitution['password'],
 			partnerId:"phoenix",
 			partyType:"organization",
 			email: $scope.newInstitution['email'],//Credential.email, optional
