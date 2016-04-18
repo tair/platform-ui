@@ -137,7 +137,7 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 			label:iprange['name'],
 		    };
 		    $http({
-			url: $scope.apiUri+'/parties/ipranges/?partyId='+$scope.credentialId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&ipRangeId='+iprange['ipRangeId'],
+			url: $scope.apiUri+'/parties/ipranges/?partyId='+$scope.institutionId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&ipRangeId='+iprange['ipRangeId'],
 			data: data,
 			method: 'PUT',
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}

@@ -50,7 +50,7 @@ angular.module('platform-ui.librariantool.role.institution.subscription').contro
 			alert("Cannot get partner information");
 		});
 		$http({
-			url: $scope.apiUri+'/subscriptions/activesubscriptions/'+$scope.credentialId+'/',
+			url: $scope.apiUri+'/subscriptions/activesubscriptions/'+$scope.institutionId+'/',
 			method: 'GET',
 		}).success(function(data, status, headers, config) {
 			$scope.activeSubscriptions = data;

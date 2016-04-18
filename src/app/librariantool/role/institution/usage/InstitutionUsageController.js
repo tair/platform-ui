@@ -30,7 +30,7 @@ angular.module('platform-ui.librariantool.role.institution.usage').controller(
 
 	    $scope.requestUsage = function() {
 					$http({
-						url: $scope.apiUri+'/parties/usage/?partyId='+$scope.credentialId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
+						url: $scope.apiUri+'/parties/usage/?partyId='+$scope.institutuionId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
 						method: 'POST',
 						data: $scope.postData,
 					}).success(function() {
@@ -53,7 +53,7 @@ angular.module('platform-ui.librariantool.role.institution.usage').controller(
 //				$state.go('ltlogin');
 //			}
 			$http({
-				url: $scope.apiUri+'/credentials/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+$scope.credentialId,
+				url: $scope.apiUri+'/credentials/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+$scope.institutionId,
 				method: 'GET',
 			}).success(function(data, status, headers, config) {
 				$scope.postData.institution = data[0].institution;
