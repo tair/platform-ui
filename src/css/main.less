@@ -397,6 +397,7 @@ body {
 .lt-admin-groups-list-remove{
         .lt-admin-groups-list;
         border-color: @lt-red;
+        position:relative;
 }
 
 .lt-admin-groups-list-label {
@@ -848,4 +849,54 @@ hr {
 	color: #b9c841;
 	font-family: Arial, Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
+}
+
+/**************** PW-137 ******************************/
+.delete-buttons-common-before {
+	color: #ffffff;
+	font-family: "arial";
+	line-height:38px;
+}
+
+.delete-buttons-common {
+	width:36px;
+	height:36px;
+	cursor:pointer;
+	background-color:@lt-red;
+}
+
+.delete-yes{
+	.delete-buttons-common;
+}
+
+.delete-yes:before {
+	.delete-buttons-common-before;
+	content: "Yes";
+}
+
+.delete-no {
+	.delete-buttons-common;
+}
+
+.delete-no:before {
+	.delete-buttons-common-before;
+	content: "No";
+}
+
+.delete-label {
+	display:none;
+}
+
+.lt-admin-groups-list-remove .delete-label {
+   position: absolute;
+   display:block;
+    left: -40px;
+    top: 4px;
+    /* background-color:@lt-red; */
+    font-family: sans-serif;
+    font-size: 18px;
+    width: 58px;
+    height: 29px;
+    line-height: 28px;
+    padding-left: 3px;
 }
