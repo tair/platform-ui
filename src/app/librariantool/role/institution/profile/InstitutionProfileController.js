@@ -110,7 +110,7 @@ angular.module('platform-ui.librariantool.role.institution.profile').controller(
 //					$state.go('ltlogin');
 //				}
 	            $http({
-	                url: $scope.apiUri+'/parties/institutions/?partyId='+$scope.credentialId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
+	                url: $scope.apiUri+'/parties/institutions/?partyId='+$scope.institutionId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
 	                method: 'GET',
 	            }).success(function(data, status, headers, config){
                         		$scope.user.partyId = data[0].partyId;
