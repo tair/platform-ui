@@ -35,7 +35,8 @@
 		<script src="lib/js/hlp-13566/angular-route.min.js"></script>
         <script src="lib/js/hlp-13566/angular-cookies.min.js"></script>
 		<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-<!-- PW-137 -->
+
+<!-- PW-137 
 <script src="lib/js/hlp-13566/bootstrap-confirmation.min.js"></script>
 	<script>
 	$(function() {
@@ -44,12 +45,12 @@
 		});
 
 		$('.confirmation-callback').confirmation({
-			onConfirm: function() { alert('1confirm') },
-			onCancel: function() { alert('2cancel') }
+			onConfirm: function() { alert('confirm') },
+			onCancel: function() { alert('cancel') }
 		});
 	});
 	</script>
-<!-- end of PW-137 -->
+end of PW-137 -->
 		<% scripts.forEach( function ( file ) { %>
 		<script src="<%= file %>"></script><% }); %>
 	</body>

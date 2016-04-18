@@ -21,10 +21,16 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 
 	/* Controller Definition */
 	function ($scope, $http, $cookies, $window, $location, $state, $filter, Title, InstitutionIpRangeModel, IpValidator) {
+<<<<<<< release_for_rebase_test
 //		if(!$scope.credentialId || !$scope.secretKey){
 //			$state.go('ltlogin');
 //		}	
 		$scope.setCurrentTab(InstitutionIpRangeModel.currentTab);	
+=======
+		if(!$scope.credentialId || !$scope.secretKey){
+			$state.go('ltlogin');
+		}	
+>>>>>>> 909618b PW-137 
 	    $scope.ipranges = InstitutionIpRangeModel.ipranges;
 	    $scope.addGroupShow = "hidden";
 	    $scope.adding = false;
@@ -81,32 +87,8 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
         	if (iprange.state == "selected" && !$scope.adding) {
         		iprange.state = null;
             }
-            //PW-137
-            $scope.trash = function(iprange) {
-//            jQuery(this).confirmation(
-//            		{
-//            			onConfirm: function(event) 
-//            			{ $event.stopPropagation(); right(iprange);},
-//            			
-//            			onCancel: function(event) 
-//            			{ alert('cancel') }
-//            		}
-//            		);
-            
-         
-//            	$('body').confirmation({
-//        			selector: '[data-toggle="confirmation"]'
-//        		});
-          
-        		$('.confirmation-callback').confirmation({
-        			onConfirm: function() { alert('1confirm') },
-        			onCancel: function() { alert('2cancel') }
-        		});
-            	
-            	//actual removal; commented out for now
-    		   // $scope.removeConfirm(iprange);
-    		    iprange.state = null;
-            }
+
+        }
         
 	    $scope.right = function(iprange) {
 	    	if (iprange.state == "selected") {
