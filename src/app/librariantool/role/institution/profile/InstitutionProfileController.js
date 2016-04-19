@@ -46,7 +46,7 @@ angular.module('platform-ui.librariantool.role.institution.profile').controller(
 					if ($scope.userprev[k] != $scope.user[k]) {
 						put_data[k] = $scope.user[k];
 						$scope.userprev[k] = $scope.user[k];
-						if (k == 'username' || k == 'password')
+						if ((k == 'username' || k == 'password') && $scope.role == 'organization')
 							{
 							forceReSignIn = true;
 							}
