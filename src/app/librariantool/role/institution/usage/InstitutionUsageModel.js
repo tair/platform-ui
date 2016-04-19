@@ -20,7 +20,9 @@ angular.module('platform-ui.librariantool.role.institution.usage').factory(
 				"institution": null,
 				"startDate": null,
 				"endDate": null,
-				"comments": null
+				"comments": null,
+				"name": null,
+				"email": null,
 			},
 		};
 	}
