@@ -57,7 +57,12 @@ angular.module('platform-ui.librariantool.role.institution').controller(
 			method: 'GET'
 		    }).success(function(data, status, headers, config){
 		    	$scope.partyInfo = data[0];
-				$scope.role = $scope.partyInfo['partyType'];				
+				$scope.role = $scope.partyInfo['partyType'];	
+				if($scope.role == "staff") {
+					$scope.setPhoenix(true);
+				} else if ($scope.role == "consortium") {
+					$scope.setConsortium(true);
+				}
 		    }).error(function() {});
 		//display option of back button
 		if($scope.role == "staff") {
