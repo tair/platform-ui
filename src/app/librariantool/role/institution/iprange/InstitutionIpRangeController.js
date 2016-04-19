@@ -178,7 +178,7 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 		var data = {
 		    start:$scope.newRange['start'],
 		    end:$scope.newRange['end'],
-		    partyId:$scope.credentialId,
+		    partyId:$scope.institutionId,
 		    label:$scope.newRange['name'],
 		}
 		$http({
