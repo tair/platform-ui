@@ -54,7 +54,7 @@ angular.module('platform-ui.librariantool.role.institution.subscription.renewal'
 //			$state.go('ltlogin');
 //		}
 		$http({
-			url: $scope.apiUri+'/partners?partnerId='+$scope.partnerId,
+			url: $scope.apiUri+'/partners/?partnerId='+$scope.partnerId,
 			method: 'GET',
 		}).success(function(data, status, headers, config) {
 			$scope.partner = data[0];
@@ -62,7 +62,7 @@ angular.module('platform-ui.librariantool.role.institution.subscription.renewal'
 			alert("Cannot get partner information");
 		});
 		$http({
-			url: $scope.apiUri+'/parties/institutions?partyId='+$scope.institutionId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
+			url: $scope.apiUri+'/parties/institutions/?partyId='+$scope.institutionId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
 			method: 'GET',
 		}).success(function(data, status, headers, config){
 			$scope.institution = data[0].name;

@@ -53,7 +53,7 @@ angular.module('platform-ui.librariantool.role.institution.subscription.request'
 //			$state.go('ltlogin');
 //		}
 		$http({
-			url: $scope.apiUri+'/partners?partnerId='+$scope.partnerId,
+			url: $scope.apiUri+'/partners/?partnerId='+$scope.partnerId,
 			method: 'GET',
 		}).success(function(data, status, headers, config) {
 			$scope.partner = data[0];
