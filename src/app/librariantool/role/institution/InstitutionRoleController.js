@@ -51,6 +51,14 @@ angular.module('platform-ui.librariantool.role.institution').controller(
 					$scope.setTitle($scope.title);
 				}
 		    }).error(function() {});
+		//get role
+		$http({
+			url: $scope.apiUri+'/parties/?partyId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
+			method: 'GET'
+		    }).success(function(data, status, headers, config){
+		    	$scope.partyInfo = data[0];
+				$scope.role = $scope.partyInfo['partyType'];				
+		    }).error(function() {});
 		//display option of back button
 		if($scope.role == "staff") {
 			$scope.setPhoenix(true);
