@@ -63,6 +63,7 @@ angular.module('platform-ui.librariantool.role.institution').controller(
 				} else if ($scope.role == "consortium") {
 					$scope.setConsortium(true);
 				}
+				$scope.tabs = InstitutionRoleModel.getTabs($scope.role);
 		    }).error(function() {});
 		//display option of back button
 		if($scope.role == "staff") {
