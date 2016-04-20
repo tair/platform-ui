@@ -27,9 +27,9 @@ angular.module('platform-ui.librariantool.role.consortium.subscription.request')
 	    $scope.requestRenewal = function() {
 		postData = {
                         "partnerName": $scope.partner.name,
-                        "name": $scope.user.name,//PW-161 name
+//                        "name": $scope.user.name,//PW-161 name
                         "email": $scope.user.email,
-                        "institution": $scope.user.institution,
+                        "consortium": $scope.consortium,
                         "comments": $scope.comments,
                 };
                 $http({
@@ -58,10 +58,11 @@ angular.module('platform-ui.librariantool.role.consortium.subscription.request')
 			alert("Cannot get partner information");
 		});
 		$http({
-                        url: $scope.apiUri+'/credentials?username='+$cookies.username+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+                        url: $scope.apiUri+'/parties/consortiums/?partyId='+$scope.consortiumId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
                         method: 'GET',
                 }).success(function(data, status, headers, config){
-                        $scope.user = data[0];
+                		$scope.consortium = data[0].name;
+                        $scope.user = data[1];
                 }).error(function() {
                         alert("User information failed to retrieve");
                 });
