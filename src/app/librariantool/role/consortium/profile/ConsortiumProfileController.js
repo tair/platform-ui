@@ -55,7 +55,7 @@ angular.module('platform-ui.librariantool.role.consortium.profile').controller(
 				}
 
 				$http({
-					url: $scope.apiUri+'/parties/institutions/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
+					url: $scope.apiUri+'/parties/consortiums/?partyId='+$scope.consortiumId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
 					data: put_data,
 					method: 'PUT',
 					headers: {'Content-Type': 'application/x-www-form-urlencoded'},
@@ -106,13 +106,12 @@ angular.module('platform-ui.librariantool.role.consortium.profile').controller(
 
 	    	function init() {
 	    		$scope.setCurrentTab(ConsortiumProfileModel.currentTab);
-//	    		$scope.setTitle(ConsortiumProfileModel.currentTab);
 	    		$scope.user = ConsortiumProfileModel.user;
 //				if(!$scope.credentialId || !$scope.secretKey){
 //					$state.go('ltlogin');
 //				}
 	            $http({
-	                url: $scope.apiUri+'/parties/institutions/?partyId='+$scope.credentialId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
+	                url: $scope.apiUri+'/parties/consortiums/?partyId='+$scope.consortiumId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
 	                method: 'GET',
 	            }).success(function(data, status, headers, config){
                         		$scope.user.partyId = data[0].partyId;
