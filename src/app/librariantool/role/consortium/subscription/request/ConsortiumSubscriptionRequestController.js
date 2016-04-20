@@ -33,24 +33,26 @@ angular.module('platform-ui.librariantool.role.consortium.subscription.request')
                         "comments": $scope.comments,
                 };
                 $http({
-                        url: $scope.apiUri+'/subscriptions/request/'+'?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+                        url: $scope.apiUri+'/subscriptions/request/'+'?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($sope.secretKey),
                         method: 'POST',
                         data: postData,
                 }).success(function(){
-                        alert("Hey there, we will get back to you shortly");
+                        $scope.successMessage = "Thank you for your request! We will get back to you shortly.";
                         $scope.comments = null;
                 }).error(function() {
-                        alert("Renewal request not sent");
+                        alert("Request quote request not sent");
                 });
 		return true;
 	    };
 
 	    function init() {
-//		$scope.setTitle(ConsortiumSubscriptionRequestModel.title);
 		$scope.uiparams = ConsortiumSubscriptionRequestModel.uiparams;
 		$scope.partnerId = $location.search()['partnerId'];
+		//		if(!$scope.credentialId || !$scope.secretKey){
+//			$state.go('ltlogin');
+//		}
 		$http({
-			url: $scope.apiUri+'/partners?partnerId='+$scope.partnerId,
+			url: $scope.apiUri+'/partners/?partnerId='+$scope.partnerId,
 			method: 'GET',
 		}).success(function(data, status, headers, config) {
 			$scope.partner = data[0];

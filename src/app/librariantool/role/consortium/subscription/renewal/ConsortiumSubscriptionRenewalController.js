@@ -37,7 +37,7 @@ angular.module('platform-ui.librariantool.role.consortium.subscription.renewal')
 			method: 'POST',
 			data: postData,
 		}).success(function(){
-			alert("Hey there, we will get back to you shortly");
+			$scope.successMessage = "Thank you for your request! We will get back to you shortly.";
 			$scope.comments = null;
 		}).error(function() {
 			alert("Renewal request not sent");
@@ -46,11 +46,13 @@ angular.module('platform-ui.librariantool.role.consortium.subscription.renewal')
 	    };
 
 	    function init() {
-//		$scope.setTitle(ConsortiumSubscriptionRenewalModel.title);
 		$scope.uiparams = ConsortiumSubscriptionRenewalModel.uiparams;
 		$scope.partnerId = $location.search()['partnerId'];
+		//		if(!$scope.credentialId || !$scope.secretKey){
+//			$state.go('ltlogin');
+//		}
 		$http({
-			url: $scope.apiUri+'/partners?partnerId='+$scope.partnerId,
+			url: $scope.apiUri+'/partners/?partnerId='+$scope.partnerId,
 			method: 'GET',
 		}).success(function(data, status, headers, config) {
 			$scope.partner = data[0];
