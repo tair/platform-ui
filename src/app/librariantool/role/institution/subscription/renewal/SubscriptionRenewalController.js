@@ -31,7 +31,8 @@ angular.module('platform-ui.librariantool.role.institution.subscription.renewal'
 //			"name": $scope.user.name, 
 			//PW-161 name
 			"email": $scope.user.email,
-			"institution": $scope.institution,
+			"partyName": $scope.partyName,
+			"partyType": "Institution",
 			"comments": $scope.comments,
 		};
 		$http({
@@ -65,7 +66,7 @@ angular.module('platform-ui.librariantool.role.institution.subscription.renewal'
 			url: $scope.apiUri+'/parties/institutions/?partyId='+$scope.institutionId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
 			method: 'GET',
 		}).success(function(data, status, headers, config){
-			$scope.institution = data[0].name;
+			$scope.partyName = data[0].name;
 			$scope.user = data[1];
 		}).error(function() {
 			alert("User information failed to retrieve");
