@@ -47,10 +47,10 @@ angular.module('platform-ui.librariantool.role.consortium.profile').controller(
 					if ($scope.userprev[k] != $scope.user[k]) {
 						put_data[k] = $scope.user[k];
 						$scope.userprev[k] = $scope.user[k];
-						if (k == 'username' || k == 'password')
-							{
-							forceReSignIn = true;
-							}
+						if ((k == 'username' || k == 'password') && $scope.role == 'consortium')
+						{
+						forceReSignIn = true;
+						}
 					}
 				}
 
@@ -62,9 +62,7 @@ angular.module('platform-ui.librariantool.role.consortium.profile').controller(
 				}).success(function(){
 					bootbox.alert("Institution Profile Successfuly Updated" + (forceReSignIn ? ". Please re-login":"!") );
 					if (forceReSignIn) {
-						//$cookieStore.remove("credentialId");
-						//$cookieStore.remove("secretKey");
-						$scope.home();
+						$scope.logout();
 					}
 				}).error(function() {
 					bootbox.alert("Failed to update Institution Profile");

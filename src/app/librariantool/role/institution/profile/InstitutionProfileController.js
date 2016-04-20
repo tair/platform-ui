@@ -61,9 +61,7 @@ angular.module('platform-ui.librariantool.role.institution.profile').controller(
 				}).success(function(){
 					bootbox.alert("Institution Profile Successfuly Updated" + (forceReSignIn ? ". Please re-login":"!") );
 					if (forceReSignIn) {
-						//$cookieStore.remove("credentialId");
-						//$cookieStore.remove("secretKey");
-						$scope.home();
+						$scope.logout();
 					}
 				}).error(function() {
 					bootbox.alert("Failed to update Institution Profile");
