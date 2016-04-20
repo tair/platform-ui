@@ -52,12 +52,21 @@ angular.module('platform-ui.librariantool.role.consortium').controller(
 					$scope.setTitle($scope.title);
 				}
 		    }).error(function() {});
-		//display option of back button
-		if($scope.role == "staff") {
-			$scope.setPhoenix(true);
-		} else if ($scope.role == "consortium") {
-			$scope.setConsortium(false);
-		}
+		//get role
+		$http({
+			url: $scope.apiUri+'/parties/?partyId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
+			method: 'GET'
+		    }).success(function(data, status, headers, config){
+		    	$scope.partyInfo = data[0];
+				$scope.role = $scope.partyInfo['partyType'];	
+				//display option of back button
+				if($scope.role == "staff") {
+					$scope.setPhoenix(true);
+				} else if ($scope.role == "consortium") {
+					$scope.setConsortium(false);
+				}
+				$scope.tabs = InstitutionRoleModel.getTabs($scope.role);
+		    }).error(function() {});		
 	    //tab content and style
         $scope.tabs = ConsortiumModel.getTabs($scope.role);
         $scope.navbarLabel = function(tab) {
