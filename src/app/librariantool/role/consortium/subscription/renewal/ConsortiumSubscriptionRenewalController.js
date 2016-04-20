@@ -29,7 +29,8 @@ angular.module('platform-ui.librariantool.role.consortium.subscription.renewal')
 			"partnerName": $scope.partner.name,
 //			"name": $scope.user.name,//PW-161 name
 			"email": $scope.user.email,
-			"consortium": $scope.consortium,
+			"partyName": $scope.partyName,
+			"partyType": "Consortium",
 			"comments": $scope.comments,
 		};
 		$http({

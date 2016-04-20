@@ -29,7 +29,8 @@ angular.module('platform-ui.librariantool.role.consortium.subscription.request')
                         "partnerName": $scope.partner.name,
 //                        "name": $scope.user.name,//PW-161 name
                         "email": $scope.user.email,
-                        "consortium": $scope.consortium,
+                        "partyName": $scope.partyName,
+                        "partyType": "Consortium",
                         "comments": $scope.comments,
                 };
                 $http({
@@ -63,7 +64,7 @@ angular.module('platform-ui.librariantool.role.consortium.subscription.request')
                         url: $scope.apiUri+'/parties/consortiums/?partyId='+$scope.consortiumId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
                         method: 'GET',
                 }).success(function(data, status, headers, config){
-                		$scope.consortium = data[0].name;
+                		$scope.partyName = data[0].name;
                         $scope.user = data[1];
                 }).error(function() {
                         alert("User information failed to retrieve");
