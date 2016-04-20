@@ -53,10 +53,10 @@ angular.module('platform-ui.librariantool.role.consortium.usage').controller(
 //				$state.go('ltlogin');
 //			}
 			$http({
-				url: $scope.apiUri+'/credentials/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+$scope.credentialId,
+				url: $scope.apiUri+'/parties/consortiums/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+$scope.consortiumId,
 				method: 'GET',
 			}).success(function(data, status, headers, config) {
-				$scope.postData.institution = data[0].institution;
+				$scope.postData.name = data[0].name;
 			}).error(function() {
 				alert("failed to get party information");
 			});
