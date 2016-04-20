@@ -24,7 +24,7 @@ angular.module('platform-ui.librariantool.role.consortium.subscription.request')
 		$state.go('role.consortium.subscription.list');
 	    };
 
-	    $scope.requestRenewal = function() {
+	    $scope.requestQuote = function() {
 		postData = {
                         "partnerName": $scope.partner.name,
 //                        "name": $scope.user.name,//PW-161 name
