@@ -57,7 +57,6 @@ angular.module('platform-ui.librariantool.role.consortium.subscription.list').co
 
 	    function init() {
 		console.log($state);
-		$scope.setTitle(ConsortiumSubscriptionListModel.title);
 		$scope.uiparams = ConsortiumSubscriptionListModel.uiparams;
 	    }
 	}
