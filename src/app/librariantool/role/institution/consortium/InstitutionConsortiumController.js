@@ -140,7 +140,7 @@ angular.module('platform-ui.librariantool.role.institution.consortium').controll
                     method: 'POST',
 		}).success(function(data, status, headers, config){
 			$scope.createdConsortium = $scope.foundConsortium;
-			$scope.createdConsortium['state'] = null;
+//			$scope.createdConsortium['state'] = null;
 			$scope.consortiums.unshift(angular.copy($scope.createdConsortium));
 			
 		}).error(function(data, status, headers, config){
