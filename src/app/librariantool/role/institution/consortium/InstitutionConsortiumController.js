@@ -75,10 +75,9 @@ angular.module('platform-ui.librariantool.role.institution.consortium').controll
                     consortium.state = null;
                 }
             }
-            
+            //enter consortium
     	    $scope.enterConsortium = function(consortium){
     	    	if(!(consortium.state=='edit')){
-//    	    		$state.go("role.institution", {'partyId' : institution.partyId, 'institutionName':institution.name});
     	    		$state.go("role.consortium.institution", {consortiumId: consortium.partyId});
     				consortium.state = null;
     	    	}
@@ -130,51 +129,24 @@ angular.module('platform-ui.librariantool.role.institution.consortium').controll
 		}
 	    }
 	    $scope.addConfirm = function() {
+	    
 		var data = {
-		    //Party table: partyId, partyType, display, name, countryId
-			//Credential table: id, username, password, email, institution, partyId, partnerId, userIdentifier
-			//TODO PW-82 this still does not work - values entered by user in popup is not being passed here.
-		    name:$scope.newConsortium['name'],//Party.name //optional for WS. shoudl come from UI
-		    partyType:'consortium',//Party.partyType, required
-			username: "andrvet_cons_ph_manage_cons", //temporarly hardcoded. $scope.newConsortium['username'],//TODO Credential.username MUST COME FROM UI, required
-			partnerId:"phoenix", //tair or phoenix //Credential.partnerId, required
-			//email:$scope.newConsortium['email'],//Credential.email //optional
-		    //institution:$scope.newConsortium['institution'],//Credential.institution //optional
+				parentPartyId:$scope.foundConsortium.partyId,
+				childPartyId:$scope.institutionId,
 		}
 		$http({
-					url: $scope.apiUri+'/parties/consortiums/?secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
+					url: $scope.apiUri+'/parties/affiliations/?secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
 					data:data,
                     method: 'POST',
 		}).success(function(data, status, headers, config){
-			//new code
-           	//$scope.partyId = data[0]['partyId'];
-        	$scope.createdConsortium = {
-        			//0 Party
-                	country: data[0].country,
-                	display: data[0].display,
-                	name: data[0].name, //Party.name
-                	partyId: data[0].partyId,
-                	partyType: data[0].partyType,
-                	//1 Credential
-                	email: data[1].email,
-                	institution: data[1].institution,
-                	partnerId: data[1].partnerId,
-                	partyId: data[1].partyId,
-                	userIdentifier: data[1].userIdentifier,
-                	username: data[1].username,//Credential.username
-        	}
-			//$scope.createdConsortium = data;
-        	
-        	bootbox.alert("New Consortium created: username="+data[1].username+" partyId="+data[0].partyId+ " partyType="+data[0].partyType+
-					" partnerId="+data[1].partnerId+" institution="+data[1].institution+" name="+data[0].name);
-        	
+			$scope.createdConsortium = $scope.foundConsortium;
 			$scope.createdConsortium['state'] = null;
 			$scope.consortiums.unshift(angular.copy($scope.createdConsortium));
 			
 		}).error(function(data, status, headers, config){
                     alert("add consortium request failed");
 		});
-		$scope.newConsortium = null;
+		$scope.foundConsortium = null;
 		$scope.adding = false;
 	    }
 	    $scope.reset = function() {
@@ -199,31 +171,46 @@ angular.module('platform-ui.librariantool.role.institution.consortium').controll
                 }
 		$scope.removeConsortium = null;
 	    }
-//	    $scope.enterConsortium = function(consortium){
-//	    	if(!(consortium.state=='edit')){
-//	    		$state.go('role.phoenix.manage.institution', {'consortiumId':consortium.partyId, 'consortiumName':consortium.name});
-//	    	}
-//	    }
 	    // init
-            $http({
-                url: $scope.apiUri+'/parties/affiliations?partyId='+$scope.institutionId +'&partyType=organization'+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
-                method: 'GET',
-            }).success(function(data, status, headers, config){
-		$scope.consortiums = [];
-		for (var i = 0; i < data.length; i++) {
-		    entry = data[i];
-		    $scope.consortiums.push({
-			partyId:entry['partyId'],
-			partyType:entry['partyType'],
-			name:entry['name'],
-			country:entry['country'],
-			display:entry['display'],
-			consortium:entry['consortium'],
-			state:null
-		    });
-		}
-            }).error(function(data, status, headers, config){
-		alert("consortium request failed");
-            });
+        $http({
+            url: $scope.apiUri+'/parties/affiliations?partyId='+$scope.institutionId +'&partyType=organization'+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
+            method: 'GET',
+        }).success(function(data, status, headers, config){
+			$scope.consortiums = [];
+			for (var i = 0; i < data.length; i++) {
+			    entry = data[i];
+			    $scope.consortiums.push({
+				partyId:entry['partyId'],
+				partyType:entry['partyType'],
+				name:entry['name'],
+				country:entry['country'],
+				display:entry['display'],
+				consortium:entry['consortium'],
+				state:null
+			    });
+			}
+        }).error(function(data, status, headers, config){
+        	alert("consortium request failed");
+        });
+        $http({
+            url: $scope.apiUri+'/parties/?partyType=consortium&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
+            method: 'GET',
+        }).success(function(data, status, headers, config){
+			$scope.allConsortiums = [];
+			for (var i = 0; i < data.length; i++) {
+			    entry = data[i];
+			    $scope.allConsortiums.push({
+				partyId:entry['partyId'],
+				partyType:entry['partyType'],
+				name:entry['name'],
+				country:entry['country'],
+				display:entry['display'],
+				consortium:entry['consortium'],
+				state:null
+			    });
+			}
+        }).error(function(data, status, headers, config){
+        	alert("all consortium request failed");
+        });
 	}
 ]);
