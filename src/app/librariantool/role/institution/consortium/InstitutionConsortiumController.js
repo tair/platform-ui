@@ -156,9 +156,12 @@ angular.module('platform-ui.librariantool.role.institution.consortium').controll
 		}
 	    }
 	    $scope.removeConfirm = function(consortium) {
-                data = {};
+                data = {
+                		parentPartyId:consortium.partyId,
+                		childPartyId:$scope.institutionId,
+                };
                 $http({
-                    url: $scope.apiUri+'/parties/credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+consortium['partyId'],
+                    url: $scope.apiUri+'/parties/affiliations/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
                     data:data,
                     method: 'DELETE',
                 }).success(function(data, status, headers, config){
