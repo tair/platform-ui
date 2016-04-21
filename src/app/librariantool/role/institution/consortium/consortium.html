@@ -33,7 +33,7 @@
       <!-- Add Consortium -->
       <div class="lt-admin-groups-list-edit" ng-class="groupsAddCss(adding)">
 	    <div class="col-xs-9" style="padding:0px">
-	      <div><input class="lt-admin-groups-list-label-edit" style="width:300px" placeholder="Enter Consortium Name" ng-model="foundConsortium" uib-typeahead="consortium in allConsortiums | filter:{name:$viewValue} | limitTo:8"></input></div>
+	      <div><input class="lt-admin-groups-list-label-edit" style="width:300px" placeholder="Enter Consortium Name" ng-model="foundConsortium" uib-typeahead="consortium as consortium.name for consortium in allConsortiums | filter:{name:$viewValue} | limitTo:8"></input></div>
 	    </div>
 	    <div class="col-xs-3 lt-admin-groups-list-glyphicon-container" style="padding:0px">
 	          <div class="pull-right glyphicon glyphicon-remove lt-glyphicon-green text-center" style="margin-right:10px" ng-click="$event.stopPropagation(); adding=false"></div>
