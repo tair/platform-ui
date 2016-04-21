@@ -139,9 +139,8 @@ angular.module('platform-ui.librariantool.role.institution.consortium').controll
 					data:data,
                     method: 'POST',
 		}).success(function(data, status, headers, config){
-			$scope.createdConsortium = $scope.foundConsortium;
 //			$scope.createdConsortium['state'] = null;
-			$scope.consortiums.unshift(angular.copy($scope.createdConsortium));
+			$scope.consortiums.unshift(angular.copy($scope.foundConsortium));
 			
 		}).error(function(data, status, headers, config){
                     alert("add consortium request failed");
