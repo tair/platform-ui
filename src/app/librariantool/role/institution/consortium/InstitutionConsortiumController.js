@@ -138,13 +138,12 @@ angular.module('platform-ui.librariantool.role.institution.consortium').controll
 					url: $scope.apiUri+'/parties/affiliations/?secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
 					data:data,
                     method: 'POST',
-		}).success(function(data, status, headers, config){
-			$scope.foundConsortium['state'] = null;
-			$scope.consortiums.unshift(angular.copy($scope.foundConsortium));
-			
+		}).success(function(data, status, headers, config){			
 		}).error(function(data, status, headers, config){
                     alert("add consortium request failed");
 		});
+		$scope.foundConsortium['state'] = null;
+		$scope.consortiums.unshift(angular.copy($scope.foundConsortium));
 		$scope.foundConsortium = null;
 		$scope.adding = false;
 	    }
