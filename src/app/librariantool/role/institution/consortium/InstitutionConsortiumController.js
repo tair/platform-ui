@@ -139,13 +139,13 @@ angular.module('platform-ui.librariantool.role.institution.consortium').controll
 					data:data,
                     method: 'POST',
 		}).success(function(data, status, headers, config){			
+			$scope.foundConsortium['state'] = null;
+			$scope.consortiums.unshift(angular.copy($scope.foundConsortium));
+			$scope.foundConsortium = null;
+			$scope.adding = false;
 		}).error(function(data, status, headers, config){
                     alert("Consortium cannot be found. Please create consortium before adding.");
 		});
-		$scope.foundConsortium['state'] = null;
-		$scope.consortiums.unshift(angular.copy($scope.foundConsortium));
-		$scope.foundConsortium = null;
-		$scope.adding = false;
 	    }
 	    $scope.reset = function() {
 		$scope.adding = false;
