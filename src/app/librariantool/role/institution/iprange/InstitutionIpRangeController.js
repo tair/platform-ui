@@ -70,35 +70,38 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 
 
 	    // Events that change states
-            $scope.groupsMoveOver = function(iprange) {
-                if (iprange.state == null && !$scope.adding) {
-                    iprange.state = "selected";
-                }
+        $scope.groupsMoveOver = function(iprange) {
+        	if (iprange.state == null && !$scope.adding) {
+        		iprange.state = "selected";
             }
-            $scope.groupsMoveOut = function(iprange) {
-                if (iprange.state == "selected" && !$scope.adding) {
-                    iprange.state = null;
-                }
+        }
+        
+        $scope.groupsMoveOut = function(iprange) {
+        	if (iprange.state == "selected" && !$scope.adding) {
+        		iprange.state = null;
             }
+        }
+        
 	    $scope.right = function(iprange) {
-		if (iprange.state == "selected") {
+	    	if (iprange.state == "selected") {
 		    // this is the trash button at normal state
                     iprange.state = "remove";
-		}
-		else if (iprange.state == "edit") {
-		    // this is the "x" button at edit state
-		    if ($scope.editRange) {
-			iprange.name = $scope.editRange.name;
-			iprange.start = $scope.editRange.start;
-			iprange.end = $scope.editRange.end;
-			$scope.editRange = null;
+	    	}
+	    	else if (iprange.state == "edit") {
+			    // this is the "x" button at edit state
+			    if ($scope.editRange) {
+				iprange.name = $scope.editRange.name;
+				iprange.start = $scope.editRange.start;
+				iprange.end = $scope.editRange.end;
+				$scope.editRange = null;
 		    }
 		    iprange.state = null;
-		} else if (iprange.state == "remove") {
-		    // this is the cancel button at remove state.
-		    iprange.state = null;
+			} else if (iprange.state == "remove") {
+			    // this is the cancel button at remove state.
+			    iprange.state = null;
+			}
 		}
-	    }
+	    
 	    $scope.left = function(iprange) {
 		if (iprange.state == "selected") {
 		    // This is the edit button at normal state.
@@ -125,9 +128,9 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 		    	return;
 		    }
 		    if (!IpValidator.IpRangeLimit(iprange['start'], iprange['end'])) {
-      	alert('IP range is too large, please enter a smaller IP range.  Please contact us at info@phoenixbioinformatics.org with any questions.');
-      	return;
-      }	
+		    	alert('IP range is too large, please enter a smaller IP range.  Please contact us at info@phoenixbioinformatics.org with any questions.');
+		    	return;
+		    }	
 		    data = {
 			ipRangeId:iprange['ipRangeId'],
 			start:iprange['start'],
@@ -152,6 +155,7 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 		    iprange.state = null;
 		}
 	    }
+	    
 	    $scope.addConfirm = function() {
 	    	if(!IpValidator.ValidateIpAddress($scope.newRange['start'])){
 		    	alert("Invalid starting IP");
@@ -169,10 +173,10 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 		    	alert("Starting IP cannot be greater than ending IP");
 		    	return;
 		    }
-                    if (!IpValidator.IpRangeLimit($scope.newRange['start'], $scope.newRange['end'])) {
-      	alert('IP range is too large, please enter a smaller IP range.  Please contact us at info@phoenixbioinformatics.org with any questions.');
-      	return;
-      }
+            if (!IpValidator.IpRangeLimit($scope.newRange['start'], $scope.newRange['end'])) {
+            	alert('IP range is too large, please enter a smaller IP range.  Please contact us at info@phoenixbioinformatics.org with any questions.');
+            	return;
+            }
 		//alert("Nothing is added!");
 		var data = {
 		    start:$scope.newRange['start'],
