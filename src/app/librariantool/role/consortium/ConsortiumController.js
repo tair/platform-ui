@@ -65,7 +65,7 @@ angular.module('platform-ui.librariantool.role.consortium').controller(
 				} else if ($scope.role == "consortium") {
 					$scope.setConsortium(false);
 				}
-				$scope.tabs = InstitutionRoleModel.getTabs($scope.role);
+				$scope.tabs = ConsortiumModel.getTabs($scope.role);
 		    }).error(function() {});		
 	    //tab content and style
         $scope.tabs = ConsortiumModel.getTabs($scope.role);
