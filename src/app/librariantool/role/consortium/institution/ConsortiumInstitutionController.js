@@ -161,13 +161,8 @@ angular.module('platform-ui.librariantool.role.consortium.institution').controll
 		}
 	    }
 	    $scope.deleteAffiliation = function(institution){
-        	var data = {
-        			parentPartyId: $scope.consortiumId,
-        			childPartyId: institution.partyId,
-        	}
         	$http({
-        		url: $scope.apiUri+'/parties/affiliations/?secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
-        		data:data,
+        		url: $scope.apiUri+'/parties/affiliations/?secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId+'&parentPartyId='+$scope.consortiumId+'&childPartyId='+institution.partyId,
 	            method: 'DELETE',
         	}).success(function(data, status, headers, config){
             }).error(function(data, status, headers, config){
