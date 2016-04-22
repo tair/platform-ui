@@ -15,7 +15,7 @@ angular.module('platform-ui.librariantool.role.consortium').factory(
 		    title: 'Consortium Page',
             currentTab: {label:"INSTITUTION", state:"role.consortium.institution"},
             getTabs: function (role) {
-		        if (role == 'admin') {
+		        if (role == 'staff') {
 		          return [
 		            {
 		              label: 'INSTITUTION',
