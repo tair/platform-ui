@@ -169,6 +169,7 @@ module.exports = function ( grunt ) {
 					//'src/lib/js/ui-utils.min.js',
 					//'src/lib/js/d3.v3.min.js',
 					//'src/lib/js/underscore.min.js',
+					//'src/lib/js/bootstrap-confirmation.js'//PW-137
 				],
 				dest: '<%= dir.prod %>/js/lib.js'
 			}
