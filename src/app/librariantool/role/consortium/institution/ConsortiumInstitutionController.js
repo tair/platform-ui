@@ -151,7 +151,7 @@ angular.module('platform-ui.librariantool.role.consortium.institution').controll
 					$scope.foundInstitution = null;
 					$scope.adding = false;
 				}).error(function(data, status, headers, config){
-				            alert("add existing institution request failed");
+				            alert("Institution cannot be found. Please create institution before adding.");
 				});
 	    }
 	    $scope.reset = function() {
