@@ -125,7 +125,7 @@ angular.module('platform-ui.librariantool.role.consortium.institution').controll
 		    institution.state = null;
 		}
 	    }
-	    $scope.addConfirm = function() {
+	    $scope.addConfirm_obsolete = function() {
 	    	for(var i = 0; i < $scope.allInstitutions.length; i++){
 	    		if($scope.allInstitutions[i].name == $scope.newInstitution['name']){
 	    				$scope.foundInstitution['partyId'] = $scope.allInstitutions[i].partyId;
@@ -136,7 +136,7 @@ angular.module('platform-ui.librariantool.role.consortium.institution').controll
 	    	}
 	    	alert("Institution does not exist. Please contact info@phoenixbioinformatics.org.");
 	    }
-	    $scope.addExtInstitution = function() {
+	    $scope.addConfirm = function() {
 			$scope.foundInstitution['state'] = null;
 			$scope.institutions.unshift(angular.copy($scope.foundInstitution));
 			var data = {
