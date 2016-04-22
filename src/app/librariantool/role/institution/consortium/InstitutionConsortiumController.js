@@ -128,8 +128,7 @@ angular.module('platform-ui.librariantool.role.institution.consortium').controll
 		    consortium.state = null;
 		}
 	    }
-	    $scope.addConfirm = function() {
-	    
+	    $scope.addConfirm = function() {	    
 		var data = {
 				parentPartyId:$scope.foundConsortium.partyId,
 				childPartyId:$scope.institutionId,

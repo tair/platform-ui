@@ -137,8 +137,6 @@ angular.module('platform-ui.librariantool.role.consortium.institution').controll
 	    	alert("Institution does not exist. Please contact info@phoenixbioinformatics.org.");
 	    }
 	    $scope.addConfirm = function() {
-			$scope.foundInstitution['state'] = null;
-			$scope.institutions.unshift(angular.copy($scope.foundInstitution));
 			var data = {
 					parentPartyId : $scope.consortiumId,
 					childPartyId : $scope.foundInstitution.partyId,
@@ -148,11 +146,13 @@ angular.module('platform-ui.librariantool.role.consortium.institution').controll
 	    		data:data,
 	            method: 'POST',
 				}).success(function(data, status, headers, config){
+					$scope.foundInstitution['state'] = null;
+					$scope.institutions.unshift($scope.foundInstitution);
+					$scope.newInstitution = null;
+					$scope.adding = false;
 				}).error(function(data, status, headers, config){
 				            alert("add existing institution request failed");
 				});
-			$scope.newInstitution = null;
-			$scope.adding = false;
 	    }
 	    $scope.reset = function() {
 		$scope.adding = false;
