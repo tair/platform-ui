@@ -200,7 +200,7 @@ angular.module('platform-ui.librariantool.role.institution.consortium').controll
 				name:entry['name'],
 				country:entry['country'],
 				display:entry['display'],
-				consortium:entry['consortium'],
+				consortiums:entry['consortiums'],
 				state:null
 			    });
 			}

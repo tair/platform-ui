@@ -227,7 +227,12 @@ angular.module('platform-ui.librariantool.role.consortium.institution').controll
 		    entry = data[i];
 		    $scope.allInstitutions.push({
 		    	partyId:entry['partyId'],
-		    	name:entry['name'],
+				partyType:entry['partyType'],
+				name:entry['name'],
+				country:entry['country'],
+				display:entry['display'],
+				consortiums:entry['consortiums'],
+				state:null
 		    });
 		}
 	        }).error(function(data, status, headers, config){
