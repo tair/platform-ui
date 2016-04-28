@@ -148,10 +148,10 @@ angular.module('platform-ui.librariantool.role.consortium.institution').controll
 				}).success(function(data, status, headers, config){
 					$scope.foundInstitution['state'] = null;
 					$scope.institutions.unshift($scope.foundInstitution);
-					$scope.newInstitution = null;
+					$scope.foundInstitution = null;
 					$scope.adding = false;
 				}).error(function(data, status, headers, config){
-				            alert("add existing institution request failed");
+				            alert("Institution cannot be found. Please create institution before adding.");
 				});
 	    }
 	    $scope.reset = function() {
@@ -161,13 +161,8 @@ angular.module('platform-ui.librariantool.role.consortium.institution').controll
 		}
 	    }
 	    $scope.deleteAffiliation = function(institution){
-        	var data = {
-        			parentPartyId: $scope.consortiumId,
-        			childPartyId: institution.partyId,
-        	}
         	$http({
-        		url: $scope.apiUri+'/parties/affiliations/?secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
-        		data:data,
+        		url: $scope.apiUri+'/parties/affiliations/?secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId+'&parentPartyId='+$scope.consortiumId+'&childPartyId='+institution.partyId,
 	            method: 'DELETE',
         	}).success(function(data, status, headers, config){
             }).error(function(data, status, headers, config){
