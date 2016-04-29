@@ -59,7 +59,7 @@ angular.module('platform-ui.librariantool.role.phoenix.profile').controller(
 					method: 'PUT',
 					headers: {'Content-Type': 'application/x-www-form-urlencoded'},
 				}).success(function(){
-					bootbox.alert("Institution Profile Successfuly Updated" + (forceReSignIn ? ". Please re-login":"!") );
+					bootbox.alert("Institution Profile Successfully Updated" + (forceReSignIn ? ". Please re-login":"!") );
 					if (forceReSignIn) {
 						$scope.logout();
 					}
