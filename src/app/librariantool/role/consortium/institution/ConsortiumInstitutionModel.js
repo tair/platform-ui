@@ -69,7 +69,7 @@ angular.module('platform-ui.librariantool.role.consortium.institution').factory(
         	],
 		    sortings: [
 			          {predicate:'name', reverse:false, text:"Name"},
-		              {predicate:'partyId', reverse:false, text:"Party ID"},
+//		              {predicate:'partyId', reverse:false, text:"Party ID"},
 		              ],
   			partners: [
 //      					{
