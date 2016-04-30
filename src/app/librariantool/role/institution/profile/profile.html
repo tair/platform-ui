@@ -71,7 +71,7 @@
 		<div class="row" style="height: 55px;"></div>
 		<div class="row">	
 			<div class="{{uiparams.colwidth}} block-center text-center">
-				<button type="button" class="btn btn-default" ng-click="edit_fields();">{{ edit==true && 'Save' || role!='consortium' && 'Edit' }}</button>
+				<button type="button" class="btn btn-default" ng-click="edit_fields();" ng-hide="role=='consortium'">{{ edit==true && 'Save' || 'Edit' }}</button>
 				<span style="width: 10px;"></span>
 				<button type="button" class="btn btn-default" ng-show="edit" ng-click="cancel();">Cancel</button>
 			</div>
