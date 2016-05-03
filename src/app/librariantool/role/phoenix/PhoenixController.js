@@ -19,30 +19,52 @@ angular.module('platform-ui.librariantool.role.phoenix').controller(
 
 	/* Controller Definition */
 	function ($scope, $http, $cookies, $window, $location, $state, Title, PhoenixModel) {
-		if($cookies.ui_credentialId!=null){
-			$scope.credentialId = $cookies.ui_credentialId;
-		}else if($window.sessionStorage.ui_credentialId!=null){
-			$scope.credentialId = $window.sessionStorage.ui_credentialId;
+		//load credential info
+		if($cookies.org_phoenixbioinformatics_ui_credentialId!=null){
+			$scope.credentialId = $cookies.org_phoenixbioinformatics_ui_credentialId;
+		}else if($window.sessionStorage.org_phoenixbioinformatics_ui_credentialId!=null){
+			$scope.credentialId = $window.sessionStorage.org_phoenixbioinformatics_ui_credentialId;
 		}
-		if($cookies.ui_secretKey!=null){
-			$scope.secretKey = $cookies.ui_secretKey;
-		}else if($window.sessionStorage.ui_secretKey!=null){
-			$scope.secretKey = $window.sessionStorage.ui_secretKey;
+		if($cookies.org_phoenixbioinformatics_ui_secretKey!=null){
+			$scope.secretKey = $cookies.org_phoenixbioinformatics_ui_secretKey;
+		}else if($window.sessionStorage.org_phoenixbioinformatics_ui_secretKey!=null){
+			$scope.secretKey = $window.sessionStorage.org_phoenixbioinformatics_ui_secretKey;
 		}
-		if(!$scope.credentialId || !$scope.secretKey){
-			$state.go('ltlogin');
-		}
-            $scope.currentTab = PhoenixModel.currentTab;
-            $scope.tabs = PhoenixModel.tabs;
-            $scope.navbarLabel = function(tab) {
-                if (tab.label == $scope.currentTab.label) {
-                    return "lt-navbar-label-highlight";
-                }
-                return "lt-navbar-label";
+		//check credential info
+//		if(!$scope.credentialId || !$scope.secretKey){
+//			$state.go('ltlogin');
+//		}
+		//check role
+//		if($scope.role != ("staff")){
+//		alert("Please use staff account to login.");
+//		$scope.logout();
+//	}
+		//set title
+		$scope.setTitle($scope.partyInfo['name']);
+		//display option of back button
+		$scope.setPhoenix(false);
+        //tab content and style
+        $scope.tabs = PhoenixModel.tabs;
+        $scope.navbarLabel = function(tab) {
+            if (tab.label == $scope.currentTab.label) {
+                return "lt-navbar-label-highlight";
             }
-            $scope.clickTab = function(tab) {
-                $state.go(tab.state);
-                $scope.currentTab = tab;
+            return "lt-navbar-label";
+        }
+        $scope.navbarLine = function(tab) {
+            if (tab.label == $scope.currentTab.label) {
+                return "show";
             }
+            return "hide";
+        }
+        //tab action
+        $scope.toTab = function(tab) {
+            $state.go(tab.state);
+            $scope.currentTab = tab;
+        }
+		//set currentTab
+	    $scope.setCurrentTab = function(currentTab){
+	    	$scope.currentTab = currentTab;
+	    }
 	}
 ]);

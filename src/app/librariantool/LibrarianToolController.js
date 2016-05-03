@@ -9,10 +9,9 @@ angular.module('platform-ui.librariantool').controller(
 	/* Dependencies */
 	[
 	'$scope',
-	'Title',
 	'LibrarianToolModel',
 
 	/* Controller Definition */
-	function ($scope, Title, LibrarianToolModel) {
+	function ($scope, LibrarianToolModel) {
 	}
 ]);

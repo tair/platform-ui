@@ -12,29 +12,33 @@ angular.module(
     [
 	'ui.router',
 	'service.title',
-	'platform-ui.librariantool.role.consortium.manage',
+	'service.currenttab',
+	'service.pageinfo',
+	'platform-ui.librariantool.role.consortium.institution',
 	'platform-ui.librariantool.role.consortium.subscription',
 	'platform-ui.librariantool.role.consortium.profile',
 	'platform-ui.librariantool.role.consortium.usage',
     ])
     .config(
 	function ($stateProvider) {
-            $stateProvider.state('role.consortium.default', {
-                url: '/',
+            $stateProvider
+//            .state('role.consortium.default', {
+//                url: '/',
+//                views: {
+//                    'consortium': {
+//                        controller: 'ConsortiumInstitutionController',
+//                        templateUrl: 'librariantool/role/consortium/institution/institution.html'
+//                    }
+//                }
+//            })
+            .state('role.consortium.institution', {
+                url: '/institution',
                 views: {
                     'consortium': {
-                        controller: 'ConsortiumManageController',
-                        templateUrl: 'librariantool/role/consortium/manage/manage.html'
+                        controller: 'ConsortiumInstitutionController',
+                        templateUrl: 'librariantool/role/consortium/institution/institution.html'
                     }
                 }
-            }).state('role.consortium.manage', {
-		url: '/manage',
-		views: {
-		    'consortium': {
-			controller: 'ConsortiumManageController',
-			templateUrl: 'librariantool/role/consortium/manage/manage.html'
-		    }
-		}
             }).state('role.consortium.subscription', {
                 url: '/subscription',
                 views: {

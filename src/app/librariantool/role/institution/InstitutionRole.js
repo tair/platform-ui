@@ -13,29 +13,33 @@ angular.module(
 	'ui.router',
 	'service.title',
 	'platform-ui.librariantool.role.institution.iprange',
+	'platform-ui.librariantool.role.institution.consortium',
 	'platform-ui.librariantool.role.institution.subscription',
 	'platform-ui.librariantool.role.institution.profile',
 	'platform-ui.librariantool.role.institution.usage',
     ])
+//    .config('$urlRouterProvider',function ($urlRouterProvider) {
+//		$urlRouterProvider.when('','/iprange');
+//    }) //TODO:use urlRouterProvider to set default state of role.institution
     .config(
 	function ($stateProvider) {
-            $stateProvider.state('role.institution.default', {
-                url: '/',
-                views: {
-                    'institution': {
-                        controller: 'InstitutionIpRangeController',
-                        templateUrl: 'librariantool/role/institution/iprange/iprange.html'
-                    }
-                }
-            }).state('role.institution.iprange', {
+        $stateProvider.state('role.institution.iprange', {
 		url: '/iprange',
 		views: {
 		    'institution': {
 			controller: 'InstitutionIpRangeController',
 			templateUrl: 'librariantool/role/institution/iprange/iprange.html'
 		    }
-		}
-            }).state('role.institution.subscription', {
+		  }
+        }).state('role.institution.consortium', {
+    	  url: '/consortium',
+    	  views: {
+       	 	'institution': {
+        	  controller: 'InstitutionConsortiumController',
+       	   	  templateUrl: 'librariantool/role/institution/consortium/consortium.html'
+       	    }
+      	  }
+    	}).state('role.institution.subscription', {
                 url: '/subscription',
                 views: {
                     'institution': {

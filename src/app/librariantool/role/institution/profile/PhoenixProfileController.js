@@ -1,10 +1,10 @@
 /**
- * ConsortiumProfileController
+ * InstitutionProfileController
  */
 
-angular.module('platform-ui.librariantool.role.consortium.profile').controller(
+angular.module('platform-ui.librariantool.role.phoenix.profile').controller(
 	/* Name */
-	'ConsortiumProfileController',
+	'PhoenixProfileController',
 
 	/* Dependencies */
 	[
@@ -15,11 +15,10 @@ angular.module('platform-ui.librariantool.role.consortium.profile').controller(
 	'$location',
 	'$state',
 	'Title',
-	'CurrentTab',
-	'ConsortiumProfileModel',
+	'PhoenixProfileModel',
 
 	/* Controller Definition */
-	function ($scope, $http, $cookies, $window, $location, $state, Title, CurrentTab, ConsortiumProfileModel) {
+	function ($scope, $http, $cookies, $window, $location, $state, Title, PhoenixProfileModel) {
 	    	init();
 		console.log($scope.uiparams.colwidth);
 		
@@ -47,25 +46,25 @@ angular.module('platform-ui.librariantool.role.consortium.profile').controller(
 					if ($scope.userprev[k] != $scope.user[k]) {
 						put_data[k] = $scope.user[k];
 						$scope.userprev[k] = $scope.user[k];
-						if ((k == 'username' || k == 'password') && $scope.role == 'consortium')
-						{
-						forceReSignIn = true;
-						}
+						if ((k == 'username' || k == 'password') && $scope.role == 'staff')
+							{
+							forceReSignIn = true;
+							}
 					}
 				}
 
 				$http({
-					url: $scope.apiUri+'/parties/consortiums/?partyId='+$scope.consortiumId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
+					url: $scope.apiUri+'/parties/institutions/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
 					data: put_data,
 					method: 'PUT',
 					headers: {'Content-Type': 'application/x-www-form-urlencoded'},
 				}).success(function(){
-					bootbox.alert("Consortium Profile Successfully Updated" + (forceReSignIn ? ". Please re-login":"!") );
+					bootbox.alert("Institution Profile Successfully Updated" + (forceReSignIn ? ". Please re-login":"!") );
 					if (forceReSignIn) {
 						$scope.logout();
 					}
 				}).error(function() {
-					bootbox.alert("Failed to update Consortium Profile");
+					bootbox.alert("Failed to update Institution Profile");
 				});
 			}
 			$scope.edit = !$scope.edit;
@@ -103,13 +102,14 @@ angular.module('platform-ui.librariantool.role.consortium.profile').controller(
 		}
 
 	    	function init() {
-	    		$scope.setCurrentTab(ConsortiumProfileModel.currentTab);
-	    		$scope.user = ConsortiumProfileModel.user;
+	    		$scope.setCurrentTab(PhoenixProfileModel.currentTab);
+	    		$scope.user = PhoenixProfileModel.user;
 //				if(!$scope.credentialId || !$scope.secretKey){
 //					$state.go('ltlogin');
 //				}
 	            $http({
-	                url: $scope.apiUri+'/parties/consortiums/?partyId='+$scope.consortiumId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
+	            	//TODO: create parties/staff request in api server
+	                url: $scope.apiUri+'/parties/institutions/?partyId='+$scope.credentialId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
 	                method: 'GET',
 	            }).success(function(data, status, headers, config){
                         		$scope.user.partyId = data[0].partyId;
@@ -145,7 +145,7 @@ angular.module('platform-ui.librariantool.role.consortium.profile').controller(
                             });
 
                         $scope.edit = false;
-                        $scope.uiparams = ConsortiumProfileModel.uiparams;
+                        $scope.uiparams = PhoenixProfileModel.uiparams;
                 }
 	}
 ]);

@@ -1,62 +1,27 @@
-<script type="text/ng-template" id="myModalContent.html">
-        <div class="modal-header">
-            <h3 class="modal-title">I'm a modal!</h3>
-        </div>
-        <div class="modal-body">
-            <ul>
-                <li ng-repeat="item in items">
-                    <a href="#" ng-click="$event.preventDefault(); selected.item = item">{{ item }}</a>
-                </li>
-            </ul>
-            Selected: <b>{{ selected.item }}</b>
-        </div>
-        <div class="modal-footer">
-            <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
-            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
-        </div>
-    </script>
 <div>
   <!-- Left Panel -->
   <div class="col-xs-4" style="padding:0px">
     <div class="lt-admin-action-label">ACTIONS</div>
-    <div ng-class="actionButtonAddCss(ipAdding)" ng-click="reset(ipAdding); ipAdding=true" style="width:220px">
-      <span class="glyphicon glyphicon-plus text-center" ng-class="actionButtonGlyphiconAddCss(ipAdding)" style="margin-top:-1px"></span>
-      <span class="text-center" ng-class="actionButtonLabelAddCss(ipAdding)" style="margin-top:-1px">ADD IP RANGE</span>
-    </div>
-    <div ng-class="actionButtonAddCss(subAdding)" ng-click="reset(subAdding); subAdding=true" style="width:220px">
-      <span class="glyphicon glyphicon-plus text-center" ng-class="actionButtonGlyphiconAddCss(subAdding)" style="margin-top:-1px"></span>
-      <span class="text-center" ng-class="actionButtonLabelAddCss(subAdding)" style="margin-top:-1px">ADD SUBSCRIPTION</span>
-    </div>
-    <div ng-class="actionButtonAddCss(insAdding)" ng-click="reset(insAdding); addInstitutionBox()" style="width:220px">
-      <span class="glyphicon glyphicon-plus text-center" ng-class="actionButtonGlyphiconAddCss(insAdding)" style="margin-top:-1px"></span>
-      <span class="text-center" ng-class="actionButtonLabelAddCss(insAdding)" style="margin-top:-1px">NEW INSTITUTION</span>
-    </div>
-    <div ng-class="actionButtonAddCss(consAdding)" ng-click="reset(consAdding); consAdding=true" style="width:220px">
-      <span class="glyphicon glyphicon-plus text-center" ng-class="actionButtonGlyphiconAddCss(consAdding)" style="margin-top:-1px"></span>
-      <span class="text-center" ng-class="actionButtonLabelAddCss(consAdding)" style="margin-top:-1px">ADD CONSORTIUM</span>
+    <div ng-class="actionButtonAddCss(adding)" ng-click="reset(); adding=true" style="width:250px">
+      <span class="glyphicon glyphicon-plus text-center" ng-class="actionButtonGlyphiconAddCss(adding)" style="margin-top:-1px"></span>
+      <span class="text-center" ng-class="actionButtonLabelAddCss(adding)" style="margin-top:-1px">CREATE INSTITUTION</span>
     </div>
   </div>
-  <div>
-  <input placeholder="username" ng-model="newInstitution.username"></input>
-  <input placeholder="name" ng-model="newInstitution.name"></input>
-  <button ng-click="$scope.createInstitutionPartyAndCredential();">Create</button>
-  </div>
-  
   <!-- Right Panel -->
   <div class="col-xs-8 lt-admin-right-panel" style="padding:0px">
     <!-- Right Panel Header -->
     <div class="lt-admin-groups-title">
-      <div class="col-xs-4 lt-admin-groups-title-label" style="padding:0px">{{partyInfo.name}}</div>
-      <div class="col-xs-6 pull-right" style="padding:0px">
+      <div>
+      <span class="lt-admin-groups-title-filter" style="margin-left:22px">Sort By: </span>
         <a href = "" class="lt-admin-groups-title-filter" ng-repeat-start="sorting in sortings" ng-click="sortByField(sorting)"> By {{sorting.text}}</a>
-        <span class="glyphicon glyphicon-triangle-top lt-admin-groups-title-glyphicon" ng-show="sortField==sorting.sortField&&!reverseField"></span>
-        <span class="glyphicon glyphicon-triangle-bottom lt-admin-groups-title-glyphicon" ng-show="sortField==sorting.sortField&&reverseField"></span>
-        <span class="glyphicon glyphicon-invisible lt-admin-groups-title-glyphicon" ng-hide="sortField==sorting.sortField" ng-repeat-end></span>
-      </div>    
+        <span class="glyphicon glyphicon-triangle-top lt-admin-groups-title-glyphicon" ng-show="predicate==sorting.predicate&&!reverse" ng-click="sortByField(sorting)"></span>
+        <span class="glyphicon glyphicon-triangle-bottom lt-admin-groups-title-glyphicon" ng-show="predicate==sorting.predicate&&reverse" ng-click="sortByField(sorting)"></span>
+        <span class="glyphicon glyphicon-invisible lt-admin-groups-title-glyphicon" ng-hide="predicate==sorting.predicate" ng-repeat-end></span>
+      </div>
     </div>
 
-    <!-- Switch institution -->
     <div class="lt-admin-right-subpanel">
+<<<<<<< HEAD
     <div class="text-center" style="padding:0px"><input ng-class="groupsListLabelCss(searchstate)" style="width:80%"
     type="text" ng-model="institution" uib-typeahead="institution as institution.name for institution in institutions | filter:{name:$viewValue} | limitTo:8"
     ng-readonly="!(searchstate=='edit')" ng-click="searchstate='edit'" ng-blur="searchstate='selected'" placeholder="Select instituion"></input></div>
@@ -155,44 +120,52 @@
     </div>
       </div>
             
+=======
+>>>>>>> refs/heads/release_merge_to_develop
       <!-- Description and Search Box -->
-      <div class="lt-admin-groups-description">Add new IP ranges from the left action panel. Click on already existing IP ranges to edit or delete them.</div>
+      <div class="lt-admin-groups-description">Add a new institution from the left action panel. Click on already existing institutions to edit or delete them.</div>
       <div class="lt-admin-groups-search">
         <span>Search</span>
         <span><input style="width:468px" placeholder="Enter institution name or ID number" ng-model="searchTerm"></input></span>
       </div>
         
-      <!-- Add IP Range -->
-      <div class="lt-admin-groups-list-edit" ng-class="groupsAddCss(ipAdding)">
+      <!-- Add Institution -->
+      <div class="lt-admin-groups-list-edit" ng-class="groupsAddCss(adding)" style="height: 150px">
 	<div class="col-xs-9" style="padding:0px">
-          <div><input class="lt-admin-groups-list-label-edit" style="width:300px" placeholder="Enter IP Range Label (optional)" ng-model="newRange.name"></input></div>
-	  <div class="lt-admin-groups-list-values">
-            <span><input class="lt-ip-groups-list-start-edit" placeholder="Starting IP" ng-model="newRange.start"></input></span>
-	    <span>-</span>
-	    <span><input class="lt-ip-groups-list-end-edit" placeholder="Ending IP" ng-model="newRange.end"></input></span>
-	  </div>
+          <!-- <div><input class="lt-admin-groups-list-label-edit" style="width:300px" placeholder="Enter Institution Name" ng-model="newInstitution.name" uib-typeahead="institution.name for institution in allInstitutions | filter:{name:$viewValue} | limitTo:8"></input></div> -->
+          <div><input class="lt-admin-groups-list-label-edit" style="width:300px" placeholder="Enter Institution Name" ng-model="newInstitution.name" required></input></div>
+          <div><input class="lt-admin-groups-list-label-edit" style="width:300px" placeholder="Enter Username" ng-model="newInstitution.username" required></input></div>          
+          <div><input class="lt-admin-groups-list-label-edit" style="width:300px" placeholder="Enter Password" ng-model="newInstitution.password" type="password" required></input></div>
+          <div><input class="lt-admin-groups-list-label-edit" style="width:300px" placeholder="Enter Email (optional)" ng-model="newInstitution.email"></input></div>
 	</div>
 	<div class="col-xs-3 lt-admin-groups-list-glyphicon-container" style="padding:0px">
-          <div class="pull-right glyphicon glyphicon-remove lt-glyphicon-green text-center" style="margin-right:10px" ng-click="$event.stopPropagation(); ipAdding=false"></div>
+          <div class="pull-right glyphicon glyphicon-remove lt-glyphicon-green text-center" style="margin-right:10px" ng-click="$event.stopPropagation(); adding=false"></div>
           <div class="pull-right glyphicon glyphicon-ok lt-glyphicon-green text-center" style="margin-right:10px" ng-click="$event.stopPropagation(); addConfirm()"></div>
 	</div>
       </div>
       
-      <!-- IP Range List -->
-      <div ng-repeat="iprange in ipranges | filter:searchTerm | orderBy:sortField:reverseField">
-	<div class="row" ng-class="groupsListCss(iprange.state)" ng-mouseover="groupsMoveOver(iprange)" ng-mouseleave="groupsMoveOut(iprange)">
+      <!-- Institution List -->
+      <div ng-repeat="institution in institutions | filter:searchTerm">
+	<div class="row" ng-class="groupsListCss(institution.state)" ng-mouseover="groupsMoveOver(institution)" ng-mouseleave="groupsMoveOut(institution)" ng-click="enterInstitution(institution)">
 	  <div class="col-xs-9" style="padding:0px">
-	    <div><input ng-class="groupsListLabelCss(iprange.state)" style="width:300px" ng-model="iprange.name" ng-readonly="!(iprange.state=='edit')"></input></div>
+	    <div><input ng-class="groupsListLabelCss(institution.state)" style="width:300px" ng-model="institution.name" ng-readonly="!(institution.state=='edit')"></input></div>
 	    <div class="lt-admin-groups-list-values">
-	      <span><input ng-class="groupsListStartCss(iprange.state)" ng-model="iprange.start" ng-readonly="!(iprange.state=='edit')"></input></span> 
-	      <span>-</span> 
-	      <span><input ng-class="groupsListEndCss(iprange.state)" ng-model="iprange.end" ng-readonly="!(iprange.state=='edit')"></input></span>
+	    <div class="lt-admin-groups-list-values">
+              <input class="lt-admin-groups-list-values-input" ng-model="institution.partyId" ng-readonly="true"></input>
+        </div>
 	  </div>
 	  </div>
+<<<<<<< HEAD
 	  <div class="col-xs-3" style="margin-top:18px;padding:0px" ng-class="groupsListGlyphiconCss(iprange.state)">
 	  <div class="delete-label">Delete?</div>
 	    <div class="pull-right glyphicon text-center" ng-class="groupsListGlyphiconRightCss(iprange.state)" style="margin-right:10px" ng-click="$event.stopPropagation(); right(iprange);"></div>
 	    <div class="pull-right glyphicon text-center" ng-class="groupsListGlyphiconLeftCss(iprange.state)" style="margin-right:10px" ng-click="$event.stopPropagation(); left(iprange);"></div>
+=======
+	  <div class="col-xs-3" style="margin-top:18px;padding:0px" ng-class="groupsListGlyphiconCss(institution.state)">
+	    <div class="delete-label">Delete?</div>
+	    <div class="pull-right glyphicon text-center" ng-class="groupsListGlyphiconRightCss(institution.state)" style="margin-right:10px" ng-click="$event.stopPropagation(); right(institution);"></div>
+	    <div class="pull-right glyphicon text-center" ng-class="groupsListGlyphiconLeftCss(institution.state)" style="margin-right:10px" ng-click="$event.stopPropagation(); left(institution);"></div>
+>>>>>>> refs/heads/release_merge_to_develop
 	  </div>
 	</div>
       </div>

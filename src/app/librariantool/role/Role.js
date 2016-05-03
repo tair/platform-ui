@@ -12,6 +12,7 @@ angular.module(
     [
 	'ui.router',
 	'service.title',
+	'service.currenttab',
     'platform-ui.librariantool.role.institution',
 	'platform-ui.librariantool.role.consortium',
 	'platform-ui.librariantool.role.phoenix',
@@ -27,7 +28,10 @@ angular.module(
                     }
                 }
             }).state('role.institution', {
-                url: '/institution',
+                url: '/institution?institutionId',
+//                params: {
+//                	institution: null,
+//                },
                 views: {
                     'role': {
                         controller: 'InstitutionRoleController',
@@ -35,7 +39,10 @@ angular.module(
                     }
                 }
             }).state('role.consortium', {
-                url: '/consortium',
+                url: '/consortium?consortiumId',//TODO: find a way to keep state params after page reload
+//                params: {
+//                	consortium: null,
+//                },
                 views: {
                     'role': {
                         controller: 'ConsortiumController',

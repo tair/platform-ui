@@ -22,7 +22,8 @@ angular.module('platform-ui.librariantool.role.consortium.subscription').control
         
             function init() {
                 console.log($state);
-                $scope.setTitle(ConsortiumSubscriptionModel.title);
+//                $scope.setTitle(ConsortiumSubscriptionModel.title);
+                $scope.setCurrentTab(ConsortiumSubscriptionModel.currentTab);
                 $scope.partners = ConsortiumSubscriptionModel.partners;
                 $scope.activeSubscriptions = ConsortiumSubscriptionModel.activeSubscriptions;
                 $scope.uiparams = ConsortiumSubscriptionModel.uiparams;
@@ -35,7 +36,7 @@ angular.module('platform-ui.librariantool.role.consortium.subscription').control
                         alert("Cannot get partner information");
                 });
                 $http({
-                        url: $scope.apiUri+'/subscriptions/activesubscriptions/'+$cookies.credentialId+'/',
+                        url: $scope.apiUri+'/subscriptions/activesubscriptions/'+$scope.consortiumId+'/',
                         method: 'GET',
                 }).success(function(data, status, headers, config) {
                         $scope.activeSubscriptions = data;

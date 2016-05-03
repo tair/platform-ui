@@ -12,6 +12,7 @@ angular.module(
     [
 	'ui.router',
 	'service.title',
+	'service.currenttab',
 	'platform-ui.librariantool.login',
 	'platform-ui.librariantool.role',
     ])

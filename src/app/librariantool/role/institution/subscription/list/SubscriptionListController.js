@@ -29,13 +29,19 @@ angular.module('platform-ui.librariantool.role.institution.subscription.list').c
 	    };
 
 	    $scope.licenseButton = function(id) {
-		if (id in $scope.activeSubscriptions) {
+	    if ($scope.role == 'staff'){
+	    	return "Edit";
+	    }else if (id in $scope.activeSubscriptions) {
 			return "Request renewal";
+		}else{
+			return "Request quote";
 		}
-		return "Request quote";
 	    };
 
 	    $scope.licenseAction = function(id) {
+	    if ($scope.role == 'staff'){
+	    	return;
+	    }
 		if (id in $scope.activeSubscriptions) {
 			//PW-139
 			$state.go('role.institution.subscription.renewal', {'partnerId': id});
@@ -56,12 +62,11 @@ angular.module('platform-ui.librariantool.role.institution.subscription.list').c
 	    }
 
 	    function init() {
-		$scope.setTitle($scope.partyInfo.name);
 		console.log($state);
 		$scope.uiparams = SubscriptionListModel.uiparams;
-		if(!$scope.credentialId || !$scope.secretKey){
-			$state.go('ltlogin');
-		}
+//		if(!$scope.credentialId || !$scope.secretKey){
+//			$state.go('ltlogin');
+//		}
 	    }
 	}
 ]);

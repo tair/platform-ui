@@ -13,11 +13,10 @@ angular.module('platform-ui.librariantool.role.phoenix').factory(
 	function () {
 		return {
 		    title: 'Phoenix',
-                    currentTab: {label:"CONSORTIUM", state:"role.phoenix.manage"},
+                    currentTab: {label:"CONSORTIUM", state:"role.phoenix.consortium"},
                     tabs: [
+                        {label:"CONSORTIUM", state:"role.phoenix.consortium"},
                         {label:"INSTITUTION", state:"role.phoenix.institution"},
-                        {label:"CONSORTIUM", state:"role.phoenix.manage"},
-                        {label:"SUBSCRIPTION", state:"role.phoenix.subscription"},
                         {label:"PROFILE", state:"role.phoenix.profile"},
                     ]
 		};

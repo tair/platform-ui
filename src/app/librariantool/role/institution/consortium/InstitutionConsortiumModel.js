@@ -3,16 +3,16 @@
  * Model for root /index.html template that wraps every other view.
  */
 
-angular.module('platform-ui.librariantool.role.phoenix.manage.consortium').factory(
+angular.module('platform-ui.librariantool.role.institution.consortium').factory(
 	/* Name */
-	'PhoenixManageConsortiumModel',
+	'InstitutionConsortiumModel',
 
 	/* Dependencies */
 	[
 
 	function () {
 		return {
-			title: 'CONSORTIUM',
+			currentTab: {label:"CONSORTIUM", state:"role.institution.consortium"},
 			newConsortium: {"name":null,"country":null},
 			consortiums: [
 			              {

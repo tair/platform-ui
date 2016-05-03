@@ -13,6 +13,7 @@ angular.module('platform-ui.librariantool.role.consortium.usage').factory(
 	function () {
 		return {
 			title: 'USAGE',
+			currentTab: {label: 'USAGE',state: 'role.consortium.usage'},
 			uiparams: {
 				"colwidth": 'col-xs-11',
 			},

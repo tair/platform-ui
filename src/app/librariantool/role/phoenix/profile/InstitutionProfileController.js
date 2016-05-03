@@ -46,7 +46,7 @@ angular.module('platform-ui.librariantool.role.institution.profile').controller(
 					if ($scope.userprev[k] != $scope.user[k]) {
 						put_data[k] = $scope.user[k];
 						$scope.userprev[k] = $scope.user[k];
-						if (k == 'username' || k == 'password')
+						if ((k == 'username' || k == 'password') && $scope.role == 'organization')
 							{
 							forceReSignIn = true;
 							}
@@ -59,14 +59,12 @@ angular.module('platform-ui.librariantool.role.institution.profile').controller(
 					method: 'PUT',
 					headers: {'Content-Type': 'application/x-www-form-urlencoded'},
 				}).success(function(){
-					bootbox.alert("Institution Profile Successfuly Updated" + (forceReSignIn ? ". Please re-login":"!") );
+					bootbox.alert("Staff Profile Successfully Updated" + (forceReSignIn ? ". Please re-login":"!") );
 					if (forceReSignIn) {
-						//$cookieStore.remove("credentialId");
-						//$cookieStore.remove("secretKey");
-						$scope.home();
+						$scope.logout();
 					}
 				}).error(function() {
-					bootbox.alert("Failed to update Institution Profile");
+					bootbox.alert("Failed to update Staff Profile");
 				});
 			}
 			$scope.edit = !$scope.edit;
@@ -104,13 +102,13 @@ angular.module('platform-ui.librariantool.role.institution.profile').controller(
 		}
 
 	    	function init() {
-	    		$scope.currentTab = InstitutionProfileModel.currentTab;
+	    		$scope.setCurrentTab(InstitutionProfileModel.currentTab);
 	    		$scope.user = InstitutionProfileModel.user;
-				if(!$scope.credentialId || !$scope.secretKey){
-					$state.go('ltlogin');
-				}
+//				if(!$scope.credentialId || !$scope.secretKey){
+//					$state.go('ltlogin');
+//				}
 	            $http({
-	                url: $scope.apiUri+'/parties/institutions/?partyId='+$scope.credentialId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
+	                url: $scope.apiUri+'/parties/institutions/?partyId='+$scope.institutionId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
 	                method: 'GET',
 	            }).success(function(data, status, headers, config){
                         		$scope.user.partyId = data[0].partyId;
@@ -142,7 +140,7 @@ angular.module('platform-ui.librariantool.role.institution.profile').controller(
                                 
                             }).error(function(data, status, headers, config){
                             	errMsg = "GET /parties/institutions/ Failed";
-                            	bootbox.alert(errMsg);
+//                            	bootbox.alert(errMsg);
                             });
 
                         $scope.edit = false;

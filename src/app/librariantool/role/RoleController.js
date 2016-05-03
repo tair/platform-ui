@@ -15,11 +15,12 @@ angular.module('platform-ui.librariantool.role').controller(
 	'$location',
 	'$state',
 	'Title',
+	'CurrentTab',
 	'RoleModel',
 	'$cookieStore',
 
 	/* Controller Definition */
-	function ($scope, $http, $cookies, $window, $location, $state, Title, RoleModel, $cookieStore) {
+	function ($scope, $http, $cookies, $window, $location, $state, Title, CurrentTab, RoleModel, $cookieStore) {
 		//load credential info
 		if($cookies.org_phoenixbioinformatics_ui_credentialId!=null){
 			$scope.credentialId = $cookies.org_phoenixbioinformatics_ui_credentialId;
@@ -43,26 +44,53 @@ angular.module('platform-ui.librariantool.role').controller(
 		$scope.home();
 	    }
 	    $scope.setTitle = function(title) {
-		$scope.title = title;
+	    	$scope.title = title;
 	    }
-
+		$scope.backToConsortium = function(){
+			$state.go('role.consortium.institution', {consortiumId: $scope.credentialId});
+		}
+		$scope.backToPhoenix = function(){
+			$state.go('role.phoenix.consortium');
+		}
+		$scope.setConsortium = function(bool){
+			$scope.isConsortium = bool;
+		}
+		$scope.setPhoenix = function(bool){
+			$scope.isPhoenix = bool;
+		}
+		//partyInfo and role initialization
 	    $scope.partyInfo = RoleModel.partyInfo;
+	    $scope.role = "";
 	    $http({
-		url: $scope.apiUri+'/credentials/?username='+$cookies.username+'&secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
-		method: 'GET',
-	    }).success(function(data, status, headers, config) {
-	    	$scope.email = data[0].email;
-	    }).error(function() {
-		alert("Cannot get user email info");
-	    });
-        $http({
-            url: $scope.apiUri+'/parties/?partyId='+$scope.credentialId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
-            method: 'GET',
-        }).success(function(data, status, headers, config){
-            $scope.partyInfo = data[0];
-        }).error(function(data, status, headers, config){
-            alert("partyId failed");
-        });
+			url: $scope.apiUri+'/parties/?partyId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
+			method: 'GET'
+		    }).success(function(data, status, headers, config){
+		    	$scope.partyInfo = data[0];
+		    	$scope.title = $scope.partyInfo['name'];
+				$scope.role = $scope.partyInfo['partyType'];
+//				if($scope.role == "staff"){
+//					$state.go("role.phoenix");
+//				}else if($scope.role == "consortium"){
+//					$state.go("role.consortium",{consortiumId: $scope.partyInfo.partyId});
+//				}else if($scope.role == "organization"){
+//					$state.go("role.institution", {institutionId: $scope.partyInfo.partyId});
+//				}else{
+//					alert("Cannot recognize account type");
+//					$scope.logout();
+//				}
+		    }).error(function() {});
+		    $http({
+			url: $scope.apiUri+'/credentials/?partyId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
+			method: 'GET'
+		    }).success(function(data, status, headers, config){
+		    	$scope.email = data[0].email;
+//		    	$cookies.partyInfo.username = data[0].username;
+//		    	$cookies.partyInfo.email = data[0].email;
+//		    	$cookies.partyInfo.institution = data[0].institution;
+//		    	$cookies.partyInfo.partnerId = data[0].partnerId;
+//		    	$cookies.partyInfo.userIdentifier = data[0].userIdentifier;
+		    }).error(function() {});
+
 
 	    // CSS Logics common to all admin pages in different roles:
             $scope.groupsAddCss = function(adding) {

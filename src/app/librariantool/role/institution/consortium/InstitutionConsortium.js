@@ -6,7 +6,7 @@
 
 angular.module(
     /* Name */
-    'platform-ui.librariantool.role.phoenix.manage.institution',
+    'platform-ui.librariantool.role.institution.consortium',
     
     /* Dependencies */
     [
