@@ -21,107 +21,6 @@
     </div>
 
     <div class="lt-admin-right-subpanel">
-<<<<<<< HEAD
-    <div class="text-center" style="padding:0px"><input ng-class="groupsListLabelCss(searchstate)" style="width:80%"
-    type="text" ng-model="institution" uib-typeahead="institution as institution.name for institution in institutions | filter:{name:$viewValue} | limitTo:8"
-    ng-readonly="!(searchstate=='edit')" ng-click="searchstate='edit'" ng-blur="searchstate='selected'" placeholder="Select instituion"></input></div>
-
-    <!-- Add Subscription -->
-      <div class="lt-admin-groups-list-edit" ng-class="groupsAddCss(subAdding)">
-    <div class="col-xs-9" style="padding:0px">
-      <select class="lt-admin-groups-list-label-edit" style="width:300px" ng-options="p.partnerId as p.name for p in partners" ng-model="newSubscription.partnerId">
-        <option value="">-- choose a partner --</option>
-      </select>
-      <div class="lt-admin-groups-list-values">
-        <span><input id="createStart" class="lt-ip-groups-list-start-edit" placeholder="Set Start Date" ng-model="newSubscription.start"></input></span>
-        <span>-</span>
-        <span><input id="createEnd" class="lt-ip-groups-list-end-edit" placeholder="Set End Date" ng-model="newSubscription.end"></input></span>
-      </div>
-    </div>
-    <div class="col-xs-3 lt-admin-groups-list-glyphicon-container" style="padding:0px">
-          <div class="pull-right glyphicon glyphicon-remove lt-glyphicon-green text-center" style="margin-right:10px" ng-click="$event.stopPropagation(); subAdding=false"></div>
-          <div class="pull-right glyphicon glyphicon-ok lt-glyphicon-green text-center" style="margin-right:10px" ng-click="$event.stopPropagation(); createSubConfirm()"></div>
-    </div>
-      </div>
-
-<!-- Subscription List -->
-        <div class="lt-institution-subscription-list" ng-repeat="p in listPartners(partners)" style="height:100px;width:571px">
-            <div class="row">
-                <div class="{{uiparams.partnercolwidth}}">
-                    <div class="row"><div class="col-xs-12 lt-font lt-theme-font-color lt-font-aliasing" style="font-size: 24px;">
-                        {{p.name}} <img src={{p.logoUri}} alt="partner" width="87" height="61">
-                    </div></div>
-                    <div class="row"><div class="col-xs-12 lt-font lt-font-aliasing" style="font-size: 16px; color: #858585;">
-                        {{p.description}}
-                    </div></div>
-                </div>
-                <div class="{{uiparams.expcolwidth}}">
-                    <div class="row">
-                        {{getExpDate(p.partnerId) | date:'fullDate'}}
-                    </div>
-                </div>
-                <div class="{{uiparams.actionscolwidth}}">
-                    <div class="row">
-                    <button type="button" class="center-block btn btn-default" ng-click="licenseAction(p.partnerId);" ng-disabled>{{licenseButton(p.partnerId)}}</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-  
-<!-- Consortia's Subscription List -->    
-        <div class="lt-institution-subscription-list" ng-repeat="consSubscription in consSubList" style="height:100px;width:571px">
-            <div class="row">
-                <div class="{{uiparams.partnercolwidth}}">
-                    <div class="row"><div class="col-xs-12 lt-font lt-theme-font-color lt-font-aliasing" style="font-size: 24px;">
-                        {{consSubscription.name}} <img src={{consSubscription.logoUri}} alt="partner" width="87" height="61">
-                    </div></div>
-                    <div class="row"><div class="col-xs-12 lt-font lt-font-aliasing" style="font-size: 16px; color: #858585;">
-                        {{consSubscription.description}}
-                    </div></div>
-                </div>
-                <div class="{{uiparams.expcolwidth}}">
-                    <div class="row">
-                        {{consSubscription.endDate | date:'fullDate'}}
-                    </div>
-                </div>
-                <div class="{{uiparams.actionscolwidth}}">
-                    <div class="row">
-                    <button type="button" class="center-block btn btn-default" ng-click="enterConsortium(consSubscription.consortium);" ng-disabled>{{consSubscription.consortium.name}}</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-      
-      <!-- Add Consortium -->
-      <div class="lt-admin-groups-list-edit" ng-class="groupsAddCss(consAdding)">
-    <div class="col-xs-9" style="padding:0px">
-          <div><input class="lt-admin-groups-list-label-edit" style="width:300px" placeholder="Enter Consortium Name" ng-model="newConsortium.name" uib-typeahead="consortium.name for consortium in allConsortiums | filter:{name:$viewValue} | limitTo:8"></input></div>
-    </div>
-    <div class="col-xs-3 lt-admin-groups-list-glyphicon-container" style="padding:0px">
-          <div class="pull-right glyphicon glyphicon-remove lt-glyphicon-green text-center" style="margin-right:10px" ng-click="$event.stopPropagation(); consAdding=false"></div>
-          <div class="pull-right glyphicon glyphicon-ok lt-glyphicon-green text-center" style="margin-right:10px" ng-click="$event.stopPropagation(); consAddConfirm()"></div>
-    </div>
-      </div>
-      
-      <!-- Consortium List -->
-      <div ng-repeat="consortium in consortiums | filter:searchTerm">
-    <div class="row" ng-class="groupsListCss(consortium.state)" ng-mouseover="groupsMoveOver(consortium)" ng-mouseleave="groupsMoveOut(consortium)" ng-click="enterConsortium(consortium)">
-      <div class="col-xs-9" style="padding:0px">
-        <div><input ng-class="groupsListLabelCss(consortium.state)" style="width:300px" ng-model="consortium.name" ng-readonly="!(consortium.state=='edit')"></input></div>
-        <div class="lt-admin-groups-list-values">
-              <input class="lt-admin-groups-list-values-input" ng-model="consortium.partyId" ng-readonly="true"></input>
-        </div>
-      </div>
-      <div class="col-xs-3" style="margin-top:18px;padding:0px" ng-class="groupsListGlyphiconCss(consortium.state)">
-      <div class="delete-label">Delete?</div>
-        <div class="pull-right glyphicon text-center" ng-class="groupsListGlyphiconRightCss(consortium.state)" style="margin-right:10px" ng-click="$event.stopPropagation(); consright(consortium);"></div>
-        <div class="pull-right glyphicon text-center" ng-class="groupsListGlyphiconLeftCss(consortium.state)" style="margin-right:10px" ng-click="$event.stopPropagation(); consleft(consortium);"></div>
-      </div>
-    </div>
-      </div>
-            
-=======
->>>>>>> refs/heads/release_merge_to_develop
       <!-- Description and Search Box -->
       <div class="lt-admin-groups-description">Add a new institution from the left action panel. Click on already existing institutions to edit or delete them.</div>
       <div class="lt-admin-groups-search">
@@ -155,17 +54,10 @@
         </div>
 	  </div>
 	  </div>
-<<<<<<< HEAD
-	  <div class="col-xs-3" style="margin-top:18px;padding:0px" ng-class="groupsListGlyphiconCss(iprange.state)">
-	  <div class="delete-label">Delete?</div>
-	    <div class="pull-right glyphicon text-center" ng-class="groupsListGlyphiconRightCss(iprange.state)" style="margin-right:10px" ng-click="$event.stopPropagation(); right(iprange);"></div>
-	    <div class="pull-right glyphicon text-center" ng-class="groupsListGlyphiconLeftCss(iprange.state)" style="margin-right:10px" ng-click="$event.stopPropagation(); left(iprange);"></div>
-=======
 	  <div class="col-xs-3" style="margin-top:18px;padding:0px" ng-class="groupsListGlyphiconCss(institution.state)">
 	    <div class="delete-label">Delete?</div>
 	    <div class="pull-right glyphicon text-center" ng-class="groupsListGlyphiconRightCss(institution.state)" style="margin-right:10px" ng-click="$event.stopPropagation(); right(institution);"></div>
 	    <div class="pull-right glyphicon text-center" ng-class="groupsListGlyphiconLeftCss(institution.state)" style="margin-right:10px" ng-click="$event.stopPropagation(); left(institution);"></div>
->>>>>>> refs/heads/release_merge_to_develop
 	  </div>
 	</div>
       </div>
