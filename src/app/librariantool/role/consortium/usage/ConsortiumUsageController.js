@@ -56,8 +56,10 @@ angular.module('platform-ui.librariantool.role.consortium.usage').controller(
 				url: $scope.apiUri+'/parties/consortiums/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+$scope.consortiumId,
 				method: 'GET',
 			}).success(function(data, status, headers, config) {
-				$scope.postData.consortium = data[0].name;
+				$scope.postData.consortium = data[0].name;//TODO: partyType, partyName as parameter
 				$scope.postData.email = data[1].email;
+				
+				
 			}).error(function() {
 				alert("failed to get party information");
 			});
