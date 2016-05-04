@@ -49,6 +49,7 @@
 	    <div><input ng-class="groupsListLabelCss(institution.state)" style="width:300px" ng-model="institution.name" ng-show="institution.state=='edit'"></input></div>
 	  </div>
 	  <div class="col-xs-3" style="margin-top:18px;padding:0px" ng-class="groupsListGlyphiconCss(institution.state)">
+	    <div class="delete-label">Remove Affiliation?</div>
 	    <div class="pull-right glyphicon text-center" ng-class="groupsListGlyphiconRightCss(institution.state)" style="margin-right:10px" ng-click="$event.stopPropagation(); right(institution);"></div>
 	    <div class="pull-right glyphicon text-center" ng-class="groupsListGlyphiconLeftCss(institution.state)" style="margin-right:10px" ng-click="$event.stopPropagation(); left(institution);" ng-show="institution.state == 'remove'||role=='staff'"></div>
 	  </div>
