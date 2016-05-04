@@ -57,6 +57,7 @@ angular.module('platform-ui.librariantool.role.consortium.usage').controller(
 				method: 'GET',
 			}).success(function(data, status, headers, config) {
 				$scope.postData.consortium = data[0].name;
+				$scope.postData.email = data[1].email;
 			}).error(function() {
 				alert("failed to get party information");
 			});
