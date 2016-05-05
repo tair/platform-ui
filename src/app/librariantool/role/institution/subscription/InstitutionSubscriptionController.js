@@ -2,7 +2,7 @@
  * InstitutionSubscription Controller
  */
 
-angular.module('platform-ui.librariantool.role.institution.subscription').controller(
+angular.module('platform-ui.adminportal.role.institution.subscription').controller(
 	/* Name */
 	'InstitutionSubscriptionController',
 

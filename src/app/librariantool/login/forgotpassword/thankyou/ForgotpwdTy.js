@@ -6,7 +6,7 @@
 
 angular.module(
     /* Name */
-    'platform-ui.librariantool.login.forgotpassword.thankyou',
+    'platform-ui.adminportal.login.forgotpassword.thankyou',
     
     /* Dependencies */
     [

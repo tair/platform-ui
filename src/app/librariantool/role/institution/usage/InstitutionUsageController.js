@@ -2,7 +2,7 @@
  * InstitutionUsage Controller
  */
 
-angular.module('platform-ui.librariantool.role.institution.usage').controller(
+angular.module('platform-ui.adminportal.role.institution.usage').controller(
 	/* Name */
 	'InstitutionUsageController',
 

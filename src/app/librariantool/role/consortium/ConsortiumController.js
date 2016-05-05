@@ -2,7 +2,7 @@
  * Consortium Controller
  */
 
-angular.module('platform-ui.librariantool.role.consortium').controller(
+angular.module('platform-ui.adminportal.role.consortium').controller(
 	/* Name */
 	'ConsortiumController',
 

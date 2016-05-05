@@ -6,17 +6,17 @@
 
 angular.module(
     /* Name */
-    'platform-ui.librariantool.role.institution',
+    'platform-ui.adminportal.role.institution',
     
     /* Dependencies */
     [
 	'ui.router',
 	'service.title',
-	'platform-ui.librariantool.role.institution.iprange',
-	'platform-ui.librariantool.role.institution.consortium',
-	'platform-ui.librariantool.role.institution.subscription',
-	'platform-ui.librariantool.role.institution.profile',
-	'platform-ui.librariantool.role.institution.usage',
+	'platform-ui.adminportal.role.institution.iprange',
+	'platform-ui.adminportal.role.institution.consortium',
+	'platform-ui.adminportal.role.institution.subscription',
+	'platform-ui.adminportal.role.institution.profile',
+	'platform-ui.adminportal.role.institution.usage',
     ])
 //    .config('$urlRouterProvider',function ($urlRouterProvider) {
 //		$urlRouterProvider.when('','/iprange');
@@ -28,7 +28,7 @@ angular.module(
 		views: {
 		    'institution': {
 			controller: 'InstitutionIpRangeController',
-			templateUrl: 'librariantool/role/institution/iprange/iprange.html'
+			templateUrl: 'adminportal/role/institution/iprange/iprange.html'
 		    }
 		  }
         }).state('role.institution.consortium', {
@@ -36,7 +36,7 @@ angular.module(
     	  views: {
        	 	'institution': {
         	  controller: 'InstitutionConsortiumController',
-       	   	  templateUrl: 'librariantool/role/institution/consortium/consortium.html'
+       	   	  templateUrl: 'adminportal/role/institution/consortium/consortium.html'
        	    }
       	  }
     	}).state('role.institution.subscription', {
@@ -44,7 +44,7 @@ angular.module(
                 views: {
                     'institution': {
                         controller: 'InstitutionSubscriptionController',
-                        templateUrl: 'librariantool/role/institution/subscription/subscription.html'
+                        templateUrl: 'adminportal/role/institution/subscription/subscription.html'
                     }
                 }
             }).state('role.institution.profile', {
@@ -52,7 +52,7 @@ angular.module(
                 views: {
                     'institution': {
                         controller: 'InstitutionProfileController',
-                        templateUrl: 'librariantool/role/institution/profile/profile.html'
+                        templateUrl: 'adminportal/role/institution/profile/profile.html'
                     }
                 }
             }).state('role.institution.usage', {
@@ -60,7 +60,7 @@ angular.module(
                 views: {
                     'institution': {
                         controller: 'InstitutionUsageController',
-                        templateUrl: 'librariantool/role/institution/usage/usage.html'
+                        templateUrl: 'adminportal/role/institution/usage/usage.html'
                     }
                 }
             });

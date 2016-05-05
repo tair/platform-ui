@@ -6,15 +6,15 @@
 
 angular.module(
     /* Name */
-    'platform-ui.librariantool.role.consortium.subscription',
+    'platform-ui.adminportal.role.consortium.subscription',
     
     /* Dependencies */
     [
 	'ui.router',
 	'service.title',
-	'platform-ui.librariantool.role.consortium.subscription.list',
-	'platform-ui.librariantool.role.consortium.subscription.renewal',
-	'platform-ui.librariantool.role.consortium.subscription.request'
+	'platform-ui.adminportal.role.consortium.subscription.list',
+	'platform-ui.adminportal.role.consortium.subscription.renewal',
+	'platform-ui.adminportal.role.consortium.subscription.request'
     ])
     .config(
 	function ($stateProvider) {
@@ -23,7 +23,7 @@ angular.module(
 			views: {
                                 'subscription': {
                                         controller: 'ConsortiumSubscriptionListController',
-                                        templateUrl: 'librariantool/role/consortium/subscription/list/list.html'
+                                        templateUrl: 'adminportal/role/consortium/subscription/list/list.html'
                                 }
                         }
                 }).state('role.consortium.subscription.renewal', {
@@ -31,7 +31,7 @@ angular.module(
                         views: {
                                 'subscription': {
                                         controller: 'ConsortiumSubscriptionRenewalController',
-                                        templateUrl: 'librariantool/role/consortium/subscription/renewal/renewal.html'
+                                        templateUrl: 'adminportal/role/consortium/subscription/renewal/renewal.html'
                                 }
                         }
                 }).state('role.consortium.subscription.request', {
@@ -39,7 +39,7 @@ angular.module(
                         views: {
                                 'subscription': {
                                         controller: 'ConsortiumSubscriptionRequestController',
-                                        templateUrl: 'librariantool/role/consortium/subscription/request/request.html'
+                                        templateUrl: 'adminportal/role/consortium/subscription/request/request.html'
                                 }
                         }
                 });

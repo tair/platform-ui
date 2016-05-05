@@ -6,15 +6,15 @@
 
 angular.module(
     /* Name */
-    'platform-ui.librariantool.role.phoenix',
+    'platform-ui.adminportal.role.phoenix',
     
     /* Dependencies */
     [
 	'ui.router',
 	'service.title',
-	'platform-ui.librariantool.role.phoenix.institution',
-	'platform-ui.librariantool.role.phoenix.consortium',
-	'platform-ui.librariantool.role.phoenix.profile',
+	'platform-ui.adminportal.role.phoenix.institution',
+	'platform-ui.adminportal.role.phoenix.consortium',
+	'platform-ui.adminportal.role.phoenix.profile',
     ])
     .config(
 	function ($stateProvider) {
@@ -23,7 +23,7 @@ angular.module(
                 views: {
                     'phoenix': {
                         controller: 'PhoenixInstitutionController',
-                        templateUrl: 'librariantool/role/phoenix/institution/institution.html'
+                        templateUrl: 'adminportal/role/phoenix/institution/institution.html'
                     }
                 }
             }).state('role.phoenix.consortium', {
@@ -31,7 +31,7 @@ angular.module(
 		        views: {
 		          'phoenix': {
 		          controller: 'PhoenixConsortiumController',
-		          templateUrl: 'librariantool/role/phoenix/consortium/consortium.html'
+		          templateUrl: 'adminportal/role/phoenix/consortium/consortium.html'
 		        }
 		      }
 		    }).state('role.phoenix.institution', {
@@ -39,7 +39,7 @@ angular.module(
 	    		views: {
 	    		    'phoenix': {
 	    			controller: 'PhoenixInstitutionController',
-	    			templateUrl: 'librariantool/role/phoenix/institution/institution.html'
+	    			templateUrl: 'adminportal/role/phoenix/institution/institution.html'
 	    		    }
 	    		}
             }).state('role.phoenix.profile', {
@@ -47,7 +47,7 @@ angular.module(
 	            views: {
 	                'phoenix': {
 	                    controller: 'PhoenixProfileController',
-	                    templateUrl: 'librariantool/role/phoenix/profile/profile.html'
+	                    templateUrl: 'adminportal/role/phoenix/profile/profile.html'
 	                }
 	            }
             });

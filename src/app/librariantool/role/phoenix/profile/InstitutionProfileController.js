@@ -2,7 +2,7 @@
  * InstitutionProfileController
  */
 
-angular.module('platform-ui.librariantool.role.institution.profile').controller(
+angular.module('platform-ui.adminportal.role.institution.profile').controller(
 	/* Name */
 	'InstitutionProfileController',
 

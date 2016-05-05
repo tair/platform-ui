@@ -1,18 +1,18 @@
 /**
- * LibrarianTool Model
+ * adminportal Model
  * Model for root /index.html template that wraps every other view.
  */
 
-angular.module('platform-ui.librariantool').factory(
+angular.module('platform-ui.adminportal').factory(
 	/* Name */
-	'LibrarianToolModel',
+	'adminportalModel',
 
 	/* Dependencies */
 	[
 
 	function () {
 		return {
-		    title: 'LibrarianTool',
+		    title: 'adminportal',
 		};
 	}
 ]);

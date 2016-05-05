@@ -6,7 +6,7 @@
 
 angular.module(
     /* Name */
-    'platform-ui.librariantool.role.consortium',
+    'platform-ui.adminportal.role.consortium',
     
     /* Dependencies */
     [
@@ -14,10 +14,10 @@ angular.module(
 	'service.title',
 	'service.currenttab',
 	'service.pageinfo',
-	'platform-ui.librariantool.role.consortium.institution',
-	'platform-ui.librariantool.role.consortium.subscription',
-	'platform-ui.librariantool.role.consortium.profile',
-	'platform-ui.librariantool.role.consortium.usage',
+	'platform-ui.adminportal.role.consortium.institution',
+	'platform-ui.adminportal.role.consortium.subscription',
+	'platform-ui.adminportal.role.consortium.profile',
+	'platform-ui.adminportal.role.consortium.usage',
     ])
     .config(
 	function ($stateProvider) {
@@ -27,7 +27,7 @@ angular.module(
 //                views: {
 //                    'consortium': {
 //                        controller: 'ConsortiumInstitutionController',
-//                        templateUrl: 'librariantool/role/consortium/institution/institution.html'
+//                        templateUrl: 'adminportal/role/consortium/institution/institution.html'
 //                    }
 //                }
 //            })
@@ -36,7 +36,7 @@ angular.module(
                 views: {
                     'consortium': {
                         controller: 'ConsortiumInstitutionController',
-                        templateUrl: 'librariantool/role/consortium/institution/institution.html'
+                        templateUrl: 'adminportal/role/consortium/institution/institution.html'
                     }
                 }
             }).state('role.consortium.subscription', {
@@ -44,7 +44,7 @@ angular.module(
                 views: {
                     'consortium': {
                         controller: 'ConsortiumSubscriptionController',
-                        templateUrl: 'librariantool/role/consortium/subscription/subscription.html'
+                        templateUrl: 'adminportal/role/consortium/subscription/subscription.html'
                     }
                 }
             }).state('role.consortium.profile', {
@@ -52,7 +52,7 @@ angular.module(
                 views: {
                     'consortium': {
                         controller: 'ConsortiumProfileController',
-                        templateUrl: 'librariantool/role/consortium/profile/profile.html'
+                        templateUrl: 'adminportal/role/consortium/profile/profile.html'
                     }
                 }
             }).state('role.consortium.usage', {
@@ -60,7 +60,7 @@ angular.module(
                 views: {
                     'consortium': {
                         controller: 'ConsortiumUsageController',
-                        templateUrl: 'librariantool/role/consortium/usage/usage.html'
+                        templateUrl: 'adminportal/role/consortium/usage/usage.html'
                     }
                 }
             });

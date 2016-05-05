@@ -1,37 +1,37 @@
 /**
- * LibrarianTool Module
+ * adminportal Module
  *
  * The main landing page
  */
 
 angular.module(
     /* Name */
-    'platform-ui.librariantool',
+    'platform-ui.adminportal',
     
     /* Dependencies */
     [
 	'ui.router',
 	'service.title',
 	'service.currenttab',
-	'platform-ui.librariantool.login',
-	'platform-ui.librariantool.role',
+	'platform-ui.adminportal.login',
+	'platform-ui.adminportal.role',
     ])
     .config(
 	function ($stateProvider) {
 	    $stateProvider.state('ltlogin', {
-		url: '/librariantool/login',
+		url: '/adminportal/login',
 		views: {
 		    'main': {
 			controller: 'LTLoginController',
-			templateUrl: 'librariantool/login/login.html'
+			templateUrl: 'adminportal/login/login.html'
 		    }
 		}
 	    }).state('role', {
-		url: '/librariantool/role',
+		url: '/adminportal/role',
 		views: {
 		    'main': {
 			controller: 'RoleController',
-			templateUrl: 'librariantool/role/role.html'
+			templateUrl: 'adminportal/role/role.html'
 		    }
 		}
 	    });

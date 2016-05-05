@@ -2,7 +2,7 @@
  * SubscriptionList Controller
  */
 
-angular.module('platform-ui.librariantool.role.consortium.subscription.request').controller(
+angular.module('platform-ui.adminportal.role.consortium.subscription.request').controller(
 	/* Name */
 	'ConsortiumSubscriptionRequestController',
 

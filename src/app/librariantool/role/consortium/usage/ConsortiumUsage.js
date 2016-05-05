@@ -6,7 +6,7 @@
 
 angular.module(
     /* Name */
-    'platform-ui.librariantool.role.consortium.usage',
+    'platform-ui.adminportal.role.consortium.usage',
     
     /* Dependencies */
     [

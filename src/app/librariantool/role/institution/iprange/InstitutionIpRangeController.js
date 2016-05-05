@@ -2,7 +2,7 @@
  * InstitutionIpRange Controller
  */
 
-angular.module('platform-ui.librariantool.role.institution.iprange').controller(
+angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 	/* Name */
 	'InstitutionIpRangeController',
 

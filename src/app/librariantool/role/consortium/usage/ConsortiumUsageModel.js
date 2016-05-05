@@ -3,7 +3,7 @@
  * Model for root /index.html template that wraps every other view.
  */
 
-angular.module('platform-ui.librariantool.role.consortium.usage').factory(
+angular.module('platform-ui.adminportal.role.consortium.usage').factory(
 	/* Name */
 	'ConsortiumUsageModel',
 

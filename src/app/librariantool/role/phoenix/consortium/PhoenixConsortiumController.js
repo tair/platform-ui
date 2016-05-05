@@ -2,7 +2,7 @@
  * PhoenixConsortium Controller
  */
 
-angular.module('platform-ui.librariantool.role.phoenix.consortium').controller(
+angular.module('platform-ui.adminportal.role.phoenix.consortium').controller(
 	/* Name */
 	'PhoenixConsortiumController',
 

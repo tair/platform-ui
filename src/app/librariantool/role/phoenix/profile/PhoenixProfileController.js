@@ -2,7 +2,7 @@
  * PhoenixIpRange Controller
  */
 
-angular.module('platform-ui.librariantool.role.phoenix.profile').controller(
+angular.module('platform-ui.adminportal.role.phoenix.profile').controller(
 	/* Name */
 	'PhoenixProfileController',
 

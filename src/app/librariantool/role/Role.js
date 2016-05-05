@@ -6,16 +6,16 @@
 
 angular.module(
     /* Name */
-    'platform-ui.librariantool.role',
+    'platform-ui.adminportal.role',
     
     /* Dependencies */
     [
 	'ui.router',
 	'service.title',
 	'service.currenttab',
-    'platform-ui.librariantool.role.institution',
-	'platform-ui.librariantool.role.consortium',
-	'platform-ui.librariantool.role.phoenix',
+    'platform-ui.adminportal.role.institution',
+	'platform-ui.adminportal.role.consortium',
+	'platform-ui.adminportal.role.phoenix',
     ])
     .config(
 	function ($stateProvider) {
@@ -24,7 +24,7 @@ angular.module(
                 views: {
                     'role': {
                         controller: 'InstitutionRoleController',
-                        templateUrl: 'librariantool/role/institution/institution.html'
+                        templateUrl: 'adminportal/role/institution/institution.html'
                     }
                 }
             }).state('role.institution', {
@@ -35,7 +35,7 @@ angular.module(
                 views: {
                     'role': {
                         controller: 'InstitutionRoleController',
-                        templateUrl: 'librariantool/role/institution/institution.html'
+                        templateUrl: 'adminportal/role/institution/institution.html'
                     }
                 }
             }).state('role.consortium', {
@@ -46,7 +46,7 @@ angular.module(
                 views: {
                     'role': {
                         controller: 'ConsortiumController',
-                        templateUrl: 'librariantool/role/consortium/consortium.html'
+                        templateUrl: 'adminportal/role/consortium/consortium.html'
                     }
                 }
             }).state('role.phoenix', {
@@ -54,7 +54,7 @@ angular.module(
                 views: {
                     'role': {
                         controller: 'PhoenixController',
-                        templateUrl: 'librariantool/role/phoenix/phoenix.html'
+                        templateUrl: 'adminportal/role/phoenix/phoenix.html'
                     }
                 }
             });

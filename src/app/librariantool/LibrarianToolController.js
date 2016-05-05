@@ -1,17 +1,17 @@
 /**
- * LibrarianTool Controller
+ * adminportal Controller
  */
 
-angular.module('platform-ui.librariantool').controller(
+angular.module('platform-ui.adminportal').controller(
 	/* Name */
-	'LibrarianToolController',
+	'adminportalController',
 
 	/* Dependencies */
 	[
 	'$scope',
-	'LibrarianToolModel',
+	'adminportalModel',
 
 	/* Controller Definition */
-	function ($scope, LibrarianToolModel) {
+	function ($scope, adminportalModel) {
 	}
 ]);

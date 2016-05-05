@@ -2,7 +2,7 @@
  * Login Controller
  */
 
-angular.module('platform-ui.librariantool.role').controller(
+angular.module('platform-ui.adminportal.role').controller(
 	/* Name */
 	'RoleController',
 
@@ -34,7 +34,7 @@ angular.module('platform-ui.librariantool.role').controller(
 		}
 		$scope.title = RoleModel.title;
 	    $scope.home = function() {
-		window.location.href='#/librariantool/login';
+		window.location.href='#/adminportal/login';
 	    }
 	    $scope.logout = function() {
 		$cookieStore.remove("org_phoenixbioinformatics_ui_credentialId");

@@ -2,7 +2,7 @@
  * Login Page Controller
  */
 
-angular.module('platform-ui.librariantool.login.page').controller(
+angular.module('platform-ui.adminportal.login.page').controller(
 	/* Name */
 	'LTLoginPageController',
 

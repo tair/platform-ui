@@ -2,7 +2,7 @@
  * PhoenixRole Controller
  */
 
-angular.module('platform-ui.librariantool.role.phoenix').controller(
+angular.module('platform-ui.adminportal.role.phoenix').controller(
 	/* Name */
 	'PhoenixController',
 

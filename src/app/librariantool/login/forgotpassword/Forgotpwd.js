@@ -6,13 +6,13 @@
 
 angular.module(
     /* Name */
-    'platform-ui.librariantool.login.forgotpassword',
+    'platform-ui.adminportal.login.forgotpassword',
     
     /* Dependencies */
     [
 	'ui.router',
 	'service.title',
-	'platform-ui.librariantool.login.forgotpassword.thankyou',
+	'platform-ui.adminportal.login.forgotpassword.thankyou',
     ])
     .config(
 	function ($stateProvider) {
@@ -21,7 +21,7 @@ angular.module(
 			views: {
 				'forgotPwd': {
 					controller: 'ForgotpwdController',
-					templateUrl: 'librariantool/login/forgotpassword/sendlink/sendlink.html'
+					templateUrl: 'adminportal/login/forgotpassword/sendlink/sendlink.html'
 				}
 			}
 		}).state('ltlogin.forgotpassword.thankyou', {
@@ -29,7 +29,7 @@ angular.module(
 			views: {
 				'forgotPwd': {
 					controller: 'ForgotpwdTyController',
-					templateUrl: 'librariantool/login/forgotpassword/thankyou/thankyou.html'
+					templateUrl: 'adminportal/login/forgotpassword/thankyou/thankyou.html'
 				}
 			}
 		});

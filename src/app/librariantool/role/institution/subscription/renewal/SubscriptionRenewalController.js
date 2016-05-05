@@ -2,7 +2,7 @@
  * SubscriptionList Controller
  */
 
-angular.module('platform-ui.librariantool.role.institution.subscription.renewal').controller(
+angular.module('platform-ui.adminportal.role.institution.subscription.renewal').controller(
 	/* Name */
 	'SubscriptionRenewalController',
 
