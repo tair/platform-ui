@@ -203,6 +203,8 @@ angular.module('platform-ui.adminportal.role.consortium.institution').controller
 			name:entry['name'],
 			country:entry['country'],
 			display:entry['display'],
+			consortiums:entry['consortiums'],
+			label:entry['label'],
 			state:null
 		    });
 		}
@@ -231,6 +233,7 @@ angular.module('platform-ui.adminportal.role.consortium.institution').controller
 				country:entry['country'],
 				display:entry['display'],
 				consortiums:entry['consortiums'],
+				label:entry['label'],
 				state:null
 		    });
 		}
