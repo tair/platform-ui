@@ -69,6 +69,7 @@ angular.module('platform-ui.adminportal.role.consortium.institution').factory(
         	],
 		    sortings: [
 			          {predicate:'name', reverse:false, text:"Name"},
+			          {predicate:'label', reverse:false, text:"Label"},
 //		              {predicate:'partyId', reverse:false, text:"Party ID"},
 		              ],
   			partners: [
