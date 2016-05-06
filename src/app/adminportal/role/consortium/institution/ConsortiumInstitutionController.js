@@ -105,6 +105,7 @@ angular.module('platform-ui.adminportal.role.consortium.institution').controller
 		else if (institution.state == "edit") {
 		    // This is the confirm button at edit state
 		    data = {
+		    label:institution['label'],
 			name:institution['name'],
 			partyId:institution['partyId'],
 		    };
