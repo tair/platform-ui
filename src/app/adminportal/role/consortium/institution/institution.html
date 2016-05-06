@@ -33,6 +33,7 @@
       <!-- Add Institution -->
       <div class="lt-admin-groups-list-edit" ng-class="groupsAddCss(adding)">
 	<div class="col-xs-9" style="padding:0px">
+          <div><input class="lt-admin-groups-list-label-edit" style="width:300px" placeholder="Enter Institution Label" ng-model="foundInstitution" uib-typeahead="institution as institution.label for institution in allInstitutions | filter:{name:$viewValue} | limitTo:8"></input></div>
           <div><input class="lt-admin-groups-list-label-edit" style="width:300px" placeholder="Enter Institution Name" ng-model="foundInstitution" uib-typeahead="institution as institution.name for institution in allInstitutions | filter:{name:$viewValue} | limitTo:8"></input></div>
 	</div>
 	<div class="col-xs-3 lt-admin-groups-list-glyphicon-container" style="padding:0px">
