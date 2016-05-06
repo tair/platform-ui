@@ -14,7 +14,7 @@ angular.module('platform-ui.adminportal.role.consortium.institution').factory(
 		return {
 		    currentTab: {label: 'INSTITUTION', state: 'role.consortium.institution'},
 		    newInstitution: {'name':null, 'country':null},
-		    foundInstitution: {'name':null, 'partyId':null, 'state':null},
+		    foundInstitution: {'name':null, 'partyId':null, 'label':null,'state':null},
 		    institutions:[
 //		                  {
 //		                	    "partyId": 55,
