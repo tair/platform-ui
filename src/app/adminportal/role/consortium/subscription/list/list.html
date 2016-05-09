@@ -1,0 +1,46 @@
+<div class="row" style="height: 56px;"></div>
+<div class="panel panel-default block-center" style="width: 860px;">
+    <div class="panel-heading lt-institution-profile-panel-heading lt-font-bold lt-font-aliasing" style="font-size: 16px; color: #ffffff;">
+        <div class="row">
+            <div class="{{uiparams.partnercolwidth}}">
+                LICENSE 
+            </div>
+            <div class="{{uiparams.expcolwidth}}">
+                EXPIRATION
+            </div>
+            <div class="{{uiparams.actionscolwidth}}">
+                ACTIONS
+            </div>
+        </div>
+    </div>
+    <div class="panel-body" style="padding: 0px;">
+        <div class="lt-institution-subscription-list" ng-repeat="p in listPartners(partners)" style="height:200px">
+            <div class="row">
+                <div class="{{uiparams.partnercolwidth}}">
+                    <!-- name, logo -->
+                    <div class="row">
+                        <div class="col-xs-12 lt-font lt-theme-font-color lt-font-aliasing" style="font-size: 24px;">
+                        {{p.name}} <a href={{p.homeUri}} target="_blank"><img src={{p.logoUri}} alt="partner" style="max-width:87px; max-height:61px;"></a>
+                        </div>
+                    </div>
+                    <!-- description -->
+                    <div class="row">
+                        <div class="col-xs-12 lt-font lt-font-aliasing" style="font-size: 16px; color: #858585; width:268px; padding:17px">
+                            {{p.description}}
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- exp date -->
+                <div class="{{uiparams.expcolwidth}}">
+                        {{getExpDate(p.partnerId) | date:'fullDate'}}
+                </div>
+                
+                <!-- btn -->
+                <div class="{{uiparams.actionscolwidth}}">          
+                        <button type="button" class="btn btn-default" ng-click="licenseAction(p.partnerId);">{{licenseButton(p.partnerId)}}</button>                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

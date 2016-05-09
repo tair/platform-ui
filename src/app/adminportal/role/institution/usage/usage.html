@@ -1,0 +1,84 @@
+<div class="row" style="height: 56px;"></div>
+<div class="panel panel-default block-center" style="width: 860px;">
+	<div class="panel-heading lt-institution-profile-panel-heading lt-font-bold lt-font-aliasing" style="font-size: 16px; color: #ffffff;">
+		INQUIRY
+	</div>
+	<div class="panel-body">
+		<div class="row" style="height: 40px;"></div>
+		<div class="row">
+			<div class="{{uiparams.colwidth}} block-center text-center lt-font lt-font-color lt-font-aliasing" style="font-size: 36px;">
+				Request Form
+			</div>
+		</div>
+		<div class="row" style="height: 6px;"></div>
+		<div class="row">
+			<div class="{{uiparams.colwidth}} block-center text-left lt-font lt-font-aliasing" style="font-size=16px;">
+				We are currently implementing a tool that will allow you to download your requested timeline of usage 
+				statistics instantly in PDF form. In the meantime you can inquire about statistics via email. Please 
+				fill out the form below to receive usage statistics within the next 2 business days. Thank you for your patience.
+			</div>
+		</div>
+		<div class="row" style="height: 16px;"></div>
+		<form ng-submit="validateForm() && requestUsage()">
+		<div class="row">
+			<div class="{{uiparams.colwidth}} block-center text-left">
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="row"><div class="col-xs-12">
+							Product Name
+						</div></div>
+						<div class="row"><div class="col-xs-12">
+							<!-- <select class="lt-admin-groups-list-label-edit" style="width:200px;height:26px;margin:0px" ng-options="p.partnerId as p.name for p in partners" ng-model="postData.partnerId">
+						        <option value="">-- choose a partner --</option>
+						    </select> -->
+						    <input ng-model="postData.partner" uib-typeahead="p.name for p in partners | filter:{name:$viewValue} | limitTo:8" required>
+						    </input>						    
+						</div></div>
+					</div>
+					<div class="col-xs-6">
+                        <div class="row"><div class="col-xs-12">
+                            Your Name
+                        </div></div>
+                        <div class="row"><div class="col-xs-12">
+                            <input ng-model="postData.name" required>
+                            </input>                            
+                        </div></div>
+                    </div>
+					<div class="col-xs-6">
+						<div class="row"><div class="col-xs-12">
+							Desired Statistics Start Date
+						</div></div>
+						<div class="row"><div class="col-xs-12">
+							<input id="startDate" ng-model="postData.startDate" required></input>
+						</div></div>
+					</div>
+					<div class="col-xs-6">
+						<div class="row"><div class="col-xs-12">
+							Desired Statistics End Date
+						</div></div>
+						<div class="row"><div class="col-xs-12">
+							<input id="endDate" ng-model="postData.endDate" required></input>
+						</div></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row" style="height: 6px;"></div>
+		<div class="row">
+			<div class="{{uiparams.colwidth}} block-center text-left">
+				<div class="row"><div class="col-xs-12">
+					Comments
+				</div></div>
+				<div class="row"><div class="col-xs-12">
+					<textarea style="resize: none; height: 92px; width: 100%;" ng-model="postData.comments"></textarea>
+				</div></div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="{{uiparams.colwidth}} block-center text-center">
+				<button type="submit" class="btn btn-default">EMAIL REQUEST</button>
+			</div>
+		</div>
+                </form>
+	</div>
+</div>

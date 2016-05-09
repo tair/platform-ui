@@ -28,7 +28,7 @@ angular.module(
 	/* App-specific */
 	'platform-ui.home',
 	'platform-ui.contentaccess',
-	'platform-ui.librariantool',
+	'platform-ui.adminportal',
 	])
 	.config(
 		function ($routeProvider, $httpProvider, $urlRouterProvider) {
