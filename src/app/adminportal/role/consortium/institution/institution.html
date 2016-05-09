@@ -33,6 +33,7 @@
       <!-- Add Institution -->
       <div class="lt-admin-groups-list-edit" ng-class="groupsAddCss(adding)">
 	<div class="col-xs-9" style="padding:0px">
+          <div><input class="lt-admin-groups-list-label-edit" style="width:300px" placeholder="Enter Institution Label" ng-model="foundInstitution" uib-typeahead="institution as institution.label for institution in allInstitutions | filter:{name:$viewValue} | limitTo:8"></input></div>
           <div><input class="lt-admin-groups-list-label-edit" style="width:300px" placeholder="Enter Institution Name" ng-model="foundInstitution" uib-typeahead="institution as institution.name for institution in allInstitutions | filter:{name:$viewValue} | limitTo:8"></input></div>
 	</div>
 	<div class="col-xs-3 lt-admin-groups-list-glyphicon-container" style="padding:0px">
@@ -45,13 +46,15 @@
       <div ng-repeat="institution in institutions | filter:searchTerm">
 	<div class="row" ng-class="groupsListCss(institution.state)" ng-mouseover="groupsMoveOver(institution)" ng-mouseleave="groupsMoveOut(institution)" ng-click="enterInstitution(institution)">
 	  <div class="col-xs-9" style="padding:0px">
-	    <div><p ng-class="groupsListLabelCss(institution.state)" ng-show="!(institution.state=='edit')">{{institution.name}}</p></div>
-	    <div><input ng-class="groupsListLabelCss(institution.state)" style="width:300px" ng-model="institution.name" ng-show="institution.state=='edit'"></input></div>
+	    <div><p class="lt-admin-groups-list-label" ng-show="!(institution.state=='edit')">{{institution.label}}</p></div>	    
+        <div><input ng-class="groupsListLabelCss(institution.state)" style="width:300px" ng-model="institution.label" ng-show="institution.state=='edit'"></input></div>
+	    <div><p class="lt-admin-groups-list-label" ng-show="!(institution.state=='edit')||institution.state=='edit'&&role!='staff'">{{institution.name}}</p></div>
+	    <div><input ng-class="groupsListLabelCss(institution.state)" style="width:300px" ng-model="institution.name" ng-show="institution.state=='edit'&&role=='staff'"></input></div>
 	  </div>
 	  <div class="col-xs-3" style="margin-top:18px;padding:0px" ng-class="groupsListGlyphiconCss(institution.state)">
 	    <div class="delete-label">Remove Affiliation?</div>
 	    <div class="pull-right glyphicon text-center" ng-class="groupsListGlyphiconRightCss(institution.state)" style="margin-right:10px" ng-click="$event.stopPropagation(); right(institution);"></div>
-	    <div class="pull-right glyphicon text-center" ng-class="groupsListGlyphiconLeftCss(institution.state)" style="margin-right:10px" ng-click="$event.stopPropagation(); left(institution);" ng-show="institution.state == 'remove'||role=='staff'"></div>
+	    <div class="pull-right glyphicon text-center" ng-class="groupsListGlyphiconLeftCss(institution.state)" style="margin-right:10px" ng-click="$event.stopPropagation(); left(institution);"></div>
 	  </div>
 	</div>
       </div>

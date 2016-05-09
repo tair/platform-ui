@@ -105,6 +105,7 @@ angular.module('platform-ui.adminportal.role.consortium.institution').controller
 		else if (institution.state == "edit") {
 		    // This is the confirm button at edit state
 		    data = {
+		    label:institution['label'],
 			name:institution['name'],
 			partyId:institution['partyId'],
 		    };
@@ -125,17 +126,7 @@ angular.module('platform-ui.adminportal.role.consortium.institution').controller
 		    institution.state = null;
 		}
 	    }
-	    $scope.addConfirm_obsolete = function() {
-	    	for(var i = 0; i < $scope.allInstitutions.length; i++){
-	    		if($scope.allInstitutions[i].name == $scope.newInstitution['name']){
-	    				$scope.foundInstitution['partyId'] = $scope.allInstitutions[i].partyId;
-	    				$scope.foundInstitution['name'] = $scope.allInstitutions[i].name;
-	    				$scope.addExtInstitution();
-	    				return;
-	    		}
-	    	}
-	    	alert("Institution does not exist. Please contact info@phoenixbioinformatics.org.");
-	    }
+	    
 	    $scope.addConfirm = function() {
 			var data = {
 					parentPartyId : $scope.consortiumId,
@@ -151,7 +142,11 @@ angular.module('platform-ui.adminportal.role.consortium.institution').controller
 					$scope.foundInstitution = null;
 					$scope.adding = false;
 				}).error(function(data, status, headers, config){
-				            alert("Institution cannot be found. Please create institution before adding.");
+					if($scope.role == 'staff'){
+				        alert("Institution cannot be found. Please create institution before adding.");
+					}else{
+						alert("Institution cannot be found. Please contact Phoenix to create the institution.");
+					}
 				});
 	    }
 	    $scope.reset = function() {
@@ -199,6 +194,8 @@ angular.module('platform-ui.adminportal.role.consortium.institution').controller
 			name:entry['name'],
 			country:entry['country'],
 			display:entry['display'],
+			consortiums:entry['consortiums'],
+			label:entry['label'],
 			state:null
 		    });
 		}
@@ -227,6 +224,7 @@ angular.module('platform-ui.adminportal.role.consortium.institution').controller
 				country:entry['country'],
 				display:entry['display'],
 				consortiums:entry['consortiums'],
+				label:entry['label'],
 				state:null
 		    });
 		}
