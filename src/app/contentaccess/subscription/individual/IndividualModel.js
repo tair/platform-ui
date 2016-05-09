@@ -27,6 +27,7 @@ angular.module('platform-ui.contentaccess.subscription.individual').factory(
                         expmonth: null,
                         expyear: null,
                         cvc: null,
+                        vat: null,//PW-248
 		    },
 		    info: {
 			numOfSubscribers: 1,

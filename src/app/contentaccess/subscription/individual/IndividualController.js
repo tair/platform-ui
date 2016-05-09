@@ -76,7 +76,8 @@ angular.module('platform-ui.contentaccess.subscription.individual').controller(
                     number: $scope.formdata.creditcard,
                     cvc: $scope.formdata.cvc,
                     exp_month: $scope.formdata.expmonth,
-                    exp_year: $scope.formdata.expyear
+                    exp_year: $scope.formdata.expyear,
+                    vat: $scope.formdata.vat //PW-248
                 };
                 Stripe.card.createToken(stripeData, function(status, response) {
                     if (response.error) {
