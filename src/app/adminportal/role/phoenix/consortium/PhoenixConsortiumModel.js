@@ -14,7 +14,7 @@ angular.module('platform-ui.adminportal.role.phoenix.consortium').factory(
 		return {
 			title: 'CONSORTIUM',
 			currentTab: {label:"CONSORTIUM", state:"role.phoenix.consortium"},
-			newConsortium: {"name":null,"country":null},
+			newConsortium: {"name":null,"country":null, "label":null},
 			consortiums: [
 //			              {
 //			            	    "partyId": 31272,
@@ -36,8 +36,9 @@ angular.module('platform-ui.adminportal.role.phoenix.consortium').factory(
 //			            	  }
 			            	],
         	sortings: [
+        	          {predicate:'label', reverse:false, text:"Label"},
  		              {predicate:'name', reverse:false, text:"Name"},
- 		              {predicate:'partyId', reverse:false, text:"Party ID"}
+ 		              {predicate:'partyId', reverse:false, text:"Party ID"},
  		              ]
 		};
 	}
