@@ -112,6 +112,7 @@ angular.module('platform-ui.adminportal.role.phoenix.consortium').controller(
 		    data = {
 		    	name:consortium['name'],
 		    	partyId:consortium['partyId'],
+		    	label:consortium['label'],
 		    };
 		    $http({
 			url: $scope.apiUri+'/parties/consortiums/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+consortium['partyId'],
@@ -215,6 +216,7 @@ angular.module('platform-ui.adminportal.role.phoenix.consortium').controller(
 			country:entry['country'],
 			display:entry['display'],
 			consortium:entry['consortium'],
+			label:entry['label'],
 			state:null
 		    });
 		}
