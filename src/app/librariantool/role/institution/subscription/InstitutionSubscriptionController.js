@@ -2,7 +2,7 @@
  * InstitutionSubscription Controller
  */
 
-angular.module('platform-ui.librariantool.role.institution.subscription').controller(
+angular.module('platform-ui.adminportal.role.institution.subscription').controller(
 	/* Name */
 	'InstitutionSubscriptionController',
 
@@ -23,12 +23,13 @@ angular.module('platform-ui.librariantool.role.institution.subscription').contro
 
 	    function init() {
 		console.log($state);
+		$scope.setCurrentTab(InstitutionSubscriptionModel.currentTab);
 		$scope.partners = InstitutionSubscriptionModel.partners;
 		$scope.activeSubscriptions = InstitutionSubscriptionModel.activeSubscriptions;
 		$scope.uiparams = InstitutionSubscriptionModel.uiparams;
-		if(!$scope.credentialId || !$scope.secretKey){
-			$state.go('ltlogin');
-		}
+//		if(!$scope.credentialId || !$scope.secretKey){
+//			$state.go('ltlogin');
+//		}
 		$http({
 			url: $scope.apiUri+'/partners/',
 			method: 'GET',
@@ -49,7 +50,7 @@ angular.module('platform-ui.librariantool.role.institution.subscription').contro
 			alert("Cannot get partner information");
 		});
 		$http({
-			url: $scope.apiUri+'/subscriptions/activesubscriptions/'+$scope.credentialId+'/',
+			url: $scope.apiUri+'/subscriptions/activesubscriptions/'+$scope.institutionId+'/',
 			method: 'GET',
 		}).success(function(data, status, headers, config) {
 			$scope.activeSubscriptions = data;

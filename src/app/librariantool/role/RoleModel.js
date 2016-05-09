@@ -3,7 +3,7 @@
  * Model for root /index.html template that wraps every other view.
  */
 
-angular.module('platform-ui.librariantool.role').factory(
+angular.module('platform-ui.adminportal.role').factory(
 	/* Name */
 	'RoleModel',
 
@@ -13,7 +13,6 @@ angular.module('platform-ui.librariantool.role').factory(
 	function () {
 		return {
 		    title: 'Role',
-		    navbarTitle: 'ROLE',
 		    email: null,
 		    partyInfo: {},
                     /*partyInfo: {

@@ -3,7 +3,7 @@
  * Model for root /index.html template that wraps every other view.
  */
 
-angular.module('platform-ui.librariantool.role.consortium.subscription.request').factory(
+angular.module('platform-ui.adminportal.role.consortium.subscription.request').factory(
 	/* Name */
 	'ConsortiumSubscriptionRequestModel',
 
@@ -14,7 +14,7 @@ angular.module('platform-ui.librariantool.role.consortium.subscription.request')
 		return {
 			title: 'SUBSCRIPTION',
 			uiparams: {
-				"colwidth": 'col-xs-9',
+				"colwidth": 'col-xs-11',
 			}
 		};
 	}

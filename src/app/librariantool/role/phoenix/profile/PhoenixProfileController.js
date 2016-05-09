@@ -2,7 +2,7 @@
  * PhoenixIpRange Controller
  */
 
-angular.module('platform-ui.librariantool.role.phoenix.profile').controller(
+angular.module('platform-ui.adminportal.role.phoenix.profile').controller(
 	/* Name */
 	'PhoenixProfileController',
 
@@ -30,7 +30,7 @@ angular.module('platform-ui.librariantool.role.phoenix.profile').controller(
 				//Save info
 				put_data = {}
 				//put original values from GET
-                put_data["partyId"]  = $scope.user.partyId; //$cookies.credentialId;
+                put_data["partyId"]  = $scope.user.partyId;
                 put_data["username"] = $scope.user.username;
                 put_data["partnerId"]= $scope.user.partnerId;
                 put_data["password"]= $scope.user.password;
@@ -48,8 +48,7 @@ angular.module('platform-ui.librariantool.role.phoenix.profile').controller(
 					}
 				}
 				$http({
-					//url: $scope.apiUri+'/credentials/?username='+$cookies.username+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
-					url: $scope.apiUri+'/parties/institutions/?credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+					url: $scope.apiUri+'/parties/institutions/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
 					data: put_data,
 					method: 'PUT',
 					headers: {'Content-Type': 'application/x-www-form-urlencoded'},
@@ -99,11 +98,13 @@ angular.module('platform-ui.librariantool.role.phoenix.profile').controller(
 		}
 
 	    	function init() {
+	    		if(!$scope.credentialId || !$scope.secretKey){
+	    			$state.go('ltlogin');
+	    		}
 	    		$scope.setTitle(PhoenixProfileModel.title);
 	    		$scope.user = PhoenixProfileModel.user;
 			$http({
-				//url: $scope.apiUri+'/credentials/?username='+$cookies.username+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
-				url: $scope.apiUri+'/parties/institutions/?partyId='+$cookies.credentialId+'&credentialId='+$cookies.credentialId+'&secretKey='+encodeURIComponent($cookies.secretKey),
+				url: $scope.apiUri+'/parties/institutions/?partyId='+$scope.credentialId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
                 method: 'GET',
 			}).success(function(data, status, headers, config) {
                         		$scope.user.partyId = data[0].partyId;

@@ -2,7 +2,7 @@
  * InstitutionUsage Controller
  */
 
-angular.module('platform-ui.librariantool.role.institution.usage').controller(
+angular.module('platform-ui.adminportal.role.institution.usage').controller(
 	/* Name */
 	'InstitutionUsageController',
 
@@ -30,7 +30,7 @@ angular.module('platform-ui.librariantool.role.institution.usage').controller(
 
 	    $scope.requestUsage = function() {
 					$http({
-						url: $scope.apiUri+'/parties/usage/?partyId='+$scope.credentialId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
+						url: $scope.apiUri+'/parties/usage/?partyId='+$scope.institutuionId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
 						method: 'POST',
 						data: $scope.postData,
 					}).success(function() {
@@ -46,17 +46,20 @@ angular.module('platform-ui.librariantool.role.institution.usage').controller(
 				};
 
 	    function init() {
+	    	$scope.setCurrentTab(InstitutionUsageModel.currentTab);
 			$scope.uiparams = InstitutionUsageModel.uiparams;
 			$scope.postData = InstitutionUsageModel.postData;
-			if(!$scope.credentialId || !$scope.secretKey){
-				$state.go('ltlogin');
-			}
+//			if(!$scope.credentialId || !$scope.secretKey){
+//				$state.go('ltlogin');
+//			}
+			
+			//get institution name
 			$http({
-				url: $scope.apiUri+'/credentials/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+$scope.credentialId,
+				url: $scope.apiUri+'/parties/institutions/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+$scope.institutionId,
 				method: 'GET',
 			}).success(function(data, status, headers, config) {
-				$scope.postData.institution = data[0].institution;
-				$scope.postData.email = data[0].email;
+				$scope.postData.institution = data[0].name;
+				$scope.postData.email = data[1].email;
 			}).error(function() {
 				alert("failed to get party information");
 			});

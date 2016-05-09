@@ -2,7 +2,7 @@
  * SubscriptionList Controller
  */
 
-angular.module('platform-ui.librariantool.role.consortium.subscription.list').controller(
+angular.module('platform-ui.adminportal.role.consortium.subscription.list').controller(
 	/* Name */
 	'ConsortiumSubscriptionListController',
 
@@ -30,13 +30,19 @@ angular.module('platform-ui.librariantool.role.consortium.subscription.list').co
 	    };
 
 	    $scope.licenseButton = function(id) {
-		if (id in $scope.activeSubscriptions) {
+	    if ($scope.role == 'staff'){
+	    	return "Edit";
+	    }else if (id in $scope.activeSubscriptions) {
 			return "Request renewal";
+		}else{
+			return "Request quote";
 		}
-		return "Request quote";
 	    };
 
 	    $scope.licenseAction = function(id) {
+	    if ($scope.role == 'staff'){
+	    	return;
+	    }
 		if (id in $scope.activeSubscriptions) {
 			$state.go('role.consortium.subscription.renewal', {'partnerId': id});
 		} else {
@@ -57,7 +63,6 @@ angular.module('platform-ui.librariantool.role.consortium.subscription.list').co
 
 	    function init() {
 		console.log($state);
-		$scope.setTitle(ConsortiumSubscriptionListModel.title);
 		$scope.uiparams = ConsortiumSubscriptionListModel.uiparams;
 	    }
 	}

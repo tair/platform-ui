@@ -2,7 +2,7 @@
  * InstitutionIpRange Controller
  */
 
-angular.module('platform-ui.librariantool.role.institution.iprange').controller(
+angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 	/* Name */
 	'InstitutionIpRangeController',
 
@@ -21,9 +21,10 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 
 	/* Controller Definition */
 	function ($scope, $http, $cookies, $window, $location, $state, $filter, Title, InstitutionIpRangeModel, IpValidator) {
-		if(!$scope.credentialId || !$scope.secretKey){
-			$state.go('ltlogin');
-		}	
+//		if(!$scope.credentialId || !$scope.secretKey){
+//			$state.go('ltlogin');
+//		}	
+		$scope.setCurrentTab(InstitutionIpRangeModel.currentTab);	
 	    $scope.ipranges = InstitutionIpRangeModel.ipranges;
 	    $scope.addGroupShow = "hidden";
 	    $scope.adding = false;
@@ -139,7 +140,7 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 			label:iprange['name'],
 		    };
 		    $http({
-			url: $scope.apiUri+'/parties/ipranges/?partyId='+$scope.credentialId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&ipRangeId='+iprange['ipRangeId'],
+			url: $scope.apiUri+'/parties/ipranges/?partyId='+$scope.institutionId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&ipRangeId='+iprange['ipRangeId'],
 			data: data,
 			method: 'PUT',
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
@@ -181,11 +182,11 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 		var data = {
 		    start:$scope.newRange['start'],
 		    end:$scope.newRange['end'],
-		    partyId:$scope.credentialId,
+		    partyId:$scope.institutionId,
 		    label:$scope.newRange['name'],
 		}
 		$http({
-                    url: $scope.apiUri+'/parties/ipranges/?partyId='+$scope.credentialId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
+                    url: $scope.apiUri+'/parties/ipranges/?partyId='+$scope.institutionId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
 		    data:data,
                     method: 'POST',
 		}).success(function(data, status, headers, config){
@@ -218,7 +219,7 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
                     label:iprange['name'],
                 };
                 $http({
-                    url: $scope.apiUri+'/parties/ipranges/?partyId='+$scope.credentialId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&ipRangeId='+data['ipRangeId'],
+                    url: $scope.apiUri+'/parties/ipranges/?partyId='+$scope.institutionId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&ipRangeId='+data['ipRangeId'],
                     data:data,
                     method: 'DELETE',
                 }).success(function(data, status, headers, config){
@@ -234,7 +235,7 @@ angular.module('platform-ui.librariantool.role.institution.iprange').controller(
 	    
 	    // init
             $http({
-                url: $scope.apiUri+'/parties/ipranges/?partyId='+$scope.credentialId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
+                url: $scope.apiUri+'/parties/ipranges/?partyId='+$scope.institutionId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
                 method: 'GET',
             }).success(function(data, status, headers, config){
 		$scope.ipranges = [];

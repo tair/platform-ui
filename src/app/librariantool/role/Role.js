@@ -6,15 +6,16 @@
 
 angular.module(
     /* Name */
-    'platform-ui.librariantool.role',
+    'platform-ui.adminportal.role',
     
     /* Dependencies */
     [
 	'ui.router',
 	'service.title',
-    'platform-ui.librariantool.role.institution',
-	'platform-ui.librariantool.role.consortium',
-	'platform-ui.librariantool.role.phoenix',
+	'service.currenttab',
+    'platform-ui.adminportal.role.institution',
+	'platform-ui.adminportal.role.consortium',
+	'platform-ui.adminportal.role.phoenix',
     ])
     .config(
 	function ($stateProvider) {
@@ -23,23 +24,29 @@ angular.module(
                 views: {
                     'role': {
                         controller: 'InstitutionRoleController',
-                        templateUrl: 'librariantool/role/institution/institution.html'
+                        templateUrl: 'adminportal/role/institution/institution.html'
                     }
                 }
             }).state('role.institution', {
-                url: '/institution',
+                url: '/institution?institutionId',
+//                params: {
+//                	institution: null,
+//                },
                 views: {
                     'role': {
                         controller: 'InstitutionRoleController',
-                        templateUrl: 'librariantool/role/institution/institution.html'
+                        templateUrl: 'adminportal/role/institution/institution.html'
                     }
                 }
             }).state('role.consortium', {
-                url: '/consortium',
+                url: '/consortium?consortiumId',//TODO: find a way to keep state params after page reload
+//                params: {
+//                	consortium: null,
+//                },
                 views: {
                     'role': {
                         controller: 'ConsortiumController',
-                        templateUrl: 'librariantool/role/consortium/consortium.html'
+                        templateUrl: 'adminportal/role/consortium/consortium.html'
                     }
                 }
             }).state('role.phoenix', {
@@ -47,7 +54,7 @@ angular.module(
                 views: {
                     'role': {
                         controller: 'PhoenixController',
-                        templateUrl: 'librariantool/role/phoenix/phoenix.html'
+                        templateUrl: 'adminportal/role/phoenix/phoenix.html'
                     }
                 }
             });

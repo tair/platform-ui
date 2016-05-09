@@ -6,15 +6,15 @@
 
 angular.module(
     /* Name */
-    'platform-ui.librariantool.login',
+    'platform-ui.adminportal.login',
     
     /* Dependencies */
     [
 	'ui.router',
 	'service.title',
-	'platform-ui.librariantool.login.requestaccount',
-	'platform-ui.librariantool.login.page',
-	'platform-ui.librariantool.login.forgotpassword',
+	'platform-ui.adminportal.login.requestaccount',
+	'platform-ui.adminportal.login.page',
+	'platform-ui.adminportal.login.forgotpassword',
     ])
     .config(
 	function ($stateProvider) {
@@ -23,7 +23,7 @@ angular.module(
 			views: {
 				'ltlogin': {
 					controller: 'LTLoginPageController',
-					templateUrl: 'librariantool/login/loginpage/loginpage.html'
+					templateUrl: 'adminportal/login/loginpage/loginpage.html'
 				}
 			}
 		}).state('ltlogin.page', {
@@ -31,7 +31,7 @@ angular.module(
 			views: {
 				'ltlogin': {
 					controller: 'LTLoginPageController',
-					templateUrl: 'librariantool/login/loginpage/loginpage.html'
+					templateUrl: 'adminportal/login/loginpage/loginpage.html'
 				}
 			}
 		}).state('ltlogin.requestaccount', {
@@ -39,7 +39,7 @@ angular.module(
 			views: {
 				'ltlogin': {
 					controller: 'RequestAccountController',
-					templateUrl: 'librariantool/login/requestaccount/requestaccount.html'
+					templateUrl: 'adminportal/login/requestaccount/requestaccount.html'
 				}
 			}
 		}).state('ltlogin.forgotpassword', {
@@ -48,7 +48,7 @@ angular.module(
 			views: {
 				'ltlogin': {
 					controller: 'ForgotpwdController',
-					templateUrl: 'librariantool/login/forgotpassword/forgotpassword.html'
+					templateUrl: 'adminportal/login/forgotpassword/forgotpassword.html'
 				}
 			}
 		});

@@ -2,7 +2,7 @@
  * InstitutionRole Controller
  */
 
-angular.module('platform-ui.librariantool.role.institution').controller(
+angular.module('platform-ui.adminportal.role.institution').controller(
 	/* Name */
 	'InstitutionRoleController',
 
@@ -19,6 +19,7 @@ angular.module('platform-ui.librariantool.role.institution').controller(
 
 	/* Controller Definition */
 	function ($scope, $http, $cookies, $window, $location, $state, Title, InstitutionRoleModel) {
+		//load credentials
 		if($cookies.org_phoenixbioinformatics_ui_credentialId!=null){
 			$scope.credentialId = $cookies.org_phoenixbioinformatics_ui_credentialId;
 		}else if($window.sessionStorage.org_phoenixbioinformatics_ui_credentialId!=null){
@@ -29,26 +30,50 @@ angular.module('platform-ui.librariantool.role.institution').controller(
 		}else if($window.sessionStorage.org_phoenixbioinformatics_ui_secretKey!=null){
 			$scope.secretKey = $window.sessionStorage.org_phoenixbioinformatics_ui_secretKey;
 		}
-//PW-137 ltlogin
+		//PW-137 ltlogin
+		//check credentials
 //		if(!$scope.credentialId || !$scope.secretKey){
 //			$state.go('ltlogin');
 //		}
+		//check role
+//		if($scope.role != ("staff" || "consortium" || "organization")){
+//			alert("Please use staff ,consortium or organization account to login.");
+//			$scope.logout();
+//		}
+		//set title
+		$scope.institutionId = $location.search()['institutionId'];
 		$http({
-            url: $scope.apiUri+'/parties/?partyId='+$scope.credentialId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
-            method: 'GET',
-        }).success(function(data, status, headers, config){
-            $scope.partyInfo = data[0];
-            $scope.setTitle($scope.partyInfo.name);
-        }).error(function(data, status, headers, config){
-            alert("partyId failed");
-        });	
-		$scope.tabs = InstitutionRoleModel.tabs;
-		if($window.sessionStorage.currentTab!=null
-			&&$window.sessionStorage.currentTab!=undefined){
-			$scope.currentTab = JSON.parse($window.sessionStorage.currentTab);
-		}else{
-			$scope.currentTab = InstitutionRoleModel.currentTab;
+			url: $scope.apiUri+'/parties/institutions?partyId='+$scope.institutionId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
+			method: 'GET'
+		    }).success(function(data, status, headers, config){
+		    	$scope.institution = data;
+		    	$scope.title = data[0].name;
+				if($scope.title){
+					$scope.setTitle($scope.title);
+				}
+		    }).error(function() {});
+		//get role
+		$http({
+			url: $scope.apiUri+'/parties/?partyId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
+			method: 'GET'
+		    }).success(function(data, status, headers, config){
+		    	$scope.partyInfo = data[0];
+				$scope.role = $scope.partyInfo['partyType'];	
+				if($scope.role == "staff") {
+					$scope.setPhoenix(true);
+				} else if ($scope.role == "consortium") {
+					$scope.setConsortium(true);
+				}
+				$scope.tabs = InstitutionRoleModel.getTabs($scope.role);
+		    }).error(function() {});
+		//display option of back button
+		if($scope.role == "staff") {
+			$scope.setPhoenix(true);
+		} else if ($scope.role == "consortium") {
+			$scope.setConsortium(true);
 		}
+		//tab content and style
+		$scope.tabs = InstitutionRoleModel.getTabs($scope.role);
 	    $scope.navbarLabel = function(tab) {
 		if (tab.label == $scope.currentTab.label) {
 		    return "lt-navbar-label-highlight";
@@ -61,11 +86,14 @@ angular.module('platform-ui.librariantool.role.institution').controller(
                 }
                 return "hide";
 	    }
+	    //tab action
 	    $scope.toTab = function(tab) {
 		$state.go(tab.state);
 		$scope.currentTab = tab;
-		$window.sessionStorage.currentTab = JSON.stringify(tab);
 	    }
-	    $state.go($scope.currentTab.state);
+	    //set currentTab
+		$scope.setCurrentTab = function(currentTab){
+			$scope.currentTab = currentTab;
+		}
 	}
 ]);

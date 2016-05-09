@@ -2,7 +2,7 @@
  * Request Account Controller
  */
 
-angular.module('platform-ui.librariantool.login.requestaccount').controller(
+angular.module('platform-ui.adminportal.login.requestaccount').controller(
 	/* Name */
 	'RequestAccountController',
 

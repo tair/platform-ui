@@ -2,7 +2,7 @@
  * SubscriptionList Controller
  */
 
-angular.module('platform-ui.librariantool.role.institution.subscription.renewal').controller(
+angular.module('platform-ui.adminportal.role.institution.subscription.renewal').controller(
 	/* Name */
 	'SubscriptionRenewalController',
 
@@ -31,7 +31,8 @@ angular.module('platform-ui.librariantool.role.institution.subscription.renewal'
 //			"name": $scope.user.name, 
 			//PW-161 name
 			"email": $scope.user.email,
-			"institution": $scope.user.institution,
+			"partyName": $scope.partyName,
+			"partyType": "Institution",
 			"comments": $scope.comments,
 		};
 		$http({
@@ -50,11 +51,11 @@ angular.module('platform-ui.librariantool.role.institution.subscription.renewal'
 	    function init() {
 		$scope.uiparams = SubscriptionRenewalModel.uiparams;
 		$scope.partnerId = $location.search()['partnerId'];
-		if(!$scope.credentialId || !$scope.secretKey){
-			$state.go('ltlogin');
-		}
+//		if(!$scope.credentialId || !$scope.secretKey){
+//			$state.go('ltlogin');
+//		}
 		$http({
-			url: $scope.apiUri+'/partners?partnerId='+$scope.partnerId,
+			url: $scope.apiUri+'/partners/?partnerId='+$scope.partnerId,
 			method: 'GET',
 		}).success(function(data, status, headers, config) {
 			$scope.partner = data[0];
@@ -62,10 +63,11 @@ angular.module('platform-ui.librariantool.role.institution.subscription.renewal'
 			alert("Cannot get partner information");
 		});
 		$http({
-			url: $scope.apiUri+'/credentials?username='+$cookies.username+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
+			url: $scope.apiUri+'/parties/institutions/?partyId='+$scope.institutionId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
 			method: 'GET',
 		}).success(function(data, status, headers, config){
-			$scope.user = data[0];
+			$scope.partyName = data[0].name;
+			$scope.user = data[1];
 		}).error(function() {
 			alert("User information failed to retrieve");
 		});

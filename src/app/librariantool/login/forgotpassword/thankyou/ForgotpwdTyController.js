@@ -1,7 +1,7 @@
 /**forgot pwd Controller
  */
 
-angular.module('platform-ui.librariantool.login.forgotpassword.thankyou').controller(
+angular.module('platform-ui.adminportal.login.forgotpassword.thankyou').controller(
 	/* Name */
 	'ForgotpwdTyController',
 

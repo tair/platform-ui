@@ -3,7 +3,7 @@
  * Model for root /index.html template that wraps every other view.
  */
 
-angular.module('platform-ui.librariantool.role.institution.iprange').factory(
+angular.module('platform-ui.adminportal.role.institution.iprange').factory(
 	/* Name */
 	'InstitutionIpRangeModel',
 
@@ -12,7 +12,6 @@ angular.module('platform-ui.librariantool.role.institution.iprange').factory(
 
 	function () {
 		return {
-		    title: 'IP RANGE',
 		    currentTab: {label:"IP RANGE", state:"role.institution.iprange"},
 		    newRange: {'name':null, 'start':null, 'end':null},
 		    ipranges: [],

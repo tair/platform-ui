@@ -3,7 +3,7 @@
  * Model for root /index.html template that wraps every other view.
  */
 
-angular.module('platform-ui.librariantool.login.page').factory(
+angular.module('platform-ui.adminportal.login.page').factory(
 	/* Name */
 	'LTLoginPageModel',
 

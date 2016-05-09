@@ -3,7 +3,7 @@
  * Model for root /index.html template that wraps every other view.
  */
 
-angular.module('platform-ui.librariantool.role.institution.usage').factory(
+angular.module('platform-ui.adminportal.role.institution.usage').factory(
 	/* Name */
 	'InstitutionUsageModel',
 
@@ -12,7 +12,7 @@ angular.module('platform-ui.librariantool.role.institution.usage').factory(
 
 	function () {
 		return {
-			title: 'USAGE',
+			currentTab: {label: 'USAGE', state: 'role.institution.usage'},
 			uiparams: {
 				"colwidth": 'col-xs-11',
 			},

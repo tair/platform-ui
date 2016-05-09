@@ -1,6 +1,7 @@
 bin
 .project
 .settings/
+.idea/
 .tern-project
 /src/app/librariantool/.DS_Store
 /src/lib/.DS_Store

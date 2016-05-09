@@ -6,16 +6,15 @@
 
 angular.module(
     /* Name */
-    'platform-ui.librariantool.role.phoenix',
+    'platform-ui.adminportal.role.phoenix',
     
     /* Dependencies */
     [
 	'ui.router',
 	'service.title',
-	'platform-ui.librariantool.role.phoenix.institution',
-	'platform-ui.librariantool.role.phoenix.manage',
-	'platform-ui.librariantool.role.phoenix.subscription',
-	'platform-ui.librariantool.role.phoenix.profile',
+	'platform-ui.adminportal.role.phoenix.institution',
+	'platform-ui.adminportal.role.phoenix.consortium',
+	'platform-ui.adminportal.role.phoenix.profile',
     ])
     .config(
 	function ($stateProvider) {
@@ -23,42 +22,34 @@ angular.module(
                 url: '/',
                 views: {
                     'phoenix': {
-                        controller: 'PhoenixManageController',
-                        templateUrl: 'librariantool/role/phoenix/manage/manage.html'
+                        controller: 'PhoenixInstitutionController',
+                        templateUrl: 'adminportal/role/phoenix/institution/institution.html'
                     }
                 }
-            }).state('role.phoenix.manage', {
-		url: '/manage',
-		views: {
-		    'phoenix': {
-			controller: 'PhoenixManageController',
-			templateUrl: 'librariantool/role/phoenix/manage/manage.html'
-		    }
-		}
-            }).state('role.phoenix.institution', {
-        		url: '/institution?partyId&institutionName',
-        		views: {
-        		    'phoenix': {
-        			controller: 'PhoenixInstitutionController',
-        			templateUrl: 'librariantool/role/phoenix/institution/institution.html'
-        		    }
-        		}
-                    }).state('role.phoenix.subscription', {
-                url: '/subscription',
-                views: {
-                    'phoenix': {
-                        controller: 'PhoenixSubscriptionController',
-                        templateUrl: 'librariantool/role/phoenix/subscription/subscription.html'
-                    }
-                }
+            }).state('role.phoenix.consortium', {
+		        url: '/consortium',
+		        views: {
+		          'phoenix': {
+		          controller: 'PhoenixConsortiumController',
+		          templateUrl: 'adminportal/role/phoenix/consortium/consortium.html'
+		        }
+		      }
+		    }).state('role.phoenix.institution', {
+	    		url: '/institution',
+	    		views: {
+	    		    'phoenix': {
+	    			controller: 'PhoenixInstitutionController',
+	    			templateUrl: 'adminportal/role/phoenix/institution/institution.html'
+	    		    }
+	    		}
             }).state('role.phoenix.profile', {
-                url: '/profile',
-                views: {
-                    'phoenix': {
-                        controller: 'PhoenixProfileController',
-                        templateUrl: 'librariantool/role/phoenix/profile/profile.html'
-                    }
-                }
+	            url: '/profile',
+	            views: {
+	                'phoenix': {
+	                    controller: 'PhoenixProfileController',
+	                    templateUrl: 'adminportal/role/phoenix/profile/profile.html'
+	                }
+	            }
             });
 	});
 
