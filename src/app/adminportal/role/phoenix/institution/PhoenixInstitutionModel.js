@@ -14,7 +14,7 @@ angular.module('platform-ui.adminportal.role.phoenix.institution').factory(
 		return {
 		    title: 'INSTITUTION',
 		    currentTab: {label: 'INSTITUTION', state: 'role.consortium.institution'},
-		    newInstitution: {'name':null, 'country':null},
+		    newInstitution: {'name':null, 'country':null, 'label':null},
 		    foundInstitution: {'name':null, 'partyId':null, 'state':null},
 		    institutions:[],
 		    institutions:[
@@ -69,6 +69,7 @@ angular.module('platform-ui.adminportal.role.phoenix.institution').factory(
         	  }
         	],
 		    sortings: [
+		              {predicate:'label', reverse:false, text:"Label"},
 			          {predicate:'name', reverse:false, text:"Name"},
 		              {predicate:'partyId', reverse:false, text:"Party ID"},
 		              ],
