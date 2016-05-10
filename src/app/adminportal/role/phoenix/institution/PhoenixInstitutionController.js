@@ -142,6 +142,7 @@ angular.module('platform-ui.adminportal.role.phoenix.institution').controller(
 		else if (institution.state == "edit") {
 		    // This is the confirm button at edit state
 		    data = {
+		    label:institution['label'],
 			name:institution['name'],
 			partyId:institution['partyId'],
 		    };
@@ -315,6 +316,7 @@ angular.module('platform-ui.adminportal.role.phoenix.institution').controller(
 			name:entry['name'],
 			country:entry['country'],
 			display:entry['display'],
+			label:entry['label'],
 			state:null
 		    });
 		}
