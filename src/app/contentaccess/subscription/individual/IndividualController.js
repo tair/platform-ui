@@ -104,6 +104,7 @@ angular.module('platform-ui.contentaccess.subscription.individual').controller(
                                     'state': $scope.formdata.state,
                                     'country': $scope.formdata.country,
                                     'zip': $scope.formdata.zip,
+                                    'vat': $scope.formdata.vat,//PW-248
                                     'redirect': $scope.redirect
                                 },
                                 method: 'POST',
