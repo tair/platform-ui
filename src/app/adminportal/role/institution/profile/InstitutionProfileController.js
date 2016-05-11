@@ -46,10 +46,9 @@ angular.module('platform-ui.adminportal.role.institution.profile').controller(
 					if ($scope.userprev[k] != $scope.user[k]) {
 						put_data[k] = $scope.user[k];
 						$scope.userprev[k] = $scope.user[k];
-						if ((k == 'username' || k == 'password') && $scope.role == 'organization')
-							{
+						if ((k == 'username' || k == 'password') && $scope.role == 'organization'){
 							forceReSignIn = true;
-							}
+						}
 					}
 				}
 
@@ -63,8 +62,8 @@ angular.module('platform-ui.adminportal.role.institution.profile').controller(
 					if (forceReSignIn) {
 						$scope.logout();
 					}
-				}).error(function() {
-					bootbox.alert("Failed to update Staff Profile");
+				}).error(function(data, status, headers, config) {
+					bootbox.alert("Failed to update Staff Profile"+(data['error'] == 'duplicate email')?"! The email is already in use.":"!");
 				});
 			}
 			$scope.edit = !$scope.edit;
