@@ -63,7 +63,7 @@ angular.module('platform-ui.adminportal.role.institution.profile').controller(
 						$scope.logout();
 					}
 				}).error(function(data, status, headers, config) {
-					bootbox.alert("Failed to update Institution Profile"+((data['error'] == 'duplicate email')?"! The email is already in use.":"!"));
+					bootbox.alert("Failed to update Institution Profile"+((data['email'] == 'This field must be unique.')?"! The email is already in use.":"!"));
 				});
 			}
 			$scope.edit = !$scope.edit;
