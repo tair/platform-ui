@@ -1,5 +1,5 @@
 /**
- * InstitutionProfileController
+ * PhoenixProfileController
  */
 
 angular.module('platform-ui.adminportal.role.phoenix.profile').controller(
@@ -64,7 +64,7 @@ angular.module('platform-ui.adminportal.role.phoenix.profile').controller(
 						$scope.logout();
 					}
 				}).error(function() {
-					bootbox.alert("Failed to update Staff Profile");
+					bootbox.alert("Failed to update Staff Profile"+((data['error'] == 'duplicate email')?"! The email is already in use.":"!"));
 				});
 			}
 			$scope.edit = !$scope.edit;
