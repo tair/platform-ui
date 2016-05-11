@@ -18,7 +18,7 @@ angular.module('platform-ui.adminportal.role.consortium.profile').controller(
 	'ConsortiumProfileModel',
 
 	/* Controller Definition */
-	function ($scope, $http, $cookies, $window, $location, $state, Title, CurrentTab, ConsortiumProfileModel) {
+	function ($scope, $http, $cookies, $window, $location, $state, Title, ConsortiumProfileModel) {
 	    	init();
 		console.log($scope.uiparams.colwidth);
 		

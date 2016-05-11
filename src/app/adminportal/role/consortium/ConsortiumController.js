@@ -15,11 +15,10 @@ angular.module('platform-ui.adminportal.role.consortium').controller(
 	'$location',
 	'$state',
 	'Title',
-	'CurrentTab',
 	'ConsortiumModel',
 
 	/* Controller Definition */
-	function ($scope, $http, $cookies, $window, $location, $state, Title, CurrentTab, ConsortiumModel) {
+	function ($scope, $http, $cookies, $window, $location, $state, Title, ConsortiumModel) {
 		//load credentials
 		if($cookies.org_phoenixbioinformatics_ui_credentialId!=null){
 			$scope.credentialId = $cookies.org_phoenixbioinformatics_ui_credentialId;
