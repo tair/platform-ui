@@ -64,7 +64,7 @@ angular.module('platform-ui.adminportal.role.consortium.profile').controller(
 						$scope.logout();
 					}
 				}).error(function(data, status, headers, config) {
-					bootbox.alert("Failed to update Consortium Profile"+((data['error'] == 'duplicate email')?"! The email is already in use.":"!"));
+					bootbox.alert("Failed to update Consortium Profile"+((data['email'] == 'This field must be unique.')?"! The email is already in use.":"!"));
 				});
 			}
 			$scope.edit = !$scope.edit;
