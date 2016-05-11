@@ -58,12 +58,12 @@ angular.module('platform-ui.adminportal.role.institution.profile').controller(
 					method: 'PUT',
 					headers: {'Content-Type': 'application/x-www-form-urlencoded'},
 				}).success(function(){
-					bootbox.alert("Staff Profile Successfully Updated" + (forceReSignIn ? ". Please re-login":"!") );
+					bootbox.alert("Institution Profile Successfully Updated" + (forceReSignIn ? ". Please re-login":"!") );
 					if (forceReSignIn) {
 						$scope.logout();
 					}
 				}).error(function(data, status, headers, config) {
-					bootbox.alert("Failed to update Staff Profile"+((data['error'] == 'duplicate email')?"! The email is already in use.":"!"));
+					bootbox.alert("Failed to update Institution Profile"+((data['error'] == 'duplicate email')?"! The email is already in use.":"!"));
 				});
 			}
 			$scope.edit = !$scope.edit;
