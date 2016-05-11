@@ -59,12 +59,12 @@ angular.module('platform-ui.adminportal.role.phoenix.profile').controller(
 					method: 'PUT',
 					headers: {'Content-Type': 'application/x-www-form-urlencoded'},
 				}).success(function(){
-					bootbox.alert("Institution Profile Successfully Updated" + (forceReSignIn ? ". Please re-login":"!") );
+					bootbox.alert("Staff Profile Successfully Updated" + (forceReSignIn ? ". Please re-login":"!") );
 					if (forceReSignIn) {
 						$scope.logout();
 					}
 				}).error(function() {
-					bootbox.alert("Failed to update Institution Profile");
+					bootbox.alert("Failed to update Staff Profile");
 				});
 			}
 			$scope.edit = !$scope.edit;
