@@ -63,7 +63,7 @@ angular.module('platform-ui.adminportal.role.phoenix.profile').controller(
 					if (forceReSignIn) {
 						$scope.logout();
 					}
-				}).error(function() {
+				}).error(function(data, status, headers, config) {
 					bootbox.alert("Failed to update Staff Profile"+((data['error'] == 'duplicate email')?"! The email is already in use.":"!"));
 				});
 			}
