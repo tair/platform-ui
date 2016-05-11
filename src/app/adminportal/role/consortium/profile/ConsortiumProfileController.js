@@ -15,7 +15,6 @@ angular.module('platform-ui.adminportal.role.consortium.profile').controller(
 	'$location',
 	'$state',
 	'Title',
-	'CurrentTab',
 	'ConsortiumProfileModel',
 
 	/* Controller Definition */
@@ -64,8 +63,8 @@ angular.module('platform-ui.adminportal.role.consortium.profile').controller(
 					if (forceReSignIn) {
 						$scope.logout();
 					}
-				}).error(function() {
-					bootbox.alert("Failed to update Consortium Profile");
+				}).error(function(data, status, headers, config) {
+					bootbox.alert("Failed to update Consortium Profile"+((data['error'] == 'duplicate email')?"! The email is already in use.":"!"));
 				});
 			}
 			$scope.edit = !$scope.edit;
