@@ -28,10 +28,14 @@ angular.module('platform-ui.adminportal.role.institution.subscription.list').con
 		return "Unlicensed";
 	    };
 
-	    $scope.licenseButton = function(id) {
+	    $scope.licenseButton = function(p) {
 	    if ($scope.role == 'staff'){
-	    	return "Edit";
-	    }else if (id in $scope.activeSubscriptions) {
+	    	if(p.state==null){
+	    		return "Edit";
+	    	}else if(p.state=='edit'){
+	    		return "Save";
+	    	}
+	    }else if (p.partyId in $scope.activeSubscriptions) {
 			return "Request renewal";
 		}else{
 			return "Request quote";
@@ -57,7 +61,12 @@ angular.module('platform-ui.adminportal.role.institution.subscription.list').con
 	    }
 	    $scope.licenseAction = function(p) {
 	    if ($scope.role == 'staff'){
-	    	p.state = 'edit';
+	    	if(p.state==null){
+	    		p.state = 'edit';
+	    	}else if(p.state=='edit'){
+	    		$scope.editSubscription(p.endDate);
+	    		p.state = null;
+	    	}
 	    	return;
 	    }
 		if (p.partnerId in $scope.activeSubscriptions) {
