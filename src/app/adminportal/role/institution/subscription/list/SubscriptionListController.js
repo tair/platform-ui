@@ -37,16 +37,34 @@ angular.module('platform-ui.adminportal.role.institution.subscription.list').con
 			return "Request quote";
 		}
 	    };
-
-	    $scope.licenseAction = function(id) {
+	    
+	    $scope.editSubscription = function(date){
+	    	data={
+	    			partyId:$scope.institutionId,
+	    			partnerId:'phoenix',
+	    			endDate:date,
+	    	}
+	    	$http({
+				url: $scope.apiUri+'/subscriptions/?partyId='+$scope.institutionId+'&partnerId=phoenix'+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
+				data:data,
+				method: 'PUT',
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+			}).success(function(data, status, headers, config) {
+	            //return data[0]['endDate'];
+			}).error(function() {
+				alert("Failed to edit subscription");
+			});
+	    }
+	    $scope.licenseAction = function(p) {
 	    if ($scope.role == 'staff'){
+	    	p.state = 'edit';
 	    	return;
 	    }
-		if (id in $scope.activeSubscriptions) {
+		if (p.partnerId in $scope.activeSubscriptions) {
 			//PW-139
-			$state.go('role.institution.subscription.renewal', {'partnerId': id});
+			$state.go('role.institution.subscription.renewal', {'partnerId': p.partnerId});
 		} else {
-			$state.go('role.institution.subscription.request', {'partnerId': id});
+			$state.go('role.institution.subscription.request', {'partnerId': p.partnerId});
 		}
 	    } 
 	
