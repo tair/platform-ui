@@ -44,6 +44,7 @@ angular.module('platform-ui.adminportal.role.institution.subscription').controll
                 	partnerId:entry['partnerId'],
                 	termOfServiceUri:entry['termOfServiceUri'],
                 	description:entry['description'],//Partner.description tbl.column PW-271
+                	state:null,
                 });
 		}
 		}).error(function() {

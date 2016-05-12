@@ -32,13 +32,16 @@
 				</div>
 				
 				<!-- exp date -->
-				<div class="{{uiparams.expcolwidth}}">
+				<div class="{{uiparams.expcolwidth}}" ng-show="p.state != 'edit'">
 						{{getExpDate(p.partnerId) | date:'fullDate'}}
+				</div>
+				<div class="{{uiparams.expcolwidth}}" ng-show="p.state == 'edit'">
+				    <input ng-model="p.endDate"></input>
 				</div>
 				
 				<!-- btn -->
 				<div class="{{uiparams.actionscolwidth}}">			
-						<button type="button" class="btn btn-default" ng-click="licenseAction(p.partnerId);">{{licenseButton(p.partnerId)}}</button>					
+						<button type="button" class="btn btn-default" ng-click="licenseAction(p);">{{licenseButton(p.partnerId)}}</button>					
 				</div>
 			</div>
 		</div>
