@@ -1,0 +1,75 @@
+<div class="row" style="height: 56px;"></div>
+<div class="panel panel-default block-center" style="width: 860px;">
+    <div class="panel-heading lt-institution-profile-panel-heading lt-font-bold lt-font-aliasing" style="font-size: 16px; color: #ffffff;">
+        LICENSE EDIT
+    </div>
+    <div class="panel-body">
+        <div class="row" style="height: 23px;"></div>
+        <div class="row">
+            <div class="col-xs-12 block-center text-center lt-font lt-font-color lt-font-aliasing" style="font-size: 36px;">
+                Edit {{partner.name}} Subscription
+            </div>
+        </div>
+        <div class="row" style="height: 34px;"></div>
+        <form ng-submit="requestEdit()">
+        <div class="row">
+            <div class="{{uiparams.colwidth}} block-center text-left">
+                <div class="col-xs-6">
+                    <div class="row"><div class="col-xs-12">
+                        Current Start Date
+                    </div></div>
+                    <div class="row"><div class="col-xs-12">
+                        <p>2016-00-00{{startDate}}</p>
+                    </div></div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="row"><div class="col-xs-12">
+                        Current End Date
+                    </div></div>
+                    <div class="row"><div class="col-xs-12">
+                        <p>2016-00-00{{endDate}}</p>
+                    </div></div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="row"><div class="col-xs-12">
+                        New Start Date
+                    </div></div>
+                    <div class="row"><div class="col-xs-12">
+                        <input id="startDate" ng-model="postData.startDate" required></input>
+                    </div></div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="row"><div class="col-xs-12">
+                        New End Date
+                    </div></div>
+                    <div class="row"><div class="col-xs-12">
+                        <input id="endDate" ng-model="postData.endDate" required></input>
+                    </div></div>
+                </div>
+            </div>            
+        </div>
+        <div class="row" style="height: 25px;"></div>
+        <div class="row">
+            <div class="{{uiparams.colwidth}} block-center text-center">
+                <div class="col-xs-6">
+	                <div class="row"><div class="col-xs-12">
+	                    <button type="button" ng-click="back();successMessage=''" class="btn btn-default" style="width: 160px">GO BACK</button>
+	                </div></div>
+                </div>
+                <div class="col-xs-6">
+	                <div class="row"><div class="col-xs-12">
+	                    <button type="submit" class="btn btn-default" style="width: 160px">CONFIRM EDIT</button>
+	                </div></div>
+                </div>
+            </div>
+        </div>
+        </form>
+        <div class="row">
+            <div class="{{uiparams.colwidth}} block-center text-left">
+                <div class="row"><div class="col-xs-12">
+                    {{successMessage}}
+                </div></div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -61,13 +61,14 @@ angular.module('platform-ui.adminportal.role.institution.subscription.list').con
 	    }
 	    $scope.licenseAction = function(p) {
 	    if ($scope.role == 'staff'){
-	    	if(p.state==null){
-	    		p.state = 'edit';
-	    	}else if(p.state=='edit'){
-	    		$scope.editSubscription(p.endDate);
-	    		p.state = null;
-	    	}
-	    	return;
+//	    	if(p.state==null){
+//	    		p.state = 'edit';
+//	    	}else if(p.state=='edit'){
+//	    		$scope.editSubscription(p.endDate);
+//	    		p.state = null;
+//	    	}
+//	    	return;
+	    	$state.go('role.institution.subscription.edit', {'partnerId': p.partnerId});
 	    }
 		if (p.partnerId in $scope.activeSubscriptions) {
 			//PW-139
