@@ -71,28 +71,33 @@ angular.module('platform-ui.adminportal.role.institution.subscription.edit').con
 		}else{
 			$scope.transactionType = "create";
 		}
-		$http({
-			url: $scope.apiUri+'/partners/?partnerId='+$scope.partnerId,
-			method: 'GET',
-		}).success(function(data, status, headers, config) {
-			$scope.partner = data[0];
-		}).error(function() {
-			alert("Cannot get partner information");
-		});
-		$http({
-			url: $scope.apiUri+'/parties/institutions/?partyId='+$scope.institutionId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
-			method: 'GET',
-		}).success(function(data, status, headers, config){
-			$scope.partyName = data[0].name;
-			$scope.user = data[1];
-		}).error(function() {
-			alert("User information failed to retrieve");
-		});
+		$scope.startDate = $scope.activeSubscriptions
+//		$http({
+//			url: $scope.apiUri+'/partners/?partnerId='+$scope.partnerId,
+//			method: 'GET',
+//		}).success(function(data, status, headers, config) {
+//			$scope.partner = data[0];
+//		}).error(function() {
+//			alert("Cannot get partner information");
+//		});
+//		$http({
+//			url: $scope.apiUri+'/parties/institutions/?partyId='+$scope.institutionId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
+//			method: 'GET',
+//		}).success(function(data, status, headers, config){
+//			$scope.partyName = data[0].name;
+//			$scope.user = data[1];
+//		}).error(function() {
+//			alert("User information failed to retrieve");
+//		});
 		$(function () {
-            $('#startDate').datepicker();
+            $('#startDate').datepicker({
+        		dateFormat: "yy-mm-dd"
+            });
         });
 		$(function () {
-            $('#endDate').datepicker();
+            $('#endDate').datepicker({
+        		dateFormat: "yy-mm-dd"
+            });
         });
 	    }
 	}
