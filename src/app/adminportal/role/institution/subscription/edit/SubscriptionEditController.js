@@ -30,8 +30,8 @@ angular.module('platform-ui.adminportal.role.institution.subscription.edit').con
 			 			"subscriptionId": $scope.activeSubscriptions[$scope.partnerId].subscriptionId,
 						"partyId": $scope.institutionId,
 						"partnerId": $scope.partnerId,
-						"startDate": $scope.startDate + ' 00:00:00.0',
-						"endDate": $scope.endDate + ' 00:00:00.0',
+						"startDate": $scope.postData.startDate + ' 00:00:00.0',
+						"endDate": $scope.postData.endDate + ' 00:00:00.0',
 					};
 	    		$http({
 	    			url: $scope.apiUri+'/subscriptions/'+$scope.activeSubscriptions[$scope.partnerId].subscriptionId+'/renewal/'+'?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
