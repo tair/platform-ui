@@ -72,8 +72,8 @@ angular.module('platform-ui.adminportal.role.institution.subscription.edit').con
 //		}
 		if ($scope.partnerId in $scope.activeSubscriptions){
 			$scope.transactionType = "renew";
-			$scope.startDate = $scope.activeSubscriptions[$scope.partnerId].startDate.split(' ')[0];
-			$scope.endDate = $scope.activeSubscriptions[$scope.partnerId].endDate.split(' ')[0];
+			$scope.startDate = $scope.activeSubscriptions[$scope.partnerId].startDate.split('T')[0];
+			$scope.endDate = $scope.activeSubscriptions[$scope.partnerId].endDate.split('T')[0];
 		}else{
 			$scope.transactionType = "create";
 		}
