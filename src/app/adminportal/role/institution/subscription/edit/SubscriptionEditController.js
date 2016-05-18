@@ -30,8 +30,8 @@ angular.module('platform-ui.adminportal.role.institution.subscription.edit').con
 			 			"subscriptionId": $scope.activeSubscriptions[$scope.partnerId].subscriptionId,
 						"partyId": $scope.institutionId,
 						"partnerId": $scope.partnerId,
-						"startDate": $scope.postData.startDate + ' 00:00:00.0',
-						"endDate": $scope.postData.endDate + ' 00:00:00.0',
+						"startDate": $scope.postData.startDate + ' 12:00:00.0',
+						"endDate": $scope.postData.endDate + ' 12:00:00.0',
 					};
 	    		$http({
 	    			url: $scope.apiUri+'/subscriptions/'+$scope.activeSubscriptions[$scope.partnerId].subscriptionId+'/renewal/'+'?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
@@ -48,8 +48,8 @@ angular.module('platform-ui.adminportal.role.institution.subscription.edit').con
 //			 			"subscriptionId": $scope.activeSubscriptions[$scope.partnerId].subscriptionId,
 						"partyId": $scope.institutionId,
 						"partnerId": $scope.partnerId,
-						"startDate": $scope.postData.startDate + ' 00:00:00.0',
-						"endDate": $scope.postData.endDate + ' 00:00:00.0',
+						"startDate": $scope.postData.startDate + ' 12:00:00.0',
+						"endDate": $scope.postData.endDate + ' 12:00:00.0',
 					};
 	    		$http({
 	    			url: $scope.apiUri+'/subscriptions/'+'?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
@@ -72,29 +72,11 @@ angular.module('platform-ui.adminportal.role.institution.subscription.edit').con
 //		}
 		if ($scope.partnerId in $scope.activeSubscriptions){
 			$scope.transactionType = "renew";
-			$scope.startDate = $scope.activeSubscriptions[$scope.partnerId].startDate;
-			$scope.endDate = $scope.activeSubscriptions[$scope.partnerId].endDate;
+			$scope.startDate = $scope.activeSubscriptions[$scope.partnerId].startDate.split(' ')[0];
+			$scope.endDate = $scope.activeSubscriptions[$scope.partnerId].endDate.split(' ')[0];
 		}else{
 			$scope.transactionType = "create";
 		}
-
-//		$http({
-//			url: $scope.apiUri+'/partners/?partnerId='+$scope.partnerId,
-//			method: 'GET',
-//		}).success(function(data, status, headers, config) {
-//			$scope.partner = data[0];
-//		}).error(function() {
-//			alert("Cannot get partner information");
-//		});
-//		$http({
-//			url: $scope.apiUri+'/parties/institutions/?partyId='+$scope.institutionId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
-//			method: 'GET',
-//		}).success(function(data, status, headers, config){
-//			$scope.partyName = data[0].name;
-//			$scope.user = data[1];
-//		}).error(function() {
-//			alert("User information failed to retrieve");
-//		});
 		$(function () {
             $('#startDate').datepicker({
         		dateFormat: "yy-mm-dd"
