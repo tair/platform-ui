@@ -32,11 +32,8 @@
 				</div>
 				
 				<!-- exp date -->
-				<div class="{{uiparams.expcolwidth}}" ng-show="p.state != 'edit'">
+				<div class="{{uiparams.expcolwidth}}">
 						{{getExpDate(p.partnerId) | date:'fullDate'}}
-				</div>
-				<div class="{{uiparams.expcolwidth}}" ng-show="p.state == 'edit'">
-				    <input ng-model="p.endDate"></input>
 				</div>
 				
 				<!-- btn -->
