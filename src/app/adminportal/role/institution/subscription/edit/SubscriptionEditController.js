@@ -57,7 +57,9 @@ angular.module('platform-ui.adminportal.role.institution.subscription.edit').con
 	    			url: $scope.apiUri+'/subscriptions/'+'?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
 	    			method: 'POST',
 	    			data: postData,
-	    		}).success(function(){
+	    		}).success(function(data, status, headers, config){
+	    			delete data['subscriptionTransactionId'];
+	    			$scope.activeSubscriptions[$scope.partnerId] = data;
 	    			$scope.successMessage = "Subscription created successfully!";
 	    		}).error(function() {
 	    			alert("Failed to create subscription!");
