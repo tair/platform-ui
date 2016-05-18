@@ -38,7 +38,9 @@ angular.module('platform-ui.adminportal.role.institution.subscription.edit').con
 	    			method: 'PUT',
 	    			data: postData,
 	    			headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-	    		}).success(function(){
+	    		}).success(function(data, status, headers, config){
+	    			$scope.activeSubscriptions[$scope.partnerId].startDate = data['startDate'];
+	    			$scope.activeSubscriptions[$scope.partnerId].endDate = data['endDate'];
 	    			$scope.successMessage = "Subscription renewed successfully!";
 	    		}).error(function() {
 	    			alert("Failed to renew subscription!");
