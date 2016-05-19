@@ -41,9 +41,8 @@ angular.module('platform-ui.adminportal.role.consortium.subscription.list').cont
 
 	    $scope.licenseAction = function(id) {
 	    if ($scope.role == 'staff'){
-	    	return;
-	    }
-		if (id in $scope.activeSubscriptions) {
+	    	$state.go('role.consortium.subscription.edit', {'partnerId': id});
+	    }else if (id in $scope.activeSubscriptions) {
 			$state.go('role.consortium.subscription.renewal', {'partnerId': id});
 		} else {
 			$state.go('role.consortium.subscription.request', {'partnerId': id});
@@ -64,6 +63,9 @@ angular.module('platform-ui.adminportal.role.consortium.subscription.list').cont
 	    function init() {
 		console.log($state);
 		$scope.uiparams = ConsortiumSubscriptionListModel.uiparams;
+//		if(!$scope.credentialId || !$scope.secretKey){
+//			$state.go('ltlogin');
+//		}
 	    }
 	}
 ]);
