@@ -60,6 +60,7 @@ angular.module('platform-ui.adminportal.role.consortium.subscription').factory(
 					"endDate": "2018-03-31T12:00:00Z"
 				},
 			},
+			allSubscriptions: {},
 		};
 	}
 ]);
