@@ -30,9 +30,10 @@ angular.module('platform-ui.adminportal.role.consortium.subscription.list').cont
 	    	}else{
 	    		var startDate = new Date($scope.allSubscriptions[id].startDate);
 		    	var endDate = new Date($scope.allSubscriptions[id].endDate);
-		    	if (Date() < startDate){
+		    	var today = new Date();
+		    	if (today < startDate){
 		    		subscriptionState = "Not yet activated";
-		    	}else if (Date() > endDate){
+		    	}else if (today > endDate){
 		    		subscriptionState = "Expired";
 		    	}
 	    	} 
