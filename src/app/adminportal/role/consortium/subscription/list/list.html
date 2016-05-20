@@ -5,8 +5,11 @@
             <div class="{{uiparams.partnercolwidth}}">
                 LICENSE 
             </div>
+            <div class="{{uiparams.statescolwidth}}">
+                SUBSCRIPTION STATUS
+            </div>
             <div class="{{uiparams.expcolwidth}}">
-                EXPIRATION
+                EFFECTIVE DATES
             </div>
             <div class="{{uiparams.actionscolwidth}}">
                 ACTIONS
@@ -31,11 +34,21 @@
                     </div>
                 </div>
                 
-                <!-- exp date -->
-                <div class="{{uiparams.expcolwidth}}">
-                        {{getExpDate(p.partnerId) | date:'fullDate'}}
+                <!-- subscription state -->
+                <div class="{{uiparams.statescolwidth}}">
+                        {{getSubState(p.partnerId)}}
                 </div>
                 
+                <!-- exp date -->
+<!--                 <div class="{{uiparams.expcolwidth}}">
+                        {{getExpDate(p.partnerId) | date:'fullDate'}}
+                </div> -->
+                
+                <!-- effective dates -->
+                <div class="{{uiparams.expcolwidth}}">
+                        start: {{getStartDate(p.partnerId) | date:'fullDate'}}<br/>
+                        end: {{getEndDate(p.partnerId) | date:'fullDate'}}
+                </div>
                 <!-- btn -->
                 <div class="{{uiparams.actionscolwidth}}">          
                         <button type="button" class="btn btn-default" ng-click="licenseAction(p.partnerId);">{{licenseButton(p.partnerId)}}</button>                    
