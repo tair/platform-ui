@@ -51,9 +51,10 @@
         <div><input ng-class="groupsListLabelCss(institution.state)" style="width:300px" ng-model="institution.label" ng-show="institution.state=='edit'"></input></div>
         <div><p class="lt-admin-groups-list-label" ng-show="!(institution.state=='edit')">{{institution.name}}</p></div>
         <div><input ng-class="groupsListLabelCss(institution.state)" style="width:300px" ng-model="institution.name" ng-show="institution.state=='edit'"></input></div>
-        <div class="lt-admin-groups-list-values">
+        <div class="col-xs-3 lt-admin-groups-list-values">
               <input class="lt-admin-groups-list-values-input" ng-model="institution.partyId" ng-readonly="true"></input>
         </div>
+        <div class="col-xs-5"><input type="checkbox" ng-model="institution.display" ng-show="institution.state=='edit'">Display</div>
       </div>
 	  <div class="col-xs-3" style="margin-top:18px;padding:0px" ng-class="groupsListGlyphiconCss(institution.state)">
 	    <div class="delete-label">Delete?</div>
