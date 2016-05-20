@@ -26,6 +26,7 @@ angular.module('platform-ui.adminportal.role.consortium.subscription').controlle
                 $scope.setCurrentTab(ConsortiumSubscriptionModel.currentTab);
                 $scope.partners = ConsortiumSubscriptionModel.partners;
                 $scope.activeSubscriptions = ConsortiumSubscriptionModel.activeSubscriptions;
+                $scope.allSubscriptions = ConsortiumSubscriptionModel.allSubscriptions;
                 $scope.uiparams = ConsortiumSubscriptionModel.uiparams;
                 $http({
                         url: $scope.apiUri+'/partners/',
