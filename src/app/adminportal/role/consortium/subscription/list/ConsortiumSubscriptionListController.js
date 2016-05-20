@@ -27,9 +27,9 @@ angular.module('platform-ui.adminportal.role.consortium.subscription.list').cont
 	    		subscriptionState = "Active";
 	    	}else if (!(id in $scope.allSubscriptions)){
 	    		subscriptionState = "Unlicensed";
-	    	}else if (Date() < Date($scope.allSubscriptions[id].startDate.split("Z")[0])){
+	    	}else if (Date() < new Date($scope.allSubscriptions[id].startDate.split("Z")[0])){
 	    		subscriptionState = "Not yet activated";
-	    	}else if (Date() > Date($scope.allSubscriptions[id].endDate.split("Z")[0])){
+	    	}else if (Date() > new Date($scope.allSubscriptions[id].endDate.split("Z")[0])){
 	    		subscriptionState = "Expired";
 	    	}
 	    	return subscriptionState;
