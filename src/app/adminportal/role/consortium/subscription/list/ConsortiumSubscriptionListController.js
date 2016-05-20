@@ -35,21 +35,23 @@ angular.module('platform-ui.adminportal.role.consortium.subscription.list').cont
 	    	return subscriptionState;
 	    }
 	    
-	    $scope.getExpDate = function(id) {
-		if (id in $scope.activeSubscriptions) {
-			return $filter('date')($scope.activeSubscriptions[id].endDate, 'MMM dd yyyy');
-			//return $scope.activeSubscriptions[id].endDate;
-		}
-		return "Unlicensed";
-	    };
+//	    $scope.getExpDate = function(id) {
+//		if (id in $scope.activeSubscriptions) {
+//			return $filter('date')($scope.activeSubscriptions[id].endDate, 'MMM dd yyyy');
+//			//return $scope.activeSubscriptions[id].endDate;
+//		}
+//		return "Unlicensed";
+//	    };
 	    $scope.getStartDate = function(id) {
-	    	if (startDate = $scope.allSubscriptions[id].startDate !=null){
-	    	return "N/A";
+	    	if ($scope.allSubscriptions[id].startDate !=null){
+	    	return $scope.allSubscriptions[id].startDate;
+	    	}else{
+	    		return "N/A";
 	    	}
 	    }
 	    $scope.getStartDate = function(id) {
-	    	if (endDate = $scope.allSubscriptions[id].endDate !=null){
-	    	return endDate;
+	    	if ($scope.allSubscriptions[id].endDate !=null){
+	    	return $scope.allSubscriptions[id].endDate;
 	    	}else{
 	    		return "N/A";
 	    	}
