@@ -49,7 +49,7 @@ angular.module('platform-ui.adminportal.role.consortium.subscription.list').cont
 	    		return "N/A";
 	    	}
 	    }
-	    $scope.getStartDate = function(id) {
+	    $scope.getEndDate = function(id) {
 	    	if ($scope.allSubscriptions[id] !=null){
 	    	return $scope.allSubscriptions[id].endDate;
 	    	}else{
