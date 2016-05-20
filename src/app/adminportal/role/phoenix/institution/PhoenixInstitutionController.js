@@ -145,6 +145,7 @@ angular.module('platform-ui.adminportal.role.phoenix.institution').controller(
 		    label:institution['label'],
 			name:institution['name'],
 			partyId:institution['partyId'],
+			display:institution['display'],
 		    };
 		    $http({
 			url: $scope.apiUri+'/parties/institutions/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+institution['partyId'],
