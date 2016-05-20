@@ -43,14 +43,14 @@ angular.module('platform-ui.adminportal.role.consortium.subscription.list').cont
 //		return "Unlicensed";
 //	    };
 	    $scope.getStartDate = function(id) {
-	    	if ($scope.allSubscriptions[id] !=null){
+	    	if (id in $scope.allSubscriptions){
 	    	return $scope.allSubscriptions[id].startDate;
 	    	}else{
 	    		return "N/A";
 	    	}
 	    }
 	    $scope.getEndDate = function(id) {
-	    	if ($scope.allSubscriptions[id] !=null){
+	    	if (id in $scope.allSubscriptions){
 	    	return $scope.allSubscriptions[id].endDate;
 	    	}else{
 	    		return "N/A";
