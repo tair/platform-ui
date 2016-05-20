@@ -73,7 +73,7 @@ angular.module('platform-ui.adminportal.role.consortium.subscription.edit').cont
 //		if(!$scope.credentialId || !$scope.secretKey){
 //			$state.go('ltlogin');
 //		}
-		if ($scope.partnerId in $scope.activeSubscriptions){
+		if ($scope.partnerId in $scope.allSubscriptions){
 			$scope.transactionType = "renew";
 			$scope.startDate = $scope.activeSubscriptions[$scope.partnerId].startDate.split('T')[0];
 			$scope.endDate = $scope.activeSubscriptions[$scope.partnerId].endDate.split('T')[0];
