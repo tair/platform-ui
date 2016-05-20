@@ -20,7 +20,21 @@ angular.module('platform-ui.adminportal.role.consortium.subscription.list').cont
 	/* Controller Definition */
 	function ($scope, $http, $cookies, $location, $state, $filter, Title, ConsortiumSubscriptionListModel) {
 	    init();
-
+	    
+	    $scope.getSubState = function(id) {
+	    	var subscriptionState = "";
+	    	if (id in $scope.activeSubscriptions) {
+	    		subscriptionState = "Active";
+	    	}else if (Date() < $scope.allSubscriptions[id].startDate){
+	    		subscriptionState = "Not yet activated";
+	    	}else if (Date() > $scope.allSubscriptions[id].endDate){
+	    		subscriptionState = "Expired";
+	    	}else if (!(id in $scope.allSubscriptions)){
+	    		subscriptionState = "Unlicensed";
+	    	}
+	    	return subscriptionState;
+	    }
+	    
 	    $scope.getExpDate = function(id) {
 		if (id in $scope.activeSubscriptions) {
 			return $filter('date')($scope.activeSubscriptions[id].endDate, 'MMM dd yyyy');
@@ -28,6 +42,12 @@ angular.module('platform-ui.adminportal.role.consortium.subscription.list').cont
 		}
 		return "Unlicensed";
 	    };
+	    $scope.getStartDate = function(id) {
+	    	return $scope.allSubscriptions[id].startDate;
+	    }
+	    $scope.getEndDate = function(id) {
+	    	return $scope.allSubscriptions[id].endDate;
+	    }
 
 	    $scope.licenseButton = function(id) {
 	    if ($scope.role == 'staff'){
