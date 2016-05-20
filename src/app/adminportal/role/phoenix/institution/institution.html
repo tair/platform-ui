@@ -54,7 +54,7 @@
         <div class="col-xs-3 lt-admin-groups-list-values">
               <input class="lt-admin-groups-list-values-input" ng-model="institution.partyId" ng-readonly="true"></input>
         </div>
-        <div class="col-xs-5"><input type="checkbox" ng-model="institution.display" ng-show="institution.state=='edit'">Display</div>
+        <div class="col-xs-5" ng-show="institution.state=='edit'"><input type="checkbox" ng-model="institution.display"><span class="lt-admin-groups-list-label">Display</span></div>
       </div>
 	  <div class="col-xs-3" style="margin-top:18px;padding:0px" ng-class="groupsListGlyphiconCss(institution.state)">
 	    <div class="delete-label">Delete?</div>
