@@ -75,8 +75,8 @@ angular.module('platform-ui.adminportal.role.consortium.subscription.edit').cont
 //		}
 		if ($scope.partnerId in $scope.allSubscriptions){
 			$scope.transactionType = "renew";
-			$scope.startDate = $scope.activeSubscriptions[$scope.partnerId].startDate.split('T')[0];
-			$scope.endDate = $scope.activeSubscriptions[$scope.partnerId].endDate.split('T')[0];
+			$scope.startDate = $scope.allSubscriptions[$scope.partnerId].startDate.split('T')[0];
+			$scope.endDate = $scope.allSubscriptions[$scope.partnerId].endDate.split('T')[0];
 		}else{
 			$scope.transactionType = "create";
 		}
