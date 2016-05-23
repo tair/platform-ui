@@ -85,10 +85,11 @@ angular.module('platform-ui.adminportal.role.consortium.institution').controller
 		}
 		else if (institution.state == "edit") {
 		    // this is the "x" button at edit state
-//		    if ($scope.editInstitution) {
-//			institution.name = $scope.editInstitution.name;
-//			$scope.editInstitution = null;
-//		    }
+		    if ($scope.editInstitution) {
+			institution.name = $scope.editInstitution.name;
+			institution.label = $scope.editInstitution.label;
+			$scope.editInstitution = null;
+		    }
 		    institution.state = null;
 		} else if (institution.state == "remove") {
 		    // this is the cancel button at remove state.
