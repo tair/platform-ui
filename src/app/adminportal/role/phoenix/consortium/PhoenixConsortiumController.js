@@ -92,6 +92,7 @@ angular.module('platform-ui.adminportal.role.phoenix.consortium').controller(
 		    // this is the "x" button at edit state
 		    if ($scope.editConsortium) {
 			consortium.name = $scope.editConsortium.name;
+			consortium.label = $scope.editConsortium.label;
 			$scope.editConsortium = null;
 		    }
 		    consortium.state = null;
