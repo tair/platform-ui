@@ -121,7 +121,9 @@ angular.module('platform-ui.adminportal.role.phoenix.institution').controller(
 		else if (institution.state == "edit") {
 		    // this is the "x" button at edit state
 		    if ($scope.editRange) {
-		    	institution = $scope.editRange;
+		    	institution.label = $scope.editRange.label;
+		    	institution.name = $scope.editRange.name;
+		    	institution.display = $scope.editRange.display;
 			$scope.editRange = null;
 		    }
 		    institution.state = null;
