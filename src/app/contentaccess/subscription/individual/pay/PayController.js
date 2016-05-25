@@ -30,6 +30,7 @@ angular.module('platform-ui.contentaccess.subscription.individual.pay').controll
 		    $scope.formdata.expmonth = null;
 		    $scope.formdata.expyear = null;
 		    $scope.formdata.cvc = null;
+		    $scope.formdata.vat = null;
                 };
 
 		$scope.validate = function() {
