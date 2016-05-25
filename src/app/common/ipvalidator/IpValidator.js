@@ -43,12 +43,12 @@ angular.module('ipvalidator', []).service(
 				l2 = end.split(':');
 			}
 			for (var i = 0; i<length; i++){
-				num1 = parseInt(l1[i], bit);
-				num2 = parseInt(l2[i], bit);
-				if(num1 > num2){
-					return false;
+				num1 = parseInt(l1[i], bit);//start
+				num2 = parseInt(l2[i], bit);//end
+				if(num1 > num2){//start>end
+					return false;//error
 				}else if(num1 < num2){
-					return true;
+					return true;//valid
 				}
 			}
 			return true;
