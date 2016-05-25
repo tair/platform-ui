@@ -132,6 +132,20 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 		    	alert('IP range is too large, please enter a smaller IP range.  Please contact us at info@phoenixbioinformatics.org with any questions.');
 		    	return;
 		    }	
+		    
+		    
+			//$scope.ipranges[0]['start'] current start
+			//$scope.ipranges[0]['end'] current end
+			//iprange['start'] new start
+			//iprange['end'] new end
+			
+			if (iprange['start'] === $scope.ipranges[0]['start'] &&
+					iprange['end'] === $scope.ipranges[0]['end']) {
+				alert('Range already exists');
+				return;
+			}
+				
+				
 		    data = {
 			ipRangeId:iprange['ipRangeId'],
 			start:iprange['start'],
