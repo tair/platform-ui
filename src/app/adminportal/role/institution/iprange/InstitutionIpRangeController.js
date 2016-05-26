@@ -191,9 +191,31 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 				alert('Range already exists');
 				return;
 			}
-				
 			
-		//alert("Nothing is added!");
+			//New Range is already covered by (is within) current range
+			var currentStart = $scope.ipranges[0]['start'];
+			var newStart = $scope.newRange['start'];
+			var currentEnd = $scope.ipranges[0]['end'];
+			var newEnd = $scope.newRange['end'];
+			
+			//currentStart<newStart && currentEnd>newEnd => error
+
+			//comp(a,b) returns false when a>b
+			//comp(a,b) returns true  when a<b
+
+			//currentStart<newStart
+			var currentStartLESSnewStart = !(IpValidator.CompareIpAddress(currentStart,newStart));
+			
+			//currentEnd>newEnd
+			var currentEndGREATERnewEnd = !(IpValidator.CompareIpAddress(currentEnd,newEnd));
+				
+			if (currentStartLESSnewStart && currentEndGREATERnewEnd) {
+				alert('New Range is already covered by (is within) current range');
+				return;
+			}
+			//END OF New Range is already covered by (is within) current range
+		
+			//alert("Nothing is added!");
 		var data = {
 		    start:$scope.newRange['start'],
 		    end:$scope.newRange['end'],
