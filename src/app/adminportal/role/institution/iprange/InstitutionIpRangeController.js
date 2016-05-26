@@ -204,7 +204,7 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 			//comp(a,b) returns true  when a<b
 
 			//currentStart<newStart
-			var currentStartLESSnewStart = !(IpValidator.CompareIpAddress(currentStart,newStart));
+			var currentStartLESSnewStart = (IpValidator.CompareIpAddress(currentStart,newStart));
 			
 			//currentEnd>newEnd
 			var currentEndGREATERnewEnd = !(IpValidator.CompareIpAddress(currentEnd,newEnd));
