@@ -217,7 +217,7 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 			//4. New Range overlaps Current Range on the right
 			//currentStart<newStart && newStart<currentEnd && currentEnd<newEnd
 			if (IpValidator.CompareIpAddress(currentStart,newStart) &&
-				IpValidator.CompareIpAddress(newStart,currentStart) &&
+				IpValidator.CompareIpAddress(newStart,currentEnd) &&
 				IpValidator.CompareIpAddress(currentEnd,newEnd)){
 					alert('Error:New Range overlaps Current Range on the right');
 					return;
