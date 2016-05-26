@@ -180,7 +180,8 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
             	return;
             }
             
-		    
+		    if ($scope.ipranges.length >= 1) {
+		    	
 			var currentStart = $scope.ipranges[0]['start'];
 			var newStart = $scope.newRange['start'];
 			var currentEnd = $scope.ipranges[0]['end'];
@@ -230,7 +231,7 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 						alert('Error:Current Range is within New Range');
 						return;
 			}
-			
+		}
 		var data = {
 		    start:$scope.newRange['start'],
 		    end:$scope.newRange['end'],
