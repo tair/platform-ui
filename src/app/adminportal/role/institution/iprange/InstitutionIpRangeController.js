@@ -210,11 +210,37 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 			var currentEndGREATERnewEnd = !(IpValidator.CompareIpAddress(currentEnd,newEnd));
 				
 			if (currentStartLESSnewStart && currentEndGREATERnewEnd) {
-				alert('New Range is already covered by (is within) current range');
+				alert('Error:New Range is already covered by (is within) Current Range');
 				return;
 			}
 			//END OF New Range is already covered by (is within) current range
 		
+			//newStart<currentStart && newEnd>currentStart && newEnd<currentEnd
+			var newStartLESScurrentStart = (IpValidator.CompareIpAddress(newStart,currentStart));
+			var newEndGREATERcurrentStart = !(IpValidator.CompareIpAddress(newEnd,currentStart));
+			var newEndLESScurrentEnd = (IpValidator.CompareIpAddress(newEnd,currentEnd));
+			if (newStartLESScurrentStart && newEndGREATERcurrentStart && newEndLESScurrentEnd){
+				alert('Error:New Range overlaps Current Range on the left');
+				return;
+			}
+			
+			//currentStart<newStart && newStart<currentEnd && currentEnd<newEnd
+			if (IpValidator.CompareIpAddress(currentStart,newStart) &&
+				IpValidator.CompareIpAddress(newStart,currentStart) &&
+				IpValidator.CompareIpAddress(currentEnd,newEnd)){
+					alert('Error:New Range overlaps Current Range on the right');
+					return;
+			}
+			
+			//newStart<currentStart && currentStart<currentEnd && currentEnd<newEnd
+			if (IpValidator.CompareIpAddress(newStart,currentStart) &&
+					IpValidator.CompareIpAddress(currentStart,currentEnd) &&
+					IpValidator.CompareIpAddress(currentEnd,newEnd)){
+						alert('Error:Current Range is within New Range');
+						return;
+			}
+			
+			
 			//alert("Nothing is added!");
 		var data = {
 		    start:$scope.newRange['start'],
