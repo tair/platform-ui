@@ -186,8 +186,8 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 			//iprange['start'] new start
 			//iprange['end'] new end
 			
-			if (iprange['start'] === $scope.ipranges[0]['start'] &&
-					iprange['end'] === $scope.ipranges[0]['end']) {
+			if ($scope.newRange['start'] === $scope.ipranges[0]['start'] &&
+					$scope.newRange['end'] === $scope.ipranges[0]['end']) {
 				alert('Range already exists');
 				return;
 			}
