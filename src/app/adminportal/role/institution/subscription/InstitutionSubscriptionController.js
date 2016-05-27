@@ -25,7 +25,7 @@ angular.module('platform-ui.adminportal.role.institution.subscription').controll
 		$scope.setCurrentTab(InstitutionSubscriptionModel.currentTab);
 		$scope.partners = InstitutionSubscriptionModel.partners;
 		$scope.activeSubscriptions = InstitutionSubscriptionModel.activeSubscriptions;
-		$scope.allSubscriptions = ConsortiumSubscriptionModel.allSubscriptions;
+		$scope.allSubscriptions = InstitutionSubscriptionModel.allSubscriptions;
 		$scope.uiparams = InstitutionSubscriptionModel.uiparams;
 //		if(!$scope.credentialId || !$scope.secretKey){
 //			$state.go('ltlogin');
@@ -59,7 +59,7 @@ angular.module('platform-ui.adminportal.role.institution.subscription').controll
 			alert("Cannot get active subscription information");
 		});
 		        $http({
-	                    url: $scope.apiUri+'/subscriptions/allsubscriptions/'+$scope.consortiumId+'/',
+	                    url: $scope.apiUri+'/subscriptions/allsubscriptions/'+$scope.institutionId+'/',
 	                    method: 'GET',
 	            }).success(function(data, status, headers, config) {
 	                    $scope.allSubscriptions = data;
