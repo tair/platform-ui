@@ -14,6 +14,22 @@
         <form ng-submit="requestEdit()">
         <div class="row">
             <div class="{{uiparams.colwidth}} block-center text-left">
+            	<div class="col-xs-6">
+                    <div class="row"><div class="col-xs-12">
+                        New Start Date
+                    </div></div>
+                    <div class="row"><div class="col-xs-12">
+                        <input id="startDate" ng-model="postData.startDate" required></input>
+                    </div></div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="row"><div class="col-xs-12">
+                        New End Date
+                    </div></div>
+                    <div class="row"><div class="col-xs-12">
+                        <input id="endDate" ng-model="postData.endDate" required></input>
+                    </div></div>
+                </div>
                 <div class="col-xs-6" ng-show="transactionType=='renew'">
                     <div class="row"><div class="col-xs-12">
                         Current Start Date
@@ -28,22 +44,6 @@
                     </div></div>
                     <div class="row"><div class="col-xs-12">
                         <p>{{endDate}}</p>
-                    </div></div>
-                </div>
-                <div class="col-xs-6">
-                    <div class="row"><div class="col-xs-12">
-                        New Start Date
-                    </div></div>
-                    <div class="row"><div class="col-xs-12">
-                        <input id="startDate" ng-model="postData.startDate" required></input>
-                    </div></div>
-                </div>
-                <div class="col-xs-6">
-                    <div class="row"><div class="col-xs-12">
-                        New End Date
-                    </div></div>
-                    <div class="row"><div class="col-xs-12">
-                        <input id="endDate" ng-model="postData.endDate" required></input>
                     </div></div>
                 </div>
             </div>            

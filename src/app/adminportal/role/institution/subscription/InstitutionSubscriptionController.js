@@ -11,14 +11,13 @@ angular.module('platform-ui.adminportal.role.institution.subscription').controll
 	'$scope',
 	'$http',
 	'$cookies',
-	'$window',
 	'$location',
 	'$state',
 	'Title',
 	'InstitutionSubscriptionModel',
 
 	/* Controller Definition */
-	function ($scope, $http, $cookies, $window, $location, $state, Title, InstitutionSubscriptionModel) {
+	function ($scope, $http, $cookies, $location, $state, Title, InstitutionSubscriptionModel) {
 	    init();
 
 	    function init() {
@@ -26,6 +25,7 @@ angular.module('platform-ui.adminportal.role.institution.subscription').controll
 		$scope.setCurrentTab(InstitutionSubscriptionModel.currentTab);
 		$scope.partners = InstitutionSubscriptionModel.partners;
 		$scope.activeSubscriptions = InstitutionSubscriptionModel.activeSubscriptions;
+		$scope.allSubscriptions = ConsortiumSubscriptionModel.allSubscriptions;
 		$scope.uiparams = InstitutionSubscriptionModel.uiparams;
 //		if(!$scope.credentialId || !$scope.secretKey){
 //			$state.go('ltlogin');
@@ -58,6 +58,14 @@ angular.module('platform-ui.adminportal.role.institution.subscription').controll
 		}).error(function() {
 			alert("Cannot get active subscription information");
 		});
+		        $http({
+	                    url: $scope.apiUri+'/subscriptions/allsubscriptions/'+$scope.consortiumId+'/',
+	                    method: 'GET',
+	            }).success(function(data, status, headers, config) {
+	                    $scope.allSubscriptions = data;
+	            }).error(function() {
+	                    alert("Cannot get all subscription information");
+	            });
 		$state.go('role.institution.subscription.list');
 	    }
 	}

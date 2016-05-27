@@ -12,11 +12,11 @@ angular.module('platform-ui.adminportal.role.institution.subscription').factory(
 
 	function () {
 		return {
+			title: 'Institution Subscription',
 			currentTab: {
               label: 'SUBSCRIPTION',
               state: 'role.institution.subscription'
             },
-//			partners: [],
 			partners: [
     					{
 					        "partnerId": "cdiff",
@@ -47,7 +47,6 @@ angular.module('platform-ui.adminportal.role.institution.subscription').factory(
 						"description": "Description of YFD"
     					}
 				],
-//			activeSubscriptions: {},
 			activeSubscriptions: {
 				"tair": {
 					"subscriptionId": 3994,
@@ -64,6 +63,7 @@ angular.module('platform-ui.adminportal.role.institution.subscription').factory(
 					"endDate": "2018-03-31T12:00:00Z"
 				},
 			},
+			allSubscriptions: {},
 		};
 	}
 ]);
