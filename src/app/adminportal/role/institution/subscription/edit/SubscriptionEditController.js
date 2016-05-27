@@ -27,27 +27,26 @@ angular.module('platform-ui.adminportal.role.institution.subscription.edit').con
 	    $scope.requestEdit = function() {
 	    	if ($scope.transactionType == "renew"){
 			 	postData = {
-			 			"subscriptionId": $scope.activeSubscriptions[$scope.partnerId].subscriptionId,
+			 			"subscriptionId": $scope.allSubscriptions[$scope.partnerId].subscriptionId,
 						"partyId": $scope.institutionId,
 						"partnerId": $scope.partnerId,
 						"startDate": $scope.postData.startDate + ' 12:00:00.0',
 						"endDate": $scope.postData.endDate + ' 12:00:00.0',
 					};
 	    		$http({
-	    			url: $scope.apiUri+'/subscriptions/'+$scope.activeSubscriptions[$scope.partnerId].subscriptionId+'/renewal/'+'?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
+	    			url: $scope.apiUri+'/subscriptions/'+$scope.allSubscriptions[$scope.partnerId].subscriptionId+'/renewal/'+'?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
 	    			method: 'PUT',
 	    			data: postData,
 	    			headers: {'Content-Type': 'application/x-www-form-urlencoded'},
 	    		}).success(function(data, status, headers, config){
-	    			$scope.activeSubscriptions[$scope.partnerId].startDate = data['startDate'];
-	    			$scope.activeSubscriptions[$scope.partnerId].endDate = data['endDate'];
+	    			$scope.allSubscriptions[$scope.partnerId].startDate = data['startDate'];
+	    			$scope.allSubscriptions[$scope.partnerId].endDate = data['endDate'];
 	    			$scope.successMessage = "Subscription renewed successfully!";
 	    		}).error(function() {
 	    			alert("Failed to renew subscription!");
 	    		});
 	    	}else if($scope.transactionType == "create"){
 	    		postData = {
-//			 			"subscriptionId": $scope.activeSubscriptions[$scope.partnerId].subscriptionId,
 						"partyId": $scope.institutionId,
 						"partnerId": $scope.partnerId,
 						"startDate": $scope.postData.startDate + ' 12:00:00.0',
@@ -59,7 +58,7 @@ angular.module('platform-ui.adminportal.role.institution.subscription.edit').con
 	    			data: postData,
 	    		}).success(function(data, status, headers, config){
 	    			delete data['subscriptionTransactionId'];
-	    			$scope.activeSubscriptions[$scope.partnerId] = data;
+	    			$scope.allSubscriptions[$scope.partnerId] = data;
 	    			$scope.successMessage = "Subscription created successfully!";
 	    		}).error(function() {
 	    			alert("Failed to create subscription!");
@@ -74,10 +73,10 @@ angular.module('platform-ui.adminportal.role.institution.subscription.edit').con
 //		if(!$scope.credentialId || !$scope.secretKey){
 //			$state.go('ltlogin');
 //		}
-		if ($scope.partnerId in $scope.activeSubscriptions){
+		if ($scope.partnerId in $scope.allSubscriptions){
 			$scope.transactionType = "renew";
-			$scope.startDate = $scope.activeSubscriptions[$scope.partnerId].startDate.split('T')[0];
-			$scope.endDate = $scope.activeSubscriptions[$scope.partnerId].endDate.split('T')[0];
+			$scope.startDate = $scope.allSubscriptions[$scope.partnerId].startDate.split('T')[0];
+			$scope.endDate = $scope.allSubscriptions[$scope.partnerId].endDate.split('T')[0];
 		}else{
 			$scope.transactionType = "create";
 		}

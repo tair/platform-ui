@@ -22,12 +22,14 @@ angular.module('platform-ui.adminportal.role.consortium.subscription').controlle
         
             function init() {
                 console.log($state);
-//                $scope.setTitle(ConsortiumSubscriptionModel.title);
                 $scope.setCurrentTab(ConsortiumSubscriptionModel.currentTab);
                 $scope.partners = ConsortiumSubscriptionModel.partners;
                 $scope.activeSubscriptions = ConsortiumSubscriptionModel.activeSubscriptions;
                 $scope.allSubscriptions = ConsortiumSubscriptionModel.allSubscriptions;
                 $scope.uiparams = ConsortiumSubscriptionModel.uiparams;
+//		if(!$scope.credentialId || !$scope.secretKey){
+//			$state.go('ltlogin');
+//		}
                 $http({
                         url: $scope.apiUri+'/partners/',
                         method: 'GET',

@@ -13,12 +13,11 @@ angular.module('platform-ui.adminportal.role.consortium.subscription.list').cont
 	'$cookies',
 	'$location',
 	'$state',
-	'$filter',
 	'Title',
 	'ConsortiumSubscriptionListModel',
 
 	/* Controller Definition */
-	function ($scope, $http, $cookies, $location, $state, $filter, Title, ConsortiumSubscriptionListModel) {
+	function ($scope, $http, $cookies, $location, $state, Title, ConsortiumSubscriptionListModel) {
 	    init();
 	    
 	    $scope.getSubState = function(id) {
