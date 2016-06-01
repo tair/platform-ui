@@ -148,13 +148,14 @@ angular.module('platform-ui.adminportal.role.phoenix.institution').controller(
 			display:institution['display'],
 		    };
 		    $http({
-			url: $scope.apiUri+'/parties/institutions/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+institution['partyId'],
-			data: data,
+//				url: $scope.apiUri+'/parties/institutions/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+institution['partyId'],
+				url: $scope.apiUri+'/parties/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+institution['partyId'],			
+		    data: data,
 			method: 'PUT',
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 		    }).success(function(data, status, headers, config){
 		    }).error(function(data, status, headers, config){
-			alert("ip range request failed");
+			alert("institution edit request failed");
 		    });
 		    institution.state = null;
 		    $scope.editRange = null;
