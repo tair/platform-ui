@@ -116,7 +116,7 @@ angular.module('platform-ui.adminportal.role.phoenix.consortium').controller(
 		    	label:consortium['label'],
 		    };
 		    $http({
-			url: $scope.apiUri+'/parties/consortiums/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+consortium['partyId'],
+			url: $scope.apiUri+'/parties/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+consortium['partyId'],
 			data: data,
 			method: 'PUT',
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}

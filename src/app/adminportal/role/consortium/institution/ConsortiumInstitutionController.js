@@ -111,7 +111,7 @@ angular.module('platform-ui.adminportal.role.consortium.institution').controller
 			partyId:institution['partyId'],
 		    };
 		    $http({
-			url: $scope.apiUri+'/parties/institutions/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+institution['partyId'],
+			url: $scope.apiUri+'/parties/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+institution['partyId'],
 			data: data,
 			method: 'PUT',
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
