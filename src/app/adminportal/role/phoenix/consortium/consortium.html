@@ -49,9 +49,9 @@
     <div class="row" ng-class="groupsListCss(consortium.state)" ng-mouseover="groupsMoveOver(consortium)" ng-mouseleave="groupsMoveOut(consortium)" ng-click="enterConsortium(consortium)">
       <div class="col-xs-9" style="padding:0px">
         <div><p class="lt-admin-groups-list-label" ng-show="!(consortium.state=='edit')">{{consortium.label}}</p></div>       
-        <div><input ng-class="groupsListLabelCss(consortium.state)" style="width:300px" ng-model="consortium.label" ng-show="consortium.state=='edit'"></input></div>
+        <div><input ng-class="groupsListLabelCss(consortium.state)" placeholder="Add an optional label for this consortium" style="width:300px" ng-model="consortium.label" ng-show="consortium.state=='edit'"></input></div>
         <div><p class="lt-admin-groups-list-label" ng-show="!(consortium.state=='edit')">{{consortium.name}}</p></div>
-        <div><input ng-class="groupsListLabelCss(consortium.state)" style="width:300px" ng-model="consortium.name" ng-show="consortium.state=='edit'"></input></div>
+        <div><input ng-class="groupsListLabelCss(consortium.state)" placeholder="Consortium name" style="width:300px" ng-model="consortium.name" ng-show="consortium.state=='edit'"></input></div>
         <div class="lt-admin-groups-list-values">
               <input class="lt-admin-groups-list-values-input" ng-model="consortium.partyId" ng-readonly="true"></input>
         </div>
