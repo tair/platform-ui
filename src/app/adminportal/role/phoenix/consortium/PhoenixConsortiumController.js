@@ -185,12 +185,12 @@ angular.module('platform-ui.adminportal.role.phoenix.consortium').controller(
 	    }
 	    // remove consortium
 	    $scope.removeConfirm = function(consortium) {
-                data = {
-            		partyId : consortium.partyId,
-                };
+//                data = {
+//            		partyId : consortium.partyId,
+//                };
                 $http({
                     url: $scope.apiUri+'/parties/consortiums/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+consortium['partyId'],
-                    data:data,
+//                    data:data,
                     method: 'DELETE',
                 }).success(function(data, status, headers, config){
                 }).error(function(data, status, headers, config){
