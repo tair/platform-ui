@@ -172,7 +172,7 @@ angular.module('platform-ui.adminportal.role.phoenix.consortium').controller(
 			$scope.consortiums.unshift(angular.copy($scope.createdConsortium));
 			
 		}).error(function(data, status, headers, config){
-                    alert("add consortium request failed");
+            bootbox.alert("Failed to create consortium"+((data['email'] == 'This field must be unique.')?"! The email is already in use.":"!"));
 		});
 		$scope.newConsortium = null;
 		$scope.adding = false;
