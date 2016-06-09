@@ -279,12 +279,12 @@ angular.module('platform-ui.adminportal.role.phoenix.institution').controller(
 //            }
 //        }
 	    $scope.removeConfirm = function(institution) {
-	    	var data = {
-	    			partyId: institution.partyId,
-	    	}
+//	    	var data = {
+//	    			partyId: institution.partyId,
+//	    	}
                 $http({
                     url: $scope.apiUri+'/parties/institutions/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+institution['partyId'],
-                    data: data,
+//                    data: data,
                     method: 'DELETE',
                 }).success(function(data, status, headers, config){
                 }).error(function(data, status, headers, config){
