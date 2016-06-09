@@ -249,7 +249,7 @@ angular.module('platform-ui.adminportal.role.phoenix.institution').controller(
 //			            alert("add new institution request failed");
 //			});
 		}).error(function(data, status, headers, config){
-            alert("new institution request failed");
+            bootbox.alert("Failed to create institution"+((data['email'] == 'This field must be unique.')?"! The email is already in use.":"!"));
 		});		            
 			$scope.newInstitution = null;
 			$scope.adding = false;
