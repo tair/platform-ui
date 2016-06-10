@@ -1,5 +1,5 @@
 /**
- * PhoenixIpRange Controller
+ * PhoenixProfileController
  */
 
 angular.module('platform-ui.adminportal.role.phoenix.profile').controller(
@@ -11,13 +11,14 @@ angular.module('platform-ui.adminportal.role.phoenix.profile').controller(
 	'$scope',
 	'$http',
 	'$cookies',
+	'$window',
 	'$location',
 	'$state',
 	'Title',
 	'PhoenixProfileModel',
 
 	/* Controller Definition */
-	function ($scope, $http, $cookies, $location, $state, Title, PhoenixProfileModel) {
+	function ($scope, $http, $cookies, $window, $location, $state, Title, PhoenixProfileModel) {
 	    	init();
 		console.log($scope.uiparams.colwidth);
 		
@@ -31,9 +32,13 @@ angular.module('platform-ui.adminportal.role.phoenix.profile').controller(
 				put_data = {}
 				//put original values from GET
                 put_data["partyId"]  = $scope.user.partyId;
+				if($scope.user.username != undefined && $scope.user.username !=null &&$scope.user.username != ""){
                 put_data["username"] = $scope.user.username;
+				}
                 put_data["partnerId"]= $scope.user.partnerId;
-                put_data["password"]= $scope.user.password;
+                if($scope.user.password != undefined && $scope.user.password !=null &&$scope.user.password != ""){
+                	put_data["password"]= $scope.user.password;
+                }
                 
                 //rewrite with new from UI
                 forceReSignIn = false;
@@ -41,26 +46,25 @@ angular.module('platform-ui.adminportal.role.phoenix.profile').controller(
 					if ($scope.userprev[k] != $scope.user[k]) {
 						put_data[k] = $scope.user[k];
 						$scope.userprev[k] = $scope.user[k];
-						if (k == 'username' || k == 'password')
+						if ((k == 'username' || k == 'password') && $scope.role == 'staff')
 							{
 							forceReSignIn = true;
 							}
 					}
 				}
+
 				$http({
 					url: $scope.apiUri+'/parties/institutions/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
 					data: put_data,
 					method: 'PUT',
 					headers: {'Content-Type': 'application/x-www-form-urlencoded'},
 				}).success(function(){
-					bootbox.alert("Phoenix Staff Profile Successfuly Updated" + (forceReSignIn ? ". Please re-login":"!") );
+					bootbox.alert("Staff Profile Successfully Updated" + (forceReSignIn ? ". Please re-login":"!") );
 					if (forceReSignIn) {
-						//$cookieStore.remove("credentialId");
-						//$cookieStore.remove("secretKey");
-						$scope.home();
+						$scope.logout();
 					}
-				}).error(function() {
-					bootbox.alert("Failed to update Phoenix Staff Profile");
+				}).error(function(data, status, headers, config) {
+					bootbox.alert("Failed to update Staff Profile"+((data['email'] == 'This field must be unique.')?"! The email is already in use.":"!"));
 				});
 			}
 			$scope.edit = !$scope.edit;
@@ -88,25 +92,26 @@ angular.module('platform-ui.adminportal.role.phoenix.profile').controller(
 				console.log("User password is "+$scope.user.password+" and validate password is "+$scope.password_validate);
 				return false;
 			}
-			if ($scope.user.password==null || $scope.user.password=="" 
-				|| $scope.password_validate==null || $scope.password_validate=="") {
-				bootbox.alert("error: password can not be empty");
-				console.log("error: password can not be empty");
-				return false;
-			}
+//			if ($scope.user.password==null || $scope.user.password=="" 
+//				|| $scope.password_validate==null || $scope.password_validate=="") {
+//				bootbox.alert("error: password can not be empty");
+//				console.log("error: password can not be empty");
+//				return false;
+//			}
 			return true;
 		}
 
 	    	function init() {
-	    		if(!$scope.credentialId || !$scope.secretKey){
-	    			$state.go('ltlogin');
-	    		}
-	    		$scope.setTitle(PhoenixProfileModel.title);
+	    		$scope.setCurrentTab(PhoenixProfileModel.currentTab);
 	    		$scope.user = PhoenixProfileModel.user;
-			$http({
-				url: $scope.apiUri+'/parties/institutions/?partyId='+$scope.credentialId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
-                method: 'GET',
-			}).success(function(data, status, headers, config) {
+//				if(!$scope.credentialId || !$scope.secretKey){
+//					$state.go('ltlogin');
+//				}
+	            $http({
+	            	//TODO: create parties/staff request in api server
+	                url: $scope.apiUri+'/parties/institutions/?partyId='+$scope.credentialId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
+	                method: 'GET',
+	            }).success(function(data, status, headers, config){
                         		$scope.user.partyId = data[0].partyId;
                         		$scope.user.partyType = data[0].partyType;
                             	$scope.user.name = data[0].name;
@@ -136,7 +141,7 @@ angular.module('platform-ui.adminportal.role.phoenix.profile').controller(
                                 
                             }).error(function(data, status, headers, config){
                             	errMsg = "GET /parties/institutions/ Failed";
-                            	bootbox.alert(errMsg);
+//                            	bootbox.alert(errMsg);
                             });
 
                         $scope.edit = false;

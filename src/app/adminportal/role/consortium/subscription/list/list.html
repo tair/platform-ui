@@ -5,8 +5,11 @@
             <div class="{{uiparams.partnercolwidth}}">
                 LICENSE 
             </div>
+            <div class="{{uiparams.statescolwidth}}">
+                STATUS
+            </div>
             <div class="{{uiparams.expcolwidth}}">
-                EXPIRATION
+                EFFECTIVE DATES
             </div>
             <div class="{{uiparams.actionscolwidth}}">
                 ACTIONS
@@ -14,7 +17,7 @@
         </div>
     </div>
     <div class="panel-body" style="padding: 0px;">
-        <div class="lt-institution-subscription-list" ng-repeat="p in listPartners(partners)" style="height:200px">
+        <div class="lt-institution-subscription-list" ng-repeat="p in listPartners(partners)" style="height:220px">
             <div class="row">
                 <div class="{{uiparams.partnercolwidth}}">
                     <!-- name, logo -->
@@ -31,11 +34,21 @@
                     </div>
                 </div>
                 
-                <!-- exp date -->
-                <div class="{{uiparams.expcolwidth}}">
-                        {{getExpDate(p.partnerId) | date:'fullDate'}}
+                <!-- subscription state -->
+                <div class="{{uiparams.statescolwidth}}">
+                        {{getSubState(p.partnerId)}}
                 </div>
                 
+                <!-- exp date -->
+<!--                 <div class="{{uiparams.expcolwidth}}">
+                        {{getExpDate(p.partnerId) | date:'fullDate'}}
+                </div> -->
+                
+                <!-- effective dates -->
+                <div class="{{uiparams.expcolwidth}}">
+                        start: {{getStartDate(p.partnerId) | date:'fullDate'}}<br/>
+                        end: {{getEndDate(p.partnerId) | date:'fullDate'}}
+                </div>
                 <!-- btn -->
                 <div class="{{uiparams.actionscolwidth}}">          
                         <button type="button" class="btn btn-default" ng-click="licenseAction(p.partnerId);">{{licenseButton(p.partnerId)}}</button>                    

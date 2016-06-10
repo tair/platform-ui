@@ -92,6 +92,7 @@ angular.module('platform-ui.adminportal.role.phoenix.consortium').controller(
 		    // this is the "x" button at edit state
 		    if ($scope.editConsortium) {
 			consortium.name = $scope.editConsortium.name;
+			consortium.label = $scope.editConsortium.label;
 			$scope.editConsortium = null;
 		    }
 		    consortium.state = null;
@@ -112,9 +113,10 @@ angular.module('platform-ui.adminportal.role.phoenix.consortium').controller(
 		    data = {
 		    	name:consortium['name'],
 		    	partyId:consortium['partyId'],
+		    	label:consortium['label'],
 		    };
 		    $http({
-			url: $scope.apiUri+'/parties/consortiums/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+consortium['partyId'],
+			url: $scope.apiUri+'/parties/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+consortium['partyId'],
 			data: data,
 			method: 'PUT',
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
@@ -170,7 +172,7 @@ angular.module('platform-ui.adminportal.role.phoenix.consortium').controller(
 			$scope.consortiums.unshift(angular.copy($scope.createdConsortium));
 			
 		}).error(function(data, status, headers, config){
-                    alert("add consortium request failed");
+            bootbox.alert("Failed to create consortium"+((data['email'] == 'This field must be unique.')?"! The email is already in use.":"!"));
 		});
 		$scope.newConsortium = null;
 		$scope.adding = false;
@@ -183,12 +185,12 @@ angular.module('platform-ui.adminportal.role.phoenix.consortium').controller(
 	    }
 	    // remove consortium
 	    $scope.removeConfirm = function(consortium) {
-                data = {
-            		partyId : consortium.partyId,
-                };
+//                data = {
+//            		partyId : consortium.partyId,
+//                };
                 $http({
                     url: $scope.apiUri+'/parties/consortiums/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+consortium['partyId'],
-                    data:data,
+//                    data:data,
                     method: 'DELETE',
                 }).success(function(data, status, headers, config){
                 }).error(function(data, status, headers, config){
@@ -215,6 +217,7 @@ angular.module('platform-ui.adminportal.role.phoenix.consortium').controller(
 			country:entry['country'],
 			display:entry['display'],
 			consortium:entry['consortium'],
+			label:entry['label'],
 			state:null
 		    });
 		}

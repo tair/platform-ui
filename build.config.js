@@ -25,6 +25,7 @@ module.exports = {
 		    'lib/**/.htaccess',
 		    'lib/js/hlp-13566/*',
 		    'lib/css/hlp-13566/*',
+		    'lib/css/hlp-13566/images/*',
 		    'lib/css/fonts/*',
 		    'api/**/*.py'
 		],

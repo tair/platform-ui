@@ -47,13 +47,15 @@
       <div ng-repeat="institution in institutions | filter:searchTerm">
 	<div class="row" ng-class="groupsListCss(institution.state)" ng-mouseover="groupsMoveOver(institution)" ng-mouseleave="groupsMoveOut(institution)" ng-click="enterInstitution(institution)">
 	  <div class="col-xs-9" style="padding:0px">
-	    <div><input ng-class="groupsListLabelCss(institution.state)" style="width:300px" ng-model="institution.name" ng-readonly="!(institution.state=='edit')"></input></div>
-	    <div class="lt-admin-groups-list-values">
-	    <div class="lt-admin-groups-list-values">
-              <input class="lt-admin-groups-list-values-input" ng-model="institution.partyId" ng-readonly="true"></input>
+        <div><p class="lt-admin-groups-list-label" ng-show="!(institution.state=='edit')">{{institution.label}}</p></div>       
+        <div><input ng-class="groupsListLabelCss(institution.state)" placeholder="Add an optional label for this institution" style="width:300px" ng-model="institution.label" ng-show="institution.state=='edit'"></input></div>
+        <div><p class="lt-admin-groups-list-label" ng-show="!(institution.state=='edit')">{{institution.name}}</p></div>
+        <div><input ng-class="groupsListLabelCss(institution.state)" placeholder="Institution name" style="width:300px" ng-model="institution.name" ng-show="institution.state=='edit'"></input></div>
+        <div class="lt-admin-groups-list-values" style="vertical-align:middle">
+              <input class="col-xs-3 lt-admin-groups-list-values-input" ng-model="institution.partyId" ng-readonly="true"></input>
+              <div class="col-xs-5" style="vertical-align:middle"><input type="checkbox" ng-model="institution.display" ng-disabled="!(institution.state=='edit')"><span class="lt-admin-groups-list-label" style="margin-left:5px">Display</span></div>
         </div>
-	  </div>
-	  </div>
+      </div>
 	  <div class="col-xs-3" style="margin-top:18px;padding:0px" ng-class="groupsListGlyphiconCss(institution.state)">
 	    <div class="delete-label">Delete?</div>
 	    <div class="pull-right glyphicon text-center" ng-class="groupsListGlyphiconRightCss(institution.state)" style="margin-right:10px" ng-click="$event.stopPropagation(); right(institution);"></div>

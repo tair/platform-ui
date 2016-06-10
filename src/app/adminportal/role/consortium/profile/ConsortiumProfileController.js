@@ -15,11 +15,10 @@ angular.module('platform-ui.adminportal.role.consortium.profile').controller(
 	'$location',
 	'$state',
 	'Title',
-	'CurrentTab',
 	'ConsortiumProfileModel',
 
 	/* Controller Definition */
-	function ($scope, $http, $cookies, $window, $location, $state, Title, CurrentTab, ConsortiumProfileModel) {
+	function ($scope, $http, $cookies, $window, $location, $state, Title, ConsortiumProfileModel) {
 	    	init();
 		console.log($scope.uiparams.colwidth);
 		
@@ -64,8 +63,8 @@ angular.module('platform-ui.adminportal.role.consortium.profile').controller(
 					if (forceReSignIn) {
 						$scope.logout();
 					}
-				}).error(function() {
-					bootbox.alert("Failed to update Consortium Profile");
+				}).error(function(data, status, headers, config) {
+					bootbox.alert("Failed to update Consortium Profile"+((data['email'] == 'This field must be unique.')?"! The email is already in use.":"!"));
 				});
 			}
 			$scope.edit = !$scope.edit;

@@ -14,7 +14,8 @@ angular.module(
 	'service.title',
 	'platform-ui.adminportal.role.consortium.subscription.list',
 	'platform-ui.adminportal.role.consortium.subscription.renewal',
-	'platform-ui.adminportal.role.consortium.subscription.request'
+	'platform-ui.adminportal.role.consortium.subscription.request',
+	'platform-ui.adminportal.role.consortium.subscription.edit',
     ])
     .config(
 	function ($stateProvider) {
@@ -42,6 +43,14 @@ angular.module(
                                         templateUrl: 'adminportal/role/consortium/subscription/request/request.html'
                                 }
                         }
-                });
+                }).state('role.consortium.subscription.edit', {
+                    url: '/edit?partnerId',
+                    views: {
+                            'subscription': {
+                                    controller: 'ConsortiumSubscriptionEditController',
+                                    templateUrl: 'adminportal/role/consortium/subscription/edit/edit.html'
+                            }
+                    }
+            });
 	});
 

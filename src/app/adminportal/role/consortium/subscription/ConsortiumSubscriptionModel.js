@@ -14,9 +14,6 @@ angular.module('platform-ui.adminportal.role.consortium.subscription').factory(
 		return {
 			title: 'Consortium Subscription',
 			currentTab: {label: 'SUBSCRIPTION', state: 'role.consortium.subscription'},
-			partners: [],
-			activeSubscriptions: {},
-//			partners: [],
 			partners: [
 			           {
 			        	    "partnerId": "biocyc",
@@ -43,7 +40,6 @@ angular.module('platform-ui.adminportal.role.consortium.subscription').factory(
 			        	    "description": "Genome database for the reference plant Arabidopsis thaliana"
 			        	  }
 			        	],
-//			activeSubscriptions: {},
 			activeSubscriptions: {
 				"tair": {
 					"subscriptionId": 3994,
@@ -60,6 +56,7 @@ angular.module('platform-ui.adminportal.role.consortium.subscription').factory(
 					"endDate": "2018-03-31T12:00:00Z"
 				},
 			},
+			allSubscriptions: {},
 		};
 	}
 ]);

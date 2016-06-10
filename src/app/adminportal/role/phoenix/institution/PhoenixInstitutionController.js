@@ -121,9 +121,9 @@ angular.module('platform-ui.adminportal.role.phoenix.institution').controller(
 		else if (institution.state == "edit") {
 		    // this is the "x" button at edit state
 		    if ($scope.editRange) {
-			institution.name = $scope.editRange.name;
-			institution.start = $scope.editRange.start;
-			institution.end = $scope.editRange.end;
+		    	institution.label = $scope.editRange.label;
+		    	institution.name = $scope.editRange.name;
+		    	institution.display = $scope.editRange.display;
 			$scope.editRange = null;
 		    }
 		    institution.state = null;
@@ -142,17 +142,20 @@ angular.module('platform-ui.adminportal.role.phoenix.institution').controller(
 		else if (institution.state == "edit") {
 		    // This is the confirm button at edit state
 		    data = {
+		    label:institution['label'],
 			name:institution['name'],
 			partyId:institution['partyId'],
+			display:institution['display'],
 		    };
 		    $http({
-			url: $scope.apiUri+'/parties/institutions/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+institution['partyId'],
-			data: data,
+//				url: $scope.apiUri+'/parties/institutions/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+institution['partyId'],
+				url: $scope.apiUri+'/parties/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+institution['partyId'],			
+		    data: data,
 			method: 'PUT',
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 		    }).success(function(data, status, headers, config){
 		    }).error(function(data, status, headers, config){
-			alert("ip range request failed");
+			alert("institution edit request failed");
 		    });
 		    institution.state = null;
 		    $scope.editRange = null;
@@ -246,7 +249,7 @@ angular.module('platform-ui.adminportal.role.phoenix.institution').controller(
 //			            alert("add new institution request failed");
 //			});
 		}).error(function(data, status, headers, config){
-            alert("new institution request failed");
+            bootbox.alert("Failed to create institution"+((data['email'] == 'This field must be unique.')?"! The email is already in use.":"!"));
 		});		            
 			$scope.newInstitution = null;
 			$scope.adding = false;
@@ -276,12 +279,12 @@ angular.module('platform-ui.adminportal.role.phoenix.institution').controller(
 //            }
 //        }
 	    $scope.removeConfirm = function(institution) {
-	    	var data = {
-	    			partyId: institution.partyId,
-	    	}
+//	    	var data = {
+//	    			partyId: institution.partyId,
+//	    	}
                 $http({
                     url: $scope.apiUri+'/parties/institutions/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+institution['partyId'],
-                    data: data,
+//                    data: data,
                     method: 'DELETE',
                 }).success(function(data, status, headers, config){
                 }).error(function(data, status, headers, config){
@@ -315,6 +318,7 @@ angular.module('platform-ui.adminportal.role.phoenix.institution').controller(
 			name:entry['name'],
 			country:entry['country'],
 			display:entry['display'],
+			label:entry['label'],
 			state:null
 		    });
 		}

@@ -22,11 +22,14 @@ angular.module('platform-ui.adminportal.role.consortium.subscription').controlle
         
             function init() {
                 console.log($state);
-//                $scope.setTitle(ConsortiumSubscriptionModel.title);
                 $scope.setCurrentTab(ConsortiumSubscriptionModel.currentTab);
                 $scope.partners = ConsortiumSubscriptionModel.partners;
                 $scope.activeSubscriptions = ConsortiumSubscriptionModel.activeSubscriptions;
+                $scope.allSubscriptions = ConsortiumSubscriptionModel.allSubscriptions;
                 $scope.uiparams = ConsortiumSubscriptionModel.uiparams;
+//		if(!$scope.credentialId || !$scope.secretKey){
+//			$state.go('ltlogin');
+//		}
                 $http({
                         url: $scope.apiUri+'/partners/',
                         method: 'GET',
@@ -43,6 +46,14 @@ angular.module('platform-ui.adminportal.role.consortium.subscription').controlle
                 }).error(function() {
                         alert("Cannot get active subscription information");
                 });
+                $http({
+	                    url: $scope.apiUri+'/subscriptions/allsubscriptions/'+$scope.consortiumId+'/',
+	                    method: 'GET',
+	            }).success(function(data, status, headers, config) {
+	                    $scope.allSubscriptions = data;
+	            }).error(function() {
+	                    alert("Cannot get all subscription information");
+	            });
                 $state.go('role.consortium.subscription.list');
             }
 	}

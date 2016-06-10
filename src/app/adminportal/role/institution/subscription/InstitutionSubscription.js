@@ -14,7 +14,8 @@ angular.module(
 	'service.title',
 	'platform-ui.adminportal.role.institution.subscription.list',
 	'platform-ui.adminportal.role.institution.subscription.renewal',
-	'platform-ui.adminportal.role.institution.subscription.request'
+	'platform-ui.adminportal.role.institution.subscription.request',
+	'platform-ui.adminportal.role.institution.subscription.edit',
     ])
     .config(
 	function ($stateProvider) {
@@ -40,6 +41,14 @@ angular.module(
 				'subscription': {
 					controller: 'SubscriptionRequestController',
 					templateUrl: 'adminportal/role/institution/subscription/request/request.html'
+				}
+			}
+		}).state('role.institution.subscription.edit', {
+			url: '/edit?partnerId',
+			views: {
+				'subscription': {
+					controller: 'SubscriptionEditController',
+					templateUrl: 'adminportal/role/institution/subscription/edit/edit.html'
 				}
 			}
 		});

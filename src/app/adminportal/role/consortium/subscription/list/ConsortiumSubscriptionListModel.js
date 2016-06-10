@@ -14,9 +14,10 @@ angular.module('platform-ui.adminportal.role.consortium.subscription.list').fact
 		return {
 			title: 'SUBSCRIPTION',
 			uiparams: {
-				"partnercolwidth": 'col-xs-5',
+				"partnercolwidth": 'col-xs-4',
 				"expcolwidth": 'col-xs-3',
-				"actionscolwidth": 'col-xs-4'
+				"actionscolwidth": 'col-xs-2',
+				"statescolwidth": 'col-xs-3'
 			}
 		};
 	}
