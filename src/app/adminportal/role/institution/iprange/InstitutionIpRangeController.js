@@ -132,6 +132,7 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 		    	alert('IP range is too large, please enter a smaller IP range.  Please contact us at info@phoenixbioinformatics.org with any questions.');
 		    	return;
 		    }	
+		    
 		    data = {
 			ipRangeId:iprange['ipRangeId'],
 			start:iprange['start'],
@@ -178,7 +179,59 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
             	alert('IP range is too large, please enter a smaller IP range.  Please contact us at info@phoenixbioinformatics.org with any questions.');
             	return;
             }
-		//alert("Nothing is added!");
+            
+		    if ($scope.ipranges.length >= 1) {
+		    	
+			var currentStart = $scope.ipranges[0]['start'];
+			var newStart = $scope.newRange['start'];
+			var currentEnd = $scope.ipranges[0]['end'];
+			var newEnd = $scope.newRange['end'];
+			
+			//1. Range already exists
+			if (newStart === currentStart &&
+					newEnd === currentEnd) {
+				alert('Error:Range already exists');
+				return;
+			}
+			
+			//2. New Range is already covered by (is within) current range
+			//currentStart<newStart && currentEnd>newEnd
+			//comp(a,b) returns false when a>b ; comp(a,b) returns true when a<b
+			var currentStartLESSnewStart = (IpValidator.CompareIpAddress(currentStart,newStart));
+			var currentEndGREATERnewEnd = !(IpValidator.CompareIpAddress(currentEnd,newEnd));
+			if (currentStartLESSnewStart && currentEndGREATERnewEnd) {
+				alert('Error:New Range is already covered by (is within) Current Range');
+				return;
+			}
+		
+			//3. New Range overlaps Current Range on the left
+			//newStart<currentStart && newEnd>currentStart && newEnd<currentEnd
+			var newStartLESScurrentStart = (IpValidator.CompareIpAddress(newStart,currentStart));
+			var newEndGREATERcurrentStart = !(IpValidator.CompareIpAddress(newEnd,currentStart));
+			var newEndLESScurrentEnd = (IpValidator.CompareIpAddress(newEnd,currentEnd));
+			if (newStartLESScurrentStart && newEndGREATERcurrentStart && newEndLESScurrentEnd){
+				alert('Error:New Range overlaps Current Range on the left');
+				return;
+			}
+			
+			//4. New Range overlaps Current Range on the right
+			//currentStart<newStart && newStart<currentEnd && currentEnd<newEnd
+			if (IpValidator.CompareIpAddress(currentStart,newStart) &&
+				IpValidator.CompareIpAddress(newStart,currentEnd) &&
+				IpValidator.CompareIpAddress(currentEnd,newEnd)){
+					alert('Error:New Range overlaps Current Range on the right');
+					return;
+			}
+			
+			//5. Current Range is within New Range
+			//newStart<currentStart && currentStart<currentEnd && currentEnd<newEnd
+			if (IpValidator.CompareIpAddress(newStart,currentStart) &&
+					IpValidator.CompareIpAddress(currentStart,currentEnd) &&
+					IpValidator.CompareIpAddress(currentEnd,newEnd)){
+						alert('Error:Current Range is within New Range');
+						return;
+			}
+		}
 		var data = {
 		    start:$scope.newRange['start'],
 		    end:$scope.newRange['end'],
