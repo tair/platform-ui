@@ -209,8 +209,10 @@ angular.module('platform-ui.adminportal.role.phoenix.consortium').controller(
 			});
 	    } else if ($scope.newConsortium['username'] != null && $scope.newConsortium['password'] == null){
 	    	bootbox.alert("Need password to create login for the consortium.");
+	    	return;
 	    } else if ($scope.newConsortium['password'] != null && $scope.newConsortium['username'] == null){
 	    	bootbox.alert("Need username to create login for the consortium.");
+	    	return;
 	    }
 		$scope.newConsortium = null;
 		$scope.adding = false;
