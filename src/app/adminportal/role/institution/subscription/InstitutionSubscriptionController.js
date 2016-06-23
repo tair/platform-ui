@@ -67,7 +67,7 @@ angular.module('platform-ui.adminportal.role.institution.subscription').controll
                 alert("Cannot get all subscription information");
         });
         $http({
-        	url: $scope.apiUri+'/subscriptions/allconssubscriptions/' + $scope.institutionId+'/',
+        	url: $scope.apiUri+'/subscriptions/consactsubscriptions/' + $scope.institutionId+'/',
         	method: 'GET',
         }).success(function(data, status, headers, config) {
         	$scope.allConsSubscriptions = data;
