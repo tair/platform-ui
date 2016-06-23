@@ -70,7 +70,7 @@ angular.module('platform-ui.adminportal.role.institution.subscription').controll
         	url: $scope.apiUri+'/subscriptions/consactsubscriptions/' + $scope.institutionId+'/',
         	method: 'GET',
         }).success(function(data, status, headers, config) {
-        	$scope.allConsSubscriptions = data;
+        	$scope.consActiveSubscriptions = data;
         }).error(function(){
         	alert("Cannot get all consortium subscription information");
         })
