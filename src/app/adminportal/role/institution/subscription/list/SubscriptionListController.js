@@ -24,6 +24,11 @@ angular.module('platform-ui.adminportal.role.institution.subscription.list').con
 	    	var subscriptionState = "";
 	    	if (id in $scope.activeSubscriptions) {
 	    		subscriptionState = "Active";
+	    	}else if (id in $scope.activeConsortiums){
+	    		var consortiumList = $scope.activeConsortiums[id];
+	    		for(i=0;i< consortiumList.length;i++){
+	    			subscriptionState += consortiumList[i] 
+	    		}
 	    	}else if (!(id in $scope.allSubscriptions)){
 	    		subscriptionState = "Unlicensed";
 	    	}else{
