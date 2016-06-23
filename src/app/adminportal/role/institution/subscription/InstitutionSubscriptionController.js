@@ -58,14 +58,22 @@ angular.module('platform-ui.adminportal.role.institution.subscription').controll
 		}).error(function() {
 			alert("Cannot get active subscription information");
 		});
-		        $http({
-	                    url: $scope.apiUri+'/subscriptions/allsubscriptions/'+$scope.institutionId+'/',
-	                    method: 'GET',
-	            }).success(function(data, status, headers, config) {
-	                    $scope.allSubscriptions = data;
-	            }).error(function() {
-	                    alert("Cannot get all subscription information");
-	            });
+        $http({
+                url: $scope.apiUri+'/subscriptions/allsubscriptions/'+$scope.institutionId+'/',
+                method: 'GET',
+        }).success(function(data, status, headers, config) {
+                $scope.allSubscriptions = data;
+        }).error(function() {
+                alert("Cannot get all subscription information");
+        });
+        $http({
+        	url: $scope.apiUri+'/subscriptions/allconssubscriptions/' + $scope.institutionId+'/',
+        	method: 'GET',
+        }).success(function(data, status, headers, config) {
+        	$scope.allConsSubscriptions = data;
+        }).error(function(){
+        	alert("Cannot get all consortium subscription information");
+        })
 		$state.go('role.institution.subscription.list');
 	    }
 	}
