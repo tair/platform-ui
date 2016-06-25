@@ -15,9 +15,10 @@ angular.module('platform-ui.adminportal.role.institution.subscription.list').fac
 			title: 'SUBSCRIPTION',
 			uiparams: {
 				"partnercolwidth": 'col-xs-4',
-				"expcolwidth": 'col-xs-3',
+				"expcolwidth": 'col-xs-2',
 				"actionscolwidth": 'col-xs-2',
-				"statescolwidth": 'col-xs-3'
+				"statescolwidth": 'col-xs-2',
+				"consortiumscolwidth": 'col-xs-2'
 			}
 		};
 	}
