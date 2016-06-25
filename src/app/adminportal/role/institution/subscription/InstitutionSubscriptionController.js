@@ -47,7 +47,8 @@ angular.module('platform-ui.adminportal.role.institution.subscription').controll
                 	startDate:null,
                 	endDate:null,
                 	status:null,
-                	consortiums: [],
+                	consortiumsList: [],
+                	consortiumsStr:'',
                 });
 		}
 		}).error(function() {
