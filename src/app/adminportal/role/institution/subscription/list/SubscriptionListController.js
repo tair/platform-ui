@@ -91,10 +91,10 @@ angular.module('platform-ui.adminportal.role.institution.subscription.list').con
 	    	partners[i].endDate = $scope.getEndDate(partners[i].partnerId);
 	    	if (partners[i].partnerId in $scope.consActiveSubscriptions){
 	    		partners[i].consortiumsList = $scope.consActiveSubscriptions[partners[i].partnerId];
-	    		partners[i].consortiumsStr = "Consortiums:\n";
-	    		for (var j=0; j<partners[i].consortiumsList.length; j++){	    			
-	    			partners[i].consortiumsStr += partners[i].consortiumsList[j] + "\n";
-	    		}
+	    		partners[i].consortiumsStr = "Consortiums:";
+//	    		for (var j=0; j<partners[i].consortiumsList.length; j++){	    			
+//	    			partners[i].consortiumsStr += partners[i].consortiumsList[j] + "\n";
+//	    		}
 	    	} else {
 	    		partners[i].consortiumsStr = "No Consortium Subscribed.";
 	    	}
