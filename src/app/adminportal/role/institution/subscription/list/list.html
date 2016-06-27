@@ -44,7 +44,8 @@
                 
                 <!-- consortium subscriptions -->
 				<div class="{{uiparams.consortiumscolwidth}}">
-						{{p.consortiumsStr}}
+						<div>{{p.consortiumsStr}}</div>
+						<div ng-repeat="consortium in p.consortiumsList">{{consortium}}</div>
 				</div>
 				
 				<!-- effective dates -->
