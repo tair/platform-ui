@@ -92,9 +92,6 @@ angular.module('platform-ui.adminportal.role.institution.subscription.list').con
 	    	if (partners[i].partnerId in $scope.consActiveSubscriptions){
 	    		partners[i].consortiumsList = $scope.consActiveSubscriptions[partners[i].partnerId];
 	    		partners[i].consortiumsStr = "Consortiums:";
-//	    		for (var j=0; j<partners[i].consortiumsList.length; j++){	    			
-//	    			partners[i].consortiumsStr += partners[i].consortiumsList[j] + "\n";
-//	    		}
 	    	} else {
 	    		partners[i].consortiumsStr = "No Consortium Subscribed.";
 	    	}
@@ -105,7 +102,9 @@ angular.module('platform-ui.adminportal.role.institution.subscription.list').con
 		console.log(ret);
 		return ret;
 	    }
-
+	    $scope.toConsortium = function(consortium){
+	    	$state.go('role.consortium.subscription.list', {'consortiumId': consortium.partyId});
+	    }
 	    function init() {
 		console.log($state);
 		$scope.uiparams = SubscriptionListModel.uiparams;
