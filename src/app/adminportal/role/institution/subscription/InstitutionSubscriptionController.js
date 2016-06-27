@@ -26,6 +26,7 @@ angular.module('platform-ui.adminportal.role.institution.subscription').controll
 		$scope.partners = InstitutionSubscriptionModel.partners;
 		$scope.activeSubscriptions = InstitutionSubscriptionModel.activeSubscriptions;
 		$scope.allSubscriptions = InstitutionSubscriptionModel.allSubscriptions;
+		$scope.consActiveSubscriptions = InstitutionSubscriptionModel.consActiveSubscriptions;
 		$scope.uiparams = InstitutionSubscriptionModel.uiparams;
 //		if(!$scope.credentialId || !$scope.secretKey){
 //			$state.go('ltlogin');
