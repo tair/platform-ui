@@ -124,6 +124,8 @@ angular.module('platform-ui.adminportal.role.institution.profile').controller(
                                 //$scope.user.partyId = data[1].partyId;
                                 $scope.user.partnerId = data[1].partnerId;
                                 $scope.user.userIdentifier = data[1].userIdentifier;
+                                $scope.user.firstName = data[1].firstName;
+                                $scope.user.lastName = data[1].lastName;
                                 
                                 $scope.userprev = {};
                                 for(k in $scope.user) 
