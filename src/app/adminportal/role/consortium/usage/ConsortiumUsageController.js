@@ -58,6 +58,7 @@ angular.module('platform-ui.adminportal.role.consortium.usage').controller(
 			}).success(function(data, status, headers, config) {
 				$scope.postData.consortium = data[0].name;//TODO: partyType, partyName as parameter
 				$scope.postData.email = data[1].email;
+				$scope.postData.name = data[1].firstName + " " + data[1].lastName;
 				
 				
 			}).error(function() {
