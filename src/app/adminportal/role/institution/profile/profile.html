@@ -36,7 +36,43 @@
 				</div>
 			</div>
 		</div>
-		<div class="row" style="height: 60px;"></div>
+		<div class="row" style="height: 40px;"></div>
+        <div class="row">
+            <div class="{{uiparams.colwidth}} block-center">
+                <div class="row">
+                    <div class="col-xs-5 block-left">
+                        <div class="row text-left lt-font lt-font-aliasing" style="font-size: 16px; color: #868686;"><div class="col-xs-12">
+                            Contact Person:
+                        </div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<div class="row">
+            <div class="{{uiparams.colwidth}} block-center">
+                <div class="row">
+                    <div class="col-xs-5 block-left">
+                        <div class="row text-left lt-font lt-font-aliasing" style="font-size: 16px; color: #868686;"><div class="col-xs-12">
+                            First Name
+                        </div></div>
+                        <div class="row text-left"><div class="col-xs-12">
+                            <p ng-show="!edit">{{user.firstName}}</p>
+                            <input type="text" class="lt-institution-profile-input" ng-model="user.firstName" ng-hide="!edit" ng-class=" edit == false ? 'lt-no-border' : 'lt-with-border' "></input>
+                        </div></div>
+                    </div>
+                    <div class="col-xs-5 block-right">
+                        <div class="row text-left lt-font lt-font-aliasing" style="font-size: 16px; color: #868686;"><div class="col-xs-12">
+                            Last Name
+                        </div></div>
+                        <div class="row text-left"><div class="col-xs-12">
+                            <p ng-show="!edit">{{user.lastName}}</p>
+                            <input type="text" class="lt-institution-profile-input" ng-model="user.lastName" ng-hide="!edit" ng-class=" edit == false ? 'lt-no-border' : 'lt-with-border' "></input>
+                        </div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<div class="row" style="height: 40px;"></div>
 		<div class="row">
 			<div class="{{uiparams.colwidth}} block-center">
 				<div class="row">
