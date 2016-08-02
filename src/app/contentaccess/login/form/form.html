@@ -59,6 +59,12 @@
 							</div>
 						</div>
 						
+						<div class="row" ng-if="partner.registerText!=null && partner.registerText!='' && partner.registerUri!=null && partner.registerUri!='' ">
+							<div class="col-xs-14 text-left form-group">
+							<font size="2">New user? <a href="{{partner.registerUri}}">{{partner.registerText}}</a></font>
+							</div>
+						</div>
+						
 					</form>
 				</div>
 			</div>

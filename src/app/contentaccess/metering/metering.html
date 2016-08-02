@@ -13,9 +13,10 @@
 								<i class="fa fa-exclamation-triangle fa-3x" style="color: red;"></i>
 							</div>
 							<div class="col-xs-9 text-left">
-								<div class="row" style="height: 10px;"></div>
-								<p ng-if="exceed!='true'">You are about to exceed your limit of free available page views this month.</p>
-								<p ng-if="exceed=='true'" style="color: red;">You have exceeded your limit for this month</p>
+								<div class="row"></div>
+								<p ng-if="exceed=='abouttoexceed'">You are about to exceed your limit of free available page views this month.</p>
+								<p ng-if="exceed=='exceeded'" style="color: red;">You have exceeded your limit for this month</p>
+								<p ng-if="exceed=='blacklisted'" style="color: red; font-size: 14px">Access to this link requires a subscription. Please access this page from a subscribed institution or by logging in to a subscribed user account.</p>
 							</div>
 						</div>
 					</div>
@@ -63,9 +64,9 @@
 					<!--  KEEP BROWSING or BACK BTNS -->
 						<div class="row" style="height: 10px;"></div>
 						<div class="row"><div class="col-xs-12">
-							<a href="{{ redirectNoEncode }}" ng-if="exceed!='true'"><button class="btn btn-default btn-default-tair">KEEP BROWSING</button></a>
+							<a href="{{ redirectNoEncode }}" ng-if="exceed!='exceeded' && exceed!='blacklisted'"><button class="btn btn-default btn-default-tair">KEEP BROWSING</button></a>
 							<!-- http://stackoverflow.com/questions/14815838/webkit-chrome-history-back-1-onclick-vs-href -->
-							<a href="#" onclick="window.history.back();return false;" ng-if="exceed=='true'"><button class="btn btn-default btn-default-tair">BACK</button></a>
+							<a href="#" onclick="window.history.back();return false;" ng-if="exceed=='exceeded' || exceed=='blacklisted'"><button class="btn btn-default btn-default-tair">BACK</button></a>
 						</div></div>
 					</div>
 					
