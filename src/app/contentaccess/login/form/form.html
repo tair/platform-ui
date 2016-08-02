@@ -59,9 +59,9 @@
 							</div>
 						</div>
 						
-						<div class="row">
+						<div class="row" ng-if="{{partner.registerText}}">
 							<div class="col-xs-14 text-left form-group">
-							<font size="2"> {{partner.registerText}} <a href="{{partner.registerUri}}">TODO</a></font>
+							<font size="2">New user? <a href="{{partner.registerUri}}">{{partner.registerText}}</a></font>
 							</div>
 						</div>
 						
