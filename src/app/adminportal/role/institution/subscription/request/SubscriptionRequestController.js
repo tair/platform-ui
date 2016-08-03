@@ -26,16 +26,36 @@ angular.module('platform-ui.adminportal.role.institution.subscription.request').
 	    };
 
 	    $scope.requestQuote = function() {
-		postData = {
-						"firstName": $scope.user.firstName,
-						"lastName": $scope.user.lastName,
-                        "email": $scope.user.email,
-                        "institution": $scope.partyName,
-                        "librarianName": $scope.user.firstName + " " + $scope.user.lastName,
-                        "librarianEmail": $scope.user.email,
-                        "comments": $scope.comments,
-                        "partnerId": $scope.partnerId,
-                };
+	    	if ($scope.user.firstName != null){
+	    		firstName = $scope.user.firstName;
+	    	}else{
+	    		firstName = 'unknown';
+	    	}
+	    	if ($scope.user.lastName != null){
+	    		lastName = $scope.user.lastName;
+	    	}else{
+	    		lastName = 'unknown';
+	    	}
+	    	if ($scope.user.email != null){
+	    		email = $scope.user.email;
+	    	}else{
+	    		email = 'unknown';
+	    	}
+	    	if ($scope.comments != null){
+	    		comments = $scope.comments;
+	    	}else{
+	    		comments = 'No comment.';
+	    	}
+	    	postData = {
+				"firstName": firstName,
+				"lastName": lastName,
+                "email": email,
+                "institution": $scope.partyName,
+                "librarianName": $scope.user.firstName + " " + $scope.user.lastName,
+                "librarianEmail": email,
+                "comments": comments,
+                "partnerId": $scope.partnerId,
+            };
                 $http({
                         url: $scope.apiUri+'/subscriptions/subscriptionrequest/'+'?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
                         method: 'POST',
