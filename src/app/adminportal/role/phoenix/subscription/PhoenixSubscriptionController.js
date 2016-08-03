@@ -23,7 +23,7 @@ angular.module('platform-ui.adminportal.role.phoenix.subscription').controller(
 	    
 	    $scope.downloadRequest = function(){
 	    	$http({
-	    		url: $scope.apiUri+'/subscription/subscriptionrequest/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
+	    		url: $scope.apiUri+'/subscriptions/subscriptionrequest/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
 	    	    method: 'GET',
 	    	}).success(function(data, status, headers, config){	    		
 	    	}).error(function(data, status, headers, config){	    		
