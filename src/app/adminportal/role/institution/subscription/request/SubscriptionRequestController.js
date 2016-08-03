@@ -27,15 +27,17 @@ angular.module('platform-ui.adminportal.role.institution.subscription.request').
 
 	    $scope.requestQuote = function() {
 		postData = {
-                        "partnerName": $scope.partner.name,
-//                        "name": $scope.user.name,//PW-161 name
+						"firstName": $scope.user.firstName,
+						"lastName": $scope.user.lastName,
                         "email": $scope.user.email,
-                        "partyName": $scope.partyName,
-                        "partyType": "Institution",
+                        "institution": $scope.partyName,
+                        "librarianName": $scope.user.firstName + " " + $scope.user.lastName,
+                        "librarianEmail": $scope.user.email,
                         "comments": $scope.comments,
+                        "partnerId": $scope.partnerId,
                 };
                 $http({
-                        url: $scope.apiUri+'/subscriptions/request/'+'?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
+                        url: $scope.apiUri+'/subscriptions/subscriptionrequest/'+'?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
                         method: 'POST',
                         data: postData,
                 }).success(function(){
