@@ -63,6 +63,8 @@ angular.module('platform-ui.adminportal.role.consortium.subscription.renewal').c
                 }).success(function(){
                 		$scope.successMessage = "Thank you for your request! We will get back to you shortly.";
                         $scope.comments = null;
+                        $scope.librarianName = null;
+                        $scope.librarianEmail = null;
                 }).error(function() {
                         alert("Renewal request not sent");
                 });
