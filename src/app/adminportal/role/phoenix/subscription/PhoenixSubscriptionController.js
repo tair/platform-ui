@@ -29,7 +29,7 @@ angular.module('platform-ui.adminportal.role.phoenix.subscription').controller(
 	    	}).error(function(data, status, headers, config){	    		
 	    	});
 	    }
-
+	    $scope.downloadLink = $scope.apiUri+'/subscriptions/subscriptionrequest/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey);
 	    	function init() {
 	    		$scope.setCurrentTab(PhoenixProfileModel.currentTab);
 //				if(!$scope.credentialId || !$scope.secretKey){
