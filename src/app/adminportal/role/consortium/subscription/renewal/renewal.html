@@ -12,6 +12,24 @@
         </div>
         <div class="row" style="height: 34px;"></div>
         <form ng-submit="requestRenewal()">
+        <div class="col-xs-6">
+            <div class="row"><div class="col-xs-12">
+                Librarian Name
+            </div></div>
+            <div class="row"><div class="col-xs-12">
+                <input ng-model="librarianName" required>
+                </input>                            
+            </div></div>
+        </div>
+        <div class="col-xs-6">
+            <div class="row"><div class="col-xs-12">
+                Librarian Email
+            </div></div>
+            <div class="row"><div class="col-xs-12">
+                <input ng-model="librarianEmail" required>
+                </input>                            
+            </div></div>
+        </div>
         <div class="row">
             <div class="{{uiparams.colwidth}} block-center text-left">
                 <div class="row"><div class="col-xs-12">

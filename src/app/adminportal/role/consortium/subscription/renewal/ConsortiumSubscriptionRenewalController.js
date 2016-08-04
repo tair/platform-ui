@@ -50,10 +50,11 @@ angular.module('platform-ui.adminportal.role.consortium.subscription.renewal').c
 				"lastName": lastName,
                 "email": email,
                 "institution": $scope.partyName,
-                "librarianName": $scope.user.firstName + " " + $scope.user.lastName,
-                "librarianEmail": email,
+                "librarianName": $scope.librarianName,
+                "librarianEmail": $scope.librarianEmail,
                 "comments": comments,
                 "partnerId": $scope.partnerId,
+                "requestType": "renewal",
             };
                 $http({
                         url: $scope.apiUri+'/subscriptions/subscriptionrequest/'+'?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
