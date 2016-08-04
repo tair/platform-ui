@@ -55,7 +55,7 @@ angular.module('platform-ui.adminportal.role.institution.subscription.request').
                 "librarianEmail": $scope.librarianEmail,
                 "comments": comments,
                 "partnerId": $scope.partnerId,
-                "requestType": "renewal",
+                "requestType": "subscription",
             };
                 $http({
                         url: $scope.apiUri+'/subscriptions/subscriptionrequest/'+'?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
