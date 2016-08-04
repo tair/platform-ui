@@ -22,7 +22,7 @@ angular.module('platform-ui.adminportal.role.phoenix.subscription').controller(
 	    init();
 	    
 	    $scope.downloadRequest = function(){
-	    		window.location = $scope.apiUri+'/subscriptions/subscriptionrequest/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey);
+	    		$window.location.href = $scope.apiUri+'/subscriptions/subscriptionrequest/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey);
 	    }
 	    $scope.downloadLink = $scope.apiUri+'/subscriptions/subscriptionrequest/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey);
 	    	function init() {
