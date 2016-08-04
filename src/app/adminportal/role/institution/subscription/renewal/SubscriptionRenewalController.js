@@ -26,25 +26,46 @@ angular.module('platform-ui.adminportal.role.institution.subscription.renewal').
 	    };
 
 	    $scope.requestRenewal = function() {
-	 	postData = {
-			"partnerName": $scope.partner.name,
-//			"name": $scope.user.name, 
-			//PW-161 name
-			"email": $scope.user.email,
-			"partyName": $scope.partyName,
-			"partyType": "Institution",
-			"comments": $scope.comments,
-		};
-		$http({
-			url: $scope.apiUri+'/subscriptions/renew/'+'?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
-			method: 'POST',
-			data: postData,
-		}).success(function(){
-			$scope.successMessage = "Thank you for your request! We will get back to you shortly.";
-			$scope.comments = null;
-		}).error(function() {
-			alert("Renewal request not sent");
-		});
+	    	if ($scope.user.firstName != null){
+	    		firstName = $scope.user.firstName;
+	    	}else{
+	    		firstName = 'unknown';
+	    	}
+	    	if ($scope.user.lastName != null){
+	    		lastName = $scope.user.lastName;
+	    	}else{
+	    		lastName = 'unknown';
+	    	}
+	    	if ($scope.user.email != null){
+	    		email = $scope.user.email;
+	    	}else{
+	    		email = 'unknown';
+	    	}
+	    	if ($scope.comments != null){
+	    		comments = $scope.comments;
+	    	}else{
+	    		comments = 'No comment.';
+	    	}
+	    	postData = {
+				"firstName": firstName,
+				"lastName": lastName,
+                "email": email,
+                "institution": $scope.partyName,
+                "librarianName": $scope.user.firstName + " " + $scope.user.lastName,
+                "librarianEmail": email,
+                "comments": comments,
+                "partnerId": $scope.partnerId,
+            };
+                $http({
+                        url: $scope.apiUri+'/subscriptions/subscriptionrequest/'+'?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
+                        method: 'POST',
+                        data: postData,
+                }).success(function(){
+                		$scope.successMessage = "Thank you for your request! We will get back to you shortly.";
+                        $scope.comments = null;
+                }).error(function() {
+                        alert("Renewal request not sent");
+                });
 		return true;
 	    };
 
