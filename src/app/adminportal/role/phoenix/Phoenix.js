@@ -15,6 +15,7 @@ angular.module(
 	'platform-ui.adminportal.role.phoenix.institution',
 	'platform-ui.adminportal.role.phoenix.consortium',
 	'platform-ui.adminportal.role.phoenix.profile',
+	'platform-ui.adminportal.role.phoenix.subscription',
     ])
     .config(
 	function ($stateProvider) {
@@ -48,6 +49,14 @@ angular.module(
 	                'phoenix': {
 	                    controller: 'PhoenixProfileController',
 	                    templateUrl: 'adminportal/role/phoenix/profile/profile.html'
+	                }
+	            }
+            }).state('role.phoenix.subscription', {
+	            url: '/subscription',
+	            views: {
+	                'phoenix': {
+	                    controller: 'PhoenixSubscriptionController',
+	                    templateUrl: 'adminportal/role/phoenix/subscription/subscription.html'
 	                }
 	            }
             });
