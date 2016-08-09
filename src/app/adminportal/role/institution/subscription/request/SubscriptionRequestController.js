@@ -51,10 +51,11 @@ angular.module('platform-ui.adminportal.role.institution.subscription.request').
 				"lastName": lastName,
                 "email": email,
                 "institution": $scope.partyName,
-                "librarianName": $scope.user.firstName + " " + $scope.user.lastName,
-                "librarianEmail": email,
+                "librarianName": $scope.librarianName,
+                "librarianEmail": $scope.librarianEmail,
                 "comments": comments,
                 "partnerId": $scope.partnerId,
+                "requestType": "subscription",
             };
                 $http({
                         url: $scope.apiUri+'/subscriptions/subscriptionrequest/'+'?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
@@ -63,6 +64,8 @@ angular.module('platform-ui.adminportal.role.institution.subscription.request').
                 }).success(function(){
                 		$scope.successMessage = "Thank you for your request! We will get back to you shortly.";
                         $scope.comments = null;
+                        $scope.librarianName = null;
+                        $scope.librarianEmail = null;
                 }).error(function() {
                         alert("Request quote request not sent");
                 });
