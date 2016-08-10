@@ -33,14 +33,14 @@
 						<!-- UID FIELD -->
 						<div class="row">
 							<div class="col-xs-14 text-center form-group">
-							<input type="text" name="user" class="form-control" ng-model="formdata.user" placeholder="Username" style="width: 100%; border-radius: 0px;" required>
+							<input type="text" name="user" class="form-control" ng-model="formdata.user" placeholder={{partner.loginUserNameFieldPrompt}} style="width: 100%; border-radius: 0px;" required>
 							</div>
 						</div>
 						
 						<!-- PWD FIELD -->
 						<div class="row">
 							<div class="col-xs-14 text-left form-group">
-							<input type="password" name="password" class="form-control" ng-model="formdata.password" placeholder="Password" style="width: 100%; border-radius: 0px;" required>
+							<input type="password" name="password" class="form-control" ng-model="formdata.password" placeholder={{partner.loginPasswordFieldPrompt}} style="width: 100%; border-radius: 0px;" required>
 							<font size="2"><a href="" ng-click="resetpwd()">Reset password</a></font>
 							</div>
 						</div>
