@@ -111,6 +111,19 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
                     $scope.adding = false;
 		}
 		else if (iprange.state == "edit") {
+			 
+			$http({
+				 //https://demoapi.arabidopsis.org/ipranges/validateip/?ip=123
+	                url: $scope.apiUri+'/ipranges/validateip/?ip='+iprange['start'],
+	                method: 'GET',
+	            }).success(function(data, status, headers, config){
+                	debugMsg = 'valid IP. version: '+ data;
+    		    	console.log(debugMsg);
+	            }).error(function(data, status, headers, config){
+	            	alert("start IP invalid");
+	            	return;
+	            });
+			
 		    // This is the confirm button at edit state
 			if(!IpValidator.ValidateIpAddress(iprange['start'])){
 		    	alert("Invalid starting IP");
@@ -159,6 +172,21 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 	    }
 	    
 	    $scope.addConfirm = function() {
+	    	
+			 $http({
+				 //https://demoapi.arabidopsis.org/ipranges/validateip/?ip=123
+	                url: $scope.apiUri+'/ipranges/validateip/?ip='+iprange['start'],
+	                method: 'GET',
+	            }).success(function(data, status, headers, config){
+                	debugMsg = 'valid IP. version: '+ data;
+    		    	console.log(debugMsg);
+	            }).error(function(data, status, headers, config){
+	            	alert("start IP invalid");
+	            	return;
+	            });
+			 
+			 
+			 
 	    	if(!IpValidator.ValidateIpAddress($scope.newRange['start'])){
 		    	alert("Invalid starting IP");
 		    	return;
