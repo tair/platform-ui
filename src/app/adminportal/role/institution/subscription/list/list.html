@@ -8,6 +8,9 @@
             <div class="{{uiparams.statescolwidth}}">
                 STATUS
             </div>
+            <div class="{{uiparams.consortiumscolwidth}}">
+                CONSORTIUMS
+            </div>
             <div class="{{uiparams.expcolwidth}}">
                 EFFECTIVE DATES
             </div>
@@ -36,18 +39,20 @@
 				                
                 <!-- subscription state -->
                 <div class="{{uiparams.statescolwidth}}">
-                        {{getSubState(p.partnerId)}}
+                        {{p.status}}
                 </div>
                 
-				<!-- exp date -->
-<!--				<div class="{{uiparams.expcolwidth}}">
-						{{getExpDate(p.partnerId) | date:'fullDate'}}
-				</div> -->
+                <!-- consortium subscriptions -->
+				<div class="{{uiparams.consortiumscolwidth}}">
+						<div>{{p.consortiumsStr}}</div>
+						<div ng-repeat="consortium in p.consortiumsList" ng-show="role!='staff'">{{consortium.name}}</div>
+						<div ng-repeat="consortium in p.consortiumsList" ng-show="role=='staff'"><button type="button" class="btn btn-default" ng-click="toConsortium(consortium)">{{consortium.name}}</button></div>
+				</div>
 				
 				<!-- effective dates -->
                 <div class="{{uiparams.expcolwidth}}">
-                        start: {{getStartDate(p.partnerId) | date:'fullDate'}}<br/>
-                        end: {{getEndDate(p.partnerId) | date:'fullDate'}}
+                        start: {{p.startDate | date:'fullDate'}}<br/>
+                        end: {{p.endDate | date:'fullDate'}}
                 </div>
 				<!-- btn -->
 				<div class="{{uiparams.actionscolwidth}}">			

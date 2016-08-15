@@ -133,7 +133,9 @@ angular.module('platform-ui.adminportal.role.phoenix.consortium').controller(
 		}
 	    }
 	    $scope.addConfirm = function() {
-		var data = {
+	    if ($scope.newConsortium['username'] != null && $scope.newConsortium['password'] !=null) {
+		// when user input contains username and password, create a credential for the party
+	    	var data = {
 				name: $scope.newConsortium['name'],
 				partyType:'consortium',
 				username: $scope.newConsortium['username'],
@@ -174,6 +176,44 @@ angular.module('platform-ui.adminportal.role.phoenix.consortium').controller(
 		}).error(function(data, status, headers, config){
             bootbox.alert("Failed to create consortium"+((data['email'] == 'This field must be unique.')?"! The email is already in use.":"!"));
 		});
+	    } else if ($scope.newConsortium['username']==null && $scope.newConsortium['password'] == null){
+	    //when user input doesn't contain username and password, only create party.	
+	    	var data = {
+					name: $scope.newConsortium['name'],
+					partyType:'consortium',
+			}
+			$http({
+						url: $scope.apiUri+'/parties/?secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
+						data:data,
+	                    method: 'POST',
+			}).success(function(data, status, headers, config){
+				//new code
+	           	//$scope.partyId = data[0]['partyId'];
+	        	$scope.createdConsortium = {
+	                	country: data.country,
+	                	display: data.display,
+	                	name: data.name, //Party.name
+	                	partyId: data.partyId,
+	                	partyType: data.partyType,
+	        	}
+				//$scope.createdConsortium = data;
+	        	
+	        	bootbox.alert("New Consortium created: partyId="+data.partyId+ " partyType="+data.partyType+
+						" name="+data.name);
+	        	
+				$scope.createdConsortium['state'] = null;
+				$scope.consortiums.unshift(angular.copy($scope.createdConsortium));
+				
+			}).error(function(data, status, headers, config){
+	            bootbox.alert("Failed to create consortium"+((data['email'] == 'This field must be unique.')?"! The email is already in use.":"!"));
+			});
+	    } else if ($scope.newConsortium['username'] != null && $scope.newConsortium['password'] == null){
+	    	bootbox.alert("Need password to create login for the consortium.");
+	    	return;
+	    } else if ($scope.newConsortium['password'] != null && $scope.newConsortium['username'] == null){
+	    	bootbox.alert("Need username to create login for the consortium.");
+	    	return;
+	    }
 		$scope.newConsortium = null;
 		$scope.adding = false;
 	    }

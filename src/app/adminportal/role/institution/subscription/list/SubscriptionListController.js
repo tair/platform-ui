@@ -24,6 +24,8 @@ angular.module('platform-ui.adminportal.role.institution.subscription.list').con
 	    	var subscriptionState = "";
 	    	if (id in $scope.activeSubscriptions) {
 	    		subscriptionState = "Active";
+	    	}else if (id in $scope.consActiveSubscriptions){
+	    		subscriptionState = "Consortium Subscribed";
 	    	}else if (!(id in $scope.allSubscriptions)){
 	    		subscriptionState = "Unlicensed";
 	    	}else{
@@ -84,6 +86,15 @@ angular.module('platform-ui.adminportal.role.institution.subscription.list').con
 	    $scope.listPartners = function(partners) {
 		var ret = [];
 		for (var i=0; i<partners.length; i++) {
+			partners[i].status = $scope.getSubState(partners[i].partnerId);
+	    	partners[i].startDate = $scope.getStartDate(partners[i].partnerId);
+	    	partners[i].endDate = $scope.getEndDate(partners[i].partnerId);
+	    	if (partners[i].partnerId in $scope.consActiveSubscriptions){
+	    		partners[i].consortiumsList = $scope.consActiveSubscriptions[partners[i].partnerId];
+	    		partners[i].consortiumsStr = "Consortiums:";
+	    	} else {
+	    		partners[i].consortiumsStr = "No Consortium Subscribed.";
+	    	}
 		    if (partners[i].partnerId!="phoenix") {
 			ret.push(partners[i]);
 		    }
@@ -91,7 +102,9 @@ angular.module('platform-ui.adminportal.role.institution.subscription.list').con
 		console.log(ret);
 		return ret;
 	    }
-
+	    $scope.toConsortium = function(consortium){
+	    	$state.go('role.consortium.subscription.list', {'consortiumId': consortium.partyId});
+	    }
 	    function init() {
 		console.log($state);
 		$scope.uiparams = SubscriptionListModel.uiparams;
