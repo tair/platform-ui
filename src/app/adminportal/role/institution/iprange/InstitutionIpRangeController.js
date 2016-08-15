@@ -173,17 +173,17 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 	    
 	    $scope.addConfirm = function() {
 	    	
-//			 $http({
-//				 //https://demoapi.arabidopsis.org/ipranges/validateip/?ip=123
-//	                url: $scope.apiUri+'/ipranges/validateip/?ip='+iprange['start'],
-//	                method: 'GET',
-//	            }).success(function(data, status, headers, config){
-//                	debugMsg = 'valid IP. version: '+ data;
-//    		    	console.log(debugMsg);
-//	            }).error(function(data, status, headers, config){
-//	            	alert("start IP invalid");
-//	            	return;
-//	            });
+			 $http({
+				 //https://demoapi.arabidopsis.org/ipranges/validateip/?ip=123
+	                url: $scope.apiUri+'/ipranges/validateip/?ip='+$scope.newRange['start'],
+	                method: 'GET',
+	            }).success(function(data, status, headers, config){
+                	debugMsg = 'valid IP. version: '+ data;
+    		    	console.log(debugMsg);
+	            }).error(function(data, status, headers, config){
+	            	alert("start IP invalid");
+	            	return;
+	            });
 			 
 			 
 			 
