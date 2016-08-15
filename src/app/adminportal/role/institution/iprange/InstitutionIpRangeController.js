@@ -164,7 +164,7 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 	                url: $scope.apiUri+'/ipranges/validateip/?ip='+$scope.newRange['start'],
 	                method: 'GET',
 	            }).success(function(data, status, headers, config){
-                	debugMsg = 'start IP is valid. version: '+ data["ip range"];
+                	debugMsg = 'start IP is valid. version: '+ data["ip version"];
     		    	console.log(debugMsg);
 	            }).error(function(data, status, headers, config){
 	            	alert("start IP invalid");
@@ -182,7 +182,7 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 	                url: $scope.apiUri+'/ipranges/validateip/?ip='+$scope.newRange['end'],
 	                method: 'GET',
 	            }).success(function(data, status, headers, config){
-               	debugMsg = 'end IP is valid. version: '+ data["ip range"];
+               	debugMsg = 'end IP is valid. version: '+ data["ip version"];
    		    	console.log(debugMsg);
 	            }).error(function(data, status, headers, config){
 	            	alert("end IP invalid");
