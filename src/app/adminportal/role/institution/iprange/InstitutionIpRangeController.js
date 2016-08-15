@@ -111,19 +111,6 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
                     $scope.adding = false;
 		}
 		else if (iprange.state == "edit") {
-			 
-//			$http({
-//				 //https://demoapi.arabidopsis.org/ipranges/validateip/?ip=123
-//	                url: $scope.apiUri+'/ipranges/validateip/?ip='+$scope.iprange['start'],
-//	                method: 'GET',
-//	            }).success(function(data, status, headers, config){
-//                	debugMsg = 'valid IP. version: '+ data;
-//    		    	console.log(debugMsg);
-//	            }).error(function(data, status, headers, config){
-//	            	alert("start IP invalid");
-//	            	return;
-//	            });
-			
 		    // This is the confirm button at edit state
 			if(!IpValidator.ValidateIpAddress(iprange['start'])){
 		    	alert("Invalid starting IP");
@@ -174,11 +161,10 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 	    $scope.addConfirm = function() {
 	    	
 			 $http({
-				 //https://demoapi.arabidopsis.org/ipranges/validateip/?ip=123
 	                url: $scope.apiUri+'/ipranges/validateip/?ip='+$scope.newRange['start'],
 	                method: 'GET',
 	            }).success(function(data, status, headers, config){
-                	debugMsg = 'valid IP. version: '+ data;
+                	debugMsg = 'start IP is valid. version: '+ data["ip range"];
     		    	console.log(debugMsg);
 	            }).error(function(data, status, headers, config){
 	            	alert("start IP invalid");
@@ -191,6 +177,19 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 		    	alert("Invalid starting IP");
 		    	return;
 		    };
+		    
+		    $http({
+	                url: $scope.apiUri+'/ipranges/validateip/?ip='+$scope.newRange['end'],
+	                method: 'GET',
+	            }).success(function(data, status, headers, config){
+               	debugMsg = 'end IP is valid. version: '+ data["ip range"];
+   		    	console.log(debugMsg);
+	            }).error(function(data, status, headers, config){
+	            	alert("end IP invalid");
+	            	return;
+	            });
+		    
+		    
 		    if(!IpValidator.ValidateIpAddress($scope.newRange['end'])){
 		    	alert("Invalid ending IP");
 		    	return;
