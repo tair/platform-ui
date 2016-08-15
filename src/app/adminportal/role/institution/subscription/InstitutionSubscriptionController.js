@@ -26,6 +26,7 @@ angular.module('platform-ui.adminportal.role.institution.subscription').controll
 		$scope.partners = InstitutionSubscriptionModel.partners;
 		$scope.activeSubscriptions = InstitutionSubscriptionModel.activeSubscriptions;
 		$scope.allSubscriptions = InstitutionSubscriptionModel.allSubscriptions;
+		$scope.consActiveSubscriptions = InstitutionSubscriptionModel.consActiveSubscriptions;
 		$scope.uiparams = InstitutionSubscriptionModel.uiparams;
 //		if(!$scope.credentialId || !$scope.secretKey){
 //			$state.go('ltlogin');
@@ -44,7 +45,11 @@ angular.module('platform-ui.adminportal.role.institution.subscription').controll
                 	partnerId:entry['partnerId'],
                 	termOfServiceUri:entry['termOfServiceUri'],
                 	description:entry['description'],//Partner.description tbl.column PW-271
-                	state:null,
+                	startDate:null,
+                	endDate:null,
+                	status:null,
+                	consortiumsList: [],
+                	consortiumsStr:'',
                 });
 		}
 		}).error(function() {
@@ -58,14 +63,22 @@ angular.module('platform-ui.adminportal.role.institution.subscription').controll
 		}).error(function() {
 			alert("Cannot get active subscription information");
 		});
-		        $http({
-	                    url: $scope.apiUri+'/subscriptions/allsubscriptions/'+$scope.institutionId+'/',
-	                    method: 'GET',
-	            }).success(function(data, status, headers, config) {
-	                    $scope.allSubscriptions = data;
-	            }).error(function() {
-	                    alert("Cannot get all subscription information");
-	            });
+        $http({
+                url: $scope.apiUri+'/subscriptions/allsubscriptions/'+$scope.institutionId+'/',
+                method: 'GET',
+        }).success(function(data, status, headers, config) {
+                $scope.allSubscriptions = data;
+        }).error(function() {
+                alert("Cannot get all subscription information");
+        });
+        $http({
+        	url: $scope.apiUri+'/subscriptions/consactsubscriptions/' + $scope.institutionId+'/',
+        	method: 'GET',
+        }).success(function(data, status, headers, config) {
+        	$scope.consActiveSubscriptions = data;
+        }).error(function(){
+        	alert("Cannot get all consortium subscription information");
+        })
 		$state.go('role.institution.subscription.list');
 	    }
 	}
