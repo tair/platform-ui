@@ -259,8 +259,10 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 	            	return;
 	            });
 			 
-		// instert/POST only if both start and end ips are valid   
-		if (validateIP($scope.newRange['start']) && validateIP($scope.newRange['end'])) { 
+		// instert/POST only if both start and end ips are valid
+	    var startIpValid = validateIP($scope.newRange['start']);
+	    var endIpValid = validateIP($scope.newRange['end']);
+		if (startIpValid && endIpValid) { 
 			var data = {
 					start:$scope.newRange['start'],
 					end:$scope.newRange['end'],
