@@ -164,14 +164,20 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 	                url: $scope.apiUri+'/ipranges/validateip/?ip='+$scope.newRange['start'],
 	                method: 'GET',
 	            }).success(function(data, status, headers, config){
-                	debugMsg = 'start IP is valid. version: '+ data["ip version"];
-    		    	console.log(debugMsg);
+	            	if (data["ip version"] === 4 || data["ip version"] === 6){
+	            		debugMsg = 'start IP is valid. version: '+ data["ip version"];
+	    		    	console.log(debugMsg);
+	            	}
+	            	else {
+	            		debugMsg = 'start IP is invalid. version: '+ data["ip version"];
+	    		    	console.log(debugMsg);
+	            		alert("start IP invalid");
+	            		return;
+	            	}
 	            }).error(function(data, status, headers, config){
-	            	alert("start IP invalid");
+	            	alert("error getting /ipranges/validateip/?ip= for start IP");
 	            	return;
 	            });
-			 
-			 
 			 
 	    	if(!IpValidator.ValidateIpAddress($scope.newRange['start'])){
 		    	alert("Invalid starting IP");
@@ -182,10 +188,18 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 	                url: $scope.apiUri+'/ipranges/validateip/?ip='+$scope.newRange['end'],
 	                method: 'GET',
 	            }).success(function(data, status, headers, config){
-               	debugMsg = 'end IP is valid. version: '+ data["ip version"];
-   		    	console.log(debugMsg);
+	            	if (data["ip version"] === 4 || data["ip version"] === 6){
+	            		debugMsg = 'end IP is valid. version: '+ data["ip version"];
+	    		    	console.log(debugMsg);
+	            	}
+	            	else {
+	            		debugMsg = 'end IP is invalid. version: '+ data["ip version"];
+	    		    	console.log(debugMsg);
+	            		alert("end IP invalid");
+	            		return;
+	            	}
 	            }).error(function(data, status, headers, config){
-	            	alert("end IP invalid");
+	            	alert("error getting /ipranges/validateip/?ip= for end IP");
 	            	return;
 	            });
 		    
