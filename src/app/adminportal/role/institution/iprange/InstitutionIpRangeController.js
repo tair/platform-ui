@@ -233,29 +233,9 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 				}
 		}
 			
-	    	 var isRangeValid = false;
+	    	
 	    	//check start IP
-			 $http({
-	                url: $scope.apiUri+'/ipranges/validateip/?ip='+$scope.newRange['start'],
-	                method: 'GET',
-	            }).success(function(data, status, headers, config){
-	            	if (data["ip version"] === 4 || data["ip version"] === 6){
-	            		debugMsg = 'start IP is valid. version: '+ data["ip version"];
-	    		    	console.log(debugMsg);
-	    		    	isRangeValid = true;
-	            	}
-	            	else {
-	            		debugMsg = 'start IP is invalid. version: '+ data["ip version"];
-	    		    	console.log(debugMsg);
-	            		alert("start IP invalid");
-	            		isRangeValid = false;
-	            		return;
-	            	}
-	            }).error(function(data, status, headers, config){
-	            	alert("error getting /ipranges/validateip/?ip= for start IP");
-	            	isRangeValid = false;
-	            	return;
-	            });
+
 			 //check end IP
 			    $http({
 	                url: $scope.apiUri+'/ipranges/validateip/?ip='+$scope.newRange['end'],
@@ -264,23 +244,23 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 	            	if (data["ip version"] === 4 || data["ip version"] === 6){
 	            		debugMsg = 'end IP is valid. version: '+ data["ip version"];
 	    		    	console.log(debugMsg);
-	    		    	isRangeValid = true;
+	    		    	//isRangeValid = true;
 	            	}
 	            	else {
 	            		debugMsg = 'end IP is invalid. version: '+ data["ip version"];
 	    		    	console.log(debugMsg);
 	            		alert("end IP invalid");
-	            		isRangeValid = false;
+	            		//isRangeValid = false;
 	            		return;
 	            	}
 	            }).error(function(data, status, headers, config){
 	            	alert("error getting /ipranges/validateip/?ip= for end IP");
-	            	isRangeValid = false;
+	            	//isRangeValid = false;
 	            	return;
 	            });
 			 
-		// instert/POST only if range is valid   
-		if (isRangeValid) { 
+		// instert/POST only if both start and end ips are valid   
+		if (validateIP($scope.newRange['start']) && validateIP($scope.newRange['end'])) { 
 			var data = {
 					start:$scope.newRange['start'],
 					end:$scope.newRange['end'],
@@ -312,7 +292,30 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 		$scope.adding = false;
 	    }
 	    
+	    //validateIP
+		function validateIP(ip) {
+			 $http({
+	                url: $scope.apiUri+'/ipranges/validateip/?ip='+ip,
+	                method: 'GET',
+	            }).success(function(data, status, headers, config){
+	            	if (data["ip version"] === 4 || data["ip version"] === 6){
+	            		debugMsg = 'IP is valid. version: '+ data["ip version"];
+	    		    	console.log(debugMsg);
+	    		    	return true;
+	            	}
+	            	else {
+	            		debugMsg = 'IP is invalid. version: '+ data["ip version"];
+	    		    	console.log(debugMsg);
+	            		alert("IP invalid");
+	            		return false;
+	            	}
+	            }).error(function(data, status, headers, config){
+	            	alert("error getting /ipranges/validateip/?ip= for IP");
+	            	return false;
+	            });
+		}
 	    
+		//reset function
 	    $scope.reset = function() {
 		$scope.adding = false;
 		for (i=0; i<$scope.ipranges.length; i++) {
