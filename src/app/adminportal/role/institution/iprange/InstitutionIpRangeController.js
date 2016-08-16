@@ -159,7 +159,7 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 	    }
 	    
 	    $scope.addConfirm = function() {
-	    	
+	    	var isRangeValid = false;
 			 $http({
 	                url: $scope.apiUri+'/ipranges/validateip/?ip='+$scope.newRange['start'],
 	                method: 'GET',
@@ -167,20 +167,24 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 	            	if (data["ip version"] === 4 || data["ip version"] === 6){
 	            		debugMsg = 'start IP is valid. version: '+ data["ip version"];
 	    		    	console.log(debugMsg);
+	    		    	isRangeValid = true;
 	            	}
 	            	else {
 	            		debugMsg = 'start IP is invalid. version: '+ data["ip version"];
 	    		    	console.log(debugMsg);
 	            		alert("start IP invalid");
+	            		isRangeValid = false;
 	            		return;
 	            	}
 	            }).error(function(data, status, headers, config){
 	            	alert("error getting /ipranges/validateip/?ip= for start IP");
+	            	isRangeValid = false;
 	            	return;
 	            });
 			 
 	    	if(!IpValidator.ValidateIpAddress($scope.newRange['start'])){
 		    	alert("Invalid starting IP");
+		    	isRangeValid = false;
 		    	return;
 		    };
 		    
@@ -191,38 +195,44 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 	            	if (data["ip version"] === 4 || data["ip version"] === 6){
 	            		debugMsg = 'end IP is valid. version: '+ data["ip version"];
 	    		    	console.log(debugMsg);
+	    		    	isRangeValid = true;
 	            	}
 	            	else {
 	            		debugMsg = 'end IP is invalid. version: '+ data["ip version"];
 	    		    	console.log(debugMsg);
 	            		alert("end IP invalid");
+	            		isRangeValid = false;
 	            		return;
 	            	}
 	            }).error(function(data, status, headers, config){
 	            	alert("error getting /ipranges/validateip/?ip= for end IP");
+	            	isRangeValid = false;
 	            	return;
 	            });
 		    
 		    
 		    if(!IpValidator.ValidateIpAddress($scope.newRange['end'])){
 		    	alert("Invalid ending IP");
+		    	isRangeValid = false;
 		    	return;
 		    };
 		    if(IpValidator.ValidateIpAddress($scope.newRange['start'])!=IpValidator.ValidateIpAddress($scope.newRange['end'])){
 		    	alert("Invalid IP address");
+		    	isRangeValid = false;
 		    	return;
 		    }
 		    if(!IpValidator.CompareIpAddress($scope.newRange['start'],$scope.newRange['end'])){
 		    	alert("Starting IP cannot be greater than ending IP");
+		    	isRangeValid = false;
 		    	return;
 		    }
             if (!IpValidator.IpRangeLimit($scope.newRange['start'], $scope.newRange['end'])) {
             	alert('IP range is too large, please enter a smaller IP range.  Please contact us at info@phoenixbioinformatics.org with any questions.');
+            	isRangeValid = false;
             	return;
             }
             
 		    if ($scope.ipranges.length >= 1) {
-		    	
 			var currentStart = $scope.ipranges[0]['start'];
 			var newStart = $scope.newRange['start'];
 			var currentEnd = $scope.ipranges[0]['end'];
@@ -232,6 +242,7 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 			if (newStart === currentStart &&
 					newEnd === currentEnd) {
 				alert('Error:Range already exists');
+				isRangeValid = false;
 				return;
 			}
 			
@@ -242,6 +253,7 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 			var currentEndGREATERnewEnd = !(IpValidator.CompareIpAddress(currentEnd,newEnd));
 			if (currentStartLESSnewStart && currentEndGREATERnewEnd) {
 				alert('Error:New Range is already covered by (is within) Current Range');
+				isRangeValid = false;
 				return;
 			}
 		
@@ -252,6 +264,7 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 			var newEndLESScurrentEnd = (IpValidator.CompareIpAddress(newEnd,currentEnd));
 			if (newStartLESScurrentStart && newEndGREATERcurrentStart && newEndLESScurrentEnd){
 				alert('Error:New Range overlaps Current Range on the left');
+				isRangeValid = false;
 				return;
 			}
 			
@@ -261,6 +274,7 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 				IpValidator.CompareIpAddress(newStart,currentEnd) &&
 				IpValidator.CompareIpAddress(currentEnd,newEnd)){
 					alert('Error:New Range overlaps Current Range on the right');
+					isRangeValid = false;
 					return;
 			}
 			
@@ -270,40 +284,51 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 					IpValidator.CompareIpAddress(currentStart,currentEnd) &&
 					IpValidator.CompareIpAddress(currentEnd,newEnd)){
 						alert('Error:Current Range is within New Range');
+						isRangeValid = false;
 						return;
 			}
 		}
-		var data = {
-		    start:$scope.newRange['start'],
-		    end:$scope.newRange['end'],
-		    partyId:$scope.institutionId,
-		    label:$scope.newRange['name'],
+		// instert/POST only if range is valid   
+		if (isRangeValid) {
+			var data = {
+					start:$scope.newRange['start'],
+					end:$scope.newRange['end'],
+					partyId:$scope.institutionId,
+					label:$scope.newRange['name'],
+					}
+			$http({
+	            url: $scope.apiUri+'/parties/ipranges/?partyId='+$scope.institutionId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
+			    data:data,
+	            method: 'POST',
+			}).success(function(data, status, headers, config){
+				$scope.ipranges.unshift({
+					ipRangeId:data['ipRangeId'],
+					start:data['start'],
+					end:data['end'],
+					name:data['label'],
+					partyId:data['partyId'],
+					state:null
+				    });
+			}).error(function(data, status, headers, config){
+	                    alert("add ip range request failed");
+			});
 		}
-		$http({
-                    url: $scope.apiUri+'/parties/ipranges/?partyId='+$scope.institutionId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
-		    data:data,
-                    method: 'POST',
-		}).success(function(data, status, headers, config){
-			$scope.ipranges.unshift({
-				ipRangeId:data['ipRangeId'],
-				start:data['start'],
-				end:data['end'],
-				name:data['label'],
-				partyId:data['partyId'],
-				state:null
-			    });
-		}).error(function(data, status, headers, config){
-                    alert("add ip range request failed");
-		});      
+		else{
+			alert("IP range "+$scope.newRange['start']+"-"+$scope.newRange['end']+" invalid and not added...")
+		}
+		
 		$scope.newRange = null;
 		$scope.adding = false;
 	    }
+	    
+	    
 	    $scope.reset = function() {
 		$scope.adding = false;
 		for (i=0; i<$scope.ipranges.length; i++) {
 		    $scope.ipranges[i].state=null;
 		}
 	    }
+	    
 	    $scope.removeConfirm = function(iprange) {
                 data = {
                     ipRangeId:iprange['ipRangeId'],
