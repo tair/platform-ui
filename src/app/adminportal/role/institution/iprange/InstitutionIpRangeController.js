@@ -91,11 +91,11 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 	    	else if (iprange.state == "edit") {
 			    // this is the "x" button at edit state
 			    if ($scope.editRange) {
-				iprange.name = $scope.editRange.name;
-				iprange.start = $scope.editRange.start;
-				iprange.end = $scope.editRange.end;
-				$scope.editRange = null;
-		    }
+					iprange.name = $scope.editRange.name;
+					iprange.start = $scope.editRange.start;
+					iprange.end = $scope.editRange.end;
+					$scope.editRange = null;
+			    }
 		    iprange.state = null;
 			} else if (iprange.state == "remove") {
 			    // this is the cancel button at remove state.
@@ -104,58 +104,58 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 		}
 	    
 	    $scope.left = function(iprange) {
-		if (iprange.state == "selected") {
-		    // This is the edit button at normal state.
-                    $scope.editRange = angular.copy(iprange);
-                    iprange.state = "edit";
-                    $scope.adding = false;
-		}
-		else if (iprange.state == "edit") {
-		    // This is the confirm button at edit state
-			if(!IpValidator.ValidateIpAddress(iprange['start'])){
-		    	alert("Invalid starting IP");
-		    	return;
-		    };
-		    if(!IpValidator.ValidateIpAddress(iprange['end'])){
-		    	alert("Invalid ending IP");
-		    	return;
-		    };
-		    if(IpValidator.ValidateIpAddress(iprange['start'])!=IpValidator.ValidateIpAddress(iprange['end'])){
-		    	alert("Invalid IP address");
-		    	return;
-		    }
-		    if(!IpValidator.CompareIpAddress(iprange['start'],iprange['end'])){
-		    	alert("Starting IP cannot be greater than ending IP");
-		    	return;
-		    }
-		    if (!IpValidator.IpRangeLimit(iprange['start'], iprange['end'])) {
-		    	alert('IP range is too large, please enter a smaller IP range.  Please contact us at info@phoenixbioinformatics.org with any questions.');
-		    	return;
-		    }	
-		    
-		    data = {
-			ipRangeId:iprange['ipRangeId'],
-			start:iprange['start'],
-			end:iprange['end'],
-			partyId:iprange['partyId'],
-			label:iprange['name'],
-		    };
-		    $http({
-			url: $scope.apiUri+'/parties/ipranges/?partyId='+$scope.institutionId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&ipRangeId='+iprange['ipRangeId'],
-			data: data,
-			method: 'PUT',
-			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-		    }).success(function(data, status, headers, config){
-		    }).error(function(data, status, headers, config){
-			alert("ip range request failed");
-		    });
-		    iprange.state = null;
-		    $scope.editRange = null;
-		} else if (iprange.state == "remove") {
-		    // this is the remove button at remove state
-		    $scope.removeConfirm(iprange);
-		    iprange.state = null;
-		}
+			if (iprange.state == "selected") {
+			    // This is the edit button at normal state.
+                $scope.editRange = angular.copy(iprange);
+                iprange.state = "edit";
+                $scope.adding = false;
+			}
+			else if (iprange.state == "edit") {
+			    // This is the confirm button at edit state
+				if(!IpValidator.ValidateIpAddress(iprange['start'])){
+			    	alert("Invalid starting IP");
+			    	return;
+			    };
+			    if(!IpValidator.ValidateIpAddress(iprange['end'])){
+			    	alert("Invalid ending IP");
+			    	return;
+			    };
+			    if(IpValidator.ValidateIpAddress(iprange['start'])!=IpValidator.ValidateIpAddress(iprange['end'])){
+			    	alert("Invalid IP address");
+			    	return;
+			    }
+			    if(!IpValidator.CompareIpAddress(iprange['start'],iprange['end'])){
+			    	alert("Starting IP cannot be greater than ending IP");
+			    	return;
+			    }
+			    if (!IpValidator.IpRangeLimit(iprange['start'], iprange['end'])) {
+			    	alert('IP range is too large, please enter a smaller IP range.  Please contact us at info@phoenixbioinformatics.org with any questions.');
+			    	return;
+			    }	
+			    
+			    data = {
+					ipRangeId:iprange['ipRangeId'],
+					start:iprange['start'],
+					end:iprange['end'],
+					partyId:iprange['partyId'],
+					label:iprange['name'],
+			    };
+			    $http({
+					url: $scope.apiUri+'/parties/ipranges/?partyId='+$scope.institutionId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&ipRangeId='+iprange['ipRangeId'],
+					data: data,
+					method: 'PUT',
+					headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+			    }).success(function(data, status, headers, config){
+			    }).error(function(data, status, headers, config){
+			    	alert("ip range request failed");
+			    });
+			    iprange.state = null;
+			    $scope.editRange = null;
+			} else if (iprange.state == "remove") {
+			    // this is the remove button at remove state
+			    $scope.removeConfirm(iprange);
+			    iprange.state = null;
+			}
 	    }
 	    
 	    //adding a new ip range
@@ -232,7 +232,21 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 							return;
 				}
 		}
-			 
+		
+		var startIpValid = validateIP($scope.newRange['start']);
+		var endIpValid = validateIP($scope.newRange['end']);
+		if (startIpValid && endIpValid) {
+			addRange();
+		}
+		else {
+			alert("IP range "+$scope.newRange['start']+"-"+$scope.newRange['end']+" invalid and not added...")
+		}
+		
+		$scope.newRange = null;
+		$scope.adding = false;
+	  }
+	  
+	  function addRange() {
 		//instert/POST only if both start and end ips are valid TODO below does not work...
 //	    $scope.startIpValid = $scope.validateIP($scope.newRange['start']);
 //	    $scope.endIpValid = $scope.validateIP($scope.newRange['end']);
@@ -263,13 +277,11 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 //		else{
 //			alert("IP range "+$scope.newRange['start']+"-"+$scope.newRange['end']+" invalid and not added...")
 //		}
-		$scope.newRange = null;
-		$scope.adding = false;
 	  }
-	    
+			
 	  //validateIP
-	   $scope.validateIP = function(ip) {
-	   //function validateIP(ip) {
+	   //$scope.validateIP = function(ip) {
+	   function validateIP(ip) {
 			 $http({
 	                url: $scope.apiUri+'/ipranges/validateip/?ip='+ip,
 	                method: 'GET',
