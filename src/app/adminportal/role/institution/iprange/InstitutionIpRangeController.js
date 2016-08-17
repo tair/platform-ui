@@ -233,10 +233,10 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 				}
 		}
 			 
-		// instert/POST only if both start and end ips are valid
-	    var startIpValid = validateIP($scope.newRange['start']);
-	    var endIpValid = validateIP($scope.newRange['end']);
-		if (startIpValid && endIpValid) { 
+		//instert/POST only if both start and end ips are valid TODO below does not work...
+//	    $scope.startIpValid = $scope.validateIP($scope.newRange['start']);
+//	    $scope.endIpValid = $scope.validateIP($scope.newRange['end']);
+//		if ($scope.startIpValid && $scope.endIpValid) { 
 			var data = {
 					start:$scope.newRange['start'],
 					end:$scope.newRange['end'],
@@ -259,10 +259,10 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 			}).error(function(data, status, headers, config){
 	                    alert("add ip range request failed");
 			});
-		}
-		else{
-			alert("IP range "+$scope.newRange['start']+"-"+$scope.newRange['end']+" invalid and not added...")
-		}
+//		}
+//		else{
+//			alert("IP range "+$scope.newRange['start']+"-"+$scope.newRange['end']+" invalid and not added...")
+//		}
 		$scope.newRange = null;
 		$scope.adding = false;
 	  }
