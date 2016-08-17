@@ -235,22 +235,21 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 		
 		var startIpValid = validateIP($scope.newRange['start']);
 		var endIpValid = validateIP($scope.newRange['end']);
-		if (startIpValid && endIpValid) {
+		//TODO above two operations do not work b/c both startIpValid and endIpValid have value 'undefined' here...
+		//I tried declaring validateIP function on $scope level [i.e. $scope.validateIP = function(ip) ] but no difference
+		//commenting out for now not to prevent biocyc testing...
+//		if (startIpValid && endIpValid) {
 			addRange();
-		}
-		else {
-			alert("IP range "+$scope.newRange['start']+"-"+$scope.newRange['end']+" invalid and not added...")
-		}
+//		}
+//		else {
+//			alert("IP range "+$scope.newRange['start']+"-"+$scope.newRange['end']+" invalid and not added...")
+//		}
 		
 		$scope.newRange = null;
 		$scope.adding = false;
 	  }
 	  
 	  function addRange() {
-		//instert/POST only if both start and end ips are valid TODO below does not work...
-//	    $scope.startIpValid = $scope.validateIP($scope.newRange['start']);
-//	    $scope.endIpValid = $scope.validateIP($scope.newRange['end']);
-//		if ($scope.startIpValid && $scope.endIpValid) { 
 			var data = {
 					start:$scope.newRange['start'],
 					end:$scope.newRange['end'],
@@ -273,10 +272,6 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 			}).error(function(data, status, headers, config){
 	                    alert("add ip range request failed");
 			});
-//		}
-//		else{
-//			alert("IP range "+$scope.newRange['start']+"-"+$scope.newRange['end']+" invalid and not added...")
-//		}
 	  }
 			
 	  //validateIP
