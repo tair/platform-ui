@@ -263,13 +263,13 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 		else{
 			alert("IP range "+$scope.newRange['start']+"-"+$scope.newRange['end']+" invalid and not added...")
 		}
-		
 		$scope.newRange = null;
 		$scope.adding = false;
-	    }
+	  }
 	    
-	    //validateIP
-		function validateIP(ip) {
+	  //validateIP
+	   $scope.validateIP = function(ip) {
+	   //function validateIP(ip) {
 			 $http({
 	                url: $scope.apiUri+'/ipranges/validateip/?ip='+ip,
 	                method: 'GET',
@@ -293,33 +293,33 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 	    
 		//reset function
 	    $scope.reset = function() {
-		$scope.adding = false;
-		for (i=0; i<$scope.ipranges.length; i++) {
-		    $scope.ipranges[i].state=null;
-		}
+			$scope.adding = false;
+			for (i=0; i<$scope.ipranges.length; i++) {
+			    $scope.ipranges[i].state=null;
+			}
 	    }
 	    
 	    $scope.removeConfirm = function(iprange) {
-                data = {
-                    ipRangeId:iprange['ipRangeId'],
-                    start:iprange['start'],
-                    end:iprange['end'],
-                    partyId:iprange['partyId'],
-                    label:iprange['name'],
-                };
-                $http({
-                    url: $scope.apiUri+'/parties/ipranges/?partyId='+$scope.institutionId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&ipRangeId='+data['ipRangeId'],
-                    data:data,
-                    method: 'DELETE',
-                }).success(function(data, status, headers, config){
-                }).error(function(data, status, headers, config){
-                    alert("ip range request failed");
-                });
-                var index = $scope.ipranges.indexOf(iprange);
-                if (index > -1) {
-                    $scope.ipranges.splice(index,1);
-                }
-		$scope.removeRange = null;
+            data = {
+                ipRangeId:iprange['ipRangeId'],
+                start:iprange['start'],
+                end:iprange['end'],
+                partyId:iprange['partyId'],
+                label:iprange['name'],
+            };
+            $http({
+                url: $scope.apiUri+'/parties/ipranges/?partyId='+$scope.institutionId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&ipRangeId='+data['ipRangeId'],
+                data:data,
+                method: 'DELETE',
+            }).success(function(data, status, headers, config){
+            }).error(function(data, status, headers, config){
+                alert("ip range request failed");
+            });
+            var index = $scope.ipranges.indexOf(iprange);
+            if (index > -1) {
+                $scope.ipranges.splice(index,1);
+            }
+            $scope.removeRange = null;
 	    }
 	    
 	    // init
