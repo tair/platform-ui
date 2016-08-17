@@ -232,32 +232,6 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 							return;
 				}
 		}
-			
-	    	
-	    	//check start IP
-
-			 //check end IP
-			    $http({
-	                url: $scope.apiUri+'/ipranges/validateip/?ip='+$scope.newRange['end'],
-	                method: 'GET',
-	            }).success(function(data, status, headers, config){
-	            	if (data["ip version"] === 4 || data["ip version"] === 6){
-	            		debugMsg = 'end IP is valid. version: '+ data["ip version"];
-	    		    	console.log(debugMsg);
-	    		    	//isRangeValid = true;
-	            	}
-	            	else {
-	            		debugMsg = 'end IP is invalid. version: '+ data["ip version"];
-	    		    	console.log(debugMsg);
-	            		alert("end IP invalid");
-	            		//isRangeValid = false;
-	            		return;
-	            	}
-	            }).error(function(data, status, headers, config){
-	            	alert("error getting /ipranges/validateip/?ip= for end IP");
-	            	//isRangeValid = false;
-	            	return;
-	            });
 			 
 		// instert/POST only if both start and end ips are valid
 	    var startIpValid = validateIP($scope.newRange['start']);
