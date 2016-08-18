@@ -238,18 +238,18 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 		//TODO above two operations do not work b/c both startIpValid and endIpValid have value 'undefined' here...
 		//I tried declaring validateIP function on $scope level [i.e. $scope.validateIP = function(ip) ] but no difference
 		//commenting out for now not to prevent biocyc testing...
-		if (startIpValid && endIpValid) {
+		//if (startIpValid && endIpValid) {
 			addRange();
-		}
-		else {
-			alert("IP range "+$scope.newRange['start']+"-"+$scope.newRange['end']+" invalid and not added...")
-		}
+		//}
+		//else {
+		//	alert("IP range "+$scope.newRange['start']+"-"+$scope.newRange['end']+" invalid and not added...")
+		//}
 		
 		$scope.newRange = null;
 		$scope.adding = false;
 	  }
 	  
-	  function addRange() {
+	  $scope.addRange = function () {
 			var data = {
 					start:$scope.newRange['start'],
 					end:$scope.newRange['end'],
