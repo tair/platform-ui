@@ -249,7 +249,8 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 		$scope.adding = false;
 	  }
 	  
-	  $scope.addRange = function () {
+	  function addRange() {
+	  //$scope.addRange = function () {
 			var data = {
 					start:$scope.newRange['start'],
 					end:$scope.newRange['end'],
