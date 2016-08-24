@@ -32,20 +32,22 @@ angular.module('platform-ui.contentaccess.login').controller(
 		$http({
 		    url: getPartnerUriFromRedirect(),
 		    data: {
-			action:"setCookies",
-			credentialId:data["credentialId"],
-			secretKey:data["secretKey"]
+		    	action:"setCookies",
+		    	credentialId:data["credentialId"],
+		    	secretKey:data["secretKey"]
 		    },
 		    method: 'POST',
 		}).success(function(data, status){
 			//PW-218
-			console.log("Login success. $scope.redirectNoEncode="+$scope.redirectNoEncode+"data message:"+data["message"]); //PW-218
+			console.log("Login success. $scope.redirectNoEncode="+$scope.redirectNoEncode+" partner:" +  $scope.partner["name"]); //PW-218
 		    //$scope.tabPage = '2';                          // PW-147: YM: No more login confirmation page. 
             $window.location.href = $scope.redirectNoEncode; // PW-147: YM: Redirecting back to the partner site.
 		}).error(function(data, status){
 			//vet PW-218 more correct and more detailed error message.
 			//more user friendly error message... Not the final version...
-			bootbox.alert("Cannot log in, problem setting up redirect to "+ $scope.redirectNoEncode + data["message"]+"; please report error to curator@arabidopsis.org and try logging in directly from the TAIR menu");
+			bootbox.alert("Cannot log in, problem setting up redirect to "+ $scope.redirectNoEncode + 
+					" partner:" +  $scope.partner["name"] +
+					"; please report error to curator@arabidopsis.org and try logging in directly from the TAIR menu");
 		});
 	    }
 	    
