@@ -233,21 +233,30 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 				}
 		}
 		///
-	
-		///
-		
-		var startIpValid = validateIP($scope.newRange['start']);
-		var endIpValid = validateIP($scope.newRange['end']);
+		//var startIpValid = validateIP($scope.newRange['start']);
+		//var endIpValid = validateIP($scope.newRange['end']);
 		
 		//TODO above two operations do not work b/c both startIpValid and endIpValid have value 'undefined' here...
 		//I tried declaring validateIP function on $scope level [i.e. $scope.validateIP = function(ip) ] but no difference
 		//commenting out for now not to prevent biocyc testing...
-		if (startIpValid && endIpValid) {
-			addRange();
+		//if (startIpValid && endIpValid) {
+		//	addRange();
+		//}
+		//else {
+		//	alert("IP range "+$scope.newRange['start']+"-"+$scope.newRange['end']+" invalid and not added...")
+		//}
+		
+		var startIpStripped = IpValidator.StripLeadingZeros($scope.newRange['start'])
+		var endIpStripped = IpValidator.StripLeadingZeros($scope.newRange['end'])
+		
+		if(startIpStripped!==$scope.newRange['start']) {
+			alert("leading zeros in start IP deleted: "+ $scope.newRange['start'] + " converted into " + startIpStripped);
 		}
-		else {
-			alert("IP range "+$scope.newRange['start']+"-"+$scope.newRange['end']+" invalid and not added...")
+		if(endIpStripped!==$scope.newRange['end']) {
+			alert("leading zeros in end IP deleted: "+ $scope.newRange['end'] + " converted into " + endIpStripped);
 		}
+
+		addRange(startIpStripped,endIpStripped);
 		
 		$scope.newRange = null;
 		$scope.adding = false;
@@ -268,18 +277,16 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 //			  deferred.resolve('All done... eventually');
 //			}, 1000);
 		
-		//
-		
 		//CALLBACK
 //	    function syncFunc (inputIp,callback){
 //	    	validateIP(inputIp, function(result) {callback(result)}; );
 //	    }
 	    
-	  function addRange() {
+	  function addRange(startIp,endIp) {
 	  //$scope.addRange = function () {
 			var data = {
-					start:$scope.newRange['start'],
-					end:$scope.newRange['end'],
+					start:startIp,
+					end:endIp,
 					partyId:$scope.institutionId,
 					label:$scope.newRange['name'],
 					}
@@ -303,7 +310,7 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 			
 	  //validateIP
 	   //$scope.validateIP = function(ip) {
-	   function validateIP(ip, callback) {
+	   function validateIP(ip) {
 			 $http({
 	                url: $scope.apiUri+'/ipranges/validateip/?ip='+ip,
 	                method: 'GET',
