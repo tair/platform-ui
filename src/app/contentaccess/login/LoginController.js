@@ -46,8 +46,7 @@ angular.module('platform-ui.contentaccess.login').controller(
 			//vet PW-218 more correct and more detailed error message.
 			//more user friendly error message... Not the final version...
 			bootbox.alert("Cannot log in, problem setting up redirect to "+ $scope.redirectNoEncode + 
-					" partner:" +  $scope.partner["name"] +
-					"; please report error to curator@arabidopsis.org and try logging in directly from the TAIR menu");
+					" partner:" +  $scope.partner["name"] + "; " + $scope.partner["loginRedirectErrorText"]);
 		});
 	    }
 	    
