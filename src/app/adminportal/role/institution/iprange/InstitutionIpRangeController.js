@@ -232,28 +232,61 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 							return;
 				}
 		}
+		///
+		//var startIpValid = validateIP($scope.newRange['start']);
+		//var endIpValid = validateIP($scope.newRange['end']);
 		
-		var startIpValid = validateIP($scope.newRange['start']);
-		var endIpValid = validateIP($scope.newRange['end']);
 		//TODO above two operations do not work b/c both startIpValid and endIpValid have value 'undefined' here...
 		//I tried declaring validateIP function on $scope level [i.e. $scope.validateIP = function(ip) ] but no difference
 		//commenting out for now not to prevent biocyc testing...
 		//if (startIpValid && endIpValid) {
-			addRange();
+		//	addRange();
 		//}
 		//else {
 		//	alert("IP range "+$scope.newRange['start']+"-"+$scope.newRange['end']+" invalid and not added...")
 		//}
 		
+		var startIpStripped = IpValidator.StripLeadingZeros($scope.newRange['start'])
+		var endIpStripped = IpValidator.StripLeadingZeros($scope.newRange['end'])
+		
+		if(startIpStripped!==$scope.newRange['start']) {
+			alert("leading zeros in start IP deleted: "+ $scope.newRange['start'] + " converted into " + startIpStripped);
+		}
+		if(endIpStripped!==$scope.newRange['end']) {
+			alert("leading zeros in end IP deleted: "+ $scope.newRange['end'] + " converted into " + endIpStripped);
+		}
+
+		addRange(startIpStripped,endIpStripped);
+		
 		$scope.newRange = null;
 		$scope.adding = false;
 	  }
 	  
-	  function addRange() {
+	    //PROMISE 
+//		var deferred = $q.defer();
+//		var promise = deffered.promise;
+//		
+//		promise.then(
+//				function success(ip){console.log("success from promise:"+ip);},
+//				function error(ip){console.log("error from promise:"+ip);}
+//				);
+//		
+//		deffered.resolve('all done');
+//		
+//		$timeout(function() {
+//			  deferred.resolve('All done... eventually');
+//			}, 1000);
+		
+		//CALLBACK
+//	    function syncFunc (inputIp,callback){
+//	    	validateIP(inputIp, function(result) {callback(result)}; );
+//	    }
+	    
+	  function addRange(startIp,endIp) {
 	  //$scope.addRange = function () {
 			var data = {
-					start:$scope.newRange['start'],
-					end:$scope.newRange['end'],
+					start:startIp,
+					end:endIp,
 					partyId:$scope.institutionId,
 					label:$scope.newRange['name'],
 					}
