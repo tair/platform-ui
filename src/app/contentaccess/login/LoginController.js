@@ -45,8 +45,9 @@ angular.module('platform-ui.contentaccess.login').controller(
 		}).error(function(data, status){
 			//vet PW-218 more correct and more detailed error message.
 			//more user friendly error message... Not the final version...
-			bootbox.alert("Cannot log in, problem setting up redirect to "+ $scope.redirectNoEncode + 
-					" partner:" +  $scope.partner["name"] + "; " + $scope.partner["loginRedirectErrorText"]);
+			bootbox.alert("Cannot log in, problem setting up redirect to "
+					+ $scope.redirectNoEncode + 
+					"; " + $scope.partner["loginRedirectErrorText"]);
 		});
 	    }
 	    
