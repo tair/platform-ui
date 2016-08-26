@@ -32,26 +32,28 @@ angular.module('platform-ui.contentaccess.login').controller(
 		$http({
 		    url: getPartnerUriFromRedirect(),
 		    data: {
-			action:"setCookies",
-			credentialId:data["credentialId"],
-			secretKey:data["secretKey"]
+		    	action:"setCookies",
+		    	credentialId:data["credentialId"],
+		    	secretKey:data["secretKey"]
 		    },
 		    method: 'POST',
 		}).success(function(data, status){
 			//PW-218
-			console.log("Login success. $scope.redirectNoEncode="+$scope.redirectNoEncode); //PW-218
+			console.log("Login success. $scope.redirectNoEncode="+$scope.redirectNoEncode+" partner:" +  $scope.partner["name"]); //PW-218
 		    //$scope.tabPage = '2';                          // PW-147: YM: No more login confirmation page. 
             $window.location.href = $scope.redirectNoEncode; // PW-147: YM: Redirecting back to the partner site.
 		}).error(function(data, status){
 			//vet PW-218 more correct and more detailed error message.
 			//more user friendly error message... Not the final version...
-			bootbox.alert("Cannot log in, problem setting up redirect to "+ $scope.redirectNoEncode + "; please report error to curator@arabidopsis.org and try logging in directly from the TAIR menu");
+			bootbox.alert("Cannot log in, problem setting up redirect to "
+					+ $scope.redirectNoEncode + 
+					"; " + $scope.partner["loginRedirectErrorText"]);
 		});
 	    }
 	    
 		$scope.login = function() {
 			$http({
-				url: $scope.apiUri+'/credentials/login/?partnerId='+$scope.partnerId, //partnerId is tair
+				url: $scope.apiUri+'/credentials/login/?partnerId='+$scope.partnerId,
 				data: $scope.formdata,
 				method: 'POST',
 			}).success(function(data, status, headers, config){
@@ -61,7 +63,7 @@ angular.module('platform-ui.contentaccess.login').controller(
 				//$state.go("login.success"); // PW-147: YM: No more login confirmation page.
 				//alert('Login successful: '+$cookies.secretKey);
 			}).error(function(data, status, headers, config){
-				console.log('data='+data+';status='+status);
+				console.log('data='+data["message"]+';status='+status);
 				bootbox.alert('The user name and password you entered don\'t match our records');
 			});
 		};
