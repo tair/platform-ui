@@ -28,7 +28,7 @@ angular.module('platform-ui').controller(
 		    return encodedRedirURL;
 	    }
 	    $scope.getRedirectNoEncode = function() {
-	    	console.log("getRedirectNoEncode function. $location.search()['redirect']"+$location.search()['redirect']);
+	    	console.log("getRedirectNoEncode function. $location.search()['redirect']:"+$location.search()['redirect']);
 		    return $location.search()['redirect'];
 	    }
 	}
