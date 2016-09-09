@@ -22,9 +22,13 @@ angular.module('platform-ui').controller(
 	    $scope.author = PlatformModel.author;
 	    $scope.menu = PlatformModel.menu;
 	    $scope.getRedirect = function() {
-		    return encodeURIComponent($location.search()['redirect']);
+	    	console.log("getRedirect function with $location.search()['redirect']:"+$location.search()['redirect']);
+	    	encodedRedirURL = encodeURIComponent($location.search()['redirect']);
+	    	console.log("getRedirect function. encodedRedirURL:"+encodedRedirURL);
+		    return encodedRedirURL;
 	    }
 	    $scope.getRedirectNoEncode = function() {
+	    	console.log("getRedirectNoEncode function. $location.search()['redirect']:"+$location.search()['redirect']);
 		    return $location.search()['redirect'];
 	    }
 	}
