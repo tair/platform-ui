@@ -19,6 +19,7 @@ angular.module('platform-ui.contentaccess.metering').controller(
 	function ($scope, $location, $http, $cookies, Title, MeteringModel) {
 		Title.setTitle(MeteringModel.title);
 		$scope.partnerId = $location.search()['partnerId'];
+		$scope.partner = null;
 		$http({
 			url:$scope.apiUri+'/partners/?partnerId='+$scope.partnerId,
 			method:'GET',
