@@ -18,11 +18,6 @@ angular.module('platform-ui.contentaccess.metering').controller(
 	/* Controller Definition */
 	function ($scope, $location, $http, $cookies, Title, MeteringModel) {
 		init();
-		Title.setTitle(MeteringModel.title);
-		$scope.partnerId = $location.search()['partnerId'];
-		$scope.redirect = $scope.partner['defaultLoginRedirect'];
-	    $scope.redirectNoEncode = decodeURIComponent($scope.partner['defaultLoginRedirect']);
-		$scope.exceed = $location.search()['exceed'];
 		$http({
 			url:$scope.apiUri+'/partners/descriptions/?partnerId='+$scope.partnerId+'&includeText=True',
 			method:'GET',
@@ -33,11 +28,16 @@ angular.module('platform-ui.contentaccess.metering').controller(
 		});
 		$scope.license = 'def';
 		function init(){
+			Title.setTitle(MeteringModel.title);
+			$scope.partnerId = $location.search()['partnerId'];
+			$scope.exceed = $location.search()['exceed'];
 			$http({
 				url:$scope.apiUri+'/partners/?partnerId='+$scope.partnerId,
 				method:'GET',
 			}).success(function(data, status, headers, config) {
 				$scope.partner = data[0];
+				$scope.redirect = $scope.partner['defaultLoginRedirect'];
+			    $scope.redirectNoEncode = decodeURIComponent($scope.partner['defaultLoginRedirect']);
 			}).error(function(data, status, headers, config){
 				alert("There was an error getting partner information.");
 			});
