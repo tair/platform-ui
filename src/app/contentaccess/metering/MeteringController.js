@@ -30,14 +30,20 @@ angular.module('platform-ui.contentaccess.metering').controller(
 		function init(){
 			Title.setTitle(MeteringModel.title);
 			$scope.partnerId = $location.search()['partnerId'];
+			$scope.redirect = $scope.getRedirect();
+	        $scope.redirectNoEncode = $scope.getRedirectNoEncode();
 			$scope.exceed = $location.search()['exceed'];
 			$http({
 				url:$scope.apiUri+'/partners/?partnerId='+$scope.partnerId,
 				method:'GET',
 			}).success(function(data, status, headers, config) {
 				$scope.partner = data[0];
-				$scope.redirect = $scope.partner['defaultLoginRedirect'];
-			    $scope.redirectNoEncode = decodeURIComponent($scope.partner['defaultLoginRedirect']);
+				if($scope.redirect == null){
+					$scope.redirect = $scope.partner['defaultLoginRedirect'];
+				}
+				if($scope.redirectNoEncode == null){
+					$scope.redirectNoEncode = decodeURIComponent($scope.partner['defaultLoginRedirect']);
+				}
 			}).error(function(data, status, headers, config){
 				alert("There was an error getting partner information.");
 			});
