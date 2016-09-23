@@ -211,7 +211,7 @@ angular.module('platform-ui.adminportal.role.phoenix.institution').controller(
 		    //when user input doesn't contain username and password, only create party.	
 		    	var data = {
 						name: $scope.newInstitution['name'],
-						partyType:'institution',
+						partyType:'organization',
 				}
 				$http({
 							url: $scope.apiUri+'/parties/?secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
