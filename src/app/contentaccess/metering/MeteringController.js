@@ -17,11 +17,7 @@ angular.module('platform-ui.contentaccess.metering').controller(
 
 	/* Controller Definition */
 	function ($scope, $location, $http, $cookies, Title, MeteringModel) {
-		Title.setTitle(MeteringModel.title);
-		$scope.partnerId = $location.search()['partnerId'];
-		$scope.redirect = $scope.getRedirect();
-	        $scope.redirectNoEncode = $scope.getRedirectNoEncode();
-		$scope.exceed = $location.search()['exceed'];
+		init();
 		$http({
 			url:$scope.apiUri+'/partners/descriptions/?partnerId='+$scope.partnerId+'&includeText=True',
 			method:'GET',
@@ -30,15 +26,27 @@ angular.module('platform-ui.contentaccess.metering').controller(
 		}).error(function(data, status, headers, config) {
 		    alert("There was an error getting license information about partner. Make sure the partnerId is correct.");
 		});
-
-		$http({
-			url:$scope.apiUri+'/partners/?partnerId='+$scope.partnerId,
-			method:'GET',
-		}).success(function(data, status, headers, config) {
-			$scope.partner = data[0];
-		}).error(function(data, status, headers, config){
-			alert("There was an error getting partner information.");
-		});
 		$scope.license = 'def';
+		function init(){
+			Title.setTitle(MeteringModel.title);
+			$scope.partnerId = $location.search()['partnerId'];
+			$scope.redirect = $scope.getRedirect();
+	        $scope.redirectNoEncode = $scope.getRedirectNoEncode();
+			$scope.exceed = $location.search()['exceed'];
+			$http({
+				url:$scope.apiUri+'/partners/?partnerId='+$scope.partnerId,
+				method:'GET',
+			}).success(function(data, status, headers, config) {
+				$scope.partner = data[0];
+				if($scope.redirect == null){
+					$scope.redirect = $scope.partner['defaultLoginRedirect'];
+				}
+				if($scope.redirectNoEncode == null){
+					$scope.redirectNoEncode = decodeURIComponent($scope.partner['defaultLoginRedirect']);
+				}
+			}).error(function(data, status, headers, config){
+				alert("There was an error getting partner information.");
+			});
+		}
 	}
 ]);
