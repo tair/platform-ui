@@ -174,7 +174,8 @@ angular.module('platform-ui.adminportal.role.phoenix.consortium').controller(
 			$scope.consortiums.unshift(angular.copy($scope.createdConsortium));
 			
 		}).error(function(data, status, headers, config){
-            bootbox.alert("Failed to create consortium"+((data['email'] == 'This field must be unique.')?"! The email is already in use.":"!"));
+            bootbox.alert("Failed to create consortium"+((data['error'] == 'This email is already used by another consortium.')?
+            		"! This email is already used by another consortium.":"!"));
 		});
 	    } else if ($scope.newConsortium['username']==null && $scope.newConsortium['password'] == null){
 	    //when user input doesn't contain username and password, only create party.	
