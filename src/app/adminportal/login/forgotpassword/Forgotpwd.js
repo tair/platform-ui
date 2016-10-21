@@ -25,7 +25,7 @@ angular.module(
 				}
 			}
 		}).state('ltlogin.forgotpassword.thankyou', {
-			url: '/thankyou?email',
+			url: '/thankyou?username',
 			views: {
 				'forgotPwd': {
 					controller: 'ForgotpwdTyController',
