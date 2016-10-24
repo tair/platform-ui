@@ -16,7 +16,7 @@ angular.module(
     ])
     .config(
 	function ($stateProvider) {
-		$stateProvider.state('ltlogin.forgotpassword.sendlink', {
+		$stateProvider.state('ltlogin.forgotusername.sendlink', {
 			url: '',
 			views: {
 				'forgotUsername': {
@@ -24,7 +24,7 @@ angular.module(
 					templateUrl: 'adminportal/login/forgotusername/sendlink/sendlink.html'
 				}
 			}
-		}).state('ltlogin.forgotpassword.thankyou', {
+		}).state('ltlogin.forgotusername.thankyou', {
 			url: '/thankyou?email',
 			views: {
 				'forgotUsername': {
