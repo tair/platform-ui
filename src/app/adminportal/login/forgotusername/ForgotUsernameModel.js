@@ -12,7 +12,7 @@ angular.module('platform-ui.adminportal.login.forgotusername').factory(
 
 	function () {
 		return {
-			title: 'vet forgot pwd',
+			title: 'vet forgot username',
 			formdata: {
 				user: null,
 				password: null
