@@ -26,7 +26,7 @@ angular.module('platform-ui.adminportal.login.forgotpassword').controller(
 				$http({
                     url: $scope.apiUri+'/credentials/resetPwd/',
                     data: data,
-                    method: 'POST',
+                    method: 'PUT',
                 }).success(function(data, status, headers, config){
                 	$state.go('ltlogin.forgotpassword.thankyou', {'username':$scope.username});
                 }).error(function(data, status, headers, config){
