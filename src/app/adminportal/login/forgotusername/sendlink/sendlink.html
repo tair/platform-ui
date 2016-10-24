@@ -1,0 +1,15 @@
+<div class="row" style="height:38px"></div>
+  <form ng-submit="forgotUsername()">
+    <div class="row">
+     <div class="lt-login-description text-center" ng-show="invalidUsernameMsg">Sorry, that email is not found in our system. Please contact us at <a href="mailto:info@phoenixbioinformatics.org">info@phoenixbioinformatics.org</a> with any questions.</div>
+     <div class="lt-login-description text-center">
+    Please enter your email
+     </div>
+    <input class="text-left lt-login-input-box center-block" placeholder="email" ng-model="email"></input>
+    </div>
+    <div class="row" style="height:32px"></div>
+    <div class="row"><button class="text-center lt-login-login-btn center-block lt-color">Send Username(s)</button></div>
+    <div class="row lt-gap"></div>
+    <div class="row"><button type="button" class="text-center lt-login-req-btn center-block" ng-click="back()">Back</button></div>
+    <div class="row" style="height:42px"></div>
+</form>
