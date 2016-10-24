@@ -19,15 +19,15 @@ angular.module('platform-ui.adminportal.login.forgotpassword').controller(
 	function ($scope, $http, $cookies, $location, $state, Title, ForgotpwdModel) {
 		$scope.forgotPwd = function() {
 			if($scope.username != null) {
-				data={
-						user:$scope.username,
-						partnerId: 'phoenix',
-				}
+//				data={
+//						user:$scope.username,
+//						partnerId: 'phoenix',
+//				}
 				$http({
-                    url: $scope.apiUri+'/credentials/resetPwd/',
-                    data: data,
+                    url: $scope.apiUri+'/credentials/resetPwd/?user='+$scope.username+'&partnerId=phoenix',
+//                    data: data,
                     method: 'PUT',
-                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+//                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                 }).success(function(data, status, headers, config){
                 	$state.go('ltlogin.forgotpassword.thankyou', {'username':$scope.username});
                 }).error(function(data, status, headers, config){
