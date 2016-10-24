@@ -15,6 +15,7 @@ angular.module(
 	'platform-ui.adminportal.login.requestaccount',
 	'platform-ui.adminportal.login.page',
 	'platform-ui.adminportal.login.forgotpassword',
+	'platform-ui.adminportal.login.forgotusername',
     ])
     .config(
 	function ($stateProvider) {
@@ -49,6 +50,15 @@ angular.module(
 				'ltlogin': {
 					controller: 'ForgotpwdController',
 					templateUrl: 'adminportal/login/forgotpassword/forgotpassword.html'
+				}
+			}
+		}).state('ltlogin.forgotusername', {
+			abstract: true,
+			url: '/forgotusername',
+			views: {
+				'ltlogin': {
+					controller: 'ForgotUsernameController',
+					templateUrl: 'adminportal/login/forgotusername/forgotusername.html'
 				}
 			}
 		});
