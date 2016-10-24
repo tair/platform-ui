@@ -20,7 +20,7 @@ angular.module('platform-ui.adminportal.login.forgotusername').controller(
 		$scope.forgotUsername = function() {
 			if($scope.email != null) {
 				$http({
-                    url: $scope.apiUri+'/credentials/?email='+$scope.email,
+                    url: $scope.apiUri+'/credentials/getUsernames/?email='+$scope.email,
                     method: 'GET',
                 }).success(function(data, status, headers, config){
                 		$state.go('ltlogin.forgotpassword.thankyou', {'email':$scope.email});
