@@ -13,10 +13,11 @@ angular.module('platform-ui.contentaccess.subscription.individual').controller(
         '$scope',
         '$rootScope',
         '$state',
+        '$location',
         'IndividualModel',
 
         /* Controller Definition */
-        function ($http, $scope, $rootScope, $state, IndividualModel) {
+        function ($http, $scope, $rootScope, $state, $location, IndividualModel) {
             init();
         
             $scope.next = function(nextTab) {
