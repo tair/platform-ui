@@ -34,6 +34,12 @@ angular.module('platform-ui.contentaccess.subscription').controller(
 		$scope.currentTab = 'listTab';
 		$event.preventDefault();
 	    }
+	    var getPartnerUriFromRedirect = function(){
+	    	console.log("$scope.redirectNoEncode (before split)="+$scope.redirectNoEncode); //PW-218
+	    	arr = $scope.redirectNoEncode.split("/");
+	    	console.log("arr (after split)="+arr[0]+"//"+arr[2]); //PW-218
+	    	return arr[0]+"//"+arr[2];
+	    }
 
 	    function init() {
                 Title.setTitle(SubscriptionModel.title);//PW-264
@@ -48,6 +54,7 @@ angular.module('platform-ui.contentaccess.subscription').controller(
 		$scope.redirect = $scope.getRedirectNoEncode();
 		$scope.redirect = decodeURIComponent($scope.redirect);
 		$scope.redirectNoEncode = $scope.getRedirectNoEncode();
+		$scope.domain = getPartnerUriFromRedirect();
 		$http({
 		    url:$scope.apiUri+'/partners/?partnerId='+$scope.partnerId,
 		    method:'GET',
