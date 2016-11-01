@@ -131,7 +131,7 @@ angular.module('platform-ui.contentaccess.subscription.individual').controller(
             $scope.templates = IndividualModel.templates;
             $scope.info = IndividualModel.info;
             $scope.selectedSubscription = IndividualModel.selectedSubscription;
-            $scope.domain = $location.protocol() + "://" + $location.host();
+//            $scope.domain = $location.protocol() + "://" + $location.host();
                  
         };
         
