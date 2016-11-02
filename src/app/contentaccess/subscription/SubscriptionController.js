@@ -35,8 +35,8 @@ angular.module('platform-ui.contentaccess.subscription').controller(
 		$event.preventDefault();
 	    }
 	    function getPartnerUriFromRedirect(){
-	    	console.log("$scope.redirectNoEncode (before split)="+$scope.redirectNoEncode); //PW-218
-	    	arr = $scope.redirectNoEncode.split("/");
+	    	console.log("$scope.redirectNoEncode (before split)="+$scope.redirect); //PW-218
+	    	arr = $scope.redirect.split("/");
 	    	console.log("arr (after split)="+arr[0]+"//"+arr[2]); //PW-218
 	    	return arr[0]+"//"+arr[2];
 	    }
