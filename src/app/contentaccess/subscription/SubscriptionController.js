@@ -34,7 +34,7 @@ angular.module('platform-ui.contentaccess.subscription').controller(
 		$scope.currentTab = 'listTab';
 		$event.preventDefault();
 	    }
-	    var getPartnerUriFromRedirect = function(){
+	    function getPartnerUriFromRedirect(){
 	    	console.log("$scope.redirectNoEncode (before split)="+$scope.redirectNoEncode); //PW-218
 	    	arr = $scope.redirectNoEncode.split("/");
 	    	console.log("arr (after split)="+arr[0]+"//"+arr[2]); //PW-218
