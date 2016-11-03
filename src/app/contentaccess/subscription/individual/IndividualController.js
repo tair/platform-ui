@@ -13,10 +13,11 @@ angular.module('platform-ui.contentaccess.subscription.individual').controller(
         '$scope',
         '$rootScope',
         '$state',
+        '$location',
         'IndividualModel',
 
         /* Controller Definition */
-        function ($http, $scope, $rootScope, $state, IndividualModel) {
+        function ($http, $scope, $rootScope, $state, $location, IndividualModel) {
             init();
         
             $scope.next = function(nextTab) {
@@ -105,7 +106,8 @@ angular.module('platform-ui.contentaccess.subscription.individual').controller(
                                     'country': $scope.formdata.country,
                                     'zip': $scope.formdata.zip,
                                     'vat': $scope.formdata.vat,//PW-248
-                                    'redirect': $scope.redirect
+                                    'redirect': $scope.redirect,
+                                    'domain': $scope.domain
                                 },
                                 method: 'POST',
                             }).success(function(data, status, headers, config) {
@@ -129,6 +131,7 @@ angular.module('platform-ui.contentaccess.subscription.individual').controller(
             $scope.templates = IndividualModel.templates;
             $scope.info = IndividualModel.info;
             $scope.selectedSubscription = IndividualModel.selectedSubscription;
+//            $scope.domain = $location.protocol() + "://" + $location.host();
                  
         };
         
