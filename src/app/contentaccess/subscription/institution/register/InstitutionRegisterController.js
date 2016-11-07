@@ -83,10 +83,10 @@ angular.module('platform-ui.contentaccess.subscription.institution.register').co
 		    method:'GET',
 		}).success(function(data, status, headers, config) {
 		    $scope.partner = data[0];
+		    $scope.formdata.partnerName = $scope.partner.name;
+			$scope.formdata.comments = $scope.partner.name+' is essential to my work. I would like my library to consider a subscription.'
 		});
 		$scope.formdata = InstitutionRegisterModel.formdata;
-		$scope.formdata.partnerName = $scope.partner.name;
-		$scope.formdata.comments = $scope.partner.name+' is essential to my work. I would like my library to consider a subscription.'
-            }
+		    }
 	}
 ]);
