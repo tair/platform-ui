@@ -30,6 +30,8 @@ angular.module(
 	'platform-ui.contentaccess',
 	'platform-ui.adminportal',
 	'platform-ui.biocyclogin',
+	'platform-ui.error',
+
 	])
 	.config(
 		function ($routeProvider, $httpProvider, $urlRouterProvider) {
