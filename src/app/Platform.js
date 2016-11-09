@@ -29,6 +29,7 @@ angular.module(
 	'platform-ui.home',
 	'platform-ui.contentaccess',
 	'platform-ui.adminportal',
+	'platform-ui.error',
 	])
 	.config(
 		function ($routeProvider, $httpProvider, $urlRouterProvider) {
