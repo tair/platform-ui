@@ -20,12 +20,11 @@ angular.module('platform-ui.adminportal.login.forgotusername').controller(
 		$scope.forgotUsername = function() {
 			if($scope.email != null) {
 				var email = $scope.email.replace('+', '%2B');
-				console.log("email: "+email);
 				$http({
                     url: $scope.apiUri+'/credentials/getUsernames/?email='+email,
                     method: 'GET',
                 }).success(function(data, status, headers, config){
-                		$state.go('ltlogin.forgotusername.thankyou', {'email':email});
+                		$state.go('ltlogin.forgotusername.thankyou', {'email':$scope.email});
                 }).error(function(data, status, headers, config){
                 	if (data['error'] == 'no username found.'){
                 		$scope.invalidEmailMsg = true;
