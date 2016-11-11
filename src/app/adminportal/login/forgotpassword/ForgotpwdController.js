@@ -17,28 +17,31 @@ angular.module('platform-ui.adminportal.login.forgotpassword').controller(
 
 	/* Controller Definition */
 	function ($scope, $http, $cookies, $location, $state, Title, ForgotpwdModel) {
-//		$scope.email = null;
 		$scope.forgotPwd = function() {
-			if($scope.email != null) {
-				data={
-						email:$scope.email
-				}
+			if($scope.username != null) {
+//				data={
+//						user:$scope.username,
+//						partnerId: 'phoenix',
+//				}
 				$http({
-                    url: $scope.apiUri+'/subscriptions/institutions1/',
-                    data: data,
-                    method: 'POST',
+                    url: $scope.apiUri+'/credentials/resetPwd/?user='+$scope.username+'&partnerId=phoenix',
+//                    data: data,
+                    method: 'PUT',
+//                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                 }).success(function(data, status, headers, config){
-                	$state.go('ltlogin.forgotpassword.thankyou', {'email':$scope.email});
+                	$state.go('ltlogin.forgotpassword.thankyou', {'username':$scope.username});
                 }).error(function(data, status, headers, config){
-                	if(data['error'] == 'Cannot find registered email address.'){
-                		$scope.invalidEmailMsg = true;
+                	if(data['reset pwd failed'] == 'No such user'){
+                		$scope.invalidUsernameMsg = true;
                 	}
-//                    alert('Sending email failed');
                 });				
 			}else{
-				alert("Please enter your email address!")
+				alert("Please enter your username!")
 			}
 		}
+	    $scope.forgotUsername = function() {
+	    	$state.go('ltlogin.forgotusername.sendlink');
+	    }
 		$scope.back = function(){
 			$state.go('ltlogin.page');
 		}

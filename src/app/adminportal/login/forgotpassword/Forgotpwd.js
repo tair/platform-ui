@@ -13,6 +13,7 @@ angular.module(
 	'ui.router',
 	'service.title',
 	'platform-ui.adminportal.login.forgotpassword.thankyou',
+//	'platform-ui.adminportal.login.forgotusername.sendlink',
     ])
     .config(
 	function ($stateProvider) {
@@ -25,7 +26,7 @@ angular.module(
 				}
 			}
 		}).state('ltlogin.forgotpassword.thankyou', {
-			url: '/thankyou?email',
+			url: '/thankyou?username',
 			views: {
 				'forgotPwd': {
 					controller: 'ForgotpwdTyController',

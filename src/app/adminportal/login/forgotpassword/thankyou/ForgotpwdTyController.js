@@ -17,7 +17,7 @@ angular.module('platform-ui.adminportal.login.forgotpassword.thankyou').controll
 
 	/* Controller Definition */
 	function ($scope, $http, $cookies, $location, $state, Title, ForgotpwdTyModel) {
-		$scope.email = $location.search()['email'];
+		$scope.username = $location.search()['username'];
 		$scope.back = function(){
 			$state.go('ltlogin.page');
 		}
