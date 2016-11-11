@@ -205,7 +205,7 @@ angular.module('platform-ui.adminportal.role.phoenix.institution').controller(
 				$scope.institutions.unshift(angular.copy($scope.createdInstitution));
 				
 			}).error(function(data, status, headers, config){
-	            bootbox.alert("Failed to create institution"+((data['email'] == 'This field must be unique.')?"! The email is already in use.":"!"));
+	            bootbox.alert("Failed to create institution"+((data['error'] == 'This email is already used by another institution.')?"! This email is already used by another institution.":"!"));
 			});
 		    } else if ($scope.newInstitution['username']==null && $scope.newInstitution['password'] == null){
 		    //when user input doesn't contain username and password, only create party.	
@@ -233,7 +233,8 @@ angular.module('platform-ui.adminportal.role.phoenix.institution').controller(
 					$scope.institutions.unshift(angular.copy($scope.createdInstitution));
 					
 				}).error(function(data, status, headers, config){
-		            bootbox.alert("Failed to create institution"+((data['email'] == 'This field must be unique.')?"! The email is already in use.":"!"));
+		            bootbox.alert("Failed to create institution"+((data['error'] == 'This email is already used by another institution.')?
+		            		"! This email is already used by another institution.":"!"));
 				});
 		    } else if ($scope.newInstitution['username'] != null && $scope.newInstitution['password'] == null){
 		    	bootbox.alert("Need password to create login for the institution.");
