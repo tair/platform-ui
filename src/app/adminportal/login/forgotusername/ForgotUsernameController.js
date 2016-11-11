@@ -19,8 +19,7 @@ angular.module('platform-ui.adminportal.login.forgotusername').controller(
 	function ($scope, $http, $cookies, $location, $state, Title, ForgotUsernameModel) {
 		$scope.forgotUsername = function() {
 			if($scope.email != null) {
-				var email = $scope.email
-				email.replace('+', '%2B');
+				var email = $scope.email.replace('+', '%2B');
 				console.log("email: "+email);
 				$http({
                     url: $scope.apiUri+'/credentials/getUsernames/?email='+email,
