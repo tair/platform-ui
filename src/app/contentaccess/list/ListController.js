@@ -10,13 +10,11 @@ angular.module('platform-ui.contentaccess.list').controller(
 	[
 	'$http',
 	'$scope',
-	//'$cookies',
 	'$location',
-	"$timeout",
 	'Title',
 
 	/* Controller Definition */
-	function ($http, $scope, $location, $timeout, Title) {
+	function ($http, $scope, $location, Title) {
 	    init();
 	    
 	    sortfunction = function(a,b) {
@@ -35,14 +33,16 @@ angular.module('platform-ui.contentaccess.list').controller(
 	    function init() {
 	    	//$scope.setTitle('University List'); //ListModel.title
 	    	Title.setTitle('University List');
-		$scope.partnerId = $location.search()['partnerId'];
-		$http({
-		    url:$scope.apiUri+'/partners/?partnerId='+$scope.partnerId,
-		    method:'GET',
-		}).success(function(data, status, headers, config) {
-		    $scope.partner = data[0];
-		});
-		$http({ 
+			$scope.partnerId = $location.search()['partnerId'];
+			
+			$http({
+			    url:$scope.apiUri+'/partners/?partnerId='+$scope.partnerId,
+			    method:'GET',
+			}).success(function(data, status, headers, config) {
+			    $scope.partner = data[0];
+			});
+			
+			$http({ 
 				//vet PW-265
 				url:$scope.apiUri+'/parties/organizations/?partnerId='+$scope.partnerId,
 				method:'GET',
