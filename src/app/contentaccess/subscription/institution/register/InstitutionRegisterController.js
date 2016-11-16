@@ -78,17 +78,15 @@ angular.module('platform-ui.contentaccess.subscription.institution.register').co
 	    if($scope.partnerId == null){
 	    	$scope.partnerId = $stateParams.partnerId;
 	    }
-	    if($scope.partner == null){
-	    	$http({
-			    url:$scope.apiUri+'/partners/?partnerId='+$scope.partnerId,
-			    method:'GET',
-			}).success(function(data, status, headers, config) {
-			    $scope.partner = data[0];
-			});
-	    }
+    	$http({
+		    url:$scope.apiUri+'/partners/?partnerId='+$scope.partnerId,
+		    method:'GET',
+		}).success(function(data, status, headers, config) {
+		    $scope.partner = data[0];
+		    $scope.formdata.partnerName = $scope.partner.name;
+			$scope.formdata.comments = $scope.partner.name+' is essential to my work. I would like my library to consider a subscription.'
+		});
 		$scope.formdata = InstitutionRegisterModel.formdata;
-		$scope.formdata.partnerName = $scope.partner.name;
-		$scope.formdata.comments = $scope.partner.name+' is essential to my work. I would like my library to consider a subscription.'
-            }
+		    }
 	}
 ]);
