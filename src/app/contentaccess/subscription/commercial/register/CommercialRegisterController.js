@@ -86,10 +86,10 @@ angular.module('platform-ui.contentaccess.subscription.commercial.register').con
 				    method:'GET',
 				}).success(function(data, status, headers, config) {
 				    $scope.partner = data[0];
+				    $scope.formdata.partnerName = $scope.partner.name;
+					$scope.formdata.comments = 'Please send me information about a commercial subscription to '+$scope.partner.name+'.'
 				});
 		$scope.formdata = CommercialRegisterModel.formdata;
-		$scope.formdata.partnerName = $scope.partner.name;
-		$scope.formdata.comments = 'Please send me information about a commercial subscription to '+$scope.partner.name+'.'
-            }
+		}
 	}
 ]);
