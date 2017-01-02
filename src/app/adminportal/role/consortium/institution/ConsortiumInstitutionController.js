@@ -144,11 +144,11 @@ angular.module('platform-ui.adminportal.role.consortium.institution').controller
 					$scope.foundInstitution = null;
 					$scope.adding = false;
 				}).error(function(data, status, headers, config){
-					if($scope.role == 'staff'){
+//					if($scope.role == 'staff'){
 				        alert("Institution cannot be found. Please create institution before adding.");
-					}else{
-						alert("Institution cannot be found. Please contact Phoenix to create the institution.");
-					}
+//					}else{
+//						alert("Institution cannot be found. Please contact Phoenix to create the institution.");
+//					}
 				});
 	    }
 	    $scope.createConfirm = function() {
