@@ -168,27 +168,27 @@ angular.module('platform-ui.adminportal.role.consortium.institution').controller
 	                    method: 'POST',
 			}).success(function(data, status, headers, config){
 
-	        	$scope.createdInstitution = {
-	        			//0 Party
-	                	country: data[0].country,
-	                	display: data[0].display,
-	                	name: data[0].name, //Party.name
-	                	partyId: data[0].partyId,
-	                	partyType: data[0].partyType,
-	                	//1 Credential
-	                	email: data[1].email,
-	                	institution: data[1].institution,
-	                	partnerId: data[1].partnerId,
-	                	partyId: data[1].partyId,
-	                	userIdentifier: data[1].userIdentifier,
-	                	username: data[1].username,//Credential.username
-	        	}
+//	        	$scope.createdInstitution = {
+//	        			//0 Party
+//	                	country: data[0].country,
+//	                	display: data[0].display,
+//	                	name: data[0].name, //Party.name
+//	                	partyId: data[0].partyId,
+//	                	partyType: data[0].partyType,
+//	                	//1 Credential
+//	                	email: data[1].email,
+//	                	institution: data[1].institution,
+//	                	partnerId: data[1].partnerId,
+//	                	partyId: data[1].partyId,
+//	                	userIdentifier: data[1].userIdentifier,
+//	                	username: data[1].username,//Credential.username
+//	        	}
 	        	
 	        	bootbox.alert("New Institution created: username="+data[1].username+" partyId="+data[0].partyId+ " partyType="+data[0].partyType+
 						" partnerId="+data[1].partnerId+" name="+data[0].name);
 	        	
-				$scope.createdInstitution['state'] = null;
-				$scope.institutions.unshift(angular.copy($scope.createdInstitution));
+//				$scope.createdInstitution['state'] = null;
+//				$scope.institutions.unshift(angular.copy($scope.createdInstitution));
 				
 			}).error(function(data, status, headers, config){
 	            bootbox.alert("Failed to create institution"+((data['error'] == 'This email is already used by another institution.')?"! This email is already used by another institution.":"!"));
