@@ -204,19 +204,19 @@ angular.module('platform-ui.adminportal.role.consortium.institution').controller
 							data:data,
 		                    method: 'POST',
 				}).success(function(data, status, headers, config){
-		        	$scope.createdInstitution = {
-		                	country: data.country,
-		                	display: data.display,
-		                	name: data.name, //Party.name
-		                	partyId: data.partyId,
-		                	partyType: data.partyType,
-		        	}
+//		        	$scope.createdInstitution = {
+//		                	country: data.country,
+//		                	display: data.display,
+//		                	name: data.name, //Party.name
+//		                	partyId: data.partyId,
+//		                	partyType: data.partyType,
+//		        	}
 		        	
 		        	bootbox.alert("New Institution created: partyId="+data.partyId+ " partyType="+data.partyType+
 							" name="+data.name);
 		        	
-					$scope.createdInstitution['state'] = null;
-					$scope.institutions.unshift(angular.copy($scope.createdInstitution));
+//					$scope.createdInstitution['state'] = null;
+//					$scope.institutions.unshift(angular.copy($scope.createdInstitution));
 					
 				}).error(function(data, status, headers, config){
 		            bootbox.alert("Failed to create institution"+((data['error'] == 'This email is already used by another institution.')?
