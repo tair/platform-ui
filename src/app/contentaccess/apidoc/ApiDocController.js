@@ -11,14 +11,30 @@ angular.module('platform-ui.contentaccess.apidoc').controller(
 	'$http',
 	'$scope',
 	'$location',
-	"$timeout",
+	'$state',
 	'Title',
+	'ApiDocModel',
 
 	/* Controller Definition */
-	function ($http, $scope, $location, $timeout, Title) {
+	function ($http, $scope, $location, $state, Title, SubscriptionModel) {
 	    init();
+	    console.log($state);
+
+            $scope.switchTab = function(tabName) {
+		//$scope.currentTab = tabName;
+		if (tabName=="landing") {
+			$state.go("apidoc.landing", {partnerId:$scope.partnerId,redirect:$scope.redirect});
+			console.log($state);
+			return;
+		}
+	    };
+
 	    function init() {
-        Title.setTitle('Subscription Management REST API Documentation');
+                Title.setTitle(ApiDocModel.title);//PW-264
+                $scope.initialheading = ApiDocModel.initialheading;
+                $scope.currentTab = ApiDocModel.currentTab;
+                $scope.tabs = ApiDocModel.tabs;
+		$scope.templates = ApiDocModel.templates;
 	    }
 	}
 ]);
