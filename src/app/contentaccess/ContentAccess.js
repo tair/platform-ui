@@ -30,6 +30,14 @@ angular.module(
 						templateUrl: 'contentaccess/subscription/subscription.html'
 					}
 				}
+			}).state('apidoc', {
+				url: '/contentaccess/apidoc',
+				views: {
+					'main': {
+						controller: 'ApiDocController',
+						templateUrl: 'contentaccess/apidoc/api.html'
+					}
+				}
 			}).state('metering', {
 				url: '/contentaccess/metering',
 				views: {
