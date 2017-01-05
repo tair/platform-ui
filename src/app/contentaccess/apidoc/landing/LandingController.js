@@ -13,7 +13,7 @@ angular.module('platform-ui.contentaccess.apidoc.landing').controller(
 function($http, $scope, $location, $state, Title, LandingModel) {
 	$scope.next = function() {
 		if ($scope.api == "def") {
-			alert("Please select an API");
+			alert("Please select an API.");
 			return;
 		}
 		// $scope.switchTab($scope.api);
@@ -22,7 +22,7 @@ function($http, $scope, $location, $state, Title, LandingModel) {
 			console.log($state);
 			return;
 		}
-		if ($scope.api == "parties") {
+		/*if ($scope.api == "parties") {
 			$state.go("apidoc.parties.doc", {});
 			console.log($state);
 			return;
@@ -51,7 +51,7 @@ function($http, $scope, $location, $state, Title, LandingModel) {
 			$state.go("apidoc.sessionlogs.doc", {});
 			console.log($state);
 			return;
-		}
+		}*/
 	}
 	$scope.set_api = function(str) {
 		$scope.api = str;
