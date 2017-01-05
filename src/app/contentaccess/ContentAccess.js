@@ -32,6 +32,7 @@ angular.module(
 					}
 				}
 			}).state('apidoc', {
+				abstract: true,
 				url: '/contentaccess/apidoc',
 				views: {
 					'main': {

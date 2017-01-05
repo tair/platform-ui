@@ -13,7 +13,7 @@ angular.module('platform-ui.contentaccess.apidoc').factory(
 	function () {
 	    return {
 		title: 'Subscription Management REST API Documentation',
-		license: 'def',
+		doc: 'def',
 		currentTab: 'landing',
 		
 		templates : {
