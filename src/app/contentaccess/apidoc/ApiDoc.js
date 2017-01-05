@@ -39,7 +39,7 @@ angular
 										url : '/partners',
 										views : {
 											'apidoc' : {
-												controller : 'PartnerController',
+												controller : 'PartnersController',
 												templateUrl : 'contentaccess/apidoc/partners/partners.html'
 											}
 										}
