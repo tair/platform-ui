@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-xs-12">
             <!--<div class="row subscription-tab" ng-class="{ active: true }"></div>
-      <div class="row subscription-tab-tag text-center active">Choose API</div>-->
+                <div class="row subscription-tab-tag text-center active">Choose API</div>-->
         </div>
     </div>
 
@@ -12,21 +12,14 @@
         <div class="col-xs-6">
             <div style="height: 55px;" class="row"></div>
             <div class="row">
-                <div class="col-xs-offset-2 text-left apidoc-body-heading">Subscription Management REST API</div>
+                <div class="col-xs-offset-2 text-left apidoc-body-heading">{{apis[api].heading}}</div>
             </div>
             <div class="row">
-                <ul class="col-xs-offset-2 col-xs-10 apidoc-description">
-                    <p>The Phoenix Bioinformatics Subscription Management System (SMS) REST API provides web services that give
-                        you a complete system for subscription management.</p>
-                    <p>SMS resources include partners, parties, credentials, subscriptions, meters, authorizations, and session
-                        logs.</p>
-                    <p>The API calls are Uniform Resource Identifiers (URIs) that identify resources or actions. You can use the
-                        GET, POST, PUT, and DELETE HTTP operations to query, create, update, or delete the resources, respectively.
-                        The substitution value &lt;id&gt; is a unique integer identifier for an object, used throughout the
-                        documentation. You submit new and updated data values in the body of the POST or PUT operations in form-data
-                        or form-urlencoded format.</p>
-                    <p>Most API calls require authentication. See the Credentials API for more information. You must be
-                        authenticated as a registered user through one of the partner registration systems.</p>
+                <div class="col-xs-offset-2 col-xs-10 apidoc-description">{{apis[api].description}}</div>
+            </div>
+            <div class="row">
+                <ul class="col-xs-offset-2 col-xs-10 subscription-elements">
+                    <li ng-repeat="e in apis[api].elements">{{ e }}</li>
                 </ul>
             </div>
         </div>
@@ -50,8 +43,7 @@
                                 </div>
                                 <div style="height: 10px;" class="row"></div>
                             </div>
-                        </a> 
-                        <a href="">
+                        </a> <a href="">
                             <div class="col-xs-6" ng-class="{'highlight-api': api=='parties'}" ng-click="set_api('parties')">
                                 <div style="height: 10px;" class="row"></div>
                                 <div class="row text-center">
@@ -67,8 +59,8 @@
                     </div>
                     <div style="height: 25px;" class="row"></div>
                     <div class="row">
-                        <a href=""><div class="col-xs-6" ng-class="{'highlight-api': api=='credentials'}"
-                                ng-click="set_api('credentials')">
+                        <a href="">
+                            <div class="col-xs-6" ng-class="{'highlight-api': api=='credentials'}" ng-click="set_api('credentials')">
                                 <div style="height: 10px;" class="row"></div>
                                 <div class="row text-center">
                                     <img class="img-to-inline-block" src="assets/Credentials.png">
@@ -78,8 +70,10 @@
                                     <div class="text-center apidoc-img-tags">Credentials</div>
                                 </div>
                                 <div style="height: 10px;" class="row"></div>
-                            </div></a> <a href=""><div class="col-xs-6" ng-class="{'highlight-api': api=='subscriptions'}"
-                                ng-click="set_api('subscriptions')">
+                            </div>
+                        </a> 
+                        <a href="">
+                            <div class="col-xs-6" ng-class="{'highlight-api': api=='subscriptions'}" ng-click="set_api('subscriptions')">
                                 <div style="height: 10px;" class="row"></div>
                                 <div class="row text-center">
                                     <img class="img-to-inline-block" src="assets/Subscriptions.png">
@@ -89,57 +83,66 @@
                                     <div class="text-center apidoc-img-tags">Subscriptions</div>
                                 </div>
                                 <div style="height: 10px;" class="row"></div>
-                            </div></a>
-                        <div style="height: 25px;" class="row"></div>
-                        <div class="row">
-                            <a href=""><div class="col-xs-6" ng-class="{'highlight-api': api=='meters'}"
-                                    ng-click="set_api('meters')">
-                                    <div style="height: 10px;" class="row"></div>
-                                    <div class="row text-center">
-                                        <img class="img-to-inline-block" src="assets/Meters.png">
-                                    </div>
-                                    <div style="height: 20px;" class="row"></div>
-                                    <div class="row">
-                                        <div class="text-center apidoc-img-tags">Meters</div>
-                                    </div>
-                                    <div style="height: 10px;" class="row"></div>
-                                </div></a> <a href=""><div class="col-xs-6" ng-class="{'highlight-api': api=='authorizations'}"
-                                    ng-click="set_api('authorizations')">
-                                    <div style="height: 10px;" class="row"></div>
-                                    <div class="row text-center">
-                                        <img class="img-to-inline-block" src="assets/Authorizations.png">
-                                    </div>
-                                    <div style="height: 20px;" class="row"></div>
-                                    <div class="row">
-                                        <div class="text-center apidoc-img-tags">Authorizations</div>
-                                    </div>
-                                    <div style="height: 10px;" class="row"></div>
-                                </div></a>
-                            <div style="height: 25px;" class="row"></div>
-                            <div class="row">
-                                <a href=""><div class="col-xs-6" ng-class="{'highlight-api': api=='sessionlogs'}"
-                                        ng-click="set_api('sessionlogs')">
-                                        <div style="height: 10px;" class="row"></div>
-                                        <div class="row text-center">
-                                            <img class="img-to-inline-block" src="assets/Sessionlogs.png">
-                                        </div>
-                                        <div style="height: 20px;" class="row"></div>
-                                        <div class="row">
-                                            <div class="text-center apidoc-img-tags">Session Logs</div>
-                                        </div>
-                                        <div style="height: 10px;" class="row"></div>
-                                    </div>
                             </div>
-                        </div>
+                        </a>
+                    </div>
+                    <div style="height: 25px;" class="row"></div>
+                    <div class="row">
+                        <a href="">
+                            <div class="col-xs-6" ng-class="{'highlight-api': api=='meters'}" ng-click="set_api('meters')">
+                                <div style="height: 10px;" class="row"></div>
+                                <div class="row text-center">
+                                    <img class="img-to-inline-block" src="assets/Meters.png">
+                                </div>
+                                <div style="height: 20px;" class="row"></div>
+                                <div class="row">
+                                    <div class="text-center apidoc-img-tags">Meters</div>
+                                </div>
+                                <div style="height: 10px;" class="row"></div>
+                            </div>
+                        </a> 
+                        <a href="">
+                            <div class="col-xs-6" ng-class="{'highlight-api': api=='authorizations'}" ng-click="set_api('authorizations')">
+                                <div style="height: 10px;" class="row"></div>
+                                <div class="row text-center">
+                                    <img class="img-to-inline-block" src="assets/Authorizations.png">
+                                </div>
+                                <div style="height: 20px;" class="row"></div>
+                                <div class="row">
+                                    <div class="text-center apidoc-img-tags">Authorizations</div>
+                                </div>
+                                <div style="height: 10px;" class="row"></div>
+                            </div>
+                        </a>
+                    </div>
+                    <div style="height: 25px;" class="row"></div>
+                    <div class="row">
+                        <a href="">
+                            <div class="col-xs-6" ng-class="{'highlight-api': api=='sessionlogs'}" ng-click="set_api('sessionlogs')">
+                                <div style="height: 10px;" class="row"></div>
+                                <div class="row text-center">
+                                    <img class="img-to-inline-block" src="assets/Sessionlogs.png">
+                                </div>
+                                <div style="height: 20px;" class="row"></div>
+                                <div class="row">
+                                    <div class="text-center apidoc-img-tags">Session Logs</div>
+                                </div>
+                                <div style="height: 10px;" class="row"></div>
+                            </div>
+                        </a>
                     </div>
                 </div>
-                <div style="height: 35px;" class="row"></div>
-                <div class="row">
-                    <div class="col-xs-12 text-center">
-                        <button type="button" class="btn no-hover"
-                            ng-class=" doc=='def' ? 'btn-primary btn-primary-tair' : 'btn-success btn-success-tair'"
-                            ng-click="next()">NEXT</button>
-                    </div>
-                </div>
-                <div style="height: 20px;" class="row"></div>
             </div>
+        </div>
+        <div style="height: 35px;" class="row"></div>
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <button type="button" class="btn no-hover" ng-class=" doc=='def' ? 'btn-primary btn-primary-tair' : 'btn-success btn-success-tair'" ng-click="next()">
+                    NEXT
+                </button>
+            </div>
+        </div>
+        <div style="height: 20px;" class="row"></div>
+    </div>
+</div>
+            
