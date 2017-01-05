@@ -2,7 +2,7 @@
  * Landing Model
  */
 
-angular.module('platform-ui.contentaccess.subscription.landing').factory(
+angular.module('platform-ui.contentaccess.apidoc.landing').factory(
 /* Name */
 'LandingModel',
 
