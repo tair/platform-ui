@@ -2,7 +2,7 @@
  * API Doc Controller
  */
 
-angular.module('platform-ui.contentaccess.guide').controller(
+angular.module('platform-ui.contentaccess.apidoc').controller(
 	/* Name */
 	'ApiDocController',
 
@@ -18,7 +18,7 @@ angular.module('platform-ui.contentaccess.guide').controller(
 	function ($http, $scope, $location, $timeout, Title) {
 	    init();
 	    function init() {
-        Title.setTitle('Phoenix REST API Documentation');
+        Title.setTitle('Subscription Management REST API Documentation');
 	    }
 	}
 ]);
