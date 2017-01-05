@@ -1,0 +1,13 @@
+<div ng-controller="PartnersController">
+  <!-- Tabs -->
+  <!--
+  <div class="row">
+    <div class="col-xs-6" ng-repeat="tab in tabs">
+      <div class="row apidoc-tab" ng-class="{ active: currentTab == tab.id }"></div>
+      <div class="row apidoc-tab-tag text-center" ng-class="{ active: currentTab == tab.id }">{{ tab.text }}</div>
+    </div>
+  </div>
+  -->
+  <div ui-view="partners"></div>
+  <!-- <div class="tab-page" ng-include="templates.doc" ng-if="currentTab == 'doc'"></div> -->
+</div>
