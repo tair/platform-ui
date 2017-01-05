@@ -16,17 +16,17 @@
             </div>
             <div class="row">
                 <ul class="col-xs-offset-2 col-xs-10 apidoc-description">
-                    <p>The Phoenix Bioinformatics Subscription Management REST API provides web services that give you a
-                        complete system for subscription management using the Phoenix Subscription Management System (SMS).</p>
-                    <p>SMS resources include a number of different subscription-related objects, including partners, parties,
-                        credentials, subscriptions, meters, authorizations, and session logs.</p>
+                    <p>The Phoenix Bioinformatics Subscription Management System (SMS) REST API provides web services that give
+                        you a complete system for subscription management.</p>
+                    <p>SMS resources include partners, parties, credentials, subscriptions, meters, authorizations, and session
+                        logs.</p>
                     <p>The API calls are Uniform Resource Identifiers (URIs) that identify resources or actions. You can use the
                         GET, POST, PUT, and DELETE HTTP operations to query, create, update, or delete the resources, respectively.
-                        The API calls have comments (#) that describe the resource or action. The substitution value &lt;id&gt; is a
-                        unique integer identifier for an object, used throughout the documentation. You submit new and updated data
-                        values in the body of the POST or PUT operations in form-data or form-urlencoded format.</p>
-                    <p>See the Credentials API for information on logging into the API; most API calls require authentication.
-                        You must be authenticated as a registered user through one of the partner registration systems.</p>
+                        The substitution value &lt;id&gt; is a unique integer identifier for an object, used throughout the
+                        documentation. You submit new and updated data values in the body of the POST or PUT operations in form-data
+                        or form-urlencoded format.</p>
+                    <p>Most API calls require authentication. See the Credentials API for more information. You must be
+                        authenticated as a registered user through one of the partner registration systems.</p>
                 </ul>
             </div>
         </div>
@@ -38,8 +38,8 @@
                     </div>
                     <div style="height: 30px;" class="row"></div>
                     <div class="row">
-                        <a href=""><div class="col-xs-6" ng-class="{'highlight-api': api=='partners'}"
-                                ng-click="set_api('partners')">
+                        <a href="">
+                            <div class="col-xs-6" ng-class="{'highlight-api': api=='partners'}" ng-click="set_api('partners')">
                                 <div style="height: 10px;" class="row"></div>
                                 <div class="row text-center">
                                     <img class="img-to-inline-block" src="assets/Partners.png">
@@ -49,8 +49,10 @@
                                     <div class="text-center apidoc-img-tags">Partners</div>
                                 </div>
                                 <div style="height: 10px;" class="row"></div>
-                            </div></a> <a href=""><div class="col-xs-6" ng-class="{'highlight-api': api=='parties'}"
-                                ng-click="set_api('parties')">
+                            </div>
+                        </a> 
+                        <a href="">
+                            <div class="col-xs-6" ng-class="{'highlight-api': api=='parties'}" ng-click="set_api('parties')">
                                 <div style="height: 10px;" class="row"></div>
                                 <div class="row text-center">
                                     <img class="img-to-inline-block" src="assets/Parties.png">
@@ -60,7 +62,8 @@
                                     <div class="text-center apidoc-img-tags">Parties</div>
                                 </div>
                                 <div style="height: 10px;" class="row"></div>
-                            </div></a>
+                            </div>
+                        </a>
                     </div>
                     <div style="height: 25px;" class="row"></div>
                     <div class="row">

@@ -16,7 +16,7 @@ angular.module('platform-ui.contentaccess.apidoc.landing').factory(
 				id : 'partners',
 				heading : 'Partners',
 			},
-			parties : {
+			/*parties : {
 				id : 'parties',
 				heading : 'Parties',
 			},
@@ -39,10 +39,10 @@ angular.module('platform-ui.contentaccess.apidoc.landing').factory(
 			sessionlogs : {
 				id : 'sessionlogs',
 				heading : 'Session Logs',
-			},
+			},*/
 			def : {
 				id : 'default',
-				heading : 'Subscription Management REST API',
+				heading : 'SMS REST API',
 			},
 		},
 	}
