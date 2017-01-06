@@ -3,21 +3,32 @@
         <div class="col-xs-10" style="float: none; margin-left: auto; margin-right: auto;">
             <div class="row" style="height: 45px;"></div>
             <div class="row">
-                <div class="col-xs-12 text-left info-doc-heading">Partner API</div>
+                <div class="col-xs-12 text-left info-doc-heading">{{heading}}</div>
             </div>
-            <div class="row" style="height: 40px;"></div>
-            <div class="row">
-                <div class="col-xs-12">
-                    <p>A partner is a scientific data or informatics system that makes up a unit for subscription,
-                        authentication, and authorization. The partner offers its resources through a well-defined set of URIs.
-                        Each partner has a set of regular expressions that identifies these base URIs. Partners have individual
-                        subscription terms for display on subscription pages. Terms have period, price, and group discount
-                        percentage. Partners have access rules that identify sets of URIs with regular expressions that are Paid
-                        resources or Login-Required Resources. A Paid resource requires a subscription. A Login-Required resource
-                        requires the user to log in, usually because the resource needs the user's identity for attribution for some
-                        reason. Note that individual subscriptions use login to authenticate for access to Paid resources, but this
-                        is independent of rules requiring login to access resources. Login-Required resources can be Paid resources
-                        as well.</p>
+            <div class="col-xs-6">
+                <div style="height: 55px;" class="row"></div>
+                <div class="row">
+                    <div class="col-xs-offset-2 col-xs-10 apidoc-description">{{overview}}</div>
+                </div>
+                <div class="row">
+                    <ul class="col-xs-offset-2 col-xs-10 apidoc-elements">
+                        <li ng-repeat="e in elements">{{ e }}</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row" style="height: 20px;"></div>
+            <h1>Data Types</h1>
+            <div class="col-xs-6">
+                <div style="height: 55px;" class="row"></div>
+                <div class="row">
+                    <div ng-repeat="d in datatypes">
+                        <h2>{{ d.name }}</h2>
+                        <table>
+                            <tr ng-repeat="f in d.fields">
+                                <td>{{ f.name }}</td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
             </div>
             <div class="row" style="height: 20px;"></div>
