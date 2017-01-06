@@ -14,5 +14,9 @@ function($http, $scope, $stateParams, PartnersDocModel) {
 	init();
 
 	function init() {
+		$scope.heading = LandingModel.heading;
+		$scope.overview = LandingModel.overview;
+		$scope.datatypes = LandingModel.datatypes;
+		$scope.calls = LandingModel.calls;
 	}
 } ]);
