@@ -11,7 +11,7 @@ angular
 				/* Dependencies */
 				[ function() {
 					return {
-						heading : 'Partner API'
+						heading : 'Partner API',
 						overview : 'A partner is a scientific data or informatics system that makes up a unit for subscription, authentication, and authorization.',
 						elements : [
 								'The partner specifies branding elements like logo, login-page text, and email text.',
