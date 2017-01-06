@@ -15,11 +15,11 @@
                 </ul>
             </div>
             <div class="row" style="height: 10px;"></div>
-            <div class="row info-doc-heading-2">Data Types</div>
+            <div class="row col-xs-10 info-doc-heading-2">Data Types</div>
             <div class="row" style="height: 10px;"></div>
-            <div class="row col-xs-10">
+            <div class="row info-doc-table-div">
                 <div ng-repeat="d in datatypes">
-                    <h2>{{ d.name }}</h2>
+                    <div class="row col-xs-10 info-doc-heading-2">{{ d.name }}</div>
                     <table>
                         <tr ng-repeat="f in d.fields">
                             <td>{{ f.name }}</td>
