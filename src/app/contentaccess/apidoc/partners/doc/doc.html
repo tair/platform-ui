@@ -7,7 +7,7 @@
             </div>
             <div style="height: 15px;" class="row"></div>
             <div class="row">
-                <div class="col-xs-10 text-left apidoc-description">{{overview}}</div>
+                <div class="col-xs-12 text-left apidoc-description">{{overview}}</div>
             </div>
             <div class="row">
                 <ul class="col-xs-6 apidoc-elements">
@@ -15,16 +15,27 @@
                 </ul>
             </div>
             <div class="row" style="height: 10px;"></div>
-            <div class="row col-xs-10 info-doc-heading-2">Data Types</div>
+            <div class="row">
+                <div class="col-xs-12 text-left info-doc-heading-2">Data Types</div>
+            </div>
             <div class="row" style="height: 10px;"></div>
-            <div class="row info-doc-table-div">
+            <div class="row">
                 <div ng-repeat="d in datatypes">
-                    <div class="row col-xs-10 info-doc-heading-2">{{ d.name }}</div>
-                    <table>
-                        <tr ng-repeat="f in d.fields">
-                            <td>{{ f.name }}</td>
-                        </tr>
-                    </table>
+                    <div class="row">
+                        <div class="col-xs-12 text-left info-doc-heading-3">{{ d.name }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-4 text-left info-doc-col-header">name</div>
+                        <div class="col-xs-2 text-left info-doc-col-header">type</div>
+                        <div class="col-xs-6 text-left info-doc-col-header">description</div>
+                    </div>
+                    <div ng-repeat="f in d.fields">
+                        <div class="row">
+                            <div class="col-xs-4 text-left info-doc-col">{{ f.name }}</div>
+                            <div class="col-xs-2 text-left info-doc-col">{{ f.type }}</div>
+                            <div class="col-xs-6 text-left info-doc-col">{{ f.description }}</div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="row" style="height: 20px;"></div>
