@@ -50,12 +50,12 @@ angular.module('platform-ui.adminportal.login.page').controller(
 			    	if($scope.remember == true){
 	                    $cookies.org_phoenixbioinformatics_ui_credentialId = data["credentialId"]; //for user googlestaff it's Credential.partyId and it's 42
 	                    $cookies.org_phoenixbioinformatics_ui_secretKey = data["secretKey"];
-//					    $cookies.username = data["username"];
+	                    $cookies.org_phoenixbioinformatics_ui_token = data["token"];
 			    		localStorage.setItem("remember", true);
 			    	}else{
 			    		$window.sessionStorage.org_phoenixbioinformatics_ui_credentialId = data["credentialId"]; //for user googlestaff it's Credential.partyId and it's 42
 			    		$window.sessionStorage.org_phoenixbioinformatics_ui_secretKey = data["secretKey"];
-//			    		$window.sessionStorage.username = data["username"];
+			    		$window.sessionStorage.org_phoenixbioinformatics_ui_secretKey = data["token"];
 			    		$cookies.username = data["username"];
 			    		localStorage.removeItem("remember");
 			    	}
