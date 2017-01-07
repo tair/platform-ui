@@ -20,17 +20,17 @@
             </div>
             <div class="row" style="height: 10px;"></div>
             <div class="row">
-                <div ng-repeat="d in datatypes">
+                <div ng-repeat="d in datatypes" class="info-doc-table">
                     <div class="row">
                         <div class="col-xs-12 text-left info-doc-heading-3">{{ d.name }}</div>
                     </div>
-                    <div class="row">
+                    <div class="row info-doc-row">
                         <div class="col-xs-4 text-left info-doc-col-header">name</div>
                         <div class="col-xs-2 text-left info-doc-col-header">type</div>
                         <div class="col-xs-6 text-left info-doc-col-header">description</div>
                     </div>
                     <div ng-repeat="f in d.fields">
-                        <div class="row">
+                        <div class="row info-doc-row">
                             <div class="col-xs-4 text-left info-doc-col">{{ f.name }}</div>
                             <div class="col-xs-2 text-left info-doc-col">{{ f.type }}</div>
                             <div class="col-xs-6 text-left info-doc-col">{{ f.description }}</div>
