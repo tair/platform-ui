@@ -30,6 +30,11 @@ angular.module('platform-ui.adminportal.role.consortium').controller(
 		}else if($window.sessionStorage.org_phoenixbioinformatics_ui_secretKey!=null){
 			$scope.secretKey = $window.sessionStorage.org_phoenixbioinformatics_ui_secretKey;
 		}
+		if($cookies.org_phoenixbioinformatics_ui_token!=null){
+			$scope.token = $cookies.org_phoenixbioinformatics_ui_token;
+		}else if($window.sessionStorage.org_phoenixbioinformatics_ui_token!=null){
+			$scope.token = $window.sessionStorage.org_phoenixbioinformatics_ui_token;
+		}
 		//check credentials
 //		if(!$scope.credentialId || !$scope.secretKey){
 //			$state.go('ltlogin');

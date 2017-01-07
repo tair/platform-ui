@@ -32,6 +32,11 @@ angular.module('platform-ui.adminportal.role').controller(
 		}else if($window.sessionStorage.org_phoenixbioinformatics_ui_secretKey!=null){
 			$scope.secretKey = $window.sessionStorage.org_phoenixbioinformatics_ui_secretKey;
 		}
+		if($cookies.org_phoenixbioinformatics_ui_token!=null){
+			$scope.token = $cookies.org_phoenixbioinformatics_ui_token;
+		}else if($window.sessionStorage.org_phoenixbioinformatics_ui_token!=null){
+			$scope.token = $window.sessionStorage.org_phoenixbioinformatics_ui_token;
+		}
 		$scope.title = RoleModel.title;
 	    $scope.home = function() {
 		window.location.href='#/adminportal/login';
@@ -39,8 +44,10 @@ angular.module('platform-ui.adminportal.role').controller(
 	    $scope.logout = function() {
 		$cookieStore.remove("org_phoenixbioinformatics_ui_credentialId");
 		$cookieStore.remove("org_phoenixbioinformatics_ui_secretKey");
+		$cookieStore.remove("org_phoenixbioinformatics_ui_token")
 		delete $window.sessionStorage.org_phoenixbioinformatics_ui_credentialId;
 		delete $window.sessionStorage.org_phoenixbioinformatics_ui_secretKey;
+		delete $window.sessionStorage.org_phoenixbioinformatics_ui_token;
 		$scope.home();
 	    }
 	    $scope.setTitle = function(title) {
