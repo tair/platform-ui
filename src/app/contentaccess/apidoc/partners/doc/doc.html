@@ -45,6 +45,63 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-xs-12 text-left info-doc-heading-2">API Calls</div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div ng-repeat="c in calls" class="info-doc-table">
+                        <div class="row" style="height: 10px;"></div>
+                        <div class="row">
+                            <div class="col-xs-12 text-left info-doc-heading-3">{{ c.name }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 text-left apidoc-description">{{ c.summary }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 text-left apidoc-call">{{ c.op }} {{ c.uri }}</div>
+                        </div>
+                        <div class="row" style="height: 10px;"></div>
+                        <div class="col-xs-1"></div>
+                        <div class="col-xs-11">
+                            <div class="row info-doc-col-header">
+                                <div class="col-xs-5 text-left info-doc-col-header">name</div>
+                                <div class="col-xs-2 text-left info-doc-col-header">type</div>
+                                <div class="col-xs-5 text-left info-doc-col-header">description</div>
+                            </div>
+                            <div ng-repeat="p in c.parameters">
+                                <div class="row info-doc-row">
+                                    <div class="col-xs-5 text-left info-doc-col">{{ p.name }}</div>
+                                    <div class="col-xs-2 text-left info-doc-col">{{ p.type }}</div>
+                                    <div class="col-xs-5 text-left info-doc-col">{{ p.description }}</div>
+                                </div>
+                            </div>
+                            <div class="row info-doc-bottom-row" style="height: 45px;"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 text-left apidoc-returns">Returns {{ p.returns }}</div>
+                        </div>
+                        <div class="row" style="height: 10px;"></div>
+                        <div class="col-xs-2">Errors</div>
+                        <div class="col-xs-10">
+                            <div class="row info-doc-col-header">
+                                <div class="col-xs-1 text-left info-doc-col-header">code</div>
+                                <div class="col-xs text-left info-doc-col-header">message</div>
+                            </div>
+                            <div ng-repeat="e in c.errors">
+                                <div class="row info-doc-row">
+                                    <div class="col-xs-5 text-left info-doc-col">{{ e.code }}</div>
+                                    <div class="col-xs-2 text-left info-doc-col">{{ e.message }}</div>
+                                </div>
+                            </div>
+                        <div class="row">
+                            <div class="col-xs-12 text-left apidoc-example">{{ c.example }}</div>
+                        </div>
+                            <div class="row info-doc-bottom-row" style="height: 45px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="row" style="height: 20px;"></div>
             <div class="row">
                 <div class="col-xs-4 text-center">
