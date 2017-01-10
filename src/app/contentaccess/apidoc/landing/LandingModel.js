@@ -38,9 +38,8 @@ angular
 							def : {
 								id : 'default',
 								heading : 'SMS REST API',
-								description : 'A partner is a scientific data or informatics system that makes up a unit for subscription, authentication, and authorization.',
+								description : 'The Subscription Management System (SMS) REST API gives you a complete system for subscription management.',
 								elements : [
-										'The Subscription Management System (SMS) REST API gives you a complete system for subscription management.',
 										'SMS resources include partners, parties, credentials, subscriptions, meters, authorizations, and session logs.',
 										'The API calls are Uniform Resource Identifiers (URIs) that identify resources or actions. You can use the GET, POST, PUT, and DELETE HTTP operations to query, create, update, or delete the resources, respectively.',
 										'It is good practice to always end a path with / before the query parameters, as in /credentials/login/?partnerId=biocyc',
