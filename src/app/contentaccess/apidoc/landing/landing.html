@@ -10,13 +10,14 @@
     <div style="height: 40px;" class="row"></div>
     <div class="row">
         <div class="col-xs-7">
-            <div style="height: 55px;" class="row"></div>
+            <div class="row" style="height: 55px;"></div>
             <div class="row">
                 <div class="col-xs-offset-2 text-left apidoc-body-heading">{{apis[api].heading}}</div>
             </div>
             <div class="row">
                 <div class="col-xs-offset-2 col-xs-10 text-left apidoc-description">{{apis[api].description}}</div>
             </div>
+            <div class="row" style="height: 20px;"></div>
             <div class="row">
                 <ul class="col-xs-offset-3 col-xs-10 text-left apidoc-elements">
                     <li ng-repeat="e in apis[api].elements">{{ e }}</li>
