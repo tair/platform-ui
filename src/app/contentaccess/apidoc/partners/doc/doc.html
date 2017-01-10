@@ -66,24 +66,26 @@
                             <div class="col-xs-12 text-left apidoc-returns">Returns {{ c.returns }}</div>
                         </div>
                         <div class="row" style="height: 5px;"></div>
-                        <div class="row">
-                            <div class="col-xs-12 text-left info-doc-heading-4">Parameters</div>
-                        </div>
-                        <div class="col-xs-1"></div>
-                        <div class="col-xs-11">
-                            <div class="row info-doc-col-header">
-                                <div class="col-xs-5 text-left info-doc-col-header">name</div>
-                                <div class="col-xs-2 text-left info-doc-col-header">type</div>
-                                <div class="col-xs-5 text-left info-doc-col-header">description</div>
+                        <div ng-show="c.parameters.length">
+                            <div class="row">
+                                <div class="col-xs-12 text-left info-doc-heading-4">Parameters</div>
                             </div>
-                            <div ng-repeat="p in c.parameters">
-                                <div class="row info-doc-row">
-                                    <div class="col-xs-5 text-left info-doc-col">{{ p.name }}</div>
-                                    <div class="col-xs-2 text-left info-doc-col">{{ p.type }}</div>
-                                    <div class="col-xs-5 text-left info-doc-col">{{ p.description }}</div>
+                            <div class="col-xs-1"></div>
+                            <div class="col-xs-11">
+                                <div class="row info-doc-col-header">
+                                    <div class="col-xs-5 text-left info-doc-col-header">name</div>
+                                    <div class="col-xs-2 text-left info-doc-col-header">type</div>
+                                    <div class="col-xs-5 text-left info-doc-col-header">description</div>
                                 </div>
+                                <div ng-repeat="p in c.parameters">
+                                    <div class="row info-doc-row">
+                                        <div class="col-xs-5 text-left info-doc-col">{{ p.name }}</div>
+                                        <div class="col-xs-2 text-left info-doc-col">{{ p.type }}</div>
+                                        <div class="col-xs-5 text-left info-doc-col">{{ p.description }}</div>
+                                    </div>
+                                </div>
+                                <div class="row info-doc-bottom-row" style="height: 10px;"></div>
                             </div>
-                            <div class="row info-doc-bottom-row" style="height: 10px;"></div>
                         </div>
                         <div class="row" style="height: 5px;"></div>
                         <div class="row">
