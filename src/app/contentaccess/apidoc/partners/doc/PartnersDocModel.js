@@ -137,6 +137,33 @@ angular
 								type : 'String',
 								description : 'URI including scheme (protocol) and authority (host/port) to which to rewrite source URI',
 							}, ],
+						}, {
+							name : 'PartnerTerm',
+							fields : [ {
+								name : 'subscriptionTermId',
+								type : 'Number',
+								description : 'Unique identifier for the subscription term',
+							}, {
+								name : 'period',
+								type : 'Number',
+								description : 'The time interval of the term as a number of days, such as 365 for a year',
+							}, {
+								name : 'price',
+								type : 'Number',
+								description : 'The monetary amount in USD charged for the term as a decimal number with 2 decimal places, such as 99.99',
+							}, {
+								name : 'groupDiscountPercentage',
+								type : 'Number',
+								description : 'The percentage discount for multiple subscriptions as a decimal number with 2 decimal places, such as 10.00',
+							}, {
+								name : 'partnerId',
+								type : 'String',
+								description : 'The unique partner id for the partner, such as "tair"',
+							}, {
+								name : 'description',
+								type : 'String',
+								description : 'A text describing the term for display in the subscription interface',
+							}, ],
 						}, /*{
 							name : '',
 							fields : [ {
@@ -219,23 +246,87 @@ angular
 							returns : '{"success":"delete complete"}',
 							errors : [],
 							example : 'https://pwapi.arabidopsis.org/partners/patterns/?partnerPatternId=32',
-						}, /*{
-							header : '',
-							summary : '',
-							op : 'GET',
-							uri : '',
-							parameters : [ {
-								name : '',
-								type : '',
-								description : '',
-							}, {
-								name : '',
-								type : '',
-								description : '',
-							}, ],
-							returns : '',
-							errors : [{code : '400', message : ''}],
-							example : '',
-						}, */]
+						}, {
+						header : 'Get All Partner Subscription Terms',
+						summary : 'Gets all the subscription terms for all partners',
+						op : 'GET',
+						uri : '/partners/terms',
+						parameters : [],
+						returns : 'Array of PartnerTerm',
+						errors : [],
+						example : 'https://pwapi.arabidopsis.org/partners/terms',
+					}, {
+						header : 'Get Partner Subscription Term by ID',
+						summary : 'Gets a specific subscription term by unique id',
+						op : 'GET',
+						uri : '/partners/terms/?subscriptionTermId={id}',
+						parameters : [ {
+							name : 'subscriptionTermId',
+							type : 'Number',
+							description : 'The unique identifier for the term',
+						}, ],
+						returns : 'Array of PartnerTerm with a single PartnerTerm object',
+						errors : [],
+						example : 'https://pwapi.arabidopsis.org/partners/terms/?subscriptionTermId=5',
+					}, {
+						header : 'Get Partner Subscription Terms by Partner',
+						summary : 'Gets the set of subscription terms for a specified partner',
+						op : 'GET',
+						uri : '/partners/terms/?partnerId={id}',
+						parameters : [ {
+							name : 'partnerId',
+							type : 'String',
+							description : 'The unique partner id for the partner, such as "tair"',
+						},],
+						returns : 'Array of PartnerTerm',
+						errors : [],
+						example : 'https://pwapi.arabidopsis.org/partners/terms/?partnerId=tair',
+					}, {
+						header : 'Get Partner Subscription Terms with Filter',
+						summary : 'Gets the set of subscription terms matching a set of optional field values',
+						op : 'GET',
+						uri : '/partners/terms/?partnerId={id}&period={number}&price={number}&groupDiscountPercentage={number}&description={string}',
+						parameters : [ {
+							name : 'partnerId',
+							type : 'String',
+							description : 'The unique partner id for the partner, such as "tair"',
+						}, {
+							name : 'period',
+							type : 'Number',
+							description : 'The time interval of the term as a number of days, such as 365 for a year',
+						}, {
+							name : 'price',
+							type : 'Number',
+							description : 'The monetary amount in USD charged for the term as a decimal number with 2 decimal places, such as 99.99',
+						}, {
+							name : 'groupDiscountPercentage',
+							type : 'Number',
+							description : 'The percentage discount for multiple subscriptions as a decimal number with 2 decimal places, such as 10.00',
+						}, {
+							name : 'description',
+							type : 'String',
+							description : 'A text describing the term for display in the subscription interface',
+						}, ],
+						returns : 'Array of PartnerTerm',
+						errors : [],
+						example : 'https://pwapi.arabidopsis.org/partners/terms/?partnerId=tair&period=365',
+					}, /*{
+						header : '',
+						summary : '',
+						op : 'GET',
+						uri : '',
+						parameters : [ {
+							name : '',
+							type : '',
+							description : '',
+						}, {
+							name : '',
+							type : '',
+							description : '',
+						}, ],
+						returns : '',
+						errors : [{code : '400', message : ''}],
+						example : '',
+					}, */]
 					}
 				} ]);
