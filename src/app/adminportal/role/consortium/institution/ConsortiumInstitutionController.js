@@ -22,6 +22,7 @@ angular.module('platform-ui.adminportal.role.consortium.institution').controller
 	    $scope.institutions = ConsortiumInstitutionModel.institutions;
 	    $scope.allInstitutions = ConsortiumInstitutionModel.allInstitutions;
 	    $scope.adding = false;
+	    $scope.creating = false;
 	    $scope.newInstitution = ConsortiumInstitutionModel.newInstitution;
 	    $scope.foundInstitution = ConsortiumInstitutionModel.foundInstitution;
 	    $scope.removeInstitution = null;
@@ -143,15 +144,100 @@ angular.module('platform-ui.adminportal.role.consortium.institution').controller
 					$scope.foundInstitution = null;
 					$scope.adding = false;
 				}).error(function(data, status, headers, config){
-					if($scope.role == 'staff'){
+//					if($scope.role == 'staff'){
 				        alert("Institution cannot be found. Please create institution before adding.");
-					}else{
-						alert("Institution cannot be found. Please contact Phoenix to create the institution.");
-					}
+//					}else{
+//						alert("Institution cannot be found. Please contact Phoenix to create the institution.");
+//					}
 				});
 	    }
+	    $scope.createConfirm = function() {
+		    if ($scope.newInstitution['username'] != null && $scope.newInstitution['password'] !=null) {
+			// when user input contains username and password, create a credential for the party
+		    	var data = {
+					name: $scope.newInstitution['name'],
+					partyType:'organization',
+					username: $scope.newInstitution['username'],
+					password: $scope.newInstitution['password'],
+					partnerId: 'phoenix',
+					email: $scope.newInstitution['email'],
+			}
+			$http({
+						url: $scope.apiUri+'/parties/institutions/?secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
+						data:data,
+	                    method: 'POST',
+			}).success(function(data, status, headers, config){
+
+	        	$scope.createdInstitution = {
+	        			//0 Party
+	                	country: data[0].country,
+	                	display: data[0].display,
+	                	name: data[0].name, //Party.name
+	                	partyId: data[0].partyId,
+	                	partyType: data[0].partyType,
+	                	//1 Credential
+	                	email: data[1].email,
+	                	institution: data[1].institution,
+	                	partnerId: data[1].partnerId,
+	                	partyId: data[1].partyId,
+	                	userIdentifier: data[1].userIdentifier,
+	                	username: data[1].username,//Credential.username
+	        	}
+	        	
+	        	bootbox.alert("New Institution created: username="+data[1].username+" partyId="+data[0].partyId+ " partyType="+data[0].partyType+
+						" partnerId="+data[1].partnerId+" name="+data[0].name);
+	        	
+				$scope.createdInstitution['state'] = null;
+//				$scope.institutions.unshift(angular.copy($scope.createdInstitution));
+				$scope.allInstitutions.unshift(angular.copy($scope.createdInstitution));
+				
+			}).error(function(data, status, headers, config){
+	            bootbox.alert("Failed to create institution"+((data['error'] == 'This email is already used by another institution.')?"! This email is already used by another institution.":"!"));
+			});
+		    } else if ($scope.newInstitution['username']==null && $scope.newInstitution['password'] == null){
+		    //when user input doesn't contain username and password, only create party.	
+		    	var data = {
+						name: $scope.newInstitution['name'],
+						partyType:'organization',
+				}
+				$http({
+							url: $scope.apiUri+'/parties/?secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
+							data:data,
+		                    method: 'POST',
+				}).success(function(data, status, headers, config){
+		        	$scope.createdInstitution = {
+		                	country: data.country,
+		                	display: data.display,
+		                	name: data.name, //Party.name
+		                	partyId: data.partyId,
+		                	partyType: data.partyType,
+		        	}
+		        	
+		        	bootbox.alert("New Institution created: partyId="+data.partyId+ " partyType="+data.partyType+
+							" name="+data.name);
+		        	
+					$scope.createdInstitution['state'] = null;
+//					$scope.institutions.unshift(angular.copy($scope.createdInstitution));
+					$scope.allInstitutions.unshift(angular.copy($scope.createdInstitution));
+					
+				}).error(function(data, status, headers, config){
+		            bootbox.alert("Failed to create institution"+((data['error'] == 'This email is already used by another institution.')?
+		            		"! This email is already used by another institution.":"!"));
+				});
+		    } else if ($scope.newInstitution['username'] != null && $scope.newInstitution['password'] == null){
+		    	bootbox.alert("Need password to create login for the institution.");
+		    	return;
+		    } else if ($scope.newInstitution['password'] != null && $scope.newInstitution['username'] == null){
+		    	bootbox.alert("Need username to create login for the institution.");
+		    	return;
+		    }
+			$scope.newInstitution = null;
+			$scope.adding = false;
+			$scope.creating = false;
+		    }
 	    $scope.reset = function() {
 		$scope.adding = false;
+		$scope.creating = false;
 		for (i=0; i<$scope.institutions.length; i++) {
 		    $scope.institutions[i].state=null;
 		}
