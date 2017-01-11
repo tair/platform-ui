@@ -55,7 +55,7 @@ angular.module('platform-ui.adminportal.login.page').controller(
 			    	}else{
 			    		$window.sessionStorage.org_phoenixbioinformatics_ui_credentialId = data["credentialId"]; //for user googlestaff it's Credential.partyId and it's 42
 			    		$window.sessionStorage.org_phoenixbioinformatics_ui_secretKey = data["secretKey"];
-			    		$window.sessionStorage.org_phoenixbioinformatics_ui_secretKey = data["token"];
+			    		$window.sessionStorage.org_phoenixbioinformatics_ui_token = data["token"];
 			    		$cookies.username = data["username"];
 			    		localStorage.removeItem("remember");
 			    	}
@@ -69,10 +69,15 @@ angular.module('platform-ui.adminportal.login.page').controller(
 					}else if($window.sessionStorage.org_phoenixbioinformatics_ui_secretKey!=null){
 						$scope.secretKey = $window.sessionStorage.org_phoenixbioinformatics_ui_secretKey;
 					}
+					if($cookies.org_phoenixbioinformatics_ui_token!=null){
+						$scope.token = $cookies.org_phoenixbioinformatics_ui_token;
+					}else if($window.sessionStorage.org_phoenixbioinformatics_ui_token!=null){
+						$scope.token = $window.sessionStorage.org_phoenixbioinformatics_ui_token;
+					}
 //					$cookies.partyInfo={};
 				    $http({
 						url: $scope.apiUri+'/parties/?partyId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
-						method: 'GET'
+						method: 'GET',
 					    }).success(function(data, status, headers, config){
 					    	$scope.partyInfo = data[0];
 							$scope.role = $scope.partyInfo['partyType'];
