@@ -10,8 +10,10 @@
                             <a href="http://www.phoenixbioinformatics.org" title="Phoenix Bioinformatics home page"><img
                                 src="assets/Phoenix_Logo.png" alt="Phoenix Bioinformatics logo" style="height:60px; float:right" /></a>
                         </div>
-                        <div class="col-xs-5 text-center" ng-class="{'highlight-api': api=='partners'}" ng-click="set_api('def')"
-                            style="float: none; margin-left: auto; margin-right: auto; padding-top: 20px;">API Documentation</div>
+                        <div class="col-xs-5 text-center" ng-class="{'highlight-api': api=='def'}" ng-click="set_api('def')"
+                            style="float: none; margin-left: auto; margin-right: auto; padding-top: 20px;">
+                            <a ng-href="#contentaccess/apidoc" ngclick="api = def">API Documentation</a>
+                        </div>
                     </div>
                     <!--<div class="row">
 						<div class="col-xs-12 text-center">
