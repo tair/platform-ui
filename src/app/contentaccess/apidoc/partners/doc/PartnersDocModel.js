@@ -500,8 +500,8 @@ angular
 						errors : [{code : '400', message : ''}],
 						example : 'https://pwapi.arabidopsis.org/partners/descriptionItems/?subscriptionDescriptionItemId=5',
 					}, {
-						header : '',
-						summary : '',
+						header : 'Delete a Subscription Description Item',
+						summary : 'Deletes a subscription description item specified by ID',
 						op : 'DELETE',
 						uri : '/partners/descriptionItems/&subscriptionDescriptionItemId={id}',
 						parameters : [ {
