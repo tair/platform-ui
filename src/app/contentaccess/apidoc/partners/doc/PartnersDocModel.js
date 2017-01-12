@@ -498,7 +498,7 @@ angular
 						}, ],
 						returns : '',
 						errors : [{code : '400', message : ''}],
-						example : 'https://pwapi.arabidopsis.org/partners/descriptionItems/&subscriptionDescriptionItemId=5',
+						example : 'https://pwapi.arabidopsis.org/partners/descriptionItems/?subscriptionDescriptionItemId=5',
 					}, {
 						header : '',
 						summary : '',
@@ -512,7 +512,7 @@ angular
 						body_parameters : [],
 						returns : '{"success":"delete complete"}',
 						errors : [{code : '200', message : '{"error":"does not allow delete without query parameters"}'}],
-						example : 'https://demoapi.arabidopsis.org/partners/descriptionItems/&subscriptionDescriptionItemId=5',
+						example : 'https://demoapi.arabidopsis.org/partners/descriptionItems/?subscriptionDescriptionItemId=5',
 					}, /*{
 						header : '',
 						summary : '',
