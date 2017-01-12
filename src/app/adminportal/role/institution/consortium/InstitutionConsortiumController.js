@@ -115,7 +115,10 @@ angular.module('platform-ui.adminportal.role.institution.consortium').controller
 			url: $scope.apiUri+'/parties/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+consortium['partyId'],
 			data: data,
 			method: 'PUT',
-			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded',
+				'Authorization':'JWT '+$scope.token,
+				}
 		    }).success(function(data, status, headers, config){
 		    }).error(function(data, status, headers, config){
 			alert("edit consortium request failed");
@@ -190,6 +193,7 @@ angular.module('platform-ui.adminportal.role.institution.consortium').controller
         $http({
             url: $scope.apiUri+'/parties/?partyType=consortium&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
             method: 'GET',
+            headers: {'Authorization':'JWT '+$scope.token},
         }).success(function(data, status, headers, config){
 			$scope.allConsortiums = [];
 			for (var i = 0; i < data.length; i++) {
