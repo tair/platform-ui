@@ -119,7 +119,10 @@ angular.module('platform-ui.adminportal.role.phoenix.consortium').controller(
 			url: $scope.apiUri+'/parties/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+consortium['partyId'],
 			data: data,
 			method: 'PUT',
-			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded',
+				'Authorization':'JWT '+$scope.token,
+				}
 		    }).success(function(data, status, headers, config){
 		    }).error(function(data, status, headers, config){
 			alert("edit consortium request failed");
@@ -187,6 +190,7 @@ angular.module('platform-ui.adminportal.role.phoenix.consortium').controller(
 						url: $scope.apiUri+'/parties/?secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
 						data:data,
 	                    method: 'POST',
+	                    headers: {'Authorization':'JWT '+$scope.token},
 			}).success(function(data, status, headers, config){
 				//new code
 	           	//$scope.partyId = data[0]['partyId'];
@@ -247,6 +251,7 @@ angular.module('platform-ui.adminportal.role.phoenix.consortium').controller(
             $http({
                 url: $scope.apiUri+'/parties/?partyType=consortium'+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
                 method: 'GET',
+                headers: {'Authorization':'JWT '+$scope.token},
             }).success(function(data, status, headers, config){
 		$scope.consortiums = [];
 		for (var i = 0; i < data.length; i++) {
