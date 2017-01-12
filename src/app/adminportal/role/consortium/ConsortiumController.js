@@ -59,7 +59,8 @@ angular.module('platform-ui.adminportal.role.consortium').controller(
 		//get role
 		$http({
 			url: $scope.apiUri+'/parties/?partyId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
-			method: 'GET'
+			method: 'GET',
+			headers: {'Authorization':'JWT '+$scope.token},
 		    }).success(function(data, status, headers, config){
 		    	$scope.partyInfo = data[0];
 				$scope.role = $scope.partyInfo['partyType'];	
