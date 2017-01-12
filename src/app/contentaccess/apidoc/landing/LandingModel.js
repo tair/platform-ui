@@ -43,9 +43,11 @@ angular
 										'SMS resources include partners, parties, credentials, subscriptions, meters, authorizations, and session logs.',
 										'The API calls are Uniform Resource Identifiers (URIs) that identify resources or actions. You can use the GET, POST, PUT, and DELETE HTTP operations to query, create, update, or delete the resources, respectively.',
 										'It is good practice to always end a path with / before the query parameters, as in /credentials/login/?partnerId=biocyc',
-										'The substitution value {id} is a unique integer identifier for an object, used throughout the documentation.',
+										'The substitution value {id} is a unique integer identifier for an object, used throughout the documentation. The {id} for a partner is a string name rather than a number.',
 										'You submit new and updated data values in the body of the POST or PUT operations in form-data or form-urlencoded format. For PUT updates, you must supply all the data fields for the object in the body.',
-										'Most API calls require authentication. See the Credentials API for more information. You must be authenticated as a registered user through one of the partner registration systems.' 
+										'Most API calls require authentication. See the Credentials API for more information. You must be authenticated as a registered user through one of the partner registration systems.',
+										'When a call succeeds, it returns a 200 HTTP code (201 for POST); when it fails, it returns 200 (with message) or 400 (with no message)',
+										'Parameters are either query parameters in the URI string or body parameters in the content of the POST or PUT request'
 										]
 							},
 						},
