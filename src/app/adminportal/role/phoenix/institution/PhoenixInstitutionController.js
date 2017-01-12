@@ -152,7 +152,10 @@ angular.module('platform-ui.adminportal.role.phoenix.institution').controller(
 				url: $scope.apiUri+'/parties/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+institution['partyId'],			
 		    data: data,
 			method: 'PUT',
-			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded',
+				'Authorization':'JWT '+$scope.token,
+				}
 		    }).success(function(data, status, headers, config){
 		    }).error(function(data, status, headers, config){
 			alert("institution edit request failed");
@@ -217,6 +220,7 @@ angular.module('platform-ui.adminportal.role.phoenix.institution').controller(
 							url: $scope.apiUri+'/parties/?secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
 							data:data,
 		                    method: 'POST',
+		                    headers: {'Authorization':'JWT '+$scope.token},
 				}).success(function(data, status, headers, config){
 		        	$scope.createdInstitution = {
 		                	country: data.country,
@@ -300,6 +304,7 @@ angular.module('platform-ui.adminportal.role.phoenix.institution').controller(
             $http({
             	url: $scope.apiUri+'/parties/?partyType=organization'+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
                 method: 'GET',
+                headers: {'Authorization':'JWT '+$scope.token},
             }).success(function(data, status, headers, config){
 		$scope.institutions = [];
 		for (var i = 0; i < data.length; i++) {
@@ -328,6 +333,7 @@ angular.module('platform-ui.adminportal.role.phoenix.institution').controller(
         $http({
         	url: $scope.apiUri+'/parties/?partyType=organization&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
             method: 'GET',
+            headers: {'Authorization':'JWT '+$scope.token},
 	        }).success(function(data, status, headers, config){
 		$scope.allInstitutions = [];
 		for (var i = 0; i < data.length; i++) {

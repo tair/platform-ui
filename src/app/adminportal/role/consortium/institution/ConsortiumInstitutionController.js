@@ -115,7 +115,10 @@ angular.module('platform-ui.adminportal.role.consortium.institution').controller
 			url: $scope.apiUri+'/parties/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+institution['partyId'],
 			data: data,
 			method: 'PUT',
-			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded',
+				'Authorization':'JWT '+$scope.token,
+				}
 		    }).success(function(data, status, headers, config){
 		    }).error(function(data, status, headers, config){
 			alert("ip range request failed");
@@ -300,6 +303,7 @@ angular.module('platform-ui.adminportal.role.consortium.institution').controller
         $http({
         	url: $scope.apiUri+'/parties/?partyType=organization&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
             method: 'GET',
+            headers: {'Authorization':'JWT '+$scope.token},
 	        }).success(function(data, status, headers, config){
 		$scope.allInstitutions = [];
 		for (var i = 0; i < data.length; i++) {
