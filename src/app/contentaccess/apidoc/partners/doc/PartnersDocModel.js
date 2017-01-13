@@ -496,8 +496,8 @@ angular
 							type : 'String',
 							description : 'The text of the benefit',
 						}, ],
-						returns : '',
-						errors : [{code : '400', message : ''}],
+						returns : 'SubscriptionDescriptionItem object with updates',
+						errors : [],
 						example : 'https://pwapi.arabidopsis.org/partners/descriptionItems/?subscriptionDescriptionItemId=5',
 					}, {
 						header : 'Delete a Subscription Description Item',
