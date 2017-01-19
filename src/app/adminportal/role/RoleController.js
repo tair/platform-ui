@@ -89,7 +89,8 @@ angular.module('platform-ui.adminportal.role').controller(
 		    }).error(function() {});
 		    $http({
 			url: $scope.apiUri+'/credentials/?partyId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
-			method: 'GET'
+			method: 'GET',
+			headers: {'Authorization':'JWT '+$scope.token},
 		    }).success(function(data, status, headers, config){
 		    	$scope.email = data[0].email;
 //		    	$cookies.partyInfo.username = data[0].username;
