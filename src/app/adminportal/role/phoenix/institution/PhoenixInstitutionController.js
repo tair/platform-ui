@@ -256,24 +256,7 @@ angular.module('platform-ui.adminportal.role.phoenix.institution').controller(
 		    $scope.institutions[i].state=null;
 		}
 	    }
-//	    $scope.deleteAffiliation = function(institution){
-//        	var data = {
-//        			parentPartyId: $scope.consortiumId,
-//        			childPartyId: institution.partyId,
-//        	}
-//        	$http({
-//        		url: $scope.apiUri+'/parties/affiliations/?secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
-//        		data:data,
-//	            method: 'DELETE',
-//        	}).success(function(data, status, headers, config){
-//            }).error(function(data, status, headers, config){
-//                alert("institution remove request failed");
-//            });
-//        	var index = $scope.institutions.indexOf(institution);
-//            if (index > -1) {
-//                $scope.institutions.splice(index,1);
-//            }
-//        }
+
 	    $scope.removeConfirm = function(institution) {
 //	    	var data = {
 //	    			partyId: institution.partyId,
