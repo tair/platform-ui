@@ -140,6 +140,7 @@ angular.module('platform-ui.adminportal.role.institution.consortium').controller
 					url: $scope.apiUri+'/parties/affiliations/?secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
 					data:data,
                     method: 'POST',
+    	            headers: {'Authorization': 'JWT '+$scope.token},
 		}).success(function(data, status, headers, config){			
 			$scope.foundConsortium['state'] = null;
 			$scope.consortiums.unshift(angular.copy($scope.foundConsortium));
@@ -159,6 +160,7 @@ angular.module('platform-ui.adminportal.role.institution.consortium').controller
                 $http({
                     url: $scope.apiUri+'/parties/affiliations/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&parentPartyId='+consortium.partyId+'&childPartyId='+$scope.institutionId,
                     method: 'DELETE',
+    	            headers: {'Authorization': 'JWT '+$scope.token},
                 }).success(function(data, status, headers, config){
                 }).error(function(data, status, headers, config){
                     alert("delete consortium request failed");
@@ -173,6 +175,7 @@ angular.module('platform-ui.adminportal.role.institution.consortium').controller
         $http({
             url: $scope.apiUri+'/parties/affiliations?partyId='+$scope.institutionId +'&partyType=organization'+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
             method: 'GET',
+            headers: {'Authorization': 'JWT '+$scope.token},
         }).success(function(data, status, headers, config){
 			$scope.consortiums = [];
 			for (var i = 0; i < data.length; i++) {
