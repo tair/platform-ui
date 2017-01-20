@@ -49,6 +49,7 @@ angular.module('platform-ui.adminportal.role.consortium').controller(
 		$http({
 			url: $scope.apiUri+'/parties/consortiums?partyId='+$scope.consortiumId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
 			method: 'GET'
+            headers: {'Authorization': 'JWT ' + $scope.token},
 		    }).success(function(data, status, headers, config){
 		    	$scope.consortium = data;
 		    	$scope.title = data[0].name;
