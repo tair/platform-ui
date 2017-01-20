@@ -88,6 +88,7 @@ angular.module('platform-ui.adminportal.role.consortium.subscription.renewal').c
 		$http({
 			url: $scope.apiUri+'/parties/consortiums/?partyId='+$scope.consortiumId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
 			method: 'GET',
+            headers: {'Authorization': 'JWT ' + $scope.token},
 		}).success(function(data, status, headers, config){
 			$scope.consortium = data[0].name;
 			$scope.user = data[1];
