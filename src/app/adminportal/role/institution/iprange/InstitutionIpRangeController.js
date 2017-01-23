@@ -144,7 +144,10 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 					url: $scope.apiUri+'/parties/ipranges/?partyId='+$scope.institutionId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&ipRangeId='+iprange['ipRangeId'],
 					data: data,
 					method: 'PUT',
-					headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+					headers: {
+						'Content-Type': 'application/x-www-form-urlencoded',
+						'Authorization': 'JWT '+$scope.token,
+					}
 			    }).success(function(data, status, headers, config){
 			    }).error(function(data, status, headers, config){
 			    	alert("ip range request failed");
@@ -294,6 +297,7 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 	            url: $scope.apiUri+'/parties/ipranges/?partyId='+$scope.institutionId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
 			    data:data,
 	            method: 'POST',
+	            headers: {'Authorization': 'JWT '+$scope.token},
 			}).success(function(data, status, headers, config){
 				$scope.ipranges.unshift({
 					ipRangeId:data['ipRangeId'],
@@ -352,6 +356,7 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
                 url: $scope.apiUri+'/parties/ipranges/?partyId='+$scope.institutionId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&ipRangeId='+data['ipRangeId'],
                 data:data,
                 method: 'DELETE',
+                headers: {'Authorization': 'JWT '+$scope.token},
             }).success(function(data, status, headers, config){
             }).error(function(data, status, headers, config){
                 alert("ip range request failed");
@@ -367,6 +372,7 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
             $http({
                 url: $scope.apiUri+'/parties/ipranges/?partyId='+$scope.institutionId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
                 method: 'GET',
+                headers: {'Authorization': 'JWT '+$scope.token},
             }).success(function(data, status, headers, config){
 		$scope.ipranges = [];
 		for (var i = 0; i < data.length; i++) {
