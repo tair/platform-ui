@@ -147,7 +147,7 @@ angular.module('platform-ui.adminportal.role.consortium.profile').controller(
                                 console.log($scope.userprev);
                                 
                             }).error(function(data, status, headers, config){
-                            	errMsg = "GET /parties/institutions/ Failed";
+                            	errMsg = "GET /parties/consortiums/ Failed";
 //                            	bootbox.alert(errMsg);
                             });
 
