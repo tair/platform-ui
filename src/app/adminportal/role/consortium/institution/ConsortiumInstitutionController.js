@@ -208,6 +208,7 @@ angular.module('platform-ui.adminportal.role.consortium.institution').controller
 							url: $scope.apiUri+'/parties/?secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
 							data:data,
 		                    method: 'POST',
+		                    headers: {'Authorization':'JWT '+$scope.token},
 				}).success(function(data, status, headers, config){
 		        	$scope.createdInstitution = {
 		                	country: data.country,
