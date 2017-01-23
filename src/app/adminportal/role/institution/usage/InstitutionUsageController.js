@@ -57,6 +57,7 @@ angular.module('platform-ui.adminportal.role.institution.usage').controller(
 			$http({
 				url: $scope.apiUri+'/parties/institutions/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+$scope.institutionId,
 				method: 'GET',
+				headers: {'Authorization': 'JWT '+$scope.token},
 			}).success(function(data, status, headers, config) {
 				$scope.postData.institution = data[0].name;
 				$scope.postData.email = data[1].email;

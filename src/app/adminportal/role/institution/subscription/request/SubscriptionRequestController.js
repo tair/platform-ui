@@ -89,6 +89,7 @@ angular.module('platform-ui.adminportal.role.institution.subscription.request').
 		$http({
                         url: $scope.apiUri+'/parties/institutions/?partyId='+$scope.institutionId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
                         method: 'GET',
+                        headers: {'Authorization': 'JWT '+$scope.token},
                 }).success(function(data, status, headers, config){
                 		$scope.partyName = data[0].name;
                         $scope.user = data[1];

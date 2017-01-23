@@ -57,7 +57,10 @@ angular.module('platform-ui.adminportal.role.phoenix.profile').controller(
 					url: $scope.apiUri+'/parties/institutions/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
 					data: put_data,
 					method: 'PUT',
-					headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+					headers: {
+						'Content-Type': 'application/x-www-form-urlencoded',
+						'Authorization': 'JWT '+$scope.token,
+					},
 				}).success(function(){
 					bootbox.alert("Staff Profile Successfully Updated" + (forceReSignIn ? ". Please re-login":"!") );
 					if (forceReSignIn) {
@@ -111,6 +114,7 @@ angular.module('platform-ui.adminportal.role.phoenix.profile').controller(
 	            	//TODO: create parties/staff request in api server
 	                url: $scope.apiUri+'/parties/institutions/?partyId='+$scope.credentialId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
 	                method: 'GET',
+	                headers: {'Authorization': 'JWT '+$scope.token},
 	            }).success(function(data, status, headers, config){
                         		$scope.user.partyId = data[0].partyId;
                         		$scope.user.partyType = data[0].partyType;

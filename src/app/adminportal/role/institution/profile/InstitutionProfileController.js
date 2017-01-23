@@ -56,7 +56,10 @@ angular.module('platform-ui.adminportal.role.institution.profile').controller(
 					url: $scope.apiUri+'/parties/institutions/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
 					data: put_data,
 					method: 'PUT',
-					headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+					headers: {
+						'Content-Type': 'application/x-www-form-urlencoded',
+						'Authorization': 'JWT '+$scope.token,
+					},
 				}).success(function(){
 					bootbox.alert("Institution Profile Successfully Updated" + (forceReSignIn ? ". Please re-login":"!") );
 					if (forceReSignIn) {
@@ -110,6 +113,7 @@ angular.module('platform-ui.adminportal.role.institution.profile').controller(
 	            $http({
 	                url: $scope.apiUri+'/parties/institutions/?partyId='+$scope.institutionId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
 	                method: 'GET',
+	                headers: {'Authorization': 'JWT '+$scope.token},
 	            }).success(function(data, status, headers, config){
                         		$scope.user.partyId = data[0].partyId;
                         		$scope.user.partyType = data[0].partyType;
