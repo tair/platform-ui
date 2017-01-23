@@ -183,6 +183,7 @@ angular.module('platform-ui.adminportal.role.phoenix.institution').controller(
 						url: $scope.apiUri+'/parties/institutions/?secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
 						data:data,
 	                    method: 'POST',
+	                    headers: {'Authorization': 'JWT '+$scope.token},
 			}).success(function(data, status, headers, config){
 
 	        	$scope.createdInstitution = {
@@ -265,6 +266,7 @@ angular.module('platform-ui.adminportal.role.phoenix.institution').controller(
                     url: $scope.apiUri+'/parties/institutions/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+institution['partyId'],
 //                    data: data,
                     method: 'DELETE',
+                    headers: {'Authorization': 'JWT '+$scope.token},
                 }).success(function(data, status, headers, config){
                 }).error(function(data, status, headers, config){
                     alert("institution request failed");
