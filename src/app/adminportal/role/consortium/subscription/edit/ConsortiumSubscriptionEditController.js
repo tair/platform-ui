@@ -37,7 +37,10 @@ angular.module('platform-ui.adminportal.role.consortium.subscription.edit').cont
 	    			url: $scope.apiUri+'/subscriptions/'+$scope.allSubscriptions[$scope.partnerId].subscriptionId+'/renewal/'+'?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
 	    			method: 'PUT',
 	    			data: postData,
-	    			headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+	    			headers: {
+	    				'Content-Type': 'application/x-www-form-urlencoded',
+	    				'Authorization': 'JWT '+$scope.token,
+	    			},
 	    		}).success(function(data, status, headers, config){
 	    			$scope.allSubscriptions[$scope.partnerId].startDate = data['startDate'];
 	    			$scope.allSubscriptions[$scope.partnerId].endDate = data['endDate'];
