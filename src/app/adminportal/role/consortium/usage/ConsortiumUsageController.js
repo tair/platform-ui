@@ -33,6 +33,7 @@ angular.module('platform-ui.adminportal.role.consortium.usage').controller(
 						url: $scope.apiUri+'/parties/usage/?partyId='+$scope.credentialId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
 						method: 'POST',
 						data: $scope.postData,
+						headers: {'Authorization': 'JWT '+$scope.token},
 					}).success(function() {
 						alert("Your request has been received. We will get back to you shortly.");
 						$scope.postData.startDate = null;
