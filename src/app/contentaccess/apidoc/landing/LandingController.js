@@ -22,7 +22,7 @@ function($http, $scope, $location, $state, Title, LandingModel) {
 			console.log($state);
 			return;
 		}
-		/*if ($scope.api == "parties") {
+		if ($scope.api == "parties") {
 			$state.go("apidoc.parties.doc", {});
 			console.log($state);
 			return;
@@ -51,7 +51,7 @@ function($http, $scope, $location, $state, Title, LandingModel) {
 			$state.go("apidoc.sessionlogs.doc", {});
 			console.log($state);
 			return;
-		}*/
+		}
 	}
 	$scope.set_api = function(str) {
 		$scope.api = str;

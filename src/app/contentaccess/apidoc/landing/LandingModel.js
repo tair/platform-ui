@@ -22,19 +22,45 @@ angular
 										'URI regular expressions for partner URIs',
 										'Subscription terms with period, price, and group discount percentage',
 										'Branding elements including logo, subscription information, and email text',
-										'Access rules for Paid and Login-Required resources identified by regular expressions' 
-										]
+										'Access rules for Paid and Login-Required resources identified by regular expressions', ]
 							},
-							/*
-							 * parties : { id : 'parties', heading : 'Parties', },
-							 * credentials : { id : 'credentials', heading :
-							 * 'Credentials', }, subscriptions : { id :
-							 * 'subscriptions', heading : 'Subscriptions', },
-							 * meters : { id : 'meters', heading : 'Meters', },
-							 * authorizations : { id : 'authorizations', heading :
-							 * 'Authorizations', }, sessionlogs : { id :
-							 * 'sessionlogs', heading : 'Session Logs', },
-							 */
+							credentials : {
+								id : 'credentials',
+								heading : 'Credentials',
+								description : 'A credential is a username used to authenticate a party to the API.',
+								elements : [
+											'Currently, a credential applies to a single party for a given partner.',
+											'Credentials have a party id, username, password, email, partner ID, and user identifier as well as optional information.',
+											'Passwords are encrypted in the API database.',
+											'Credentials usually get created through partner registration features. The user identifier is the partner identifier for the user.',
+											'Credentials get imported from partners when partners integrate with the paywall API.',
+											'When the API supplies credential information in JSON objects, it suppresses the password or encrypts it; you never see a cleartext password in a response.',
+											'Specifying the phoenix partner creates a credential for the Phoenix Admin Portal.',
+											'A user can log in with the credential information.',
+											'A user can reset their password.',
+											'A user can update password and username as part of a profile.',
+											'A user can get the usernames associated with an email address.', ]
+							},
+							parties : {
+								id : 'parties',
+								heading : 'Parties',
+							},
+							subscriptions : {
+								id : 'subscriptions',
+								heading : 'Subscriptions',
+							},
+							meters : {
+								id : 'meters',
+								heading : 'Meters',
+							},
+							authorizations : {
+								id : 'authorizations',
+								heading : 'Authorizations',
+							},
+							sessionlogs : {
+								id : 'sessionlogs',
+								heading : 'Session Logs',
+							},
 							def : {
 								id : 'default',
 								heading : 'SMS REST API',
@@ -47,8 +73,7 @@ angular
 										'You submit new and updated data values in the body of the POST or PUT operations in form-data or form-urlencoded format. For PUT updates, you must supply all the data fields for the object in the body.',
 										'Most API calls require authentication. See the Credentials API for more information. You must be authenticated as a registered user through one of the partner registration systems.',
 										'When a call succeeds, it returns a 200 HTTP code (201 for POST); when it fails, it returns 200 (with message) or 400 (with no message)',
-										'Parameters are either query parameters in the URI string or body parameters in the content of the POST or PUT request'
-										]
+										'Parameters are either query parameters in the URI string or body parameters in the content of the POST or PUT request' ]
 							},
 						},
 					}
