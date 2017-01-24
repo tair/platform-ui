@@ -106,6 +106,30 @@ angular
 												type : 'String',
 												description : 'For backward compatibility, a non-URL-encoded encrypted secret key for authorization',
 											}, ],
+								},
+								{
+									name : 'ResetPasswordData',
+									fields : [
+											{
+												name : 'username',
+												type : 'String',
+												description : 'The username for which the password was reset',
+											},
+											{
+												name : 'useremail',
+												type : 'String',
+												description : 'The email to which the password-reset email was sent',
+											},
+											{
+												name : 'temppwd',
+												type : 'String',
+												description : 'The encrypted temporary password',
+											},
+											{
+												name : 'reset pwd',
+												type : 'String',
+												description : 'success message',
+											}, ],
 								}, /*
 									 * { name : '', fields : [ { name : '', type :
 									 * '', description : '', }, { name : '',
@@ -271,7 +295,7 @@ angular
 								},
 								{
 									header : 'Update a Credential and Its Party',
-									summary : 'Update the fields of an existing party (if partyId specified) and its credential. This call is designed for use by a partner registration system to update user profile information.',
+									summary : 'Update the fields of an existing Credential and optionally the Party corresponding to it. This call is designed for use by a partner registration system to update user profile information.',
 									op : 'PUT',
 									uri : '/credentials/?userIdentifier={string}',
 									parameters : [
@@ -284,7 +308,7 @@ angular
 											{
 												name : 'partyId',
 												type : 'Number',
-												description : 'The unique id for the party; optional but if supplied, causes update of Party fields',
+												description : 'The unique id for the party; optional but if supplied, read-only; causes update of Party fields',
 											},
 											{
 												name : 'username',
@@ -395,43 +419,82 @@ angular
 											{
 												code : '401',
 												message : 'Authentication Login USER NOT MATCH. i={n} continue...',
-												explanation : 'The password supplied does not match any password found for the username',
+												explanation : 'The password supplied does not match any password found for the username.',
 												resolution : 'Correct the password or reset it.'
 											}, ],
 									example : 'POST https://pwapi.arabidopsis.org/credentials/login/?partnerId=tair',
 								},
 								{
 									header : 'Reset Password',
-									summary : 'Reset a credential password to a randomly-generated, temporary password',
+									summary : 'Reset a credential password to a randomly-generated, temporary password and email to specified user',
 									op : 'PUT',
 									uri : '/resetPwd/',
+									parameters : [
+											{
+												name : 'user',
+												type : 'String',
+												description : 'The username for the user registered with the partner',
+											},
+											{
+												name : 'partnerId',
+												type : 'String',
+												description : 'The unique name of the partner for which to reset the user password',
+											}, ],
+									body_parameters : [],
+									returns : 'A ResetPasswordData object',
+									errors : [
+											{
+												code : '400',
+												message : '{"message": "No username provided"}',
+												explanation : 'Resetting password requires username.',
+												resolution : 'Supply a user parameter to the request.'
+											},
+											{
+												code : '400',
+												message : '{"message": "No partnerId provided"}',
+												explanation : 'Resetting password requires partner id.',
+												resolution : 'Supply a partnerId parameter to the request.'
+											},
+											{
+												code : '401',
+												message : '{"reset pwd failed": "No such user"}',
+												explanation : 'The username was not found.',
+												resolution : 'Correct the username.'
+											}, ],
+									example : '',
+								}, {
+									header : 'Get Usernames for Email',
+									summary : 'Gets all the usernames associated with a specific email and sends them to that email address',
+									op : 'GET',
+									uri : '/credentials/getUsernames/?email={string}',
 									parameters : [ {
-										name : '',
-										type : '',
-										description : '',
-									}, {
-										name : '',
-										type : '',
-										description : '',
+										name : 'email',
+										type : 'String',
+										description : 'The email address for which to find the usernames and to which to send an email with those names',
 									}, ],
 									body_parameters : [],
-									returns : '',
+									returns : 'Credential object with no password field',
 									errors : [ {
 										code : '400',
-										message : '',
-										explanation : '',
-										resolution : ''
-									} ],
+										message : '{"error": "email param is required."}',
+										explanation : 'The request requires an email address to look up.',
+										resolution : 'Supply a valid email parameter in the request.'
+									}, {
+										code : '400',
+										message : '{"error": "no username found."}',
+										explanation : 'The email is not associated with any users.',
+										resolution : 'Correct the username in the request.'
+									}, ],
 									example : '',
 								}, /*
-									  { header : '', summary : '', op : 'GET',
-									  uri : '', parameters : [ { name : '',
-									  type : '', description : '', }, { name :
-									  '', type : '', description : '', }, ],
-									  body_parameters : [], returns : '',
-									  errors : [{code : '400', message : '',
-									  explanation : '', resolution : ''}],
-									  example : '', },
-								*/]
+									 * { header : '', summary : '', op : 'GET',
+									 * uri : '', parameters : [ { name : '',
+									 * type : '', description : '', }, { name :
+									 * '', type : '', description : '', }, ],
+									 * body_parameters : [], returns : '',
+									 * errors : [{code : '400', message : '',
+									 * explanation : '', resolution : ''}],
+									 * example : '', },
+									 */]
 					}
 				} ]);
