@@ -149,7 +149,7 @@ angular
 											{
 												name : 'sourceUri',
 												type : 'String',
-												description : 'Regular expression identifying a class of partner URIs; identifies partner as well as the target back-end server',
+												description : 'Regular expression identifying a class of partner URIs; identifies partner as well as the target back-end server; see https://docs.python.org/2/library/re.html for details on Python regular expreesions',
 											},
 											{
 												name : 'targetUri',
@@ -314,11 +314,23 @@ angular
 								},
 								{
 									header : 'Create a Partner Pattern',
-									summary : 'Create a new partner pattern with source regular expression and target URI; all PartnerPattern fields other than partnerPatternId are required',
+									summary : 'Create a new partner pattern with source regular expression and target URI; all PartnerPattern fields other than partnerPatternId are required. See https://docs.python.org/2/library/re.html for details on Python regular expressions.',
 									op : 'POST',
 									uri : '/partners/patterns/',
 									parameters : [],
-									body_parameters : [],
+									body_parameters : [ {
+										name : 'partnerId',
+										type : 'String',
+										description : 'The unique identifier for the partner',
+									}, {
+										name : 'sourceUri',
+										type : 'String',
+										description : 'A Python regular expression identifying a class of partner URIs (URIs that identify the partner)',
+									}, {
+										name : 'targetUri',
+										type : 'String',
+										description : 'A URI containing scheme (protocol) and authority (hostname and optional port) for the target back-end server to which to proxy the URIs identified by the pattern',
+									}, ],
 									returns : 'Array of PartnerPattern',
 									errors : [],
 									example : 'https://pwapi.arabidopsis.org/partners/patterns/',
@@ -334,7 +346,19 @@ angular
 												type : 'Number',
 												description : 'The unique identifier for the pattern',
 											}, ],
-									body_parameters : [],
+									body_parameters : [{
+										name : 'partnerId',
+										type : 'String',
+										description : 'The unique identifier for the partner',
+									}, {
+										name : 'sourceUri',
+										type : 'String',
+										description : 'A Python regular expression identifying a class of partner URIs (URIs that identify the partner)',
+									}, {
+										name : 'targetUri',
+										type : 'String',
+										description : 'A URI containing scheme (protocol) and authority (hostname and optional port) for the target back-end server to which to proxy the URIs identified by the pattern',
+									}, ],
 									returns : 'Array of PartnerPattern',
 									errors : [],
 									example : 'https://pwapi.arabidopsis.org/partners/patterns/?partnerPatternId=32',
