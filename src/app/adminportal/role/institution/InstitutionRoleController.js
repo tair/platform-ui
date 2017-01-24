@@ -48,7 +48,7 @@ angular.module('platform-ui.adminportal.role.institution').controller(
 		//set title
 		$scope.institutionId = $location.search()['institutionId'];
 		$http({
-			url: $scope.apiUri+'/parties/institutions?partyId='+$scope.institutionId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
+			url: $scope.apiUri+'/parties/institutions/?partyId='+$scope.institutionId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
 			method: 'GET',
 			headers: {'Authorization': 'JWT '+$scope.token},
 		    }).success(function(data, status, headers, config){
