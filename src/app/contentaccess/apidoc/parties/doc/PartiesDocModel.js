@@ -45,7 +45,7 @@ angular
 						}, ],
 						body_parameters : [],
 						returns : '',
-						errors : [{code : '400', message : ''}],
+						errors : [{code : '400', message : '', explanation : '', resolution : ''}, ],
 						example : '',
 					}, */]
 					}
