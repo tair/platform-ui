@@ -485,7 +485,7 @@ angular
 										explanation : 'The email is not associated with any users.',
 										resolution : 'Correct the username in the request.'
 									}, ],
-									example : '',
+									example : 'https://pwapi.arabidopsis.org/credentials/getUsernames/?email=user@anywhere.org',
 								}, /*
 									 * { header : '', summary : '', op : 'GET',
 									 * uri : '', parameters : [ { name : '',
