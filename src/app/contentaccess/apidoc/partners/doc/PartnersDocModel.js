@@ -13,16 +13,6 @@ angular
 					return {
 						heading : 'Partner API',
 						overview : 'A partner is a scientific data or informatics system that makes up a unit for subscription, authentication, and authorization.',
-						elements : [
-								'The partner specifies branding elements like logo, login-page text, and email text.',
-								'The partner offers its resources through a well-defined set of URIs. ',
-								'Each partner has a set of regular expressions that identifies these base URIs.',
-								'Partners have individual subscription terms for display on subscription pages.',
-								'Terms have period, price, and group discount percentage.',
-								'Partners have access rules that identify sets of URIs with regular expressions that are Paid resources or Login-Required Resources.',
-								'A Paid resource requires a subscription. A Login-Required resource requires the user to log in, usually because the resource needs the identity of the user for attribution for some reason.',
-								'Note that individual subscriptions use login to authenticate for access to Paid resources, but this is independent of rules requiring login to access resources.',
-								'Login-Required resources can be Paid resources as well.', ],
 						datatypes : [
 								{
 									name : 'Partner',
