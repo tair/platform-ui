@@ -424,14 +424,14 @@ angular
 									} ],
 									example : '',
 								}, /*
-									 * { header : '', summary : '', op : 'GET',
-									 * uri : '', parameters : [ { name : '',
-									 * type : '', description : '', }, { name :
-									 * '', type : '', description : '', }, ],
-									 * body_parameters : [], returns : '',
-									 * errors : [{code : '400', message : '',
-									 * explanation : '', resolution : ''}],
-									 * example : '', },
-									 */]
+									  { header : '', summary : '', op : 'GET',
+									  uri : '', parameters : [ { name : '',
+									  type : '', description : '', }, { name :
+									  '', type : '', description : '', }, ],
+									  body_parameters : [], returns : '',
+									  errors : [{code : '400', message : '',
+									  explanation : '', resolution : ''}],
+									  example : '', },
+								*/]
 					}
 				} ]);
