@@ -12,12 +12,12 @@ angular
 
 				'platform-ui.contentaccess.apidoc.landing',
 						'platform-ui.contentaccess.apidoc.partners',
-						/*'platform-ui.contentaccess.apidoc.parties',
+						'platform-ui.contentaccess.apidoc.parties',
 						'platform-ui.contentaccess.apidoc.credentials',
 						'platform-ui.contentaccess.apidoc.subscriptions',
 						'platform-ui.contentaccess.apidoc.meters',
 						'platform-ui.contentaccess.apidoc.authorizations',
-						'platform-ui.contentaccess.apidoc.sessionlogs', */])
+						'platform-ui.contentaccess.apidoc.sessionlogs', ])
 		.config(
 				function($stateProvider) {
 					$stateProvider
@@ -44,7 +44,7 @@ angular
 											}
 										}
 									})
-							/*.state(
+							.state(
 									'apidoc.parties',
 									{
 										abstract : true,
@@ -115,5 +115,5 @@ angular
 												templateUrl : 'contentaccess/apidoc/sessionlogs/sessionlogs.html'
 											}
 										}
-									})*/;
+									});
 				});
