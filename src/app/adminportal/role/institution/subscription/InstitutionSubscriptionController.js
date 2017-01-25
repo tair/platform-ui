@@ -76,6 +76,7 @@ angular.module('platform-ui.adminportal.role.institution.subscription').controll
         $http({
         	url: $scope.apiUri+'/subscriptions/consactsubscriptions/' + $scope.institutionId+'/',
         	method: 'GET',
+        	headers: {'Authorization': 'JWT '+$scope.token},   	
         }).success(function(data, status, headers, config) {
         	$scope.consActiveSubscriptions = data;
         }).error(function(){
