@@ -43,6 +43,7 @@ angular.module('platform-ui.adminportal.role.phoenix.institution').controller(
 	    $http({
             url: $scope.apiUri+'/subscriptions/activesubscriptions/'+$scope.credentialId+'/',
             method: 'GET',
+            headers: {'Authorization': 'JWT '+$scope.token},
 	    }).success(function(data, status, headers, config) {
 	            $scope.activeSubscriptions = data;
 	    }).error(function() {
