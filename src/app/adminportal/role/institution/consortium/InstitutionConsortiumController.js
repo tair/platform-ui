@@ -173,7 +173,7 @@ angular.module('platform-ui.adminportal.role.institution.consortium').controller
 	    }
 	    // init
         $http({
-            url: $scope.apiUri+'/parties/affiliations?partyId='+$scope.institutionId +'&partyType=organization'+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
+            url: $scope.apiUri+'/parties/affiliations/?partyId='+$scope.institutionId +'&partyType=organization'+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
             method: 'GET',
             headers: {'Authorization': 'JWT '+$scope.token},
         }).success(function(data, status, headers, config){
