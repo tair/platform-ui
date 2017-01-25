@@ -47,7 +47,7 @@ angular
 									fields : [
 											{
 												name : 'accessRuleId',
-												type : 'Number',
+												type : 'Number (generated)',
 												description : 'The unique identifier for the access rule',
 											},
 											{
