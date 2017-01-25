@@ -470,7 +470,7 @@ angular
 									body_parameters : [],
 									returns : '',
 									errors : [],
-									example : 'https://demoapi.arabidopsis.org/authorizations/subscriptions/?partnerId=tair&url=http%3A%2F%2Fwww.arabidopsis.org%2Fcgi-bin%2Fbulk%2Fsequences%2F&ip=203.255.24.127',
+									example : 'https://pwapi.arabidopsis.org/authorizations/subscriptions/?partnerId=tair&url=http%3A%2F%2Fwww.arabidopsis.org%2Fcgi-bin%2Fbulk%2Fsequences%2F&ip=203.255.24.127',
 								},
 								{
 									header : 'Check Authentication Access',
@@ -496,7 +496,7 @@ angular
 									body_parameters : [],
 									returns : 'a TrueFalseAccess object',
 									errors : [],
-									example : 'https://demoapi.arabidopsis.org/authorizations/authentications/?partnerId=tair&url=http%3A%2F%2Fwww.arabidopsis.org%2Fcgi-bin%2Fbulk%2Fsequences%2F&ip=203.255.24.127',
+									example : 'https://pwapi.arabidopsis.org/authorizations/authentications/?partnerId=tair&url=http%3A%2F%2Fwww.arabidopsis.org%2Fcgi-bin%2Fbulk%2Fsequences%2F&ip=203.255.24.127',
 								}, /*
 									 * { header : '', summary : '', op : 'GET',
 									 * uri : '', parameters : [ { name : '',
