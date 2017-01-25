@@ -29,17 +29,17 @@ angular
 								heading : 'Credentials',
 								description : 'A credential is a username used to authenticate a party to the API.',
 								elements : [
-											'Currently, a credential applies to a single party for a given partner.',
-											'Credentials have a party id, username, password, email, partner ID, and user identifier as well as optional information.',
-											'Passwords are encrypted in the API database.',
-											'Credentials usually get created through partner registration features. The user identifier is the partner identifier for the user.',
-											'Credentials get imported from partners when partners integrate with the paywall API.',
-											'When the API supplies credential information in JSON objects, it suppresses the password or encrypts it; you never see a cleartext password in a response.',
-											'Specifying the phoenix partner creates a credential for the Phoenix Admin Portal.',
-											'A user can log in with the credential information.',
-											'A user can reset their password.',
-											'A user can update password and username as part of a profile.',
-											'A user can get the usernames associated with an email address.', ]
+										'Currently, a credential applies to a single party for a given partner.',
+										'Credentials have a party id, username, password, email, partner ID, and user identifier as well as optional information.',
+										'Passwords are encrypted in the API database.',
+										'Credentials usually get created through partner registration features. The user identifier is the partner identifier for the user.',
+										'Credentials get imported from partners when partners integrate with the paywall API.',
+										'When the API supplies credential information in JSON objects, it suppresses the password or encrypts it; you never see a cleartext password in a response.',
+										'Specifying the phoenix partner creates a credential for the Phoenix Admin Portal.',
+										'A user can log in with the credential information.',
+										'A user can reset their password.',
+										'A user can update password and username as part of a profile.',
+										'A user can get the usernames associated with an email address.', ]
 							},
 							parties : {
 								id : 'parties',
@@ -56,6 +56,13 @@ angular
 							authorizations : {
 								id : 'authorizations',
 								heading : 'Authorizations',
+								description : 'Authorizations determine access to resources for users.',
+								elements : [
+										'Access patterns are regular expressions that match to a set of partner URIs.',
+										'Access types are kinds of access, such as Paid or Login (requires login).',
+										'Access rules map an access pattern to an access type and parter; the rule specifies which resources have what kind of access requirements such as requiring login or requiring a subscription.',
+										'The paywall can determine the status of a specific URI given the request URI, the requesting IP address, and the authentication status of the user.',
+										'The paywall can separately determine status for subscription and for authentication.' ]
 							},
 							sessionlogs : {
 								id : 'sessionlogs',
