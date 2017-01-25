@@ -28,6 +28,8 @@ angular.module('platform-ui.adminportal.role.phoenix.subscription').controller(
 				method: 'GET',
 				headers: {'Authorization': 'JWT '+$scope.token},
 			    }).success(function(data, status, headers, config){
+			    	var file = new File([data], "report.txt", {type: "text/plain;charset=utf-8"});
+			    	saveAs(file);
 			    	console.log('downloadRequest success.');
 			    }).error(function() {
 			    	console.log('downloadRequest error.');
