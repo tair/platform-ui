@@ -50,6 +50,7 @@ angular.module('platform-ui.adminportal.role.consortium.subscription').controlle
                 $http({
 	                    url: $scope.apiUri+'/subscriptions/allsubscriptions/'+$scope.consortiumId+'/',
 	                    method: 'GET',
+	                    headers: {'Authorization': 'JWT '+$scope.token},
 	            }).success(function(data, status, headers, config) {
 	                    $scope.allSubscriptions = data;
 	            }).error(function() {
