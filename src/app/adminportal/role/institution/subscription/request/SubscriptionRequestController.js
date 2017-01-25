@@ -61,6 +61,7 @@ angular.module('platform-ui.adminportal.role.institution.subscription.request').
                         url: $scope.apiUri+'/subscriptions/subscriptionrequest/'+'?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
                         method: 'POST',
                         data: postData,
+                        headers: {'Authorization': 'JWT '+$scope.token},
                 }).success(function(){
                 		$scope.successMessage = "Thank you for your request! We will get back to you shortly.";
                         $scope.comments = null;
