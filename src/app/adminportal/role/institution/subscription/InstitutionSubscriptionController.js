@@ -67,6 +67,7 @@ angular.module('platform-ui.adminportal.role.institution.subscription').controll
         $http({
                 url: $scope.apiUri+'/subscriptions/allsubscriptions/'+$scope.institutionId+'/',
                 method: 'GET',
+                headers: {'Authorization': 'JWT '+$scope.token},
         }).success(function(data, status, headers, config) {
                 $scope.allSubscriptions = data;
         }).error(function() {
