@@ -468,7 +468,7 @@ angular
 												description : 'The URL-encoded string identifying the resource to which access is requested',
 											}, ],
 									body_parameters : [],
-									returns : '',
+									returns : 'a TrueFalseAccess object',
 									errors : [],
 									example : 'https://pwapi.arabidopsis.org/authorizations/subscriptions/?partnerId=tair&url=http%3A%2F%2Fwww.arabidopsis.org%2Fcgi-bin%2Fbulk%2Fsequences%2F&ip=203.255.24.127',
 								},
@@ -476,7 +476,7 @@ angular
 									header : 'Check Authentication Access',
 									summary : 'Check the authentication-based access status for a URI given a partner, an IP address, and authentication state (transmitted through cookies); returns true or false; does not test subscription status',
 									op : 'GET',
-									uri : '',
+									uri : '/authorizations/authentications/',
 									parameters : [
 											{
 												name : 'partnerId',
