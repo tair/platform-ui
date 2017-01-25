@@ -338,9 +338,9 @@ angular
 									returns : 'A Pattern object',
 									errors : [ {
 										code : '400',
-										message : '{"error": "POST method:pattern is required as form-data"}',
-										explanation : 'The request did not contain a pattern field.',
-										resolution : 'Supply a valid pattern field in the request entity.'
+										message : '{"patternId": ["This field is required."],"accessTypeId": ["This field is required."],"partnerId": ["This field is required."]}',
+										explanation : 'The request did not contain one or more of the required id fields.',
+										resolution : 'Supply all three form-encoded, valid id fields in the request entity.'
 									} ],
 									example : 'https://pwapi.arabidopsis.org/authorizations/accessRules/',
 								},
