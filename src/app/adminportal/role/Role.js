@@ -13,6 +13,7 @@ angular.module(
 	'ui.router',
 	'service.title',
 	'service.currenttab',
+	'ngFileSaver',
     'platform-ui.adminportal.role.institution',
 	'platform-ui.adminportal.role.consortium',
 	'platform-ui.adminportal.role.phoenix',
