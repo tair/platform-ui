@@ -19,6 +19,7 @@ angular.module(
 	'ngResource',
 	'ngRoute',
 	'ngCookies',
+	'ngFileSaver',
 
 	/* Misc */
 	'service.title',
