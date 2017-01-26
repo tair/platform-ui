@@ -12,6 +12,7 @@ angular.module(
     [
 	'ui.router',
 	'service.title',
+	'ngFileSaver',
 	'platform-ui.adminportal.role.phoenix.institution',
 	'platform-ui.adminportal.role.phoenix.consortium',
 	'platform-ui.adminportal.role.phoenix.profile',

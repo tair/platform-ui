@@ -13,6 +13,7 @@ angular.module(
 	'ui.router',
 	'service.title',
 	'service.currenttab',
+	'ngFileSaver',
 	'platform-ui.adminportal.login',
 	'platform-ui.adminportal.role',
     ])
