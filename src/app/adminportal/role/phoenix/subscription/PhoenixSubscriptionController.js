@@ -20,7 +20,7 @@ angular.module('platform-ui.adminportal.role.phoenix.subscription').controller(
 	'Blob',
 
 	/* Controller Definition */
-	function ($scope, $http, $cookies, $window, $location, $state, Title, PhoenixProfileModel) {
+	function ($scope, $http, $cookies, $window, $location, $state, Title, PhoenixProfileModel, FileSaver, Blob) {
 	    init();
 	    
 	    $scope.downloadRequest = function(){
