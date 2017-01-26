@@ -16,6 +16,8 @@ angular.module('platform-ui.adminportal.role.phoenix.subscription').controller(
 	'$state',
 	'Title',
 	'PhoenixSubscriptionModel',
+	'FileSaver',
+	'Blob',
 
 	/* Controller Definition */
 	function ($scope, $http, $cookies, $window, $location, $state, Title, PhoenixProfileModel) {
@@ -28,8 +30,11 @@ angular.module('platform-ui.adminportal.role.phoenix.subscription').controller(
 				method: 'GET',
 				headers: {'Authorization': 'JWT '+$scope.token},
 			    }).success(function(data, status, headers, config){
-			    	var file = new File([data], "report.txt", {type: "text/plain;charset=utf-8"});
-			    	saveAs(file);
+			    	//http://alferov.github.io/angular-file-saver/
+			    	var data = new Blob([data], { type: 'text/plain;charset=utf-8' });
+			        FileSaver.saveAs(data, 'report.txt');
+			    	/*If you need to save really large files bigger then the blob's size limitation or don't 
+			    	have enough RAM, then have a look at the more advanced StreamSaver.js.*/
 			    	console.log('downloadRequest success.');
 			    }).error(function() {
 			    	console.log('downloadRequest error.');
