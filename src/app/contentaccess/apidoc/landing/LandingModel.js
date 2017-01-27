@@ -44,14 +44,47 @@ angular
 							parties : {
 								id : 'parties',
 								heading : 'Parties',
+								description : 'A party is an entity that plays a role in the Phoenix system.',
+								elements : [
+										'A party may be a user, an organization, a consortium, a partner, a staff member, or an admin.',
+										'The party is the subject of authentication by the paywall system; see the Credential documentation for details.',
+										'The party type defines the role of the party in the system and hence what API calls the party may execute.',
+										'Parties may have linked IP addresses that serve as the basis for subscription access to partners.', 
+										'Parties may have a designated country.', 
+										'Parties may affiliate to one or more consortiums.', 
+										'The system tracks partner resource usage by party when the party authenticates.', ]
 							},
 							subscriptions : {
 								id : 'subscriptions',
 								heading : 'Subscriptions',
+								description : 'A subscription associates a party with a partner for a period of time and allows access to Paid resources.',
+								elements : [
+											'',
+											'',
+											'',
+											'',
+											'',
+											'',
+											'',
+											'',
+											'',
+										]
 							},
 							meters : {
 								id : 'meters',
 								heading : 'Meters',
+								description : 'A meter imposes a usage limit on parties accessing resources without subscriptions.',
+								elements : [
+											'',
+											'',
+											'',
+											'',
+											'',
+											'',
+											'',
+											'',
+											'',
+										]
 							},
 							authorizations : {
 								id : 'authorizations',
@@ -67,6 +100,11 @@ angular
 							sessionlogs : {
 								id : 'sessionlogs',
 								heading : 'Session Logs',
+								description : 'A session log is a log of page views in a session. Page views are single accesses of a partner resource.',
+								elements : [
+											'A page view is a single access of a partner resource, as represented by a URI.',
+											'A session is a collection of page views identified by the partner as a single entity.',
+											'Logs include only the non-embedded resource accesses, not images, css or js files, or other embedded resources.',]
 							},
 							def : {
 								id : 'default',
