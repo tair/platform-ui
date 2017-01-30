@@ -49,41 +49,31 @@ angular
 										'A party may be a user, an organization, a consortium, a partner, a staff member, or an admin.',
 										'The party is the subject of authentication by the paywall system; see the Credential documentation for details.',
 										'The party type defines the role of the party in the system and hence what API calls the party may execute.',
-										'Parties may have linked IP addresses that serve as the basis for subscription access to partners.', 
-										'Parties may have a designated country.', 
-										'Parties may affiliate to one or more consortiums.', 
+										'Parties may have linked IP addresses that serve as the basis for subscription access to partners.',
+										'Parties may have a designated country.',
+										'Parties may affiliate to one or more consortiums.',
 										'The system tracks partner resource usage by party when the party authenticates.', ]
 							},
 							subscriptions : {
 								id : 'subscriptions',
 								heading : 'Subscriptions',
 								description : 'A subscription associates a party with a partner for a period of time and allows access to Paid resources.',
-								elements : [
-											'',
-											'',
-											'',
-											'',
-											'',
-											'',
-											'',
-											'',
-											'',
-										]
+								elements : [ '', '', '', '', '', '', '', '',
+										'', ]
 							},
 							meters : {
 								id : 'meters',
 								heading : 'Meters',
 								description : 'A meter limit imposes a usage limit on parties accessing partner resources without subscriptions.',
 								elements : [
-											'Limit values are a sequence of access counts that specify a count at which to display a meter warning.',
-											'The last limit value in the sequence is the access count at which to block access.',
-											'The sequence lets you specify a series of warnings at specific counts, then a block.',
-											'Metering works on the basis of requests made by a specific IP address for Paid resources; free resources are not metered.',
-											'Meter counts are reset at the beginning of each month.',
-											'The API lets you manage limits, increment access counts for an IP address, and query status of specific IP addresses.',
-											'The meter blacklist permits a partner to exclude certain Paid resources from metering; blacklisted resources require a subscription for access.',
-											'The meter blacklist specifies sets of blacklisted resources with Python regular expressions.',
-										]
+										'Limit values are a sequence of access counts that specify a count at which to display a meter warning.',
+										'The last limit value in the sequence is the access count at which to block access.',
+										'The sequence lets you specify a series of warnings at specific counts, then a block.',
+										'Metering works on the basis of requests made by a specific IP address for Paid resources; free resources are not metered.',
+										'Meter counts are reset at the beginning of each month.',
+										'The API lets you manage limits, increment access counts for an IP address, and query status of specific IP addresses.',
+										'The meter blacklist permits a partner to exclude certain Paid resources from metering; blacklisted resources require a subscription for access.',
+										'The meter blacklist specifies sets of blacklisted resources with Python regular expressions.' ]
 							},
 							authorizations : {
 								id : 'authorizations',
@@ -101,9 +91,9 @@ angular
 								heading : 'Session Logs',
 								description : 'A session log is a log of page views in a session. Page views are single accesses of a partner resource.',
 								elements : [
-											'A page view is a single access of a partner resource, as represented by a URI.',
-											'A session is a collection of page views identified by the partner as a single entity.',
-											'Logs include only the non-embedded resource accesses, not images, css or js files, or other embedded resources.',]
+										'A page view is a single access of a partner resource, as represented by a URI.',
+										'A session is a collection of page views identified by the partner as a single entity.',
+										'Logs include only the non-embedded resource accesses, not images, css or js files, or other embedded resources.' ]
 							},
 							def : {
 								id : 'default',
