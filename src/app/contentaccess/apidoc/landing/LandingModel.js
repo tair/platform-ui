@@ -73,17 +73,16 @@ angular
 							meters : {
 								id : 'meters',
 								heading : 'Meters',
-								description : 'A meter imposes a usage limit on parties accessing resources without subscriptions.',
+								description : 'A meter limit imposes a usage limit on parties accessing partner resources without subscriptions.',
 								elements : [
-											'',
-											'',
-											'',
-											'',
-											'',
-											'',
-											'',
-											'',
-											'',
+											'Limit values are a sequence of access counts that specify a count at which to display a meter warning.',
+											'The last limit value in the sequence is the access count at which to block access.',
+											'The sequence lets you specify a series of warnings at specific counts, then a block.',
+											'Metering works on the basis of requests made by a specific IP address for Paid resources; free resources are not metered.',
+											'Meter counts are reset at the beginning of each month.',
+											'The API lets you manage limits, increment access counts for an IP address, and query status of specific IP addresses.',
+											'The meter blacklist permits a partner to exclude certain Paid resources from metering; blacklisted resources require a subscription for access.',
+											'The meter blacklist specifies sets of blacklisted resources with Python regular expressions.',
 										]
 							},
 							authorizations : {
