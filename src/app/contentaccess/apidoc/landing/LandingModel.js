@@ -74,7 +74,7 @@ angular
 										'Meter counts are reset at the beginning of each month.',
 										'The API lets you manage limits, increment access counts for an IP address, and query status of specific IP addresses.',
 										'The meter blacklist permits a partner to exclude certain Paid resources from metering; blacklisted resources require a subscription for access.',
-										'The meter blacklist specifies sets of blacklisted resources with Python regular expressions.' ]
+										'The meter blacklist specifies sets of blacklisted resources with Python regular expressions.', ]
 							},
 							authorizations : {
 								id : 'authorizations',
@@ -85,7 +85,7 @@ angular
 										'Access types are kinds of access, such as Paid or Login (requires login).',
 										'Access rules map an access pattern to an access type and parter; the rule specifies which resources have what kind of access requirements such as requiring login or requiring a subscription.',
 										'The paywall can determine the status of a specific URI given the request URI, the requesting IP address, and the authentication status of the user.',
-										'The paywall can separately determine status for subscription and for authentication.' ]
+										'The paywall can separately determine status for subscription and for authentication.', ]
 							},
 							sessionlogs : {
 								id : 'sessionlogs',
@@ -94,7 +94,7 @@ angular
 								elements : [
 										'A page view is a single access of a partner resource, as represented by a URI.',
 										'A session is a collection of page views identified by the partner as a single entity.',
-										'Logs include only the non-embedded resource accesses, not images, css or js files, or other embedded resources.' ]
+										'Logs include only the non-embedded resource accesses, not images, css or js files, or other embedded resources.', ]
 							},
 							def : {
 								id : 'default',
@@ -108,7 +108,7 @@ angular
 										'You submit new and updated data values in the body of the POST or PUT operations in form-data or form-urlencoded format. For PUT updates, you must supply all the data fields for the object in the body.',
 										'Most API calls require authentication. See the Credentials API for more information. You must be authenticated as a registered user through one of the partner registration systems.',
 										'When a call succeeds, it returns a 200 HTTP code (201 for POST); when it fails, it returns 200 (with message) or 400 (with no message)',
-										'Parameters are either query parameters in the URI string or body parameters in the content of the POST or PUT request' ]
+										'Parameters are either query parameters in the URI string or body parameters in the content of the POST or PUT request', ]
 							},
 						},
 					}

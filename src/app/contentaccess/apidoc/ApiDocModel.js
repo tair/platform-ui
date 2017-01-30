@@ -23,7 +23,6 @@ angular.module('platform-ui.contentaccess.apidoc').factory(
 		    ipranges: 'contentaccess/apidoc/ipranges/ipranges.html',
 		    subscriptions: 'contentaccess/apidoc/subscriptions/subscriptions.html',
 		    meters: 'contentaccess/apidoc/meters/meters.html',
-		    payments: 'contentaccess/apidoc/payments/payments.html',
 		    credentials: 'contentaccess/apidoc/credentials/credentials.html',
 		    authorizations: 'contentaccess/apidoc/authorizations/authorizations.html',
 		    sessionlogs: 'contentaccess/apidoc/sessionlogs/sessionlogs.html',
