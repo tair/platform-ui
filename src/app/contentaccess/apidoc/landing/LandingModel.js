@@ -58,8 +58,9 @@ angular
 								id : 'subscriptions',
 								heading : 'Subscriptions',
 								description : 'A subscription associates a party with a partner for a period of time and allows access to Paid resources.',
-								elements : [ '', '', '', '', '', '', '', '',
-										'', ]
+								elements : [
+										'A subscription is a relationship between a party and a partner with a start date and an end date.',
+										'The subscription expires on the end date.', ]
 							},
 							meters : {
 								id : 'meters',
