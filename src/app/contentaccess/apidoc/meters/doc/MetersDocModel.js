@@ -12,7 +12,7 @@ angular
 				[ function() {
 					return {
 						heading : 'Meters API',
-						overview : 'A meter limit imposes a usage limit on parties accessing partner resources without subscriptions. The meter blacklist has regular expression patterns that identify sets of URIs that do not get metered.',
+						overview : 'A meter limit imposes a usage limit on parties accessing partner resources without subscriptions. The IP Address Count maintains the current count of free accesses to the resources of a partner by an IP address. The sequence of limit values provides a series of warnings followed by a resource block at the specified counts. The meter blacklist has regular expression patterns that identify sets of URIs that do not get metered.',
 						datatypes : [ {
 							name : 'IPAddressCount',
 							fields : [ {
@@ -37,7 +37,7 @@ angular
 							fields : [ {
 								name : 'limitId',
 								type : 'Number (generated)',
-								description : '',
+								description : 'Unique identifier for the limit value',
 							}, {
 								name : 'val',
 								type : 'Number',
@@ -66,8 +66,8 @@ angular
 								description : 'The Python regular expression identifying a set of URIs to be blacklisted; see https://docs.python.org/2/library/re.html for details on Python regular expreesions',
 							}, {
 								name : 'partnerId',
-								type : '',
-								description : '',
+								type : 'String',
+								description : 'The unique identifier for the partner system containing the blacklisted resources',
 							}, ],
 						}, /*{
 							name : '',
@@ -186,7 +186,7 @@ angular
 							header : 'Delete IP Address Counts By Filter',
 							summary : 'Delete all the IP address counts that match a filter on id, IP address, count, or partner id.',
 							op : 'DELETE',
-							uri : '/meters/',
+							uri : '/meters/?id={id}&ip={string}&count={number}&partnerId={id}',
 							parameters : [ {
 								name : 'id',
 								type : 'Number',
@@ -299,7 +299,7 @@ angular
 							}, ],
 							returns : 'the updated LimitValue object',
 							errors : [{code : '200', message : '{"error":"does not allow update without query parameters"}', explanation : 'The request had no query parameters.', resolution : 'Supply a limitId, partnerId, or val query parameter to limit the scope of the update.'}, ],
-							example : 'https://pwapi.arabidopsis.org/meters/limits/?limitId={id}',
+							example : 'https://pwapi.arabidopsis.org/meters/limits/?limitId=3',
 						}, {
 							header : 'Delete a Limit Value',
 							summary : '',
@@ -313,7 +313,7 @@ angular
 							body_parameters : [],
 							returns : '{"success":"delete complete"}',
 							errors : [{code : '200', message : '{"error":"does not allow delete without query parameters"}', explanation : 'The request had no query parameters.', resolution : 'Supply a limitId, partnerId, or val query parameter to limit the scope of the delete.'}, ],
-							example : '',
+							example : 'https://pwapi.arabidopsis.org/meters/limits/?limitId=3',
 						}, {
 							header : 'Increment the Meter Count for an IP Address',
 							summary : 'Increments the IP address count for a specified IP address; if the address is not yet in the database, add it with count 1',
@@ -344,7 +344,7 @@ angular
 							}, ],
 							body_parameters : [],
 							returns : 'a MeterStatus object',
-							errors : [{code : '400', message : '', explanation : '', resolution : ''}, ],
+							errors : [],
 							example : 'https://pwapi.arabidopsis.org/meters/ip/150.26.157.48/limit/?partnerId=tair&uri=https://www.arabidopsis.org/locus/AT1G01010',
 						}, {
 							header : 'Get All Meter Blacklist Entries',
@@ -432,7 +432,7 @@ angular
 							header : 'Delete Meter Blacklist Entries By Filter',
 							summary : 'Delete all the IP address counts that match a filter on meterBlackListId, pattern, or partner id.',
 							op : 'DELETE',
-							uri : '/meters/meterblacklist/',
+							uri : '/meters/meterblacklist/?meterBlackListId={id}&pattern={string}&partnerId={id}',
 							parameters : [ {
 								name : 'meterBlackListId',
 								type : 'Number',
