@@ -37,7 +37,7 @@ angular
 								description : 'Date on which the subscription expires; format yyyy-mm-ddThh:mm:ssZ',
 							}, ],
 						}, {
-							name : 'Transaction',
+							name : 'SubscriptionTransaction',
 							fields : [ {
 								name : 'subscriptionTransactionId',
 								type : 'Number (generated)',
@@ -248,6 +248,168 @@ angular
 							returns : '{"success":"delete complete"}',
 							errors : [{code : '200', message : '{"error":"does not allow delete without query parameters"}', explanation : 'The request had no query parameters.', resolution : 'Supply at least one query parameter.'}, ],
 							example : 'https://pwapi.arabidopsis.org/subscriptions/?subscriptionId=3579',
+						}, {
+							header : 'Get All Subscription Transactions',
+							summary : 'Get all the subscription transactions in the Phoenix dtabase.',
+							op : 'GET',
+							uri : '/subscriptions/transactions/',
+							parameters : [],
+							body_parameters : [],
+							returns : 'an Array of SubscriptionTransaction',
+							errors : [],
+							example : 'https://pwapi.arabidopsis.org/subscriptions/transactions/',
+						}, {
+							header : 'Get a Set of Subscription Transactions By a Filter',
+							summary : 'Get a set of subscription transactions that match any of several parameters: subscriptionTransactionId, subscriptionId, transactionDate, startDate, endDate, or transactionType.',
+							op : 'GET',
+							uri : '/subscriptions/transactions/?subscriptionTransactionId={id}&subscriptionId={id}&transactionDate={date}&startDate={date}7endDate={date}&transactionType={string}',
+							parameters : [ {
+								name : 'subscriptionTransactionId',
+								type : 'Number',
+								description : 'Unique identifier for the transaction',
+							}, {
+								name : 'subscriptionId',
+								type : 'Number',
+								description : 'Unique identifier for the subscription',
+							}, {
+								name : 'transactionDate',
+								type : 'Date',
+								description : 'Date on which the transaction took place in date format yyyy-mm-ddThh:mm:ssZ',
+							}, {
+								name : 'startDate',
+								type : 'Date',
+								description : 'Start date of the subscription as it was before the transaction; in date format yyyy-mm-ddThh:mm:ssZ',
+							}, {
+								name : 'endDate',
+								type : 'Date',
+								description : 'End date of the subscription as it was before the transaction; in date format yyyy-mm-ddThh:mm:ssZ',
+							}, {
+								name : 'transactionType',
+								type : 'String',
+								description : 'The kind of transaction: create, renew, terminate, create_teaching, or create_free',
+							}, ],
+							body_parameters : [],
+							returns : 'an Array of SubscriptionTransaction objects',
+							errors : [],
+							example : 'https://pwapi.arabidopsis.org/subscriptions/transactions/&subscriptionId=3579',
+						}, {
+							header : 'Create a SubscriptionTransaction',
+							summary : 'Create a subscription transaction',
+							op : 'POST',
+							uri : '/subscriptions/transactions',
+							parameters : [],
+							body_parameters : [{
+								name : 'subscriptionId',
+								type : 'Number',
+								description : 'Unique identifier for the subscription (required)',
+							}, {
+								name : 'transactionDate',
+								type : 'Date',
+								description : 'Date on which the transaction took place in date format yyyy-mm-ddThh:mm:ssZ (required)',
+							}, {
+								name : 'startDate',
+								type : 'Date',
+								description : 'Start date of the subscription as it was before the transaction; in date format yyyy-mm-ddThh:mm:ssZ (required)',
+							}, {
+								name : 'endDate',
+								type : 'Date',
+								description : 'End date of the subscription as it was before the transaction; in date format yyyy-mm-ddThh:mm:ssZ (required)',
+							}, {
+								name : 'transactionType',
+								type : 'String',
+								description : 'The kind of transaction: create, renew, terminate, create_teaching, or create_free (required)',
+							}, ],
+							returns : 'the created SubscriptionTransaction object',
+							errors : [],
+							example : 'https://pwapi.arabidopsis.org/subscriptions/transactions/',
+						}, {
+							header : 'Update Existing Subscription Transactions By Filter',
+							summary : 'Update fields in existing subscription transactions that match a filter condition.',
+							op : 'PUT',
+							uri : '/subscriptions/transactions/?subscriptionTransactionId={id}&subscriptionId={id}&transactionDate={date}&startDate={date}7endDate={date}&transactionType={string}',
+							parameters : [ {
+								name : 'subscriptionTransactionId',
+								type : 'Number',
+								description : 'Unique identifier for the transaction',
+							}, {
+								name : 'subscriptionId',
+								type : 'Number',
+								description : 'Unique identifier for the subscription',
+							}, {
+								name : 'transactionDate',
+								type : 'Date',
+								description : 'Date on which the transaction took place in date format yyyy-mm-ddThh:mm:ssZ',
+							}, {
+								name : 'startDate',
+								type : 'Date',
+								description : 'Start date of the subscription as it was before the transaction; in date format yyyy-mm-ddThh:mm:ssZ',
+							}, {
+								name : 'endDate',
+								type : 'Date',
+								description : 'End date of the subscription as it was before the transaction; in date format yyyy-mm-ddThh:mm:ssZ',
+							}, {
+								name : 'transactionType',
+								type : 'String',
+								description : 'The kind of transaction: create, renew, terminate, create_teaching, or create_free',
+							}, ],
+							body_parameters : [{
+								name : 'subscriptionId',
+								type : 'Number',
+								description : 'Unique identifier for the subscription (required)',
+							}, {
+								name : 'transactionDate',
+								type : 'Date',
+								description : 'Date on which the transaction took place in date format yyyy-mm-ddThh:mm:ssZ (required)',
+							}, {
+								name : 'startDate',
+								type : 'Date',
+								description : 'Start date of the subscription as it was before the transaction; in date format yyyy-mm-ddThh:mm:ssZ (required)',
+							}, {
+								name : 'endDate',
+								type : 'Date',
+								description : 'End date of the subscription as it was before the transaction; in date format yyyy-mm-ddThh:mm:ssZ (required)',
+							}, {
+								name : 'transactionType',
+								type : 'String',
+								description : 'The kind of transaction: create, renew, terminate, create_teaching, or create_free (required)',
+							}, ],
+							returns : 'an Array of updated SubscriptionTransaction objects',
+							errors : [{code : '200', message : '{"error":"does not allow update without query parameters"}', explanation : 'The request had no query parameters.', resolution : 'Supply at least one query parameter.'}, ],
+							example : 'https://pwapi.arabidopsis.org/subscriptions/transactions/&subscriptionTransactionId=3579',
+						}, {
+							header : 'Delete Existing Subscription Transactions By Filter',
+							summary : 'Delete existing subscription transactions that match a filter condition. Use caution with this API call, please.',
+							op : 'DELETE',
+							uri : '/subscriptions/transactions/?subscriptionTransactionId={id}&subscriptionId={id}&transactionDate={date}&startDate={date}7endDate={date}&transactionType={string}',
+							parameters : [ {
+								name : 'subscriptionTransactionId',
+								type : 'Number',
+								description : 'Unique identifier for the transaction',
+							}, {
+								name : 'subscriptionId',
+								type : 'Number',
+								description : 'Unique identifier for the subscription',
+							}, {
+								name : 'transactionDate',
+								type : 'Date',
+								description : 'Date on which the transaction took place in date format yyyy-mm-ddThh:mm:ssZ',
+							}, {
+								name : 'startDate',
+								type : 'Date',
+								description : 'Start date of the subscription as it was before the transaction; in date format yyyy-mm-ddThh:mm:ssZ',
+							}, {
+								name : 'endDate',
+								type : 'Date',
+								description : 'End date of the subscription as it was before the transaction; in date format yyyy-mm-ddThh:mm:ssZ',
+							}, {
+								name : 'transactionType',
+								type : 'String',
+								description : 'The kind of transaction: create, renew, terminate, create_teaching, or create_free',
+							}, ],
+							body_parameters : [],
+							returns : '{"success":"delete complete"}',
+							errors : [{code : '200', message : '{"error":"does not allow delete without query parameters"}', explanation : 'The request had no query parameters.', resolution : 'Supply at least one query parameter.'}, ],
+							example : 'https://pwapi.arabidopsis.org/subscriptions/transactions/&subscriptionId=3579',
 						}, /*{
 						header : '',
 						summary : '',
