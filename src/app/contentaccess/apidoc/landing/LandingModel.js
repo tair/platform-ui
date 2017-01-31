@@ -60,7 +60,10 @@ angular
 								description : 'A subscription associates a party with a partner for a period of time and allows access to Paid resources.',
 								elements : [
 										'A subscription is a relationship between a party and a partner with a start date and an end date.',
-										'The subscription expires on the end date.', ]
+										'The subscription expires on the end date.', 
+										'Every subscription has a series of transactions tracking creation, renewal, and termination events.', 
+										'Individual subscriptions use activation codes entered through the partner web site, allowing purchase of multiple subscriptions in a simple transaction.', 
+										'Commercial and institutional subscriptions require customized licenses; the API lets you request Phoenix assistance with that.']
 							},
 							meters : {
 								id : 'meters',

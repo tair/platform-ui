@@ -11,13 +11,86 @@ angular
 				/* Dependencies */
 				[ function() {
 					return {
-						heading : 'Party API',
-						overview : '',
-						elements : [
-								'',
-								'',
-								'', ],
-						datatypes : [ /*{
+						heading : 'Subscription API',
+						overview : 'Subscriptions relate parties to partners within a specified date period, expiring at the end date of the period. Subscription transactions track the purchase and renewal history of subscriptions. Activation codes provide a simple mechanism for activating individual subscriptions to a partner on the partner web site. Subscription requests provide a way to request assistance from Phoenix for commercial and institutional subscriptions.',
+						datatypes : [ {
+							name : 'Subscription',
+							fields : [ {
+								name : 'subscriptionId',
+								type : 'Number (generated)',
+								description : 'Unique identifier for a subscription',
+							}, {
+								name : 'partyId',
+								type : 'Number',
+								description : 'Unique identifier for the subscribing party (user or organization or consortium)',
+							}, {
+								name : 'partnerId',
+								type : 'String',
+								description : 'Unique identifier for the subscribed partner',
+							}, {
+								name : 'startDate',
+								type : 'Date',
+								description : 'Date on which the subscription begins; format yyyy-mm-ddThh:mm:ssZ',
+							}, {
+								name : 'endDate',
+								type : 'Date',
+								description : 'Date on which the subscription expires; format yyyy-mm-ddThh:mm:ssZ',
+							}, ],
+						}, {
+							name : 'Transaction',
+							fields : [ {
+								name : 'subscriptionTransactionId',
+								type : 'Number (generated)',
+								description : 'Unique identifier for the transaction',
+							}, {
+								name : 'subscriptionId',
+								type : 'Number',
+								description : 'Unique identifier for the subscription to which the transaction applies',
+							}, {
+								name : 'transactionDate',
+								type : 'Date',
+								description : 'The date of the transaction; format yyyy-mm-ddThh:mm:ssZ',
+							}, {
+								name : 'startDate',
+								type : 'Date',
+								description : 'The start date of the subscription before the transaction; format yyyy-mm-ddThh:mm:ssZ',
+							}, {
+								name : 'endDate',
+								type : 'Date',
+								description : 'The expiration date of the subscription before the transaction; format yyyy-mm-ddThh:mm:ssZ',
+							}, {
+								name : 'transactionType',
+								type : 'String',
+								description : 'The kind of transaction: create, renew, terminate, create_teaching, or create_free',
+							}, ],
+						}, {
+							name : 'ActivationCode',
+							fields : [ {
+								name : 'activationCodeId',
+								type : 'Number (generated)',
+								description : 'Unique identifier for the activation code',
+							}, {
+								name : 'activationCode',
+								type : 'String',
+								description : 'The activation code token',
+							}, {
+								name : 'partnerId',
+								type : 'String',
+								description : 'Unique identifier for the partner system to which the activation code applies',
+							}, {
+								name : 'partyId',
+								type : 'Number',
+								description : 'Unique identifier for the party that activated the subscription with the code',
+							}, {
+								name : 'period',
+								type : 'Number',
+								description : 'The number of days for the activated subscription (endDate - startDate)',
+							}, {
+								name : 'purchaseDate',
+								type : 'Date',
+								description : 'The date of the activation code purchase; format yyyy-mm-ddThh:mm:ssZ',
+							}, ],
+						},  /*{
 							name : '',
 							fields : [ {
 								name : '',
@@ -29,7 +102,153 @@ angular
 								description : '',
 							}, ],
 						}, */ ],
-						calls : [ /*{
+						calls : [ {
+							header : 'Get a Subscription By ID',
+							summary : 'Get a specific subscription specified by subscription ID.',
+							op : 'GET',
+							uri : '/subscriptions/?subscriptionId={id}',
+							parameters : [ {
+								name : 'subscriptionId',
+								type : 'Number',
+								description : 'Unique identifier for a subscription',
+							}, ],
+							body_parameters : [],
+							returns : 'an Array of Subscription objects with a single object',
+							errors : [{code : '400', message : '{"error":"Essential parameters needed."}', explanation : 'The request had no query parameters.', resolution : 'Supply a valid subscriptionId query parameter in the request.'}, ],
+							example : 'https://pwapi.arabidopsis.org/subscriptions/?subscriptionId=123',
+						}, {
+							header : 'Get Subscription By Partner, IP, and User ID',
+							summary : 'Get a set of subscriptions by the combination of the partner id, IP address, and user identifier for the user in the partner system. Gets subscriptions by IP address AND by logged-in user identifier.',
+							op : 'GET',
+							uri : '/subscriptions/?partnerId={id}&ipAddress={string}&userIdentifier={string}&partyId={id}',
+							parameters : [ {
+								name : 'partnerId',
+								type : 'String',
+								description : 'Unique identifier for the subscribed partner (required)',
+							}, {
+								name : 'ipAddress',
+								type : 'String',
+								description : 'An IP address to look up in the party IP ranges to identify a party (required)',
+							}, {
+								name : 'userIdentifier',
+								type : 'String',
+								description : 'A unique id from a logged-in user to identify a party (required)',
+							}, {
+								name : 'partyId',
+								type : 'Number',
+								description : 'Unique identifier for a party, restricts output to specific subscription',
+							}, ],
+							body_parameters : [],
+							returns : 'an Array of Subscription objects',
+							errors : [{code : '400', message : '{"error":"Essential parameters needed."}', explanation : 'The request did not contain all of the parameters partnerId, ipAddress, and userIdentifier.', resolution : 'Supply valid filter query parameters in the request.'}, ],
+							example : 'https://pwapi.arabidopsis.org/subscriptions/?partnerId=tair&ipAddress=150.26.157.48&userIdentifier=1501424090',
+						}, {
+							header : 'Create or Renew a Subscription',
+							summary : 'Create a new subscription or renew an existing one, using an activation code if one is specified.',
+							op : 'POST',
+							uri : '/subscriptions/',
+							parameters : [],
+							body_parameters : [ {
+								name : 'activationCode',
+								type : 'String',
+								description : 'Activation code token; must be in ActivationCode table with no party id--that is, not already used',
+							}, {
+								name : 'partyId',
+								type : 'Number',
+								description : 'Unique identifier for the party using the activation code to create the subscription or otherwise being subscribed (required)',
+							}, {
+								name : 'partnerId',
+								type : 'String',
+								description : 'Unique identifier for the partner to which to subscribe (required)',
+							}, {
+								name : 'startDate',
+								type : 'Date',
+								description : 'Date on which the subscription begins; format yyyy-mm-ddThh:mm:ssZ (required)',
+							}, {
+								name : 'endDate',
+								type : 'Date',
+								description : 'Date on which the subscription expires; format yyyy-mm-ddThh:mm:ssZ (required)',
+							}, ],
+							returns : 'the created Subscription object',
+							errors : [{code : '400', message : '{"message":"activation code is already used"', explanation : 'The activation code has a party id associated with it, meaning it has already activated a subscription.', resolution : 'Supply an unused activation code.'}, ],
+							example : 'https://pwapi.arabidopsis.org/subscriptions/',
+						}, {
+							header : 'Update a Subscription',
+							summary : 'Update an existing subscription with new data. Use this method with care only to correct a mistake of some kind.',
+							op : 'PUT',
+							uri : '/subscriptions/?subscriptionId={id}&partyId={id}&partnerId={id}&startDate={date}&endDate={date}',
+							parameters : [ {
+								name : 'subscriptionId',
+								type : 'Number',
+								description : 'Unique identifier for the subscription to update',
+							}, {
+								name : 'partyId',
+								type : 'Number',
+								description : 'Unique identifier for the party owning the subscription to update',
+							}, {
+								name : 'partnerId',
+								type : 'String',
+								description : 'Unique identifier for the partner to which to subscribe',
+							}, {
+								name : 'startDate',
+								type : 'Date',
+								description : 'Date on which the subscription begins; format yyyy-mm-ddThh:mm:ssZ',
+							}, {
+								name : 'endDate',
+								type : 'Date',
+								description : 'Date on which the subscription expires; format yyyy-mm-ddThh:mm:ssZ',
+							}, ],
+							body_parameters : [{
+								name : 'partyId',
+								type : 'Number',
+								description : 'Unique identifier for the party to update (required)',
+							}, {
+								name : 'partnerId',
+								type : 'String',
+								description : 'Unique identifier for the partner to which to subscribe (required)',
+							}, {
+								name : 'startDate',
+								type : 'Date',
+								description : 'Date on which the subscription begins; format yyyy-mm-ddThh:mm:ssZ (required)',
+							}, {
+								name : 'endDate',
+								type : 'Date',
+								description : 'Date on which the subscription expires; format yyyy-mm-ddThh:mm:ssZ (required)',
+							}, ],
+							returns : 'the updated Subscription object',
+							errors : [{code : '200', message : '{"error":"does not allow update without query parameters"}', explanation : 'The request had no query parameters.', resolution : 'Supply at least one query parameter.'}, ],
+							example : 'https://pwapi.arabidopsis.org/subscriptions/?subscriptionId=3579',
+						}, {
+							header : 'Delete an Existing Subscription',
+							summary : 'Deletes an existing subscription, removing it completely from the database.',
+							op : 'DELETE',
+							uri : '/subscriptions/?subscriptionId={id}&partyId={id}&partnerId={id}&startDate={date}&endDate={date}',
+							parameters : [ {
+								name : 'subscriptionId',
+								type : 'Number',
+								description : 'Unique identifier for the subscription to update',
+							}, {
+								name : 'partyId',
+								type : 'Number',
+								description : 'Unique identifier for the party owning the subscription to update',
+							}, {
+								name : 'partnerId',
+								type : 'String',
+								description : 'Unique identifier for the partner to which to subscribe',
+							}, {
+								name : 'startDate',
+								type : 'Date',
+								description : 'Date on which the subscription begins; format yyyy-mm-ddThh:mm:ssZ',
+							}, {
+								name : 'endDate',
+								type : 'Date',
+								description : 'Date on which the subscription expires; format yyyy-mm-ddThh:mm:ssZ',
+							}, ],
+							body_parameters : [],
+							returns : '{"success":"delete complete"}',
+							errors : [{code : '200', message : '{"error":"does not allow delete without query parameters"}', explanation : 'The request had no query parameters.', resolution : 'Supply at least one query parameter.'}, ],
+							example : 'https://pwapi.arabidopsis.org/subscriptions/?subscriptionId=3579',
+						}, /*{
 						header : '',
 						summary : '',
 						op : 'GET',

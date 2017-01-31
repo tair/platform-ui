@@ -130,11 +130,31 @@ angular
 												type : 'String',
 												description : 'success message',
 											}, ],
-								}, /*
-									 * { name : '', fields : [ { name : '', type :
-									 * '', description : '', }, { name : '',
-									 * type : '', description : '', }, ], },
-									 */],
+								}, 	
+								{ 
+									name : 'PasswordChange',
+									fields : [ {
+										name : 'password',
+										type : 'String',
+										description : 'Encrypted password',
+									}, {
+										name : 'loginKey',
+										type : 'String',
+										description : 'Double-encrypted password for use as secret key',
+									}, ],
+								},/*								 
+								{ 
+									name : '',
+									fields : [ {
+										name : '',
+										type : '',
+										description : '',
+									}, {
+										name : '',
+										type : '',
+										description : '',
+									}, ],
+								},*/ ],
 						calls : [
 								{
 									header : 'Get all Credentials',
@@ -297,12 +317,16 @@ angular
 									header : 'Update a Credential and Its Party',
 									summary : 'Update the fields of an existing Credential and optionally the Party corresponding to it. This call is designed for use by a partner registration system to update user profile information.',
 									op : 'PUT',
-									uri : '/credentials/?userIdentifier={string}',
+									uri : '/credentials/?userIdentifier={string}&partnerId={id}',
 									parameters : [
 											{
 												name : 'userIdentifier',
 												type : 'String',
-												description : 'The unique identifier for a user from the partner system, identifies the user for the update',
+												description : 'The unique identifier for a user from the partner system, identifies the user for the update (required)',
+											}, {
+												name : 'partnerId',
+												type : 'String',
+												description : 'The unique identifier for the partner system (required)',
 											}, ],
 									body_parameters : [
 											{
@@ -370,7 +394,7 @@ angular
 												type : 'String',
 												description : 'A label to display for the user in list displays',
 											}, ],
-									returns : 'JSON object with updated field values',
+									returns : 'a PasswordChange object and any additional updated field values',
 									errors : [
 											{
 												code : '200',
@@ -383,6 +407,12 @@ angular
 												message : '{"error":"Serializer error"}',
 												explanation : 'The request is missing a field from the list of fields to update',
 												resolution : 'Supply all the listed fields for update of the credential.'
+											}, 
+											{
+												code : '400',
+												message : '{"error":"Cannot update credential of parties other than user type."}',
+												explanation : 'The userIdentifier identified a party of a party type other than user, which is not allowed.',
+												resolution : 'Correct the userIdentifier to identifier a user.'
 											}, ],
 									example : 'https://pwapi.arabidopsis.org/credentials/?userIdentifier=12345&partnerId=tair',
 								},
