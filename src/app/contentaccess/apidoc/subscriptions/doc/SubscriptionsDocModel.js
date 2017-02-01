@@ -410,6 +410,168 @@ angular
 							returns : '{"success":"delete complete"}',
 							errors : [{code : '200', message : '{"error":"does not allow delete without query parameters"}', explanation : 'The request had no query parameters.', resolution : 'Supply at least one query parameter.'}, ],
 							example : 'https://pwapi.arabidopsis.org/subscriptions/transactions/&subscriptionId=3579',
+						}, {
+							header : 'Get All Activation Codes',
+							summary : 'Get all the activation codes currently in the API database.',
+							op : 'GET',
+							uri : '/subscriptions/activationCodes/',
+							parameters : [],
+							body_parameters : [],
+							returns : 'an Array of ActivationCode objects',
+							errors : [],
+							example : 'https://pwapi.arabidopsis.org/subscriptions/activationCodes/',
+						}, {
+							header : 'Get a Set of Activation Codes By a Filter',
+							summary : 'Get a set of activation codes that match any of several parameters: activationCodeId, activationCode, partnerId, partyId, period, or purchaseDate.',
+							op : 'GET',
+							uri : '/subscriptions/activationCodes/?activationCodeId={id}&activationCode={string}&partnerId={string}&partyId={id}&period={number}&purchaseDate={date}',
+							parameters : [ {
+								name : 'activationCodeId',
+								type : 'Number',
+								description : 'Unique identifier for the activation code',
+							}, {
+								name : 'activationCode',
+								type : 'String',
+								description : 'The activation code (UUID format)',
+							},  {
+								name : 'partnerId',
+								type : 'String',
+								description : 'Unique identifier for the partner to which to subscribe',
+							}, {
+								name : 'partyId',
+								type : 'Number',
+								description : 'Unique identifier for the party that activated the subscription with the code',
+							},  {
+								name : 'period',
+								type : 'Number',
+								description : 'Number of days for which the subscription is valid (endDate - startDate)',
+							}, {
+								name : 'purchaseDate',
+								type : 'Date',
+								description : 'Date of subscription purchase; in date format yyyy-mm-ddThh:mm:ssZ',
+							}, ],
+							body_parameters : [],
+							returns : 'an Array of ActivationCode objects',
+							errors : [],
+							example : 'https://pwapi.arabidopsis.org/subscriptions/activationCodes/?period=365',
+						}, {
+							header : 'Create an Activation Code',
+							summary : '',
+							op : 'POST',
+							uri : '/subscriptions/activationCodes/',
+							parameters : [],
+							body_parameters : [{
+								name : 'activationCode',
+								type : 'String',
+								description : 'The activation code (UUID format) (required)',
+							},  {
+								name : 'partnerId',
+								type : 'String',
+								description : 'Unique identifier for the partner to which to subscribe (required)',
+							}, {
+								name : 'partyId',
+								type : 'Number',
+								description : 'Unique identifier for the party that activated the subscription with the code; this value is usually specified in a PUT request, not a POST',
+							},  {
+								name : 'period',
+								type : 'Number',
+								description : 'Number of days for which the subscription is valid (endDate - startDate) (required)',
+							}, {
+								name : 'purchaseDate',
+								type : 'Date',
+								description : 'Date of subscription purchase; in date format yyyy-mm-ddThh:mm:ssZ (required)',
+							}, ],
+							returns : 'the created ActivationCode object',
+							errors : [],
+							example : 'https://pwapi.arabidopsis.org/subscriptions/activationCodes/',
+						}, {
+							header : 'Update an Existing Set of Activation Codes',
+							summary : 'Update a set of existing activation codes that match any of several parameters: activationCodeId, activationCode, partnerId, partyId, period, or purchaseDate.',
+							op : 'PUT',
+							uri : '/subscriptions/activationCodes/?activationCodeId={id}&activationCode={string}&partnerId={string}&partyId={id}&period={number}&purchaseDate={date}',
+							parameters : [ {
+								name : 'activationCodeId',
+								type : 'Number',
+								description : 'Unique identifier for the activation code',
+							}, {
+								name : 'activationCode',
+								type : 'String',
+								description : 'The activation code (UUID format)',
+							},  {
+								name : 'partnerId',
+								type : 'String',
+								description : 'Unique identifier for the partner to which to subscribe',
+							}, {
+								name : 'partyId',
+								type : 'Number',
+								description : 'Unique identifier for the party that activated the subscription with the code',
+							},  {
+								name : 'period',
+								type : 'Number',
+								description : 'Number of days for which the subscription is valid (endDate - startDate)',
+							}, {
+								name : 'purchaseDate',
+								type : 'Date',
+								description : 'Date of subscription purchase; in date format yyyy-mm-ddThh:mm:ssZ',
+							}, ],
+							body_parameters : [{
+								name : 'activationCode',
+								type : 'String',
+								description : 'The activation code (UUID format) (required)',
+							},  {
+								name : 'partnerId',
+								type : 'String',
+								description : 'Unique identifier for the partner to which to subscribe (required)',
+							}, {
+								name : 'partyId',
+								type : 'Number',
+								description : 'Unique identifier for the party that activated the subscription with the code; this value is usually specified in a PUT request, not a POST',
+							},  {
+								name : 'period',
+								type : 'Number',
+								description : 'Number of days for which the subscription is valid (endDate - startDate) (required)',
+							}, {
+								name : 'purchaseDate',
+								type : 'Date',
+								description : 'Date of subscription purchase; in date format yyyy-mm-ddThh:mm:ssZ (required)',
+							}, ],
+							returns : 'the updated ActivationCode objects',
+							errors : [{code : '200', message : '{"error":"does not allow update without query parameters"}', explanation : 'The request had no query parameters.', resolution : 'Supply at least one query parameter.'}, ],
+							example : '',
+						}, {
+							header : 'Delete an Existing Set of Activation Codes',
+							summary : 'Delete a set of existing activation codes that match any of several parameters: activationCodeId, activationCode, partnerId, partyId, period, or purchaseDate.',
+							op : 'DELETE',
+							uri : '/subscriptions/activationCodes/?activationCodeId={id}&activationCode={string}&partnerId={string}&partyId={id}&period={number}&purchaseDate={date}',
+							parameters : [ {
+								name : 'activationCodeId',
+								type : 'Number',
+								description : 'Unique identifier for the activation code',
+							}, {
+								name : 'activationCode',
+								type : 'String',
+								description : 'The activation code (UUID format)',
+							},  {
+								name : 'partnerId',
+								type : 'String',
+								description : 'Unique identifier for the partner to which to subscribe',
+							}, {
+								name : 'partyId',
+								type : 'Number',
+								description : 'Unique identifier for the party that activated the subscription with the code',
+							},  {
+								name : 'period',
+								type : 'Number',
+								description : 'Number of days for which the subscription is valid (endDate - startDate)',
+							}, {
+								name : 'purchaseDate',
+								type : 'Date',
+								description : 'Date of subscription purchase; in date format yyyy-mm-ddThh:mm:ssZ',
+							}, ],
+							body_parameters : [],
+							returns : '',
+							errors : [{code : '200', message : '{"error":"does not allow delete without query parameters"}', explanation : 'The request had no query parameters.', resolution : 'Supply at least one query parameter.'}, ],
+							example : '',
 						}, /*{
 						header : '',
 						summary : '',
