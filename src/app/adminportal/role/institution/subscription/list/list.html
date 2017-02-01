@@ -46,7 +46,7 @@
 				<div class="{{uiparams.consortiumscolwidth}}">
 						<div ng-if="p.consortiumSubState">Consortia:</div>
 						<div ng-if="!p.consortiumSubState">No Consortium Subscribed.</div>
-						<div ng-repeat="consortium in p.consortiumsList"><a href="" style="text-overflow: ellipsis;" title="{{consortium.name}}" ng-click="toConsortium(consortium)" ng-disabled="role!='staff'">{{consortium.name}}</a></div>
+						<div ng-repeat="consortium in p.consortiumsList"><a href="" style="overflow: hidden;" title="{{consortium.name}}" ng-click="toConsortium(consortium)" ng-disabled="role!='staff'">{{consortium.name}}</a></div>
 				</div>
 				
 				<!-- effective dates -->
