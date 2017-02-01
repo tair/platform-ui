@@ -537,7 +537,7 @@ angular
 							}, ],
 							returns : 'the updated ActivationCode objects',
 							errors : [{code : '200', message : '{"error":"does not allow update without query parameters"}', explanation : 'The request had no query parameters.', resolution : 'Supply at least one query parameter.'}, ],
-							example : '',
+							example : 'https://pwapi.arabidopsis.org/subscriptions/activationCodes/?activationCodeId=3579',
 						}, {
 							header : 'Delete an Existing Set of Activation Codes',
 							summary : 'Delete a set of existing activation codes that match any of several parameters: activationCodeId, activationCode, partnerId, partyId, period, or purchaseDate.',
@@ -569,9 +569,9 @@ angular
 								description : 'Date of subscription purchase; in date format yyyy-mm-ddThh:mm:ssZ',
 							}, ],
 							body_parameters : [],
-							returns : '',
+							returns : '{"success":"delete complete"}',
 							errors : [{code : '200', message : '{"error":"does not allow delete without query parameters"}', explanation : 'The request had no query parameters.', resolution : 'Supply at least one query parameter.'}, ],
-							example : '',
+							example : 'https://pwapi.arabidopsis.org/subscriptions/activationCodes/?activationCodeId=3579',
 						}, /*{
 						header : '',
 						summary : '',
