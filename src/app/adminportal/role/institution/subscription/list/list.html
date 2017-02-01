@@ -47,7 +47,7 @@
 						<div ng-if="p.consortiumSubState">Consortia:</div>
 						<div ng-if="!p.consortiumSubState">No Consortium Subscribed.</div>
 						<div ng-repeat="consortium in p.consortiumsList" ng-show="role!='staff'">{{consortium.name}}</div>
-						<div ng-repeat="consortium in p.consortiumsList" ng-show="role=='staff'"><button type="button" class="btn btn-default" ng-click="toConsortium(consortium)">{{consortium.name}}</button></div>
+						<div ng-repeat="consortium in p.consortiumsList" ng-show="role=='staff'"><a type="" class="" ng-click="toConsortium(consortium)">{{consortium.name}}</a></div>
 				</div>
 				
 				<!-- effective dates -->
