@@ -46,7 +46,7 @@
 				<div class="{{uiparams.consortiumscolwidth}}">
 						<div>{{p.consortiumsStr}}</div>
 						<div ng-repeat="consortium in p.consortiumsList" ng-show="role!='staff'">{{consortium.name}}</div>
-						<div ng-repeat="consortium in p.consortiumsList" ng-show="role=='staff'"><a href="" style="text-overflow: ellipsis;" ng-click="toConsortium(consortium)">{{consortium.name}}</a></div>
+						<div ng-repeat="consortium in p.consortiumsList" ng-show="role=='staff'"><a href="" style="text-overflow: ellipsis;" title="{{consortium.name}}" ng-click="toConsortium(consortium)">{{consortium.name}}</a></div>
 				</div>
 				
 				<!-- effective dates -->
