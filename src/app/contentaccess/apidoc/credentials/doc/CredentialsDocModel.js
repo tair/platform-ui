@@ -181,7 +181,7 @@ angular
 											{
 												name : 'username',
 												type : 'String',
-												description : 'The unique username for a party for a partner',
+												description : 'The unique username for a party for a partner (requires partnerId as well)',
 											},
 											{
 												name : 'email',
@@ -206,7 +206,7 @@ angular
 											{
 												name : 'partnerId',
 												type : 'String',
-												description : 'The partner ID of the credential for the party',
+												description : 'The partner ID of the credential for the party (required if username specified)',
 											},
 											{
 												name : 'institution',
@@ -215,7 +215,14 @@ angular
 											}, ],
 									body_parameters : [],
 									returns : 'Array of Credential',
-									errors : [],
+									errors : [
+												{
+													code : '404',
+													message : '{"error":"cannot find any record."}',
+													explanation : 'No credential found for the filtered set.',
+													resolution : 'Correct the parameters to find the desired set of credentials.'
+												},
+									          ],
 									example : 'https://demoapi.arabidopsis.org/credentials/?partyId=34589',
 								},
 								{
