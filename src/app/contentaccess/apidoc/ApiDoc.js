@@ -111,7 +111,7 @@ angular
 										url : '/sessionlogs',
 										views : {
 											'apidoc' : {
-												controller : 'SessionlogsController',
+												controller : 'SessionLogsController',
 												templateUrl : 'contentaccess/apidoc/sessionlogs/sessionlogs.html'
 											}
 										}
