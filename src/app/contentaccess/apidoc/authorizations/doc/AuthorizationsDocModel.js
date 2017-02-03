@@ -88,11 +88,18 @@ angular
 												type : 'String',
 												description : 'Whether access is allowed (true) or not (false)',
 											}, ],
-								}, /*
-									 * { name : '', fields : [ { name : '', type :
-									 * '', description : '', }, { name : '',
-									 * type : '', description : '', }, ], },
-									 */],
+								}, /*{
+									name : '',
+									fields : [ {
+										name : '',
+										type : '',
+										description : '',
+									}, {
+										name : '',
+										type : '',
+										description : '',
+									}, ],
+								}, */],
 						calls : [
 								{
 									header : 'Get All the URI Patterns',
@@ -104,19 +111,7 @@ angular
 									returns : 'an Array of Pattern objects',
 									errors : [],
 									example : 'https://pwapi.arabidopsis.org/authorizations/patterns/',
-								}, /*
-									 * { header : 'Get a URI Pattern', summary :
-									 * 'Get a URI pattern specified by pattern
-									 * id', op : 'GET', uri :
-									 * '/authorizations/patterns/?patternId={id}',
-									 * parameters : [ { name : 'patternId', type :
-									 * 'Number', description : 'The unique
-									 * identifier for the pattern', }, ],
-									 * body_parameters : [], returns : 'an Array
-									 * of Pattern objects with a single object',
-									 * errors : [], example :
-									 * 'https://pwapi.arabidopsis.org/authorizations/patterns/&patternId=12345', },
-									 */
+								},
 								{
 									header : 'Create a Pattern',
 									summary : 'Creates a regular-expression URI pattern that identifies a set of URIs',
@@ -127,7 +122,7 @@ angular
 											{
 												name : 'pattern',
 												type : 'String',
-												description : 'A Python regular expression that identifies a distinct and mutually exclusive set of URIs to associate with one access type; see https://docs.python.org/2/library/re.html for details on Python regular expressions',
+												description : 'A Python regular expression that identifies a distinct and mutually exclusive set of URIs to associate with one access type; see https://docs.python.org/2/library/re.html for details on Python regular expressions (required)',
 											}, ],
 									returns : 'A Pattern object',
 									errors : [ {
@@ -147,13 +142,13 @@ angular
 											{
 												name : 'patternId',
 												type : 'Number',
-												description : 'The unique identifier for the pattern',
+												description : 'The unique identifier for the pattern (required)',
 											}, ],
 									body_parameters : [
 											{
 												name : 'pattern',
 												type : 'String',
-												description : 'A Python regular expression that identifies a distinct and mutually exclusive set of URIs to associate with one access type; see https://docs.python.org/2/library/re.html for details on Python regular expressions',
+												description : 'A Python regular expression that identifies a distinct and mutually exclusive set of URIs to associate with one access type; see https://docs.python.org/2/library/re.html for details on Python regular expressions (required)',
 											}, ],
 									returns : 'a Pattern object with the updated pattern',
 									errors : [
@@ -180,7 +175,7 @@ angular
 											{
 												name : 'patternId',
 												type : 'Number',
-												description : 'The unique identifier for the pattern',
+												description : 'The unique identifier for the pattern (required)',
 											}, ],
 									body_parameters : [],
 									returns : '{"success":"delete complete"}',
@@ -202,19 +197,7 @@ angular
 									returns : 'an Array of AccessType objects',
 									errors : [],
 									example : 'https://pwapi.arabidopsis.org/authorizations/accessTypes/',
-								}, /*
-									 * { header : 'Get an Access Type', summary :
-									 * 'Get an access type specified by access
-									 * type id', op : 'GET', uri :
-									 * '/authorizations/accessType/?accessTypeId={id}',
-									 * parameters : [ { name : 'accessTypeId',
-									 * type : 'Number', description : 'The
-									 * unique identifier for the access type', }, ],
-									 * body_parameters : [], returns : 'an Array
-									 * of Access Type objects with a single
-									 * object', errors : [], example :
-									 * 'https://pwapi.arabidopsis.org/authorizations/accessType/&accessTypeId=12345', },
-									 */
+								},
 								{
 									header : 'Create an Access Type',
 									summary : 'Creates a name for a particular kind of URI access in the paywall',
@@ -225,7 +208,7 @@ angular
 											{
 												name : 'name',
 												type : 'String',
-												description : 'A name for a particular kind of access to apply to sets of URIs specified by URI pattern',
+												description : 'A name for a particular kind of access to apply to sets of URIs specified by URI pattern (required)',
 											}, ],
 									returns : 'an AccessType object',
 									errors : [ {
@@ -237,7 +220,7 @@ angular
 									example : 'https://pwapi.arabidopsis.org/authorizations/accessTypes/',
 								},
 								{
-									header : 'Update an Access Type',
+									header : 'Update an Access Type By Id',
 									summary : 'Updates the type name specified by id.',
 									op : 'PUT',
 									uri : '/authorizations/accessTypes/&accessTypeId={id}',
@@ -245,13 +228,13 @@ angular
 											{
 												name : 'accessTypeId',
 												type : 'Number',
-												description : 'The unique identifier for the access type',
+												description : 'The unique identifier for the access type (required)',
 											}, ],
 									body_parameters : [
 											{
 												name : 'name',
 												type : 'String',
-												description : 'A name for a particular kind of access to apply to sets of URIs specified by URI pattern',
+												description : 'A name for a particular kind of access to apply to sets of URIs specified by URI pattern (required)',
 											}, ],
 									returns : 'an AccessType object with the updated type name',
 									errors : [
@@ -278,7 +261,7 @@ angular
 											{
 												name : 'accessTypeId',
 												type : 'Number',
-												description : 'The unique identifier for the access type',
+												description : 'The unique identifier for the access type (required)',
 											}, ],
 									body_parameters : [],
 									returns : '{"success":"delete complete"}',
@@ -300,19 +283,7 @@ angular
 									returns : 'an Array of AccessRule objects',
 									errors : [],
 									example : 'https://pwapi.arabidopsis.org/authorizations/accessRules/',
-								}, /*
-									 * { header : 'Get an Access Rule', summary :
-									 * 'Get an Access Rule specified by access
-									 * rule id', op : 'GET', uri :
-									 * '/authorizations/accessRules/?accessRuleId={id}',
-									 * parameters : [ { name : 'accessRuleId',
-									 * type : 'Number', description : 'The
-									 * unique identifier for the access rule', }, ],
-									 * body_parameters : [], returns : 'an Array
-									 * of AccessRule objects with a single
-									 * object', errors : [], example :
-									 * 'https://pwapi.arabidopsis.org/authorizations/accessRules/&accessRuleId=12345', },
-									 */
+								},
 								{
 									header : 'Create an Access Rule',
 									summary : 'Creates an access rule that maps a URI pattern to a partner and access type',
@@ -323,17 +294,17 @@ angular
 											{
 												name : 'patternId',
 												type : 'Number',
-												description : 'The unique identifier for a URI pattern that identifies the set of resources subject to the access rule',
+												description : 'The unique identifier for a URI pattern that identifies the set of resources subject to the access rule (required)',
 											},
 											{
 												name : 'accessTypeId',
 												type : 'Number',
-												description : 'The unique identifier for the kind of access to enforce',
+												description : 'The unique identifier for the kind of access to enforce (required)',
 											},
 											{
 												name : 'partnerId',
 												type : 'String',
-												description : 'The unique identifier for the partner',
+												description : 'The unique identifier for the partner (required)',
 											}, ],
 									returns : 'A Pattern object',
 									errors : [ {
@@ -353,23 +324,23 @@ angular
 											{
 												name : 'accessRuleId',
 												type : 'Number',
-												description : 'The unique identifier for the access rule',
+												description : 'The unique identifier for the access rule (required)',
 											}, ],
 									body_parameters : [
 											{
 												name : 'patternId',
 												type : 'Number',
-												description : 'The unique identifier for a URI pattern that identifies the set of resources subject to the access rule',
+												description : 'The unique identifier for a URI pattern that identifies the set of resources subject to the access rule (required)',
 											},
 											{
 												name : 'accessTypeId',
 												type : 'Number',
-												description : 'The unique identifier for the kind of access to enforce',
+												description : 'The unique identifier for the kind of access to enforce (required)',
 											},
 											{
 												name : 'partnerId',
 												type : 'String',
-												description : 'The unique identifier for the partner',
+												description : 'The unique identifier for the partner (required)',
 											}, ],
 									returns : 'an AccessRule object with the updated set of object ids',
 									errors : [
@@ -408,7 +379,7 @@ angular
 											{
 												name : 'accessRuleId',
 												type : 'Number',
-												description : 'The unique identifier for the access rule',
+												description : 'The unique identifier for the access rule (required)',
 											}, ],
 									body_parameters : [],
 									returns : '{"success":"delete complete"}',
@@ -429,17 +400,17 @@ angular
 											{
 												name : 'partnerId',
 												type : 'String',
-												description : 'The unique identifier for a partner',
+												description : 'The unique identifier for a partner (required)',
 											},
 											{
 												name : 'ip',
 												type : 'String',
-												description : 'The V4 or V6 IP address of the original requestor',
+												description : 'The V4 or V6 IP address of the original requestor (required)',
 											},
 											{
 												name : 'url',
 												type : 'String',
-												description : 'The URL-encoded string identifying the resource to which access is requested',
+												description : 'The URL-encoded string identifying the resource to which access is requested (required)',
 											}, ],
 									body_parameters : [],
 									returns : 'an Access object',
@@ -455,17 +426,17 @@ angular
 											{
 												name : 'partnerId',
 												type : 'String',
-												description : 'The unique identifier for a partner',
+												description : 'The unique identifier for a partner (required)',
 											},
 											{
 												name : 'ip',
 												type : 'String',
-												description : 'The V4 or V6 IP address of the original requestor',
+												description : 'The V4 or V6 IP address of the original requestor (required)',
 											},
 											{
 												name : 'url',
 												type : 'String',
-												description : 'The URL-encoded string identifying the resource to which access is requested',
+												description : 'The URL-encoded string identifying the resource to which access is requested (required)',
 											}, ],
 									body_parameters : [],
 									returns : 'a TrueFalseAccess object',
@@ -481,31 +452,45 @@ angular
 											{
 												name : 'partnerId',
 												type : 'String',
-												description : 'The unique identifier for a partner',
+												description : 'The unique identifier for a partner (required)',
 											},
 											{
 												name : 'ip',
 												type : 'String',
-												description : 'The V4 or V6 IP address of the original requestor',
+												description : 'The V4 or V6 IP address of the original requestor (required)',
 											},
 											{
 												name : 'url',
 												type : 'String',
-												description : 'The URL-encoded string identifying the resource to which access is requested',
+												description : 'The URL-encoded string identifying the resource to which access is requested (required)',
 											}, ],
 									body_parameters : [],
 									returns : 'a TrueFalseAccess object',
 									errors : [],
 									example : 'https://pwapi.arabidopsis.org/authorizations/authentications/?partnerId=tair&url=http%3A%2F%2Fwww.arabidopsis.org%2Fcgi-bin%2Fbulk%2Fsequences%2F&ip=203.255.24.127',
-								}, /*
-									 * { header : '', summary : '', op : 'GET',
-									 * uri : '', parameters : [ { name : '',
-									 * type : '', description : '', }, { name :
-									 * '', type : '', description : '', }, ],
-									 * body_parameters : [], returns : '',
-									 * errors : [{code : '400', message : '',
-									 * explanation : '', resolution : ''}],
-									 * example : '', },
-									 */]
+								}, /*{
+									header : '',
+									summary : '',
+									op : 'GET',
+									uri : '',
+									parameters : [ {
+										name : '',
+										type : '',
+										description : '',
+									}, {
+										name : '',
+										type : '',
+										description : '',
+									}, ],
+									body_parameters : [],
+									returns : '',
+									errors : [ {
+										code : '400',
+										message : '',
+										explanation : '',
+										resolution : ''
+									} ],
+									example : '',
+								}, */]
 					}
 				} ]);
