@@ -12,7 +12,7 @@ angular
 				[ function() {
 					return {
 						heading : 'Session Logs API',
-						overview : 'A session log is a log of page views in a session. Page views are single accesses of a partner resource. The first access in a session usually generates the session id, so it is not associated with the session in the session logs. Each page view contains the URI, the IP address of the requestor, and optionally a party id if the party is authenticated.',
+						overview : 'A session log is a log of page views in a session. Page views are single accesses of a partner resource. The first access in a session usually generates the session id, so it is not associated with the session in the session logs. Each page view contains the URI, the IP address of the requestor, and optionally a party id if the party is authenticated. Session counts are counts of sessions based on filter criteria.',
 						datatypes : [ {
 							name : 'PageView',
 							fields : [ {

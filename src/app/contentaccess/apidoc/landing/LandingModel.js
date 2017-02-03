@@ -97,7 +97,9 @@ angular
 								elements : [
 										'A page view is a single access of a partner resource, as represented by a URI.',
 										'A session is a collection of page views identified by the partner as a single entity.',
-										'Logs include only the non-embedded resource accesses, not images, css or js files, or other embedded resources.', ]
+										'Logs include only the non-embedded resource accesses, not images, css or js files, or other embedded resources.', 
+										'The first page-view from an IP address usually generates a session id, so the log does not associate that page view with the session as it does not yet exist.', 
+										'Session counts provide statistics on sessions (collections of page views) based on filtering criteria like page view dates, ip, or URI.']
 							},
 							def : {
 								id : 'default',
