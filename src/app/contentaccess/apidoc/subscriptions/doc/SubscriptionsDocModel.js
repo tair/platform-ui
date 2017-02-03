@@ -240,7 +240,7 @@ angular
 							}, {
 								name : 'partnerId',
 								type : 'String',
-								description : 'Unique identifier for the partner to which to subscribe (required)',
+								description : 'Unique identifier for the partner to which to subscribe (required but ignored if activation code specified; the activation code partner id takes precedence)',
 							}, {
 								name : 'startDate',
 								type : 'Date',
@@ -249,13 +249,17 @@ angular
 								name : 'endDate',
 								type : 'Date',
 								description : 'Date on which the subscription expires; format yyyy-mm-ddThh:mm:ssZ (required)',
+							}, {
+								name : 'activationCode',
+								type : 'String',
+								description : 'An activation code previously created for the partner.',
 							}, ],
 							returns : 'the created Subscription object',
 							errors : [{code : '400', message : '{"message":"activation code is already used"', explanation : 'The activation code has a party id associated with it, meaning it has already activated a subscription.', resolution : 'Supply an unused activation code.'}, ],
 							example : 'https://pwapi.arabidopsis.org/subscriptions/',
 						}, {
-							header : 'Update a Subscription',
-							summary : 'Update an existing subscription with new data. Use this method with care only to correct a mistake of some kind.',
+							header : 'Update a Set of Subscriptions by Filter',
+							summary : 'Update a set of existing subscriptions identified by matches with filter parameters. Use this method with care only to correct a mistake of some kind.',
 							op : 'PUT',
 							uri : '/subscriptions/?subscriptionId={id}&partyId={id}&partnerId={id}&startDate={date}&endDate={date}',
 							parameters : [ {
@@ -300,8 +304,8 @@ angular
 							errors : [{code : '200', message : '{"error":"does not allow update without query parameters"}', explanation : 'The request had no query parameters.', resolution : 'Supply at least one query parameter.'}, ],
 							example : 'https://pwapi.arabidopsis.org/subscriptions/?subscriptionId=3579',
 						}, {
-							header : 'Delete an Existing Subscription',
-							summary : 'Deletes an existing subscription, removing it completely from the database.',
+							header : 'Delete a Set of Existing Subscriptions by Filter',
+							summary : 'Delete a set of existing subscriptions identified by matching filtering parameters, removing the subscriptions from the database.',
 							op : 'DELETE',
 							uri : '/subscriptions/?subscriptionId={id}&partyId={id}&partnerId={id}&startDate={date}&endDate={date}',
 							parameters : [ {
@@ -331,7 +335,7 @@ angular
 							example : 'https://pwapi.arabidopsis.org/subscriptions/?subscriptionId=3579',
 						}, {
 							header : 'Get All Subscription Transactions',
-							summary : 'Get all the subscription transactions in the Phoenix dtabase.',
+							summary : 'Get all the subscription transactions in the Phoenix database.',
 							op : 'GET',
 							uri : '/subscriptions/transactions/',
 							parameters : [],
@@ -343,7 +347,7 @@ angular
 							header : 'Get a Set of Subscription Transactions By a Filter',
 							summary : 'Get a set of subscription transactions that match any of several parameters: subscriptionTransactionId, subscriptionId, transactionDate, startDate, endDate, or transactionType.',
 							op : 'GET',
-							uri : '/subscriptions/transactions/?subscriptionTransactionId={id}&subscriptionId={id}&transactionDate={date}&startDate={date}7endDate={date}&transactionType={string}',
+							uri : '/subscriptions/transactions/?subscriptionTransactionId={id}&subscriptionId={id}&transactionDate={date}&startDate={date}&endDate={date}&transactionType={string}',
 							parameters : [ {
 								name : 'subscriptionTransactionId',
 								type : 'Number',
@@ -375,7 +379,7 @@ angular
 							example : 'https://pwapi.arabidopsis.org/subscriptions/transactions/&subscriptionId=3579',
 						}, {
 							header : 'Create a SubscriptionTransaction',
-							summary : 'Create a subscription transaction',
+							summary : 'Create a subscription transaction.',
 							op : 'POST',
 							uri : '/subscriptions/transactions',
 							parameters : [],
@@ -407,7 +411,7 @@ angular
 							header : 'Update Existing Subscription Transactions By Filter',
 							summary : 'Update fields in existing subscription transactions that match a filter condition.',
 							op : 'PUT',
-							uri : '/subscriptions/transactions/?subscriptionTransactionId={id}&subscriptionId={id}&transactionDate={date}&startDate={date}7endDate={date}&transactionType={string}',
+							uri : '/subscriptions/transactions/?subscriptionTransactionId={id}&subscriptionId={id}&transactionDate={date}&startDate={date}&endDate={date}&transactionType={string}',
 							parameters : [ {
 								name : 'subscriptionTransactionId',
 								type : 'Number',
@@ -461,7 +465,7 @@ angular
 							header : 'Delete Existing Subscription Transactions By Filter',
 							summary : 'Delete existing subscription transactions that match a filter condition. Use caution with this API call, please.',
 							op : 'DELETE',
-							uri : '/subscriptions/transactions/?subscriptionTransactionId={id}&subscriptionId={id}&transactionDate={date}&startDate={date}7endDate={date}&transactionType={string}',
+							uri : '/subscriptions/transactions/?subscriptionTransactionId={id}&subscriptionId={id}&transactionDate={date}&startDate={date}&endDate={date}&transactionType={string}',
 							parameters : [ {
 								name : 'subscriptionTransactionId',
 								type : 'Number',
@@ -513,7 +517,7 @@ angular
 							}, {
 								name : 'activationCode',
 								type : 'String',
-								description : 'The activation code (UUID format)',
+								description : 'The activation code',
 							},  {
 								name : 'partnerId',
 								type : 'String',
@@ -566,7 +570,7 @@ angular
 							body_parameters : [{
 								name : 'activationCode',
 								type : 'String',
-								description : 'The activation code (UUID format) (required)',
+								description : 'The activation code (required)',
 							},  {
 								name : 'partnerId',
 								type : 'String',
@@ -588,8 +592,8 @@ angular
 							errors : [],
 							example : 'https://pwapi.arabidopsis.org/subscriptions/activationCodes/',
 						}, {
-							header : 'Update an Existing Set of Activation Codes',
-							summary : 'Update a set of existing activation codes that match any of several parameters: activationCodeId, activationCode, partnerId, partyId, period, or purchaseDate.',
+							header : 'Update an Existing Set of Activation Codes By Filter',
+							summary : 'Update a set of existing activation codes that match any of several filter parameters: activationCodeId, activationCode, partnerId, partyId, period, or purchaseDate.',
 							op : 'PUT',
 							uri : '/subscriptions/activationCodes/?activationCodeId={id}&activationCode={string}&partnerId={string}&partyId={id}&period={number}&purchaseDate={date}',
 							parameters : [ {
@@ -599,7 +603,7 @@ angular
 							}, {
 								name : 'activationCode',
 								type : 'String',
-								description : 'The activation code (UUID format)',
+								description : 'The activation code',
 							},  {
 								name : 'partnerId',
 								type : 'String',
@@ -620,7 +624,7 @@ angular
 							body_parameters : [{
 								name : 'activationCode',
 								type : 'String',
-								description : 'The activation code (UUID format) (required)',
+								description : 'The activation code (required)',
 							},  {
 								name : 'partnerId',
 								type : 'String',
@@ -628,7 +632,7 @@ angular
 							}, {
 								name : 'partyId',
 								type : 'Number',
-								description : 'Unique identifier for the party that activated the subscription with the code; this value is usually specified in a PUT request, not a POST',
+								description : 'Unique identifier for the party that activated the subscription with the code',
 							},  {
 								name : 'period',
 								type : 'Number',
@@ -642,8 +646,8 @@ angular
 							errors : [{code : '200', message : '{"error":"does not allow update without query parameters"}', explanation : 'The request had no query parameters.', resolution : 'Supply at least one query parameter.'}, ],
 							example : 'https://pwapi.arabidopsis.org/subscriptions/activationCodes/?activationCodeId=3579',
 						}, {
-							header : 'Delete an Existing Set of Activation Codes',
-							summary : 'Delete a set of existing activation codes that match any of several parameters: activationCodeId, activationCode, partnerId, partyId, period, or purchaseDate.',
+							header : 'Delete an Existing Set of Activation Codes By Filter',
+							summary : 'Delete a set of existing activation codes that match any of several filter parameters: activationCodeId, activationCode, partnerId, partyId, period, or purchaseDate.',
 							op : 'DELETE',
 							uri : '/subscriptions/activationCodes/?activationCodeId={id}&activationCode={string}&partnerId={string}&partyId={id}&period={number}&purchaseDate={date}',
 							parameters : [ {
@@ -653,7 +657,7 @@ angular
 							}, {
 								name : 'activationCode',
 								type : 'String',
-								description : 'The activation code (UUID format)',
+								description : 'The activation code',
 							},  {
 								name : 'partnerId',
 								type : 'String',
@@ -677,7 +681,7 @@ angular
 							example : 'https://pwapi.arabidopsis.org/subscriptions/activationCodes/?activationCodeId=3579',
 						}, {
 							header : 'Renew a Subscription',
-							summary : 'Renew a subscription specified by its ID, creating a renew subscription transaction. If you do not specify the start date or end date as entity parameters, the values remain unchanged.',
+							summary : 'Renew a subscription specified by its ID, creating a renew subscription transaction. If you do not specify the start date or end date as body parameters, the values remain unchanged.',
 							op : 'PUT',
 							uri : '/subscriptions/{id}/renewal/',
 							parameters : [ {
@@ -703,7 +707,7 @@ angular
 								description : 'Date on which the subscription expires; format yyyy-mm-ddThh:mm:ssZ',
 							}, ],
 							returns : 'a SubscriptionWithTransactionId object',
-							errors : [{code : '400', message : '{"partyId":["This field is required."],"partnerId":["This field is required."]}', explanation : 'You did not specify a party id or a partnerId in the request entity.', resolution : 'Supply valid, form-encoded values for partnerId and partyId in the request entity.'}, ],
+							errors : [{code : '400', message : '{"partyId":["This field is required."],"partnerId":["This field is required."]}', explanation : 'You did not specify a party id or a partnerId in the request body.', resolution : 'Supply valid, form-encoded values for partnerId and partyId in the request body.'}, ],
 							example : 'https://pwapi.arabidopsis.org/subscriptions/1445/renewal/',
 						}, {
 							header : 'Get the Payment Page as HTML',
@@ -739,7 +743,7 @@ angular
 							}, {
 								name : 'price',
 								type : 'Number',
-								description : 'The price of an activation code in dollars (required)',
+								description : 'The total amount to charge in dollars (required)',
 							}, {
 								name : 'termId',
 								type : 'Number',
@@ -793,8 +797,8 @@ angular
 								type : 'String',
 								description : 'Host name of the server to which to direct the user to use the activation codes',
 							}, ],
-							returns : '{"status":"{string}"',
-							errors : [{code : '400', message : '{"message":"Charge validation error"}', explanation : 'The supplied price does not match the term price times the quantity ordered', resolution : 'Correct the supplied price.'}, 
+							returns : '{"status":"{string}} where string is a Stripe status message"',
+							errors : [{code : '400', message : '{"message":"Charge validation error"}', explanation : 'The supplied total amount does not match the term price times the quantity ordered times the group discount rate.', resolution : 'Correct the supplied price.'}, 
 							          {code : '400', message : '{"message":"{string}"', explanation : 'Stripe returned an error message.', resolution : 'Correct the problem as directed by the Stripe error message.'}, ],
 							example : 'https://pwapi.arabidopsis.org/subscriptions/payments/',
 						}, {
@@ -1115,7 +1119,7 @@ angular
 								description : 'The kind of request: subscription or renewal (required)',
 							}, ],
 							returns : 'The created SubscriptionTransaction object',
-							errors : [{code : '400', message : '{"error":"serializer error"}', explanation : 'A parameter in the entity was missing or invalid.', resolution : 'Supply all required entity parameters or correct any invalid ones.'}, ],
+							errors : [{code : '400', message : '{"error":"serializer error"}', explanation : 'A parameter in the request body was missing or invalid.', resolution : 'Supply all required body parameters or correct any invalid ones.'}, ],
 							example : 'https://pwapi.arabidopsis.org/subscriptions/subscriptionrequest/',
 						}, {
 							header : 'Update an Existing Set of Subscription Requests By Filter',
@@ -1129,43 +1133,43 @@ angular
 							}, {
 								name : 'requestDate',
 								type : 'Date',
-								description : 'Date of the subscription request; format yyyy-mm-ddThh:mm:ssZ (required)',
+								description : 'Date of the subscription request; format yyyy-mm-ddThh:mm:ssZ',
 							}, {
 								name : 'firstName',
 								type : 'String',
-								description : 'First name of the requestor (required)',
+								description : 'First name of the requestor',
 							}, {
 								name : 'lastName',
 								type : 'String',
-								description : 'Last name of the requestor (required)',
+								description : 'Last name of the requestor',
 							}, {
 								name : 'email',
 								type : 'String',
-								description : 'Email of the requestor (required)',
+								description : 'Email of the requestor',
 							}, {
 								name : 'institution',
 								type : 'String',
-								description : 'Institution for which a subscription is requested (required)',
+								description : 'Institution for which a subscription is requested',
 							}, {
 								name : 'librarianName',
 								type : 'String',
-								description : 'Name of a librarian contact at the institution (required)',
+								description : 'Name of a librarian contact at the institution',
 							}, {
 								name : 'librarianEmail',
 								type : 'String',
-								description : 'Email of a librarian contact at the institution (required)',
+								description : 'Email of a librarian contact at the institution',
 							}, {
 								name : 'comments',
 								type : 'String',
-								description : 'Comments on the request (required)',
+								description : 'Comments on the request',
 							}, {
 								name : 'partnerId',
 								type : 'String',
-								description : 'Unique identifer for the requested partner (required)',
+								description : 'Unique identifer for the requested partner',
 							}, {
 								name : 'requestType',
 								type : 'String',
-								description : 'The kind of request: subscription or renewal (required)',
+								description : 'The kind of request: subscription or renewal',
 							}, ],
 							body_parameters : [ {
 								name : 'requestDate',
@@ -1210,7 +1214,7 @@ angular
 							}, ],
 							returns : 'the SubscriptionRequest object with updated values',
 							errors : [{code : '200', message : '{"error":"does not allow update without query parameters"}', explanation : 'The request had no query parameters.', resolution : 'Specify at least one filter query parameter in the request.'}, ],
-							example : 'https://pwapi.arabidopsis.org/subscriptions/subscriptionrequest/&subscriptionRequestId=1',
+							example : 'https://pwapi.arabidopsis.org/subscriptions/subscriptionrequest/?subscriptionRequestId=1',
 						}, {
 							header : 'Delete an Existing Set of Subscription Requests By Filter',
 							summary : 'Delete a set of subscription requests identified by a set of filter parameters.',
@@ -1223,48 +1227,48 @@ angular
 							}, {
 								name : 'requestDate',
 								type : 'Date',
-								description : 'Date of the subscription request; format yyyy-mm-ddThh:mm:ssZ (required)',
+								description : 'Date of the subscription request; format yyyy-mm-ddThh:mm:ssZ',
 							}, {
 								name : 'firstName',
 								type : 'String',
-								description : 'First name of the requestor (required)',
+								description : 'First name of the requestor',
 							}, {
 								name : 'lastName',
 								type : 'String',
-								description : 'Last name of the requestor (required)',
+								description : 'Last name of the requestor',
 							}, {
 								name : 'email',
 								type : 'String',
-								description : 'Email of the requestor (required)',
+								description : 'Email of the requestor',
 							}, {
 								name : 'institution',
 								type : 'String',
-								description : 'Institution for which a subscription is requested (required)',
+								description : 'Institution for which a subscription is requested',
 							}, {
 								name : 'librarianName',
 								type : 'String',
-								description : 'Name of a librarian contact at the institution (required)',
+								description : 'Name of a librarian contact at the institution',
 							}, {
 								name : 'librarianEmail',
 								type : 'String',
-								description : 'Email of a librarian contact at the institution (required)',
+								description : 'Email of a librarian contact at the institution',
 							}, {
 								name : 'comments',
 								type : 'String',
-								description : 'Comments on the request (required)',
+								description : 'Comments on the request',
 							}, {
 								name : 'partnerId',
 								type : 'String',
-								description : 'Unique identifer for the requested partner (required)',
+								description : 'Unique identifer for the requested partner',
 							}, {
 								name : 'requestType',
 								type : 'String',
-								description : 'The kind of request: subscription or renewal (required)',
+								description : 'The kind of request: subscription or renewal',
 							}, ],
 							body_parameters : [],
 							returns : '{"success":"delete complete"}',
 							errors : [{code : '200', message : '{"error":"does not allow delete without query parameters"}', explanation : 'The request had no query parameters.', resolution : 'Specify at least one filter query parameter in the request.'}, ],
-							example : 'https://pwapi.arabidopsis.org/subscriptions/subscriptionrequest/&subscriptionRequestId=1',
+							example : 'https://pwapi.arabidopsis.org/subscriptions/subscriptionrequest/?subscriptionRequestId=1',
 						}, /*{
 						header : '',
 						summary : '',
