@@ -344,7 +344,7 @@ angular
 							errors : [],
 							example : 'https://pwapi.arabidopsis.org/subscriptions/transactions/',
 						}, {
-							header : 'Get a Set of Subscription Transactions By a Filter',
+							header : 'Get a Set of Subscription Transactions By Filter',
 							summary : 'Get a set of subscription transactions that match any of several parameters: subscriptionTransactionId, subscriptionId, transactionDate, startDate, endDate, or transactionType.',
 							op : 'GET',
 							uri : '/subscriptions/transactions/?subscriptionTransactionId={id}&subscriptionId={id}&transactionDate={date}&startDate={date}&endDate={date}&transactionType={string}',
@@ -506,7 +506,7 @@ angular
 							errors : [],
 							example : 'https://pwapi.arabidopsis.org/subscriptions/activationCodes/',
 						}, {
-							header : 'Get a Set of Activation Codes By a Filter',
+							header : 'Get a Set of Activation Codes By Filter',
 							summary : 'Get a set of activation codes that match any of several parameters: activationCodeId, activationCode, partnerId, partyId, period, or purchaseDate.',
 							op : 'GET',
 							uri : '/subscriptions/activationCodes/?activationCodeId={id}&activationCode={string}&partnerId={string}&partyId={id}&period={number}&purchaseDate={date}',
