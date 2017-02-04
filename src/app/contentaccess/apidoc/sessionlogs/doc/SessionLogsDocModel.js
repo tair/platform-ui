@@ -69,7 +69,7 @@ angular
 							uri : '/session-logs/page-views/?pageViewId={id}&startDate={date}&endDate={date}&pageViewDate={date}&ip={string}&uri={string}&partyId={id}&sessionId={string}',
 							parameters : [ {
 								name : 'pageViewId',
-								type : 'Number (generated)',
+								type : 'Number',
 								description : 'Unique identifier for the page view',
 							}, {
 								name : 'startDate',
