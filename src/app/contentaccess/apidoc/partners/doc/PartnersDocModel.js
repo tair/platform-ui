@@ -138,7 +138,7 @@ angular
 									fields : [
 											{
 												name : 'partnerPatternId',
-												type : 'Number',
+												type : 'Number (generated)',
 												description : 'Unique identifier for the pattern',
 											},
 											{
@@ -162,7 +162,7 @@ angular
 									fields : [
 											{
 												name : 'subscriptionTermId',
-												type : 'Number',
+												type : 'Number (generated)',
 												description : 'Unique identifier for the subscription term',
 											},
 											{
@@ -196,7 +196,7 @@ angular
 									fields : [
 											{
 												name : 'subscriptionDescriptionId',
-												type : 'Number',
+												type : 'Number (generated)',
 												description : 'The unique identifier for the description',
 											},
 											{
@@ -244,7 +244,7 @@ angular
 									fields : [
 											{
 												name : 'subscriptionDescriptionItemId',
-												type : 'Number',
+												type : 'Number (generated)',
 												description : 'The unique identifier for the subscription description item, or benefit paragraph',
 											},
 											{
@@ -257,11 +257,18 @@ angular
 												type : 'String',
 												description : 'A subscription benefit paragraph; one of several items under a description header in the user interface',
 											}, ],
-								}, /*
-									 * { name : '', fields : [ { name : '', type :
-									 * '', description : '', }, { name : '',
-									 * type : '', description : '', }, ], },
-									 */],
+								}, /*{
+									name : '',
+									fields : [ {
+										name : '',
+										type : '',
+										description : '',
+									}, {
+										name : '',
+										type : '',
+										description : '',
+									}, ],
+								}, */],
 						calls : [
 								{
 									header : 'Get All Partners',
@@ -283,7 +290,7 @@ angular
 											{
 												name : 'partnerId',
 												type : 'String',
-												description : 'The unique partner name',
+												description : 'The unique partner name (required)',
 											}, ],
 									body_parameters : [],
 									returns : 'Array of Partner with single partner object',
@@ -299,7 +306,7 @@ angular
 											{
 												name : 'sourceUri',
 												type : 'String',
-												description : 'The complete source URI for a partner resource',
+												description : 'The complete source URI for a partner resource (required)',
 											}, ],
 									body_parameters : [],
 									returns : 'Array of Partner with one object',
@@ -318,19 +325,22 @@ angular
 									op : 'POST',
 									uri : '/partners/patterns/',
 									parameters : [],
-									body_parameters : [ {
-										name : 'partnerId',
-										type : 'String',
-										description : 'The unique identifier for the partner',
-									}, {
-										name : 'sourceUri',
-										type : 'String',
-										description : 'A Python regular expression identifying a class of partner URIs (URIs that identify the partner)',
-									}, {
-										name : 'targetUri',
-										type : 'String',
-										description : 'A URI containing scheme (protocol) and authority (hostname and optional port) for the target back-end server to which to proxy the URIs identified by the pattern',
-									}, ],
+									body_parameters : [
+											{
+												name : 'partnerId',
+												type : 'String',
+												description : 'The unique identifier for the partner (required)',
+											},
+											{
+												name : 'sourceUri',
+												type : 'String',
+												description : 'A Python regular expression identifying a class of partner URIs (URIs that identify the partner) (required)',
+											},
+											{
+												name : 'targetUri',
+												type : 'String',
+												description : 'A URI containing scheme (protocol) and authority (hostname and optional port) for the target back-end server to which to proxy the URIs identified by the pattern (required)',
+											}, ],
 									returns : 'Array of PartnerPattern',
 									errors : [],
 									example : 'https://pwapi.arabidopsis.org/partners/patterns/',
@@ -339,26 +349,29 @@ angular
 									header : 'Update a Partner Pattern',
 									summary : 'Update an existing pattern specified by id; you must supply all the pattern fields to update',
 									op : 'PUT',
-									uri : '/partners/patterns/&partnerPatternId',
+									uri : '/partners/patterns/&partnerPatternId={id}',
 									parameters : [
 											{
 												name : 'partnerPatternId',
 												type : 'Number',
-												description : 'The unique identifier for the pattern',
+												description : 'The unique identifier for the pattern (required)',
 											}, ],
-									body_parameters : [{
-										name : 'partnerId',
-										type : 'String',
-										description : 'The unique identifier for the partner',
-									}, {
-										name : 'sourceUri',
-										type : 'String',
-										description : 'A Python regular expression identifying a class of partner URIs (URIs that identify the partner)',
-									}, {
-										name : 'targetUri',
-										type : 'String',
-										description : 'A URI containing scheme (protocol) and authority (hostname and optional port) for the target back-end server to which to proxy the URIs identified by the pattern',
-									}, ],
+									body_parameters : [
+											{
+												name : 'partnerId',
+												type : 'String',
+												description : 'The unique identifier for the partner (required)',
+											},
+											{
+												name : 'sourceUri',
+												type : 'String',
+												description : 'A Python regular expression identifying a class of partner URIs (URIs that identify the partner) (required)',
+											},
+											{
+												name : 'targetUri',
+												type : 'String',
+												description : 'A URI containing scheme (protocol) and authority (hostname and optional port) for the target back-end server to which to proxy the URIs identified by the pattern (required)',
+											}, ],
 									returns : 'Array of PartnerPattern',
 									errors : [],
 									example : 'https://pwapi.arabidopsis.org/partners/patterns/?partnerPatternId=32',
@@ -367,12 +380,12 @@ angular
 									header : 'Delete a Partner Pattern',
 									summary : 'Delete an existing partner pattern specified by id',
 									op : 'DELETE',
-									uri : '/partners/patterns/&partnerPatternId',
+									uri : '/partners/patterns/&partnerPatternId={id}',
 									parameters : [
 											{
 												name : 'partnerPatternId',
 												type : 'Number',
-												description : 'The unique identifier for the pattern',
+												description : 'The unique identifier for the pattern (required)',
 											}, ],
 									body_parameters : [],
 									returns : '{"success":"delete complete"}',
@@ -399,7 +412,7 @@ angular
 											{
 												name : 'subscriptionTermId',
 												type : 'Number',
-												description : 'The unique identifier for the term',
+												description : 'The unique identifier for the term (required)',
 											}, ],
 									body_parameters : [],
 									returns : 'Array of PartnerTerm with a single PartnerTerm object',
@@ -415,7 +428,7 @@ angular
 											{
 												name : 'partnerId',
 												type : 'String',
-												description : 'The unique partner id for the partner, such as "tair"',
+												description : 'The unique partner id for the partner, such as "tair" (required)',
 											}, ],
 									body_parameters : [],
 									returns : 'Array of PartnerTerm',
@@ -470,7 +483,7 @@ angular
 									example : 'https://pwapi.arabidopsis.org/partners/descriptions',
 								},
 								{
-									header : 'Get Partner Subscription Descriptions with Filter',
+									header : 'Get Partner Subscription Descriptions By Filter',
 									summary : 'Gets the partner subscription descriptions for a specified partner and description type',
 									op : 'GET',
 									uri : '/partners/descriptions/?subscriptionDescriptionId={id}&partnerId={id}&descriptionType={type}',
@@ -496,7 +509,7 @@ angular
 									example : 'https://pwapi.arabidopsis.org/partners/descriptions/?partnerId=tair&descriptionType=individual',
 								},
 								{
-									header : 'Get Partner Subscription Benefits with Filter',
+									header : 'Get Partner Subscription Benefits By Filter',
 									summary : 'Gets the partner subscription benefits for a specific partner and description type, returning header and benefit text',
 									op : 'GET',
 									uri : '/partners/descriptions/?partnerId={id}&descriptionType={type}&includeText=true',
@@ -533,7 +546,7 @@ angular
 									example : 'https://demoapi.arabidopsis.org/partners/descriptionItems',
 								},
 								{
-									header : 'Get Subscription Description Items With Filter',
+									header : 'Get Subscription Description Items By Filter',
 									summary : 'Get the benefit paragraphs identified by item id, description id, or text',
 									op : 'GET',
 									uri : '/partners/descriptionItems/?subscriptionDescriptionItemId={id}&subscriptionDescriptionId={id}&text={string}',
@@ -594,18 +607,18 @@ angular
 											{
 												name : 'subscriptionDescriptionItemId',
 												type : 'Number',
-												description : 'Unique id that identifies the item to update',
+												description : 'Unique id that identifies the item to update (required)',
 											}, ],
 									body_parameters : [
 											{
 												name : 'subscriptionDescriptionId',
 												type : '',
-												description : 'The unique identifier for the description header',
+												description : 'The unique identifier for the description header (required)',
 											},
 											{
 												name : 'text',
 												type : 'String',
-												description : 'The text of the benefit',
+												description : 'The text of the benefit (required)',
 											}, ],
 									returns : 'SubscriptionDescriptionItem object with updates',
 									errors : [],
@@ -620,7 +633,7 @@ angular
 											{
 												name : 'subscriptionDescriptionItemId',
 												type : 'Number',
-												description : 'Unique id that identifies the item to delete',
+												description : 'Unique id that identifies the item to delete (required)',
 											}, ],
 									body_parameters : [],
 									returns : '{"success":"delete complete"}',
@@ -632,15 +645,29 @@ angular
 												resolution : 'Specify query parameters to filter the items to delete.'
 											}, ],
 									example : 'https://demoapi.arabidopsis.org/partners/descriptionItems/?subscriptionDescriptionItemId=5',
-								}, /*
-									 * { header : '', summary : '', op : 'GET',
-									 * uri : '', parameters : [ { name : '',
-									 * type : '', description : '', }, { name :
-									 * '', type : '', description : '', }, ],
-									 * body_parameters : [], returns : '',
-									 * errors : [{code : '400', message : '',
-									 * explanation : '', resolution : ''}],
-									 * example : '', },
-									 */]
+								}, /*{
+									header : '',
+									summary : '',
+									op : 'GET',
+									uri : '',
+									parameters : [ {
+										name : '',
+										type : '',
+										description : '',
+									}, {
+										name : '',
+										type : '',
+										description : '',
+									}, ],
+									body_parameters : [],
+									returns : '',
+									errors : [ {
+										code : '400',
+										message : '',
+										explanation : '',
+										resolution : ''
+									} ],
+									example : '',
+								}, */]
 					}
 				} ]);
