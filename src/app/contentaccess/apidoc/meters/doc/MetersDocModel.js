@@ -19,7 +19,7 @@ angular
 									fields : [
 											{
 												name : 'id',
-												type : 'Number',
+												type : 'Number (generated)',
 												description : 'Unique identifier for the count',
 											},
 											{
@@ -71,7 +71,7 @@ angular
 									fields : [
 											{
 												name : 'meterBlackListId',
-												type : 'Number',
+												type : 'Number (generated)',
 												description : 'The unique identifier for the meter blacklist entry',
 											},
 											{
@@ -84,8 +84,7 @@ angular
 												type : 'String',
 												description : 'The unique identifier for the partner system containing the blacklisted resources',
 											}, ],
-								}, 
-									  /*{
+								}, /*{
 									name : '',
 									fields : [ {
 										name : '',
@@ -311,7 +310,7 @@ angular
 											{
 												name : 'limitId',
 												type : 'Number',
-												description : 'The unique identifier for the limit value',
+												description : 'The unique identifier for the limit value (required)',
 											}, ],
 									body_parameters : [],
 									returns : 'An Array of LimitValue objects with a single object',
@@ -327,7 +326,7 @@ angular
 											{
 												name : 'partnerId',
 												type : 'String',
-												description : 'The unique identifier for a partner',
+												description : 'The unique identifier for a partner (required)',
 											}, ],
 									body_parameters : [],
 									returns : 'an Array of LimitValue objects',
@@ -343,7 +342,7 @@ angular
 											{
 												name : 'val',
 												type : 'Number',
-												description : 'The access count for which to query limit values',
+												description : 'The access count for which to query limit values (required)',
 											}, ],
 									body_parameters : [],
 									returns : 'an Array of LimitValue objects',
@@ -360,12 +359,12 @@ angular
 											{
 												name : 'partnerId',
 												type : 'String',
-												description : 'The unique identifier for the partner for which to create a limit',
+												description : 'The unique identifier for the partner for which to create a limit (required)',
 											},
 											{
 												name : 'val',
 												type : 'Number',
-												description : 'The access count at which to warn or block access',
+												description : 'The access count at which to warn or block access (required)',
 											}, ],
 									returns : 'the created LimitValue object',
 									errors : [],
@@ -380,18 +379,18 @@ angular
 											{
 												name : 'limitId',
 												type : 'Number',
-												description : 'The unique identifier for the meter limit value',
+												description : 'The unique identifier for the meter limit value (required)',
 											}, ],
 									body_parameters : [
 											{
 												name : 'partnerId',
 												type : 'String',
-												description : 'The unique identifier for the partner for which to create a limit',
+												description : 'The unique identifier for the partner for which to create a limit (required)',
 											},
 											{
 												name : 'val',
 												type : 'Number',
-												description : 'The access count at which to warn or block access',
+												description : 'The access count at which to warn or block access (required)',
 											}, ],
 									returns : 'the updated LimitValue object',
 									errors : [
@@ -412,7 +411,7 @@ angular
 											{
 												name : 'limitId',
 												type : 'Number',
-												description : 'The unique identifier for the meter limit value',
+												description : 'The unique identifier for the meter limit value (required)',
 											}, ],
 									body_parameters : [],
 									returns : '{"success":"delete complete"}',
@@ -434,7 +433,7 @@ angular
 											{
 												name : 'partnerId',
 												type : 'String',
-												description : 'unique identifier for the partner to meter',
+												description : 'unique identifier for the partner to meter (required)',
 											}, ],
 									body_parameters : [],
 									returns : '{"message": "success"}',
@@ -451,17 +450,22 @@ angular
 									header : 'Check the Meter Count for an IP Address Against Limit Values',
 									summary : 'Checks whether the meter count for a URI and specified IP address and partner is at a specified IP meter limit value',
 									op : 'GET',
-									uri : '/meters/ip/{ip address}/limit/?partnerId={id}&uri={string}',
+									uri : '/meters/ip/{ipAddress}/limit/?partnerId={id}&uri={string}',
 									parameters : [
+											{
+												name : 'ipAddress',
+												type : 'String',
+												description : 'IP address for which to check the limit (required)',
+											},
 											{
 												name : 'partnerId',
 												type : 'String',
-												description : 'Unique identifier for a partner',
+												description : 'Unique identifier for a partner (required)',
 											},
 											{
 												name : 'uri',
 												type : 'String',
-												description : 'The URI from the request to check against the blacklist',
+												description : 'The URI from the request to check against the blacklist (required)',
 											}, ],
 									body_parameters : [],
 									returns : 'a MeterStatus object',
@@ -617,8 +621,7 @@ angular
 												resolution : 'Specify at least one filter query parameter (meterBlacklistId, pattern, or partnerId) in the request.'
 											}, ],
 									example : 'https://pwapi.arabidopsis.org/meters/meterblacklist/?partnerId=tair',
-								}, /*
-									  {
+								}, /*{
 									header : '',
 									summary : '',
 									op : 'GET',
@@ -649,6 +652,6 @@ angular
 										resolution : ''
 									}, ],
 									example : '',
-								}, */] 
+								}, */]
 					}
 				} ]);
