@@ -1,0 +1,55 @@
+<div class="container">
+    <!-- API Doc Panel -->
+    <div class="row">
+        <div class="col-xs-12">
+            <div style="margin-left: auto; margin-right: auto;" class="panel panel-default apidoc-panel">
+                <!-- Heading -->
+                <div class="panel-heading apidoc-panel-heading">
+                    <div class="row">
+                        <div class="col-xs-2" style="float: right">
+                            <a href="http://www.phoenixbioinformatics.org" title="Phoenix Bioinformatics home page"><img
+                                src="assets/Phoenix_Logo.png" alt="Phoenix Bioinformatics logo" style="height:60px; float:right" /></a>
+                        </div>
+                        <div class="col-xs-5 text-center" ng-class="{'highlight-api': api=='def'}" ng-click="set_api('def')"
+                            style="float: none; margin-left: auto; margin-right: auto; padding-top: 20px;">API Documentation</div>
+                    </div>
+                    <!--<div class="row">
+						<div class="col-xs-12 text-center">
+							Phoenix REST API
+						</div>
+					</div>-->
+                </div>
+                <!-- Body -->
+                <div style="padding-top: 0px;" class="panel-body">
+                    <div ui-view="apidoc"></div>
+                    <!--<div class="tab-page" ng-include="templates.landing" ng-if="currentTab=='landing'"></div>
+				  <div class="tab-page" ng-include="templates.partners" ng-if="currentTab=='partners'"></div>
+				  <div class="tab-page" ng-include="templates.parties" ng-if="currentTab=='parties'"></div>
+                  <div class="tab-page" ng-include="templates.credentials" ng-if="currentTab=='credentials'"></div>
+                  <div class="tab-page" ng-include="templates.meters" ng-if="currentTab=='meters'"></div>
+				  <div class="tab-page" ng-include="templates.ipranges" ng-if="currentTab=='ipranges'"></div>
+                  <div class="tab-page" ng-include="templates.subscriptions" ng-if="currentTab=='subscriptions'"></div>
+                  <div class="tab-page" ng-include="templates.authorizations" ng-if="currentTab=='authorizations'"></div>
+                  <div class="tab-page" ng-include="templates.sessionlogs" ng-if="currentTab=='sessionlogs'"></div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Powered By -->
+    <div class="row">
+        <div class="col-xs-12">
+            <div style="width: 697px; display: block; margin-left: auto; margin-right: auto;">
+                <div class="row">
+                    <div class="col-xs-4 text-right" style="float: right;">
+                        <div class="col-xs-6">
+                            <div class="row text-right" style="padding-top:15px;color:#bbc9cf;">Powered by</div>
+                        </div>
+                        <div class="col-xs-6">
+                            <img src="assets/Phoenix_Logo.png" style="height:39px;width:67px">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
