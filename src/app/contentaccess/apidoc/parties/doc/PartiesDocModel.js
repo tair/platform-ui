@@ -117,7 +117,7 @@ angular
 											{
 												name : 'id',
 												type : 'Number',
-												description : 'The unique identifier for the party to query',
+												description : 'The unique identifier for the party to query (required)',
 											}, ],
 									body_parameters : [],
 									returns : 'an Array of Party objects with a single object',
@@ -133,7 +133,7 @@ angular
 											{
 												name : 'partyType',
 												type : 'String',
-												description : 'The kind of party to query: user, organization, consortium, partner, staff, admin',
+												description : 'The kind of party to query: user, organization, consortium, partner, staff, admin (required)',
 											}, ],
 									body_parameters : [],
 									returns : 'an Array of Party objects',
@@ -150,22 +150,22 @@ angular
 											{
 												name : 'partyType',
 												type : 'String',
-												description : 'The kind of party to create: user, organization, consortium, partner, staff, admin',
+												description : 'The kind of party to create: user, organization, consortium, partner, staff, admin (required)',
 											},
 											{
 												name : 'name',
 												type : 'String',
-												description : 'The full name of the party for display in the user interface',
+												description : 'The full name of the party for display in the user interface (required)',
 											},
 											{
 												name : 'country',
 												type : 'Number',
-												description : 'The unique identifier for the country',
+												description : 'The unique identifier for the country (required)',
 											},
 											{
 												name : 'display',
 												type : 'String',
-												description : 'Whether to display (true) or not (false) the party in a list in the user interface',
+												description : 'Whether to display (true) or not (false) the party in a list in the user interface (required)',
 											},
 											{
 												name : 'label',
@@ -185,28 +185,28 @@ angular
 											{
 												name : 'partyId',
 												type : 'Number',
-												description : 'The unique identifier for the party to update',
+												description : 'The unique identifier for the party to update (required)',
 											}, ],
 									body_parameters : [
 											{
 												name : 'partyType',
 												type : 'String',
-												description : 'The kind of party to create: user, organization, consortium, partner, staff, admin',
+												description : 'The kind of party to create: user, organization, consortium, partner, staff, admin (required)',
 											},
 											{
 												name : 'name',
 												type : 'String',
-												description : 'The full name of the party for display in the user interface',
+												description : 'The full name of the party for display in the user interface (required)',
 											},
 											{
 												name : 'country',
 												type : 'Number',
-												description : 'The unique identifier for the country',
+												description : 'The unique identifier for the country (required)',
 											},
 											{
 												name : 'display',
 												type : 'String',
-												description : 'Whether to display (true) or not (false) the party in a list in the user interface',
+												description : 'Whether to display (true) or not (false) the party in a list in the user interface (required)',
 											},
 											{
 												name : 'label',
@@ -232,7 +232,7 @@ angular
 											{
 												name : 'partyId',
 												type : 'Number',
-												description : 'The unique identifier for the party to delete',
+												description : 'The unique identifier for the party to delete (required)',
 											}, ],
 									body_parameters : [],
 									returns : '{"success":"delete complete"}',
@@ -254,7 +254,7 @@ angular
 											{
 												name : 'partnerId',
 												type : 'String',
-												description : 'The unique identifier for a partner',
+												description : 'The unique identifier for a partner (required)',
 											}, ],
 									body_parameters : [],
 									returns : 'Array of Arrays of Strings, each of which contains 2 strings (organization name and country name)',
@@ -270,7 +270,7 @@ angular
 											{
 												name : 'partyId',
 												type : 'Number',
-												description : 'The unique identifier for the party to query',
+												description : 'The unique identifier for the party to query (required)',
 											}, ],
 									body_parameters : [],
 									returns : 'an Array of 2 objects, a Party object and a Credential object corresponding to it',
@@ -305,7 +305,7 @@ angular
 											{
 												name : 'partyType',
 												type : 'String',
-												description : 'The kind of party to create:  must specify organization',
+												description : 'The kind of party to create:  must specify organization (required)',
 											},
 											{
 												name : 'name',
@@ -315,17 +315,17 @@ angular
 											{
 												name : 'username',
 												type : 'String',
-												description : 'The unique username for the user for the partner; required',
+												description : 'The unique username for the user for the partner (required)',
 											},
 											{
 												name : 'password',
 												type : 'String',
-												description : 'The user password for authentication in cleartext; stored after encrypting; required',
+												description : 'The user password for authentication in cleartext; stored after encrypting (required)',
 											},
 											{
 												name : 'partnerId',
 												type : 'String',
-												description : 'The unique identifier for the partner; required',
+												description : 'The unique identifier for the partner (required)',
 											},
 											{
 												name : 'email',
@@ -404,11 +404,7 @@ angular
 											{
 												name : 'partyId',
 												type : 'Number',
-												description : 'The unique identifier for the party',
-											}, {
-												name : '',
-												type : '',
-												description : '',
+												description : 'The unique identifier for the party (required)',
 											}, ],
 									body_parameters : [
 											{
@@ -424,17 +420,17 @@ angular
 											{
 												name : 'username',
 												type : 'String',
-												description : 'The unique username for the user for the partner; required',
+												description : 'The unique username for the user for the partner (required)',
 											},
 											{
 												name : 'password',
 												type : 'String',
-												description : 'The user password for authentication in cleartext; stored after encrypting; required',
+												description : 'The user password for authentication in cleartext; stored after encrypting (required)',
 											},
 											{
 												name : 'partnerId',
 												type : 'String',
-												description : 'The unique identifier for the partner; required',
+												description : 'The unique identifier for the partner (required)',
 											},
 											{
 												name : 'email',
@@ -507,7 +503,7 @@ angular
 											{
 												name : 'partyId',
 												type : 'Number',
-												description : 'The unique identifier for the institution',
+												description : 'The unique identifier for the institution (required)',
 											}, ],
 									body_parameters : [],
 									returns : '{"success":"delete partyId {id} completed"}',
@@ -541,7 +537,7 @@ angular
 											{
 												name : 'partyId',
 												type : 'Number',
-												description : 'The unique identifier for the consortium to query',
+												description : 'The unique identifier for the consortium to query (required)',
 											}, ],
 									body_parameters : [],
 									returns : 'an Array of 2 objects, a Party object and a Credential object corresponding to it',
@@ -586,17 +582,17 @@ angular
 											{
 												name : 'username',
 												type : 'String',
-												description : 'The unique username for the user for the partner; required',
+												description : 'The unique username for the user for the partner (required)',
 											},
 											{
 												name : 'password',
 												type : 'String',
-												description : 'The user password for authentication in cleartext; stored after encrypting; required',
+												description : 'The user password for authentication in cleartext; stored after encrypting (required)',
 											},
 											{
 												name : 'partnerId',
 												type : 'String',
-												description : 'The unique identifier for the partner; required',
+												description : 'The unique identifier for the partner (required)',
 											},
 											{
 												name : 'email',
@@ -675,7 +671,7 @@ angular
 											{
 												name : 'partyId',
 												type : 'Number',
-												description : 'The unique identifier for the party',
+												description : 'The unique identifier for the party (required)',
 											}, {
 												name : '',
 												type : '',
@@ -695,17 +691,17 @@ angular
 											{
 												name : 'username',
 												type : 'String',
-												description : 'The unique username for the user for the partner; required',
+												description : 'The unique username for the user for the partner (required)',
 											},
 											{
 												name : 'password',
 												type : 'String',
-												description : 'The user password for authentication in cleartext; stored after encrypting; required',
+												description : 'The user password for authentication in cleartext; stored after encrypting (required)',
 											},
 											{
 												name : 'partnerId',
 												type : 'String',
-												description : 'The unique identifier for the partner; required',
+												description : 'The unique identifier for the partner (required)',
 											},
 											{
 												name : 'email',
@@ -784,7 +780,7 @@ angular
 											{
 												name : 'partyId',
 												type : 'Number',
-												description : 'The unique identifier for the consortium',
+												description : 'The unique identifier for the consortium (required)',
 											}, ],
 									body_parameters : [],
 									returns : '{"success":"delete partyId {id} completed"}',
@@ -818,12 +814,12 @@ angular
 											{
 												name : 'partyId',
 												type : 'Number',
-												description : 'The unique identifier for the consortium',
+												description : 'The unique identifier for the consortium (required)',
 											},
 											{
 												name : 'partyType',
 												type : 'String',
-												description : 'The kind of party, a consortium',
+												description : 'The kind of party, a consortium (required)',
 											}, ],
 									body_parameters : [],
 									returns : 'an Array of organization Party objects',
@@ -845,12 +841,12 @@ angular
 											{
 												name : 'partyId',
 												type : 'Number',
-												description : 'The unique identifier for the organization',
+												description : 'The unique identifier for the organization (required)',
 											},
 											{
 												name : 'partyType',
 												type : 'String',
-												description : 'The kind of party, an organization',
+												description : 'The kind of party, an organization (required)',
 											}, ],
 									body_parameters : [],
 									returns : 'an Array of consortium Party objects',
@@ -872,12 +868,12 @@ angular
 											{
 												name : 'parentPartyId',
 												type : 'Number',
-												description : 'The unique identifier for a consortium',
+												description : 'The unique identifier for a consortium (required)',
 											},
 											{
 												name : 'childPartyId',
 												type : 'Number',
-												description : 'The unique identifier for an organization that belongs to the consortium',
+												description : 'The unique identifier for an organization that belongs to the consortium (required)',
 											}, ],
 									body_parameters : [],
 									returns : '',
@@ -917,12 +913,12 @@ angular
 											{
 												name : 'parentPartyId',
 												type : 'Number',
-												description : 'The unique identifier for a consortium',
+												description : 'The unique identifier for a consortium (required)',
 											},
 											{
 												name : 'childPartyId',
 												type : 'Number',
-												description : 'The unique identifier for an organization that belongs to the consortium',
+												description : 'The unique identifier for an organization that belongs to the consortium (required)',
 											}, ],
 									body_parameters : [],
 									returns : '',
@@ -962,7 +958,7 @@ angular
 											{
 												name : 'partyId',
 												type : 'Number',
-												description : 'The unique identifier for the party for which to get the IP ranges',
+												description : 'The unique identifier for the party for which to get the IP ranges (required)',
 											}, ],
 									body_parameters : [],
 									returns : 'an Array of IP Range objects',
@@ -979,17 +975,17 @@ angular
 											{
 												name : 'start',
 												type : 'String',
-												description : 'The IP address that starts the range',
+												description : 'The IP address that starts the range (required)',
 											},
 											{
 												name : 'end',
 												type : 'String',
-												description : 'The IP address that ends the range',
+												description : 'The IP address that ends the range (required)',
 											},
 											{
 												name : 'partyId',
 												type : 'Number',
-												description : 'The unique identifier for the party that owns the IP range',
+												description : 'The unique identifier for the party that owns the IP range (required)',
 											},
 											{
 												name : 'label',
