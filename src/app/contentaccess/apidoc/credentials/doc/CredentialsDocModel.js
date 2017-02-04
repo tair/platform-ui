@@ -130,20 +130,21 @@ angular
 												type : 'String',
 												description : 'success message',
 											}, ],
-								}, 	
-								{ 
+								},
+								{
 									name : 'PasswordChange',
-									fields : [ {
-										name : 'password',
-										type : 'String',
-										description : 'Encrypted password',
-									}, {
-										name : 'loginKey',
-										type : 'String',
-										description : 'Double-encrypted password for use as secret key',
-									}, ],
-								},/*								 
-								{ 
+									fields : [
+											{
+												name : 'password',
+												type : 'String',
+												description : 'Encrypted password',
+											},
+											{
+												name : 'loginKey',
+												type : 'String',
+												description : 'Double-encrypted password for use as secret key',
+											}, ],
+								}, /*{
 									name : '',
 									fields : [ {
 										name : '',
@@ -154,7 +155,7 @@ angular
 										type : '',
 										description : '',
 									}, ],
-								},*/ ],
+								}, */],
 						calls : [
 								{
 									header : 'Get all Credentials',
@@ -169,7 +170,7 @@ angular
 								},
 								{
 									header : 'Get Credentials with Filter',
-									summary : 'Get credentials based on the parameters specified in the request, all of which are optional',
+									summary : 'Get credentials based on the filter query parameters specified in the request, all of which are optional',
 									op : 'GET',
 									uri : '/credentials/?partyId={id}&username={string}&email={string}&userIdentifier={string}&firstName={string}&lastName={string}&partnerId={id}&institution={string}',
 									parameters : [
@@ -216,13 +217,12 @@ angular
 									body_parameters : [],
 									returns : 'Array of Credential',
 									errors : [
-												{
-													code : '404',
-													message : '{"error":"cannot find any record."}',
-													explanation : 'No credential found for the filtered set.',
-													resolution : 'Correct the parameters to find the desired set of credentials.'
-												},
-									          ],
+											{
+												code : '404',
+												message : '{"error":"cannot find any record."}',
+												explanation : 'No credential found for the filtered set.',
+												resolution : 'Correct the parameters to find the desired set of credentials.'
+											}, ],
 									example : 'https://demoapi.arabidopsis.org/credentials/?partyId=34589',
 								},
 								{
@@ -240,22 +240,22 @@ angular
 											{
 												name : 'username',
 												type : 'String',
-												description : 'The unique username for the user for the partner; required',
+												description : 'The unique username for the user for the partner (required)',
 											},
 											{
 												name : 'password',
 												type : 'String',
-												description : 'The user password for authentication in cleartext; stored after encrypting; required',
+												description : 'The user password for authentication in cleartext; stored after encrypting (required)',
 											},
 											{
 												name : 'partnerId',
 												type : 'String',
-												description : 'The unique identifier for the partner; required',
+												description : 'The unique identifier for the partner (required)',
 											},
 											{
 												name : 'name',
 												type : 'String',
-												description : 'Full name of the user; required',
+												description : 'Full name of the user (required)',
 											},
 											{
 												name : 'email',
@@ -330,7 +330,8 @@ angular
 												name : 'userIdentifier',
 												type : 'String',
 												description : 'The unique identifier for a user from the partner system, identifies the user for the update (required)',
-											}, {
+											},
+											{
 												name : 'partnerId',
 												type : 'String',
 												description : 'The unique identifier for the partner system (required)',
@@ -414,7 +415,7 @@ angular
 												message : '{"error":"Serializer error"}',
 												explanation : 'The request is missing a field from the list of fields to update',
 												resolution : 'Supply all the listed fields for update of the credential.'
-											}, 
+											},
 											{
 												code : '400',
 												message : '{"error":"Cannot update credential of parties other than user type."}',
@@ -432,18 +433,18 @@ angular
 											{
 												name : 'partnerId',
 												type : 'String',
-												description : 'the unique string identifying the partner',
+												description : 'the unique string identifying the partner (required)',
 											}, ],
 									body_parameters : [
 											{
 												name : 'user',
 												type : 'String',
-												description : 'The credential username of the user',
+												description : 'The credential username of the user (required)',
 											},
 											{
 												name : 'password',
 												type : 'String',
-												description : 'The password with which to authenticate the user, in cleartext',
+												description : 'The password with which to authenticate the user, in cleartext (required)',
 											}, ],
 									returns : '',
 									errors : [
@@ -459,23 +460,23 @@ angular
 												explanation : 'The password supplied does not match any password found for the username.',
 												resolution : 'Correct the password or reset it.'
 											}, ],
-									example : 'POST https://pwapi.arabidopsis.org/credentials/login/?partnerId=tair',
+									example : 'https://pwapi.arabidopsis.org/credentials/login/?partnerId=tair',
 								},
 								{
 									header : 'Reset Password',
 									summary : 'Reset a credential password to a randomly-generated, temporary password and email to specified user',
 									op : 'PUT',
-									uri : '/resetPwd/',
+									uri : '/credentials/resetPwd/?user={string}&partnerId={string}',
 									parameters : [
 											{
 												name : 'user',
 												type : 'String',
-												description : 'The username for the user registered with the partner',
+												description : 'The username for the user registered with the partner (required)',
 											},
 											{
 												name : 'partnerId',
 												type : 'String',
-												description : 'The unique name of the partner for which to reset the user password',
+												description : 'The unique name of the partner for which to reset the user password (required)',
 											}, ],
 									body_parameters : [],
 									returns : 'A ResetPasswordData object',
@@ -498,40 +499,58 @@ angular
 												explanation : 'The username was not found.',
 												resolution : 'Correct the username.'
 											}, ],
-									example : '',
-								}, {
+									example : 'https://pwapi.arabidopsis.org/credentials/resetPwd/?user=sampleuser&partnerId=tair',
+								},
+								{
 									header : 'Get Usernames for Email',
 									summary : 'Gets all the usernames associated with a specific email and sends them to that email address',
 									op : 'GET',
 									uri : '/credentials/getUsernames/?email={string}',
-									parameters : [ {
-										name : 'email',
-										type : 'String',
-										description : 'The email address for which to find the usernames and to which to send an email with those names',
-									}, ],
+									parameters : [
+											{
+												name : 'email',
+												type : 'String',
+												description : 'The email address for which to find the usernames and to which to send an email with those names (required)',
+											}, ],
 									body_parameters : [],
 									returns : 'Credential object with no password field',
+									errors : [
+											{
+												code : '400',
+												message : '{"error": "email param is required."}',
+												explanation : 'The request requires an email address to look up.',
+												resolution : 'Supply a valid email parameter in the request.'
+											},
+											{
+												code : '400',
+												message : '{"error": "no username found."}',
+												explanation : 'The email is not associated with any users.',
+												resolution : 'Correct the username in the request.'
+											}, ],
+									example : 'https://pwapi.arabidopsis.org/credentials/getUsernames/?email=user@anywhere.org',
+								}, /*{
+									header : '',
+									summary : '',
+									op : 'GET',
+									uri : '',
+									parameters : [ {
+										name : '',
+										type : '',
+										description : '',
+									}, {
+										name : '',
+										type : '',
+										description : '',
+									}, ],
+									body_parameters : [],
+									returns : '',
 									errors : [ {
 										code : '400',
-										message : '{"error": "email param is required."}',
-										explanation : 'The request requires an email address to look up.',
-										resolution : 'Supply a valid email parameter in the request.'
-									}, {
-										code : '400',
-										message : '{"error": "no username found."}',
-										explanation : 'The email is not associated with any users.',
-										resolution : 'Correct the username in the request.'
-									}, ],
-									example : 'https://pwapi.arabidopsis.org/credentials/getUsernames/?email=user@anywhere.org',
-								}, /*
-									 * { header : '', summary : '', op : 'GET',
-									 * uri : '', parameters : [ { name : '',
-									 * type : '', description : '', }, { name :
-									 * '', type : '', description : '', }, ],
-									 * body_parameters : [], returns : '',
-									 * errors : [{code : '400', message : '',
-									 * explanation : '', resolution : ''}],
-									 * example : '', },
-									 */]
+										message : '',
+										explanation : '',
+										resolution : ''
+									} ],
+									example : '',
+								}, */]
 					}
 				} ]);
