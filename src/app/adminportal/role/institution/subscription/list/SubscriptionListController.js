@@ -22,7 +22,7 @@ angular.module('platform-ui.adminportal.role.institution.subscription.list').con
 	    
 	    //assign all states instead of get state by partnerId
 	    function preprocessPartners(){
-	    	for (subscription in allSubscriptions){
+	    	for (subscription in $scope.allSubscriptions){
 	    		var partnerId = subscription["partnerId"];
 	    		var startDate = subscription["startDate"];
 	    		var endDate = subscription["endDate"];
