@@ -17,10 +17,11 @@ angular.module('platform-ui.adminportal.role.institution.subscription.list').con
 	'SubscriptionListModel',
 
 	/* Controller Definition */
-	function ($scope, $http, $cookies, $location, $state, Title, SubscriptionListModel)
+	function ($scope, $http, $cookies, $location, $state, Title, SubscriptionListModel) {
+	    init();
 	    
 	    //assign all states instead of get state by partnerId
-	    $scope.preprocessPartners = function() {
+	    function preprocessPartners(){
 	    	for (subscription in allSubscriptions){
 	    		var partnerId = subscription["partnerId"];
 	    		var startDate = subscription["startDate"];
@@ -56,7 +57,7 @@ angular.module('platform-ui.adminportal.role.institution.subscription.list').con
 		    	}
 			}
 	    };
-	    init();
+	    
 	    $scope.getSubState = function(id) {
 	    	var subscriptionState = "";
 	    	if (id in $scope.activeSubscriptions) {
@@ -141,7 +142,7 @@ angular.module('platform-ui.adminportal.role.institution.subscription.list').con
 	    	$state.go('role.consortium.subscription.list', {'consortiumId': consortium.partyId});
 	    }
 	    function init() {
-	    	$scope.preprocessPartners();
+	    	preprocessPartners();
 	    	console.log($state);
 	    	$scope.uiparams = SubscriptionListModel.uiparams;
 //		if(!$scope.credentialId || !$scope.secretKey){
