@@ -56,7 +56,7 @@ angular.module('platform-ui.adminportal.role.institution.subscription').controll
 			alert("Cannot get partner information");
 		});
 		$http({
-			url: $scope.apiUri+'/subscriptions/activesubscriptions/'+$scope.institutionId+'/',
+			url: $scope.apiUri+'/subscriptions/?partyId='+$scope.institutionId+'&active=true',
 			method: 'GET',
 			headers: {'Authorization': 'JWT '+$scope.token},
 		}).success(function(data, status, headers, config) {
@@ -65,7 +65,7 @@ angular.module('platform-ui.adminportal.role.institution.subscription').controll
 			alert("Cannot get active subscription information");
 		});
         $http({
-                url: $scope.apiUri+'/subscriptions/allsubscriptions/'+$scope.institutionId+'/',
+                url: $scope.apiUri+'/subscriptions/?partyId='+$scope.institutionId,
                 method: 'GET',
                 headers: {'Authorization': 'JWT '+$scope.token},
         }).success(function(data, status, headers, config) {
@@ -74,7 +74,7 @@ angular.module('platform-ui.adminportal.role.institution.subscription').controll
                 alert("Cannot get all subscription information");
         });
         $http({
-        	url: $scope.apiUri+'/subscriptions/consactsubscriptions/' + $scope.institutionId+'/',
+        	url: $scope.apiUri+'/subscriptions/consortiums/?partyId=' + $scope.institutionId+'&active=true',
         	method: 'GET',
         	headers: {'Authorization': 'JWT '+$scope.token},   	
         }).success(function(data, status, headers, config) {

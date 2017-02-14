@@ -44,7 +44,8 @@
                 
                 <!-- consortium subscriptions -->
 				<div class="{{uiparams.consortiumscolwidth}}">
-						<div>{{p.consortiumsStr}}</div>
+						<div ng-if="p.consortiumSubState">Consortia:</div>
+						<div ng-if="!p.consortiumSubState">No Consortium Subscribed.</div>
 						<div ng-repeat="consortium in p.consortiumsList" ng-show="role!='staff'">
 							<p style="text-overflow: ellipsis;white-space: nowrap;overflow: hidden;" title="{{consortium.name}}">{{consortium.name}}</p>
 						</div>
