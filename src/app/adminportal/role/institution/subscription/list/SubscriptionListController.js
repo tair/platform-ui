@@ -17,8 +17,7 @@ angular.module('platform-ui.adminportal.role.institution.subscription.list').con
 	'SubscriptionListModel',
 
 	/* Controller Definition */
-	function ($scope, $http, $cookies, $location, $state, Title, SubscriptionListModel) {
-	    init();
+	function ($scope, $http, $cookies, $location, $state, Title, SubscriptionListModel)
 	    
 	    //assign all states instead of get state by partnerId
 	    $scope.preprocessPartners = function() {
@@ -56,8 +55,8 @@ angular.module('platform-ui.adminportal.role.institution.subscription.list').con
 		    		partner.consortiumSubState = false;
 		    	}
 			}
-	    }
-	    
+	    };
+	    init();
 	    $scope.getSubState = function(id) {
 	    	var subscriptionState = "";
 	    	if (id in $scope.activeSubscriptions) {
