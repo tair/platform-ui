@@ -45,17 +45,27 @@ angular.module('platform-ui.adminportal.role.institution.subscription.list').con
 	    		$scope.partners[partnerId]["endDate"] = endDate;
 	    	}
     		
-	    	for (partner in $scope.partners) {
-				
-		    	if (partner.partnerId in $scope.consActiveSubscriptions){
-		    		if(partner["status"] != "Active"){
-		    			partner["status"] = "Consortium Subscribed";
+//	    	for (partner in $scope.partners) {
+//				
+//		    	if (partner.partnerId in $scope.consActiveSubscriptions){
+//		    		if(partner["status"] != "Active"){
+//		    			partner["status"] = "Consortium Subscribed";
+//		    		}
+//		    		partner.consortiumSubState = true;
+//		    	}else{
+//		    		partner.consortiumSubState = false;
+//		    	}
+//			}
+	    	for (var i=0; i<$scope.partners.length; i++) {
+	    		if ($scope.partners[i]["partnerId"] in $scope.consActiveSubscriptions){
+		    		if($scope.partners[i]["status"] != "Active"){
+		    			$scope.partners[i]["status"] = "Consortium Subscribed";
 		    		}
-		    		partner.consortiumSubState = true;
+		    		$scope.partners[i]["consortiumSubState"] = true;
 		    	}else{
-		    		partner.consortiumSubState = false;
+		    		$scope.partners[i]["consortiumSubState"] = false;
 		    	}
-			}
+	    	}
 	    };
 	    init();
 	    $scope.getSubState = function(id) {
