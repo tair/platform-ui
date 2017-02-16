@@ -59,7 +59,12 @@ angular.module('platform-ui.adminportal.role.institution.subscription').controll
 			url: $scope.apiUri+'/subscriptions/?partyId='+$scope.institutionId+'&active=true',
 			method: 'GET',
 		}).success(function(data, status, headers, config) {
-			$scope.activeSubscriptions = data;
+			var dataObject = {};
+			for(item in data){
+				dataObject[item['partnerId']] = item;
+			}				
+			$scope.activeSubscriptions = dataObject;
+			
 		}).error(function() {
 			alert("Cannot get active subscription information");
 		});
@@ -67,7 +72,11 @@ angular.module('platform-ui.adminportal.role.institution.subscription').controll
                 url: $scope.apiUri+'/subscriptions/?partyId='+$scope.institutionId,
                 method: 'GET',
         }).success(function(data, status, headers, config) {
-                $scope.allSubscriptions = data;
+        	var dataObject = {};
+        	for(item in data){
+				dataObject[item['partnerId']] = item;
+			}		
+            $scope.allSubscriptions = dataObject;
         }).error(function() {
                 alert("Cannot get all subscription information");
         });
