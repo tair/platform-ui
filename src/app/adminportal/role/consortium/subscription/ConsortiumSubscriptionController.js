@@ -39,20 +39,30 @@ angular.module('platform-ui.adminportal.role.consortium.subscription').controlle
                         alert("Cannot get partner information");
                 });
                 $http({
-                        url: $scope.apiUri+'/subscriptions/activesubscriptions/'+$scope.consortiumId+'/',
+                        url: $scope.apiUri+'/subscriptions/?partyId='+$scope.consortiumId+'&active=true',
                         method: 'GET',
                         headers: {'Authorization': 'JWT '+$scope.token},
                 }).success(function(data, status, headers, config) {
-                        $scope.activeSubscriptions = data;
+	                	var dataObject = {};
+	                	for (var i=0; i<data.length; i++) {
+	        				var item = data[i];
+	        				dataObject[item['partnerId']] = item;
+	        			}
+                        $scope.activeSubscriptions = dataObject;
                 }).error(function() {
                         alert("Cannot get active subscription information");
                 });
                 $http({
-	                    url: $scope.apiUri+'/subscriptions/allsubscriptions/'+$scope.consortiumId+'/',
+	                    url: $scope.apiUri+'/subscriptions/?partyId='+$scope.consortiumId,
 	                    method: 'GET',
 	                    headers: {'Authorization': 'JWT '+$scope.token},
 	            }).success(function(data, status, headers, config) {
-	                    $scope.allSubscriptions = data;
+		            	var dataObject = {};
+		            	for (var i=0; i<data.length; i++) {
+		    				var item = data[i];
+		    				dataObject[item['partnerId']] = item;
+		    			}
+	                    $scope.allSubscriptions = dataObject;
 	            }).error(function() {
 	                    alert("Cannot get all subscription information");
 	            });
