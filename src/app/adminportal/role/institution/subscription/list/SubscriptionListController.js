@@ -129,7 +129,7 @@ angular.module('platform-ui.adminportal.role.institution.subscription.list').con
 	    } 
 	
 	    $scope.listPartners = function(partners) {
-	    	partners = preprocessPartners(partners);
+	    	var partners = preprocessPartners(partners);
 			var ret = [];
 			for (var i=0; i<partners.length; i++) {
 				//partners[i].status = $scope.getSubState(partners[i].partnerId);
