@@ -61,9 +61,10 @@ angular.module('platform-ui.adminportal.role.institution.subscription').controll
 			headers: {'Authorization': 'JWT '+$scope.token},
 		}).success(function(data, status, headers, config) {
 			var dataObject = {};
-			for(item in data){
+			for (var i=0; i<data.length; i++) {
+				var item = data[i];
 				dataObject[item['partnerId']] = item;
-			}				
+			}
 			$scope.activeSubscriptions = dataObject;
 			
 		}).error(function() {
@@ -75,9 +76,10 @@ angular.module('platform-ui.adminportal.role.institution.subscription').controll
                 headers: {'Authorization': 'JWT '+$scope.token},
         }).success(function(data, status, headers, config) {
         	var dataObject = {};
-        	for(item in data){
+        	for (var i=0; i<data.length; i++) {
+				var item = data[i];
 				dataObject[item['partnerId']] = item;
-			}		
+			}	
             $scope.allSubscriptions = dataObject;
         }).error(function() {
                 alert("Cannot get all subscription information");
