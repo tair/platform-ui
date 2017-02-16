@@ -19,57 +19,6 @@ angular.module('platform-ui.adminportal.role.institution.subscription.list').con
 	/* Controller Definition */
 	function ($scope, $http, $cookies, $location, $state, Title, SubscriptionListModel) {
 	    init();
-	    
-	    //assign all states instead of get state by partnerId
-	    function preprocessPartners(partners){
-	    	for (subscription in $scope.allSubscriptions){
-	    		var partnerId = subscription["partnerId"];
-	    		var startDate = subscription["startDate"];
-	    		var endDate = subscription["endDate"];
-	    		
-	    		var startDate_toDate = new Date(startDate);
-		    	var endDate_toDate = new Date(endDate);
-		    	var today = new Date();
-		    	
-		    	partners[partnerId]["status"] = "Unlicensed";
-		    	partners[partnerId]["startDate"] = "N/A";
-		    	partners[partnerId]["endDate"] = "N/A";
-		    	
-		    	if (today < startDate_toDate){
-		    		partners[partnerId]["status"] = "Not yet activated";
-		    	}else if (today > endDate_toDate){
-		    		partners[partnerId]["status"] = "Expired";
-		    	}else{
-		    		partners[partnerId]["status"] = "Active";
-		    	}
-	    		
-	    		partners[partnerId]["startDate"] = startDate;
-	    		partners[partnerId]["endDate"] = endDate;
-	    		return partners;
-	    	}
-    		
-	    	for (partner in partners) {
-				
-		    	if (partner.partnerId in $scope.consActiveSubscriptions){
-		    		if(partner["status"] != "Active"){
-		    			partner["status"] = "Consortium Subscribed";
-		    		}
-		    		partner.consortiumSubState = true;
-		    	}else{
-		    		partner.consortiumSubState = false;
-		    	}
-			}
-//	    	for (var i=0; i<$scope.partners.length; i++) {
-//	    		if ($scope.partners[i]["partnerId"] in $scope.consActiveSubscriptions){
-//		    		if($scope.partners[i]["status"] != "Active"){
-//		    			$scope.partners[i]["status"] = "Consortium Subscribed";
-//		    		}
-//		    		$scope.partners[i]["consortiumSubState"] = true;
-//		    	}else{
-//		    		$scope.partners[i]["consortiumSubState"] = false;
-//		    	}
-//	    	}
-	    };
 
 	    $scope.getSubState = function(id) {
 	    	var subscriptionState = "";
@@ -92,6 +41,12 @@ angular.module('platform-ui.adminportal.role.institution.subscription.list').con
 	    	return subscriptionState;
 	    }
 	    
+//	    $scope.getExpDate = function(id) {
+//		if (id in $scope.activeSubscriptions) {
+//			return $scope.activeSubscriptions[id].endDate;
+//		}
+//		return "Unlicensed";
+//	    };
 	    $scope.getStartDate = function(id) {
 	    	if (id in $scope.allSubscriptions){
 	    	return $scope.allSubscriptions[id].startDate;
@@ -129,34 +84,30 @@ angular.module('platform-ui.adminportal.role.institution.subscription.list').con
 	    } 
 	
 	    $scope.listPartners = function(partners) {
-	    	var partners = preprocessPartners(partners);
-			var ret = [];
-			for (var i=0; i<partners.length; i++) {
-				//partners[i].status = $scope.getSubState(partners[i].partnerId);
-		    	//partners[i].startDate = $scope.getStartDate(partners[i].partnerId);
-		    	//partners[i].endDate = $scope.getEndDate(partners[i].partnerId);
-				
-	//	    	if (partners[i].partnerId in $scope.consActiveSubscriptions){
-	//	    		if(partners[i]["status"] != "Active"){
-	//	    			partners[i]["status"] = "Consortium Subscribed";
-	//	    		}
-	//	    		partners[i].consortiumsStr = "Consortiums:";
-	//	    	} else {
-	//	    		partners[i].consortiumsStr = "No Consortium Subscribed.";
-	//	    	}
-			    if (partners[i].partnerId!="phoenix") {
-				ret.push(partners[i]);
-			    }
-			}
-			console.log(ret);
-			return ret;
+		var ret = [];
+		for (var i=0; i<partners.length; i++) {
+			partners[i].status = $scope.getSubState(partners[i].partnerId);
+	    	partners[i].startDate = $scope.getStartDate(partners[i].partnerId);
+	    	partners[i].endDate = $scope.getEndDate(partners[i].partnerId);
+	    	if (partners[i].partnerId in $scope.consActiveSubscriptions){
+	    		partners[i].consortiumsList = $scope.consActiveSubscriptions[partners[i].partnerId];
+	    		partners[i].consortiumsStr = "Consortiums:";
+	    	} else {
+	    		partners[i].consortiumsStr = "No Consortium Subscribed.";
+	    	}
+		    if (partners[i].partnerId!="phoenix") {
+			ret.push(partners[i]);
+		    }
+		}
+		console.log(ret);
+		return ret;
 	    }
 	    $scope.toConsortium = function(consortium){
 	    	$state.go('role.consortium.subscription.list', {'consortiumId': consortium.partyId});
 	    }
 	    function init() {
-	    	console.log($state);
-	    	$scope.uiparams = SubscriptionListModel.uiparams;
+		console.log($state);
+		$scope.uiparams = SubscriptionListModel.uiparams;
 //		if(!$scope.credentialId || !$scope.secretKey){
 //			$state.go('ltlogin');
 //		}
