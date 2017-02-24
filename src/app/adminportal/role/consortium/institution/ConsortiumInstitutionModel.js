@@ -67,6 +67,7 @@ angular.module('platform-ui.adminportal.role.consortium.institution').factory(
 //        	    "consortium": 31272
 //        	  }
         	],
+        	displayedInstitutions: [],
 		    sortings: [
 			          {predicate:'name', reverse:false, text:"Name"},
 			          {predicate:'label', reverse:false, text:"Label"},

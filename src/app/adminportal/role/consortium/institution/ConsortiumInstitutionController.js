@@ -21,6 +21,7 @@ angular.module('platform-ui.adminportal.role.consortium.institution').controller
 		$scope.setCurrentTab(ConsortiumInstitutionModel.currentTab);
 	    $scope.institutions = ConsortiumInstitutionModel.institutions;
 	    $scope.allInstitutions = ConsortiumInstitutionModel.allInstitutions;
+	    $scope.displayedInstitutions = ConsortiumInstitutionModel.displayedInstitutions;
 	    $scope.adding = false;
 	    $scope.creating = false;
 	    $scope.newInstitution = ConsortiumInstitutionModel.newInstitution;
@@ -195,6 +196,9 @@ angular.module('platform-ui.adminportal.role.consortium.institution').controller
 				$scope.createdInstitution['state'] = null;
 //				$scope.institutions.unshift(angular.copy($scope.createdInstitution));
 				$scope.allInstitutions.unshift(angular.copy($scope.createdInstitution));
+				if(data[0].display == true){
+					$scope.displayedInstitutions.unshift(angular.copy($scope.createdInstitution));
+				}
 				
 			}).error(function(data, status, headers, config){
 	            bootbox.alert("Failed to create institution"+((data['error'] == 'This email is already used by another institution.')?"! This email is already used by another institution.":"!"));
@@ -225,6 +229,9 @@ angular.module('platform-ui.adminportal.role.consortium.institution').controller
 					$scope.createdInstitution['state'] = null;
 //					$scope.institutions.unshift(angular.copy($scope.createdInstitution));
 					$scope.allInstitutions.unshift(angular.copy($scope.createdInstitution));
+					if(data.display == true){
+						$scope.displayedInstitutions.unshift(angular.copy($scope.createdInstitution));
+					}
 					
 				}).error(function(data, status, headers, config){
 		            bootbox.alert("Failed to create institution"+((data['error'] == 'This email is already used by another institution.')?
@@ -323,6 +330,18 @@ angular.module('platform-ui.adminportal.role.consortium.institution').controller
 				label:entry['label'],
 				state:null
 		    });
+		    if(entry['display'] == true){
+		    	$scope.displayedInstitutions.push({
+			    	partyId:entry['partyId'],
+					partyType:entry['partyType'],
+					name:entry['name'],
+					country:entry['country'],
+					display:entry['display'],
+					consortiums:entry['consortiums'],
+					label:entry['label'],
+					state:null
+			    });
+		    }
 		}
 	        }).error(function(data, status, headers, config){
 		alert("institutions request failed");
