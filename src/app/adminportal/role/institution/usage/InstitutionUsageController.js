@@ -61,7 +61,7 @@ angular.module('platform-ui.adminportal.role.institution.usage').controller(
 				$scope.postData.institution = data[0].name;
 				$scope.postData.email = data[1].email;
 				$scope.postData.name = ((data[1].firstName != null)?data[1].firstName:"") 
-					+ " " + ((data[1].lastName != null)?data[1].lastName:"");
+					+ ((data[1].firstName != null && data[1].lastName != null)?" ":"") + ((data[1].lastName != null)?data[1].lastName:"");
 			}).error(function() {
 				alert("failed to get party information");
 			});
