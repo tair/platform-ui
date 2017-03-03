@@ -91,9 +91,9 @@ angular.module('platform-ui.adminportal.role.institution.subscription.list').con
 	    	partners[i].endDate = $scope.getEndDate(partners[i].partnerId);
 	    	if (partners[i].partnerId in $scope.consActiveSubscriptions){
 	    		partners[i].consortiumsList = $scope.consActiveSubscriptions[partners[i].partnerId];
-	    		partners[i].consortiumsStr = "Consortiums:";
+	    		partners[i].consortiumSubState = true;
 	    	} else {
-	    		partners[i].consortiumsStr = "No Consortium Subscribed.";
+	    		partners[i].consortiumSubState = false;
 	    	}
 		    if (partners[i].partnerId!="phoenix") {
 			ret.push(partners[i]);
