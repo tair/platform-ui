@@ -34,7 +34,8 @@ angular.module('platform-ui.contentaccess.login').controller(
 		    data: {
 		    	action:"setCookies",
 		    	credentialId:data["credentialId"],
-		    	secretKey:data["secretKey"]
+		    	secretKey:data["secretKey"],
+		    	token:data["token"],
 		    },
 		    method: 'POST',
 		}).success(function(data, status){
@@ -59,6 +60,7 @@ angular.module('platform-ui.contentaccess.login').controller(
 			}).success(function(data, status, headers, config){
 				$cookies.credentialId = data["credentialId"];//Credential.partyId
 				$cookies.secretKey = data["secretKey"];
+				$cookies.token = data["token"];
 			    callProxy(data);
 				//$state.go("login.success"); // PW-147: YM: No more login confirmation page.
 				//alert('Login successful: '+$cookies.secretKey);
