@@ -67,6 +67,10 @@ angular.module('platform-ui.adminportal.role.consortium.institution').factory(
 //        	    "consortium": 31272
 //        	  }
         	],
+        	countries: [
+        			    "USA",
+        			    "Canada",
+        			],
 		    sortings: [
 			          {predicate:'name', reverse:false, text:"Name"},
 			          {predicate:'label', reverse:false, text:"Label"},

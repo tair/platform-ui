@@ -21,6 +21,7 @@ angular.module('platform-ui.adminportal.role.consortium.institution').controller
 		$scope.setCurrentTab(ConsortiumInstitutionModel.currentTab);
 	    $scope.institutions = ConsortiumInstitutionModel.institutions;
 	    $scope.allInstitutions = ConsortiumInstitutionModel.allInstitutions;
+	    $scope.countries = ConsortiumInstitutionModel.countries;
 	    $scope.adding = false;
 	    $scope.creating = false;
 	    $scope.newInstitution = ConsortiumInstitutionModel.newInstitution;
@@ -162,6 +163,7 @@ angular.module('platform-ui.adminportal.role.consortium.institution').controller
 					partnerId: 'phoenix',
 					email: $scope.newInstitution['email'],
 					display: 'true',
+					country: $scope.newInstitution['country'],
 			}
 			$http({
 						url: $scope.apiUri+'/parties/institutions/?secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
@@ -201,6 +203,7 @@ angular.module('platform-ui.adminportal.role.consortium.institution').controller
 						name: $scope.newInstitution['name'],
 						partyType:'organization',
 						display: 'true',
+						country: $scope.newInstitution['country'],
 				}
 				$http({
 							url: $scope.apiUri+'/parties/?secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
@@ -325,6 +328,12 @@ angular.module('platform-ui.adminportal.role.consortium.institution').controller
         });
 		$(function () {
             $('#createEnd').datepicker();
+        });
+		$http({
+            url:$scope.apiUri+'/parties/countries/',
+            method:'GET',
+        }).success(function(data, status, headers, config) {
+            $scope.countries = data.sort();
         });
 	}
 ]);
