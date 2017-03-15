@@ -23,7 +23,7 @@ angular.module('platform-ui.adminportal.role.phoenix.institution').controller(
 		$scope.setCurrentTab(PhoenixInstitutionModel.currentTab);
 	    $scope.institutions = PhoenixInstitutionModel.institutions;
 	    $scope.allInstitutions = PhoenixInstitutionModel.allInstitutions;
-	    $scope.countries = ConsortiumInstitutionModel.countries;
+	    $scope.countries = PhoenixInstitutionModel.countries;
 	    $scope.addGroupShow = "hidden";
 	    $scope.adding = false;
 	    $scope.SubAdding = false;
