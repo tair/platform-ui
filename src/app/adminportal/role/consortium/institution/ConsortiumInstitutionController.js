@@ -163,7 +163,7 @@ angular.module('platform-ui.adminportal.role.consortium.institution').controller
 					partnerId: 'phoenix',
 					email: $scope.newInstitution['email'],
 					display: 'true',
-					country: $scope.newInstitution['country'],
+					country: $scope.newInstitution['country'].countryId,
 			}
 			$http({
 						url: $scope.apiUri+'/parties/institutions/?secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
@@ -203,7 +203,7 @@ angular.module('platform-ui.adminportal.role.consortium.institution').controller
 						name: $scope.newInstitution['name'],
 						partyType:'organization',
 						display: 'true',
-						country: $scope.newInstitution['country'],
+						country: $scope.newInstitution['country'].countryId,
 				}
 				$http({
 							url: $scope.apiUri+'/parties/?secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
