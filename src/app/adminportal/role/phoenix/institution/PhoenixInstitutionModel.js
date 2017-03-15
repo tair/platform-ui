@@ -68,6 +68,10 @@ angular.module('platform-ui.adminportal.role.phoenix.institution').factory(
         	    "consortium": 31272
         	  }
         	],
+        	countries: [
+        			    "USA",
+        			    "Canada",
+        			],
 		    sortings: [
 		              {predicate:'label', reverse:false, text:"Label"},
 			          {predicate:'name', reverse:false, text:"Name"},
