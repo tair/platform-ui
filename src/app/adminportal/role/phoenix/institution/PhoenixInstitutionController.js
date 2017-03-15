@@ -23,6 +23,7 @@ angular.module('platform-ui.adminportal.role.phoenix.institution').controller(
 		$scope.setCurrentTab(PhoenixInstitutionModel.currentTab);
 	    $scope.institutions = PhoenixInstitutionModel.institutions;
 	    $scope.allInstitutions = PhoenixInstitutionModel.allInstitutions;
+	    $scope.countries = ConsortiumInstitutionModel.countries;
 	    $scope.addGroupShow = "hidden";
 	    $scope.adding = false;
 	    $scope.SubAdding = false;
@@ -219,6 +220,7 @@ angular.module('platform-ui.adminportal.role.phoenix.institution').controller(
 						name: $scope.newInstitution['name'],
 						partyType:'organization',
 						display: 'true',
+						country: $scope.newInstitution['country'].countryId,
 				}
 				$http({
 							url: $scope.apiUri+'/parties/?secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
@@ -339,6 +341,12 @@ angular.module('platform-ui.adminportal.role.phoenix.institution').controller(
         });
 		$(function () {
             $('#createEnd').datepicker();
+        });
+		$http({
+            url:$scope.apiUri+'/parties/countries/',
+            method:'GET',
+        }).success(function(data, status, headers, config) {
+            $scope.countries = data.sort();
         });
 	}
 ]);
