@@ -175,6 +175,7 @@ angular.module('platform-ui.adminportal.role.phoenix.institution').controller(
 					password: $scope.newInstitution['password'],
 					partnerId: 'phoenix',
 					email: $scope.newInstitution['email'],
+					display: 'true',
 			}
 			$http({
 						url: $scope.apiUri+'/parties/institutions/?secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
@@ -212,6 +213,7 @@ angular.module('platform-ui.adminportal.role.phoenix.institution').controller(
 		    	var data = {
 						name: $scope.newInstitution['name'],
 						partyType:'organization',
+						display: 'true',
 				}
 				$http({
 							url: $scope.apiUri+'/parties/?secretKey='+encodeURIComponent($scope.secretKey)+'&credentialId='+$scope.credentialId,
