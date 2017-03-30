@@ -13,6 +13,7 @@ angular.module(
 	'ui.router',
 	'service.title',
 	'platform-ui.contentaccess.subscription',
+	'platform-ui.contentaccess.apidoc',
 	'platform-ui.contentaccess.login',
 	'platform-ui.contentaccess.metering',
 	'platform-ui.contentaccess.activation',
@@ -28,6 +29,15 @@ angular.module(
 					'main': {
 						controller: 'SubscriptionController',
 						templateUrl: 'contentaccess/subscription/subscription.html'
+					}
+				}
+			}).state('apidoc', {
+				abstract: true,
+				url: '/contentaccess/apidoc',
+				views: {
+					'main': {
+						controller: 'ApiDocController',
+						templateUrl: 'contentaccess/apidoc/api.html'
 					}
 				}
 			}).state('metering', {
