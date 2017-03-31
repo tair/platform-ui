@@ -318,6 +318,7 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 			 $http({
 	                url: $scope.apiUri+'/ipranges/validateip/?ip='+ip,
 	                method: 'GET',
+	                headers: {'Authorization' : 'JWT ' + $scope.token},
 	            }).success(function(data, status, headers, config){
 	            	if (data["ip version"] === 4 || data["ip version"] === 6){
 	            		debugMsg = 'IP is valid. version: '+ data["ip version"];
