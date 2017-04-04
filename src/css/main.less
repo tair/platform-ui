@@ -1,18 +1,17 @@
 /* All your CSS goes here */
-
 .ui-autocomplete {
-    max-height: 320px;
-    overflow-y: auto;
-    /* prevent horizontal scrollbar */
-    overflow-x: hidden;
-    /* add padding to account for vertical scrollbar */
-    padding-right: 20px;
+	max-height: 320px;
+	overflow-y: auto;
+	/* prevent horizontal scrollbar */
+	overflow-x: hidden;
+	/* add padding to account for vertical scrollbar */
+	padding-right: 20px;
 }
 /* IE 6 doesn't support max-height
  * we use height instead, but this forces the menu to always be this tall
  */
 * html .ui-autocomplete {
-    height: 320px;
+	height: 320px;
 }
 
 body {
@@ -29,7 +28,7 @@ body {
 }
 
 .block-center {
-	display: block; 
+	display: block;
 	float: none;
 	margin: auto;
 }
@@ -72,7 +71,6 @@ body {
 	-webkit-font-smoothing: antialiased;
 }
 
-
 .btn-success-tair {
 	border-radius: 0px;
 	border: 2px solid;
@@ -87,55 +85,55 @@ body {
 	-webkit-font-smoothing: antialiased;
 }
 
-.btn-success-tair:hover,i .btn-success-tair:active, .btn-success-tair:focus {  
+.btn-success-tair:hover, i .btn-success-tair:active, .btn-success-tair:focus
+	{
 	background-color: #c6d936;
-	border-color: #c6d936; 
+	border-color: #c6d936;
 }
 
 .btn-primary-tair {
 	border-radius: 0px;
-	border: 2px solid;   
-	border-color: #bbc9cf;
-	background-color: #bbc9cf;
-	color: #ffffff; 
-	width: 148px;
-	height: 32px; 
-	font-size: 13px;
-	font-weight: 600;
-	font-family: Arial, Helvetica, sans-serif;
-	-webkit-font-smoothing: antialiased; 
-}
-
-
-.btn-primary-tair:hover, .btn-primary-tair:active, .btn-primary-tair:focus {
-	background-color: #bbc9cf;
-	border-color: #bbc9cf;
-}
-
-.btn-default-tair {
-	border-radius: 0px;  
 	border: 2px solid;
-	border-color: #bbc9cf; 
-	color: #a6b2b7; 
-	width: 148px; 
-	height: 32px; 
+	border-color: #bbc9cf;
+	background-color: #bbc9cf;
+	color: #ffffff;
+	width: 148px;
+	height: 32px;
 	font-size: 13px;
 	font-weight: 600;
 	font-family: Arial, Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
 }
 
-.btn-default-tair:hover,active {
+.btn-primary-tair:hover, .btn-primary-tair:active, .btn-primary-tair:focus
+	{
+	background-color: #bbc9cf;
+	border-color: #bbc9cf;
+}
+
+.btn-default-tair {
+	border-radius: 0px;
+	border: 2px solid;
+	border-color: #bbc9cf;
+	color: #a6b2b7;
+	width: 148px;
+	height: 32px;
+	font-size: 13px;
+	font-weight: 600;
+	font-family: Arial, Helvetica, sans-serif;
+	-webkit-font-smoothing: antialiased;
+}
+
+.btn-default-tair:hover, active {
 	background-color: #bbc9cf;
 	border-color: #bbc9cf;
 	color: #ffffff;
 }
 
-/******************Librarian Tool General ***************/
-
-@lt-theme-color : #8396a8;
-@lt-green: #7acf92;
-@lt-red: #eb636c;
+/****************** Admin Portal General ***************/
+ @lt-theme-color : #8396a8 ;
+ @lt-green: #7acf92 ;
+ @lt-red: #eb636c ;
 
 .lt-theme-color {
 	background-color: @lt-theme-color;
@@ -149,8 +147,7 @@ body {
 	font-family: arial;
 }
 
-.lt-font-bold {
-	.lt-font;
+.lt-font-bold { .lt-font;
 	font-weight: bold;
 }
 
@@ -158,8 +155,7 @@ body {
 	color: @lt-theme-color;
 }
 
-.lt-input-box {
-	.lt-font;
+.lt-input-box { .lt-font;
 	padding-left: 10px;
 }
 
@@ -176,72 +172,66 @@ body {
 }
 
 ::-webkit-input-placeholder {
-    font-style: italic;
+	font-style: italic;
 }
+
 :-moz-placeholder {
-    font-weight: bold;
+	font-weight: bold;
 }
+
 :-ms-input-placeholder {
-    font-weight: bold;
+	font-weight: bold;
 }
 
-.lt-glyphicon {
-        .lt-theme-color;
-        width:36px;
-        height:36px;
-	line-height:36px;
-        font-size:18px;
-        font-weight:200;
-        color:#ffffff;
-	cursor:pointer;
+.lt-glyphicon { .lt-theme-color;
+	width: 36px;
+	height: 36px;
+	line-height: 36px;
+	font-size: 18px;
+	font-weight: 200;
+	color: #ffffff;
+	cursor: pointer;
 }
 
-/******************Librarian Tool Navbar*****************/
-
-.lt-navbar-panel {
-	.lt-content-width;
+/****************** Admin Portal Navbar*****************/
+.lt-navbar-panel { .lt-content-width;
+	
 }
 
-.lt-navbar-top {
-	.lt-theme-color;
-	height:64px;
+.lt-navbar-top { .lt-theme-color;
+	height: 64px;
 }
 
 .lt-navbar-img {
-	height:24px;
-	width:24px;
-	cursor:pointer;
+	height: 24px;
+	width: 24px;
+	cursor: pointer;
 }
 
-.lt-navbar-tool-text {
-	.lt-font-bold;
+.lt-navbar-tool-text { .lt-font-bold;
 	font-size: 12px;
 	color: #ffffff;
-	cursor:pointer;
+	cursor: pointer;
 }
 
-.lt-navbar-email {
-	.lt-font-bold;
+.lt-navbar-email { .lt-font-bold;
 	font-size: 14px;
 	color: #cccccc;
 	padding-right: 10px;
 }
 
-.lt-navbar-status {
-	.lt-font-bold;
+.lt-navbar-status { .lt-font-bold;
 	font-size: 14px;
 	color: #ffffff;
-	cursor:pointer;
+	cursor: pointer;
 }
 
 .lt-navbar-bottom {
-	height:212px;
+	height: 212px;
 	background-color: #f5f5f5;
 }
 
-.lt-navbar-bottom-text {
-	.lt-theme-font-color;
-	.lt-font-bold;
+.lt-navbar-bottom-text { .lt-theme-font-color; .lt-font-bold;
 	font-size: 22px;
 }
 
@@ -250,220 +240,193 @@ body {
 	margin-top: -30px;
 }
 
-.lt-navbar-label {
-	.lt-font-bold;
+.lt-navbar-label { .lt-font-bold;
 	font-size: 14px;
 	color: #cccccc;
 	cursor: pointer;
 }
 
-.lt-navbar-label-highlight {
-	.lt-navbar-label;
-	.lt-theme-font-color;
+.lt-navbar-label-highlight { .lt-navbar-label; .lt-theme-font-color;
+	
 }
 
 .lt-navbar-line {
-	margin-top:5px;
-	height:5px;
-	background-color:@lt-theme-color;
+	margin-top: 5px;
+	height: 5px;
+	background-color: @lt-theme-color;
 }
 
-/******************Librarian Tool Admin *****************/
-
-.lt-glyphicon-green {
-        .lt-glyphicon;
-        background-color: @lt-green;
+/****************** Admin Portal Admin *****************/
+.lt-glyphicon-green { .lt-glyphicon;
+	background-color: @lt-green;
 }
 
-.lt-glyphicon-red {
-        .lt-glyphicon;
-        background-color: @lt-red;
+.lt-glyphicon-red { .lt-glyphicon;
+	background-color: @lt-red;
 }
 
 /*** Admin Left Container ***/
-.lt-admin-action-label {
-        .lt-font;
-        .lt-theme-font-color;
-        font-size: 16px;
-        margin-top: 75px;
+.lt-admin-action-label { .lt-font; .lt-theme-font-color;
+	font-size: 16px;
+	margin-top: 75px;
 }
 
 .lt-admin-action-button {
-        border-style: solid;
-        border-width: 2px;
-        border-color: @lt-theme-color;
-        width: 196px;
-        height: 40px;
-        margin-top: 20px;
-        cursor: pointer;
+	border-style: solid;
+	border-width: 2px;
+	border-color: @lt-theme-color;
+	width: 196px;
+	height: 40px;
+	margin-top: 20px;
+	cursor: pointer;
 }
 
-.lt-admin-action-button-selected {
-        .lt-admin-action-button;
-        border-color: @lt-green;
+.lt-admin-action-button-selected { .lt-admin-action-button;
+	border-color: @lt-green;
 }
 
-.lt-admin-action-button-label {
-        .lt-font;
-        .lt-theme-font-color;
-        font-size:14px;
-        position: relative;
-        padding-left: 15px;
-        bottom: 3px;
+.lt-admin-action-button-label { .lt-font; .lt-theme-font-color;
+	font-size: 14px;
+	position: relative;
+	padding-left: 15px;
+	bottom: 3px;
 }
 
-.lt-admin-action-button-label-selected {
-        .lt-admin-action-button-label;
-        color: @lt-green;
+.lt-admin-action-button-label-selected { .lt-admin-action-button-label;
+	color: @lt-green;
 }
 
 /*** Admin Right Container ***/
-.lt-admin-right-panel{
-        margin-top:56px;
-        border-style: solid;
-        border-width: 1px;
-        border-color: #bbc9cf;
+.lt-admin-right-panel {
+	margin-top: 56px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #bbc9cf;
 }
 
 .lt-admin-right-subpanel {
-        height:600px;
-        overflow: scroll;
+	height: 600px;
+	overflow: scroll;
 }
 
-.lt-admin-groups-title {
-        .lt-theme-color;
-        height:50px;
+.lt-admin-groups-title { .lt-theme-color;
+	height: 50px;
 }
 
 .lt-admin-groups-title-label {
-        color:#ffffff;
-        font-size:16px;
-        margin-top:14px;
-        margin-left:22px;
+	color: #ffffff;
+	font-size: 16px;
+	margin-top: 14px;
+	margin-left: 22px;
 }
 
 .lt-admin-groups-title-filter {
-        color:#ffffff;
-        font-size:14px;
-        padding-top:16px;
-        padding-right:10px;
+	color: #ffffff;
+	font-size: 14px;
+	padding-top: 16px;
+	padding-right: 10px;
 }
 
-.lt-admin-groups-description {
-        .lt-font;
-        color:@lt-theme-color;
-        margin-left: 22px;
-        margin-top: 28px;
-        margin-bottom: 18px;
-        margin-right: 22px;
-}
-
-.lt-admin-groups-search {
-        .lt-font;
-        color:#bababa;
-        margin-left: 22px;
+.lt-admin-groups-description { .lt-font;
+	color: @lt-theme-color;
+	margin-left: 22px;
 	margin-top: 28px;
-        margin-bottom: 18px;
-        margin-right: 22px;
+	margin-bottom: 18px;
+	margin-right: 22px;
 }
 
-.lt-admin-groups-title-glyphicon {
-        .lt-glyphicon;
-        line-height:48px;
-        margin-right: 18px;
+.lt-admin-groups-search { .lt-font;
+	color: #bababa;
+	margin-left: 22px;
+	margin-top: 28px;
+	margin-bottom: 18px;
+	margin-right: 22px;
+}
+
+.lt-admin-groups-title-glyphicon { .lt-glyphicon;
+	line-height: 48px;
+	margin-right: 18px;
 }
 
 .lt-admin-groups-list {
-        min-height:100px;
-        margin-left: 22px;
-        margin-right: 33px;
-        margin-top: 10px;
-        background-color: #f6f6f6;
-        border-style: solid;
-        border-width: 3px;
-        border-color: #f6f6f6;
+	min-height: 100px;
+	margin-left: 22px;
+	margin-right: 33px;
+	margin-top: 10px;
+	background-color: #f6f6f6;
+	border-style: solid;
+	border-width: 3px;
+	border-color: #f6f6f6;
 }
 
-.lt-admin-groups-list-selected{
-        .lt-admin-groups-list;
-        border-color: @lt-theme-color;
+.lt-admin-groups-list-selected { .lt-admin-groups-list;
+	border-color: @lt-theme-color;
 }
 
-.lt-admin-groups-list-edit{
-        .lt-admin-groups-list;
-        border-color: @lt-green;
+.lt-admin-groups-list-edit { .lt-admin-groups-list;
+	border-color: @lt-green;
 }
 
-.lt-admin-groups-list-remove{
-        .lt-admin-groups-list;
-        border-color: @lt-red;
-        position:relative;
+.lt-admin-groups-list-remove { .lt-admin-groups-list;
+	border-color: @lt-red;
+	position: relative;
 }
 
-.lt-admin-groups-list-label {
-        .lt-theme-font-color;
-        font-size: 16px;
-        margin-top: 8px;
-        margin-left: 25px;
-        width: 300px;
-        background-color: transparent;
-        border:     none;
+.lt-admin-groups-list-label { .lt-theme-font-color;
+	font-size: 16px;
+	margin-top: 8px;
+	margin-left: 25px;
+	width: 300px;
+	background-color: transparent;
+	border: none;
 }
 
-.lt-admin-groups-list-label-edit {
-        .lt-admin-groups-list-label;
-        background-color: #ffffff;
+.lt-admin-groups-list-label-edit { .lt-admin-groups-list-label;
+	background-color: #ffffff;
 }
 
 .lt-admin-groups-list-glyphicon-container {
-        margin-top: 12px;
+	margin-top: 12px;
 }
 
 .lt-admin-groups-list-values {
-        margin-top: 4px;
+	margin-top: 4px;
 }
 
-.lt-admin-groups-list-values-input {
-        .lt-font;
-        color:#858585;
-        font-size:16px;
-        margin-left:25px;
-        width:140px;
-        height:24px;
-        margin-right:4px;
-        background-color: transparent;
-        border: none;
+.lt-admin-groups-list-values-input { .lt-font;
+	color: #858585;
+	font-size: 16px;
+	margin-left: 25px;
+	width: 140px;
+	height: 24px;
+	margin-right: 4px;
+	background-color: transparent;
+	border: none;
 }
 
-.lt-admin-groups-list-values-input-edit {
-	.lt-admin-groups-list-values-input;
+.lt-admin-groups-list-values-input-edit { .lt-admin-groups-list-values-input;
 	background-color: white;
 }
 
-/******************Librarian Tool IP ********************/
-
-.lt-ip-groups-list-start {
-	.lt-admin-groups-list-values-input;
+/****************** Admin Portal IP ********************/
+.lt-ip-groups-list-start { .lt-admin-groups-list-values-input;
+	
 }
 
-.lt-ip-groups-list-end {
-	.lt-admin-groups-list-values-input;
-	margin-left:4px;
+.lt-ip-groups-list-end { .lt-admin-groups-list-values-input;
+	margin-left: 4px;
 }
 
-.lt-ip-groups-list-start-edit {
-	.lt-ip-groups-list-start;
+.lt-ip-groups-list-start-edit { .lt-ip-groups-list-start;
 	background-color: white;
 }
 
-.lt-ip-groups-list-end-edit {
-	.lt-ip-groups-list-end;
+.lt-ip-groups-list-end-edit { .lt-ip-groups-list-end;
 	background-color: white;
 }
 
-/******************Librarian Tool Login******************/
-.lt-login-heading {
-	.lt-theme-color;
+/****************** Admin Portal Login******************/
+.lt-login-heading { .lt-theme-color;
 	height: 200px;
 }
 
@@ -473,7 +436,7 @@ body {
 }
 
 .lt-login-heading-text {
-	font: 22px arial bold; 
+	font: 22px arial bold;
 	color: #ffffff;
 	letter-spacing: 2px;
 }
@@ -486,16 +449,13 @@ body {
 	width: 240px;
 }
 
-.lt-login-input-box {
-	.lt-input-box;
-	.lt-login-form-width;
-        height: 32px;
+.lt-login-input-box { .lt-input-box; .lt-login-form-width;
+	height: 32px;
 	font-size: 16px;
 	color: #858585;
 }
 
-.lt-login-remember {
-	.lt-font;
+.lt-login-remember { .lt-font;
 	font: 14px;
 	color: #909b9f;
 }
@@ -505,10 +465,7 @@ body {
 	color: #6aa2ce;
 }
 
-.lt-login-login-btn {
-	.lt-font-bold;
-	.lt-login-form-width;
-	.lt-theme-color;
+.lt-login-login-btn { .lt-font-bold; .lt-login-form-width; .lt-theme-color;
 	height: 36px;
 	font-size: 14px;
 	color: #f9f9f9;
@@ -516,9 +473,7 @@ body {
 	border-color: #cccccc;
 }
 
-.lt-login-req-btn {
-	.lt-font-bold;
-	.lt-login-form-width;
+.lt-login-req-btn { .lt-font-bold; .lt-login-form-width;
 	height: 36px;
 	font-size: 14px;
 	color: #909a9f;
@@ -527,22 +482,19 @@ body {
 	background-color: #ffffff;
 }
 
-.lt-login-description {
-	.lt-font;
-        color: #aaaaaa;
-        font-size: 14px;
+.lt-login-description { .lt-font;
+	color: #aaaaaa;
+	font-size: 14px;
 }
 
-.lt-login-info {
-	.lt-font;
+.lt-login-info { .lt-font;
 	font-size: 15px;
 	color: #6aa2ce;
 }
 
-/******************Librarian tool institution profile page*************/
-
-.panel-default>.lt-institution-profile-panel-heading {
-	.lt-theme-color;
+/****************** Admin Portal institution profile page*************/
+.panel-default>.lt-institution-profile-panel-heading { .lt-theme-color;
+	
 }
 
 .lt-institution-profile-input {
@@ -550,8 +502,7 @@ body {
 	height: 36px;
 }
 
-.lt-institution-profile-edit-btn {
-	.lt-theme-color;
+.lt-institution-profile-edit-btn { .lt-theme-color;
 	height: 36px;
 	width: 36px;
 	font-size: 14px;
@@ -568,8 +519,7 @@ body {
 	color: #868686;
 }
 
-/******************* Librarian tool institution subscription page ************/
-
+/******************* Admin Portal institution subscription page ************/
 .lt-institution-subscription-list {
 	height: 180px;
 	width: 860px;
@@ -579,24 +529,187 @@ body {
 	padding: 15px;
 }
 
+/******************API Doc Page*********************/
+.apidoc-panel {
+	width: 700px;
+	margin-bottom: 0px;
+}
+
+.panel-default>.apidoc-panel-heading {
+	background-color: #bbc9cf;
+	color: #ffffff;
+	font-size: 24px;
+	height: 94px;
+	font-family: Arial, Helvetica, sans-serif;
+	-webkit-font-smoothing: antialiased;
+}
+
+.apidoc-body-heading {
+	color: #666666;
+	font-size: 24px;
+	font-family: Arial, Helvetica, sans-serif;
+	-webkit-font-smoothing: antialiased;
+}
+
+.apidoc-call-summary {
+	font-size: 14px;
+	font-family: Arial, Helvetica, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	color: #666666;
+}
+
+.apidoc-call {
+	font-size: 14px;
+	font-family: "Courier New", Courier, monospace;
+	color: #666666;
+	background-color: #F2FAFD;
+	-webkit-font-smoothing: antialiased;
+}
+
+.apidoc-example {
+	font-size: 14px;
+	font-family: "Courier New", Courier, monospace;
+	color: #666666;
+	background-color: #F2FAFD;
+	-webkit-font-smoothing: antialiased;
+}
+
+.apidoc-returns {
+	font-size: 14px;
+	color: #666666;
+	font-family: Arial, Helvetica, sans-serif;
+	-webkit-font-smoothing: antialiased;
+}
+
+.apidoc-description {
+	font-size: 15px;
+	font-family: Arial, Helvetica, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	color: #666666;
+}
+
+.apidoc-elements {
+	font-size: 12px;
+	color: #666666;
+	font-family: Arial, Helvetica, sans-serif;
+	-webkit-font-smoothing: antialiased;
+}
+
+.apidoc-img-tags {
+	font-size: 18px;
+	color: #666666;
+	font-family: Arial, Helvetica, sans-serif;
+	-webkit-font-smoothing: antialiased;
+}
+
+.apidoc-img-tags-tag {
+	font-size: 13px;
+	color: #b9c841;
+	font-family: Arial, Helvetica, sans-serif;
+	-webkit-font-smoothing: antialiased;
+}
+
+.apidoc-licence-text {
+	font-size: 15px;
+	color: #666666;
+	font-family: Arial, Helvetica, sans-serif;
+	-webkit-font-smoothing: antialiased;
+}
+
+.apidoc-tab {
+	height: 8px;
+	background-color: #d1dfe6;
+}
+
+.apidoc-tab.active {
+	background-color: #97a2a7;
+}
+
+.apidoc-tab-tag {
+	color: #bbc9cf;
+}
+
+.apidoc-tab-tag.active {
+	color: #666666;
+}
+
+.highlight-api {
+	background-color: #f2f2f2;
+	border-radius: 8px;
+}
+
+/******************** Info Doc **************************/
+.info-doc-heading-1 {
+	font-size: 22px;
+	font-family: Arial, Helvetica, sans-serif;
+	-webkit-font-smoothing: antialiased;
+}
+
+.info-doc-heading-2 {
+	font-size: 18px;
+	font-family: Arial, Helvetica, sans-serif;
+	-webkit-font-smoothing: antialiased;
+}
+
+.info-doc-heading-3 {
+	font-size: 15px;
+	font-weight: bold;
+	font-family: Arial, Helvetica, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	padding-left: 20;
+}
+
+.info-doc-heading-4 {
+	font-size: 12px;
+	font-weight: bold;
+	font-family: Arial, Helvetica, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	padding-left: 20;
+}
+
+.info-doc-row {
+	border-bottom: 1px solid;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+
+.info-doc-bottom-row {
+	border-top: double;
+}
+
+.info-doc-col-header {
+	border-top: double;
+	border-bottom: double;
+	font-style: italic;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.info-doc-col {
+	font-size: 12px;
+	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+	padding-left: 0px;
+	padding-right: 5px;
+}
+
 /******************Subscription Page*********************/
-.subscription-panel {                                                       
-        width: 700px;                                                                                 
-        margin-bottom: 0px;                                   
+.subscription-panel {
+	width: 700px;
+	margin-bottom: 0px;
 }
 
 .panel-default>.subscription-panel-heading {
-        background-color: #bbc9cf;
-        color: #ffffff;
-        font-size: 24px;
-        height: 94px;
+	background-color: #bbc9cf;
+	color: #ffffff;
+	font-size: 24px;
+	height: 94px;
 	font-family: Arial, Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
 }
 
 .subscription-body-heading {
-        color: #666666; 
-        font-size: 24px;
+	color: #666666;
+	font-size: 24px;
 	font-family: Arial, Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
 }
@@ -613,14 +726,14 @@ body {
 	color: #666666;
 	font-family: Arial, Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
-}               
+}
 
 .subscription-img-tags-tag {
 	font-size: 13px;
 	color: #b9c841;
 	font-family: Arial, Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
-} 
+}
 
 .subscription-licence-text {
 	font-size: 15px;
@@ -632,7 +745,7 @@ body {
 .subscription-tab {
 	height: 8px;
 	background-color: #d1dfe6;
-} 
+}
 
 .subscription-tab.active {
 	background-color: #97a2a7;
@@ -652,60 +765,56 @@ body {
 }
 
 /******************** Info Commercial **************************/
-
 .info-commercial-heading {
-	font-size: 22px; 
-	font-family: Arial, Helvetica, sans-serif; 
+	font-size: 22px;
+	font-family: Arial, Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
 }
 
 .info-commercial-subheading {
-	font-size: 15px;   
+	font-size: 15px;
 	font-family: Arial, Helvetica, sans-serif;
-	-webkit-font-smoothing: antialiased; 
+	-webkit-font-smoothing: antialiased;
 }
 
 .info-commercial-form-label {
-	font-size: 15px;     
+	font-size: 15px;
 	color: #666666;
 	font-weight: 600;
-	font-family: Arial, Helvetica, sans-serif; 
+	font-family: Arial, Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
 }
 
 /******************** Confirmation Commercial *****************/
-
 .paymentConfirmationCommercial-heading {
 	font-size: 24px;
 	color: #b8c63f;
-	font-family: Arial, Helvetica, sans-serif; 
-	-webkit-font-smoothing: antialiased;   
+	font-family: Arial, Helvetica, sans-serif;
+	-webkit-font-smoothing: antialiased;
 }
 
 .paymentConfirmationCommercial-text {
 	font-size: 14px;
 	font-family: Arial, Helvetica, sans-serif;
-	-webkit-font-smoothing: antialiased; 
+	-webkit-font-smoothing: antialiased;
 }
 
 /******************** Info Institution ********************/
-
 .info-institution-heading {
 	font-size: 22px;
 	font-family: Arial, Helvetica, sans-serif;
-	-webkit-font-smoothing: antialiased; 
+	-webkit-font-smoothing: antialiased;
 }
 
 .info-institution-form-label {
 	font-size: 15px;
 	color: #666666;
 	font-weight: 600;
-	font-family: Arial, Helvetica, sans-serif;  
-	-webkit-font-smoothing: antialiased; 
+	font-family: Arial, Helvetica, sans-serif;
+	-webkit-font-smoothing: antialiased;
 }
 
 /******************** Confirmtion Institution **************/
-
 .payment-confirmation-institution-heading {
 	font-size: 24px;
 	color: #b8c63f;
@@ -716,45 +825,43 @@ body {
 .payment-confirmation-institution-text {
 	font-size: 14px;
 	font-family: Arial, Helvetica, sans-serif;
-	-webkit-font-smoothing: antialiased;  
+	-webkit-font-smoothing: antialiased;
 }
 
 /******************* Info Individual *****************/
-
 .info-individual-heading {
 	font-size: 24px;
 	color: #666666;
-	font-family: Arial, Helvetica, sans-serif;    
-	-webkit-font-smoothing: antialiased; 
+	font-family: Arial, Helvetica, sans-serif;
+	-webkit-font-smoothing: antialiased;
 }
 
 .info-individual-text {
 	font-size: 15px;
 	color: #666666;
-	font-family: Arial, Helvetica, sans-serif; 
-	-webkit-font-smoothing: antialiased; 
+	font-family: Arial, Helvetica, sans-serif;
+	-webkit-font-smoothing: antialiased;
 }
 
 .info-individual-discount {
 	font-size: 15px;
 	color: #00d96d;
-	font-family: Arial, Helvetica, sans-serif;  
+	font-family: Arial, Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
 }
 
 .info-individual-subtotal {
 	font-size: 24px;
-	color: #666666;  
-	font-family: Arial, Helvetica, sans-serif; 
-	-webkit-font-smoothing: antialiased;  
+	color: #666666;
+	font-family: Arial, Helvetica, sans-serif;
+	-webkit-font-smoothing: antialiased;
 }
 
 /************************** Payment Individual 1 *****************/
-
 .payment-confirmation-individual-heading {
 	font-size: 24px;
 	color: #666666;
-	font-family: Arial, Helvetica, sans-serif; 
+	font-family: Arial, Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
 }
 
@@ -762,31 +869,30 @@ body {
 	font-size: 15px;
 	color: #666666;
 	font-weight: 600;
-	font-family: Arial, Helvetica, sans-serif;        
-	-webkit-font-smoothing: antialiased; 
+	font-family: Arial, Helvetica, sans-serif;
+	-webkit-font-smoothing: antialiased;
 }
 
 .payment-confirmation-individual-footer {
 	font-size: 15px;
 	color: #666666;
-	font-family: Arial, Helvetica, sans-serif; 
-	-webkit-font-smoothing: antialiased; 
+	font-family: Arial, Helvetica, sans-serif;
+	-webkit-font-smoothing: antialiased;
 }
 
 /************** Payment Individual 2 ***************/
-
 .payment-confirmation-individual-confirm-heading {
 	font-size: 24px;
 	color: #666666;
-	font-family: Arial, Helvetica, sans-serif;  
+	font-family: Arial, Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
 }
 
 .payment-confirmation-individual-confirm-text {
 	font-size: 15px;
 	color: #97a0a5;
-	font-family: Arial, Helvetica, sans-serif; 
-	-webkit-font-smoothing: antialiased;   
+	font-family: Arial, Helvetica, sans-serif;
+	-webkit-font-smoothing: antialiased;
 }
 
 hr {
@@ -798,7 +904,6 @@ hr {
 }
 
 /************ Payment Indivivual 3 ****************/
-
 .payment-confirmation-individual-thankyou-heading {
 	font-size: 24px;
 	color: #b8c63f;
@@ -816,12 +921,11 @@ hr {
 .info-institution-form-label {
 	font-size: 15px;
 	color: #97a0a5;
-	font-family: Arial, Helvetica, sans-serif;  
-	-webkit-font-smoothing: antialiased; 
+	font-family: Arial, Helvetica, sans-serif;
+	-webkit-font-smoothing: antialiased;
 }
 
 /******************** Confirmtion Institution **************/
-
 .payment-confirmation-institution-heading {
 	font-size: 24px;
 	color: #b8c63f;
@@ -832,11 +936,10 @@ hr {
 .payment-confirmation-institution-text {
 	font-size: 14px;
 	font-family: Arial, Helvetica, sans-serif;
-	-webkit-font-smoothing: antialiased;  
+	-webkit-font-smoothing: antialiased;
 }
 
 /******************** Activation page *******************/
-
 .activation-error-heading {
 	font-size: 24px;
 	color: red;
@@ -855,48 +958,46 @@ hr {
 .delete-buttons-common-before {
 	color: #ffffff;
 	font-family: "arial";
-	line-height:38px;
+	line-height: 38px;
 }
 
 .delete-buttons-common {
-	width:36px;
-	height:36px;
-	cursor:pointer;
-	background-color:@lt-red;
+	width: 36px;
+	height: 36px;
+	cursor: pointer;
+	background-color: @lt-red;
 }
 
-.delete-yes{
-	.delete-buttons-common;
+.delete-yes { .delete-buttons-common;
+	
 }
 
-.delete-yes:before {
-	.delete-buttons-common-before;
+.delete-yes:before { .delete-buttons-common-before;
 	content: "Yes";
 }
 
-.delete-no {
-	.delete-buttons-common;
+.delete-no { .delete-buttons-common;
+	
 }
 
-.delete-no:before {
-	.delete-buttons-common-before;
+.delete-no:before { .delete-buttons-common-before;
 	content: "No";
 }
 
 .delete-label {
-	display:none;
+	display: none;
 }
 
 .lt-admin-groups-list-remove .delete-label {
-   position: absolute;
-   display:block;
-    left: -40px;
-    top: 4px;
-    /* background-color:@lt-red; */
-    font-family: sans-serif;
-    font-size: 18px;
-    width: 58px;
-    height: 29px;
-    line-height: 28px;
-    padding-left: 3px;
+	position: absolute;
+	display: block;
+	left: -40px;
+	top: 4px;
+	/* background-color:@lt-red; */
+	font-family: sans-serif;
+	font-size: 18px;
+	width: 58px;
+	height: 29px;
+	line-height: 28px;
+	padding-left: 3px;
 }
