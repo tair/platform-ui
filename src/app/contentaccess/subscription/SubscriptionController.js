@@ -71,7 +71,10 @@ angular.module('platform-ui.contentaccess.subscription').controller(
                     url:$scope.apiUri+'/parties/countries/',
                     method:'GET',
                 }).success(function(data, status, headers, config) {
-                    $scope.countries = data.sort();
+                	var countryObjects = data.sort();
+                	for(var country in countryObjects){
+                		$scope.countries.push(country.name);
+                	}
                 });
 	    }
 	}
