@@ -72,7 +72,7 @@ angular.module('platform-ui.contentaccess.subscription').controller(
                     method:'GET',
                 }).success(function(data, status, headers, config) {
                 	var countryObjects = data.sort();
-                	for(var country in countryObjects){
+                	for(var country of countryObjects){
                 		$scope.countries.push(country.name);
                 	}
                 });
