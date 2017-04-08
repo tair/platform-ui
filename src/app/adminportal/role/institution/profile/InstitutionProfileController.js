@@ -39,6 +39,11 @@ angular.module('platform-ui.adminportal.role.institution.profile').controller(
                 if($scope.user.password != undefined && $scope.user.password !=null &&$scope.user.password != ""){
                 	put_data["password"]= $scope.user.password;
                 }
+                if($scope.user.partnerId != undefined && $scope.user.partnerId != null && $scope.user.partnerId != ""){
+                	put_data["partnerId"] = $scope.user.partnerId;
+                }else{
+                	put_data["partnerId"] = "phoenix";
+                }
                 
                 //rewrite with new from UI
                 forceReSignIn = false;
