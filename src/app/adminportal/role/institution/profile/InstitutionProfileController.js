@@ -35,7 +35,6 @@ angular.module('platform-ui.adminportal.role.institution.profile').controller(
 				if($scope.user.username != undefined && $scope.user.username !=null &&$scope.user.username != ""){
                 put_data["username"] = $scope.user.username;
 				}
-                put_data["partnerId"]= $scope.user.partnerId;
                 if($scope.user.password != undefined && $scope.user.password !=null &&$scope.user.password != ""){
                 	put_data["password"]= $scope.user.password;
                 }
