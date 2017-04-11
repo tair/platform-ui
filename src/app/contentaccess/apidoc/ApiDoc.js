@@ -27,7 +27,7 @@ angular
 										url : '',
 										views : {
 											'apidoc' : {
-												controller : 'LandingController',
+												controller : 'ApiDocLandingController',
 												templateUrl : 'contentaccess/apidoc/landing/landing.html'
 											}
 										}
@@ -75,7 +75,7 @@ angular
 										url : '/subscriptions',
 										views : {
 											'apidoc' : {
-												controller : 'SubscriptionsController',
+												controller : 'ApiDocSubscriptionsController',
 												templateUrl : 'contentaccess/apidoc/subscriptions/subscriptions.html'
 											}
 										}

@@ -4,13 +4,13 @@
 
 angular.module('platform-ui.contentaccess.apidoc.subscriptions').controller(
 	/* Name */
-	'SubscriptionsController',
+	'ApiDocSubscriptionsController',
 
 	/* Dependencies */
 	[
 	    '$scope',
 	    '$state',
-	    'SubscriptionsModel',
+	    'ApiDocSubscriptionsModel',
 	    
 	    /* Controller Definition */
 	    function ($scope, $state, SubscriptionsModel) {
