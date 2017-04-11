@@ -4,10 +4,10 @@
 
 angular.module('platform-ui.contentaccess.apidoc.landing').controller(
 /* Name */
-'LandingController',
+'ApiDocLandingController',
 
 /* Dependencies */
-[ '$http', '$scope', '$location', '$state', 'Title', 'LandingModel',
+[ '$http', '$scope', '$location', '$state', 'Title', 'ApiDocLandingModel',
 
 /* Controller Definition */
 function($http, $scope, $location, $state, Title, LandingModel) {

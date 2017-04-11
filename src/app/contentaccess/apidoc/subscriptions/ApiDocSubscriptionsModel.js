@@ -4,7 +4,7 @@
 
 angular.module('platform-ui.contentaccess.apidoc.subscriptions').factory(
 /* Name */
-'SubscriptionsModel',
+'ApiDocSubscriptionsModel',
 
 /* Dependencies */
 [

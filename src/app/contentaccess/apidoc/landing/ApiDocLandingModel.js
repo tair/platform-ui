@@ -6,7 +6,7 @@ angular
 		.module('platform-ui.contentaccess.apidoc.landing')
 		.factory(
 				/* Name */
-				'LandingModel',
+				'ApiDocLandingModel',
 
 				/* Dependencies */
 				[ function() {
