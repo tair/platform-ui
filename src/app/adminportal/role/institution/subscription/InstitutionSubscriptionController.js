@@ -90,6 +90,19 @@ angular.module('platform-ui.adminportal.role.institution.subscription').controll
         }).error(function(){
         	alert("Cannot get all consortium subscription information");
         })
+	    $http({
+	    	url: $scope.apiUri+'/subscriptions/?partyId=' + $scope.institutionId+'&checkConsortium=true',
+	    	method: 'GET',
+	    }).success(function(data, status, headers, config)) {
+	    	var dataObject = {};
+        	for (var i=0; i<data.length; i++) {
+				var item = data[i];
+				dataObject[item['partnerId']] = item;
+			}	
+            $scope.latestSubscriptions = dataObject;
+	    }).error(function(){
+        	alert("Cannot get all consortium subscription information");
+        })
 		$state.go('role.institution.subscription.list');
 	    }
 	}
