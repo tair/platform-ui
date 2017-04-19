@@ -61,7 +61,20 @@ angular.module('platform-ui.adminportal.role.institution.subscription.list').con
 	    		return "N/A";
 	    	}
 	    }
-
+	    $scope.getLatestStartDate = function(id) {
+	    	if (id in $scope.latestSubscriptions){
+	    		return $scope.latestSubscriptions[id].startDate;
+	    	}else{
+	    		return "N/A";
+	    	}
+	    }
+	    $scope.getLatestEndDate = function(id) {
+	    	if (id in $scope.latestSubscriptions){
+	    		return $scope.latestSubscriptions[id].endDate;
+	    	}else{
+	    		return "N/A";
+	    	}
+	    }
 	    $scope.licenseButton = function(id) {
 	    if ($scope.role == 'staff'){
 	    	return "Edit";
@@ -89,6 +102,8 @@ angular.module('platform-ui.adminportal.role.institution.subscription.list').con
 			partners[i].status = $scope.getSubState(partners[i].partnerId);
 	    	partners[i].startDate = $scope.getStartDate(partners[i].partnerId);
 	    	partners[i].endDate = $scope.getEndDate(partners[i].partnerId);
+	    	partners[i].latestStartDate = $scope.getLatestStartDate(partners[i].partnerId);
+	    	partners[i].latestEndDate = $scope.getLatestEndDate(partners[i].partnerId);
 	    	if (partners[i].partnerId in $scope.consActiveSubscriptions){
 	    		partners[i].consortiumsList = $scope.consActiveSubscriptions[partners[i].partnerId];
 	    		partners[i].consortiumSubState = true;

@@ -58,6 +58,7 @@ angular.module('platform-ui.adminportal.role.institution.subscription').controll
 		$http({
 			url: $scope.apiUri+'/subscriptions/?partyId='+$scope.institutionId+'&active=true',
 			method: 'GET',
+			headers: {'Authorization': 'JWT '+$scope.token},
 		}).success(function(data, status, headers, config) {
 			var dataObject = {};
 			for (var i=0; i<data.length; i++) {
@@ -72,6 +73,7 @@ angular.module('platform-ui.adminportal.role.institution.subscription').controll
         $http({
                 url: $scope.apiUri+'/subscriptions/?partyId='+$scope.institutionId,
                 method: 'GET',
+                headers: {'Authorization': 'JWT '+$scope.token},
         }).success(function(data, status, headers, config) {
         	var dataObject = {};
         	for (var i=0; i<data.length; i++) {
@@ -85,9 +87,23 @@ angular.module('platform-ui.adminportal.role.institution.subscription').controll
         $http({
         	url: $scope.apiUri+'/subscriptions/consortiums/?partyId=' + $scope.institutionId+'&active=true',
         	method: 'GET',
+        	headers: {'Authorization': 'JWT '+$scope.token},   	
         }).success(function(data, status, headers, config) {
         	$scope.consActiveSubscriptions = data;
         }).error(function(){
+        	alert("Cannot get all consortium subscription information");
+        })
+	    $http({
+	    	url: $scope.apiUri+'/subscriptions/?partyId=' + $scope.institutionId+'&checkConsortium=true',
+	    	method: 'GET',
+	    }).success(function(data, status, headers, config) {
+	    	var dataObject = {};
+        	for (var i=0; i<data.length; i++) {
+				var item = data[i];
+				dataObject[item['partnerId']] = item;
+			}	
+            $scope.latestSubscriptions = dataObject;
+	    }).error(function(){
         	alert("Cannot get all consortium subscription information");
         })
 		$state.go('role.institution.subscription.list');
