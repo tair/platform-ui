@@ -13,12 +13,12 @@ angular.module('platform-ui.contentaccess.apidoc.subscriptions').controller(
 	    'ApiDocSubscriptionsModel',
 	    
 	    /* Controller Definition */
-	    function ($scope, $state, SubscriptionsModel) {
+	    function ($scope, $state, ApiDocSubscriptionsModel) {
 		init();
 		function init() {
-		    $scope.currentTab = SubscriptionsModel.currentTab;
-		    $scope.tabs = SubscriptionsModel.tabs;
-		    $scope.templates = SubscriptionsModel.templates;
+		    $scope.currentTab = ApiDocSubscriptionsModel.currentTab;
+		    $scope.tabs = ApiDocSubscriptionsModel.tabs;
+		    $scope.templates = ApiDocSubscriptionsModel.templates;
 		}
 	    }
 	]
