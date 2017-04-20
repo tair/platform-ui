@@ -10,7 +10,7 @@ angular.module('platform-ui.contentaccess.apidoc.landing').controller(
 [ '$http', '$scope', '$location', '$state', 'Title', 'ApiDocLandingModel',
 
 /* Controller Definition */
-function($http, $scope, $location, $state, Title, LandingModel) {
+function($http, $scope, $location, $state, Title, ApiDocLandingModel) {
 	$scope.next = function() {
 		if ($scope.api == "def") {
 			alert("Please select an API.");
@@ -59,7 +59,7 @@ function($http, $scope, $location, $state, Title, LandingModel) {
 	init();
 
 	function init() {
-		$scope.apis = LandingModel.apis;
-		$scope.api = LandingModel.api;
+		$scope.apis = ApiDocLandingModel.apis;
+		$scope.api = ApiDocLandingModel.api;
 	}
 } ])
