@@ -56,7 +56,7 @@ angular.module('platform-ui.adminportal.role.institution.profile').controller(
 					}
 				}
 				
-				if (put_data == {}) {
+				if (angular.equals(put_data, {})) {
 					console.log("No changes detected.");
 					bootbox.alert("No changes detected.");
 					return
