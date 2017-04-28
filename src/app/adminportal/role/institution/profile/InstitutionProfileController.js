@@ -31,18 +31,18 @@ angular.module('platform-ui.adminportal.role.institution.profile').controller(
 				//Save info
 				put_data = {}
 				//put original values from GET
-                put_data["partyId"]  = $scope.user.partyId;
+//                put_data["partyId"]  = $scope.user.partyId;
 				if($scope.user.username != undefined && $scope.user.username !=null &&$scope.user.username != ""){
                 put_data["username"] = $scope.user.username;
 				}
                 if($scope.user.password != undefined && $scope.user.password !=null &&$scope.user.password != ""){
                 	put_data["password"]= $scope.user.password;
                 }
-                if($scope.user.partnerId != undefined && $scope.user.partnerId != null && $scope.user.partnerId != ""){
-                	put_data["partnerId"] = $scope.user.partnerId;
-                }else{
-                	put_data["partnerId"] = "phoenix";
-                }
+//                if($scope.user.partnerId != undefined && $scope.user.partnerId != null && $scope.user.partnerId != ""){
+//                	put_data["partnerId"] = $scope.user.partnerId;
+//                }else{
+//                	put_data["partnerId"] = "phoenix";
+//                }
                 
                 //rewrite with new from UI
                 forceReSignIn = false;
@@ -57,7 +57,9 @@ angular.module('platform-ui.adminportal.role.institution.profile').controller(
 				}
 
 				$http({
-					url: $scope.apiUri+'/parties/institutions/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
+					url: $scope.apiUri+'/parties/institutions/?credentialId='+$scope.credentialId
+					+'&secretKey='+encodeURIComponent($scope.secretKey)
+					+'&partyId='+$scope.institutionId,
 					data: put_data,
 					method: 'PUT',
 					headers: {'Content-Type': 'application/x-www-form-urlencoded'},
@@ -70,7 +72,7 @@ angular.module('platform-ui.adminportal.role.institution.profile').controller(
 					bootbox.alert("Failed to update Institution Profile!"
 							+((data['error'] == 'This email is already used by another institution.')?
 							" This email is already used by another institution.":"")
-							+((data['error'] == 'partyId, partnerId, username, password required to create credential')?
+							+((data['error'] == 'username, password required to create credential')?
 							" User name and Password fields required.":"")	
 					);
 				});
