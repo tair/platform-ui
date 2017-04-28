@@ -55,7 +55,11 @@ angular.module('platform-ui.adminportal.role.institution.profile').controller(
 						}
 					}
 				}
-
+				
+				if (put_data == {}) {
+					bootbox.alert("No changes detected.");
+					return
+				}
 				$http({
 					url: $scope.apiUri+'/parties/institutions/?credentialId='+$scope.credentialId
 					+'&secretKey='+encodeURIComponent($scope.secretKey)
