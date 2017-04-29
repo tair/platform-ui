@@ -48,10 +48,10 @@ angular.module('platform-ui.adminportal.role.institution.profile').controller(
 					}
 				}
 				//check null
-				if(put_data["username"] != undefined && put_data["username"] !=null &&put_data["username"] != ""){
+				if(put_data["username"] ==null &&put_data["username"] == ""){
 	                delete put_data["username"];
 				}
-                if(put_data["password"] != undefined && put_data["password"] !=null &&put_data["password"] != ""){
+                if(put_data["password"] ==null &&put_data["password"] == ""){
                 	delete put_data["password"];
                 }
 				// detect data change
