@@ -30,14 +30,6 @@ angular.module('platform-ui.adminportal.role.institution.profile').controller(
 				}
 				//Save info
 				put_data = {}
-				//put original values from GET
-//                put_data["partyId"]  = $scope.user.partyId;
-				if($scope.user.username != undefined && $scope.user.username !=null &&$scope.user.username != ""){
-                put_data["username"] = $scope.user.username;
-				}
-                if($scope.user.password != undefined && $scope.user.password !=null &&$scope.user.password != ""){
-                	put_data["password"]= $scope.user.password;
-                }
 //                if($scope.user.partnerId != undefined && $scope.user.partnerId != null && $scope.user.partnerId != ""){
 //                	put_data["partnerId"] = $scope.user.partnerId;
 //                }else{
@@ -55,7 +47,14 @@ angular.module('platform-ui.adminportal.role.institution.profile').controller(
 						}
 					}
 				}
-				
+				//check null
+				if(put_data["username"] != undefined && put_data["username"] !=null &&put_data["username"] != ""){
+	                delete put_data["username"];
+				}
+                if(put_data["password"] != undefined && put_data["password"] !=null &&put_data["password"] != ""){
+                	delete put_data["password"];
+                }
+				// detect data change
 				if (angular.equals(put_data, {})) {
 					console.log("No changes detected.");
 					bootbox.alert("No changes detected.");
