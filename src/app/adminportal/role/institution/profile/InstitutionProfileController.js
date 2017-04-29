@@ -39,12 +39,12 @@ angular.module('platform-ui.adminportal.role.institution.profile').controller(
 					}
 				}
 				//check null
-				if(put_data["username"] ==null || put_data["username"] == ""){
+				if(typeof put_data["username"] !== 'undefined' && ( put_data["username"] ==null || put_data["username"] == "")){
 					console.log(put_data["username"]);
 					bootbox.alert("Username cannot be empty");
 	                return
 				}
-                if(put_data["password"] ==null || put_data["password"] == ""){
+                if(typeof put_data["password"] !== 'undefined' && ( put_data["password"] ==null || put_data["password"] == "")){
                 	console.log(put_data["password"]);
                 	bootbox.alert("Password cannot be empty");
                 	return
