@@ -20,11 +20,6 @@ angular.module('platform-ui.adminportal.role.institution.profile').controller(
 	/* Controller Definition */
 	function ($scope, $http, $cookies, $window, $location, $state, Title, InstitutionProfileModel) {
     	init();
-		function reset(){
-            for(k in $scope.userprev) 
-            	$scope.user[k] = $scope.userprev[k];
-            put_data = {};
-		}
 		$scope.edit_fields = function() {
 			if ($scope.edit==true) {
 				if (!validateInfo()) {
@@ -32,7 +27,7 @@ angular.module('platform-ui.adminportal.role.institution.profile').controller(
 					return false;
 				}
 				//Save info
-				put_data = {}
+				put_data = {};
                 //rewrite with new from UI
                 forceReSignIn = false;
 				for(k in $scope.user) {
@@ -46,12 +41,10 @@ angular.module('platform-ui.adminportal.role.institution.profile').controller(
 				//check null
 				if(put_data["username"] ==null || put_data["username"] == ""){
 					bootbox.alert("Username cannot be empty");
-	                reset();
 	                return
 				}
                 if(put_data["password"] ==null || put_data["password"] == ""){
                 	bootbox.alert("Password cannot be empty");
-                	reset();
                 	return
                 }
 				// detect data change
