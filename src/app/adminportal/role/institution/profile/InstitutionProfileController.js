@@ -19,9 +19,12 @@ angular.module('platform-ui.adminportal.role.institution.profile').controller(
 
 	/* Controller Definition */
 	function ($scope, $http, $cookies, $window, $location, $state, Title, InstitutionProfileModel) {
-	    	init();
-		console.log($scope.uiparams.colwidth);
-		
+    	init();
+		function reset(){
+            for(k in $scope.userprev) 
+            	$scope.user[k] = $scope.userprev[k];
+            put_data = {};
+		}
 		$scope.edit_fields = function() {
 			if ($scope.edit==true) {
 				if (!validateInfo()) {
@@ -30,18 +33,11 @@ angular.module('platform-ui.adminportal.role.institution.profile').controller(
 				}
 				//Save info
 				put_data = {}
-//                if($scope.user.partnerId != undefined && $scope.user.partnerId != null && $scope.user.partnerId != ""){
-//                	put_data["partnerId"] = $scope.user.partnerId;
-//                }else{
-//                	put_data["partnerId"] = "phoenix";
-//                }
-                
                 //rewrite with new from UI
                 forceReSignIn = false;
 				for(k in $scope.user) {
 					if ($scope.userprev[k] != $scope.user[k]) {
 						put_data[k] = $scope.user[k];
-						$scope.userprev[k] = $scope.user[k];
 						if ((k == 'username' || k == 'password') && $scope.role == 'organization'){
 							forceReSignIn = true;
 						}
@@ -49,14 +45,17 @@ angular.module('platform-ui.adminportal.role.institution.profile').controller(
 				}
 				//check null
 				if(put_data["username"] ==null || put_data["username"] == ""){
-	                delete put_data["username"];
+					bootbox.alert("Username cannot be empty");
+	                reset();
+	                return
 				}
                 if(put_data["password"] ==null || put_data["password"] == ""){
-                	delete put_data["password"];
+                	bootbox.alert("Password cannot be empty");
+                	reset();
+                	return
                 }
 				// detect data change
 				if (angular.equals(put_data, {})) {
-					console.log("No changes detected.");
 					bootbox.alert("No changes detected.");
 					return
 				}
@@ -133,10 +132,8 @@ angular.module('platform-ui.adminportal.role.institution.profile').controller(
                             	$scope.user.consortiums = data[0].consortiums;
                             	
                             	$scope.user.username = data[1].username;
-                            	//$scope.user.password = "random";
                                 $scope.user.email = data[1].email;
                                 $scope.user.institution = data[1].institution;
-                                //$scope.user.partyId = data[1].partyId;
                                 $scope.user.partnerId = data[1].partnerId;
                                 $scope.user.userIdentifier = data[1].userIdentifier;
                                 $scope.user.firstName = data[1].firstName;
