@@ -22,11 +22,13 @@ angular.module('platform-ui.adminportal.role.institution.usage').controller(
 	    init();
 
 	    $scope.validateForm = function() {
-					if ($scope.postData.endDate >= $scope.postData.startDate)
-						return true;	
-					alert("End date must be greater than start date");
-					return false;
-	    			};
+			var getEndDate = new Date($scope.postData.endDate);
+			var getStartDate = new Date($scope.postData.startDate);
+			if (getEndDate >= getStartDate)
+				return true;	
+			alert("End date must be greater than start date");
+			return false;
+			};
 
 	    $scope.requestUsage = function() {
 					$http({
