@@ -31,7 +31,7 @@ angular.module('platform-ui.adminportal.login.forgotusername').controller(
                 	}
                 });				
 			}else{
-				alert("Please enter your eamil!")
+				alert("Please enter your email!")
 			}
 		}
 		$scope.back = function(){
