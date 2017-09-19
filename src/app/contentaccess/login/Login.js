@@ -11,7 +11,8 @@ angular.module(
 	/* Dependencies */
 	[
 	'ui.router',
-	'service.title'
+	'service.title',
+	'platform-ui.contentaccess.login.forgetusername'
 	])
 	.config(
 		function ($stateProvider) {
@@ -27,6 +28,15 @@ angular.module(
 				views: {
 					'login': {
 						templateUrl: 'contentaccess/login/success/success.html'
+					}
+				}
+			}).state('login.forgetusername', {
+				abstract: true,
+				url: '/forgetusername?{partnerId}&{redirect}',
+				views: {
+					'login': {
+						controller: 'ForgetUsernameController',
+						templateUrl: 'contentaccess/login/forgetusername/forgetusername.html'
 					}
 				}
 			});

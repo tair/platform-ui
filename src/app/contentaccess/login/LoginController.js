@@ -98,17 +98,18 @@ angular.module('platform-ui.contentaccess.login').controller(
             return maskedEmail;	
 		};
 		
-	    $scope.resetpwd = function() {
-	    	//email masking tests. to remove later
-		    console.log('a@arabi.com=>'+maskEmail("a@arabi.com"));
-		    console.log('ab@arabi.com=>'+maskEmail("ab@arabi.com"));
-		    console.log('abc@arabi.com=>'+maskEmail("abc@arabi.com"));
-		    console.log('abcd@arabi.com=>'+maskEmail("abcd@arabi.com"));
-	    	if ($scope.formdata.user === null || $scope.formdata.user === undefined) {
-	    		bootbox.alert("To reset password username is required");//http://bootboxjs.com/
-	    		return;
-	    	}
- 	    	$http({
+	    $scope.resetPwd = function() {
+	    	if (confirm("Are you sure you want to reset your password?")) {
+		    	//email masking tests. to remove later
+			    console.log('a@arabi.com=>'+maskEmail("a@arabi.com"));
+			    console.log('ab@arabi.com=>'+maskEmail("ab@arabi.com"));
+			    console.log('abc@arabi.com=>'+maskEmail("abc@arabi.com"));
+			    console.log('abcd@arabi.com=>'+maskEmail("abcd@arabi.com"));
+		    	if ($scope.formdata.user === null || $scope.formdata.user === undefined) {
+		    		bootbox.alert("To reset password username is required");//http://bootboxjs.com/
+		    		return;
+		    	}
+	 	    	$http({
 	            	url:$scope.apiUri+'/credentials/resetPwd/?user='+$scope.formdata.user+'&partnerId='+$scope.partnerId,
 	   	            method:'PUT',
 	            	headers: {'Content-Type': 'application/x-www-form-urlencoded'},
@@ -123,6 +124,11 @@ angular.module('platform-ui.contentaccess.login').controller(
 	            	console.log('status',status);
 	                console.log('data',data);
 	            });
+	        }
+	    }
+
+	    $scope.forgetUsername = function() {
+	    	$state.go('login.forgetusername.sendlink');
 	    }
         
 		function init() {
@@ -150,6 +156,7 @@ angular.module('platform-ui.contentaccess.login').controller(
 			});
 			$scope.license = 'def';
 			$scope.tabPage = '1';
+			$scope.templateHeader = {text:'Log in'};
 		}
 	}
 ]);
