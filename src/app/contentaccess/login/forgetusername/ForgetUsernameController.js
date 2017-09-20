@@ -40,6 +40,7 @@ angular.module('platform-ui.contentaccess.login.forgetusername').controller(
 			}
 		}
 		$scope.backToLogin = function(){
+			$scope.templateHeader.text = 'Log in';
             $state.go('login.form');
 		}
 
