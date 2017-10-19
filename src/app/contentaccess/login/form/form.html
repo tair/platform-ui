@@ -34,7 +34,7 @@
 						<div class="row">
 							<div class="col-xs-14 text-center form-group">
 								<input type="text" name="user" class="form-control" ng-model="formdata.user" placeholder={{partner.loginUserNameFieldPrompt}} style="width: 100%; border-radius: 0px;" required>
-								<a class="text-right pull-right lt-login-forgot" style="margin-top:2px;margin-bottom:15px" href="" ng-click="forgetUsername()">Forget username?</a>
+								<a class="text-right pull-right lt-login-forgot" style="margin-top:2px;margin-bottom:15px" href="" ng-click="forgetUsername()">Forgot username?</a>
 							</div>
 						</div>
 						
@@ -54,11 +54,11 @@
 						</div>
 						
 						<!-- contact us -->
-						<!-- <div class="row">
+						<div class="row">
 							<div class="col-xs-14 text-left form-group">
 							<font size="2">Please <a href="mailto:{{partner.forgotUserNameEmailTo}}?subject={{partner.forgotUserNameEmailSubject}}&body={{partner.forgotUserNameEmailBody}}">contact us</a> {{partner.forgotUserNameText}}</font>
 							</div>
-						</div> -->
+						</div>
 						
 						<div class="row" ng-if="partner.registerText!=null && partner.registerText!='' && partner.registerUri!=null && partner.registerUri!='' ">
 							<div class="col-xs-14 text-left form-group">
