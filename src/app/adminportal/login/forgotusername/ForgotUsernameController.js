@@ -21,7 +21,7 @@ angular.module('platform-ui.adminportal.login.forgotusername').controller(
 			if($scope.email != null) {
 				var email = $scope.email.replace('+', '%2B');
 				$http({
-                    url: $scope.apiUri+'/credentials/getUsernames/?email='+email,
+                    url: $scope.apiUri+'/credentials/getUsernames/?email='+email+'&partnerId=phoenix',
                     method: 'GET',
                 }).success(function(data, status, headers, config){
                 		$state.go('ltlogin.forgotusername.thankyou', {'email':$scope.email});
@@ -31,7 +31,7 @@ angular.module('platform-ui.adminportal.login.forgotusername').controller(
                 	}
                 });				
 			}else{
-				alert("Please enter your eamil!")
+				alert("Please enter your email!")
 			}
 		}
 		$scope.back = function(){
