@@ -1,6 +1,6 @@
-[ 
-    { 
+[
+    {
         "stripePublishableKey" : "pk_live_HqToRUqHXiUG9FoyLlAug5Hl",
-        "paywallApiBaseUri"    : "https://pwapi.arabidopsis.org" 
-    } 
+        "paywallApiBaseUri"    : "https://pwapi-tair.arabidopsis.org"
+    }
 ]
