@@ -66,6 +66,7 @@ angular.module('platform-ui.adminportal.role.institution.profile').controller(
 					},
 				}).success(function(){
 					bootbox.alert("Institution Profile Successfully Updated" + (forceReSignIn ? ". Please re-login":"!") );
+					init();
 					if (forceReSignIn) {
 						$scope.logout();
 					}
