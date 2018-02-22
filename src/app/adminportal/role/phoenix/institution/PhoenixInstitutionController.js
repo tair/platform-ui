@@ -340,6 +340,7 @@ angular.module('platform-ui.adminportal.role.phoenix.institution').controller(
 		    $scope.allInstitutions.push({
 		    	partyId:entry['partyId'],
 		    	name:entry['name'],
+		    	hasIpRange:entry['hasIpRange']
 		    });
 		}
 	        }).error(function(data, status, headers, config){
