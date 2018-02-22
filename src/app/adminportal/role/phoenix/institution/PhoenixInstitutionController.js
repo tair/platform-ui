@@ -315,6 +315,7 @@ angular.module('platform-ui.adminportal.role.phoenix.institution').controller(
 			country:entry['country'],
 			display:entry['display'],
 			label:entry['label'],
+			hasIpRange:entry['hasIpRange'],
 			state:null
 		    });
 		}
