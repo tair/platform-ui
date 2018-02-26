@@ -302,7 +302,7 @@ angular.module('platform-ui.adminportal.role.phoenix.institution').controller(
 	    
 	    // init
             $http({
-            	url: $scope.apiUri+'/parties/?partyType=organization'+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
+            	url: $scope.apiUri+'/parties/allinstitutions/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
                 method: 'GET',
             }).success(function(data, status, headers, config){
 		$scope.institutions = [];
