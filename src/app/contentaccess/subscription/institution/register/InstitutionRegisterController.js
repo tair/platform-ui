@@ -98,7 +98,9 @@ angular.module('platform-ui.contentaccess.subscription.institution.register').co
         }
 
         function sendToSalesForceCampaign() {
-            var nextPage = $location.absUrl().split('?')[0] + '/thankyou';
+            var urlComponents = $location.absUrl().split('?');
+            var nextPage = urlComponents[0] + '/thankyou';
+            if (urlComponents[1] != undefined) nextPage += ('?' + urlComponents[1]);
             var formData = {
                 retURL: nextPage,
                 oid: '00Do0000000J6b5',
