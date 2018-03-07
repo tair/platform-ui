@@ -11,10 +11,11 @@ angular.module('platform-ui.contentaccess.subscription.institution.register').co
 	    '$http',
 	'$scope',
 	'$stateParams',
+    '$location',
 	'InstitutionRegisterModel',
 
 	/* Controller Definition */
-	function ($http, $scope, $stateParams, InstitutionRegisterModel) {
+	function ($http, $scope, $stateParams, $location, InstitutionRegisterModel) {
 		init();
 
 		$scope.reset = function() {
@@ -66,10 +67,11 @@ angular.module('platform-ui.contentaccess.subscription.institution.register').co
 	    $scope.send = function() {
             // sendToAPI();
             sendToSalesForceCampaign();
-            $scope.next('thankyou');
+            // $scope.next('thankyou');
 	    }
 
 	    function init() {
+
 	    if($scope.partnerId == null){
 	    	$scope.partnerId = $stateParams.partnerId;
 	    }
@@ -96,7 +98,9 @@ angular.module('platform-ui.contentaccess.subscription.institution.register').co
         }
 
         function sendToSalesForceCampaign() {
+            var nextPage = $location.absUrl().split('?')[0] + '/thankyou';
             var formData = {
+                retURL: nextPage,
                 oid: '00Do0000000J6b5',
                 Campaign_ID: getCampaignId(),
                 member_status: 'Responded',
@@ -108,16 +112,31 @@ angular.module('platform-ui.contentaccess.subscription.institution.register').co
                 '00N1J00000G2kmN': $scope.formdata.librarianEmail, // Librarian Email
                 '00N1J00000G2kmX': $scope.formdata.comments // Comments
             }
-            $http({
-                url: "https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8",
-                data: formData,
-                method: 'POST',
-                headers: {
-                    "Content-Type": "text/html; charset=UTF-8"
+            var form = document.createElement("form");
+            form.method = "POST";
+            form.action = "https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8";
+
+            for (var field in formData) {
+                if (formData.hasOwnProperty(field)) {
+                    var fieldElement = document.createElement("input");  
+                    fieldElement.name=field;
+                    fieldElement.value=formData[field];
+                    fieldElement.setAttribute("type", "hidden");
+                    form.appendChild(fieldElement);
                 }
-            }).success(function(data, status, headers, config) {
-            }).error(function(data, status, headers, config) {
-            });
+            }
+            document.body.appendChild(form);
+            form.submit();
+            // $http({
+            //     url: "https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8",
+            //     data: formData,
+            //     method: 'POST',
+            //     headers: {
+            //         "Content-Type": "text/html; charset=UTF-8"
+            //     }
+            // }).success(function(data, status, headers, config) {
+            // }).error(function(data, status, headers, config) {
+            // });
         }
 
         function getCampaignId() {
