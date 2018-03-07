@@ -101,7 +101,7 @@ angular.module('platform-ui.contentaccess.subscription.institution.register').co
             var nextPage = $location.absUrl().split('?')[0] + '/thankyou';
             var formData = {
                 retURL: nextPage,
-                oid: '00Do0000000J6b5',
+                oid: '00D29000000E57I',
                 Campaign_ID: getCampaignId(),
                 member_status: 'Responded',
                 first_name: $scope.formdata.firstName,
@@ -114,7 +114,7 @@ angular.module('platform-ui.contentaccess.subscription.institution.register').co
             }
             var form = document.createElement("form");
             form.method = "POST";
-            form.action = "https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8";
+            form.action = "https://test.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8";
 
             for (var field in formData) {
                 if (formData.hasOwnProperty(field)) {
@@ -142,9 +142,9 @@ angular.module('platform-ui.contentaccess.subscription.institution.register').co
         function getCampaignId() {
             switch ($scope.partnerId) {
                 case 'tair':
-                    return '7011J000000xKsnQAE';
+                    return '70129000000INSEAA4';
                 case 'biocyc':
-                    return '7011J000000xKssQAE';
+                    return '70129000000INS9AAO';
                 default:
                     return null;
             }
