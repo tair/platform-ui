@@ -11,10 +11,11 @@ angular.module('platform-ui.contentaccess.subscription.institution.register').co
 	    '$http',
 	'$scope',
 	'$stateParams',
+    '$location',
 	'InstitutionRegisterModel',
 
 	/* Controller Definition */
-	function ($http, $scope, $stateParams, InstitutionRegisterModel) {
+	function ($http, $scope, $stateParams, $location, InstitutionRegisterModel) {
 		init();
 
 		$scope.reset = function() {
@@ -64,17 +65,13 @@ angular.module('platform-ui.contentaccess.subscription.institution.register').co
 		};
 
 	    $scope.send = function() {
-                $http({
-                    url:$scope.apiUri+'/subscriptions/institutions/',
-		    data:$scope.formdata,
-                    method:'POST',
-                }).success(function(data, status, headers, config) {
-                }).error(function(data, status, headers, config) {
-                });
-		$scope.next('thankyou');
+            // sendToAPI();
+            sendToSalesForceCampaign();
+            // $scope.next('thankyou');
 	    }
 
 	    function init() {
+
 	    if($scope.partnerId == null){
 	    	$scope.partnerId = $stateParams.partnerId;
 	    }
@@ -88,5 +85,71 @@ angular.module('platform-ui.contentaccess.subscription.institution.register').co
 		});
 		$scope.formdata = InstitutionRegisterModel.formdata;
 		    }
+
+        // sends form data to API; API code will send an email to subscriptions@phoenixbioinformatics.org
+        function sendToAPI() {
+            $http({
+                url:$scope.apiUri+'/subscriptions/institutions/',
+                data:$scope.formdata,
+                method:'POST',
+            }).success(function(data, status, headers, config) {
+            }).error(function(data, status, headers, config) {
+            });
+        }
+
+        function sendToSalesForceCampaign() {
+            var urlComponents = $location.absUrl().split('?');
+            var nextPage = urlComponents[0] + '/thankyou';
+            if (urlComponents[1] != undefined) nextPage += ('?' + urlComponents[1]);
+            var formData = {
+                retURL: nextPage,
+                oid: '00Do0000000J6b5',
+                Campaign_ID: getCampaignId(),
+                member_status: 'Responded',
+                first_name: $scope.formdata.firstName,
+                last_name: $scope.formdata.lastName,
+                email: $scope.formdata.email,
+                company: $scope.formdata.institution,          
+                '00N1J00000G2kmS': $scope.formdata.librarianName, // Librarian Name
+                '00N1J00000G2kmN': $scope.formdata.librarianEmail, // Librarian Email
+                '00N1J00000G2kmX': $scope.formdata.comments // Comments
+            }
+            var form = document.createElement("form");
+            form.method = "POST";
+            form.action = "https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8";
+
+            for (var field in formData) {
+                if (formData.hasOwnProperty(field)) {
+                    var fieldElement = document.createElement("input");  
+                    fieldElement.name=field;
+                    fieldElement.value=formData[field];
+                    fieldElement.setAttribute("type", "hidden");
+                    form.appendChild(fieldElement);
+                }
+            }
+            document.body.appendChild(form);
+            form.submit();
+            // $http({
+            //     url: "https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8",
+            //     data: formData,
+            //     method: 'POST',
+            //     headers: {
+            //         "Content-Type": "text/html; charset=UTF-8"
+            //     }
+            // }).success(function(data, status, headers, config) {
+            // }).error(function(data, status, headers, config) {
+            // });
+        }
+
+        function getCampaignId() {
+            switch ($scope.partnerId) {
+                case 'tair':
+                    return '7011J000000xKsnQAE';
+                case 'biocyc':
+                    return '7011J000000xKssQAE';
+                default:
+                    return null;
+            }
+        }
 	}
 ]);
