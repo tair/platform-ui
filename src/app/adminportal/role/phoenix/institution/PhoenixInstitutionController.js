@@ -22,7 +22,6 @@ angular.module('platform-ui.adminportal.role.phoenix.institution').controller(
 //	    $scope.setTitle(PhoenixInstitutionModel.title);
 		$scope.setCurrentTab(PhoenixInstitutionModel.currentTab);
 	    $scope.institutions = PhoenixInstitutionModel.institutions;
-	    $scope.allInstitutions = PhoenixInstitutionModel.allInstitutions;
 	    $scope.countries = PhoenixInstitutionModel.countries;
 	    $scope.addGroupShow = "hidden";
 	    $scope.adding = false;
@@ -316,6 +315,7 @@ angular.module('platform-ui.adminportal.role.phoenix.institution').controller(
 			country:entry['country'],
 			display:entry['display'],
 			label:entry['label'],
+			hasIpRange:entry['hasIpRange'],
 			state:null
 		    });
 		}
@@ -330,21 +330,6 @@ angular.module('platform-ui.adminportal.role.phoenix.institution').controller(
 		}).error(function() {
 			alert("Cannot get partner information");
 		});
-        $http({
-        	url: $scope.apiUri+'/parties/?partyType=organization&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
-            method: 'GET',
-	        }).success(function(data, status, headers, config){
-		$scope.allInstitutions = [];
-		for (var i = 0; i < data.length; i++) {
-		    entry = data[i];
-		    $scope.allInstitutions.push({
-		    	partyId:entry['partyId'],
-		    	name:entry['name'],
-		    });
-		}
-	        }).error(function(data, status, headers, config){
-		alert("institutions request failed");
-	        });
         $(function () {
             $('#createStart').datepicker();
         });
