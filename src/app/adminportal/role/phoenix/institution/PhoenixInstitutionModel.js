@@ -51,23 +51,6 @@ angular.module('platform-ui.adminportal.role.phoenix.institution').factory(
 //		                	    "consortium": 31272
 //		                	  }
 		                	],
-		    allInstitutions: [{
-        	    "partyId": 58,
-        	    "partyType": "organization",
-        	    "name": "UC Santa Cruz",
-        	    "country": 169,
-        	    "display": true,
-        	    "consortium": 31272
-        	  },
-        	  {
-        	    "partyId": 31275,
-        	    "partyType": "organization",
-        	    "name": "UC Los Angeles",
-        	    "country": 169,
-        	    "display": true,
-        	    "consortium": 31272
-        	  }
-        	],
         	countries: [
         			    "USA",
         			    "Canada",
