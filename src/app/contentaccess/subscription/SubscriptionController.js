@@ -19,13 +19,13 @@ angular.module('platform-ui.contentaccess.subscription').controller(
 	/* Controller Definition */
 	function ($http, $scope, $location, $state, Title, SubscriptionModel) {
 	    init();
-	    console.log($state);
+	    // console.log($state);
 
             $scope.switchTab = function(tabName) {
 		//$scope.currentTab = tabName;
 		if (tabName=="landing") {
 			$state.go("subscription.landing", {partnerId:$scope.partnerId,redirect:$scope.redirect});
-			console.log($state);
+			// console.log($state);
 			return;
 		}
 	    };
@@ -35,9 +35,9 @@ angular.module('platform-ui.contentaccess.subscription').controller(
 		$event.preventDefault();
 	    }
 	    function getPartnerUriFromRedirect(){
-	    	console.log("$scope.redirectNoEncode (before split)="+$scope.redirect); //PW-218
+	    	// console.log("$scope.redirectNoEncode (before split)="+$scope.redirect); //PW-218
 	    	arr = $scope.redirect.split("/");
-	    	console.log("arr (after split)="+arr[0]+"//"+arr[2]); //PW-218
+	    	// console.log("arr (after split)="+arr[0]+"//"+arr[2]); //PW-218
 	    	return arr[0]+"//"+arr[2];
 	    }
 
