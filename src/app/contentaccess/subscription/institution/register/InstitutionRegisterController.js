@@ -112,7 +112,8 @@ angular.module('platform-ui.contentaccess.subscription.institution.register').co
                 company: $scope.formdata.institution,          
                 '00N1J00000G2kmS': $scope.formdata.librarianName, // Librarian Name
                 '00N1J00000G2kmN': $scope.formdata.librarianEmail, // Librarian Email
-                '00N1J00000G2kmX': $scope.formdata.comments // Comments
+                '00N1J00000G2kmX': $scope.formdata.comments, // Comments
+                '00N1J00000EuVUh': getABTestCode() // A/B Test random code
             }
             var form = document.createElement("form");
             form.method = "POST";
@@ -150,6 +151,10 @@ angular.module('platform-ui.contentaccess.subscription.institution.register').co
                 default:
                     return null;
             }
+        }
+
+        function getABTestCode() {
+        	return Math.random() < 0.5 ? 'A' : 'B';
         }
 	}
 ]);

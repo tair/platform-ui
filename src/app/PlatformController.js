@@ -24,11 +24,11 @@ angular.module('platform-ui').controller(
 	    $scope.getRedirect = function() {
 	    	console.log("getRedirect function with $location.search()['redirect']:"+$location.search()['redirect']);
 	    	encodedRedirURL = encodeURIComponent($location.search()['redirect']);
-	    	console.log("getRedirect function. encodedRedirURL:"+encodedRedirURL);
+	    	// console.log("getRedirect function. encodedRedirURL:"+encodedRedirURL);
 		    return encodedRedirURL;
 	    }
 	    $scope.getRedirectNoEncode = function() {
-	    	console.log("getRedirectNoEncode function. $location.search()['redirect']:"+$location.search()['redirect']);
+	    	// console.log("getRedirectNoEncode function. $location.search()['redirect']:"+$location.search()['redirect']);
 		    return $location.search()['redirect'];
 	    }
 	}
