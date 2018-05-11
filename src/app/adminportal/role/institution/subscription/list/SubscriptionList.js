@@ -11,7 +11,8 @@ angular.module(
     /* Dependencies */
     [
 	'ui.router',
-	'service.title'
+	'service.title',
+	'angular.vertilize',
     ])
     .config(
 	function ($stateProvider) {
