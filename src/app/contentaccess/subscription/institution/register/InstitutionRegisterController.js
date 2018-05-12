@@ -65,7 +65,7 @@ angular.module('platform-ui.contentaccess.subscription.institution.register').co
 		};
 
 	    $scope.send = function() {
-            sendToAPI();
+            // sendToAPI();
             sendToSalesForceCampaign();
             // $scope.next('thankyou');
 	    }
