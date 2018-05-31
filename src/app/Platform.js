@@ -23,6 +23,7 @@ angular.module(
 
 	/* Misc */
 	'service.title',
+	'service.ipv6',
 	'autocomplete',
 	'autocompletecountries',
 
