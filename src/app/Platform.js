@@ -24,7 +24,7 @@ angular.module(
 	/* Misc */
 	'service.title',
 	'autocomplete',
-	    'autocompletecountries',
+	'autocompletecountries',
 
 	/* App-specific */
 	'platform-ui.home',
