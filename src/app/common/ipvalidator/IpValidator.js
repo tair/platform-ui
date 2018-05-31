@@ -8,7 +8,7 @@ angular.module('ipvalidator', []).service(
 	'IpValidator',
 	
 	/* Dependencies */
-	'Ipv6',
+	['Ipv6',
 	function (Ipv6) {
 		
 		
@@ -117,4 +117,4 @@ angular.module('ipvalidator', []).service(
 
 	    return true;
 	  };
-	});
+	}]);
