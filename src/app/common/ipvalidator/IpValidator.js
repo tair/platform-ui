@@ -8,7 +8,10 @@ angular.module('ipvalidator', []).service(
 	'IpValidator',
 	
 	/* Dependencies */
-	function () {
+	['Ipv6',
+	function (Ipv6) {
+		
+		
 
 	    this.StripLeadingZeros = function (ip) {
 	    	/*	50.185.042.036 => 50.185.42.36 */
@@ -76,29 +79,42 @@ angular.module('ipvalidator', []).service(
 			}
 			return true;
 		}
+
+	this.ip4ToNum = function(ipAddress) {
+			//A.B.C.D -> A*(256)^3 + B*(256)^2 + C*(256)^1 + D*(256)^0
+			//192.168.1.2 <-> 3232235778
+			//255.255.255.255  <->  4294967295
+			ipAddressInArray = ipAddress.split(".");
+			result = 0;
+			for (i = 0; i < ipAddressInArray.length; i++) {
+				power = 3 - i;
+				ip = parseInt(ipAddressInArray[i]);
+				result += ip * Math.pow(256, power);
+			}
+			return result;
+		}
+		
 	this.IpRangeLimit = function (start, end) {
 	    IPv4Pattern = /\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b/;
 	    IPv6Pattern = /^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$|^(([a-zA-Z]|[a-zA-Z][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z]|[A-Za-z][A-Za-z0-9\-]*[A-Za-z0-9])$|^\s*((([0-9A-Fa-f]{1,4}:){7}([0-9A-Fa-f]{1,4}|:))|(([0-9A-Fa-f]{1,4}:){6}(:[0-9A-Fa-f]{1,4}|((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){5}(((:[0-9A-Fa-f]{1,4}){1,2})|:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3})|:))|(([0-9A-Fa-f]{1,4}:){4}(((:[0-9A-Fa-f]{1,4}){1,3})|((:[0-9A-Fa-f]{1,4})?:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){3}(((:[0-9A-Fa-f]{1,4}){1,4})|((:[0-9A-Fa-f]{1,4}){0,2}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){2}(((:[0-9A-Fa-f]{1,4}){1,5})|((:[0-9A-Fa-f]{1,4}){0,3}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(([0-9A-Fa-f]{1,4}:){1}(((:[0-9A-Fa-f]{1,4}){1,6})|((:[0-9A-Fa-f]{1,4}){0,4}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:))|(:(((:[0-9A-Fa-f]{1,4}){1,7})|((:[0-9A-Fa-f]{1,4}){0,5}:((25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)(\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)){3}))|:)))(%.+)?\s*$/;
 	    if (IPv4Pattern.test(start) && IPv4Pattern.test(end)) {
-	      length = 4;
-	      bit = 10;
-	      limit_blocks = 2;
-	      l1 = start.split('.');
-	      l2 = end.split('.');
+		      startNum = this.ip4ToNum(start);
+		      endNum = this.ip4ToNum(end);
+		      delta = endNum - startNum;
+		      if (delta > 68000000) {
+		    		return false;//invalid range. error
+		    	}
+		    	else {
+		    		return true;//valid range
+		    	}
 	    } else if (IPv6Pattern.test(start) && IPv6Pattern.test(end)) {
-	      length = 8;
-	      bit = 16;
-	      limit_blocks = 1;
-	      l1 = start.split(':');
-	      l2 = end.split(':');
+	    	  startBn = Ipv6.bigInteger(start)
+	    	  endBn = Ipv6.bigInteger(end)
+	    	  if (endBn-startBn > bigInt("324518553658426726783156020576256")){
+	    		  return false;
+	    	  }
 	    }
-	    for (var i = 0; i < length-limit_blocks; i++) {
-	      num1 = parseInt(l1[i], bit);
-	      num2 = parseInt(l2[i], bit);
-	      if(num1!=num2){
-	    	  return false;
-	      }
-	    }
+
 	    return true;
 	  };
-	});
+	}]);

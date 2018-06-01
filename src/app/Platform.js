@@ -22,8 +22,9 @@ angular.module(
 
 	/* Misc */
 	'service.title',
+	'service.ipv6',
 	'autocomplete',
-	    'autocompletecountries',
+	'autocompletecountries',
 
 	/* App-specific */
 	'platform-ui.home',
