@@ -68,8 +68,18 @@ angular.module('platform-ui.contentaccess.activation').controller(
 
 		function init() {
 			Title.setTitle(ActivationModel.title);
-		
 			$scope.partnerId = $location.search()['partnerId'];
+			$scope.subscriptionType = $location.search()['subscriptionType'];
+			$scope.subscriptionTypeText = "Type Unknown";
+			$scope.buttonText = 'UNKNOWN ACTION';
+			if ($scope.subscriptionType == 'activate'){
+				$scope.subscriptionTypeText = 'Activation';
+				$scope.buttonText = 'ACTIVATE';
+			} else if ($scope.subscriptionType == 'renew'){
+				$scope.subscriptionTypeText = 'Renewal';
+				$scope.buttonText = 'RENEW';
+			}
+
 			$scope.redirect = $scope.getRedirectNoEncode();
 			$http({
 				url: $scope.apiUri+'/partners/?partnerId='+$scope.partnerId,
