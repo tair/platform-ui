@@ -73,9 +73,11 @@ angular.module('platform-ui.contentaccess.activation').controller(
 			$scope.subscriptionTypeText = "Type Unknown";
 			$scope.buttonText = 'UNKNOWN ACTION';
 			if ($scope.subscriptionType == 'activate'){
+				Title.setTitle('Activation');
 				$scope.subscriptionTypeText = 'Activation';
 				$scope.buttonText = 'ACTIVATE';
 			} else if ($scope.subscriptionType == 'renew'){
+				Title.setTitle('Renewal');
 				$scope.subscriptionTypeText = 'Renewal';
 				$scope.buttonText = 'RENEW';
 			}
