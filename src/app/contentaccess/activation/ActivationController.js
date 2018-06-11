@@ -71,16 +71,16 @@ angular.module('platform-ui.contentaccess.activation').controller(
 			$scope.partnerId = $location.search()['partnerId'];
 			$scope.subscriptionType = $location.search()['subscriptionType'];
 			$scope.subscriptionTypeText = "Type Unknown";
-			$scope.buttonText = 'UNKNOWN ACTION';
+			$scope.redirect = $scope.getRedirectNoEncode();
+			$scope.purchaseCodeUri = $scope.uiUri + '/#/contentaccess/subscription/individual?partnerId=tair&redirect=' + $scope.redirect;
 			if ($scope.subscriptionType == 'activate'){
+				Title.setTitle('Activation');
 				$scope.subscriptionTypeText = 'Activation';
-				$scope.buttonText = 'ACTIVATE';
 			} else if ($scope.subscriptionType == 'renew'){
+				Title.setTitle('Renewal');
 				$scope.subscriptionTypeText = 'Renewal';
-				$scope.buttonText = 'RENEW';
 			}
 
-			$scope.redirect = $scope.getRedirectNoEncode();
 			$http({
 				url: $scope.apiUri+'/partners/?partnerId='+$scope.partnerId,
 				method: 'GET',
