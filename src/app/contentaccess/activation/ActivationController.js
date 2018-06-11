@@ -76,9 +76,11 @@ angular.module('platform-ui.contentaccess.activation').controller(
 			if ($scope.subscriptionType == 'activate'){
 				Title.setTitle('Activation');
 				$scope.subscriptionTypeText = 'Activation';
+				$scope.actionType = 'activated';
 			} else if ($scope.subscriptionType == 'renew'){
 				Title.setTitle('Renewal');
 				$scope.subscriptionTypeText = 'Renewal';
+				$scope.actionType = 'renewed';
 			}
 
 			$http({
