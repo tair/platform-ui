@@ -72,7 +72,7 @@ angular.module('platform-ui.contentaccess.activation').controller(
 			$scope.subscriptionType = $location.search()['subscriptionType'];
 			$scope.subscriptionTypeText = "Type Unknown";
 			$scope.redirect = $scope.getRedirectNoEncode();
-			$scope.purchaseCodeUri = $scope.uiUri + '/#/contentaccess/subscription/individual?partnerId=tair&redirect=' + $scope.redirect;
+			$scope.purchaseCodeUri = '/#/contentaccess/subscription/individual?partnerId=tair&redirect=' + $scope.redirect;
 			if ($scope.subscriptionType == 'activate'){
 				Title.setTitle('Activation');
 				$scope.subscriptionTypeText = 'Activation';
