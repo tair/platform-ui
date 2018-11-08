@@ -154,7 +154,9 @@ angular.module('platform-ui.contentaccess.subscription.institution.register').co
         }
 
         function getABTestCode() {
-        	return Math.random() < 0.5 ? 'A' : 'B';
+            // 11/08/2018 PWL-610: Matt requested to always set test code to 'A'
+        	// return Math.random() < 0.5 ? 'A' : 'B';
+            return 'A';
         }
 	}
 ]);
