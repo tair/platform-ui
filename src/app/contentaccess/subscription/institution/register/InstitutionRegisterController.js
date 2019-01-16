@@ -148,6 +148,10 @@ angular.module('platform-ui.contentaccess.subscription.institution.register').co
                     return '7011J000000xKsnQAE';
                 case 'biocyc':
                     return '7011J000000xKssQAE';
+                case 'agbase':
+                    return '7011J000000gJD2QAM';
+                case 'repbase':
+                    return '7011J000000gJCxQAM';
                 default:
                     return null;
             }
