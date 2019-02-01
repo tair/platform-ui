@@ -113,6 +113,7 @@ angular.module('platform-ui.contentaccess.subscription.institution.register').co
                 '00N1J00000G2kmS': $scope.formdata.librarianName, // Librarian Name
                 '00N1J00000G2kmN': $scope.formdata.librarianEmail, // Librarian Email
                 '00N1J00000G2kmX': $scope.formdata.comments, // Comments
+                '00N1J00000ExYYL': getPartner(), // Partner name
                 '00N1J00000EuVUh': getABTestCode() // A/B Test random code
             }
             var form = document.createElement("form");
@@ -152,6 +153,21 @@ angular.module('platform-ui.contentaccess.subscription.institution.register').co
                     return '7011J000000gJD2QAM';
                 case 'repbase':
                     return '7011J000000gJCxQAM';
+                default:
+                    return null;
+            }
+        }
+
+        function getPartner() {
+            switch ($scope.partnerId) {
+                case 'tair':
+                    return 'TAIR';
+                case 'biocyc':
+                    return 'BioCyc';
+                case 'agbase':
+                    return 'AgBase';
+                case 'repbase':
+                    return 'Repbase';
                 default:
                     return null;
             }
