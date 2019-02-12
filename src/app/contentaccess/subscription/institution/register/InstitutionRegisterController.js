@@ -144,7 +144,9 @@ angular.module('platform-ui.contentaccess.subscription.institution.register').co
         }
 
         function getCampaignId() {
-            switch ($scope.partnerId) {
+            var partnerId = $scope.partnerId;
+            if (!partnerId) return null;
+            switch (partnerId.toLowerCase()) {
                 case 'tair':
                     return '7011J000000xKsnQAE';
                 case 'biocyc':
@@ -159,7 +161,9 @@ angular.module('platform-ui.contentaccess.subscription.institution.register').co
         }
 
         function getPartner() {
-            switch ($scope.partnerId) {
+            var partnerId = $scope.partnerId;
+            if (!partnerId) return null;
+            switch (partnerId.toLowerCase()) {
                 case 'tair':
                     return 'TAIR';
                 case 'biocyc':
