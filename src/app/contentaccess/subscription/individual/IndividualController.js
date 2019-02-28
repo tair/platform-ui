@@ -24,22 +24,18 @@ angular.module('platform-ui.contentaccess.subscription.individual').controller(
                 //$scope.currentTab = nextTab;
                 if (nextTab=="term") {
                     $state.go("subscription.individual.term");
-                    console.log($state);
                     return;
                 }
                 if (nextTab=="pay") {
                     $state.go("subscription.individual.pay");
-                    console.log($state);
                     return;
                 }
                 if (nextTab=="confirm") {
                     $state.go("subscription.individual.confirm");
-                    console.log($state);
                     return;
                 }
                 if (nextTab=="thankyou") {
                     $state.go("subscription.individual.thankyou");
-                    console.log($state);
                     return;
                 }
             }
