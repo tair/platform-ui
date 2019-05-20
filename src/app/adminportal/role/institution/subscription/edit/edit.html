@@ -30,7 +30,7 @@
                         <input id="endDate" ng-model="postData.endDate" required></input>
                     </div></div>
                 </div>
-                <div class="col-xs-6" ng-show="transactionType=='renew'">
+                <div class="col-xs-6" ng-show="transactionType=='renew' && startDate">
                     <div class="row"><div class="col-xs-12">
                         Current Start Date
                     </div></div>
@@ -38,7 +38,7 @@
                         <p>{{startDate}}</p>
                     </div></div>
                 </div>
-                <div class="col-xs-6" ng-show="transactionType=='renew'">
+                <div class="col-xs-6" ng-show="transactionType=='renew' && endDate">
                     <div class="row"><div class="col-xs-12">
                         Current End Date
                     </div></div>
