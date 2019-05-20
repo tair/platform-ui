@@ -75,8 +75,12 @@ angular.module('platform-ui.adminportal.role.institution.subscription.edit').con
 //		}
 		if ($scope.partnerId in $scope.allSubscriptions){
 			$scope.transactionType = "renew";
-			$scope.startDate = $scope.allSubscriptions[$scope.partnerId].startDate.split('T')[0];
-			$scope.endDate = $scope.allSubscriptions[$scope.partnerId].endDate.split('T')[0];
+			if ($scope.allSubscriptions[$scope.partnerId].startDate){
+				$scope.startDate = $scope.allSubscriptions[$scope.partnerId].startDate.split('T')[0];
+			}
+			if ($scope.allSubscriptions[$scope.partnerId].endDate){
+				$scope.endDate = $scope.allSubscriptions[$scope.partnerId].endDate.split('T')[0];
+			}
 		}else{
 			$scope.transactionType = "create";
 		}
