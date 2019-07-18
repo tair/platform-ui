@@ -16,19 +16,32 @@ angular.module('platform-ui.contentaccess.subscription.commercial').controller(
 	    
 	    /* Controller Definition */
 	    function ($http, $cookies, $scope, $state, CommercialModel) {
-		$scope.next = function(nextTab) {
-                    //$scope.currentTab = nextTab;
-		    if (nextTab == "thankyou") {
-			$state.go("subscription.commercial.thankyou");
-			return;
-		    }
-		}
-		init();
-		function init() {
-		    $scope.currentTab = CommercialModel.currentTab;
-		    $scope.tabs = CommercialModel.tabs;
-		    $scope.templates = CommercialModel.templates;
-		}
+	        rerouteByPartner();
+			init();
+
+			$scope.next = function(nextTab) {
+	                    //$scope.currentTab = nextTab;
+			    if (nextTab == "thankyou") {
+				$state.go("subscription.commercial.thankyou");
+				return;
+			    }
+			}
+
+			function init() {
+			    $scope.currentTab = CommercialModel.currentTab;
+			    $scope.tabs = CommercialModel.tabs;
+			    $scope.templates = CommercialModel.templates;
+			}
+
+			function rerouteByPartner() {
+            	var partnerId = $scope.partnerId;
+	            if (!partnerId) return;
+	            if (partnerId.toLowerCase() == "morphobank") {
+	                $state.go("subscription.institution.register", {partnerId:$scope.partnerId,redirect:$scope.redirect});
+	            }
+	        }
+
+
 	    }
 	]
 );

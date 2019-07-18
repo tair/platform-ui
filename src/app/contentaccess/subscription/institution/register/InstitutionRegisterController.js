@@ -26,7 +26,7 @@ angular.module('platform-ui.contentaccess.subscription.institution.register').co
 				institution: null,			
 				librarianName: null,
 				librarianEmail: null,
-			    comments:$scope.partner.name+' is essential to my work. I would like my library to consider a subscription.',
+			    comments: getDefaultComment(),
 			    partnerName: $scope.partner.name,
 			}
 		};
@@ -72,19 +72,19 @@ angular.module('platform-ui.contentaccess.subscription.institution.register').co
 
 	    function init() {
 
-	    if($scope.partnerId == null){
-	    	$scope.partnerId = $stateParams.partnerId;
-	    }
-    	$http({
-		    url:$scope.apiUri+'/partners/?partnerId='+$scope.partnerId,
-		    method:'GET',
-		}).success(function(data, status, headers, config) {
-		    $scope.partner = data[0];
-		    $scope.formdata.partnerName = $scope.partner.name;
-			$scope.formdata.comments = $scope.partner.name+' is essential to my work. I would like my library to consider a subscription.'
-		});
-		$scope.formdata = InstitutionRegisterModel.formdata;
-		    }
+    	    if($scope.partnerId == null){
+    	    	$scope.partnerId = $stateParams.partnerId;
+    	    }
+        	$http({
+    		    url:$scope.apiUri+'/partners/?partnerId='+$scope.partnerId,
+    		    method:'GET',
+    		}).success(function(data, status, headers, config) {
+    		    $scope.partner = data[0];
+    		    $scope.formdata.partnerName = $scope.partner.name;
+    			$scope.formdata.comments = getDefaultComment();
+    		});
+    		$scope.formdata = InstitutionRegisterModel.formdata;
+		}
 
         // sends form data to API; API code will send an email to subscriptions@phoenixbioinformatics.org
         function sendToAPI() {
@@ -181,6 +181,16 @@ angular.module('platform-ui.contentaccess.subscription.institution.register').co
             // 11/08/2018 PWL-610: Matt requested to always set test code to 'A'
         	// return Math.random() < 0.5 ? 'A' : 'B';
             return 'A';
+        }
+
+        function getDefaultComment() {
+            var partnerId = $scope.partnerId;
+            if (!partnerId) return null;
+            if (partnerId.toLowerCase() == "morphobank") {
+                return $scope.partner.name+' is essential to my work. I would like my library to consider becoming a member.';
+            } else {
+                return $scope.partner.name+' is essential to my work. I would like my library to consider a subscription.';
+            }
         }
 	}
 ]);
