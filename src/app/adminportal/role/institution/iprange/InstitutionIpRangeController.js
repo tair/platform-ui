@@ -304,7 +304,11 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 					state:null
 				    });
 			}).error(function(data, status, headers, config){
-	                    alert("add ip range request failed");
+				if ("IP Range" in data){
+					alert(data["IP Range"]);
+				}else{
+					alert("add ip range request failed");
+				}
 			});
 	  }
 			
