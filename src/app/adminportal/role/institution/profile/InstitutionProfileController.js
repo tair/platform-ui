@@ -33,13 +33,6 @@ angular.module('platform-ui.adminportal.role.institution.profile').controller(
 				has_update = false;
 				//put original values from GET
                 put_data["partyId"]  = $scope.user.partyId;
-				// if($scope.user.username != undefined && $scope.user.username !=null &&$scope.user.username != ""){
-                // put_data["username"] = $scope.user.username;
-				// }
-                // put_data["partnerId"]= 'phoenix';
-                // if($scope.user.password != undefined && $scope.user.password !=null &&$scope.user.password != ""){
-                // 	put_data["password"]= $scope.user.password;
-                // }
                 
                 //rewrite with new from UI
                 forceReSignIn = false;
@@ -74,10 +67,8 @@ angular.module('platform-ui.adminportal.role.institution.profile').controller(
 					$scope.user.consortiums = data[0].consortiums;
 					
 					$scope.user.username = data[1].username;
-					//$scope.user.password = "random";
 					$scope.user.email = data[1].email;
 					$scope.user.institution = data[1].institution;
-					//$scope.user.partyId = data[1].partyId;
 					$scope.user.partnerId = data[1].partnerId;
 					$scope.user.userIdentifier = data[1].userIdentifier;
 					$scope.user.firstName = data[1].firstName;
