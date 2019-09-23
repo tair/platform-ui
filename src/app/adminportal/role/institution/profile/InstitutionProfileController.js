@@ -29,44 +29,68 @@ angular.module('platform-ui.adminportal.role.institution.profile').controller(
 					return false;
 				}
 				//Save info
-				put_data = {}
+				put_data = {};
+				has_update = false;
 				//put original values from GET
                 put_data["partyId"]  = $scope.user.partyId;
-				if($scope.user.username != undefined && $scope.user.username !=null &&$scope.user.username != ""){
-                put_data["username"] = $scope.user.username;
-				}
-                put_data["partnerId"]= $scope.user.partnerId;
-                if($scope.user.password != undefined && $scope.user.password !=null &&$scope.user.password != ""){
-                	put_data["password"]= $scope.user.password;
-                }
                 
                 //rewrite with new from UI
                 forceReSignIn = false;
 				for(k in $scope.user) {
 					if ($scope.userprev[k] != $scope.user[k]) {
+						has_update = true;
 						put_data[k] = $scope.user[k];
-						$scope.userprev[k] = $scope.user[k];
 						if ((k == 'username' || k == 'password') && $scope.role == 'organization'){
 							forceReSignIn = true;
 						}
 					}
 				}
 
+				if (has_update == true) {
+
 				$http({
 					url: $scope.apiUri+'/parties/institutions/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
 					data: put_data,
 					method: 'PUT',
 					headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-				}).success(function(){
+				}).success(function(data, status, headers, config){
 					bootbox.alert("Institution Profile Successfully Updated" + (forceReSignIn ? ". Please re-login":"!") );
 					if (forceReSignIn) {
 						$scope.logout();
 					}
+
+					$scope.user.partyId = data[0].partyId;
+					$scope.user.partyType = data[0].partyType;
+					$scope.user.name = data[0].name;
+					$scope.user.country = data[0].country;
+					$scope.user.display = data[0].display;
+					$scope.user.consortiums = data[0].consortiums;
+					
+					$scope.user.username = data[1].username;
+					$scope.user.email = data[1].email;
+					$scope.user.institution = data[1].institution;
+					$scope.user.partnerId = data[1].partnerId;
+					$scope.user.userIdentifier = data[1].userIdentifier;
+					$scope.user.firstName = data[1].firstName;
+					$scope.user.lastName = data[1].lastName;
+					
+					$scope.userprev = {};
+					for(k in $scope.user) 
+						$scope.userprev[k] = $scope.user[k];
+					
+					$scope.email_validate = $scope.user.email;
+					$scope.email_validate_prev = $scope.email_validate;
+					$scope.password_validate = $scope.user.password;
+					$scope.password_validate_prev = $scope.password_validate;
+					
+					console.log($scope.user);
+					console.log($scope.userprev);
 				}).error(function(data, status, headers, config) {
-					bootbox.alert("Failed to update Institution Profile"+((data['error'] == 'This email is already used by another institution.')?
-							"! This email is already used by another institution.":"!"));
+					bootbox.alert("Failed to update Institution Profile! "+data['error']);
+					$scope.cancel();
 				});
 			}
+		}
 			$scope.edit = !$scope.edit;
 		}
 
@@ -79,7 +103,7 @@ angular.module('platform-ui.adminportal.role.institution.profile').controller(
 		}
 
 		function validateInfo() {
-			if ($scope.user.email.$invalid) {
+			if ($scope.user.email && $scope.user.email.$invalid) {
 				console.log("User email is invalid");
 				alert("Email not valid");
 				return false;
