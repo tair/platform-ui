@@ -21,7 +21,14 @@ angular.module(
 				views: {
 					'institution': {
 						controller: 'InstitutionRegisterController',
-						templateUrl: 'contentaccess/subscription/institution/register/register.html'
+						templateUrl: function(stateParam) {
+							var partnerId = stateParam.partnerId;
+			                var viewFile = "register.html";
+			                if (partnerId != null && partnerId.toLowerCase() == "morphobank") {
+								viewFile = "membership-register.html";
+							}
+							return "contentaccess/subscription/institution/register/" + viewFile;
+						}
 					}
 				}
 			}).state('subscription.institution.thankyou', {
