@@ -20,7 +20,6 @@ angular.module('platform-ui.adminportal.role.institution.profile').controller(
 	/* Controller Definition */
 	function ($scope, $http, $cookies, $window, $location, $state, Title, InstitutionProfileModel) {
 	    	init();
-		console.log($scope.uiparams.colwidth);
 		
 		$scope.edit_fields = function() {
 			if ($scope.edit==true) {
@@ -37,7 +36,7 @@ angular.module('platform-ui.adminportal.role.institution.profile').controller(
                 //rewrite with new from UI
                 forceReSignIn = false;
 				for(k in $scope.user) {
-					if ($scope.userprev[k] != $scope.user[k]) {
+					if ($scope.user[k] && $scope.userprev[k] != $scope.user[k]) {
 						has_update = true;
 						put_data[k] = $scope.user[k];
 						if ((k == 'username' || k == 'password') && $scope.role == 'organization'){
@@ -65,15 +64,31 @@ angular.module('platform-ui.adminportal.role.institution.profile').controller(
 					$scope.user.country = data[0].country;
 					$scope.user.display = data[0].display;
 					$scope.user.consortiums = data[0].consortiums;
-					
-					$scope.user.username = data[1].username;
-					$scope.user.email = data[1].email;
-					$scope.user.institution = data[1].institution;
-					$scope.user.partnerId = data[1].partnerId;
-					$scope.user.userIdentifier = data[1].userIdentifier;
-					$scope.user.firstName = data[1].firstName;
-					$scope.user.lastName = data[1].lastName;
-					
+				
+					if (data.length > 1){
+						if ('username' in data[1]){
+							$scope.user.username = data[1].username;
+						}
+						if ('email' in data[1]){
+						$scope.user.email = data[1].email;
+						}
+						if ('institution' in data[1]){
+							$scope.user.institution = data[1].institution;
+						}
+						if ('partnerId' in data[1]){
+							$scope.user.partnerId = data[1].partnerId;
+						}
+						if ('userIdentifier' in data[1]){
+							$scope.user.userIdentifier = data[1].userIdentifier;
+						}
+						if ('firstName' in data[1]){
+							$scope.user.firstName = data[1].firstName;
+						}
+						if ('lastName' in data[1]){
+							$scope.user.lastName = data[1].lastName;
+						}
+					}
+
 					$scope.userprev = {};
 					for(k in $scope.user) 
 						$scope.userprev[k] = $scope.user[k];
@@ -82,9 +97,6 @@ angular.module('platform-ui.adminportal.role.institution.profile').controller(
 					$scope.email_validate_prev = $scope.email_validate;
 					$scope.password_validate = $scope.user.password;
 					$scope.password_validate_prev = $scope.password_validate;
-					
-					console.log($scope.user);
-					console.log($scope.userprev);
 				}).error(function(data, status, headers, config) {
 					bootbox.alert("Failed to update Institution Profile! "+data['error']);
 					$scope.cancel();
@@ -108,20 +120,14 @@ angular.module('platform-ui.adminportal.role.institution.profile').controller(
 				alert("Email not valid");
 				return false;
 			}
-			if ($scope.user.email!=$scope.email_validate) {
+			if ($scope.user.email && $scope.user.email!=$scope.email_validate) {
 				console.log("User email is "+$scope.user.email+" and validate email is "+$scope.email_validate);
 				return false;
 			}
-			if ($scope.user.password!=$scope.password_validate) {
+			if ($scope.user.password && $scope.user.password!=$scope.password_validate) {
 				console.log("User password is "+$scope.user.password+" and validate password is "+$scope.password_validate);
 				return false;
 			}
-//			if ($scope.user.password==null || $scope.user.password=="" 
-//				|| $scope.password_validate==null || $scope.password_validate=="") {
-//				bootbox.alert("error: password can not be empty");
-//				console.log("error: password can not be empty");
-//				return false;
-//			}
 			return true;
 		}
 
@@ -160,10 +166,7 @@ angular.module('platform-ui.adminportal.role.institution.profile').controller(
                                 $scope.email_validate_prev = $scope.email_validate;
                                 $scope.password_validate = $scope.user.password;
                                 $scope.password_validate_prev = $scope.password_validate;
-                                
-                                console.log($scope.user);
-                                console.log($scope.userprev);
-                                
+                                   
                             }).error(function(data, status, headers, config){
                             	errMsg = "GET /parties/institutions/ Failed";
 //                            	bootbox.alert(errMsg);
