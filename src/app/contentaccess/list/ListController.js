@@ -50,16 +50,16 @@ angular.module('platform-ui.contentaccess.list').controller(
                 $scope.institutions = data.sort(sortfunction);
             });
 
-            $scope.panelHeader = getPanelHeader();
+            $scope.headerVariable = getHeaderVariable();
 	    }
 
-	    function getPanelHeader() {
-            var header = "Academic Institutional Subscribers";
+	    function getHeaderVariable() {
+            var variable = "Subscribers";
             var partnerId = $scope.partnerId;
             if (partnerId && partnerId.toLowerCase() == "morphobank") {
-                header = "Academic Institutional Members";
+                variable = "Members";
             }
-            return header;
+            return variable;
         }
 	}
 ]);
