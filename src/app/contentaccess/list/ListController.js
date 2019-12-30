@@ -54,10 +54,10 @@ angular.module('platform-ui.contentaccess.list').controller(
 	    }
 
 	    function getPanelHeader() {
-            var header = "Academic Institutional <br> Subscribers";
+            var header = "Academic Institutional Subscribers";
             var partnerId = $scope.partnerId;
             if (partnerId && partnerId.toLowerCase() == "morphobank") {
-                header = "Academic Institutional <br> Members";
+                header = "Academic Institutional Members";
             }
             return header;
         }
