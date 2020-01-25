@@ -16,7 +16,7 @@
 	<!-- Body -->
         <div style="padding-top: 30px;" class="panel-body">
         <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{partner.subscriptionListDesc}}<a href="http://www.phoenixbioinformatics.org/{{partner.partnerId}}/"ng-if="partner.partnerId != 'tair'" target="_blank">here</a>.</p>
-		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If your institution appears on this list and you are experiencing access problems, 
+		<p ng-if="partner.partnerId != 'morphobank'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If your institution appears on this list and you are experiencing access problems, 
 				please see our
 				<!-- TAIR: + https://demoui.arabidopsis.org/#/ contentaccess/guide?partnerId=tair --> 
 				<!-- BIOCYC: https://biocyc-staging.org /guide.html  biocyc is NOT dependent on sri domain on list page (but it is dependant on the domain on metering page)-->
