@@ -31,11 +31,11 @@
       <!-- Add Institution -->
       <div class="lt-admin-groups-list-edit" ng-class="groupsAddCss(adding)" style="height: 180px">
 	<div class="col-xs-9" style="padding:0px">
-          <div><input class="lt-admin-groups-list-label-edit" style="width:300px" placeholder="Enter Institution Name" ng-model="newInstitution.name" required></input></div>
-          <div><input class="lt-admin-groups-list-label-edit" style="width:300px" placeholder="Enter Username (optional)" ng-model="newInstitution.username" required></input></div>          
-          <div><input class="lt-admin-groups-list-label-edit" style="width:300px" placeholder="Enter Password (optional)" ng-model="newInstitution.password" type="password" required></input></div>
+          <div><input class="lt-admin-groups-list-label-edit" style="width:300px" placeholder="Enter Institution Name" ng-model="newInstitution.name"></input></div>
+          <div><input class="lt-admin-groups-list-label-edit" style="width:300px" placeholder="Enter Username (optional)" ng-model="newInstitution.username"></input></div>          
+          <div><input class="lt-admin-groups-list-label-edit" style="width:300px" placeholder="Enter Password (optional)" ng-model="newInstitution.password" type="password"></input></div>
           <div><input class="lt-admin-groups-list-label-edit" style="width:300px" placeholder="Enter Email (optional)" ng-model="newInstitution.email"></input></div>
-		  <div><input class="lt-admin-groups-list-label-edit" style="width:300px" placeholder="Enter Country (optional)" ng-model="newInstitution.country" uib-typeahead="country as country.name for country in countries | filter:{name:$viewValue} | limitTo:8"></input></div>
+		      <div><input class="lt-admin-groups-list-label-edit" style="width:300px" placeholder="Enter Country" ng-model="newInstitution.country" uib-typeahead="country as country.name for country in countries | filter:{name:$viewValue} | limitTo:8"></input></div>
 	</div>
 	<div class="col-xs-3 lt-admin-groups-list-glyphicon-container" style="padding:0px">
           <div class="pull-right glyphicon glyphicon-remove lt-glyphicon-green text-center" style="margin-right:10px" ng-click="$event.stopPropagation(); adding=false"></div>
@@ -51,6 +51,7 @@
         <div><input ng-class="groupsListLabelCss(institution.state)" placeholder="Add an optional label for this institution" style="width:300px" ng-model="institution.label" ng-show="institution.state=='edit'"></input></div>
         <div><p class="lt-admin-groups-list-label" ng-show="!(institution.state=='edit')">{{institution.name}}</p></div>
         <div><input ng-class="groupsListLabelCss(institution.state)" placeholder="Institution name" style="width:300px" ng-model="institution.name" ng-show="institution.state=='edit'"></input></div>
+        <div><select ng-class="groupsListLabelCss(institution.state)" style="width:300px" ng-model="institution.country" ng-show="institution.state=='edit'" ng-options="country.countryId as country.name for country in countries"></select></div>
         <div class="row lt-admin-groups-list-values" style="vertical-align:middle">
               <input class="col-xs-3 lt-admin-groups-list-values-input" ng-model="institution.partyId" ng-readonly="true"></input>
               <div class="col-xs-7" style="vertical-align:middle"><input type="checkbox" ng-model="institution.display" ng-disabled="!(institution.state=='edit')"><span class="lt-admin-groups-list-label" style="margin-left:5px">Display</span></div>
