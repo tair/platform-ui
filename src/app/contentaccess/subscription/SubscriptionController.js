@@ -89,7 +89,7 @@ angular.module('platform-ui.contentaccess.subscription').controller(
                 var header = "Subscribe";
                 var partnerId = $scope.partnerId;
                 if (partnerId && partnerId.toLowerCase() == "morphobank") {
-                    header = "How can you help";
+                    header = "How can you help?";
                 }
                 return header;
             }
