@@ -16,7 +16,6 @@ angular.module('platform-ui.contentaccess.subscription.commercial').controller(
 	    
 	    /* Controller Definition */
 	    function ($http, $cookies, $scope, $state, CommercialModel) {
-	        rerouteByPartner();
 			init();
 
 			$scope.next = function(nextTab) {
@@ -32,16 +31,6 @@ angular.module('platform-ui.contentaccess.subscription.commercial').controller(
 			    $scope.tabs = CommercialModel.tabs;
 			    $scope.templates = CommercialModel.templates;
 			}
-
-			function rerouteByPartner() {
-            	var partnerId = $scope.partnerId;
-	            if (!partnerId) return;
-	            if (partnerId.toLowerCase() == "morphobank") {
-	                $state.go("subscription.institution.register", {partnerId:$scope.partnerId,redirect:$scope.redirect});
-	            }
-	        }
-
-
 	    }
 	]
 );
