@@ -123,7 +123,8 @@ angular.module('platform-ui.adminportal.role.phoenix.institution').controller(
 		    if ($scope.editRange) {
 		    	institution.label = $scope.editRange.label;
 		    	institution.name = $scope.editRange.name;
-		    	institution.display = $scope.editRange.display;
+				institution.display = $scope.editRange.display;
+				institution.country = $scope.editRange.country;
 			$scope.editRange = null;
 		    }
 		    institution.state = null;
@@ -146,6 +147,7 @@ angular.module('platform-ui.adminportal.role.phoenix.institution').controller(
 			name:institution['name'],
 			partyId:institution['partyId'],
 			display:institution['display'],
+			country:institution['country'],
 		    };
 		    $http({
 //				url: $scope.apiUri+'/parties/institutions/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+institution['partyId'],
@@ -166,6 +168,14 @@ angular.module('platform-ui.adminportal.role.phoenix.institution').controller(
 		}
 	    }
 	    $scope.addConfirm = function() {
+			if (!$scope.newInstitution['name']){
+		    	bootbox.alert("Need institution name to create institution.");
+		    	return;
+			}
+			if (!$scope.newInstitution['country']){
+		    	bootbox.alert("Need country to create institution.");
+		    	return;
+		    }
 		    if ($scope.newInstitution['username'] != null && $scope.newInstitution['password'] !=null) {
 			// when user input contains username and password, create a credential for the party
 		    	var data = {
