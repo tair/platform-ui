@@ -79,7 +79,9 @@ angular.module('platform-ui.contentaccess.subscription').controller(
                 var partnerId = $scope.partnerId;
                 if (!partnerId) return;
                 if (partnerId.toLowerCase() == "morphobank") {
-                    $state.go("subscription.institution.register", {partnerId:$scope.partnerId,redirect:$scope.redirect});
+                    if (!$location.url().includes("thankyou")) {  // not redirect for thank you page
+                        $state.go("subscription.institution.register", {partnerId:$scope.partnerId,redirect:$scope.redirect});
+                    }
                 }
             }
 
