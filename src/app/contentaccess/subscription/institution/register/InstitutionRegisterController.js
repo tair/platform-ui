@@ -155,6 +155,8 @@ angular.module('platform-ui.contentaccess.subscription.institution.register').co
                     return '7011J000000gJD2QAM';
                 case 'repbase':
                     return '7011J000000gJCxQAM';
+                case 'morphobank':
+                    return '7011J000001dFveQAE';
                 default:
                     return null;
             }
@@ -172,6 +174,8 @@ angular.module('platform-ui.contentaccess.subscription.institution.register').co
                     return 'AgBase';
                 case 'repbase':
                     return 'Repbase';
+                case 'morphobank':
+                    return 'MorphoBank';
                 default:
                     return null;
             }
