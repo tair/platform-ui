@@ -79,7 +79,9 @@ angular.module('platform-ui.contentaccess.subscription').controller(
                 var partnerId = $scope.partnerId;
                 if (!partnerId) return;
                 if (partnerId.toLowerCase() == "morphobank") {
-                    $state.go("subscription.institution.register", {partnerId:$scope.partnerId,redirect:$scope.redirect});
+                    if (!$location.url().includes("thankyou")) {  // not redirect for thank you page
+                        $state.go("subscription.institution.register", {partnerId:$scope.partnerId,redirect:$scope.redirect});
+                    }
                 }
             }
 
@@ -87,7 +89,7 @@ angular.module('platform-ui.contentaccess.subscription').controller(
                 var header = "Subscribe";
                 var partnerId = $scope.partnerId;
                 if (partnerId && partnerId.toLowerCase() == "morphobank") {
-                    header = "How can you help";
+                    header = "How can you help?";
                 }
                 return header;
             }

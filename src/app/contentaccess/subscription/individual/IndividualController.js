@@ -18,7 +18,6 @@ angular.module('platform-ui.contentaccess.subscription.individual').controller(
 
         /* Controller Definition */
         function ($http, $scope, $rootScope, $state, $location, IndividualModel) {
-            rerouteByPartner();
             init();
 
             $scope.next = function(nextTab) {
@@ -131,15 +130,6 @@ angular.module('platform-ui.contentaccess.subscription.individual').controller(
 //            $scope.domain = $location.protocol() + "://" + $location.host();
                  
         };
-
-        function rerouteByPartner() {
-            var partnerId = $scope.partnerId;
-            if (!partnerId) return;
-            if (partnerId.toLowerCase() == "morphobank") {
-                $state.go("subscription.institution.register", {partnerId:$scope.partnerId,redirect:$scope.redirect});
-            }
-        }
-        
     }
 
 ]);
