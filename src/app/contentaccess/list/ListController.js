@@ -46,9 +46,20 @@ angular.module('platform-ui.contentaccess.list').controller(
 				//vet PW-265
 				url:$scope.apiUri+'/parties/organizations/?partnerId='+$scope.partnerId,
 				method:'GET',
-                }).success(function(data, status, headers, config) {
-                    $scope.institutions = data.sort(sortfunction);
-                });
+            }).success(function(data, status, headers, config) {
+                $scope.institutions = data.sort(sortfunction);
+            });
+
+            $scope.headerVariable = getHeaderVariable();
 	    }
+
+	    function getHeaderVariable() {
+            var variable = "Subscribers";
+            var partnerId = $scope.partnerId;
+            if (partnerId && partnerId.toLowerCase() == "morphobank") {
+                variable = "Members";
+            }
+            return variable;
+        }
 	}
 ]);
