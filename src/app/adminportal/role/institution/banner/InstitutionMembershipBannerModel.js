@@ -15,7 +15,7 @@ angular.module('platform-ui.adminportal.role.institution.banner').factory(
 			title: 'MEMBERSHIP BANNER',
 			currentTab: {label:"BANNER", state:"role.institution.banner"},
 			imageInfo: {
-				"partyId": $scope.institutionId,
+				"partyId": null,
 				"name": null,
 				"imageUrl": null,
 			},
