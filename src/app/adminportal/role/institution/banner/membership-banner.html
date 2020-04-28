@@ -5,45 +5,53 @@
 	</div>
 	<div class="panel-body">
 		<div class="row" style="height: 40px;"></div>
-		<div class="row" ng-show="!edit">
-			<div class="{{uiparams.colwidth}} block-center">
-				<div class="block-center text-left lt-font lt-font-color lt-font-aliasing" style="font-size: 24px;">
-					MorphoBank Banner
+		<div class="row" id="banner-info">
+			<div class="row" ng-show="!edit">
+				<div class="{{uiparams.colwidth}} block-center">
+					<div class="block-center text-left lt-font lt-font-color lt-font-aliasing" style="font-size: 24px;">
+						MorphoBank Banner
+					</div>
+				</div>
+				<div class="row" style="height: 10px;"></div>
+				<div class="row">
+					<div id="morphobank-banner-wrapper" style="display: block;">
+						<div class="member"><img src="{{imageInfo.imageUrl}}"><div class="member-text"><span>We gratefully acknowledge membership support from</span><br><span class="institution-name">{{imageInfo.name}}</span></div></div>
+					</div>
 				</div>
 			</div>
-			<div class="row" style="height: 10px;"></div>
-			<div class="row">
-				<div id="morphobank-banner-wrapper" style="display: block;">
-					<div class="member"><img src="{{imageInfo.imageUrl}}"><div class="member-text"><span>We gratefully acknowledge membership support from</span><br><span class="institution-name">{{imageInfo.name}}</span></div></div>
+			<div class="row" ng-show="edit">
+				<div class="{{uiparams.colwidth}} block-center">
+					<div class="col-xs-5 block-left">
+						<div class="row text-left lt-font lt-font-aliasing" style="font-size: 16px; color: #868686;"><div class="col-xs-12">
+							Display Name
+						</div></div>
+						<div class="row text-left"><div class="col-xs-12">
+							<input type="text" class="lt-institution-banner-input" ng-model="imageInfo.name" ng-disabled="!edit" class="lt-with-border"></input>
+						</div></div>
+					</div>
+					<div class="col-xs-5 block-right">
+						<div class="row text-left lt-font lt-font-aliasing" style="font-size: 16px; color: #868686;"><div class="col-xs-12">
+							Logo
+						</div></div>
+						<div class="row text-left"><div class="col-xs-12">
+							<input type="text" class="lt-institution-banner-input" ng-model="imageInfo.imageUrl" ng-disabled="!edit" class="lt-with-border"></input>
+						</div></div>
+					</div>
+				</div>
+			</div>
+			<div class="row" style="height: 55px;"></div>
+			<div class="row">	
+				<div class="{{uiparams.colwidth}} block-center text-center">
+					<button type="button" class="btn btn-default" ng-click="edit_fields();">{{ edit==true && 'Save' || 'Edit' }}</button>
+					<span style="width: 10px;"></span>
+					<button type="button" class="btn btn-default" ng-show="edit" ng-click="cancel();">Cancel</button>
 				</div>
 			</div>
 		</div>
-		<div class="row" ng-show="edit">
+		<div class="row" id="error-msg" style="display: none">
 			<div class="{{uiparams.colwidth}} block-center">
-				<div class="col-xs-5 block-left">
-					<div class="row text-left lt-font lt-font-aliasing" style="font-size: 16px; color: #868686;"><div class="col-xs-12">
-						Display Name
-					</div></div>
-					<div class="row text-left"><div class="col-xs-12">
-						<input type="text" class="lt-institution-banner-input" ng-model="imageInfo.name" ng-disabled="!edit" class="lt-with-border"></input>
-					</div></div>
+				<div class="block-center text-center lt-font lt-font-color lt-font-aliasing" style="font-size: 24px;" id="error-msg-text">
 				</div>
-				<div class="col-xs-5 block-right">
-					<div class="row text-left lt-font lt-font-aliasing" style="font-size: 16px; color: #868686;"><div class="col-xs-12">
-						Logo
-					</div></div>
-					<div class="row text-left"><div class="col-xs-12">
-						<input type="text" class="lt-institution-banner-input" ng-model="imageInfo.imageUrl" ng-disabled="!edit" class="lt-with-border"></input>
-					</div></div>
-				</div>
-			</div>
-		</div>
-		<div class="row" style="height: 55px;"></div>
-		<div class="row">	
-			<div class="{{uiparams.colwidth}} block-center text-center">
-				<button type="button" class="btn btn-default" ng-click="edit_fields();">{{ edit==true && 'Save' || 'Edit' }}</button>
-				<span style="width: 10px;"></span>
-				<button type="button" class="btn btn-default" ng-show="edit" ng-click="cancel();">Cancel</button>
 			</div>
 		</div>
 	</div>
