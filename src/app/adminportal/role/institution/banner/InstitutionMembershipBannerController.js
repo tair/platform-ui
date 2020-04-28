@@ -1,10 +1,10 @@
 /**
- * PhoenixMembershipBannerController
+ * InstitutionMembershipBannerController
  */
 
 angular.module('platform-ui.adminportal.role.institution.banner').controller(
     /* Name */
-    'PhoenixMembershipBannerController',
+    'InstitutionMembershipBannerController',
 
     /* Dependencies */
     [
@@ -15,10 +15,10 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
     '$location',
     '$state',
     'Title',
-    'PhoenixMembershipBannerModel',
+    'InstitutionMembershipBannerModel',
 
     /* Controller Definition */
-    function ($scope, $http, $cookies, $window, $location, $state, Title, PhoenixMembershipBannerModel) {
+    function ($scope, $http, $cookies, $window, $location, $state, Title, InstitutionMembershipBannerModel) {
         init();
         
         $scope.edit_fields = function() {
@@ -46,10 +46,11 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
         }
 
         function init() {
-            $scope.setCurrentTab(PhoenixMembershipBannerModel.currentTab);
-            $scope.imageInfo = PhoenixMembershipBannerModel.imageInfo;
+
+            $scope.setCurrentTab(InstitutionMembershipBannerModel.currentTab);
+            $scope.imageInfo = InstitutionMembershipBannerModel.imageInfo;
             console.log($scope.apiUri+'/party/imageInfo/?='+$scope.institutionId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey));
-            console.log(PhoenixMembershipBannerModel.imageInfo);
+            console.log(InstitutionMembershipBannerModel.imageInfo);
             $http({
                 url: $scope.apiUri+'/party/imageInfo/?='+$scope.institutionId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
                 method: 'GET',

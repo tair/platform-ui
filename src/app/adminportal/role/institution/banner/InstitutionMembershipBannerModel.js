@@ -5,7 +5,7 @@
 
 angular.module('platform-ui.adminportal.role.institution.banner').factory(
 	/* Name */
-	'PhoenixMembershipBannerModel',
+	'InstitutionMembershipBannerModel',
 
 	/* Dependencies */
 	[
