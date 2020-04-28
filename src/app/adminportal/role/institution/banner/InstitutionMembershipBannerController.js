@@ -24,7 +24,6 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
         $scope.edit_fields = function() {
             if ($scope.edit==true) {
                 if (!validateInfo()) {
-                    alert("Information not valid");
                     return false;
                 }
                 //Save info
@@ -72,7 +71,17 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
         }
 
         function validateInfo() {
-            return $scope.imageInfo.name && $scope.imageInfo.imageUrl;
+            if (!$scope.imageInfo.name) {
+                alert("Display name cannot be empty.");
+                return false;
+            } else if (!$scope.imageInfo.imageUrl) {
+                alert("Image url cannot be empty.");
+                return false;
+            } else if (!checkIsImageValid($scope.imageInfo.imageUrl)) {
+                alert("Image url is not valid.");
+                return false;
+            }
+            return true;
         }
 
         function hasChange() {
@@ -115,6 +124,31 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
         function resetByCache() {
             $scope.imageInfo.name = $scope.imageInfoPrev.name;
             $scope.imageInfo.imageUrl = $scope.imageInfoPrev.imageUrl;
+        }
+
+        function checkIsImageValid(url) {
+            var timeout = 2000;
+            var timer, img = new Image();
+            img.onerror = img.onabort = function() {
+                if (!timedOut) {
+                    clearTimeout(timer);
+                    return false;
+                }
+            };
+            img.onload = function() {
+                if (!timedOut) {
+                    clearTimeout(timer);
+                    return true;
+                }
+            };
+            img.src = url;
+            timer = setTimeout(function() {
+                timedOut = true;
+                // reset .src to invalid URL so it stops previous
+                // loading, but doesn't trigger new load
+                img.src = "//!!!!/test.jpg";
+                return false;
+            }, timeout); 
         }
     }
 ]);
