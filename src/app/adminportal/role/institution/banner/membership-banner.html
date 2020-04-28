@@ -4,26 +4,35 @@
 		MEMBERSHIP BANNER
 	</div>
 	<div class="panel-body">
+		<div class="row" style="height: 40px;"></div>
+		<div class="row">
+			<div class="{{uiparams.colwidth}} block-center text-left lt-font lt-font-color lt-font-aliasing" style="font-size: 36px;">
+				MorphoBank Banner
+			</div>
+		</div>
 		<div class="row" style="height: 54px;"></div>
 		<div class="row">
 			<div class="{{uiparams.colwidth}} block-center">
+				<div class="row" ng-show="!edit">
+					<div id="morphobank-banner-wrapper" style="display: block;">
+						<div class="member"><img src="{{imageInfo.imageUrl}}"><div class="member-text"><span>We gratefully acknowledge membership support from</span><br><span class="institution-name">{{imageInfo.name}}</span></div></div>
+					</div>
+				</div>
 				<div class="row">
-					<div class="col-xs-5 block-left">
+					<div class="col-xs-5 block-left" ng-show="edit">
 						<div class="row text-left lt-font lt-font-aliasing" style="font-size: 16px; color: #868686;"><div class="col-xs-12">
 							Display Name
 						</div></div>
-						<p ng-show="!edit">{{imageInfo.name}}</p>
 						<div class="row text-left"><div class="col-xs-12">
-							<input type="text" class="lt-institution-profile-input" ng-model="email_validate" ng-show="edit ? true : false" ng-disabled="!edit" ng-class=" edit == false ? 'lt-no-border' : 'lt-with-border' "></input>
+							<input type="text" class="lt-institution-banner-input" ng-model="imageInfo.name" ng-disabled="!edit" class="lt-with-border"></input>
 						</div></div>
 					</div>
 					<div class="col-xs-5 block-right">
 						<div class="row text-left lt-font lt-font-aliasing" style="font-size: 16px; color: #868686;"><div class="col-xs-12">
 							Logo
 						</div></div>
-						<p ng-show="!edit">{{imageInfo.imageUrl}}</p>
 						<div class="row text-left"><div class="col-xs-12">
-							<input type="text" class="lt-institution-profile-input" ng-model="imageInfo.imageUrl" ng-show="edit ? true : false" ng-disabled="!edit" ng-class=" edit == false ? 'lt-no-border' : 'lt-with-border' "></input>
+							<input type="text" class="lt-institution-banner-input" ng-model="imageInfo.imageUrl" ng-disabled="!edit" class="lt-with-border"></input>
 						</div></div>
 					</div>
 				</div>
@@ -39,3 +48,48 @@
 		</div>
 	</div>
 </div>
+
+<style>
+#morphobank-banner-wrapper {
+  color: #7d7d7d;
+  display: none;
+  border-bottom: 4px solid #EE7B19;
+  font-weight: normal;
+  height: 115px;
+  line-height: 200%;
+  margin: auto;
+  width: 980px;
+}
+
+#morphobank-banner-wrapper div.member {
+  text-align: center;
+  width: 100%;
+  position: relative;
+  top: 100%;
+  transform: translateY(-100%);
+  padding-bottom: 5px;
+}
+
+#morphobank-banner-wrapper div.member img {
+  height: auto;
+  margin: 0 20px;
+  max-height: 100px;
+  max-width: 350px;
+  width: auto;
+}
+
+#morphobank-banner-wrapper div.member div.member-text {
+  display: inline-block;
+  font-weight: normal;
+  line-height: 200%;
+  font-size: 16px;
+  margin-left: 100px;
+  vertical-align: text-bottom;
+}
+
+#morphobank-banner-wrapper div.member span.institution-name {
+  color: #1e324d;
+  font-size: 24px;
+  font-weight: bold;
+}
+</style>
