@@ -20,7 +20,7 @@ angular.module('platform-ui.adminportal.role.institution.banner').factory(
 				"imageUrl": null,
 			},
 			uiparams: {
-				"colwidth": 'col-xs-7',
+				"colwidth": 'col-xs-10',
 			},
 		};
 	}

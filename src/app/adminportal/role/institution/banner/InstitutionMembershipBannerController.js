@@ -48,6 +48,7 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
         function init() {
             $scope.setCurrentTab(InstitutionMembershipBannerModel.currentTab);
             $scope.imageInfo = InstitutionMembershipBannerModel.imageInfo;
+            $scope.uiparams = InstitutionMembershipBannerModel.uiparams;
             $scope.imageInfo.partyId = $scope.institutionId;
             $http({
                 url: $scope.apiUri+'/parties/imageinfo/?partyId='+$scope.institutionId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
@@ -56,10 +57,9 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
                 $scope.imageInfo.name = data[0].name;
                 $scope.imageInfo.imageUrl = data[0].imageUrl;
             }).error(function(data, status, headers, config){
-                errMsg = "GET /parties/imageinfo/ Failed";
-                bootbox.alert(errMsg);
+                // errMsg = "GET /parties/imageinfo/ Failed";
+                // bootbox.alert(errMsg);
             });
-            console.log($scope.imageInfo);
         }
     }
 ]);
