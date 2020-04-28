@@ -21,7 +21,7 @@ angular.module('platform-ui.adminportal.role.institution.subscription').controll
 	    init();
 
 	    function init() {
-		console.log($state);
+		// console.log($state);
 		$scope.setCurrentTab(InstitutionSubscriptionModel.currentTab);
 		$scope.partners = InstitutionSubscriptionModel.partners;
 		$scope.activeSubscriptions = InstitutionSubscriptionModel.activeSubscriptions;

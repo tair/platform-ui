@@ -15,7 +15,7 @@ angular.module(
 	'platform-ui.adminportal.role.phoenix.institution',
 	'platform-ui.adminportal.role.phoenix.consortium',
 	'platform-ui.adminportal.role.phoenix.profile',
-	'platform-ui.adminportal.role.phoenix.subscription',
+    'platform-ui.adminportal.role.phoenix.subscription',
     ])
     .config(
 	function ($stateProvider) {
