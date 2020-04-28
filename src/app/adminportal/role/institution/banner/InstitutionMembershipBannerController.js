@@ -46,13 +46,11 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
         }
 
         function init() {
-
             $scope.setCurrentTab(InstitutionMembershipBannerModel.currentTab);
             $scope.imageInfo = InstitutionMembershipBannerModel.imageInfo;
-            console.log($scope.apiUri+'/party/imageInfo/?='+$scope.institutionId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey));
-            console.log(InstitutionMembershipBannerModel.imageInfo);
+            $scope.imageInfo.partyId = $scope.institutionId;
             $http({
-                url: $scope.apiUri+'/party/imageInfo/?='+$scope.institutionId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
+                url: $scope.apiUri+'/parties/imageinfo/?partyId='+$scope.institutionId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
                 method: 'GET',
             }).success(function(data, status, headers, config){
                 $scope.imageInfo.name = data[0].name;
