@@ -41,7 +41,6 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
                         method: 'POST',
                         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                     }).success(function(data, status, headers, config){
-                        $scope.edit = false;
                         $scope.isNew = false;
                     }).error(function(data, status, headers, config) {
                         bootbox.alert("Failed to create banner info "+data['error']);
@@ -54,13 +53,13 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
                         method: 'PUT',
                         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                     }).success(function(data, status, headers, config){
-                        $scope.edit = false;
                     }).error(function(data, status, headers, config) {
                         bootbox.alert("Failed to update banner info "+data['error']);
                         $scope.cancel();
                     });
                 }
             }
+            $scope.edit = !$scope.edit;
         }
 
         $scope.cancel = function() {
