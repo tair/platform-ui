@@ -44,21 +44,23 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
                         $scope.isNew = false;
                         cacheInfo();
                     }).error(function(data, status, headers, config) {
-                        bootbox.alert("Failed to create banner info "+data['error']);
+                        bootbox.alert("Failed to create banner info: " + data['error']);
                         $scope.cancel();
                     });
                 } else {
-                    $http({
-                        url: $scope.apiUri+'/parties/imageinfo/?partyId='+$scope.institutionId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
-                        data: put_data,
-                        method: 'PUT',
-                        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-                    }).success(function(data, status, headers, config){
-                        cacheInfo()
-                    }).error(function(data, status, headers, config) {
-                        bootbox.alert("Failed to update banner info "+data['error']);
-                        $scope.cancel();
-                    });
+                    if (hasChange()) {
+                        $http({
+                            url: $scope.apiUri+'/parties/imageinfo/?partyId='+$scope.institutionId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
+                            data: put_data,
+                            method: 'PUT',
+                            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                        }).success(function(data, status, headers, config){
+                            cacheInfo();
+                        }).error(function(data, status, headers, config) {
+                            bootbox.alert("Failed to update banner info: "+ data['error']);
+                            $scope.cancel();
+                        });
+                    } 
                 }
             }
             $scope.edit = !$scope.edit;
@@ -71,6 +73,11 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
 
         function validateInfo() {
             return $scope.imageInfo.name && $scope.imageInfo.imageUrl;
+        }
+
+        function hasChange() {
+            return ($scope.imageInfoPrev.name != $scope.imageInfo.name) ||
+                ($scope.imageInfoPrev.imageUrl != $scope.imageInfo.imageUrl);
         }
 
         function init() {
