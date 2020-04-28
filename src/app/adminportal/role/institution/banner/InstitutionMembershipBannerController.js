@@ -42,6 +42,7 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
                         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                     }).success(function(data, status, headers, config){
                         $scope.isNew = false;
+                        cacheInfo();
                     }).error(function(data, status, headers, config) {
                         bootbox.alert("Failed to create banner info "+data['error']);
                         $scope.cancel();
@@ -53,6 +54,7 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
                         method: 'PUT',
                         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                     }).success(function(data, status, headers, config){
+                        cacheInfo()
                     }).error(function(data, status, headers, config) {
                         bootbox.alert("Failed to update banner info "+data['error']);
                         $scope.cancel();
@@ -64,6 +66,7 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
 
         $scope.cancel = function() {
             $scope.edit = false;
+            resetByCache();
         }
 
         function validateInfo() {
@@ -73,8 +76,10 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
         function init() {
             $scope.setCurrentTab(InstitutionMembershipBannerModel.currentTab);
             $scope.imageInfo = InstitutionMembershipBannerModel.imageInfo;
+            $scope.imageInfoPrev = InstitutionMembershipBannerModel.imageInfo;
             $scope.uiparams = InstitutionMembershipBannerModel.uiparams;
             $scope.imageInfo.partyId = $scope.institutionId;
+            $scope.imageInfoPrev.partyId = $scope.imageInfo.partyId;
             $scope.edit = true;
             $scope.isNew = true;
             $http({
@@ -84,6 +89,7 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
                 if (data.length > 0) {
                     $scope.imageInfo.name = data[0].name;
                     $scope.imageInfo.imageUrl = data[0].imageUrl;
+                    cacheInfo();
                     $scope.edit = false;
                     $scope.isNew = false;
                 }
@@ -92,6 +98,16 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
                 $("#error-msg").show();
                 $("#error-msg-text").html("Cannot load banner information. Please refresh the page or try again later.");
             });
+        }
+
+        function cacheInfo() {
+            $scope.imageInfoPrev.name = $scope.imageInfo.name;
+            $scope.imageInfoPrev.imageUrl = $scope.imageInfo.imageUrl;
+        }
+
+        function resetByCache() {
+            $scope.imageInfo.name = $scope.imageInfoPrev.name;
+            $scope.imageInfo.imageUrl = $scope.imageInfoPrev.imageUrl;
         }
     }
 ]);
