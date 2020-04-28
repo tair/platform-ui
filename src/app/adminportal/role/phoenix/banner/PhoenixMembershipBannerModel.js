@@ -3,7 +3,7 @@
  * Model for root /index.html template that wraps every other view.
  */
 
-angular.module('platform-ui.adminportal.role.phoenix.banner').factory(
+angular.module('platform-ui.adminportal.role.institution.banner').factory(
 	/* Name */
 	'PhoenixMembershipBannerModel',
 
@@ -13,7 +13,7 @@ angular.module('platform-ui.adminportal.role.phoenix.banner').factory(
 	function () {
 		return {
 			title: 'MEMBERSHIP BANNER',
-			currentTab: {label:"MEMBERSHIP BANNER", state:"role.phoenix.banner"},
+			currentTab: {label:"MEMBERSHIP BANNER", state:"role.institution.banner"},
 			imageInfo: {
 				"partyId": null,
 				"name": null,

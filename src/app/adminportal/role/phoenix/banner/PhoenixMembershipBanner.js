@@ -6,7 +6,7 @@
 
 angular.module(
     /* Name */
-    'platform-ui.adminportal.role.phoenix.banner',
+    'platform-ui.adminportal.role.institution.banner',
     
     /* Dependencies */
     [

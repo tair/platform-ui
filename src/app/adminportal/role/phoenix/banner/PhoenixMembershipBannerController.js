@@ -2,7 +2,7 @@
  * PhoenixMembershipBannerController
  */
 
-angular.module('platform-ui.adminportal.role.phoenix.banner').controller(
+angular.module('platform-ui.adminportal.role.institution.banner').controller(
     /* Name */
     'PhoenixMembershipBannerController',
 
