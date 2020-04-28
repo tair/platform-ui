@@ -30,7 +30,7 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
                 //Save info
                 put_data = {}
                 //put original values from GET
-                put_data["partyId"]  = $scope.user.partyId;
+                put_data["partyId"]  = $scope.institutionId;
                 put_data["imageUrl"]= $scope.imageInfo.imageUrl;
                 put_data["name"]= $scope.imageInfo.name;
             }
@@ -48,8 +48,10 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
         function init() {
             $scope.setCurrentTab(PhoenixMembershipBannerModel.currentTab);
             $scope.imageInfo = PhoenixMembershipBannerModel.imageInfo;
+            console.log($scope.apiUri+'/party/imageInfo/?='+$scope.institutionId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey));
+            console.log(PhoenixMembershipBannerModel.imageInfo);
             $http({
-                url: $scope.apiUri+'/party/imageInfo/?='+$scope.user.partyId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
+                url: $scope.apiUri+'/party/imageInfo/?='+$scope.institutionId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
                 method: 'GET',
             }).success(function(data, status, headers, config){
                 $scope.imageInfo.name = data[0].name;
