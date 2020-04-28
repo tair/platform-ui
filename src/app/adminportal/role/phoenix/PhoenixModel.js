@@ -19,6 +19,7 @@ angular.module('platform-ui.adminportal.role.phoenix').factory(
                         {label:"INSTITUTION", state:"role.phoenix.institution"},
                         {label:"PROFILE", state:"role.phoenix.profile"},
                         {label:"SUBSCRIPTION", state:"role.phoenix.subscription"},
+                        {label:"MEMBERSHIP BANNER", state:"role.phoenix.banner"},
                     ]
 		};
 	}

@@ -1,0 +1,54 @@
+<div class="row" style="height: 56px;"></div>
+<div class="panel panel-default block-center" style="width: 860px;">
+	<div class="panel-heading lt-institution-profile-panel-heading lt-font-bold lt-font-aliasing" style="font-size: 16px; color: #ffffff;">
+		MEMBERSHIP BANNER
+	</div>
+	<div class="panel-body">
+		<div class="row" style="height: 40px;"></div>
+		<div class="row">
+			<div class="{{uiparams.colwidth}} block-center text-center lt-font lt-font-color lt-font-aliasing" style="font-size: 36px;">
+				{{user.username}}
+			</div>
+		</div>
+		<div class="row" style="height: 6px;"></div>
+		<div class="row" style="height: 54px;"></div>
+		<div class="row">
+			<div class="{{uiparams.colwidth}} block-center">
+				<div class="row">
+					<div class="col-xs-5 block-left">
+						<div class="row text-left lt-font lt-font-aliasing" style="font-size: 16px; color: #868686;"><div class="col-xs-12">
+							Display Name
+						</div></div>
+						<div class="row text-left"><div class="col-xs-12">
+							<input type="text" class="lt-institution-profile-input" ng-model="imageInfo.name" ng-hide="!edit" ng-class=" edit == false ? 'lt-no-border' : 'lt-with-border' ">{{imageInfo.name}}</input>
+						</div></div>
+						<div class="row" style="height: 10px;"></div>
+						<div class="row text-left"><div class="col-xs-12">
+							<input type="text" class="lt-institution-profile-input" ng-model="email_validate" ng-show="edit ? true : false" ng-disabled="!edit" ng-class=" edit == false ? 'lt-no-border' : 'lt-with-border' "></input>
+						</div></div>
+					</div>
+					<div class="col-xs-5 block-right">
+						<div class="row text-left lt-font lt-font-aliasing" style="font-size: 16px; color: #868686;"><div class="col-xs-12">
+							Image
+						</div></div>
+						<div class="row text-left"><div class="col-xs-12">
+							<input type="text" class="lt-institution-profile-input" ng-model="imageInfo.imageUrl" ng-disabled="!edit" ng-class=" edit == false ? 'lt-no-border' : 'lt-with-border' ">{{imageInfo.imageUrl}}</input>
+						</div></div>
+						<div class="row" style="height: 10px;"></div>
+						<div class="row text-left"><div class="col-xs-12">
+							<input type="text" class="lt-institution-profile-input" ng-model="imageInfo.imageUrl" ng-show="edit ? true : false" ng-disabled="!edit" ng-class=" edit == false ? 'lt-no-border' : 'lt-with-border' "></input>
+						</div></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row" style="height: 55px;"></div>
+		<div class="row">	
+			<div class="{{uiparams.colwidth}} block-center text-center">
+				<button type="button" class="btn btn-default" ng-click="edit_fields();">{{ edit==true && 'Save' || 'Edit' }}</button>
+				<span style="width: 10px;"></span>
+				<button type="button" class="btn btn-default" ng-show="edit" ng-click="cancel();">Cancel</button>
+			</div>
+		</div>
+	</div>
+</div>
