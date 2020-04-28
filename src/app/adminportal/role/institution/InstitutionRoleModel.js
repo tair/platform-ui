@@ -31,6 +31,10 @@ angular.module('platform-ui.adminportal.role.institution').factory(
             {
               label: 'PROFILE',
               state: 'role.institution.profile'
+            },
+            {
+              label: 'BANNER',
+              state: 'role.institution.banner'
             }
           ];
         } else {

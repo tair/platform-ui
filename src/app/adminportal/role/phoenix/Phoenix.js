@@ -16,7 +16,6 @@ angular.module(
 	'platform-ui.adminportal.role.phoenix.consortium',
 	'platform-ui.adminportal.role.phoenix.profile',
     'platform-ui.adminportal.role.phoenix.subscription',
-	'platform-ui.adminportal.role.phoenix.banner',
     ])
     .config(
 	function ($stateProvider) {
@@ -60,14 +59,6 @@ angular.module(
 	                    templateUrl: 'adminportal/role/phoenix/subscription/subscription.html'
 	                }
 	            }
-            }).state('role.phoenix.banner', {
-                url: '/membership-banner',
-                views: {
-                    'phoenix': {
-                        controller: 'PhoenixMembershipBannerController',
-                        templateUrl: 'adminportal/role/phoenix/banner/membership-banner.html'
-                    }
-                }
             });
 	});
 
