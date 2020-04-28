@@ -4,11 +4,14 @@
 		MEMBERSHIP BANNER
 	</div>
 	<div class="panel-body">
+		<div class="row" style="height: 40px;"></div>
 		<div class="row" ng-show="!edit">
-			<div class="row" style="height: 40px;"></div>
-			<div class="block-center text-left lt-font lt-font-color lt-font-aliasing" style="font-size: 24px;">
-				MorphoBank Banner
+			<div class="{{uiparams.colwidth}} block-center">
+				<div class="block-center text-left lt-font lt-font-color lt-font-aliasing" style="font-size: 24px;">
+					MorphoBank Banner
+				</div>
 			</div>
+			<div class="row" style="height: 10px;"></div>
 			<div class="row">
 				<div id="morphobank-banner-wrapper" style="display: block;">
 					<div class="member"><img src="{{imageInfo.imageUrl}}"><div class="member-text"><span>We gratefully acknowledge membership support from</span><br><span class="institution-name">{{imageInfo.name}}</span></div></div>
