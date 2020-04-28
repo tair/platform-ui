@@ -50,12 +50,14 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
             $scope.imageInfo = InstitutionMembershipBannerModel.imageInfo;
             $scope.uiparams = InstitutionMembershipBannerModel.uiparams;
             $scope.imageInfo.partyId = $scope.institutionId;
+            $scope.edit = true;
             $http({
                 url: $scope.apiUri+'/parties/imageinfo/?partyId='+$scope.institutionId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
                 method: 'GET',
             }).success(function(data, status, headers, config){
                 $scope.imageInfo.name = data[0].name;
                 $scope.imageInfo.imageUrl = data[0].imageUrl;
+                $scope.edit = false;
             }).error(function(data, status, headers, config){
                 // errMsg = "GET /parties/imageinfo/ Failed";
                 // bootbox.alert(errMsg);
