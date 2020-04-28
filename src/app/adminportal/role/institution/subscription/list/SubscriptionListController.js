@@ -114,14 +114,14 @@ angular.module('platform-ui.adminportal.role.institution.subscription.list').con
 			ret.push(partners[i]);
 		    }
 		}
-		console.log(ret);
+		// console.log(ret);
 		return ret;
 	    }
 	    $scope.toConsortium = function(consortium){
 	    	$state.go('role.consortium.subscription.list', {'consortiumId': consortium.partyId});
 	    }
 	    function init() {
-		console.log($state);
+		// console.log($state);
 		$scope.uiparams = SubscriptionListModel.uiparams;
 //		if(!$scope.credentialId || !$scope.secretKey){
 //			$state.go('ltlogin');

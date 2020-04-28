@@ -13,7 +13,7 @@ angular.module('platform-ui.adminportal.role.institution.banner').factory(
 	function () {
 		return {
 			title: 'MEMBERSHIP BANNER',
-			currentTab: {label:"MEMBERSHIP BANNER", state:"role.institution.banner"},
+			currentTab: {label:"BANNER", state:"role.institution.banner"},
 			imageInfo: {
 				"partyId": null,
 				"name": null,
