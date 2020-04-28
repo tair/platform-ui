@@ -1,40 +1,37 @@
 <div class="row" style="height: 56px;"></div>
-<div class="panel panel-default block-center" style="width: 860px;">
+<div class="panel panel-default block-center" style="width: 1060px;">
 	<div class="panel-heading lt-institution-profile-panel-heading lt-font-bold lt-font-aliasing" style="font-size: 16px; color: #ffffff;">
 		MEMBERSHIP BANNER
 	</div>
 	<div class="panel-body">
-		<div class="row">
-			<div class="{{uiparams.colwidth}} block-center">
-				<div class="row" ng-show="!edit">
-					<div class="row" style="height: 40px;"></div>
-					<div class="{{uiparams.colwidth}} block-center text-left lt-font lt-font-color lt-font-aliasing" style="font-size: 36px;">
-						MorphoBank Banner
-					</div>
-					<div class="row" style="height: 60px;"></div>
-					<div class="row">
-						<div id="morphobank-banner-wrapper" style="display: block;">
-							<div class="member"><img src="{{imageInfo.imageUrl}}"><div class="member-text"><span>We gratefully acknowledge membership support from</span><br><span class="institution-name">{{imageInfo.name}}</span></div></div>
-						</div>
-					</div>
+		<div class="row" ng-show="!edit">
+			<div class="row" style="height: 40px;"></div>
+			<div class="block-center text-left lt-font lt-font-color lt-font-aliasing" style="font-size: 24px;">
+				MorphoBank Banner
+			</div>
+			<div class="row">
+				<div id="morphobank-banner-wrapper" style="display: block;">
+					<div class="member"><img src="{{imageInfo.imageUrl}}"><div class="member-text"><span>We gratefully acknowledge membership support from</span><br><span class="institution-name">{{imageInfo.name}}</span></div></div>
 				</div>
-				<div class="row" ng-show="edit">
-					<div class="col-xs-5 block-left">
-						<div class="row text-left lt-font lt-font-aliasing" style="font-size: 16px; color: #868686;"><div class="col-xs-12">
-							Display Name
-						</div></div>
-						<div class="row text-left"><div class="col-xs-12">
-							<input type="text" class="lt-institution-banner-input" ng-model="imageInfo.name" ng-disabled="!edit" class="lt-with-border"></input>
-						</div></div>
-					</div>
-					<div class="col-xs-5 block-right">
-						<div class="row text-left lt-font lt-font-aliasing" style="font-size: 16px; color: #868686;"><div class="col-xs-12">
-							Logo
-						</div></div>
-						<div class="row text-left"><div class="col-xs-12">
-							<input type="text" class="lt-institution-banner-input" ng-model="imageInfo.imageUrl" ng-disabled="!edit" class="lt-with-border"></input>
-						</div></div>
-					</div>
+			</div>
+		</div>
+		<div class="row" ng-show="edit">
+			<div class="{{uiparams.colwidth}} block-center">
+				<div class="col-xs-5 block-left">
+					<div class="row text-left lt-font lt-font-aliasing" style="font-size: 16px; color: #868686;"><div class="col-xs-12">
+						Display Name
+					</div></div>
+					<div class="row text-left"><div class="col-xs-12">
+						<input type="text" class="lt-institution-banner-input" ng-model="imageInfo.name" ng-disabled="!edit" class="lt-with-border"></input>
+					</div></div>
+				</div>
+				<div class="col-xs-5 block-right">
+					<div class="row text-left lt-font lt-font-aliasing" style="font-size: 16px; color: #868686;"><div class="col-xs-12">
+						Logo
+					</div></div>
+					<div class="row text-left"><div class="col-xs-12">
+						<input type="text" class="lt-institution-banner-input" ng-model="imageInfo.imageUrl" ng-disabled="!edit" class="lt-with-border"></input>
+					</div></div>
 				</div>
 			</div>
 		</div>
@@ -56,7 +53,8 @@
   border-top: 4px solid #EE7B19;
   border-bottom: 4px solid #EE7B19;
   font-weight: normal;
-  height: 115px;
+  height: 125px;
+  padding-top: 5px;
   line-height: 200%;
   margin: auto;
   width: 980px;
