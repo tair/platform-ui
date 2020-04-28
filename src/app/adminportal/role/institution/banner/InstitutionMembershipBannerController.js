@@ -56,9 +56,10 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
                 $scope.imageInfo.name = data[0].name;
                 $scope.imageInfo.imageUrl = data[0].imageUrl;
             }).error(function(data, status, headers, config){
-                errMsg = "GET /parties/institutions/ Failed";
-                //bootbox.alert(errMsg);
+                errMsg = "GET /parties/imageinfo/ Failed";
+                bootbox.alert(errMsg);
             });
+            console.log($scope.imageInfo);
         }
     }
 ]);
