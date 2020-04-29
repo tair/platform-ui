@@ -34,7 +34,8 @@
 							Logo
 						</div></div>
 						<div class="row text-left"><div class="col-xs-12">
-							<input type="text" class="lt-institution-banner-input" ng-model="imageInfo.imageUrl" ng-disabled="!edit" class="lt-with-border"></input>
+							<img src="{{imageInfo.imageUrl}}">
+							<input type="file" name="upload" id="photo-upload" accept="image/*" onchange="angular.element(this).scope().uploadFile(this.files)"/>
 						</div></div>
 					</div>
 				</div>
