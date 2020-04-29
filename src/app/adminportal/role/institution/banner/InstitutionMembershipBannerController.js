@@ -66,8 +66,8 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
         }
 
         $scope.cancel = function() {
-            $scope.edit = false;
             resetByCache();
+            $scope.edit = false;
         }
 
         function validateInfo() {
@@ -92,7 +92,8 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
         function init() {
             $scope.setCurrentTab(InstitutionMembershipBannerModel.currentTab);
             $scope.imageInfo = InstitutionMembershipBannerModel.imageInfo;
-            $scope.imageInfoPrev = InstitutionMembershipBannerModel.imageInfo;
+            // make shallow copy of model
+            $scope.imageInfoPrev = Object.assign({}, InstitutionMembershipBannerModel.imageInfo);
             $scope.uiparams = InstitutionMembershipBannerModel.uiparams;
             $scope.imageInfo.partyId = $scope.institutionId;
             $scope.imageInfoPrev.partyId = $scope.imageInfo.partyId;
@@ -127,28 +128,14 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
         }
 
         function checkIsImageValid(url) {
-            var timeout = 2000;
-            var timer, img = new Image();
+            var img = new Image();
             img.onerror = img.onabort = function() {
-                if (!timedOut) {
-                    clearTimeout(timer);
-                    return false;
-                }
+                return false;
             };
             img.onload = function() {
-                if (!timedOut) {
-                    clearTimeout(timer);
-                    return true;
-                }
+                return true;
             };
             img.src = url;
-            timer = setTimeout(function() {
-                timedOut = true;
-                // reset .src to invalid URL so it stops previous
-                // loading, but doesn't trigger new load
-                img.src = "//!!!!/test.jpg";
-                return false;
-            }, timeout); 
         }
     }
 ]);
