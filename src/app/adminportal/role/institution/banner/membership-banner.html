@@ -22,7 +22,7 @@
 			<div class="row" ng-show="edit">
 				<div class="{{uiparams.colwidth}} block-center">
 					<div class="col-xs-5 block-left">
-						<div class="row text-left lt-font lt-font-aliasing" style="font-size: 16px; color: #868686;"><div class="col-xs-12">
+						<div class="row text-left lt-font lt-font-aliasing label"><div class="col-xs-12">
 							Display Name
 						</div></div>
 						<div class="row text-left"><div class="col-xs-12">
@@ -30,13 +30,13 @@
 						</div></div>
 					</div>
 					<div class="col-xs-5 block-right">
-						<div class="row text-left lt-font lt-font-aliasing" style="font-size: 16px; color: #868686;"><div class="col-xs-12">
+						<div class="row text-left lt-font lt-font-aliasing label"><div class="col-xs-12">
 							Logo
 						</div></div>
 						<div class="row text-left"><div class="col-xs-12">
 							<img ng-show="imageInfo.imageUrl" src="{{imageInfo.imageUrl}}">
-							<div class="row" style="height: 10px;"></div>
-							<p>Upload New Logo</p>
+							<div class="row" style="height: 20px;"></div>
+							<div class="row label">Upload Logo</div>
 							<input type="file" name="upload" id="photo-upload" accept="image/*" ng-disabled="!edit" onchange="angular.element(this).scope().uploadFile(this.files)"/>
 						</div></div>
 					</div>
@@ -104,5 +104,10 @@
   color: #1e324d;
   font-size: 24px;
   font-weight: bold;
+}
+
+.label {
+	font-size: 16px;
+	color: #868686;
 }
 </style>
