@@ -34,8 +34,10 @@
 							Logo
 						</div></div>
 						<div class="row text-left"><div class="col-xs-12">
-							<img src="{{imageInfo.imageUrl}}">
-							<input type="file" name="upload" id="photo-upload" accept="image/*" onchange="angular.element(this).scope().uploadFile(this.files)"/>
+							<img ng-show="imageInfo.imageUrl" src="{{imageInfo.imageUrl}}">
+							<div class="row" style="height: 10px;"></div>
+							<p>Upload New Logo</p>
+							<input type="file" name="upload" id="photo-upload" accept="image/*" ng-disabled="!edit" onchange="angular.element(this).scope().uploadFile(this.files)"/>
 						</div></div>
 					</div>
 				</div>

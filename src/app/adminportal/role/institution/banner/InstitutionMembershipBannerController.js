@@ -75,10 +75,7 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
                 alert("Display name cannot be empty.");
                 return false;
             } else if (!$scope.imageInfo.imageUrl) {
-                alert("Image url cannot be empty.");
-                return false;
-            } else if (!checkIsImageValid($scope.imageInfo.imageUrl)) {
-                alert("Image url is not valid.");
+                alert("Image cannot be empty.");
                 return false;
             }
             return true;
@@ -125,17 +122,6 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
         function resetByCache() {
             $scope.imageInfo.name = $scope.imageInfoPrev.name;
             $scope.imageInfo.imageUrl = $scope.imageInfoPrev.imageUrl;
-        }
-
-        function checkIsImageValid(url) {
-            var img = new Image();
-            img.onerror = img.onabort = function() {
-                return false;
-            };
-            img.onload = function() {
-                return true;
-            };
-            img.src = url;
         }
     }
 ]);
