@@ -158,11 +158,22 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
         }
 
         function initAWSInstance() {
-            var AWS = require("aws-sdk");
-            // need to config ~/.aws/credentials
-            var credentials = new AWS.SharedIniFileCredentials({profile: 'tairdev'});
+            // need to config ~/.aws/credentials with morphobank acct credential
+            var credentials = new AWS.SharedIniFileCredentials({profile: 'morphobank'});
             AWS.config.credentials = credentials;
-            console.log("Region: ", AWS.config.region);
+
+            // test
+
+            s3 = new AWS.S3({apiVersion: '2006-03-01'});
+
+            // Call S3 to list the buckets
+            s3.listBuckets(function(err, data) {
+              if (err) {
+                console.log("Error", err);
+              } else {
+                console.log("Success", data.Buckets);
+              }
+            });
             return AWS;
         }
 
