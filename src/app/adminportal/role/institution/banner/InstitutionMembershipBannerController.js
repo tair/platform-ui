@@ -70,6 +70,25 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
             $scope.edit = false;
         }
 
+        $scope.uploadFile = function(element) {   
+            var image = $(element)[0].files[0];
+            console.log(image);
+            // data.append('file', );
+            // jQuery.ajax({
+            //     url: 'brand/upload',
+            //     type:'post',
+            //     data: data,
+            //     contentType: false,
+            //     processData: false,
+            //     success: function(response) {
+            //         console.log(response);
+            //     },
+            //     error: function(jqXHR, textStatus, errorMessage) {
+            //         alert('Error uploading: ' + errorMessage);
+            //     }
+            // });   
+        };
+
         function validateInfo() {
             if (!$scope.imageInfo.name) {
                 alert("Display name cannot be empty.");
