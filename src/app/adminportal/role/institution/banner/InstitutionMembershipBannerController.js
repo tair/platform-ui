@@ -71,22 +71,9 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
         }
 
         $scope.uploadFile = function(element) {   
-            var image = $(element)[0].files[0];
-            console.log(image);
-            // data.append('file', );
-            // jQuery.ajax({
-            //     url: 'brand/upload',
-            //     type:'post',
-            //     data: data,
-            //     contentType: false,
-            //     processData: false,
-            //     success: function(response) {
-            //         console.log(response);
-            //     },
-            //     error: function(jqXHR, textStatus, errorMessage) {
-            //         alert('Error uploading: ' + errorMessage);
-            //     }
-            // });   
+            console.log($scope.imageFile);
+            $scope.imageFile = $(element)[0].files[0];
+            console.log($scope.imageFile);
         };
 
         function validateInfo() {
@@ -113,6 +100,7 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
             $scope.uiparams = InstitutionMembershipBannerModel.uiparams;
             $scope.imageInfo.partyId = $scope.institutionId;
             $scope.imageInfoPrev.partyId = $scope.imageInfo.partyId;
+            $scope.imageFile = undefined;
             $scope.edit = true;
             $scope.isNew = true;
             $http({
