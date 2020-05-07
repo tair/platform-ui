@@ -58,7 +58,7 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
 
         function saveUploadedImageAndData() {
             var fileName = $scope.imageFile.name;
-            var upload = new $scope.AWS.S3.ManagedUpload({
+            var upload = new AWS.S3.ManagedUpload({
                 params: {
                   Bucket: "phx-subscribed-institution-logos",
                   Key: fileName,
@@ -158,12 +158,6 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
         }
 
         function initAWSInstance() {
-            // need to config ~/.aws/credentials with morphobank acct credential
-            var credentials = new AWS.SharedIniFileCredentials({profile: 'morphobank'});
-            AWS.config.credentials = credentials;
-
-            // test
-
             s3 = new AWS.S3({apiVersion: '2006-03-01'});
 
             // Call S3 to list the buckets
