@@ -60,7 +60,7 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
             var fileName = $scope.imageFile.name;
             var upload = new AWS.S3.ManagedUpload({
                 params: {
-                  Bucket: "phx-subscribed-institution-logos",
+                  Bucket: $scope.S3BucketName,
                   Key: fileName,
                   Body: $scope.imageFile,
                   ACL: "public-read"
@@ -72,7 +72,7 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
             promise.then(
                 function(data) {
                     alert("Successfully uploaded the logo.");
-                    $scope.imageInfo.imageUrl = "https://phx-subscribed-institution-logos.s3-us-west-2.amazonaws.com/" + fileName;
+                    $scope.imageInfo.imageUrl = "https://" + $scope.S3BucketName + ".s3-us-west-2.amazonaws.com/" + fileName;
                     // do not remove old logo for now
                     saveDataToDB();
                     return true;
@@ -158,14 +158,20 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
         }
 
         function initAWSInstance() {
-            s3 = new AWS.S3({apiVersion: '2006-03-01'});
+            $scope.S3BucketName = "phx-subscribed-institution-logos";
+            s3 = new AWS.S3({
+                apiVersion: '2006-03-01',
+                params: { 
+                    Bucket: $scope.S3BucketName 
+                }
+            });
 
             // Call S3 to list the buckets
-            s3.listBuckets(function(err, data) {
+            s3.GetBucketPolicy(function(err, data) {
               if (err) {
                 console.log("Error", err);
               } else {
-                console.log("Success", data.Buckets);
+                console.log("Success", data);
               }
             });
             return AWS;
