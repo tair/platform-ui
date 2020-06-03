@@ -4,15 +4,15 @@
  */
 
 angular.module('platform-ui.contentaccess').factory(
-	/* Name */
-	'ContentAccessModel',
+  /* Name */
+  'ContentAccessModel',
 
-	/* Dependencies */
-	[
-
-	function () {
-		return {
-			title: 'ContentAccess'
-		};
-	}
-]);
+  /* Dependencies */
+  [
+    function () {
+      return {
+        title: 'ContentAccess',
+      }
+    },
+  ]
+)

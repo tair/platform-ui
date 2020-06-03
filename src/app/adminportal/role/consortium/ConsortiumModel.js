@@ -4,52 +4,56 @@
  */
 
 angular.module('platform-ui.adminportal.role.consortium').factory(
-	/* Name */
-	'ConsortiumModel',
+  /* Name */
+  'ConsortiumModel',
 
-	/* Dependencies */
-	[
-
-	function () {
-		return {
-		    title: 'Consortium Page',
-            currentTab: {label:"INSTITUTION", state:"role.consortium.institution"},
-            getTabs: function (role) {
-		        if (role == 'staff') {
-		          return [
-		            {
-		              label: 'INSTITUTION',
-		              state: 'role.consortium.institution'
-		            },
-		            {
-		              label: 'SUBSCRIPTION',
-		              state: 'role.consortium.subscription'
-		            },
-		            {
-		              label: 'PROFILE',
-		              state: 'role.consortium.profile'
-		            }
-		          ];
-		        } else {
-		          return [
-		            {
-		              label: 'INSTITUTION',
-		              state: 'role.consortium.institution'
-		            },
-		            {
-		              label: 'SUBSCRIPTION',
-		              state: 'role.consortium.subscription'
-		            },
-		            {
-		              label: 'USAGE',
-		              state: 'role.consortium.usage'
-		            },
-		            {
-		              label: 'PROFILE',
-		              state: 'role.consortium.profile'
-		            }
-		          ];
-		        }
-            }};
-	}
-]);
+  /* Dependencies */
+  [
+    function () {
+      return {
+        title: 'Consortium Page',
+        currentTab: {
+          label: 'INSTITUTION',
+          state: 'role.consortium.institution',
+        },
+        getTabs: function (role) {
+          if (role == 'staff') {
+            return [
+              {
+                label: 'INSTITUTION',
+                state: 'role.consortium.institution',
+              },
+              {
+                label: 'SUBSCRIPTION',
+                state: 'role.consortium.subscription',
+              },
+              {
+                label: 'PROFILE',
+                state: 'role.consortium.profile',
+              },
+            ]
+          } else {
+            return [
+              {
+                label: 'INSTITUTION',
+                state: 'role.consortium.institution',
+              },
+              {
+                label: 'SUBSCRIPTION',
+                state: 'role.consortium.subscription',
+              },
+              {
+                label: 'USAGE',
+                state: 'role.consortium.usage',
+              },
+              {
+                label: 'PROFILE',
+                state: 'role.consortium.profile',
+              },
+            ]
+          }
+        },
+      }
+    },
+  ]
+)

@@ -4,25 +4,25 @@
  */
 
 angular.module('platform-ui.adminportal.role.consortium.usage').factory(
-	/* Name */
-	'ConsortiumUsageModel',
+  /* Name */
+  'ConsortiumUsageModel',
 
-	/* Dependencies */
-	[
-
-	function () {
-		return {
-			title: 'USAGE',
-			currentTab: {label: 'USAGE',state: 'role.consortium.usage'},
-			uiparams: {
-				"colwidth": 'col-xs-11',
-			},
-			postData: {
-				"institution": null,
-				"startDate": null,
-				"endDate": null,
-				"comments": null
-			},
-		};
-	}
-]);
+  /* Dependencies */
+  [
+    function () {
+      return {
+        title: 'USAGE',
+        currentTab: { label: 'USAGE', state: 'role.consortium.usage' },
+        uiparams: {
+          colwidth: 'col-xs-11',
+        },
+        postData: {
+          institution: null,
+          startDate: null,
+          endDate: null,
+          comments: null,
+        },
+      }
+    },
+  ]
+)

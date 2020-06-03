@@ -3,15 +3,15 @@
  */
 
 angular.module('platform-ui.adminportal').controller(
-	/* Name */
-	'adminportalController',
+  /* Name */
+  'adminportalController',
 
-	/* Dependencies */
-	[
-	'$scope',
-	'adminportalModel',
+  /* Dependencies */
+  [
+    '$scope',
+    'adminportalModel',
 
-	/* Controller Definition */
-	function ($scope, adminportalModel) {
-	}
-]);
+    /* Controller Definition */
+    function ($scope, adminportalModel) {},
+  ]
+)

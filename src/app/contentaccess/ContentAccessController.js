@@ -3,17 +3,18 @@
  */
 
 angular.module('platform-ui.contentaccess').controller(
-	/* Name */
-	'ContentAccessController',
+  /* Name */
+  'ContentAccessController',
 
-	/* Dependencies */
-	[
-	'$scope',
-	'Title',
-	'ContentAccessModel',
+  /* Dependencies */
+  [
+    '$scope',
+    'Title',
+    'ContentAccessModel',
 
-	/* Controller Definition */
-	function ($scope, Title, ContentAccessModel) {
-		Title.setTitle(ContentAccessModel.title);
-	}
-]);
+    /* Controller Definition */
+    function ($scope, Title, ContentAccessModel) {
+      Title.setTitle(ContentAccessModel.title)
+    },
+  ]
+)

@@ -4,19 +4,19 @@
  */
 
 angular.module('platform-ui.adminportal.login.forgotpassword.thankyou').factory(
-	/* Name */
-	'ForgotpwdTyModel',
+  /* Name */
+  'ForgotpwdTyModel',
 
-	/* Dependencies */
-	[
-
-	function () {
-		return {
-			title: 'vet forgot pwd',
-			formdata: {
-				user: null,
-				password: null
-			}
-		};
-	}
-]);
+  /* Dependencies */
+  [
+    function () {
+      return {
+        title: 'vet forgot pwd',
+        formdata: {
+          user: null,
+          password: null,
+        },
+      }
+    },
+  ]
+)

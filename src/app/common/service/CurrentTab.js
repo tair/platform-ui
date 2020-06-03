@@ -1,40 +1,41 @@
 /**
  * CurrentTab Service
- * 
+ *
  * Sets the currentTab in role.html
  */
 
 angular.module('service.currenttab', []).service(
-	/* Name */
-	'CurrentTab',
+  /* Name */
+  'CurrentTab',
 
-	/* Dependencies */
-	[
-	'$document',
+  /* Dependencies */
+  [
+    '$document',
 
-	function ($document) {
-		var suffix = currentTab = '';
+    function ($document) {
+      var suffix = (currentTab = '')
 
-		this.getSuffix = function () {
-			return suffix;
-		};
+      this.getSuffix = function () {
+        return suffix
+      }
 
-		this.setSuffix = function (value) {
-			suffix = value;
-		};
+      this.setSuffix = function (value) {
+        suffix = value
+      }
 
-		this.getCurrentTab = function () {
-			return $document.prop('currentTab');
-		};
+      this.getCurrentTab = function () {
+        return $document.prop('currentTab')
+      }
 
-		this.setCurrentTab = function (value) {
-			if (suffix !== '') {
-				currentTab = value + suffix;
-			} else {
-				currentTab = value;
-			}
+      this.setCurrentTab = function (value) {
+        if (suffix !== '') {
+          currentTab = value + suffix
+        } else {
+          currentTab = value
+        }
 
-			$document.prop('currentTab', currentTab);
-		};
-	}
-]);
+        $document.prop('currentTab', currentTab)
+      }
+    },
+  ]
+)

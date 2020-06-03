@@ -3,20 +3,26 @@
  */
 
 angular.module('platform-ui.contentaccess.apidoc.parties.doc').controller(
-/* Name */
-'PartiesDocController',
+  /* Name */
+  'PartiesDocController',
 
-/* Dependencies */
-[ '$http', '$scope', '$stateParams', 'PartiesDocModel',
+  /* Dependencies */
+  [
+    '$http',
+    '$scope',
+    '$stateParams',
+    'PartiesDocModel',
 
-/* Controller Definition */
-function($http, $scope, $stateParams, PartiesDocModel) {
-	init();
+    /* Controller Definition */
+    function ($http, $scope, $stateParams, PartiesDocModel) {
+      init()
 
-	function init() {
-		$scope.heading = PartiesDocModel.heading;
-		$scope.overview = PartiesDocModel.overview;
-		$scope.datatypes = PartiesDocModel.datatypes;
-		$scope.calls = PartiesDocModel.calls;
-	}
-} ]);
+      function init() {
+        $scope.heading = PartiesDocModel.heading
+        $scope.overview = PartiesDocModel.overview
+        $scope.datatypes = PartiesDocModel.datatypes
+        $scope.calls = PartiesDocModel.calls
+      }
+    },
+  ]
+)

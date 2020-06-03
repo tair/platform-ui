@@ -4,18 +4,16 @@
  * The main landing page
  */
 
-angular.module(
-	/* Name */
-	'platform-ui.contentaccess.metering',
+angular
+  .module(
+    /* Name */
+    'platform-ui.contentaccess.metering',
 
-	/* Dependencies */
-	[
-	'ui.router',
-	'service.title'
-	])
-	.config(
-		function ($stateProvider) {
-			/*$stateProvider.state('metering', {
+    /* Dependencies */
+    ['ui.router', 'service.title']
+  )
+  .config(function ($stateProvider) {
+    /*$stateProvider.state('metering', {
 				url: '/metering',
 				views: {
 					'main': {
@@ -24,5 +22,4 @@ angular.module(
 					}
 				}
 			});*/
-		});
-
+  })

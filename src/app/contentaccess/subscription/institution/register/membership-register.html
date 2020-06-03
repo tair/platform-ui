@@ -1,85 +1,177 @@
 <div ng-controller="InstitutionRegisterController">
-	<div class="row">
-		<div class="col-xs-10" style="float: none; margin-left: auto; margin-right: auto;">
-			<div class="row" style="height: 45px;"></div>
-			<div class="row"><div class="col-xs-12 text-left info-institution-heading">
-				Ask {{partner.name}} to contact your librarian about institutional membership
-			</div></div>
-			<div class="row" style="height: 40px;"></div>
-			<form ng-submit="validateAndSubmit() && send()">
-				<div class="row">
-					<div class="col-xs-6">
-						<div class="form-group">
-							<label for="firstName" class="info-institution-form-label">*First Name</label>
-							<input type="text" class="form-control" id="firstName" ng-model="formdata.firstName" required>
-						</div>	
-					</div>
-					<div class="col-xs-6">
-						<div class="form-group">
-							<label for="lastName" class="info-institution-form-label">*Last Name</label>
-							<input type="text" class="form-control" id="lastName" ng-model="formdata.lastName" required>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-xs-6">
-						<div class="form-group">
-							<label for="email" class="info-institution-form-label">*Email</label>
-							<input type="email" class="form-control" id="email" ng-model="formdata.email" placeholder="xyz@host.com" required>
-						</div>
-					</div>
-					<div class="col-xs-6">
-						<div class="row"><div class="col-xs-12">
-							<div class="form-group" style="margin-bottom: 6px;">
-								<label for="institution" class="info-institution-form-label">*Institution Name</label>
-								<input type="text" class="form-control" id="institution" ng-model="formdata.institution" autocomplete required>
-							</div>
-						</div></div>
-						<div class="row"><div class="col-xs-12">
-							<a href="#contentaccess/list?partnerId={{partnerId}}">Check to see if your institution is already a member</a>
-						</div></div>
-					</div>
-				</div>
-				<div class="row" style="height: 16px;"></div>
-				<div class="row"><div class="col-xs-12">
-					If you know your librarian's contact information please provide it (optional).
-				</div></div>
-				<div class="row" style="height: 21px;"></div>
-				<div class="row">
-					<div class="col-xs-6">
-						<div class="form-group">
-							<label for="librarianName" class="info-institution-form-label">Librarian Contact Name</label>
-							<input type="text" class="form-control" id="librarianName" ng-model="formdata.librarianName">
-						</div>
-					</div>
-					<div class="col-xs-6">
-						<div class="form-group">
-							<label for="librarianEmail" class="info-institution-form-label">Librarian Email</label>
-							<input type="email" class="form-control" id="librarianEmail" ng-model="formdata.librarianEmail">
-						</div>
-					</div>
-				</div>
-				<div class="row" style="height: 40px;"></div>
-				<div class="row"><div class="col-xs-12">
-					<div class="form-group">
-						<label for="comments" style="font-family: Arial, Helvetica, sans-serif; -webkit-font-smoothing: antialiased;" class="info-institution-form-label">Comments:</label>
-						<textarea type="text" style="resize: none; height: 78px;" class="form-control" id="comments" ng-model="formdata.comments"></textarea>
-					</div>
-				</div></div>
-				<div class="row" style="height: 20px;"></div>
-				<span style="color: red;">{{errors}}</span>
-				<div class="row" style="height: 20px;"></div>
-				<div class="row">
-						<!-- no "BACK" button for membership based form since no landing page available -->
-					<div class="col-xs-6 text-center">
-						<button type="button" class="btn btn-default btn-default-tair" ng-click="reset()">RESET FORM</button>
-					</div>
-					<div class="col-xs-6 text-center">
-						<button type="submit" class="btn" ng-class="validate() ? 'btn-success btn-success-tair' : 'btn-primary btn-primary-tair'" ng-click="setInfoInstitutionFormError(validate())">SUBMIT</button>
-					</div>
-				</div>
-				<div class="row" style="height: 40px;"></div>
-			</form>
-		</div>
-	</div>
+  <div class="row">
+    <div
+      class="col-xs-10"
+      style="float: none; margin-left: auto; margin-right: auto;"
+    >
+      <div class="row" style="height: 45px;"></div>
+      <div class="row">
+        <div class="col-xs-12 text-left info-institution-heading">
+          Ask {{partner.name}} to contact your librarian about institutional
+          membership
+        </div>
+      </div>
+      <div class="row" style="height: 40px;"></div>
+      <form ng-submit="validateAndSubmit() && send()">
+        <div class="row">
+          <div class="col-xs-6">
+            <div class="form-group">
+              <label for="firstName" class="info-institution-form-label"
+                >*First Name</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="firstName"
+                ng-model="formdata.firstName"
+                required
+              />
+            </div>
+          </div>
+          <div class="col-xs-6">
+            <div class="form-group">
+              <label for="lastName" class="info-institution-form-label"
+                >*Last Name</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="lastName"
+                ng-model="formdata.lastName"
+                required
+              />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-6">
+            <div class="form-group">
+              <label for="email" class="info-institution-form-label"
+                >*Email</label
+              >
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                ng-model="formdata.email"
+                placeholder="xyz@host.com"
+                required
+              />
+            </div>
+          </div>
+          <div class="col-xs-6">
+            <div class="row">
+              <div class="col-xs-12">
+                <div class="form-group" style="margin-bottom: 6px;">
+                  <label for="institution" class="info-institution-form-label"
+                    >*Institution Name</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="institution"
+                    ng-model="formdata.institution"
+                    autocomplete
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <a href="#contentaccess/list?partnerId={{partnerId}}"
+                  >Check to see if your institution is already a member</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="height: 16px;"></div>
+        <div class="row">
+          <div class="col-xs-12">
+            If you know your librarian's contact information please provide it
+            (optional).
+          </div>
+        </div>
+        <div class="row" style="height: 21px;"></div>
+        <div class="row">
+          <div class="col-xs-6">
+            <div class="form-group">
+              <label for="librarianName" class="info-institution-form-label"
+                >Librarian Contact Name</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="librarianName"
+                ng-model="formdata.librarianName"
+              />
+            </div>
+          </div>
+          <div class="col-xs-6">
+            <div class="form-group">
+              <label for="librarianEmail" class="info-institution-form-label"
+                >Librarian Email</label
+              >
+              <input
+                type="email"
+                class="form-control"
+                id="librarianEmail"
+                ng-model="formdata.librarianEmail"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="row" style="height: 40px;"></div>
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="form-group">
+              <label
+                for="comments"
+                style="
+                  font-family: Arial, Helvetica, sans-serif;
+                  -webkit-font-smoothing: antialiased;
+                "
+                class="info-institution-form-label"
+                >Comments:</label
+              >
+              <textarea
+                type="text"
+                style="resize: none; height: 78px;"
+                class="form-control"
+                id="comments"
+                ng-model="formdata.comments"
+              ></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="height: 20px;"></div>
+        <span style="color: red;">{{errors}}</span>
+        <div class="row" style="height: 20px;"></div>
+        <div class="row">
+          <!-- no "BACK" button for membership based form since no landing page available -->
+          <div class="col-xs-6 text-center">
+            <button
+              type="button"
+              class="btn btn-default btn-default-tair"
+              ng-click="reset()"
+            >
+              RESET FORM
+            </button>
+          </div>
+          <div class="col-xs-6 text-center">
+            <button
+              type="submit"
+              class="btn"
+              ng-class="validate() ? 'btn-success btn-success-tair' : 'btn-primary btn-primary-tair'"
+              ng-click="setInfoInstitutionFormError(validate())"
+            >
+              SUBMIT
+            </button>
+          </div>
+        </div>
+        <div class="row" style="height: 40px;"></div>
+      </form>
+    </div>
+  </div>
 </div>

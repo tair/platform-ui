@@ -1,50 +1,81 @@
 <div class="container">
-	<!-- Subscription Panel -->
-	<div class="row">
-		<div class="col-xs-12">
-			<div style="margin-left: auto; margin-right: auto;" class="panel panel-default subscription-panel">
-				<!-- Heading -->
-				<div class="panel-heading subscription-panel-heading">
-					<div class="row">
-						<div class="col-xs-2" style="float: right">
-                            <a href="{{partner.homeUri}}" title="{{partner.name}} home page"><img src="{{partner.logoUri}}" alt="{{partner.name}} logo" style="height:60px; float:right"/></a>
-						</div>
-						<div class="col-xs-5 text-center" style="float: none; margin-left: auto; margin-right: auto; padding-top: 20px;">
-							{{panelHeader}}
-						</div>
-					</div>
-					<!--<div class="row">
+  <!-- Subscription Panel -->
+  <div class="row">
+    <div class="col-xs-12">
+      <div
+        style="margin-left: auto; margin-right: auto;"
+        class="panel panel-default subscription-panel"
+      >
+        <!-- Heading -->
+        <div class="panel-heading subscription-panel-heading">
+          <div class="row">
+            <div class="col-xs-2" style="float: right;">
+              <a href="{{partner.homeUri}}" title="{{partner.name}} home page"
+                ><img
+                  src="{{partner.logoUri}}"
+                  alt="{{partner.name}} logo"
+                  style="height: 60px; float: right;"
+              /></a>
+            </div>
+            <div
+              class="col-xs-5 text-center"
+              style="
+                float: none;
+                margin-left: auto;
+                margin-right: auto;
+                padding-top: 20px;
+              "
+            >
+              {{panelHeader}}
+            </div>
+          </div>
+          <!--<div class="row">
 						<div class="col-xs-12 text-center">
 							Subscribe
 						</div>
 					</div>-->
-				</div>
-				<!-- Body -->
-				<div style="padding-top: 0px;" class="panel-body">
-					<div ui-view="subscription"></div>
-				  <!--<div class="tab-page" ng-include="templates.landing" ng-if="currentTab=='landing'"></div>
+        </div>
+        <!-- Body -->
+        <div style="padding-top: 0px;" class="panel-body">
+          <div ui-view="subscription"></div>
+          <!--<div class="tab-page" ng-include="templates.landing" ng-if="currentTab=='landing'"></div>
 				  <div class="tab-page" ng-include="templates.individual" ng-if="currentTab=='individual'"></div>
 				  <div class="tab-page" ng-include="templates.commercial" ng-if="currentTab=='commercial'"></div>
 				  <div class="tab-page" ng-include="templates.institution" ng-if="currentTab=='institution'"></div>-->
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- Powered By -->
-	<div class="row"><div class="col-xs-12">
-		<div style="width: 697px; display: block; margin-left: auto; margin-right: auto;">
-			<div class="row">
-			  <div class="col-xs-4 text-right" style="float: right;">
-			    <div class="col-xs-6" >
-			      <div class="row text-right" style="padding-top:15px;color:#bbc9cf;">
-			      Powered by 
-			      </div> 
-			    </div>
-			    <div class="col-xs-6">
-			      <img src="assets/Phoenix_Logo.png" style="height:39px;width:67px">
-			    </div>
-			  </div>
-			</div>
-		</div>
-	</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Powered By -->
+  <div class="row">
+    <div class="col-xs-12">
+      <div
+        style="
+          width: 697px;
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+        "
+      >
+        <div class="row">
+          <div class="col-xs-4 text-right" style="float: right;">
+            <div class="col-xs-6">
+              <div
+                class="row text-right"
+                style="padding-top: 15px; color: #bbc9cf;"
+              >
+                Powered by
+              </div>
+            </div>
+            <div class="col-xs-6">
+              <img
+                src="assets/Phoenix_Logo.png"
+                style="height: 39px; width: 67px;"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

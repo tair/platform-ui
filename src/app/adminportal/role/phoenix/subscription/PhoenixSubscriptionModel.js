@@ -3,15 +3,18 @@
  */
 
 angular.module('platform-ui.adminportal.role.phoenix.subscription').factory(
-	/* Name */
-	'PhoenixSubscriptionModel',
+  /* Name */
+  'PhoenixSubscriptionModel',
 
-	/* Dependencies */
-	[
-
-	function () {
-		return {
-			currentTab: {label:"SUBSCRIPTION", state:"role.phoenix.subscription"},
-		};
-	}
-]);
+  /* Dependencies */
+  [
+    function () {
+      return {
+        currentTab: {
+          label: 'SUBSCRIPTION',
+          state: 'role.phoenix.subscription',
+        },
+      }
+    },
+  ]
+)

@@ -4,19 +4,19 @@
  */
 
 angular.module('platform-ui.contentaccess.login.forgetusername').factory(
-	/* Name */
-	'ForgetUsernameModel',
+  /* Name */
+  'ForgetUsernameModel',
 
-	/* Dependencies */
-	[
-
-	function () {
-		return {
-			title: 'vet forget username',
-			formdata: {
-				user: null,
-				password: null
-			}
-		};
-	}
-]);
+  /* Dependencies */
+  [
+    function () {
+      return {
+        title: 'vet forget username',
+        formdata: {
+          user: null,
+          password: null,
+        },
+      }
+    },
+  ]
+)

@@ -4,15 +4,15 @@
  */
 
 angular.module('platform-ui.adminportal.login.requestaccount').factory(
-	/* Name */
-	'RequestAccountModel',
+  /* Name */
+  'RequestAccountModel',
 
-	/* Dependencies */
-	[
-
-	function () {
-		return {
-			title: 'Request Account',
-		};
-	}
-]);
+  /* Dependencies */
+  [
+    function () {
+      return {
+        title: 'Request Account',
+      }
+    },
+  ]
+)

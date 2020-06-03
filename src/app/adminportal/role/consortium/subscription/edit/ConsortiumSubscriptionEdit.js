@@ -2,15 +2,12 @@
  * Subscription Edit Module
  */
 
-angular.module(
+angular
+  .module(
     /* Name */
     'platform-ui.adminportal.role.consortium.subscription.edit',
-    
-    /* Dependencies */
-    [
-	'ui.router',
-    ])
-    .config(
-	function ($stateProvider) {
-	});
 
+    /* Dependencies */
+    ['ui.router']
+  )
+  .config(function ($stateProvider) {})

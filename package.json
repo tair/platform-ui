@@ -5,21 +5,26 @@
 		"type": "git",
 		"url": "git@bitbucket.org:newtonder/boilerplate.git"
 	},
-	"dependencies": {},
+	"scripts": {
+		"pretty": "prettier --write \"src/app/**/*.{js,html,json}\""
+	},
+	"dependencies": {
+		"prettier": "^2.0.5"
+	},
 	"devDependencies": {
-		"grunt": "~0.4.1",
-		"grunt-recess": "~0.3.0",
+		"grunt": "^1.1.0",
+		"grunt-bump": "^0.8.0",
 		"grunt-contrib-clean": "~0.4.1",
-		"grunt-contrib-copy": "~0.4.1",
-		"grunt-contrib-jshint": "~0.4.3",
 		"grunt-contrib-concat": "~0.3.0",
-		"grunt-contrib-watch": "~0.4.0",
-		"grunt-contrib-uglify": "~0.2.0",
-		"grunt-ngmin": "0.0.2",
-		"grunt-html2js": "~0.1.3",
+		"grunt-contrib-copy": "~0.4.1",
+		"grunt-contrib-jshint": "^2.1.0",
+		"grunt-contrib-less": "^2.0.0",
+		"grunt-contrib-uglify": "^4.0.1",
+		"grunt-contrib-watch": "^1.1.0",
 		"grunt-conventional-changelog": "~0.1.1",
-		"grunt-bump": "0.0.6",
-		"grunt-shell": "1.1.1",
-		"grunt-contrib-less": "~1.0.0"
+		"grunt-html2js": "~0.1.3",
+		"grunt-ngmin": "0.0.2",
+		"grunt-recess": "~0.3.0",
+		"grunt-shell": "1.1.1"
 	}
 }

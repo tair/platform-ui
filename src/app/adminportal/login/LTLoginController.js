@@ -3,21 +3,22 @@
  */
 
 angular.module('platform-ui.adminportal.login').controller(
-	/* Name */
-	'LTLoginController',
+  /* Name */
+  'LTLoginController',
 
-	/* Dependencies */
-	[
-	'$scope',
-	'$http',
-	'$cookies',
-	'$location',
-	'$state',
-	'Title',
-	'LTLoginModel',
+  /* Dependencies */
+  [
+    '$scope',
+    '$http',
+    '$cookies',
+    '$location',
+    '$state',
+    'Title',
+    'LTLoginModel',
 
-	/* Controller Definition */
-	function ($scope, $http, $cookies, $location, $state, Title, LTLoginModel) {
-		$state.go("ltlogin.page");
-	}
-]);
+    /* Controller Definition */
+    function ($scope, $http, $cookies, $location, $state, Title, LTLoginModel) {
+      $state.go('ltlogin.page')
+    },
+  ]
+)

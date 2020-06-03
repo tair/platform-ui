@@ -4,18 +4,16 @@
  * The main landing page
  */
 
-angular.module(
+angular
+  .module(
     /* Name */
     'platform-ui.contentaccess.subscription.landing',
-    
+
     /* Dependencies */
-    [
-        'ui.router',
-        'service.title',
-    ])
-    .config(
-        function ($stateProvider) {
-            /*$stateProvider.state('subscription.landing', {
+    ['ui.router', 'service.title']
+  )
+  .config(function ($stateProvider) {
+    /*$stateProvider.state('subscription.landing', {
                 url: '/contentaccess/subscription/landing',
                 views: {
                     'main': {
@@ -24,4 +22,4 @@ angular.module(
                     }
                 }
             });*/
-        });
+  })

@@ -4,21 +4,21 @@
  */
 
 angular.module('platform-ui.contentaccess.login').factory(
-	/* Name */
-	'LoginModel',
+  /* Name */
+  'LoginModel',
 
-	/* Dependencies */
-	[
+  /* Dependencies */
+  [
+    function () {
+      return {
+        title: 'Login',
 
-	function () {
-		return {
-			title: 'Login',
-
-			formdata: {
-				user: null,
-				password: null,
-				email: null
-			}
-		};
-	}
-]);
+        formdata: {
+          user: null,
+          password: null,
+          email: null,
+        },
+      }
+    },
+  ]
+)

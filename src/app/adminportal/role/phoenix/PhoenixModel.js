@@ -4,22 +4,22 @@
  */
 
 angular.module('platform-ui.adminportal.role.phoenix').factory(
-	/* Name */
-	'PhoenixModel',
+  /* Name */
+  'PhoenixModel',
 
-	/* Dependencies */
-	[
-
-	function () {
-		return {
-		    title: 'Phoenix',
-                    currentTab: {label:"CONSORTIUM", state:"role.phoenix.consortium"},
-                    tabs: [
-                        {label:"CONSORTIUM", state:"role.phoenix.consortium"},
-                        {label:"INSTITUTION", state:"role.phoenix.institution"},
-                        {label:"PROFILE", state:"role.phoenix.profile"},
-                        {label:"SUBSCRIPTION", state:"role.phoenix.subscription"},
-                    ]
-		};
-	}
-]);
+  /* Dependencies */
+  [
+    function () {
+      return {
+        title: 'Phoenix',
+        currentTab: { label: 'CONSORTIUM', state: 'role.phoenix.consortium' },
+        tabs: [
+          { label: 'CONSORTIUM', state: 'role.phoenix.consortium' },
+          { label: 'INSTITUTION', state: 'role.phoenix.institution' },
+          { label: 'PROFILE', state: 'role.phoenix.profile' },
+          { label: 'SUBSCRIPTION', state: 'role.phoenix.subscription' },
+        ],
+      }
+    },
+  ]
+)

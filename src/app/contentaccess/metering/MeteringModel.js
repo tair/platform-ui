@@ -4,15 +4,15 @@
  */
 
 angular.module('platform-ui.contentaccess.metering').factory(
-	/* Name */
-	'MeteringModel',
+  /* Name */
+  'MeteringModel',
 
-	/* Dependencies */
-	[
-
-	function () {
-		return {
-			title: 'Metering'
-		};
-	}
-]);
+  /* Dependencies */
+  [
+    function () {
+      return {
+        title: 'Metering',
+      }
+    },
+  ]
+)

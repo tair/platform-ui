@@ -4,15 +4,15 @@
  */
 
 angular.module('platform-ui.adminportal').factory(
-	/* Name */
-	'adminportalModel',
+  /* Name */
+  'adminportalModel',
 
-	/* Dependencies */
-	[
-
-	function () {
-		return {
-		    title: 'adminportal',
-		};
-	}
-]);
+  /* Dependencies */
+  [
+    function () {
+      return {
+        title: 'adminportal',
+      }
+    },
+  ]
+)
