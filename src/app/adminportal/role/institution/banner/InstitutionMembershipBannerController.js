@@ -28,7 +28,7 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
                 }
                 //Save image
                 if (!$scope.imageFile) {
-                    saveDataToDB();
+                    // saveDataToDB();
                 }
                 saveUploadedImageAndData();
                 
@@ -58,30 +58,46 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
 
         function saveUploadedImageAndData() {
             var fileName = $scope.imageFile.name;
-            var upload = new AWS.S3.ManagedUpload({
-                params: {
-                  Bucket: $scope.S3BucketName,
-                  Key: fileName,
-                  Body: $scope.imageFile,
-                  ACL: "public-read"
-                }
+            var data = {
+                "key":fileName,
+                "bucket":$scope.S3BucketName
+            }
+            var apiUrl = "https://q0b0t0y6i9.execute-api.us-west-2.amazonaws.com/getsignedurl";
+            $http({
+                url: apiUrl,
+                data: data,
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+            }).success(function(data, status, headers, config){
+                console.log(data);
+                console.log(data.url);
+            }).error(function(data, status, headers, config) {
+                bootbox.alert("Failed to get signed url " + data['error']);
             });
+            // var upload = new AWS.S3.ManagedUpload({
+            //     params: {
+            //       Bucket: $scope.S3BucketName,
+            //       Key: fileName,
+            //       Body: $scope.imageFile,
+            //       ACL: "public-read"
+            //     }
+            // });
 
-            var promise = upload.promise();
+            // var promise = upload.promise();
 
-            promise.then(
-                function(data) {
-                    alert("Successfully uploaded the logo.");
-                    $scope.imageInfo.imageUrl = "https://" + $scope.S3BucketName + ".s3-us-west-2.amazonaws.com/" + fileName;
-                    // do not remove old logo for now
-                    saveDataToDB();
-                    return true;
-                },
-                function(err) {
-                    alert("There was an error uploading the logo: ", err.message);
-                    return false;
-                }
-            );
+            // promise.then(
+            //     function(data) {
+            //         alert("Successfully uploaded the logo.");
+            //         $scope.imageInfo.imageUrl = "https://" + $scope.S3BucketName + ".s3-us-west-2.amazonaws.com/" + fileName;
+            //         // do not remove old logo for now
+            //         saveDataToDB();
+            //         return true;
+            //     },
+            //     function(err) {
+            //         alert("There was an error uploading the logo: ", err.message);
+            //         return false;
+            //     }
+            // );
         }
 
         function saveDataToDB() {
@@ -135,10 +151,10 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
             $scope.uiparams = InstitutionMembershipBannerModel.uiparams;
             $scope.imageInfo.partyId = $scope.institutionId;
             $scope.imageInfoPrev.partyId = $scope.imageInfo.partyId;
-            $scope.AWS = initAWSInstance();
             $scope.imageFile = undefined;
             $scope.edit = true;
             $scope.isNew = true;
+            $scope.S3BucketName = "phx-subscribed-institution-logos";
             $http({
                 url: $scope.apiUri+'/parties/imageinfo/?partyId='+$scope.institutionId+'&credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey),
                 method: 'GET',
@@ -155,26 +171,6 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
                 $("#error-msg").show();
                 $("#error-msg-text").html("Cannot load banner information. Please refresh the page or try again later.");
             });
-        }
-
-        function initAWSInstance() {
-            $scope.S3BucketName = "phx-subscribed-institution-logos";
-            s3 = new AWS.S3({
-                apiVersion: '2006-03-01',
-                params: { 
-                    Bucket: $scope.S3BucketName 
-                }
-            });
-
-            // Call S3 to list the buckets
-            s3.GetBucketPolicy(function(err, data) {
-              if (err) {
-                console.log("Error", err);
-              } else {
-                console.log("Success", data);
-              }
-            });
-            return AWS;
         }
 
         function cacheInfo() {
