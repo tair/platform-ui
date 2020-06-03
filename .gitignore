@@ -8,3 +8,4 @@ bin
 /src/lib/css/.DS_Store
 .vscode
 node_modules/
+package-lock.json
