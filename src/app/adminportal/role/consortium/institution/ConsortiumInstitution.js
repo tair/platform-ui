@@ -4,16 +4,12 @@
  * The main landing page
  */
 
-angular.module(
+angular
+  .module(
     /* Name */
     'platform-ui.adminportal.role.consortium.institution',
-    
-    /* Dependencies */
-    [
-	'ui.router',
-	'service.currenttab'
-    ])
-    .config(
-	function ($stateProvider) {
-	});
 
+    /* Dependencies */
+    ['ui.router', 'service.currenttab']
+  )
+  .config(function ($stateProvider) {})

@@ -4,26 +4,26 @@
  */
 
 angular.module('platform-ui.adminportal.role.institution.usage').factory(
-	/* Name */
-	'InstitutionUsageModel',
+  /* Name */
+  'InstitutionUsageModel',
 
-	/* Dependencies */
-	[
-
-	function () {
-		return {
-			currentTab: {label: 'USAGE', state: 'role.institution.usage'},
-			uiparams: {
-				"colwidth": 'col-xs-11',
-			},
-			postData: {
-				"institution": null,
-				"startDate": null,
-				"endDate": null,
-				"comments": null,
-				"name": null,
-				"email": null,
-			},
-		};
-	}
-]);
+  /* Dependencies */
+  [
+    function () {
+      return {
+        currentTab: { label: 'USAGE', state: 'role.institution.usage' },
+        uiparams: {
+          colwidth: 'col-xs-11',
+        },
+        postData: {
+          institution: null,
+          startDate: null,
+          endDate: null,
+          comments: null,
+          name: null,
+          email: null,
+        },
+      }
+    },
+  ]
+)

@@ -4,15 +4,15 @@
  */
 
 angular.module('platform-ui.contentaccess.activation').factory(
-	/* Name */
-	'ActivationModel',
+  /* Name */
+  'ActivationModel',
 
-	/* Dependencies */
-	[
-
-	function () {
-		return {
-			title: 'Activation'
-		};
-	}
-]);
+  /* Dependencies */
+  [
+    function () {
+      return {
+        title: 'Activation',
+      }
+    },
+  ]
+)

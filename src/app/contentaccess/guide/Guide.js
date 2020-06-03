@@ -3,18 +3,16 @@
  *
  */
 
-angular.module(
-	/* Name */
-	'platform-ui.contentaccess.guide',
+angular
+  .module(
+    /* Name */
+    'platform-ui.contentaccess.guide',
 
-	/* Dependencies */
-	[
-	'ui.router',
-	'service.title',
-	])
-	.config(
-		function ($stateProvider) {
-			/*$stateProvider.state('guide', {
+    /* Dependencies */
+    ['ui.router', 'service.title']
+  )
+  .config(function ($stateProvider) {
+    /*$stateProvider.state('guide', {
 				url: '/guide',
 				views: {
 					'main': {
@@ -23,5 +21,4 @@ angular.module(
 					}
 				}
 			});*/
-		});
-
+  })

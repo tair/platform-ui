@@ -4,20 +4,20 @@
  */
 
 angular.module('platform-ui.adminportal.login.page').factory(
-	/* Name */
-	'LTLoginPageModel',
+  /* Name */
+  'LTLoginPageModel',
 
-	/* Dependencies */
-	[
+  /* Dependencies */
+  [
+    function () {
+      return {
+        title: 'Login',
 
-	function () {
-		return {
-			title: 'Login',
-
-			formdata: {
-				user: null,
-				password: null
-			}
-		};
-	}
-]);
+        formdata: {
+          user: null,
+          password: null,
+        },
+      }
+    },
+  ]
+)

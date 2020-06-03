@@ -4,15 +4,15 @@
  */
 
 angular.module('platform-ui.home').factory(
-	/* Name */
-	'HomeModel',
+  /* Name */
+  'HomeModel',
 
-	/* Dependencies */
-	[
-
-	function () {
-		return {
-			title: 'Home'
-		};
-	}
-]);
+  /* Dependencies */
+  [
+    function () {
+      return {
+        title: 'Home',
+      }
+    },
+  ]
+)

@@ -1,33 +1,46 @@
 <!-- Header Panel -->
 <div class="lt-navbar-top lt-color">
-  <div class="row" style="height:32px"></div>
+  <div class="row" style="height: 32px;"></div>
   <div class="center-block lt-navbar-panel">
     <div class="col-xs-4">
-	    <div class="pull-left">
-	      <img src="assets/Phoenix_Logo.png"/ style="height:39px;width:67px;margin-top: -20px;margin-right: 11px;">
-	    </div>
-      <div class="pull-left lt-navbar-tool-text" ng-click="home()">ADMIN PORTAL</div>
+      <div class="pull-left">
+        <img src="assets/Phoenix_Logo.png"/
+        style="height:39px;width:67px;margin-top: -20px;margin-right: 11px;">
+      </div>
+      <div class="pull-left lt-navbar-tool-text" ng-click="home()">
+        ADMIN PORTAL
+      </div>
     </div>
     <div class="col-xs-8 pull-right" style="margin-top: -3px;">
       <div class="pull-right lt-navbar-status" ng-click="logout()">Log out</div>
       <div class="pull-right lt-navbar-email">{{email}}</div>
     </div>
   </div>
-  <div class="row" style="height:13px"></div>
+  <div class="row" style="height: 13px;"></div>
 </div>
 <div class="lt-navbar-bottom">
-  <div class="row" style="height:95px">
-  <div class="row" style="height:30px"></div>
-  <div class="center-block" style="width:860px">
-  <a href="" class="lt-admin-groups-description" ng-if="isConsortium" ng-click="backToConsortium()">
-  <span class="glyphicon glyphicon-arrow-left"></span>
-  back to consortium page
-  </a>
-  <a href="" class="lt-admin-groups-description" ng-if="isPhoenix" ng-click="backToPhoenix()">
-  <span class="glyphicon glyphicon-arrow-left"></span>
-  back to Phoenix page
-  </a>
-  </div>
+  <div class="row" style="height: 95px;">
+    <div class="row" style="height: 30px;"></div>
+    <div class="center-block" style="width: 860px;">
+      <a
+        href=""
+        class="lt-admin-groups-description"
+        ng-if="isConsortium"
+        ng-click="backToConsortium()"
+      >
+        <span class="glyphicon glyphicon-arrow-left"></span>
+        back to consortium page
+      </a>
+      <a
+        href=""
+        class="lt-admin-groups-description"
+        ng-if="isPhoenix"
+        ng-click="backToPhoenix()"
+      >
+        <span class="glyphicon glyphicon-arrow-left"></span>
+        back to Phoenix page
+      </a>
+    </div>
   </div>
   <div class="lt-navbar-bottom-text text-center">{{title}}</div>
 </div>
@@ -35,14 +48,14 @@
 <div class="lt-content-width center-block" ui-view="role"></div>
 
 <!-- Power By -->
-<div class="row" style="height:100px"></div>
+<div class="row" style="height: 100px;"></div>
 <div class="center-block">
-  <div class="col-xs-6" >
-    <div class="row text-right" style="padding-top:15px;color:#bbc9cf;">
+  <div class="col-xs-6">
+    <div class="row text-right" style="padding-top: 15px; color: #bbc9cf;">
       Powered by
     </div>
-    </div>
+  </div>
   <div class="col-xs-6">
-    <img src="assets/Phoenix_Logo.png" style="height:39px;width:67px">
+    <img src="assets/Phoenix_Logo.png" style="height: 39px; width: 67px;" />
   </div>
 </div>

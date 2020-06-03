@@ -1,4 +1,7 @@
-<div class="lt-navbar-role text-center center-block" ng-repeat="tab in tabs track by $index">
+<div
+  class="lt-navbar-role text-center center-block"
+  ng-repeat="tab in tabs track by $index"
+>
   <div class="col-xs-3">
     <div ng-class="navbarLabel(tab)" ng-click="toTab(tab)">{{tab.label}}</div>
     <div class="lt-navbar-line" ng-class="navbarLine(tab)"></div>

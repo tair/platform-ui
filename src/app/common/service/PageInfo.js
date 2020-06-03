@@ -3,20 +3,21 @@
  */
 
 angular.module('service.pageinfo', []).service(
-	/* Name */
-	'PageInfo',
+  /* Name */
+  'PageInfo',
 
-	/* Dependencies */
-	[
-	function () {
-		var  pageInfo = {};
+  /* Dependencies */
+  [
+    function () {
+      var pageInfo = {}
 
-		this.getPageInfo = function () {
-			return pageInfo;
-		};
+      this.getPageInfo = function () {
+        return pageInfo
+      }
 
-		this.setPageInfo = function (value) {
-			pageInfo = value;
-		};
-	}
-]);
+      this.setPageInfo = function (value) {
+        pageInfo = value
+      }
+    },
+  ]
+)

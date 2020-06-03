@@ -1,159 +1,229 @@
 <div ng-controller="SessionLogsDocController">
-    <div class="row">
-        <div class="col-xs-11" style="float: none; margin-left: auto; margin-right: auto;">
-            <div class="row" style="height: 45px;"></div>
-            <div class="row">
-                <div class="col-xs-12 text-left info-doc-heading-1">{{heading}}</div>
-            </div>
-            <div style="height: 15px;" class="row"></div>
-            <div class="row">
-                <div class="col-xs-12 text-left apidoc-description">{{overview}}</div>
-            </div>
-            <div class="row">
-                <ul class="col-xs-6 apidoc-elements">
-                    <li ng-repeat="e in elements">{{ e }}</li>
-                </ul>
-            </div>
+  <div class="row">
+    <div
+      class="col-xs-11"
+      style="float: none; margin-left: auto; margin-right: auto;"
+    >
+      <div class="row" style="height: 45px;"></div>
+      <div class="row">
+        <div class="col-xs-12 text-left info-doc-heading-1">{{heading}}</div>
+      </div>
+      <div style="height: 15px;" class="row"></div>
+      <div class="row">
+        <div class="col-xs-12 text-left apidoc-description">{{overview}}</div>
+      </div>
+      <div class="row">
+        <ul class="col-xs-6 apidoc-elements">
+          <li ng-repeat="e in elements">{{ e }}</li>
+        </ul>
+      </div>
+      <div class="row" style="height: 10px;"></div>
+      <div class="row">
+        <div class="col-xs-12 text-left info-doc-heading-2">Data Types</div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div ng-repeat="d in datatypes" class="info-doc-table">
             <div class="row" style="height: 10px;"></div>
             <div class="row">
-                <div class="col-xs-12 text-left info-doc-heading-2">Data Types</div>
+              <div class="col-xs-12 text-left info-doc-heading-3">
+                {{ d.name }}
+              </div>
             </div>
-            <div class="row">
-                <div class="col-xs-12">
-                    <div ng-repeat="d in datatypes" class="info-doc-table">
-                        <div class="row" style="height: 10px;"></div>
-                        <div class="row">
-                            <div class="col-xs-12 text-left info-doc-heading-3">{{ d.name }}</div>
-                        </div>
-                        <div class="row" style="height: 10px;"></div>
-                        <div class="col-xs-1"></div>
-                        <div class="col-xs-11">
-                            <div class="row info-doc-col-header">
-                                <div class="col-xs-5 text-left info-doc-col-header">name</div>
-                                <div class="col-xs-2 text-left info-doc-col-header">type</div>
-                                <div class="col-xs-5 text-left info-doc-col-header">description</div>
-                            </div>
-                            <div ng-repeat="f in d.fields">
-                                <div class="row info-doc-row">
-                                    <div class="col-xs-5 text-left info-doc-col">{{ f.name }}</div>
-                                    <div class="col-xs-2 text-left info-doc-col">{{ f.type }}</div>
-                                    <div class="col-xs-5 text-left info-doc-col">{{ f.description }}</div>
-                                </div>
-                            </div>
-                            <div class="row info-doc-bottom-row" style="height: 45px;"></div>
-                        </div>
-                    </div>
+            <div class="row" style="height: 10px;"></div>
+            <div class="col-xs-1"></div>
+            <div class="col-xs-11">
+              <div class="row info-doc-col-header">
+                <div class="col-xs-5 text-left info-doc-col-header">name</div>
+                <div class="col-xs-2 text-left info-doc-col-header">type</div>
+                <div class="col-xs-5 text-left info-doc-col-header">
+                  description
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 text-left info-doc-heading-2">API Calls</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12">
-                    <div ng-repeat="c in calls" class="info-doc-table">
-                        <div class="row" style="height: 30px;"></div>
-                        <div class="row">
-                            <div class="col-xs-12 text-left info-doc-heading-3">{{ c.header }}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-12 text-left apidoc-call-summary">{{ c.summary }}</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-12 text-left apidoc-call">{{ c.op }} {{ c.uri }}</div>
-                        </div>
-                        <div class="row" style="height: 5px;"></div>
-                        <div class="row">
-                            <div class="col-xs-12 text-left apidoc-returns">Returns {{ c.returns }}</div>
-                        </div>
-                        <div class="row" style="height: 5px;"></div>
-                        <div ng-show="c.parameters.length">
-                            <div class="row">
-                                <div class="col-xs-12 text-left info-doc-heading-4">Query Parameters</div>
-                            </div>
-                            <div class="col-xs-1"></div>
-                            <div class="col-xs-11">
-                                <div class="row info-doc-col-header">
-                                    <div class="col-xs-5 text-left info-doc-col-header">name</div>
-                                    <div class="col-xs-2 text-left info-doc-col-header">type</div>
-                                    <div class="col-xs-5 text-left info-doc-col-header">description</div>
-                                </div>
-                                <div ng-repeat="p in c.parameters">
-                                    <div class="row info-doc-row">
-                                        <div class="col-xs-5 text-left info-doc-col">{{ p.name }}</div>
-                                        <div class="col-xs-2 text-left info-doc-col">{{ p.type }}</div>
-                                        <div class="col-xs-5 text-left info-doc-col">{{ p.description }}</div>
-                                    </div>
-                                </div>
-                                <div class="row info-doc-bottom-row" style="height: 10px;"></div>
-                            </div>
-                            <div class="row" style="height: 5px;"></div>
-                        </div>
-                        <div ng-show="c.body_parameters.length">
-                            <div class="row">
-                                <div class="col-xs-12 text-left info-doc-heading-4">Body Parameters</div>
-                            </div>
-                            <div class="col-xs-1"></div>
-                            <div class="col-xs-11">
-                                <div class="row info-doc-col-header">
-                                    <div class="col-xs-5 text-left info-doc-col-header">name</div>
-                                    <div class="col-xs-2 text-left info-doc-col-header">type</div>
-                                    <div class="col-xs-5 text-left info-doc-col-header">description</div>
-                                </div>
-                                <div ng-repeat="bp in c.body_parameters">
-                                    <div class="row info-doc-row">
-                                        <div class="col-xs-5 text-left info-doc-col">{{ bp.name }}</div>
-                                        <div class="col-xs-2 text-left info-doc-col">{{ bp.type }}</div>
-                                        <div class="col-xs-5 text-left info-doc-col">{{ bp.description }}</div>
-                                    </div>
-                                </div>
-                                <div class="row info-doc-bottom-row" style="height: 10px;"></div>
-                            </div>
-                            <div class="row" style="height: 5px;"></div>
-                        </div>
-                        <div ng-show="c.errors.length">
-                            <div class="row">
-                                <div class="col-xs-12 text-left info-doc-heading-4">Error Messages</div>
-                            </div>
-                            <div class="col-xs-1"></div>
-                            <div class="col-xs-11">
-                                <div class="row info-doc-col-header">
-                                    <div class="col-xs-1 text-left info-doc-col-header">code</div>
-                                    <div class="col-xs-11 text-left info-doc-col-header">message</div>
-                                </div>
-                                <div ng-repeat="e in c.errors">
-                                    <div class="row info-doc-row">
-                                        <div class="col-xs-1 text-left info-doc-col">{{ e.code }}</div>
-                                        <div class="col-xs-11 text-left info-doc-col">{{ e.message }}</div>
-                                    </div>
-                                    <div class="row info-doc-row">
-                                        <div class="col-xs-1 text-left info-doc-col"> &nbsp; </div>
-                                        <div class="col-xs-11 text-left info-doc-col">{{ e.explanation }}</div>
-                                   </div>
-                                    <div class="row info-doc-row">
-                                        <div class="col-xs-1 text-left info-doc-col"> &nbsp; </div>
-                                        <div class="col-xs-11 text-left info-doc-col">{{ e.resolution }}</div>
-                                   </div>
-                                </div>
-                                <div class="row info-doc-bottom-row" style="height: 10px;"></div>
-                            </div>
-                            <div class="row" style="height: 5px;"></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-12 text-left info-doc-heading-4">Example</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-12 text-left apidoc-example">{{ c.example }}</div>
-                        </div>
-                    </div>
+              </div>
+              <div ng-repeat="f in d.fields">
+                <div class="row info-doc-row">
+                  <div class="col-xs-5 text-left info-doc-col">
+                    {{ f.name }}
+                  </div>
+                  <div class="col-xs-2 text-left info-doc-col">
+                    {{ f.type }}
+                  </div>
+                  <div class="col-xs-5 text-left info-doc-col">
+                    {{ f.description }}
+                  </div>
                 </div>
+              </div>
+              <div class="row info-doc-bottom-row" style="height: 45px;"></div>
             </div>
-            <div class="row" style="height: 20px;"></div>
-            <div class="row">
-                <div class="col-xs-4 text-center">
-                    <button type="button" class="btn btn-default btn-default-tair" ng-click="switchTab('landing')">BACK</button>
-                </div>
-            </div>
-            <div class="row" style="height: 40px;"></div>
+          </div>
         </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 text-left info-doc-heading-2">API Calls</div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div ng-repeat="c in calls" class="info-doc-table">
+            <div class="row" style="height: 30px;"></div>
+            <div class="row">
+              <div class="col-xs-12 text-left info-doc-heading-3">
+                {{ c.header }}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12 text-left apidoc-call-summary">
+                {{ c.summary }}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12 text-left apidoc-call">
+                {{ c.op }} {{ c.uri }}
+              </div>
+            </div>
+            <div class="row" style="height: 5px;"></div>
+            <div class="row">
+              <div class="col-xs-12 text-left apidoc-returns">
+                Returns {{ c.returns }}
+              </div>
+            </div>
+            <div class="row" style="height: 5px;"></div>
+            <div ng-show="c.parameters.length">
+              <div class="row">
+                <div class="col-xs-12 text-left info-doc-heading-4">
+                  Query Parameters
+                </div>
+              </div>
+              <div class="col-xs-1"></div>
+              <div class="col-xs-11">
+                <div class="row info-doc-col-header">
+                  <div class="col-xs-5 text-left info-doc-col-header">name</div>
+                  <div class="col-xs-2 text-left info-doc-col-header">type</div>
+                  <div class="col-xs-5 text-left info-doc-col-header">
+                    description
+                  </div>
+                </div>
+                <div ng-repeat="p in c.parameters">
+                  <div class="row info-doc-row">
+                    <div class="col-xs-5 text-left info-doc-col">
+                      {{ p.name }}
+                    </div>
+                    <div class="col-xs-2 text-left info-doc-col">
+                      {{ p.type }}
+                    </div>
+                    <div class="col-xs-5 text-left info-doc-col">
+                      {{ p.description }}
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="row info-doc-bottom-row"
+                  style="height: 10px;"
+                ></div>
+              </div>
+              <div class="row" style="height: 5px;"></div>
+            </div>
+            <div ng-show="c.body_parameters.length">
+              <div class="row">
+                <div class="col-xs-12 text-left info-doc-heading-4">
+                  Body Parameters
+                </div>
+              </div>
+              <div class="col-xs-1"></div>
+              <div class="col-xs-11">
+                <div class="row info-doc-col-header">
+                  <div class="col-xs-5 text-left info-doc-col-header">name</div>
+                  <div class="col-xs-2 text-left info-doc-col-header">type</div>
+                  <div class="col-xs-5 text-left info-doc-col-header">
+                    description
+                  </div>
+                </div>
+                <div ng-repeat="bp in c.body_parameters">
+                  <div class="row info-doc-row">
+                    <div class="col-xs-5 text-left info-doc-col">
+                      {{ bp.name }}
+                    </div>
+                    <div class="col-xs-2 text-left info-doc-col">
+                      {{ bp.type }}
+                    </div>
+                    <div class="col-xs-5 text-left info-doc-col">
+                      {{ bp.description }}
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="row info-doc-bottom-row"
+                  style="height: 10px;"
+                ></div>
+              </div>
+              <div class="row" style="height: 5px;"></div>
+            </div>
+            <div ng-show="c.errors.length">
+              <div class="row">
+                <div class="col-xs-12 text-left info-doc-heading-4">
+                  Error Messages
+                </div>
+              </div>
+              <div class="col-xs-1"></div>
+              <div class="col-xs-11">
+                <div class="row info-doc-col-header">
+                  <div class="col-xs-1 text-left info-doc-col-header">code</div>
+                  <div class="col-xs-11 text-left info-doc-col-header">
+                    message
+                  </div>
+                </div>
+                <div ng-repeat="e in c.errors">
+                  <div class="row info-doc-row">
+                    <div class="col-xs-1 text-left info-doc-col">
+                      {{ e.code }}
+                    </div>
+                    <div class="col-xs-11 text-left info-doc-col">
+                      {{ e.message }}
+                    </div>
+                  </div>
+                  <div class="row info-doc-row">
+                    <div class="col-xs-1 text-left info-doc-col">&nbsp;</div>
+                    <div class="col-xs-11 text-left info-doc-col">
+                      {{ e.explanation }}
+                    </div>
+                  </div>
+                  <div class="row info-doc-row">
+                    <div class="col-xs-1 text-left info-doc-col">&nbsp;</div>
+                    <div class="col-xs-11 text-left info-doc-col">
+                      {{ e.resolution }}
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="row info-doc-bottom-row"
+                  style="height: 10px;"
+                ></div>
+              </div>
+              <div class="row" style="height: 5px;"></div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12 text-left info-doc-heading-4">Example</div>
+            </div>
+            <div class="row">
+              <div class="col-xs-12 text-left apidoc-example">
+                {{ c.example }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="height: 20px;"></div>
+      <div class="row">
+        <div class="col-xs-4 text-center">
+          <button
+            type="button"
+            class="btn btn-default btn-default-tair"
+            ng-click="switchTab('landing')"
+          >
+            BACK
+          </button>
+        </div>
+      </div>
+      <div class="row" style="height: 40px;"></div>
     </div>
+  </div>
 </div>

@@ -4,22 +4,22 @@
  */
 
 angular.module('platform-ui.adminportal.role').factory(
-	/* Name */
-	'RoleModel',
+  /* Name */
+  'RoleModel',
 
-	/* Dependencies */
-	[
-
-	function () {
-		return {
-		    title: 'Role',
-		    email: null,
-		    partyInfo: {},
-                    /*partyInfo: {
+  /* Dependencies */
+  [
+    function () {
+      return {
+        title: 'Role',
+        email: null,
+        partyInfo: {},
+        /*partyInfo: {
 			partyId:null,
 			partyType:null,
                         name:'GetExp',
                     },*/
-		};
-	}
-]);
+      }
+    },
+  ]
+)

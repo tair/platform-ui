@@ -3,19 +3,21 @@
  * Model for root /index.html template that wraps every other view.
  */
 
-angular.module('platform-ui.adminportal.role.institution.subscription.renewal').factory(
-	/* Name */
-	'SubscriptionRenewalModel',
+angular
+  .module('platform-ui.adminportal.role.institution.subscription.renewal')
+  .factory(
+    /* Name */
+    'SubscriptionRenewalModel',
 
-	/* Dependencies */
-	[
-
-	function () {
-		return {
-			title: 'SUBSCRIPTION',
-			uiparams: {
-				"colwidth": 'col-xs-11',
-			}
-		};
-	}
-]);
+    /* Dependencies */
+    [
+      function () {
+        return {
+          title: 'SUBSCRIPTION',
+          uiparams: {
+            colwidth: 'col-xs-11',
+          },
+        }
+      },
+    ]
+  )

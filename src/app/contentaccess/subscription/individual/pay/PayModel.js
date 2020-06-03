@@ -4,13 +4,13 @@
  */
 
 angular.module('platform-ui.contentaccess.subscription.individual.pay').factory(
-    /* Name */
-    'PayModel',
-    
-    /* Dependencies */
-    [
-	function (PayModel) {
-	    return {
-	    }
-	}
-    ]);
+  /* Name */
+  'PayModel',
+
+  /* Dependencies */
+  [
+    function (PayModel) {
+      return {}
+    },
+  ]
+)

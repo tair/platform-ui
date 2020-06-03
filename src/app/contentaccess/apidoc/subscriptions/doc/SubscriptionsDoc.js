@@ -2,16 +2,12 @@
  * Doc Module
  */
 
-angular.module(
-	/* Name */
-	'platform-ui.contentaccess.apidoc.subscriptions.doc',
+angular
+  .module(
+    /* Name */
+    'platform-ui.contentaccess.apidoc.subscriptions.doc',
 
-	/* Dependencies */
-	[
-	'ui.router',
-	'service.title'
-	])
-	.config(
-		function ($stateProvider) {
-		});
-
+    /* Dependencies */
+    ['ui.router', 'service.title']
+  )
+  .config(function ($stateProvider) {})
