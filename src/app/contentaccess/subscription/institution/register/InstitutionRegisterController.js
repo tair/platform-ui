@@ -45,7 +45,7 @@ angular
             $scope.formdata.lastName != null &&
             $scope.formdata.email != null &&
             $scope.formdata.institution != null &&
-            $scope.formdata.institution.length <= 5
+            $scope.formdata.institution.length > 5
           )
         }
 

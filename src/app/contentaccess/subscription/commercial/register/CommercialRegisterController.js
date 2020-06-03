@@ -39,6 +39,7 @@ angular
             $scope.formdata.lastName != null &&
             $scope.formdata.email != null &&
             $scope.formdata.institution != null &&
+            $scope.formdata.institution.length > 5 &&
             ($scope.formdata.individualLicense ||
               $scope.formdata.companyLicense)
           )
@@ -60,6 +61,10 @@ angular
           }
           if ($scope.formdata.institution == null) {
             $scope.errors = 'Please provide an email.'
+            return false
+          }
+          if ($scope.formdata.institution.length <= 5) {
+            $scope.errors = 'Please enter the full name of your institution.'
             return false
           }
           if (
