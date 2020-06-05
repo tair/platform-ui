@@ -58,6 +58,7 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
 
         function saveUploadedImageAndData() {
             var fileName = $scope.imageFile.name;
+            // get S3 signed Url
             var postData = {
                 "key":fileName,
                 "bucket":$scope.S3BucketName
@@ -66,38 +67,31 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
             $http({
                 url: apiUrl,
                 data: JSON.stringify(postData),
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'}
+                method: "POST",
+                headers: {"Content-Type": "application/json"}
             }).success(function(data, status, headers, config){
-                console.log(data);
-                console.log(data.url);
+                let uploadUrl = data.url;
+                console.log(uploadUrl);
+                
+                $http({
+                    url: uploadUrl,
+                    data: $scope.imageFile,
+                    method: 'PUT',
+                    headers: {"Content-Type": "multipart/form-data"}
+                }).success(function(data, status, headers, config){
+                    $scope.imageInfo.imageUrl = "https://" + $scope.S3BucketName + ".s3-us-west-2.amazonaws.com/" + fileName;
+                    // do not remove old logo for now
+                    console.log("uploaded image");
+                    // saveDataToDB();
+                    return true;
+                }).error(function(data, status, headers, config) {
+                    bootbox.alert("There was an error uploading the logo: " + data['error']);
+                    return false;
+                });   
             }).error(function(data, status, headers, config) {
-                bootbox.alert("Failed to get signed url: " + data['error']);
+                bootbox.alert("There was an error uploading the logo. Failed to get signed url: " + data['error']);
+                return false;
             });
-            // var upload = new AWS.S3.ManagedUpload({
-            //     params: {
-            //       Bucket: $scope.S3BucketName,
-            //       Key: fileName,
-            //       Body: $scope.imageFile,
-            //       ACL: "public-read"
-            //     }
-            // });
-
-            // var promise = upload.promise();
-
-            // promise.then(
-            //     function(data) {
-            //         alert("Successfully uploaded the logo.");
-            //         $scope.imageInfo.imageUrl = "https://" + $scope.S3BucketName + ".s3-us-west-2.amazonaws.com/" + fileName;
-            //         // do not remove old logo for now
-            //         saveDataToDB();
-            //         return true;
-            //     },
-            //     function(err) {
-            //         alert("There was an error uploading the logo: ", err.message);
-            //         return false;
-            //     }
-            // );
         }
 
         function saveDataToDB() {
