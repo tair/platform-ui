@@ -58,21 +58,21 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
 
         function saveUploadedImageAndData() {
             var fileName = $scope.imageFile.name;
-            var data = {
+            var postData = {
                 "key":fileName,
                 "bucket":$scope.S3BucketName
-            }
+            };
             var apiUrl = "https://q0b0t0y6i9.execute-api.us-west-2.amazonaws.com/getsignedurl";
             $http({
                 url: apiUrl,
-                data: data,
+                data: JSON.stringify(postData),
                 method: 'POST',
-                headers: {'Content-Type': 'application/json'},
+                headers: {'Content-Type': 'application/json'}
             }).success(function(data, status, headers, config){
                 console.log(data);
                 console.log(data.url);
             }).error(function(data, status, headers, config) {
-                bootbox.alert("Failed to get signed url " + data['error']);
+                bootbox.alert("Failed to get signed url: " + data['error']);
             });
             // var upload = new AWS.S3.ManagedUpload({
             //     params: {
