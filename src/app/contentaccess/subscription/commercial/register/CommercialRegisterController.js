@@ -64,7 +64,7 @@ angular
             return false
           }
           if ($scope.formdata.institution.length <= 5) {
-            $scope.errors = 'Please enter the full name of your institution.'
+            $scope.errors = 'Please enter the full name of your company.'
             return false
           }
           if (
@@ -107,6 +107,9 @@ angular
               '.'
           })
           $scope.formdata = CommercialRegisterModel.formdata
+          // document
+          //   .getElementById('commercial')
+          //   .setCustomValidity('Please enter the full name of your company.')
         }
       },
     ]

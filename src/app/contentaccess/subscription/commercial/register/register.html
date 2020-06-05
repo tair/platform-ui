@@ -70,7 +70,9 @@
                     class="form-control"
                     id="commercial"
                     ng-model="formdata.institution"
+                    placeholder="ex. Bioinformatics Galore (not BG)"
                     required
+                    custom-validation-error="formdata.institution.length < 6 && formdata.institution.length > 0 ? 'Please enter the full name of your company.' : ''"
                   />
                 </div>
               </div>
