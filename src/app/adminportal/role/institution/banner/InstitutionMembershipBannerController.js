@@ -26,10 +26,11 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
                 if (!validateInfo()) {
                     return false;
                 }
-                //Save image
+                // save name only
                 if (!$scope.imageFile) {
-                    // saveDataToDB();
+                    saveDataToDB();
                 }
+                // save name and image
                 saveUploadedImageAndData();
                 
             }
@@ -73,7 +74,6 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
                 headers: {"Content-Type":"application/json"}
             }).success(function(data, status, headers, config){
                 var uploadUrl = data.url;
-                console.log(uploadUrl);
                 
                 $http({
                     url: uploadUrl,
@@ -83,8 +83,7 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
                 }).success(function(data, status, headers, config){
                     $scope.imageInfo.imageUrl = "https://" + $scope.S3BucketName + ".s3-us-west-2.amazonaws.com/" + fileName;
                     // do not remove old logo for now
-                    console.log("uploaded image");
-                    // saveDataToDB();
+                    saveDataToDB();
                     return true;
                 }).error(function(data, status, headers, config) {
                     bootbox.alert("There was an error uploading the logo: " + data['error']);
