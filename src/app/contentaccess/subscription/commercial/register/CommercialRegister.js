@@ -10,7 +10,7 @@ angular
     'platform-ui.contentaccess.subscription.commercial.register',
 
     /* Dependencies */
-    ['ui.router', 'service.title']
+    ['ui.router', 'service.title', 'customerrmsg']
   )
   .config(function ($stateProvider) {
     /*$stateProvider.state('subscription', {
