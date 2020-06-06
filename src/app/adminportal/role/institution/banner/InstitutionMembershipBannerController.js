@@ -26,12 +26,13 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
                 if (!validateInfo()) {
                     return false;
                 }
-                // save name only
                 if (!$scope.imageFile) {
+                    // save name only
                     saveDataToDB();
+                } else {
+                    // save name and image
+                    saveUploadedImageAndData();
                 }
-                // save name and image
-                saveUploadedImageAndData();
                 
             }
             $scope.edit = !$scope.edit;
