@@ -40,6 +40,7 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
         $scope.cancel = function() {
             resetByCache();
             $scope.imageFile = undefined;
+            angular.element(document.getElementById("#logo-upload")).val(null);
             $scope.edit = false;
         }
 
