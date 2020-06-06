@@ -165,7 +165,7 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
 
         function initDataModel() {
             var dataModel = Object.assign({}, InstitutionMembershipBannerModel.imageInfo);
-            dataModel.imageInfo.partyId = $scope.institutionId;
+            dataModel.partyId = $scope.institutionId;
             return dataModel;
         }
 
