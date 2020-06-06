@@ -58,26 +58,28 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
 
         function saveUploadedImageAndData() {
             var fileName = $scope.imageFile.name;
+            var imageType = $scope.imageFile.type;
             // get S3 signed Url
             var postData = {
                 "key":fileName,
-                "bucket":$scope.S3BucketName
+                "bucket":$scope.S3BucketName,
+                "contentType":imageType
             };
             var apiUrl = "https://q0b0t0y6i9.execute-api.us-west-2.amazonaws.com/getsignedurl";
             $http({
                 url: apiUrl,
                 data: JSON.stringify(postData),
                 method: "POST",
-                headers: {"Content-Type": "application/json"}
+                headers: {"Content-Type":"application/json"}
             }).success(function(data, status, headers, config){
-                let uploadUrl = data.url;
+                var uploadUrl = data.url;
                 console.log(uploadUrl);
                 
                 $http({
                     url: uploadUrl,
                     data: $scope.imageFile,
                     method: 'PUT',
-                    headers: {"Content-Type": "multipart/form-data"}
+                    headers: {"Content-Type":imageType, "x-amz-acl":"public-read"}
                 }).success(function(data, status, headers, config){
                     $scope.imageInfo.imageUrl = "https://" + $scope.S3BucketName + ".s3-us-west-2.amazonaws.com/" + fileName;
                     // do not remove old logo for now
