@@ -40,7 +40,9 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
         $scope.cancel = function() {
             resetInfoByCache();
             clearImageFile();
-            $scope.edit = false;
+            if (!$scope.isNew) {
+                $scope.edit = false;
+            }
         }
 
         $scope.uploadFile = function(element) {   
@@ -145,7 +147,7 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
             $scope.imageInfo = initDataModel();
             $scope.imageInfoPrev = initDataModel();
             $scope.imageFile = undefined;
-            $scope.edit = true;
+            $scope.edit = false;
             $scope.isNew = true;
             $scope.S3BucketName = "phx-subscribed-institution-logos";
             $http({
@@ -156,8 +158,10 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
                     $scope.imageInfo.name = data[0].name;
                     $scope.imageInfo.imageUrl = data[0].imageUrl;
                     cacheInfo();
-                    $scope.edit = false;
                     $scope.isNew = false;
+                } else {
+                    // show edit mode for no banner info institution
+                    $scope.edit = true;
                 }
             }).error(function(data, status, headers, config){
                 $("#banner-info").hide();
