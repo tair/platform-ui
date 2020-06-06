@@ -38,9 +38,8 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
         }
 
         $scope.cancel = function() {
-            resetByCache();
-            $scope.imageFile = undefined;
-            angular.element(document.getElementById("#logo-upload")).val(null);
+            resetInfoByCache();
+            clearImageFile();
             $scope.edit = false;
         }
 
@@ -176,9 +175,14 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
             $scope.imageInfoPrev.imageUrl = $scope.imageInfo.imageUrl;
         }
 
-        function resetByCache() {
+        function resetInfoByCache() {
             $scope.imageInfo.name = $scope.imageInfoPrev.name;
             $scope.imageInfo.imageUrl = $scope.imageInfoPrev.imageUrl;
+        }
+
+        function clearImageFile() {
+            $scope.imageFile = undefined;
+            angular.element(document.getElementById("#logo-upload")).val(null);
         }
     }
 ]);
