@@ -68,6 +68,7 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
                 "contentType":imageType
             };
             var apiUrl = "https://q0b0t0y6i9.execute-api.us-west-2.amazonaws.com/getsignedurl";
+            
             $http({
                 url: apiUrl,
                 data: JSON.stringify(postData),
@@ -85,6 +86,7 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
                     $scope.imageInfo.imageUrl = "https://" + $scope.S3BucketName + ".s3-us-west-2.amazonaws.com/" + fileName;
                     // do not remove old logo for now
                     saveDataToDB();
+                    clearImageFile();
                 }).error(function(data, status, headers, config) {
                     bootbox.alert("There was an error uploading the logo: " + data['error']);
                 });   
@@ -182,7 +184,8 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
 
         function clearImageFile() {
             $scope.imageFile = undefined;
-            angular.element(document.getElementById("#logo-upload")).val(null);
+            var fileElement = angular.element('#logo-upload');
+            angular.element(fileElement).val(null);
         }
     }
 ]);
