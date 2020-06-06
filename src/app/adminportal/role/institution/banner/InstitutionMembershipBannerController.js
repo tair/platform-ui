@@ -90,10 +90,18 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
                     saveDataToDB();
                     clearImageFile();
                 }).error(function(data, status, headers, config) {
-                    bootbox.alert("There was an error uploading the logo: " + data['error']);
+                    if (data) {
+                        bootbox.alert("There was an error uploading the logo: " + data['error']);
+                    } else {
+                        bootbox.alert("There was an error uploading the logo.");
+                    }
                 });   
             }).error(function(data, status, headers, config) {
-                bootbox.alert("There was an error uploading the logo. Failed to get signed url: " + data['error']);
+                if (data) {
+                    bootbox.alert("There was an error uploading the logo. Failed to get signed url: " + data['error']);
+                } else {
+                    bootbox.alert("There was an error uploading the logo. Failed to get signed url.");
+                }
             });
         }
 
@@ -115,7 +123,11 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
                     $scope.isNew = false;
                     cacheInfo();
                 }).error(function(data, status, headers, config) {
-                    bootbox.alert("Failed to create banner info: " + data['error']);
+                    if (data) {
+                        bootbox.alert("Failed to create banner info: " + data['error']);
+                    } else {
+                        bootbox.alert("Failed to create banner info.");
+                    }
                     $scope.cancel();
                 });
             } else {
@@ -128,7 +140,11 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
                     }).success(function(data, status, headers, config){
                         cacheInfo();
                     }).error(function(data, status, headers, config) {
-                        bootbox.alert("Failed to update banner info: "+ data['error']);
+                        if (data) {
+                            bootbox.alert("Failed to update banner info: "+ data['error']);
+                        } else {
+                            bootbox.alert("Failed to update banner info.");
+                        }
                         $scope.cancel();
                     });
                 } 
