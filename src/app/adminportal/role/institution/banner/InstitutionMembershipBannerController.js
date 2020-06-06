@@ -39,6 +39,7 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
 
         $scope.cancel = function() {
             resetByCache();
+            $scope.imageFile = undefined;
             $scope.edit = false;
         }
 
