@@ -84,14 +84,11 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
                     $scope.imageInfo.imageUrl = "https://" + $scope.S3BucketName + ".s3-us-west-2.amazonaws.com/" + fileName;
                     // do not remove old logo for now
                     saveDataToDB();
-                    return true;
                 }).error(function(data, status, headers, config) {
                     bootbox.alert("There was an error uploading the logo: " + data['error']);
-                    return false;
                 });   
             }).error(function(data, status, headers, config) {
                 bootbox.alert("There was an error uploading the logo. Failed to get signed url: " + data['error']);
-                return false;
             });
         }
 
@@ -140,12 +137,10 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
 
         function init() {
             $scope.setCurrentTab(InstitutionMembershipBannerModel.currentTab);
-            $scope.imageInfo = InstitutionMembershipBannerModel.imageInfo;
-            // make shallow copy of model
-            $scope.imageInfoPrev = Object.assign({}, InstitutionMembershipBannerModel.imageInfo);
             $scope.uiparams = InstitutionMembershipBannerModel.uiparams;
-            $scope.imageInfo.partyId = $scope.institutionId;
-            $scope.imageInfoPrev.partyId = $scope.imageInfo.partyId;
+            // make shallow copy of model
+            $scope.imageInfo = initDataModel();
+            $scope.imageInfoPrev = initDataModel();
             $scope.imageFile = undefined;
             $scope.edit = true;
             $scope.isNew = true;
@@ -166,6 +161,12 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
                 $("#error-msg").show();
                 $("#error-msg-text").html("Cannot load banner information. Please refresh the page or try again later.");
             });
+        }
+
+        function initDataModel() {
+            var dataModel = Object.assign({}, InstitutionMembershipBannerModel.imageInfo);
+            dataModel.imageInfo.partyId = $scope.institutionId;
+            return dataModel;
         }
 
         function cacheInfo() {
