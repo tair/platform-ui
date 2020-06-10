@@ -149,7 +149,10 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
                         }
                         return false;
                     });
-                } 
+                }
+                // no change
+                $scope.edit = false;
+                return true; 
             }
         }
 
