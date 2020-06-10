@@ -21,19 +21,16 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
     function ($scope, $http, $cookies, $window, $location, $state, Title, InstitutionMembershipBannerModel) {
         init();
         
-        $scope.edit_fields = function() {
-            if ($scope.edit==true) {
-                if (!validateInfo()) {
-                    return false;
-                }
-                if (!$scope.imageFile) {
-                    // save name only
-                    saveDataToDB();
-                } else {
-                    // save name and image
-                    saveUploadedImageAndData();
-                }
-                
+        $scope.save_fields = function() {
+            if (!validateInfo()) {
+                return false;
+            }
+            if (!$scope.imageFile) {
+                // save name only
+                saveDataToDB();
+            } else {
+                // save name and image
+                saveUploadedImageAndData();
             }
         }
 
