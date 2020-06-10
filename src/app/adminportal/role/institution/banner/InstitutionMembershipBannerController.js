@@ -87,8 +87,9 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
                 }).success(function(data, status, headers, config){
                     $scope.imageInfo.imageUrl = "https://" + $scope.S3BucketName + ".s3-us-west-2.amazonaws.com/" + fileName;
                     // do not remove old logo for now
-                    saveDataToDB();
-                    clearImageFile();
+                    if (saveDataToDB()) {
+                        clearImageFile();
+                    }
                 }).error(function(data, status, headers, config) {
                     if (data) {
                         bootbox.alert("There was an error uploading the logo: " + data['error']);
@@ -123,12 +124,14 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
                     cacheInfo();
                     $scope.isNew = false;
                     $scope.edit = false;
+                    return true;
                 }).error(function(data, status, headers, config) {
                     if (data) {
                         bootbox.alert("Failed to create banner info: " + data['error']);
                     } else {
                         bootbox.alert("Failed to create banner info.");
                     }
+                    return false;
                 });
             } else {
                 if (hasChange()) {
@@ -140,12 +143,14 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
                     }).success(function(data, status, headers, config){
                         cacheInfo();
                         $scope.edit = false;
+                        return true;
                     }).error(function(data, status, headers, config) {
                         if (data) {
                             bootbox.alert("Failed to update banner info: "+ data['error']);
                         } else {
                             bootbox.alert("Failed to update banner info.");
                         }
+                        return false;
                     });
                 } 
             }
