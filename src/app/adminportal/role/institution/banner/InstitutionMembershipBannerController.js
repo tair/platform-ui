@@ -35,7 +35,6 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
                 }
                 
             }
-            $scope.edit = !$scope.edit;
         }
 
         $scope.cancel = function() {
@@ -121,8 +120,9 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
                     method: 'POST',
                     headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                 }).success(function(data, status, headers, config){
-                    $scope.isNew = false;
                     cacheInfo();
+                    $scope.isNew = false;
+                    $scope.edit = false;
                 }).error(function(data, status, headers, config) {
                     if (data) {
                         bootbox.alert("Failed to create banner info: " + data['error']);
@@ -139,6 +139,7 @@ angular.module('platform-ui.adminportal.role.institution.banner').controller(
                         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                     }).success(function(data, status, headers, config){
                         cacheInfo();
+                        $scope.edit = false;
                     }).error(function(data, status, headers, config) {
                         if (data) {
                             bootbox.alert("Failed to update banner info: "+ data['error']);
