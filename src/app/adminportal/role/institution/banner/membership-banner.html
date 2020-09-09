@@ -34,7 +34,7 @@
 							Logo
 						</div></div>
 						<div class="row text-left"><div class="col-xs-12">
-							<img ng-show="imageInfo.imageUrl" src="{{imageInfo.imageUrl}}">
+							<img class="logo-upload" ng-show="imageInfo.imageUrl" src="{{imageInfo.imageUrl}}">
 							<div class="row" style="height: 20px;"></div>
 							<div class="row label">Upload Logo</div>
 							<input type="file" name="upload" id="logo-upload" accept="image/*" ng-disabled="!edit" onchange="angular.element(this).scope().uploadFile(this)"/>
@@ -110,5 +110,10 @@
 .label {
 	font-size: 16px;
 	color: #868686;
+}
+
+.logo-upload {
+  max-height: 100px;
+  max-width: 350px;
 }
 </style>
