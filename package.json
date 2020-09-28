@@ -9,7 +9,7 @@
 		"pretty": "prettier --write \"src/app/**/*.{js,html,json}\""
 	},
 	"dependencies": {
-		"prettier": "^2.0.5"
+		"prettier": "2.0.5"
 	},
 	"devDependencies": {
 		"grunt": "^1.1.0",
