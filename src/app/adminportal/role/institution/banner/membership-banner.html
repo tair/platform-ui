@@ -1,0 +1,119 @@
+<div class="row" style="height: 56px;"></div>
+<div class="panel panel-default block-center" style="width: 1060px;">
+	<div class="panel-heading lt-institution-profile-panel-heading lt-font-bold lt-font-aliasing" style="font-size: 16px; color: #ffffff;">
+		MEMBERSHIP BANNER
+	</div>
+	<div class="panel-body">
+		<div class="row" style="height: 40px;"></div>
+		<div class="row" id="banner-info">
+			<div class="row" ng-show="!edit">
+				<div class="{{uiparams.colwidth}} block-center">
+					<div class="block-center text-left lt-font lt-font-color lt-font-aliasing" style="font-size: 24px;">
+						MorphoBank Banner
+					</div>
+				</div>
+				<div class="row" style="height: 10px;"></div>
+				<div class="row">
+					<div id="morphobank-banner-wrapper" style="display: block;">
+						<div class="member"><img src="{{imageInfo.imageUrl}}"><div class="member-text"><span>We gratefully acknowledge membership support from</span><br><span class="institution-name">{{imageInfo.name}}</span></div></div>
+					</div>
+				</div>
+			</div>
+			<div class="row" ng-show="edit">
+				<div class="{{uiparams.colwidth}} block-center">
+					<div class="col-xs-5 block-left">
+						<div class="row text-left lt-font lt-font-aliasing label"><div class="col-xs-12">
+							Display Name
+						</div></div>
+						<div class="row text-left"><div class="col-xs-12">
+							<input type="text" class="lt-institution-banner-input" ng-model="imageInfo.name" ng-disabled="!edit" class="lt-with-border"></input>
+						</div></div>
+					</div>
+					<div class="col-xs-5 block-right">
+						<div class="row text-left lt-font lt-font-aliasing label"><div class="col-xs-12">
+							Logo
+						</div></div>
+						<div class="row text-left"><div class="col-xs-12">
+							<img class="logo-upload" ng-show="imageInfo.imageUrl" src="{{imageInfo.imageUrl}}">
+							<div class="row" style="height: 20px;"></div>
+							<div class="row label">Upload Logo</div>
+							<input type="file" name="upload" id="logo-upload" accept="image/*" ng-disabled="!edit" onchange="angular.element(this).scope().uploadFile(this)"/>
+						</div></div>
+					</div>
+				</div>
+			</div>
+			<div class="row" style="height: 55px;"></div>
+			<div class="row">	
+				<div class="{{uiparams.colwidth}} block-center text-center">
+                    <button type="button" class="btn btn-default" ng-show="!edit" ng-click="edit=true">Edit</button>
+					<button type="button" class="btn btn-default" ng-show="edit" ng-click="save_fields();">Save</button>
+					<span style="width: 10px;"></span>
+					<button type="button" class="btn btn-default" ng-show="edit" ng-click="cancel();">Cancel</button>
+				</div>
+			</div>
+		</div>
+		<div class="row" id="error-msg" style="display: none">
+			<div class="{{uiparams.colwidth}} block-center">
+				<div class="block-center text-center lt-font lt-font-color lt-font-aliasing" style="font-size: 24px;" id="error-msg-text">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<style>
+#morphobank-banner-wrapper {
+  color: #7d7d7d;
+  display: none;
+  border-top: 4px solid #EE7B19;
+  border-bottom: 4px solid #EE7B19;
+  font-weight: normal;
+  height: 125px;
+  padding-top: 5px;
+  line-height: 200%;
+  margin: auto;
+  width: 980px;
+}
+
+#morphobank-banner-wrapper div.member {
+  text-align: center;
+  width: 100%;
+  position: relative;
+  top: 100%;
+  transform: translateY(-100%);
+  padding-bottom: 5px;
+}
+
+#morphobank-banner-wrapper div.member img {
+  height: auto;
+  margin: 0 20px;
+  max-height: 100px;
+  max-width: 350px;
+  width: auto;
+}
+
+#morphobank-banner-wrapper div.member div.member-text {
+  display: inline-block;
+  font-weight: normal;
+  line-height: 200%;
+  font-size: 16px;
+  margin-left: 100px;
+  vertical-align: bottom;
+}
+
+#morphobank-banner-wrapper div.member span.institution-name {
+  color: #1e324d;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.label {
+	font-size: 16px;
+	color: #868686;
+}
+
+.logo-upload {
+  max-height: 100px;
+  max-width: 350px;
+}
+</style>

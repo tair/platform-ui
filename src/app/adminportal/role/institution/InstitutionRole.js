@@ -72,4 +72,14 @@ angular
           },
         },
       })
+      .state('role.institution.banner', {
+        url: '/membership-banner',
+        views: {
+          institution: {
+            controller: 'InstitutionMembershipBannerController',
+            templateUrl:
+              'adminportal/role/institution/banner/membership-banner.html',
+          },
+        },
+      })
   })

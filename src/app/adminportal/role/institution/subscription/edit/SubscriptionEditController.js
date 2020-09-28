@@ -129,6 +129,36 @@ angular
               dateFormat: 'yy-mm-dd',
             })
           })
+          if ($scope.partnerId == 'morphobank') {
+            // check banner image info
+            $http({
+              url:
+                $scope.apiUri +
+                '/parties/imageinfo/?partyId=' +
+                $scope.institutionId +
+                '&credentialId=' +
+                $scope.credentialId +
+                '&secretKey=' +
+                encodeURIComponent($scope.secretKey),
+              method: 'GET',
+            })
+              .success(function (data, status, headers, config) {
+                if (data.length > 0) {
+                  // do nothing
+                } else {
+                  $('#warning-msg').show()
+                  $('#warning-msg-text').html(
+                    'Please set up banner info before adding subscription'
+                  )
+                }
+              })
+              .error(function (data, status, headers, config) {
+                $('#warning-msg').show()
+                $('#warning-msg-text').html(
+                  'Please set up banner info before adding subscription'
+                )
+              })
+          }
         }
       },
     ]

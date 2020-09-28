@@ -133,7 +133,7 @@ angular
               ret.push(partners[i])
             }
           }
-          console.log(ret)
+          // console.log(ret)
           return ret
         }
         $scope.toConsortium = function (consortium) {
@@ -142,7 +142,7 @@ angular
           })
         }
         function init() {
-          console.log($state)
+          // console.log($state)
           $scope.uiparams = SubscriptionListModel.uiparams
           //		if(!$scope.credentialId || !$scope.secretKey){
           //			$state.go('ltlogin');
