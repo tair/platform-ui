@@ -18,6 +18,7 @@ angular
       'platform-ui.adminportal.role.institution.subscription',
       'platform-ui.adminportal.role.institution.profile',
       'platform-ui.adminportal.role.institution.usage',
+      'platform-ui.adminportal.role.institution.banner',
     ]
   )
   //    .config('$urlRouterProvider',function ($urlRouterProvider) {
