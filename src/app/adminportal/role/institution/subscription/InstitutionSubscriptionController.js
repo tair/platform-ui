@@ -31,7 +31,7 @@ angular
         init()
 
         function init() {
-          console.log($state)
+          // console.log($state);
           $scope.setCurrentTab(InstitutionSubscriptionModel.currentTab)
           $scope.partners = InstitutionSubscriptionModel.partners
           $scope.activeSubscriptions =
