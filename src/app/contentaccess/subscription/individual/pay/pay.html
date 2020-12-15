@@ -173,7 +173,7 @@
                 class="form-control"
                 id="country"
                 ng-model="formdata.country"
-                ng-options="c.name as c.name for c in countries"
+                ng-options="c.name as c.name for c in countries | orderBy: 'name'"
                 required
               >
                 <option value="">--Choose Country--</option>
