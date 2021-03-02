@@ -93,6 +93,20 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
         }
       }
 
+      $scope.getIpRangeEndTime = function(iprange) {
+        if (iprange.expiredAt == null) {
+          return "now"
+        } else {
+          return getTimeDisplay(iprange.expiredAt)
+        }
+      }
+
+      $scope.getTimeDisplay = function(timestamp){
+        if (!timestamp) return ""
+        timeComponents = timestamp.split("T")
+        return timeComponents[0]
+      }
+
       $scope.right = function (iprange) {
         if (iprange.state == 'selected') {
           // this is the trash button at normal state
@@ -476,18 +490,22 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
         method: 'GET',
       })
         .success(function (data, status, headers, config) {
-          $scope.ipranges = []
+          ipranges = []
           for (var i = 0; i < data.length; i++) {
             entry = data[i]
-            $scope.ipranges.push({
+            ipranges.push({
               ipRangeId: entry['ipRangeId'],
               start: entry['start'],
               end: entry['end'],
               name: entry['label'],
               partyId: entry['partyId'],
+              createdAt: entry['createdAt'],
+              expiredAt: entry['expiredAt'],
               state: null,
             })
           }
+          ipranges.sort((a,b) => (a.expiredAt > b.expiredAt) ? 1 : ((b.expiredAt > a.expiredAt) ? -1 : 0))
+          $scope.ipranges = ipranges
         })
         .error(function (data, status, headers, config) {
           alert('ip range request failed')
