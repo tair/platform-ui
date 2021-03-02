@@ -27,7 +27,8 @@ module.exports = {
 		    'lib/css/hlp-13566/*',
 		    'lib/css/hlp-13566/images/*',
 		    'lib/css/fonts/*',
-		    'api/**/*.py'
+		    'api/**/*.py',
+			'lib/js/pwl-814/*' // PWL-814
 		],
 
 		app: [ 'app/**/*.js' ],

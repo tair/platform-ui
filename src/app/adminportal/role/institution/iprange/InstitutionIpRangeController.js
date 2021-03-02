@@ -82,7 +82,7 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 
       // Events that change states
       $scope.groupsMoveOver = function (iprange) {
-        if (iprange.state == null && !$scope.adding) {
+        if (iprange.state == null && !$scope.adding && isRecordActive(iprange)) {
           iprange.state = 'selected'
         }
       }
@@ -91,6 +91,25 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
         if (iprange.state == 'selected' && !$scope.adding) {
           iprange.state = null
         }
+      }
+
+      $scope.getIpRangeEndTime = function(iprange) {
+        if (isRecordActive(iprange)) {
+          return "now"
+        } else {
+          return $scope.getTimeDisplay(iprange.expiredAt)
+        }
+      }
+
+      $scope.getTimeDisplay = function(timestamp){
+        if (!timestamp) return ""
+        var dateObj = moment(timestamp, "YYYY-MM-DDTHH:mm:ssZ").toDate()
+        var local = moment(dateObj).local().format('YYYY-MM-DD')
+        return local
+      }
+
+      isRecordActive =function(iprange) {
+        return !iprange.expiredAt
       }
 
       $scope.right = function (iprange) {
@@ -385,6 +404,8 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
               end: data['end'],
               name: data['label'],
               partyId: data['partyId'],
+              createdAt: data['createdAt'],
+              expiredAt: data['expiredAt'],
               state: null,
             })
           })
@@ -452,15 +473,17 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
           data: data,
           method: 'DELETE',
         })
-          .success(function (data, status, headers, config) {})
+          .success(function (data, status, headers, config) {
+            var index = $scope.ipranges.indexOf(iprange)
+            if (index > -1) {
+              var expiredAt = data[0]['expiredAt']
+              $scope.ipranges[index].expiredAt = expiredAt
+            }
+            $scope.removeRange = null
+          })
           .error(function (data, status, headers, config) {
             alert('ip range request failed')
           })
-        var index = $scope.ipranges.indexOf(iprange)
-        if (index > -1) {
-          $scope.ipranges.splice(index, 1)
-        }
-        $scope.removeRange = null
       }
 
       // init
@@ -475,19 +498,33 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
           encodeURIComponent($scope.secretKey),
         method: 'GET',
       })
-        .success(function (data, status, headers, config) {
-          $scope.ipranges = []
+        .success(function(data, status, headers, config) {
+          ipranges = []
           for (var i = 0; i < data.length; i++) {
             entry = data[i]
-            $scope.ipranges.push({
+            ipranges.push({
               ipRangeId: entry['ipRangeId'],
               start: entry['start'],
               end: entry['end'],
               name: entry['label'],
               partyId: entry['partyId'],
+              createdAt: entry['createdAt'],
+              expiredAt: entry['expiredAt'],
               state: null,
             })
           }
+          ipranges.sort(function(a,b) {
+            if (!a.expiredAt) {
+              return -1
+            } else if (!b.expiredAt) {
+              return 1
+            } else {
+              if (a.expiredAt > b.expiredAt) return -1
+              if (b.expiredAt > a.expiredAt) return 1
+              return 0
+            }
+          })
+	        $scope.ipranges = ipranges
         })
         .error(function (data, status, headers, config) {
           alert('ip range request failed')
