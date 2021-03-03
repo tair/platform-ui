@@ -94,7 +94,7 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
       }
 
       $scope.getIpRangeEndTime = function(iprange) {
-        if (iprange.expiredAt == null) {
+        if (!iprange.expiredAt) {
           return "now"
         } else {
           return getTimeDisplay(iprange.expiredAt)
@@ -489,7 +489,7 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
           encodeURIComponent($scope.secretKey),
         method: 'GET',
       })
-        .success(function (data, status, headers, config) {
+        .success(function(data, status, headers, config) {
           ipranges = []
           for (var i = 0; i < data.length; i++) {
             entry = data[i]
@@ -504,8 +504,18 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
               state: null,
             })
           }
-          ipranges.sort((a,b) => (a.expiredAt > b.expiredAt) ? 1 : ((b.expiredAt > a.expiredAt) ? -1 : 0))
-          $scope.ipranges = ipranges
+          ipranges.sort(function(a,b) {
+            if (!a.expiredAt) {
+              return 1
+            } else if (!b.expiredAt) {
+              return -1
+            } else {
+              if (a.expiredAt > b.expiredAt) return 1
+              if (b.expiredAt > a.expiredAt) return -1
+              return 0
+            }
+          })
+	        $scope.ipranges = ipranges
         })
         .error(function (data, status, headers, config) {
           alert('ip range request failed')
