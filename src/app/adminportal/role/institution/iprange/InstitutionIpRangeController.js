@@ -82,7 +82,7 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 
       // Events that change states
       $scope.groupsMoveOver = function (iprange) {
-        if (iprange.state == null && !$scope.adding) {
+        if (iprange.state == null && !$scope.adding && isRecordActive(iprange)) {
           iprange.state = 'selected'
         }
       }
@@ -94,7 +94,7 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
       }
 
       $scope.getIpRangeEndTime = function(iprange) {
-        if (!iprange.expiredAt) {
+        if (isRecordActive(iprange)) {
           return "now"
         } else {
           return $scope.getTimeDisplay(iprange.expiredAt)
@@ -105,6 +105,10 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
         if (!timestamp) return ""
         timeComponents = timestamp.split("T")
         return timeComponents[0]
+      }
+
+      isRecordActive =function(iprange) {
+        return !iprange.expiredAt
       }
 
       $scope.right = function (iprange) {
