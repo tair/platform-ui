@@ -103,7 +103,7 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 
       $scope.getTimeDisplay = function(timestamp){
         if (!timestamp) return ""
-        timeComponents = timestamp.split("T")
+        var timeComponents = timestamp.split("T")
         return timeComponents[0]
       }
 
@@ -403,6 +403,8 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
               end: data['end'],
               name: data['label'],
               partyId: data['partyId'],
+              createdAt: data['createdAt'],
+              expiredAt: data['expiredAt'],
               state: null,
             })
           })
@@ -470,15 +472,17 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
           data: data,
           method: 'DELETE',
         })
-          .success(function (data, status, headers, config) {})
+          .success(function (data, status, headers, config) {
+            var index = $scope.ipranges.indexOf(iprange)
+            if (index > -1) {
+              var expiredAt = data[0]['expiredAt']
+              $scope.ipranges[index].expiredAt = expiredAt
+            }
+            $scope.removeRange = null
+          })
           .error(function (data, status, headers, config) {
             alert('ip range request failed')
           })
-        var index = $scope.ipranges.indexOf(iprange)
-        if (index > -1) {
-          $scope.ipranges.splice(index, 1)
-        }
-        $scope.removeRange = null
       }
 
       // init
