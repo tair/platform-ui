@@ -97,7 +97,7 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
         if (!iprange.expiredAt) {
           return "now"
         } else {
-          return getTimeDisplay(iprange.expiredAt)
+          return $scope.getTimeDisplay(iprange.expiredAt)
         }
       }
 
@@ -506,12 +506,12 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
           }
           ipranges.sort(function(a,b) {
             if (!a.expiredAt) {
-              return 1
-            } else if (!b.expiredAt) {
               return -1
+            } else if (!b.expiredAt) {
+              return 1
             } else {
-              if (a.expiredAt > b.expiredAt) return 1
-              if (b.expiredAt > a.expiredAt) return -1
+              if (a.expiredAt > b.expiredAt) return -1
+              if (b.expiredAt > a.expiredAt) return 1
               return 0
             }
           })
