@@ -27,7 +27,8 @@ module.exports = {
 		    'lib/css/hlp-13566/*',
 		    'lib/css/hlp-13566/images/*',
 		    'lib/css/fonts/*',
-		    'api/**/*.py'
+		    'api/**/*.py',
+			'lib/js/pwl-814/*' // PWL-814
 		],
 
 		app: [ 'app/**/*.js' ],
@@ -43,7 +44,6 @@ module.exports = {
 			'lib/js/lodash.min.js',
 			'lib/js/ui-bootstrap-tpls-0.13.0.min.js',
 			'lib/js/bootbox.min.js',
-			'lib/js/moment.min.js' // PWL-814
 			//'lib/js/bootstrap-confirmation.js' //PW-137
 		]
 	}
