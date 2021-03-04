@@ -43,7 +43,7 @@ module.exports = {
 			'lib/js/angular-ui-router.min.js',
 			'lib/js/lodash.min.js',
 			'lib/js/ui-bootstrap-tpls-0.13.0.min.js',
-			'lib/js/bootbox.min.js',
+			'lib/js/bootbox.min.js'
 			//'lib/js/bootstrap-confirmation.js' //PW-137
 		]
 	}
