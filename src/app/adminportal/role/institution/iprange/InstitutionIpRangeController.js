@@ -103,8 +103,9 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
 
       $scope.getTimeDisplay = function(timestamp){
         if (!timestamp) return ""
-        var timeComponents = timestamp.split("T")
-        return timeComponents[0]
+        var dateObj = moment(timestamp, "YYYY-MM-DDTHH:mm:ssZ").toDate()
+        var local = moment(dateObj).local().format('YYYY-MM-DD')
+        return local
       }
 
       isRecordActive =function(iprange) {
