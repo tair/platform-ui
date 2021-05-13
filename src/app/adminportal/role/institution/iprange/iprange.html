@@ -24,7 +24,14 @@
     <div class="lt-admin-right-subpanel">
 
       <!-- Description and Search Box -->
-      <div class="lt-admin-groups-description">Add new IP ranges from the left action panel. Click on already existing IP ranges to edit or delete them.</div>
+      <div class="lt-admin-groups-description">
+          Add new IP ranges from the left action panel. Click on already existing IP ranges to edit or delete them. 
+          Phoenix Bionformatics requires ranges to be added as two-address ranges. If you have ranges with asterisks, 
+          like 150.142.*.*, please use the expanded format: 150.142.0.0 - 150.142.255.255. If you have ranges expressed 
+          in CIDR notation, like 150.142.0.0/16, again please expand to 150.142.0.0 - 150.142.255.255. To convert a CIDR 
+          range to an expanded range, please refer to this <a href="https://www.ipaddressguide.com/cidr" target="_blank">online tool</a>
+          (check <a href="https://www.ipaddressguide.com/ipv6-cidr" target="_blank">here</a> for IPv6 version).
+      </div>
       <div class="lt-admin-groups-search">
         <span>Search</span>
         <span><input style="width:468px" placeholder="Search for IP Range Label or IP address number" ng-model="searchTerm"></input></span>
