@@ -13,7 +13,7 @@
     <!-- Right Panel Header -->
     <div class="lt-admin-groups-title">
       <div>
-      <span class="lt-admin-groups-title-filter" style="margin-left:22px">Sort By: </span>
+        <span class="lt-admin-groups-title-filter" style="margin-left:22px">Sort By: </span>
         <a href = "" class="lt-admin-groups-title-filter" ng-repeat-start="sorting in sortings" ng-click="sortByField(sorting)">{{sorting.text}}</a>
         <span class="glyphicon glyphicon-triangle-top lt-admin-groups-title-glyphicon" ng-show="predicate==sorting.predicate&&!reverse" ng-click="sortByField(sorting)"></span>
         <span class="glyphicon glyphicon-triangle-bottom lt-admin-groups-title-glyphicon" ng-show="predicate==sorting.predicate&&reverse" ng-click="sortByField(sorting)"></span>
@@ -32,37 +32,45 @@
 
       <!-- Add IP Range -->
       <div class="lt-admin-groups-list-edit" ng-class="groupsAddCss(adding)">
-	<div class="col-xs-9" style="padding:0px">
+        <div class="col-xs-9" style="padding:0px">
           <div><input class="lt-admin-groups-list-label-edit" style="width:300px" placeholder="Enter IP Range Label (optional)" ng-model="newRange.name"></input></div>
-	  <div class="lt-admin-groups-list-values">
+          <div class="lt-admin-groups-list-values">
             <span><input class="lt-ip-groups-list-start-edit" placeholder="Starting IP" ng-model="newRange.start"></input></span>
-	    <span>-</span>
-	    <span><input class="lt-ip-groups-list-end-edit" placeholder="Ending IP" ng-model="newRange.end"></input></span>
-	  </div>
-	</div>
-	<div class="col-xs-3 lt-admin-groups-list-glyphicon-container" style="padding:0px">
+            <span>-</span>
+            <span><input class="lt-ip-groups-list-end-edit" placeholder="Ending IP" ng-model="newRange.end"></input></span>
+          </div>
+        </div>
+        <div class="col-xs-3 lt-admin-groups-list-glyphicon-container" style="padding:0px">
           <div class="pull-right glyphicon glyphicon-remove lt-glyphicon-green text-center" style="margin-right:10px" ng-click="$event.stopPropagation(); adding=false"></div>
           <div class="pull-right glyphicon glyphicon-ok lt-glyphicon-green text-center" style="margin-right:10px" ng-click="$event.stopPropagation(); addConfirm()"></div>
-	</div>
+        </div>
       </div>
-      
+
       <!-- IP Range List -->
       <div ng-repeat="iprange in ipranges | filter:searchTerm">
-	<div class="row" ng-class="groupsListCss(iprange.state)" ng-mouseover="groupsMoveOver(iprange)" ng-mouseleave="groupsMoveOut(iprange)">
-	  <div class="col-xs-9" style="padding:0px">
-	    <div><input ng-class="groupsListLabelCss(iprange.state)" style="width:300px" ng-model="iprange.name" ng-readonly="!(iprange.state=='edit')"></input></div>
-	    <div class="lt-admin-groups-list-values">
-	      <span><input ng-class="groupsListStartCss(iprange.state)" ng-model="iprange.start" ng-readonly="!(iprange.state=='edit')"></input></span> 
-	      <span>-</span> 
-	      <span><input ng-class="groupsListEndCss(iprange.state)" ng-model="iprange.end" ng-readonly="!(iprange.state=='edit')"></input></span>
-	  </div>
-	  </div>
-	  <div class="col-xs-3" style="margin-top:18px;padding:0px" ng-class="groupsListGlyphiconCss(iprange.state)">
-		<div class="delete-label">Delete?</div>
-	    <div class="pull-right glyphicon text-center" ng-class="groupsListGlyphiconRightCss(iprange.state)" style="margin-right:10px" ng-click="$event.stopPropagation(); right(iprange);"></div>
-	    <div class="pull-right glyphicon text-center" ng-class="groupsListGlyphiconLeftCss(iprange.state)" style="margin-right:10px" ng-click="$event.stopPropagation(); left(iprange);"></div>
-	  </div>
-	</div>
+        <div class="row" ng-class="groupsListCss(iprange.state)" ng-mouseover="groupsMoveOver(iprange)" ng-mouseleave="groupsMoveOut(iprange)">
+          <div class="col-xs-9" style="padding:0px">
+            <!-- label -->
+            <div><input ng-class="groupsListLabelCss(iprange.state)" style="width:300px" ng-model="iprange.name" ng-readonly="!(iprange.state=='edit')"></input></div>
+            <!-- iprange -->
+            <div class="lt-admin-groups-list-values">
+              <span class="lt-ip-groups-list-start">{{iprange.start}}</span> 
+              <span>-</span> 
+              <span class="lt-ip-groups-list-end">{{iprange.end}}</span>
+            </div>
+            <!-- timestamp -->
+            <div class="lt-admin-groups-list-values">
+              <span class="lt-ip-groups-list-start">{{getTimeDisplay(iprange.createdAt)}}</span> 
+              <span>-</span> 
+              <span class="lt-ip-groups-list-end">{{getIpRangeEndTime(iprange)}}</span>
+            </div>
+          </div>
+          <div class="col-xs-3" style="margin-top:18px;padding:0px" ng-class="groupsListGlyphiconCss(iprange.state)">
+            <div class="delete-label">Expire?</div>
+            <div class="pull-right glyphicon text-center" ng-class="groupsListGlyphiconRightCss(iprange.state)" style="margin-right:10px" ng-click="$event.stopPropagation(); right(iprange);"></div>
+            <div class="pull-right glyphicon text-center" ng-class="groupsListGlyphiconLeftCss(iprange.state)" style="margin-right:10px" ng-click="$event.stopPropagation(); left(iprange);"></div>
+          </div>
+        </div>
       </div>
     </div>
   </div> 
