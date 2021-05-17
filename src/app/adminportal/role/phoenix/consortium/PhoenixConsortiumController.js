@@ -102,6 +102,7 @@ angular.module('platform-ui.adminportal.role.phoenix.consortium').controller(
           if ($scope.editConsortium) {
             consortium.name = $scope.editConsortium.name
             consortium.label = $scope.editConsortium.label
+            consortium.country = $scope.editConsortium.country
             $scope.editConsortium = null
           }
           consortium.state = null
@@ -122,6 +123,11 @@ angular.module('platform-ui.adminportal.role.phoenix.consortium').controller(
             name: consortium['name'],
             partyId: consortium['partyId'],
             label: consortium['label'],
+            country: consortium['country'],
+          }
+          if (!data.country) {
+            bootbox.alert('Country field is required.')
+            return
           }
           $http({
             url:
@@ -149,9 +155,16 @@ angular.module('platform-ui.adminportal.role.phoenix.consortium').controller(
         }
       }
       $scope.addConfirm = function () {
+        if (!$scope.newConsortium['name']) {
+            bootbox.alert('Need consortium name to create consortium.')
+            return
+          }
+          if (!$scope.newConsortium['country']) {
+            bootbox.alert('Need country to create consortium.')
+            return
+          }
         if (
-          $scope.newConsortium['username'] != null &&
-          $scope.newConsortium['password'] != null
+          $scope.newConsortium['username'] && $scope.newConsortium['password']
         ) {
           // when user input contains username and password, create a credential for the party
           var data = {
@@ -161,6 +174,7 @@ angular.module('platform-ui.adminportal.role.phoenix.consortium').controller(
             password: $scope.newConsortium['password'],
             partnerId: 'phoenix',
             email: $scope.newConsortium['email'],
+            country: $scope.newConsortium['country'].countryId
           }
           $http({
             url:
@@ -220,13 +234,13 @@ angular.module('platform-ui.adminportal.role.phoenix.consortium').controller(
               )
             })
         } else if (
-          $scope.newConsortium['username'] == null &&
-          $scope.newConsortium['password'] == null
+          !$scope.newConsortium['username'] && !$scope.newConsortium['password']
         ) {
           //when user input doesn't contain username and password, only create party.
           var data = {
             name: $scope.newConsortium['name'],
             partyType: 'consortium',
+            country: $scope.newConsortium['country'].countryId
           }
           $http({
             url:
@@ -271,14 +285,12 @@ angular.module('platform-ui.adminportal.role.phoenix.consortium').controller(
               )
             })
         } else if (
-          $scope.newConsortium['username'] != null &&
-          $scope.newConsortium['password'] == null
+          $scope.newConsortium['username'] && !$scope.newConsortium['password']
         ) {
           bootbox.alert('Need password to create login for the consortium.')
           return
         } else if (
-          $scope.newConsortium['password'] != null &&
-          $scope.newConsortium['username'] == null
+          $scope.newConsortium['password'] && !$scope.newConsortium['username']
         ) {
           bootbox.alert('Need username to create login for the consortium.')
           return
