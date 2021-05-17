@@ -33,7 +33,6 @@ angular.module('platform-ui.adminportal.role.institution.profile').controller(
       $scope.edit_fields = function () {
         if ($scope.edit == true) {
           if (!validateInfo()) {
-            alert('Information not valid')
             return false
           }
           //Save info
@@ -45,7 +44,7 @@ angular.module('platform-ui.adminportal.role.institution.profile').controller(
           //rewrite with new from UI
           forceReSignIn = false
           for (k in $scope.user) {
-            if ($scope.user[k] && $scope.userprev[k] != $scope.user[k]) {
+            if ($scope.userprev[k] != $scope.user[k]) {
               has_update = true
               put_data[k] = $scope.user[k]
               if (
@@ -136,6 +135,11 @@ angular.module('platform-ui.adminportal.role.institution.profile').controller(
       }
 
       function validateInfo() {
+        if (!$scope.user.country){
+          console.log('Country field is required')
+          alert('Country field is required')
+          return false
+        }
         if ($scope.user.email && $scope.user.email.$invalid) {
           console.log('User email is invalid')
           alert('Email not valid')
@@ -148,6 +152,7 @@ angular.module('platform-ui.adminportal.role.institution.profile').controller(
               ' and validate email is ' +
               $scope.email_validate
           )
+          alert('Email not match')
           return false
         }
         if (
@@ -160,6 +165,7 @@ angular.module('platform-ui.adminportal.role.institution.profile').controller(
               ' and validate password is ' +
               $scope.password_validate
           )
+          alert('Password not match')
           return false
         }
         return true

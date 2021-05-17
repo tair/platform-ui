@@ -127,6 +127,22 @@ angular.module('platform-ui.adminportal.role').controller(
           //		    	$cookies.partyInfo.userIdentifier = data[0].userIdentifier;
         })
         .error(function () {})
+    
+        // get countries info which will be widely used in all roles
+        $http({
+            url: $scope.apiUri + '/parties/countries/',
+            method: 'GET',
+        }).success(function (data, status, headers, config) {
+            $scope.countries = data
+        })
+
+      // get country name by id
+      $scope.getCountryNameById = function (countryId) {
+        var country =  $scope.countries.find( function(countryObj){
+            return countryObj.countryId == countryId
+        })
+        return country? country.name : ''
+      }
 
       // CSS Logics common to all admin pages in different roles:
       $scope.groupsAddCss = function (adding) {

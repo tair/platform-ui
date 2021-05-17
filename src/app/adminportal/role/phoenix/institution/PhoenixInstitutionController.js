@@ -31,7 +31,6 @@ angular.module('platform-ui.adminportal.role.phoenix.institution').controller(
       //	    $scope.setTitle(PhoenixInstitutionModel.title);
       $scope.setCurrentTab(PhoenixInstitutionModel.currentTab)
       $scope.institutions = PhoenixInstitutionModel.institutions
-      $scope.countries = PhoenixInstitutionModel.countries
       $scope.addGroupShow = 'hidden'
       $scope.adding = false
       $scope.SubAdding = false
@@ -161,6 +160,10 @@ angular.module('platform-ui.adminportal.role.phoenix.institution').controller(
             display: institution['display'],
             country: institution['country'],
           }
+          if (!data.country) {
+            bootbox.alert('Country field is required.')
+            return
+          }
           $http({
             //				url: $scope.apiUri+'/parties/institutions/?credentialId='+$scope.credentialId+'&secretKey='+encodeURIComponent($scope.secretKey)+'&partyId='+institution['partyId'],
             url:
@@ -197,8 +200,7 @@ angular.module('platform-ui.adminportal.role.phoenix.institution').controller(
           return
         }
         if (
-          $scope.newInstitution['username'] != null &&
-          $scope.newInstitution['password'] != null
+          $scope.newInstitution['username'] && $scope.newInstitution['password']
         ) {
           // when user input contains username and password, create a credential for the party
           var data = {
@@ -209,9 +211,7 @@ angular.module('platform-ui.adminportal.role.phoenix.institution').controller(
             partnerId: 'phoenix',
             email: $scope.newInstitution['email'],
             display: 'true',
-            country: $scope.newInstitution['country']
-              ? $scope.newInstitution['country'].countryId
-              : null,
+            country: $scope.newInstitution['country'].countryId
           }
           $http({
             url:
@@ -268,17 +268,14 @@ angular.module('platform-ui.adminportal.role.phoenix.institution').controller(
               )
             })
         } else if (
-          $scope.newInstitution['username'] == null &&
-          $scope.newInstitution['password'] == null
+          !$scope.newInstitution['username'] && !$scope.newInstitution['password']
         ) {
           //when user input doesn't contain username and password, only create party.
           var data = {
             name: $scope.newInstitution['name'],
             partyType: 'organization',
             display: 'true',
-            country: $scope.newInstitution['country']
-              ? $scope.newInstitution['country'].countryId
-              : null,
+            country: $scope.newInstitution['country'].countryId
           }
           $http({
             url:
@@ -323,14 +320,12 @@ angular.module('platform-ui.adminportal.role.phoenix.institution').controller(
               )
             })
         } else if (
-          $scope.newInstitution['username'] != null &&
-          $scope.newInstitution['password'] == null
+          $scope.newInstitution['username'] && !$scope.newInstitution['password']
         ) {
           bootbox.alert('Need password to create login for the institution.')
           return
         } else if (
-          $scope.newInstitution['password'] != null &&
-          $scope.newInstitution['username'] == null
+          $scope.newInstitution['password'] && !$scope.newInstitution['username']
         ) {
           bootbox.alert('Need username to create login for the institution.')
           return
@@ -449,12 +444,6 @@ angular.module('platform-ui.adminportal.role.phoenix.institution').controller(
       })
       $(function () {
         $('#createEnd').datepicker()
-      })
-      $http({
-        url: $scope.apiUri + '/parties/countries/',
-        method: 'GET',
-      }).success(function (data, status, headers, config) {
-        $scope.countries = data.sort()
       })
     },
   ]
