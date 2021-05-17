@@ -31,7 +31,6 @@ angular
         $scope.setCurrentTab(ConsortiumInstitutionModel.currentTab)
         $scope.institutions = ConsortiumInstitutionModel.institutions
         $scope.allInstitutions = ConsortiumInstitutionModel.allInstitutions
-        $scope.countries = ConsortiumInstitutionModel.countries
         $scope.adding = false
         $scope.creating = false
         $scope.newInstitution = ConsortiumInstitutionModel.newInstitution
@@ -178,9 +177,16 @@ angular
             })
         }
         $scope.createConfirm = function () {
+          if (!$scope.newInstitution['name']) {
+            bootbox.alert('Need institution name to create institution.')
+            return
+            }
+          if (!$scope.newInstitution['country']) {
+            bootbox.alert('Need country to create institution.')
+            return
+            }
           if (
-            $scope.newInstitution['username'] != null &&
-            $scope.newInstitution['password'] != null
+            $scope.newInstitution['username'] && $scope.newInstitution['password']
           ) {
             // when user input contains username and password, create a credential for the party
             var data = {
@@ -249,8 +255,7 @@ angular
                 )
               })
           } else if (
-            $scope.newInstitution['username'] == null &&
-            $scope.newInstitution['password'] == null
+            !$scope.newInstitution['username'] && !$scope.newInstitution['password']
           ) {
             //when user input doesn't contain username and password, only create party.
             var data = {
@@ -303,14 +308,12 @@ angular
                 )
               })
           } else if (
-            $scope.newInstitution['username'] != null &&
-            $scope.newInstitution['password'] == null
+            $scope.newInstitution['username'] && !$scope.newInstitution['password']
           ) {
             bootbox.alert('Need password to create login for the institution.')
             return
           } else if (
-            $scope.newInstitution['password'] != null &&
-            $scope.newInstitution['username'] == null
+            $scope.newInstitution['password'] && !$scope.newInstitution['username']
           ) {
             bootbox.alert('Need username to create login for the institution.')
             return
@@ -444,12 +447,6 @@ angular
         })
         $(function () {
           $('#createEnd').datepicker()
-        })
-        $http({
-          url: $scope.apiUri + '/parties/countries/',
-          method: 'GET',
-        }).success(function (data, status, headers, config) {
-          $scope.countries = data.sort()
         })
       },
     ]

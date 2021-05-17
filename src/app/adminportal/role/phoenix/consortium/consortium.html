@@ -31,12 +31,13 @@
       </div>
 
       <!-- Add Consortium -->
-      <div class="lt-admin-groups-list-edit" ng-class="groupsAddCss(adding)" style="height:150px">
+      <div class="lt-admin-groups-list-edit" ng-class="groupsAddCss(adding)" style="height: 180px">
 	    <div class="col-xs-9" style="padding:0px">
 	      <div><input class="lt-admin-groups-list-label-edit" style="width:300px" placeholder="Enter Consortium Name" ng-model="newConsortium.name" required></input></div>
           <div><input class="lt-admin-groups-list-label-edit" style="width:300px" placeholder="Enter Username (optional)" ng-model="newConsortium.username" required></input></div>          
           <div><input class="lt-admin-groups-list-label-edit" style="width:300px" placeholder="Enter Password (optional)" ng-model="newConsortium.password" type="password" required></input></div>
           <div><input class="lt-admin-groups-list-label-edit" style="width:300px" placeholder="Enter Email (optional)" ng-model="newConsortium.email"></input></div>
+          <div><input class="lt-admin-groups-list-label-edit" style="width:300px" placeholder="Enter Country" ng-model="newConsortium.country" uib-typeahead="country as country.name for country in countries | filter:{name:$viewValue} | limitTo:8 | orderBy : 'name'" required></input></div>
         </div>
 	    <div class="col-xs-3 lt-admin-groups-list-glyphicon-container" style="padding:0px">
 	          <div class="pull-right glyphicon glyphicon-remove lt-glyphicon-green text-center" style="margin-right:10px" ng-click="$event.stopPropagation(); adding=false"></div>
@@ -52,6 +53,8 @@
         <div><input ng-class="groupsListLabelCss(consortium.state)" placeholder="Add an optional label for this consortium" style="width:300px" ng-model="consortium.label" ng-show="consortium.state=='edit'"></input></div>
         <div><p class="lt-admin-groups-list-label" ng-show="!(consortium.state=='edit')">{{consortium.name}}</p></div>
         <div><input ng-class="groupsListLabelCss(consortium.state)" placeholder="Consortium name" style="width:300px" ng-model="consortium.name" ng-show="consortium.state=='edit'"></input></div>
+        <div><p class="lt-admin-groups-list-label" ng-show="!(consortium.state=='edit')">{{getCountryNameById(consortium.country)}}</p></div>
+        <div><select ng-class="groupsListLabelCss(consortium.state)" style="width:300px" ng-model="consortium.country" ng-show="consortium.state=='edit'" ng-options="country.countryId as country.name for country in countries | orderBy: 'name'" required><option value="">--Choose Country--</option></select></div>        
         <div class="lt-admin-groups-list-values">
               <input class="lt-admin-groups-list-values-input" ng-model="consortium.partyId" ng-readonly="true"></input>
         </div>
