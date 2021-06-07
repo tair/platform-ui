@@ -48,9 +48,19 @@ angular.module('platform-ui.adminportal.role.institution.iprange').controller(
       $scope.predicate = $scope.sortings[0].predicate
       $scope.currentTab = InstitutionIpRangeModel.currentTab
       //initializing orderBy function
+      $scope.sortIps = function(iprange) {   
+        var ip = iprange.start 
+        return ip.split('.').map(function(x) {
+          return x.padStart(3, "0");
+        }).join('');
+      }
       var orderBy = $filter('orderBy')
       $scope.order = function (predicate, reverse) {
-        $scope.ipranges = orderBy($scope.ipranges, predicate, reverse)
+        if (predicate == 'start'){
+          $scope.ipranges = orderBy($scope.ipranges, $scope.sortIps, reverse)
+        }else{
+          $scope.ipranges = orderBy($scope.ipranges, predicate, reverse)
+        }
       }
       $scope.order($scope.predicate, $scope.reverse)
 
