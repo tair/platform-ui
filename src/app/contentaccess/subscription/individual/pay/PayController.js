@@ -32,7 +32,7 @@ angular
           $scope.formdata.expmonth = null
           $scope.formdata.expyear = null
           $scope.formdata.cvc = null
-          $scope.formdata.vat = null
+          $scope.formdata.other = null
         }
 
         $scope.validate = function () {
