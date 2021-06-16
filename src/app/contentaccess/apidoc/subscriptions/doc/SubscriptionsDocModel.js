@@ -1226,7 +1226,7 @@ angular.module('platform-ui.contentaccess.apidoc.subscriptions.doc').factory(
                 description: 'Postal code (required)',
               },
               {
-                name: 'vat',
+                name: 'other',
                 type: 'String',
                 description: 'VAT terms or other comments about the purchase',
               },
