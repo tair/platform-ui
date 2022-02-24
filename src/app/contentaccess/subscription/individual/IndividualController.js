@@ -97,6 +97,7 @@ angular.module('platform-ui.contentaccess.subscription.individual').controller(
             $scope.stripeerrors = null
             $scope.last4 = response.card.last4
             if (bool) {
+              $scope.loading = true
               $http({
                 url: $scope.apiUri + '/subscriptions/payments/',
                 data: {
@@ -118,14 +119,19 @@ angular.module('platform-ui.contentaccess.subscription.individual').controller(
                   domain: $scope.domain,
                 },
                 method: 'POST',
+                timeout: 30000
               })
-                .success(function (data, status, headers, config) {})
+                .success(function (data, status, headers, config) {
+                    $scope.next(next)
+                })
                 .error(function (data, status, headers, config) {
+                  $scope.loading = false
                   console.log('data=' + data + ';status=' + status) //PW-120
                   bootbox.alert('Individual Subscription Error') //PW-120
                 })
+            }else{
+                $scope.next(next)
             }
-            $scope.next(next)
           }
           $scope.$apply()
         })
@@ -138,6 +144,7 @@ angular.module('platform-ui.contentaccess.subscription.individual').controller(
         $scope.templates = IndividualModel.templates
         $scope.info = IndividualModel.info
         $scope.selectedSubscription = IndividualModel.selectedSubscription
+        $scope.loading = false
         //            $scope.domain = $location.protocol() + "://" + $location.host();
       }
     },
