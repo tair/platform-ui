@@ -22,7 +22,7 @@
   <div class="panel-body" style="padding: 0px;">
     <div
       class="lt-institution-subscription-list"
-      ng-repeat="p in listPartners(partners)"
+      ng-repeat="p in listPartners(partners) | orderBy:'status'"
       style="height: 220px;"
     >
       <div class="row">
