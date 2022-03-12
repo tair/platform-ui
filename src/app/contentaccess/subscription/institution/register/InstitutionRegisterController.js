@@ -32,6 +32,7 @@ angular
             lastName: null,
             email: null,
             institution: null,
+            country: null,
             librarianName: null,
             librarianEmail: null,
             comments: getDefaultComment(),
@@ -45,7 +46,8 @@ angular
             $scope.formdata.lastName != null &&
             $scope.formdata.email != null &&
             $scope.formdata.institution != null &&
-            $scope.formdata.institution.length > 5
+            $scope.formdata.institution.length > 5 &&
+            $scope.formdata.country != null
           )
         }
 
@@ -70,6 +72,9 @@ angular
           if ($scope.formdata.institution.length <= 5) {
             $scope.errors = 'Please enter the full name of your institution.'
             return false
+          }
+          if ($scope.formdata.country == null) {
+            $scope.errors = 'Please select country.'
           }
           return true
         }
@@ -119,10 +124,11 @@ angular
             last_name: $scope.formdata.lastName,
             email: $scope.formdata.email,
             company: $scope.formdata.institution,
+            '00N5c00000FWaet': $scope.formdata.country, // Country 
             '00N1J00000G2kmS': $scope.formdata.librarianName, // Librarian Name
             '00N1J00000G2kmN': $scope.formdata.librarianEmail, // Librarian Email
             '00N1J00000G2kmX': $scope.formdata.comments, // Comments
-            '00N1J00000ExYYL': getPartner(), // Partner name
+            '00N5c00000FWaeu': getPartner(), // Product Interest
             '00N1J00000EuVUh': getABTestCode(), // A/B Test random code
           }
           var form = document.createElement('form')
@@ -141,16 +147,6 @@ angular
           }
           document.body.appendChild(form)
           form.submit()
-          // $http({
-          //     url: "https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8",
-          //     data: formData,
-          //     method: 'POST',
-          //     headers: {
-          //         "Content-Type": "text/html; charset=UTF-8"
-          //     }
-          // }).success(function(data, status, headers, config) {
-          // }).error(function(data, status, headers, config) {
-          // });
         }
 
         function getCampaignId() {
@@ -158,15 +154,15 @@ angular
           if (!partnerId) return null
           switch (partnerId.toLowerCase()) {
             case 'tair':
-              return '7011J000000xKsnQAE'
+              return '7011J000000xKsn'
             case 'biocyc':
-              return '7011J000000xKssQAE'
+              return '7011J000000xKss'
             case 'agbase':
-              return '7011J000000gJD2QAM'
+              return '7011J000000gJD2'
             case 'repbase':
-              return '7011J000000gJCxQAM'
+              return '7011J000000gJCx'
             case 'morphobank':
-              return '7011J000001dFveQAE'
+              return '7011J000001dFve'
             default:
               return null
           }
