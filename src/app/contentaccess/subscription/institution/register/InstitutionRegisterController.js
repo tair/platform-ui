@@ -119,6 +119,7 @@ angular
             last_name: $scope.formdata.lastName,
             email: $scope.formdata.email,
             company: $scope.formdata.institution,
+            country: $scope.formdata.country,
             '00N1J00000G2kmS': $scope.formdata.librarianName, // Librarian Name
             '00N1J00000G2kmN': $scope.formdata.librarianEmail, // Librarian Email
             '00N1J00000G2kmX': $scope.formdata.comments, // Comments
