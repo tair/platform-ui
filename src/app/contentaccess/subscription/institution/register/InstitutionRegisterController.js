@@ -32,6 +32,7 @@ angular
             lastName: null,
             email: null,
             institution: null,
+            country: null,
             librarianName: null,
             librarianEmail: null,
             comments: getDefaultComment(),
@@ -45,7 +46,8 @@ angular
             $scope.formdata.lastName != null &&
             $scope.formdata.email != null &&
             $scope.formdata.institution != null &&
-            $scope.formdata.institution.length > 5
+            $scope.formdata.institution.length > 5 &&
+            $scope.formdata.country != null
           )
         }
 
@@ -70,6 +72,9 @@ angular
           if ($scope.formdata.institution.length <= 5) {
             $scope.errors = 'Please enter the full name of your institution.'
             return false
+          }
+          if ($scope.formdata.country == null) {
+            $scope.errors = 'Please select country.'
           }
           return true
         }
