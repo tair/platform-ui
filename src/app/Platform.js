@@ -33,6 +33,9 @@ angular
       'platform-ui.adminportal',
     ]
   )
+  .service(
+
+  )
   .config(function ($routeProvider, $httpProvider, $urlRouterProvider) {
     /**
      * Delete the X-Requested-With default header to allow cross-origin requests.
@@ -63,7 +66,7 @@ angular
     $urlRouterProvider
       /* Default */
       .otherwise(
-        '/contentaccess/subscription?partnerId=tair&redirect=https:%2F%2Fdemotair.arabidopsis.org'
+        '/contentaccess/subscription?partnerId=tair&redirect=https:%2F%2Fwww.arabidopsis.org'
       )
   })
   .run(function ($rootScope, $http, Title, PlatformModel) {
