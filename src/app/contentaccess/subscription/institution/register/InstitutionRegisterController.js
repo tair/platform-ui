@@ -79,6 +79,22 @@ angular
           return true
         }
 
+        $scope.validateCountry = function() {
+          if (!$scope.formdata.country) return;
+          switch ($scope.formdata.country) {
+            case 'China':
+              msg = 'Academic users in mainland China are covered by a national subscription through the National Science and Technology Library (NSTL). If you are experiencing access problems, please see our <a href="https://ui.arabidopsis.org/#/contentaccess/guide?partnerId=tair" target="_blank">guide to troubleshooting access issues.</a><br>国家科技图书文献中心（National Science and Technology Library of China, NSTL）为中国大陆地区科研学术机构统一订购了TAIR数据库。如果你无法访问TAIR，比如说看见以下提示："You have exceeded your limit for this month"，在联系我们之前，请参考<a href="https://ui.arabidopsis.org/#/contentaccess/guide?partnerId=tair" target="_blank">此页面</a>排查原因并采取相应措施'
+              displayNationalSubscriptionError(msg);
+              break;
+            case 'Switzerland':
+              msg = 'Academic users in Switzerland are covered by a national subscription through the Swiss Institute of Bioinformatics (SIB). If you are experiencing access problems, please see our <a href="https://ui.arabidopsis.org/#/contentaccess/guide?partnerId=tair" target="_blank">guide to troubleshooting access issues.</a>'
+              displayNationalSubscriptionError(msg);
+              break;
+            default:
+              resetNationalSubscriptionError();
+          }
+        }
+
         $scope.send = function () {
           // sendToAPI();
           sendToSalesForceCampaign()
@@ -207,6 +223,16 @@ angular
               ' is essential to my work. I would like my library to consider a subscription.'
             )
           }
+        }
+
+        function displayNationalSubscriptionError(msg) {
+          $("#nationalSubError").html(msg);
+          $("#submitBtn").prop("disabled",true);
+        }
+
+        function resetNationalSubscriptionError() {
+          $("#nationalSubError").html();
+          $("#submitBtn").prop("disabled",false);
         }
       },
     ]

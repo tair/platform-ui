@@ -81,7 +81,7 @@
             </div>
             <div class="row">
               <div class="col-xs-12">
-                <a href="#contentaccess/list?partnerId={{partnerId}}"
+                <a href="#contentaccess/list?partnerId={{partnerId}}" target="_blank" 
                   >Check to see if your institution has already subscribed</a
                 >
               </div>
@@ -102,6 +102,8 @@
                   <option value="">--Choose Country--</option>
                   </select>
                 </div>
+            </div>
+            <div class="col-xs-6" id="nationalSubError">
             </div>
         </div>
         <div class="row" style="height: 16px;"></div>
@@ -187,6 +189,7 @@
           </div>
           <div class="col-xs-4 text-center">
             <button
+              id="submitBtn"
               type="submit"
               class="btn"
               ng-class="validate() ? 'btn-success btn-success-tair' : 'btn-primary btn-primary-tair'"
