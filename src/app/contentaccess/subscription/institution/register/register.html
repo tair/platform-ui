@@ -98,13 +98,16 @@
                   id="country"
                   ng-model="formdata.country"
                   ng-options="c.name as c.name for c in countries | orderBy: 'name'"
+                  ng-change="validateCountry()"
                   required>
                   <option value="">--Choose Country--</option>
                   </select>
                 </div>
             </div>
-            <div class="col-xs-6" id="nationalSubError">
-            </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 error" id="nationalSubError">
+          </div>
         </div>
         <div class="row" style="height: 16px;"></div>
         <div class="row">
