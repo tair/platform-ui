@@ -81,7 +81,7 @@
             </div>
             <div class="row">
               <div class="col-xs-12">
-                <a href="#contentaccess/list?partnerId={{partnerId}}"
+                <a href="#contentaccess/list?partnerId={{partnerId}}" target="_blank" 
                   >Check to see if your institution has already subscribed</a
                 >
               </div>
@@ -98,11 +98,16 @@
                   id="country"
                   ng-model="formdata.country"
                   ng-options="c.name as c.name for c in countries | orderBy: 'name'"
+                  ng-change="validateCountry()"
                   required>
                   <option value="">--Choose Country--</option>
                   </select>
                 </div>
             </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 error" id="nationalSubError">
+          </div>
         </div>
         <div class="row" style="height: 16px;"></div>
         <div class="row">
@@ -187,9 +192,9 @@
           </div>
           <div class="col-xs-4 text-center">
             <button
+              id="submitBtn"
               type="submit"
-              class="btn"
-              ng-class="validate() ? 'btn-success btn-success-tair' : 'btn-primary btn-primary-tair'"
+              class="btn btn-success btn-success-tair"
               ng-click="setInfoInstitutionFormError(validate())"
             >
               SUBMIT
