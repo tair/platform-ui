@@ -126,12 +126,14 @@ angular.module('platform-ui.contentaccess.subscription.individual').controller(
                 })
                 .error(function (data, status, headers, config) {
                   $scope.loading = false
-                  console.log('data=' + data + ';status=' + status) //PW-120
-                  bootbox.alert(
-                    'Sorry, there is an error submitting your payment (Error Code: ' +
-                      status +
+                  if (data.message) {
+                    errMsg = 'Sorry, there is an error submitting your payment (Error Message: ' + data.message +
                       '). <br>Please try again later or contact us at <a href="mailto:subscriptions@phoenixbioinformatics.org">subscriptions@phoenixbioinformatics.org</a>'
-                  ) //PW-120 PWL-882
+                  } else {
+                    errMsg = 'Sorry, there is an error submitting your payment (Error Code: ' + status +
+                      '). <br>Please try again later or contact us at <a href="mailto:subscriptions@phoenixbioinformatics.org">subscriptions@phoenixbioinformatics.org</a>'
+                  }
+                  bootbox.alert(errMsg) //PW-120 PWL-882
                 })
             }else{
                 $scope.next(next)
