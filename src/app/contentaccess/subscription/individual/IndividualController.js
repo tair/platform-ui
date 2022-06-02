@@ -84,7 +84,7 @@ angular.module('platform-ui.contentaccess.subscription.individual').controller(
           cvc: $scope.formdata.cvc,
           exp_month: $scope.formdata.expmonth,
           exp_year: $scope.formdata.expyear,
-          vat: $scope.formdata.vat, //PW-248
+        //   other: $scope.formdata.other, // stripe doesn't accept unknown fields after update
         }
         Stripe.card.createToken(stripeData, function (status, response) {
           if (response.error) {
@@ -114,7 +114,7 @@ angular.module('platform-ui.contentaccess.subscription.individual').controller(
                   state: $scope.formdata.state,
                   country: $scope.formdata.country,
                   zip: $scope.formdata.zip,
-                  vat: $scope.formdata.vat, //PW-248
+                  other: $scope.formdata.other, //PW-248
                   redirect: $scope.redirect,
                   domain: $scope.domain,
                 },
