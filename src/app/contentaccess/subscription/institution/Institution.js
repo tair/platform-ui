@@ -26,11 +26,15 @@ angular
             templateUrl: function (stateParam) {
               var partnerId = stateParam.partnerId
               var viewFile = 'register.html'
-              if (
-                partnerId != null &&
-                partnerId.toLowerCase() == 'morphobank'
-              ) {
-                viewFile = 'membership-register.html'
+              if (partnerId != null) {
+                switch(partnerId.toLowerCase()){
+                  case 'morphobank':
+                    viewFile = 'membership-register.html'
+                    break;
+                  case 'biocyc':
+                    viewFile = 'biocyc-transition-info.html'
+                    break;
+                }
               }
               return (
                 'contentaccess/subscription/institution/register/' + viewFile

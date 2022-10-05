@@ -23,8 +23,20 @@ angular
         views: {
           commercial: {
             controller: 'CommercialRegisterController',
-            templateUrl:
-              'contentaccess/subscription/commercial/register/register.html',
+            templateUrl: function (stateParam) {
+              var partnerId = stateParam.partnerId
+              var viewFile = 'register.html'
+              if (partnerId != null) {
+                switch(partnerId.toLowerCase()){
+                  case 'biocyc':
+                    viewFile = 'biocyc-transition-info.html'
+                    break;
+                }
+              }
+              return (
+                'contentaccess/subscription/commercial/register/' + viewFile
+              )
+            },
           },
         },
       })
