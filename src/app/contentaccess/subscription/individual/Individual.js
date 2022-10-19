@@ -24,7 +24,20 @@ angular
         views: {
           individual: {
             controller: 'TermController',
-            templateUrl: 'contentaccess/subscription/individual/term/term.html',
+            templateUrl: function (stateParam) {
+              var partnerId = stateParam.partnerId
+              var viewFile = 'term.html'
+              if (partnerId != null) {
+                switch(partnerId.toLowerCase()){
+                  case 'biocyc':
+                    viewFile = 'biocyc-transition-info.html'
+                    break;
+                }
+              }
+              return (
+                'contentaccess/subscription/individual/term/' + viewFile
+              )
+            },
           },
         },
       })
