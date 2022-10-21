@@ -20,9 +20,6 @@ angular.module('platform-ui.contentaccess.guide').controller(
       function init() {
         Title.setTitle('Troubleshooting guide')
         $scope.partnerId = $location.search()['partnerId']
-        if ($scope.partnerId == 'biocyc') {
-          $location.href = "https://biocyc.org/subscriber-list.shtml"
-        }
         $http({
           url: $scope.apiUri + '/partners/?partnerId=' + $scope.partnerId,
           method: 'GET',
