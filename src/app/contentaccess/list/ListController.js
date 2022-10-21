@@ -11,10 +11,11 @@ angular.module('platform-ui.contentaccess.list').controller(
     '$http',
     '$scope',
     '$location',
+    '$window',
     'Title',
 
     /* Controller Definition */
-    function ($http, $scope, $location, Title) {
+    function ($http, $scope, $location, $window, Title) {
       init()
 
       sortfunction = function (a, b) {
@@ -31,10 +32,12 @@ angular.module('platform-ui.contentaccess.list').controller(
       }
 
       function init() {
-        //$scope.setTitle('University List'); //ListModel.title
         Title.setTitle('University List')
         $scope.partnerId = $location.search()['partnerId']
-
+        if ($scope.partnerId == 'biocyc') {
+          $window.location.href = "https://biocyc.org/subscriber-list.shtml"
+        }
+        
         $http({
           url: $scope.apiUri + '/partners/?partnerId=' + $scope.partnerId,
           method: 'GET',
