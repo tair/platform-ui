@@ -36,13 +36,16 @@ angular
 
         $scope.requestEdit = function () {
           if ($scope.transactionType == 'renew') {
+            var endDate = new Date($scope.postData.endDate + ' 11:59:59.9');
+            endDate.setDate(endDate.getDate() + 1);
+            var endDateStr = endDate.toISOString();
             postData = {
               subscriptionId:
                 $scope.allSubscriptions[$scope.partnerId].subscriptionId,
               partyId: $scope.institutionId,
               partnerId: $scope.partnerId,
-              startDate: $scope.postData.startDate + ' 12:00:00.0',
-              endDate: $scope.postData.endDate + ' 12:00:00.0',
+              startDate: $scope.postData.startDate + ' 00:00:00.0',
+              endDate: endDateStr,
             }
             $http({
               url:
@@ -69,11 +72,14 @@ angular
                 alert('Failed to renew subscription!')
               })
           } else if ($scope.transactionType == 'create') {
+            var endDate = new Date($scope.postData.endDate + ' 11:59:59.9');
+            endDate.setDate(endDate.getDate() + 1);
+            var endDateStr = endDate.toISOString();
             postData = {
               partyId: $scope.institutionId,
               partnerId: $scope.partnerId,
-              startDate: $scope.postData.startDate + ' 12:00:00.0',
-              endDate: $scope.postData.endDate + ' 12:00:00.0',
+              startDate: $scope.postData.startDate + ' 00:00:00.0',
+              endDate: endDateStr,
             }
             $http({
               url:
