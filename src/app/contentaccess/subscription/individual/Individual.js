@@ -14,12 +14,28 @@ angular
       'ui.router',
       'service.title',
       'platform-ui.contentaccess.subscription.individual.term',
+      'platform-ui.contentaccess.subscription.individual.bucket',
       'platform-ui.contentaccess.subscription.individual.pay',
     ]
   )
   .config(function ($stateProvider) {
     $stateProvider
-      .state('subscription.individual.term', {
+    .state('subscription.individual.bucket', {
+      url: '?{partnerId}&{redirect}',
+      views: {
+        individual: {
+          controller: 'BucketController',
+          templateUrl: function (stateParam) {
+            var partnerId = stateParam.partnerId
+            var viewFile = 'bucket.html'
+            return (
+              'contentaccess/subscription/individual/bucket/' + viewFile
+            )
+          },
+        },
+      },
+    })
+    .state('subscription.individual.term', {
         url: '?{partnerId}&{redirect}',
         views: {
           individual: {
@@ -41,6 +57,7 @@ angular
           },
         },
       })
+      
       .state('subscription.individual.pay', {
         url: '/pay?{partnerId}&{redirect}',
         views: {

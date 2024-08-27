@@ -1,0 +1,143 @@
+<div ng-controller="BucketController">
+	<div class="row">
+	  <div
+		class="col-xs-10"
+		style="float: none; margin-left: auto; margin-right: auto;"
+	  >
+		<form ng-submit="validateAndSubmit() && next('pay')">
+		  <div class="row" style="height: 55px;"></div>
+		  <div class="row">
+			<div class="col-xs-12 info-individual-heading">
+			  Bucket Purchase academic licenses for individual use
+			</div>
+		  </div>
+		  <div class="row">
+			<div class="col-xs-12 info-individual-text">
+			  Check
+			  <a
+				href="#contentaccess/list?partnerId={{partnerId}}"
+				target="_blank"
+				>this list</a
+			  >
+			  to see if you already have access to {{partner.name}} through your
+			  library. If your institution is subscribed and you are unable to
+			  access a page, please contact us at
+			  <a href="mailto:info@phoenixbioinformatics.org"
+				>info@phoenixbioinformatics.org</a
+			  >
+			</div>
+		  </div>
+		  <div class="row" style="height: 60px;"></div>
+		  <div class="row">
+			<div class="col-xs-7 info-individual-text">
+			  {{partner.name}} academic license for individual use
+			</div>
+			<div class="col-xs-5">
+			  <div
+				class="radio"
+				ng-repeat="sub in subscriptions"
+				style="margin-top: 0px;"
+			  >
+				<label class="info-individual-text">
+				  <input
+					type="radio"
+					name="licenseoptions"
+					ng-model="$parent.subscriptionBucketId"
+					ng-value="{{ sub.subscriptionBucketId }}"
+					ng-change="setSelectedSubscriptionBucket(sub.subscriptionBucketId, sub.partnerId, sub.units, sub.price)"
+					required
+				  />
+				  {{ sub.description }}&nbsp;-&nbsp;${{ sub.price }} (USD)
+				</label>
+			  </div>
+			</div>
+		  </div>
+		  <div class="row" style="height: 20px;"></div>
+		  <div class="row">
+			<div class="col-xs-6">
+			  <div class="form-group">
+				<label for="numOfSubscribers" class="info-individual-text"
+				  >*Number of buckets</label
+				>
+				<input
+				  type="number"
+				  id="numOfSubscribers"
+				  ng-model="info.numOfSubscribers"
+				  required
+				/>
+			  </div>
+			</div>
+			<!-- <div
+			  class="col-xs-6 info-individual-discount"
+			  ng-if="selectedSubscription.groupDiscountPercentage != null && selectedSubscription.groupDiscountPercentage > 0"
+			>
+			  <div class="row">
+				Receive a {{ selectedSubscription.groupDiscountPercentage }}%
+				discount if you purchase 2 or more individual licenses together
+			  </div>
+			</div> -->
+		  </div>
+		  <div class="row">
+			<div class="col-xs-12">
+			  <div class="checkbox">
+				<label class="info-individual-text">
+				  <input type="checkbox" value="" ng-model="userbool" required />
+				  My employer is an academic institution, a not-for-profit
+				  research institution, or a government laboratory.
+				</label>
+			  </div>
+			  <div class="checkbox">
+				<label class="info-individual-text">
+				  <input type="checkbox" value="" ng-model="termsbool" required />
+				  I agree to
+				  <a href="{{partner.termOfServiceUri}}" target="_blank"
+					>Terms of Use</a
+				  >
+				</label>
+			  </div>
+			</div>
+		  </div>
+		  <div class="row" style="height: 44px;"></div>
+		  <div class="row">
+			<div class="col-xs-12 text-center info-individual-subtotal">
+			  Subtotal: ${{ get_total_buckets_price()|number:2 }} (USD)
+			</div>
+		  </div>
+		  <div class="row" style="height: 18px;"></div>
+		  <span style="color: red;">{{errors}}</span>
+		  <div class="row" style="height: 18px;"></div>
+		  <div class="row">
+			<div class="col-xs-4 text-center">
+			  <button
+				type="button"
+				class="btn btn-default btn-default-tair"
+				ng-click="switchTab('landing')"
+			  >
+				BACK
+			  </button>
+			</div>
+			<div class="col-xs-4 text-center">
+			  <button
+				type="button"
+				class="btn btn-default btn-default-tair"
+				ng-click="reset()"
+			  >
+				RESET FORM
+			  </button>
+			</div>
+			<div class="col-xs-4 text-center">
+			  <button
+				type="submit"
+				class="btn"
+				ng-class=" validate() ? 'btn-success btn-success-tair' : 'btn-primary btn-primary-tair' "
+			  >
+				NEXT
+			  </button>
+			</div>
+		  </div>
+		  <div class="row" style="height: 36px;"></div>
+		</form>
+	  </div>
+	</div>
+  </div>
+  

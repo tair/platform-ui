@@ -24,11 +24,12 @@ angular.module('platform-ui.contentaccess.subscription.landing').controller(
         }
         //$scope.switchTab($scope.license);
         if ($scope.license == 'individual') {
-          $state.go('subscription.individual.term', {
+          $state.go('subscription.individual.bucket', {
             partnerId: $scope.partnerId,
             redirect: $scope.redirect,
           })
-          console.log($state)
+          console.log("bucket state: ", $state)
+          // console.log($state)
           return
         }
         if ($scope.license == 'institution') {
