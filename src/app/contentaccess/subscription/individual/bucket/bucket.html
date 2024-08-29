@@ -42,9 +42,9 @@
 				  <input
 					type="radio"
 					name="licenseoptions"
-					ng-model="$parent.subscriptionBucketId"
-					ng-value="{{ sub.subscriptionBucketId }}"
-					ng-change="setSelectedSubscriptionBucket(sub.subscriptionBucketId, sub.partnerId, sub.units, sub.price)"
+					ng-model="$parent.bucketTypeId"
+					ng-value="{{ sub.bucketTypeId }}"
+					ng-change="setSelectedSubscriptionBucket(sub.bucketTypeId, sub.partnerId, sub.units, sub.price)"
 					required
 				  />
 				  {{ sub.description }}&nbsp;-&nbsp;${{ sub.price }} (USD)

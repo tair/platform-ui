@@ -62,7 +62,7 @@ angular.module('platform-ui.contentaccess.subscription.individual').controller(
 
       $scope.setSelectedSubscriptionBucket = function (
         id, partner, units, price) {
-          $scope.selectedSubscriptionBucket.subscriptionBucketId = id
+          $scope.selectedSubscriptionBucket.bucketTypeId = id
           $scope.selectedSubscriptionBucket.partnerId = partner
           $scope.selectedSubscriptionBucket.units = units
           $scope.selectedSubscriptionBucket.price = price
@@ -198,7 +198,7 @@ angular.module('platform-ui.contentaccess.subscription.individual').controller(
                 data: {
                   stripeToken: response.id,
                   price: $scope.info.subtotal,
-                  bucketId: $scope.selectedSubscriptionBucket.subscriptionBucketId,
+                  bucketTypeId: $scope.selectedSubscriptionBucket.bucketTypeId,
                   quantity: $scope.info.numOfSubscribers,
                   email: $scope.formdata.email,
                   firstName: $scope.formdata.firstname,

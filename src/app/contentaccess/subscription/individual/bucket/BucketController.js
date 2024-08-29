@@ -18,7 +18,7 @@ angular
 
 			$scope.validate = function () {
 				return (
-				  $scope.selectedSubscriptionBucket.subscriptionBucketId != null &&
+				  $scope.selectedSubscriptionBucket.bucketTypeId != null &&
 				  $scope.info.numOfSubscribers > 0 &&
 				  $scope.userbool == true &&
 				  $scope.termsbool == true
@@ -27,7 +27,7 @@ angular
 
 			$scope.validateAndSubmit = function () {
 				$scope.errors = null
-				if ($scope.selectedSubscriptionBucket.subscriptionBucketId == null) {
+				if ($scope.selectedSubscriptionBucket.bucketTypeId == null) {
 				  $scope.errors = 'Please select a subscription bucket.'
 				  return false
 				}
@@ -49,7 +49,7 @@ angular
 
 			function init() {
 				var debugMsg = ''
-				$scope.subscriptions = BucketModel.subscriptions
+				// $scope.subscriptions = BucketModel.subscriptions
 				if ($scope.partnerId == null) {
 					console.log('partnerId is null')
 				}
@@ -58,12 +58,11 @@ angular
 				//rewrite the default values with correct actual values
 				$http({
 					url:
-					  $scope.apiUri + '/partners/buckets/?partnerId=' + $scope.partnerId,
+					  $scope.apiUri + '/partners/bucket_types/?partnerId=' + $scope.partnerId,
 					method: 'GET',
 				  })
 					.success(function (data, status, headers, config) {
 					  $scope.subscriptions = data
-					  console.log($scope.subscriptions)
 					})
 					.error(function (data, status, headers, config) {
 					  debugMsg =
