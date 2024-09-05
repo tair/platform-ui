@@ -1,7 +1,7 @@
 <div ng-controller="BucketController">
 	<div class="row">
 	  <div
-		class="col-xs-10"
+		class="col-xs-12"
 		style="float: none; margin-left: auto; margin-right: auto;"
 	  >
 		<form ng-submit="validateAndSubmit() && next('pay')">
@@ -44,7 +44,7 @@
 					name="licenseoptions"
 					ng-model="$parent.bucketTypeId"
 					ng-value="{{ sub.bucketTypeId }}"
-					ng-change="setSelectedSubscriptionBucket(sub.bucketTypeId, sub.partnerId, sub.units, sub.price)"
+					ng-change="setSelectedSubscriptionBucket(sub.bucketTypeId, sub.partnerId, sub.units, sub.price, sub.description)"
 					required
 				  />
 				  {{ sub.description }}&nbsp;-&nbsp;${{ sub.price }} (USD)

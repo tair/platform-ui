@@ -61,11 +61,12 @@ angular.module('platform-ui.contentaccess.subscription.individual').controller(
       }
 
       $scope.setSelectedSubscriptionBucket = function (
-        id, partner, units, price) {
+        id, partner, units, price, description) {
           $scope.selectedSubscriptionBucket.bucketTypeId = id
           $scope.selectedSubscriptionBucket.partnerId = partner
           $scope.selectedSubscriptionBucket.units = units
           $scope.selectedSubscriptionBucket.price = price
+          $scope.selectedSubscriptionBucket.description = description
         }
 
       $scope.get_total_price2 = function () {
