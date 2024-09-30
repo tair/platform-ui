@@ -61,12 +61,13 @@ angular.module('platform-ui.contentaccess.subscription.individual').controller(
       }
 
       $scope.setSelectedSubscriptionBucket = function (
-        id, partner, units, price, description) {
+        id, partner, units, price, description, discountPercentage) {
           $scope.selectedSubscriptionBucket.bucketTypeId = id
           $scope.selectedSubscriptionBucket.partnerId = partner
           $scope.selectedSubscriptionBucket.units = units
           $scope.selectedSubscriptionBucket.price = price
           $scope.selectedSubscriptionBucket.description = description
+          $scope.selectedSubscriptionBucket.discountPercentage = discountPercentage
         }
 
       $scope.get_total_price2 = function () {
@@ -91,10 +92,18 @@ angular.module('platform-ui.contentaccess.subscription.individual').controller(
         if ($scope.info.numOfSubscribers == null) return null
         if ($scope.info.numOfSubscribers < 0) return 0
 
-        var num = Math.round($scope.info.numOfSubscribers)
-        var ret = $scope.selectedSubscriptionBucket.price * num
-        $scope.info.subtotal = Math.round(ret * 100) / 100
-        return $scope.info.subtotal
+        var num = Math.round($scope.info.numOfSubscribers);
+        var price = $scope.selectedSubscriptionBucket.price;
+      
+        // Check if discountPercentage exists and is greater than 0
+        if ($scope.selectedSubscriptionBucket.discountPercentage != null && $scope.selectedSubscriptionBucket.discountPercentage > 0) {
+          var discount = $scope.selectedSubscriptionBucket.discountPercentage;
+          price = price - (price * discount / 100); // Apply the discount to the price
+        }
+      
+        var ret = price * num;
+        $scope.info.subtotal = Math.round(ret * 100) / 100;
+        return $scope.info.subtotal;
       }
 
       $scope.makeCharge = function (bool, next) {

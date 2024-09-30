@@ -62,6 +62,12 @@ angular
 					method: 'GET',
 				  })
 					.success(function (data, status, headers, config) {
+						data.forEach(function(item) {
+							if (item.bucketTypeId === 10) {
+								// Set the discountPercentage to 50 for bucketId 10
+								item.discountPercentage = 50;
+							}
+						});
 					  $scope.subscriptions = data
 					})
 					.error(function (data, status, headers, config) {

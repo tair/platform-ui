@@ -44,10 +44,17 @@
 					name="licenseoptions"
 					ng-model="$parent.bucketTypeId"
 					ng-value="{{ sub.bucketTypeId }}"
-					ng-change="setSelectedSubscriptionBucket(sub.bucketTypeId, sub.partnerId, sub.units, sub.price, sub.description)"
+					ng-change="setSelectedSubscriptionBucket(sub.bucketTypeId, sub.partnerId, sub.units, sub.price, sub.description, sub.discountPercentage)"
 					required
 				  />
-				  {{ sub.description }}&nbsp;-&nbsp;${{ sub.price }} (USD)
+				  {{ sub.description }}&nbsp;-&nbsp;
+				  <span ng-if="sub.discountPercentage > 0">
+					<span style="text-decoration: line-through;">${{ sub.price }} (USD)</span>
+					&nbsp;<span style="font-weight: bold;">${{ sub.price - (sub.price * sub.discountPercentage / 100) }} (USD)</span>
+				  </span>
+				  <span ng-if="!sub.discountPercentage || sub.discountPercentage === 0">
+					${{ sub.price }} (USD)
+				  </span>
 				</label>
 			  </div>
 			</div>

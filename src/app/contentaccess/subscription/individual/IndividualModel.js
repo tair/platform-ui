@@ -44,7 +44,8 @@ angular.module('platform-ui.contentaccess.subscription.individual').factory(
           partnerId: null,
           units: null,
           price: null,
-          description: null
+          description: null,
+          discountPercentage: null
         },
         currentTab: 'bucket',
         tabs: {
