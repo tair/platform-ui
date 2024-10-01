@@ -49,6 +49,18 @@
                     this page from a subscribed institution or by logging in to
                     a subscribed user account.
                   </p>
+                  <p
+                    ng-if="exceed=='outofunits'"
+                    style="color: red; font-size: 14px;"
+                  >
+                    You don't have enough usage units to access this content. Please get more usage units for yout account.
+                  </p>
+                  <p ng-if="exceed=='nologin'" style="color: red; font-size: 14px;">
+                    You are not logged in.
+                  </p>
+                  <p ng-if="exceed=='abouttorunout'" style="color: orange; font-size: 14px;">
+                    You are about to run out of usage units.
+                  </p>
                 </div>
               </div>
             </div>
@@ -79,7 +91,7 @@
               <div class="row">
                 <div class="col-xs-12">
                   <div class="metering-body-text">
-                    To gain unlimited access, please
+                    To gain unlimited access or purchase more usage units, please
                   </div>
                 </div>
               </div>
@@ -90,7 +102,7 @@
                   <a
                     href="#contentaccess/subscription?partnerId={{partnerId}}&redirect={{redirect}}"
                     class="btn btn-success btn-success-tair"
-                    >SUBSCRIBE</a
+                    >SUBSCRIBE OR BUY</a
                   >
                 </div>
               </div>
