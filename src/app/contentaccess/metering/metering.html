@@ -53,7 +53,7 @@
                     ng-if="exceed=='outofunits'"
                     style="color: red; font-size: 14px;"
                   >
-                    You don't have enough usage units to access this content. Please get more usage units for yout account.
+                    You don't have enough usage units to access this content. Please get more usage units for your account.
                   </p>
                   <p ng-if="exceed=='nologin'" style="color: red; font-size: 14px;">
                     You are not logged in.
@@ -164,7 +164,7 @@
                   <a
                     href="#"
                     onclick="window.history.back();return false;"
-                    ng-if="exceed=='exceeded' || exceed=='blacklisted'"
+                    ng-if="exceed=='exceeded' || exceed=='blacklisted' || exceed=='outofunits' || exceed=='nologin'" 
                     ><button class="btn btn-default btn-default-tair">
                       BACK
                     </button></a
