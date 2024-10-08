@@ -8,7 +8,7 @@
 		  <div class="row" style="height: 55px;"></div>
 		  <div class="row">
 			<div class="col-xs-12 info-individual-heading">
-			  Bucket Purchase academic licenses for individual use
+			  Purchase Usage Units for individual use
 			</div>
 		  </div>
 		  <div class="row">
@@ -27,36 +27,38 @@
 			  >
 			</div>
 		  </div>
-		  <div class="row" style="height: 60px;"></div>
+		  <div class="row" style="height: 10px;"></div>
 		  <div class="row">
-			<div class="col-xs-7 info-individual-text">
-			  {{partner.name}} academic license for individual use
+			<div class="col-xs-7 info-individual-text" style="margin-bottom: 10px">
+			  {{partner.name}} buckets of usage units for individual use:
 			</div>
-			<div class="col-xs-5">
-			  <div
-				class="radio"
-				ng-repeat="sub in subscriptions"
-				style="margin-top: 0px;"
-			  >
-				<label class="info-individual-text">
-				  <input
-					type="radio"
-					name="licenseoptions"
-					ng-model="$parent.bucketTypeId"
-					ng-value="{{ sub.bucketTypeId }}"
-					ng-change="setSelectedSubscriptionBucket(sub.bucketTypeId, sub.partnerId, sub.units, sub.price, sub.description, sub.discountPercentage)"
-					required
-				  />
-				  {{ sub.description }}&nbsp;-&nbsp;
-				  <span ng-if="sub.discountPercentage > 0">
-					<span style="text-decoration: line-through;">${{ sub.price }} (USD)</span>
-					&nbsp;<span style="font-weight: bold;">${{ sub.price - (sub.price * sub.discountPercentage / 100) }} (USD)</span>
-				  </span>
-				  <span ng-if="!sub.discountPercentage || sub.discountPercentage === 0">
-					${{ sub.price }} (USD)
-				  </span>
-				</label>
-			  </div>
+		  </div>
+		  <div class="row">
+			<div style="margin-left: 30px">
+				<div
+				  class="radio"
+				  ng-repeat="sub in subscriptions"
+				  style="margin-top: 0px;"
+				>
+				  <label class="info-individual-text">
+					<input
+					  type="radio"
+					  name="licenseoptions"
+					  ng-model="$parent.bucketTypeId"
+					  ng-value="{{ sub.bucketTypeId }}"
+					  ng-change="setSelectedSubscriptionBucket(sub.bucketTypeId, sub.partnerId, sub.units, sub.price, sub.description, sub.discountPercentage)"
+					  required
+					/>
+					{{ sub.description }}&nbsp;-&nbsp;
+					<span ng-if="sub.discountPercentage > 0">
+					  <span style="text-decoration: line-through;">${{ sub.price }} (USD)</span>
+					  &nbsp;<span style="font-weight: bold;">${{ sub.price - (sub.price * sub.discountPercentage / 100) }} (USD)</span>
+					</span>
+					<span ng-if="!sub.discountPercentage || sub.discountPercentage === 0">
+					  ${{ sub.price }} (USD)
+					</span>
+				  </label>
+				</div>
 			</div>
 		  </div>
 		  <div class="row" style="height: 20px;"></div>
