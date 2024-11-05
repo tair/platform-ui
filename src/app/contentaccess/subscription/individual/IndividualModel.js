@@ -67,8 +67,8 @@ angular.module('platform-ui.contentaccess.subscription.individual').factory(
           },
         },
         templates: {
-          term: 'contentaccess/subscription/individual/term/term.html',
           bucket: 'contentaccess/subscription/individual/bucket/bucket.html',
+          term: 'contentaccess/subscription/individual/term/term.html',
           pay: 'contentaccess/subscription/individual/pay/pay.html',
           confirm: 'contentaccess/subscription/individual/confirm/confirm.html',
           thankyou:
