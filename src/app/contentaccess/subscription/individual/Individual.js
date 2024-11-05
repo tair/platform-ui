@@ -13,8 +13,8 @@ angular
     [
       'ui.router',
       'service.title',
-      'platform-ui.contentaccess.subscription.individual.term',
       'platform-ui.contentaccess.subscription.individual.bucket',
+      'platform-ui.contentaccess.subscription.individual.term',
       'platform-ui.contentaccess.subscription.individual.pay',
     ]
   )
@@ -35,28 +35,28 @@ angular
         },
       },
     })
-    .state('subscription.individual.term', {
-        url: '?{partnerId}&{redirect}',
-        views: {
-          individual: {
-            controller: 'TermController',
-            templateUrl: function (stateParam) {
-              var partnerId = stateParam.partnerId
-              var viewFile = 'term.html'
-              if (partnerId != null) {
-                switch(partnerId.toLowerCase()){
-                  case 'biocyc':
-                    viewFile = 'biocyc-transition-info.html'
-                    break;
-                }
-              }
-              return (
-                'contentaccess/subscription/individual/term/' + viewFile
-              )
-            },
-          },
-        },
-      })
+    // .state('subscription.individual.term', {
+    //     url: '?{partnerId}&{redirect}',
+    //     views: {
+    //       individual: {
+    //         controller: 'TermController',
+    //         templateUrl: function (stateParam) {
+    //           var partnerId = stateParam.partnerId
+    //           var viewFile = 'term.html'
+    //           if (partnerId != null) {
+    //             switch(partnerId.toLowerCase()){
+    //               case 'biocyc':
+    //                 viewFile = 'biocyc-transition-info.html'
+    //                 break;
+    //             }
+    //           }
+    //           return (
+    //             'contentaccess/subscription/individual/term/' + viewFile
+    //           )
+    //         },
+    //       },
+    //     },
+    //   })
       
       .state('subscription.individual.pay', {
         url: '/pay?{partnerId}&{redirect}',
