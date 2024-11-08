@@ -58,7 +58,7 @@
                   <p ng-if="exceed=='nologin'" style="color: red; font-size: 14px;">
                     You are not logged in.
                   </p>
-                  <p ng-if="exceed=='abouttorunout'" style="color: orange; font-size: 14px;">
+                  <p ng-if="exceed=='abouttorunout'" style="color: red; font-size: 14px;">
                     You are about to run out of usage units.
                   </p>
                 </div>
@@ -139,7 +139,7 @@
               </div>
               <div class="row" style="height: 8px;"></div>
               <!--  LOGIN BTN	-->
-              <div class="row">
+              <!-- <div class="row">
                 <div class="col-xs-12">
                   <a
                     href="#contentaccess/login?partnerId={{partnerId}}&redirect={{redirect}}"
@@ -147,7 +147,7 @@
                     >LOG IN</a
                   >
                 </div>
-              </div>
+              </div> -->
 
               <!--  KEEP BROWSING or BACK BTNS -->
               <div class="row" style="height: 10px;"></div>
@@ -161,14 +161,14 @@
                     </button></a
                   >
                   <!-- http://stackoverflow.com/questions/14815838/webkit-chrome-history-back-1-onclick-vs-href -->
-                  <a
+                  <!-- <a
                     href="#"
                     onclick="window.history.back();return false;"
                     ng-if="exceed=='exceeded' || exceed=='blacklisted' || exceed=='outofunits' || exceed=='nologin'" 
                     ><button class="btn btn-default btn-default-tair">
                       BACK
                     </button></a
-                  >
+                  > -->
                 </div>
               </div>
             </div>
