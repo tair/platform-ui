@@ -53,16 +53,17 @@ angular
 				if ($scope.partnerId == null) {
 					console.log('partnerId is null')
 				}
-				console.log($scope.apiUri, $scope.partnerId)
+				console.log($stateParams)
 
 				//rewrite the default values with correct actual values
 				$http({
 					url:
-					  $scope.apiUri + '/partners/bucket_types/?partnerId=' + $scope.partnerId,
+					  $scope.apiUri + '/partners/bucket_types/?partnerId=' + $scope.partnerId + '&orcid_id=' + $stateParams.orcid_id,
 					method: 'GET',
 				  })
 					.success(function (data, status, headers, config) {
 					  $scope.subscriptions = data
+					  console.log(data);
 					})
 					.error(function (data, status, headers, config) {
 					  debugMsg =

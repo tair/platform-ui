@@ -21,7 +21,7 @@ angular
   .config(function ($stateProvider) {
     $stateProvider
     .state('subscription.individual.bucket', {
-      url: '?{partnerId}&{redirect}',
+      url: '?{partnerId}&{redirect}&{orcid_id}',
       views: {
         individual: {
           controller: 'BucketController',
