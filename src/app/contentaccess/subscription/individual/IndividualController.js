@@ -178,6 +178,7 @@ angular.module('platform-ui.contentaccess.subscription.individual').controller(
       }
 
       $scope.makeChargeBucket = function (bool, next) {
+        console.log("orcid_id " + $scope.orcid_id)
         Stripe.setPublishableKey($scope.stripePublishableKey)
         var stripeData = {
           name: $scope.formdata.firstname + ' ' + $scope.formdata.lastname,
@@ -222,6 +223,7 @@ angular.module('platform-ui.contentaccess.subscription.individual').controller(
                   other: $scope.formdata.other, //PW-248
                   redirect: $scope.redirect,
                   domain: $scope.domain,
+                  orcid_id: $scope.orcid_id || ""
                 },
                 method: 'POST',
                 timeout: 30000
@@ -257,7 +259,8 @@ angular.module('platform-ui.contentaccess.subscription.individual').controller(
         $scope.selectedSubscription = IndividualModel.selectedSubscription
         $scope.selectedSubscriptionBucket = IndividualModel.selectedSubscriptionBucket
         $scope.loading = false
-        console.log('IndividualController init ', IndividualModel)
+        console.log('IndividualController init ', $state.params)
+        $scope.orcid_id = $state.params.orcid_id
         //            $scope.domain = $location.protocol() + "://" + $location.host();
       }
     },

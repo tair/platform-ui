@@ -53,7 +53,6 @@ angular
 				if ($scope.partnerId == null) {
 					console.log('partnerId is null')
 				}
-				console.log($stateParams)
 
 				//rewrite the default values with correct actual values
 				$http({
