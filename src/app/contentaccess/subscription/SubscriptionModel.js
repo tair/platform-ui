@@ -23,6 +23,8 @@ angular.module('platform-ui.contentaccess.subscription').factory(
           termOfServiceUri: 'http://thisisanotherbrokenuri.com',
         },
 
+        helpLink: 'https://help.example.com/usage-limits',
+
         institutions: ["Azeem's lab", "Steve's lab"],
         countries: ['USA', 'Canada'],
 

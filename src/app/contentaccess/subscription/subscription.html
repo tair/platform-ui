@@ -8,40 +8,29 @@
       >
         <!-- Heading -->
         <div class="panel-heading subscription-panel-heading">
-          <div class="row">
-            <div class="col-xs-2" style="float: right;">
-              <a href="{{partner.homeUri}}" title="{{partner.name}} home page"
-                ><img
-                  src="{{partner.logoUri}}"
-                  alt="{{partner.name}} logo"
-                  style="max-width:120px; height: 60px; float: right;"
-              /></a>
+          <div class="row" style="display: flex; align-items: center;">
+            <div class="col-xs-2">
+              <a href="{{partner.homeUri}}" title="{{partner.name}} home page">
+                <img src="{{partner.logoUri}}" 
+                     alt="{{partner.name}} logo" 
+                     style="max-height: 40px; width: auto;">
+              </a>
             </div>
-            <div
-              class="col-xs-5 text-center"
-              style="
-                float: none;
-                margin-left: auto;
-                margin-right: auto;
-                padding-top: 20px;
-              "
-            >
-              {{panelHeader}}
+            <div class="col-xs-10">
+              <div style="display: flex; align-items: center; justify-content: space-between;">
+                <span style="font-size: 16px; color: #333; font-weight: 500;">
+                  {{panelHeader}}
+                  <a href="{{helpLink}}" target="_blank" title="Learn more about usage limits" class="info-circle">
+                    <i class="fa fa-info-circle"></i>
+                  </a>
+                </span>
+              </div>
             </div>
           </div>
-          <!--<div class="row">
-						<div class="col-xs-12 text-center">
-							Subscribe
-						</div>
-					</div>-->
         </div>
         <!-- Body -->
-        <div style="padding-top: 0px;" class="panel-body">
+        <div class="panel-body">
           <div ui-view="subscription"></div>
-          <!--<div class="tab-page" ng-include="templates.landing" ng-if="currentTab=='landing'"></div>
-				  <div class="tab-page" ng-include="templates.individual" ng-if="currentTab=='individual'"></div>
-				  <div class="tab-page" ng-include="templates.commercial" ng-if="currentTab=='commercial'"></div>
-				  <div class="tab-page" ng-include="templates.institution" ng-if="currentTab=='institution'"></div>-->
         </div>
       </div>
     </div>
@@ -57,25 +46,14 @@
           margin-right: auto;
         "
       >
-        <div class="row">
-          <div class="col-xs-4 text-right" style="float: right;">
-            <div class="col-xs-6">
-              <div
-                class="row text-right"
-                style="padding-top: 15px; color: #bbc9cf;"
-              >
-                Powered by
-              </div>
-            </div>
-            <div class="col-xs-6">
-              <img
-                src="assets/Phoenix_Logo.png"
-                style="height: 39px; width: 67px;"
-              />
-            </div>
-          </div>
+      <div class="phoenix-footer">
+        <div class="powered-by">
+          Powered by
+          <img src="assets/Phoenix_Logo.png" alt="Phoenix Bioinformatics Logo">
         </div>
+      </div>
       </div>
     </div>
   </div>
 </div>
+

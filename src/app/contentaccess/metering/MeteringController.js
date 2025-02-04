@@ -18,6 +18,7 @@ angular.module('platform-ui.contentaccess.metering').controller(
     /* Controller Definition */
     function ($scope, $location, $http, $cookies, Title, MeteringModel) {
       init()
+      $scope.helpLink = MeteringModel.helpLink;
       $http({
         url:
           $scope.apiUri +

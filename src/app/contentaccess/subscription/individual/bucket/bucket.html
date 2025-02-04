@@ -5,12 +5,6 @@
 		style="float: none; margin-left: auto; margin-right: auto;"
 	  >
 		<form ng-submit="validateAndSubmit() && next('pay')">
-		  <div class="row" style="height: 55px;"></div>
-		  <div class="row">
-			<div class="col-xs-12 info-individual-heading">
-			  Purchase Usage Units for individual use
-			</div>
-		  </div>
 		  <div class="row">
 			<div class="col-xs-12 info-individual-text">
 			  Check
@@ -27,7 +21,6 @@
 			  >
 			</div>
 		  </div>
-		  <div class="row" style="height: 10px;"></div>
 		  <div class="row">
 			<div class="col-xs-7 info-individual-text" style="margin-bottom: 10px">
 			  {{partner.name}} bundles of usage units for individual use:
@@ -61,31 +54,6 @@
 				</div>
 			</div>
 		  </div>
-		  <div class="row" style="height: 20px;"></div>
-		  <div class="row">
-			<!-- <div class="col-xs-6">
-			  <div class="form-group">
-				<label for="numOfSubscribers" class="info-individual-text"
-				  >*Number of bundles</label
-				>
-				<input
-				  type="number"
-				  id="numOfSubscribers"
-				  ng-model="info.numOfSubscribers"
-				  required
-				/>
-			  </div>
-			</div> -->
-			<!-- <div
-			  class="col-xs-6 info-individual-discount"
-			  ng-if="selectedSubscription.groupDiscountPercentage != null && selectedSubscription.groupDiscountPercentage > 0"
-			>
-			  <div class="row">
-				Receive a {{ selectedSubscription.groupDiscountPercentage }}%
-				discount if you purchase 2 or more individual licenses together
-			  </div>
-			</div> -->
-		  </div>
 		  <div class="row">
 			<div class="col-xs-12">
 			  <div class="checkbox">
@@ -112,9 +80,7 @@
 			  Subtotal: ${{ get_total_buckets_price()|number:2 }} (USD)
 			</div>
 		  </div>
-		  <div class="row" style="height: 18px;"></div>
 		  <span style="color: red;">{{errors}}</span>
-		  <div class="row" style="height: 18px;"></div>
 		  <div class="row">
 			<div class="col-xs-4 text-center">
 			  <button
@@ -144,7 +110,6 @@
 			  </button>
 			</div>
 		  </div>
-		  <div class="row" style="height: 36px;"></div>
 		</form>
 	  </div>
 	</div>

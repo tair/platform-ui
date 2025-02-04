@@ -62,6 +62,7 @@ angular.module('platform-ui.contentaccess.subscription').controller(
           method: 'GET',
         }).success(function (data, status, headers, config) {
           $scope.partner = data[0]
+          $scope.helpLink = getHelpLink()
         })
         $http({
           url: $scope.apiUri + '/parties/organizations/', //needed for PW-266
@@ -76,6 +77,10 @@ angular.module('platform-ui.contentaccess.subscription').controller(
           $scope.countries = data
         })
         $scope.panelHeader = getPanelHeader()
+      }
+
+      function getHelpLink() {
+        return SubscriptionModel.helpLink
       }
 
       function rerouteByPartner() {
@@ -98,8 +103,12 @@ angular.module('platform-ui.contentaccess.subscription').controller(
         if (partnerId && partnerId.toLowerCase() == 'morphobank') {
           header = 'How can you help?'
         }
+        if(partnerId && partnerId.toLowerCase() == 'tair'){
+          header = 'Purchase usage units for individual academic or non-profit use'
+        }
         return header
       }
     },
+
   ]
 )

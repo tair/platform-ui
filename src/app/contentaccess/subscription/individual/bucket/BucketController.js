@@ -68,7 +68,7 @@ angular
 					  debugMsg =
 						'4.2. ERROR $scope.subscriptions is ' + $scope.subscriptions
 					  console.log(debugMsg)
-					  bootbox.alert(debugMsg)
+					//   bootbox.alert(debugMsg)
 					})
 				
 			}
