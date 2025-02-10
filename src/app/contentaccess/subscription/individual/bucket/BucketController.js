@@ -8,12 +8,13 @@ angular
 	[
 		'$http',
 		'$scope',
+		'$cookies',
 		'$rootScope',
 		'$stateParams',
 		'BucketModel',
 
 		/* Controller Definition */
-		function ($http, $scope, $rootScope, $stateParams, BucketModel) {
+		function ($http, $scope, $cookies, $rootScope, $stateParams, BucketModel) {
 			init()
 
 			$scope.validate = function () {
@@ -53,6 +54,15 @@ angular
 				if ($scope.partnerId == null) {
 					console.log('partnerId is null')
 				}
+				if ($stateParams.orcid_id == null) {
+					console.log('orcid_id is null')
+					console.log($cookies)
+					if ($cookies.org_phoenixbioinformatics_ui_credentialId != null) {
+					$scope.credentialId = $cookies.org_phoenixbioinformatics_ui_credentialId
+					console.log($scope.credentialId)
+					}
+				}
+
 
 				//rewrite the default values with correct actual values
 				$http({
