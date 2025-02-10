@@ -42,6 +42,7 @@ angular.module('platform-ui.contentaccess.metering').controller(
         $scope.redirect = $scope.getRedirect()
         $scope.redirectNoEncode = $scope.getRedirectNoEncode()
         $scope.exceed = $location.search()['exceed']
+        $scope.orcid_id = $location.search()['orcid_id']
         $http({
           url: $scope.apiUri + '/partners/?partnerId=' + $scope.partnerId,
           method: 'GET',

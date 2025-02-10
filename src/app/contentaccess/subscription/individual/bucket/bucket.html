@@ -45,7 +45,7 @@
 					{{ sub.description }}&nbsp;-&nbsp;
 					<span ng-if="sub.discountPercentage > 0">
 					  <span style="text-decoration: line-through;">${{ sub.price }} (USD)</span>
-					  &nbsp;<span style="font-weight: bold;">${{ sub.price - (sub.price * sub.discountPercentage / 100) }} (USD)</span>
+					  &nbsp;<span style="font-weight: bold;">${{ sub.price - (sub.price * sub.discountPercentage / 100) }} (USD)  (50% off first annual purchase)</span>
 					</span>
 					<span ng-if="!sub.discountPercentage || sub.discountPercentage === 0">
 					  ${{ sub.price }} (USD)
