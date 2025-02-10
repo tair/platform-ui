@@ -56,9 +56,8 @@ angular
 				}
 				if ($stateParams.orcid_id == null) {
 					console.log('orcid_id is null')
-					console.log($cookies)
-					if ($cookies.org_phoenixbioinformatics_ui_credentialId != null) {
-					$scope.credentialId = $cookies.org_phoenixbioinformatics_ui_credentialId
+					if ($cookies.credentialId != null) {
+					$scope.credentialId = $cookies.credentialId
 					console.log($scope.credentialId)
 					}
 				}
@@ -67,7 +66,7 @@ angular
 				//rewrite the default values with correct actual values
 				$http({
 					url:
-					  $scope.apiUri + '/partners/bucket_types/?partnerId=' + $scope.partnerId + '&orcid_id=' + $stateParams.orcid_id,
+					  $scope.apiUri + '/partners/bucket_types/?partnerId=' + $scope.partnerId + '&orcid_id=' + $stateParams.orcid_id + '&credentialId=' + $scope.credentialId,
 					method: 'GET',
 				  })
 					.success(function (data, status, headers, config) {
