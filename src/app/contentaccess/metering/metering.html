@@ -2,174 +2,135 @@
   <div class="row">
     <div class="col-xs-12">
       <div
-        style="margin-left: auto; margin-right: auto;"
         class="panel panel-default metering-panel"
       >
-        <div class="panel-heading metering-panel-heading">
-          <div class="row">
-            <div class="col-xs-1 text-right" style="float: right;">
-              <a href="{{partner.homeUri}}" title="{{partner.name}} home page"
-                ><img
-                  src="{{partner.logoUri}}"
-                  alt="{{partner.name}} logo"
-                  style="height: 60px; float: right;"
-              /></a>
+        <div class="panel-heading metering-panel-heading" style="padding: 15px 20px;">
+          <div class="row" style="display: flex; align-items: center;">
+            <div class="col-xs-2">
+              <a href="{{partner.homeUri}}" title="{{partner.name}} home page">
+                <img src="{{partner.logoUri}}" 
+                     alt="{{partner.name}} logo" 
+                     style="max-height: 40px; width: auto;">
+              </a>
             </div>
-            <div
-              class="col-xs-9"
-              style="
-                float: none;
-                margin-left: auto;
-                margin-right: auto;
-                padding-top: 20px;
-              "
-            >
-              <div class="row">
-                <div class="col-xs-3 text-center">
-                  <!-- http://stackoverflow.com/questions/26669964/how-to-debug-font-awesome-icons -->
-                  <i
-                    class="fa fa-exclamation-triangle fa-3x"
-                    style="color: red;"
-                  ></i>
-                </div>
-                <div class="col-xs-9 text-left">
-                  <div class="row"></div>
-                  <p ng-if="exceed=='abouttoexceed'">
-                    You are about to exceed your limit of free available page
-                    views this month.
-                  </p>
-                  <p ng-if="exceed=='exceeded'" style="color: red;">
+            <div class="col-xs-10">
+              <div class="alert-message" style="display: flex; align-items: center;">
+                <i class="fa fa-exclamation-triangle" 
+                   style="color: #e74c3c; font-size: 16px; margin-right: 10px;"></i>
+                
+                <span style="font-size: 16px;">
+                  <span ng-if="exceed=='abouttoexceed'" style="color: #f39c12;">
+                    You are about to exceed your limit of free available page views this month.
+                  </span>
+                  
+                  <span ng-if="exceed=='exceeded'" style="color: #e74c3c;">
                     You have exceeded your limit for this month
-                  </p>
-                  <p
-                    ng-if="exceed=='blacklisted'"
-                    style="color: red; font-size: 14px;"
-                  >
-                    Access to this link requires a subscription. Please access
-                    this page from a subscribed institution or by logging in to
-                    a subscribed user account.
-                  </p>
-                  <p
-                    ng-if="exceed=='outofunits'"
-                    style="color: red; font-size: 14px;"
-                  >
-                    You don't have enough usage units to access this content. Please get more usage units for your account.
-                  </p>
-                  <p ng-if="exceed=='nologin'" style="color: red; font-size: 14px;">
-                    You are not logged in.
-                  </p>
-                  <p ng-if="exceed=='abouttorunout'" style="color: red; font-size: 14px;">
-                    You are about to run out of usage units.
-                  </p>
-                </div>
+                    <a href="{{helpLink}}" target="_blank" title="Learn more about usage limits" class="info-circle">
+                      <i class="fa fa-info-circle"></i>
+                    </a>
+                  </span>
+                  
+                  <span ng-if="exceed=='blacklisted'" style="color: #e74c3c;">
+                    Access to this link requires a subscription. Please access this page from a subscribed institution or by logging in to a subscribed user account.
+                  </span>
+                  
+                  <span ng-if="exceed=='outofunits'" style="color: #e74c3c; font-size: 14px;">
+                    You don’t have enough usage units to access this content. Please access through your subscribed institution or purchase usage units.
+                    <a href="{{helpLink}}" target="_blank" title="Learn more about usage limits" class="info-circle">
+                      <i class="fa fa-info-circle"></i>
+                    </a>
+                  </span>
+                  
+                  <span ng-if="exceed=='nologin'" style="color: #e74c3c;">
+                    You are not logged in. Your session may have expired.
+                    <a href="{{helpLink}}" target="_blank" title="Learn more about usage limits" class="info-circle">
+                      <i class="fa fa-info-circle"></i>
+                    </a>
+                  </span>
+                  
+                  <span ng-if="exceed=='abouttorunout'" style="color: #d35400;">
+                    You have 4 usage units left.
+                    <a href="{{helpLink}}" target="_blank" title="Learn more about usage limits" class="info-circle">
+                      <i class="fa fa-info-circle"></i>
+                    </a>
+                  </span>
+                </span>
               </div>
             </div>
           </div>
         </div>
         <div class="panel-body" style="padding-top: 0px;">
-          <div class="row" style="height: 56px;"></div>
-          <div class="row">
-            <div class="col-xs-6">
-              <div class="row" style="height: 34px;"></div>
-              <div class="row">
-                <div class="col-xs-offset-2 text-left metering-body-heading">
-                  {{licenses[license].heading}}
-                </div>
-              </div>
-              <div class="row">
-                <ul class="col-xs-offset-2 col-xs-10 subscription-benefits">
-                  <li ng-repeat="b in licenses[license].benefits">
-                    {{b}}
-                  </li>
-                </ul>
+          <!-- Show only login button for nologin case -->
+          <div ng-if="exceed=='nologin'" class="row" style="text-align: center; padding: 40px 0;">
+            <div class="col-xs-12">
+              <a href="#contentaccess/login?partnerId={{partnerId}}&redirect={{redirect}}"
+                class="btn btn-success btn-success-tair">LOG IN</a>
+            </div>
+          </div>
+
+          <!-- New content for other cases -->
+          <div ng-if="exceed!='nologin'" style="text-align: center; padding: 20px 0;">
+            <!-- View Subscribed Institutions Button -->
+            <div class="row" style="margin-bottom: 30px;">
+              <div class="col-xs-12">
+                <a href="#contentaccess/list?partnerId={{partnerId}}"
+                  class="btn btn-success btn-success-tair" style="min-width: 300px;">
+                  <i class="fa fa-university"></i>&nbsp;&nbsp;VIEW SUBSCRIBED INSTITUTIONS
+                </a>
               </div>
             </div>
 
-            <div class="col-xs-6" style="padding-left: 73px;">
-              <!-- To gain unlimited access, please -->
-              <div class="row" style="height: 15px;"></div>
-              <div class="row">
-                <div class="col-xs-12">
-                  <div class="metering-body-text">
-                    To gain unlimited access or purchase more usage units, please
+            <!-- Troubleshooting Guide Message -->
+            <div class="row" style="margin-bottom: 30px;">
+              <div class="col-xs-12">
+                <p class="metering-body-text">
+                  If your institution has subscribed, check the 
+                  <a href="#contentaccess/guide?partnerId={{partnerId}}">troubleshooting guide</a>.
+                  <br>
+                  <a href="#contentaccess/guide?partnerId={{partnerId}}">网站连接问题指南</a>
+                </p>
+              </div>
+            </div>
+
+            <!-- No institutional subscription section -->
+            <div class="row" style="margin-bottom: 20px;">
+              <div class="col-xs-12">
+                <h4 style="color: #666;">No institutional subscription?</h4>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="row" style="margin-bottom: 30px;">
+              <div class="col-xs-12">
+                <div style="max-width: 800px; margin: 0 auto;">
+                  <div class="col-xs-5" style="padding: 0 10px;">
+                    <a href="mailto:subscriptions@phoenixbioinformatics.org"
+                      class="btn btn-success btn-success-tair" style="width: 100%; white-space: normal; min-height: 60px; display: flex; align-items: center; justify-content: center;">
+                      <i class="fa fa-envelope"></i>&nbsp;&nbsp;CONTACT US FOR INSTITUTIONAL SUBSCRIPTIONS
+                    </a>
+                  </div>
+                  <div class="col-xs-2" style="padding: 20px 0;">
+                    <span style="color: #666; font-weight: bold;">OR</span>
+                  </div>
+                  <div class="col-xs-5" style="padding: 0 10px;">
+                    <a href="#contentaccess/subscription/individual?partnerId={{partnerId}}&redirect={{redirect}}&orcid_id={{orcid_id}}"
+                      class="btn btn-success btn-success-tair" style="width: 100%; white-space: normal; min-height: 60px; display: flex; align-items: center; justify-content: center;">
+                      <i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;BUY MORE USAGE UNITS
+                    </a>
                   </div>
                 </div>
               </div>
-              <div class="row" style="height: 8px;"></div>
-              <!-- SUBSCRIBE BTN-->
-              <div class="row">
-                <div class="col-xs-12">
-                  <a
-                    href="#contentaccess/subscription?partnerId={{partnerId}}&redirect={{redirect}}"
-                    class="btn btn-success btn-success-tair"
-                    >SUBSCRIBE OR BUY</a
-                  >
-                </div>
-              </div>
+            </div>
 
-              <!-- Has your institution subscribed? -->
-              <div class="row" style="height: 15px;"></div>
-              <div class="row">
-                <div class="col-xs-12">
-                  <div class="metering-body-text">
-                    Has your institution subscribed?
-                  </div>
-                </div>
-              </div>
-              <div class="row" style="height: 8px;"></div>
-              <!-- VIEW LIST BTN	-->
-              <div class="row">
-                <div class="col-xs-12">
-                  <a
-                    href="#contentaccess/list?partnerId={{partnerId}}"
-                    class="btn btn-success btn-success-tair"
-                    >VIEW LIST</a
-                  >
-                </div>
-              </div>
-
-              <!-- Already have a subscription? -->
-              <div class="row" style="height: 15px;"></div>
-              <div class="row">
-                <div class="col-xs-12">
-                  <div class="metering-body-text">
-                    Already have a subscription?
-                  </div>
-                </div>
-              </div>
-              <div class="row" style="height: 8px;"></div>
-              <!--  LOGIN BTN	-->
-              <!-- <div class="row">
-                <div class="col-xs-12">
-                  <a
-                    href="#contentaccess/login?partnerId={{partnerId}}&redirect={{redirect}}"
-                    class="btn btn-success btn-primary-tair"
-                    >LOG IN</a
-                  >
-                </div>
-              </div> -->
-
-              <!--  KEEP BROWSING or BACK BTNS -->
-              <div class="row" style="height: 10px;"></div>
-              <div class="row">
-                <div class="col-xs-12">
-                  <a
-                    href="{{ redirectNoEncode }}"
-                    ng-if="exceed!='exceeded' && exceed!='blacklisted'&&  exceed!='outofunits' && exceed!='nologin'"
-                    ><button class="btn btn-default btn-default-tair">
-                      KEEP BROWSING
-                    </button></a
-                  >
-                  <!-- http://stackoverflow.com/questions/14815838/webkit-chrome-history-back-1-onclick-vs-href -->
-                  <!-- <a
-                    href="#"
-                    onclick="window.history.back();return false;"
-                    ng-if="exceed=='exceeded' || exceed=='blacklisted' || exceed=='outofunits' || exceed=='nologin'" 
-                    ><button class="btn btn-default btn-default-tair">
-                      BACK
-                    </button></a
-                  > -->
-                </div>
+            <!-- Keep Browsing Button -->
+            <div class="row" style="margin-top: 10px;">
+              <div class="col-xs-12">
+                <a href="{{ redirectNoEncode }}"
+                  ng-if="exceed!='exceeded' && exceed!='blacklisted' && exceed!='outofunits' && exceed!='nologin'">
+                  <button class="btn btn-default btn-default-tair" style="min-width: 200px;">
+                    <i class="fa fa-arrow-circle-right"></i>&nbsp;&nbsp;KEEP BROWSING
+                  </button>
+                </a>
               </div>
             </div>
           </div>
@@ -189,41 +150,12 @@
           margin-right: auto;
         "
       >
-        <div class="row">
-          <div class="col-xs-12 text-right" style="float: right;">
-            <div class="col-xs-8">
-              <div
-                class="row text-right"
-                style="padding-top: 15px; color: #bbc9cf;"
-              >
-                View our
-                <a href="#contentaccess/guide?partnerId={{partnerId}}"
-                  >Guide to Troubleshooting Access Issues</a
-                >
-                <br />
-                <a href="#contentaccess/guide?partnerId={{partnerId}}"
-                  >网站连接问题指南</a
-                >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              </div>
-            </div>
-
-            <div class="col-xs-2">
-              <div
-                class="row text-right"
-                style="padding-top: 15px; color: #bbc9cf;"
-              >
-                Powered by
-              </div>
-            </div>
-
-            <div class="col-xs-2">
-              <img
-                src="assets/Phoenix_Logo.png"
-                style="height: 39px; width: 67px;"
-              />
-            </div>
-          </div>
+      <div class="phoenix-footer">
+        <div class="powered-by">
+          Powered by
+          <img src="assets/Phoenix_Logo.png" alt="Phoenix Bioinformatics Logo">
         </div>
+      </div>
       </div>
     </div>
   </div>

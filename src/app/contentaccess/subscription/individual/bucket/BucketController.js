@@ -8,12 +8,13 @@ angular
 	[
 		'$http',
 		'$scope',
+		'$cookies',
 		'$rootScope',
 		'$stateParams',
 		'BucketModel',
 
 		/* Controller Definition */
-		function ($http, $scope, $rootScope, $stateParams, BucketModel) {
+		function ($http, $scope, $cookies, $rootScope, $stateParams, BucketModel) {
 			init()
 
 			$scope.validate = function () {
@@ -53,11 +54,19 @@ angular
 				if ($scope.partnerId == null) {
 					console.log('partnerId is null')
 				}
+				if ($stateParams.orcid_id == null) {
+					console.log('orcid_id is null')
+					if ($cookies.credentialId != null) {
+					$scope.credentialId = $cookies.credentialId
+					console.log($scope.credentialId)
+					}
+				}
+
 
 				//rewrite the default values with correct actual values
 				$http({
 					url:
-					  $scope.apiUri + '/partners/bucket_types/?partnerId=' + $scope.partnerId + '&orcid_id=' + $stateParams.orcid_id,
+					  $scope.apiUri + '/partners/bucket_types/?partnerId=' + $scope.partnerId + '&orcid_id=' + $stateParams.orcid_id + '&credentialId=' + $scope.credentialId,
 					method: 'GET',
 				  })
 					.success(function (data, status, headers, config) {
@@ -68,7 +77,7 @@ angular
 					  debugMsg =
 						'4.2. ERROR $scope.subscriptions is ' + $scope.subscriptions
 					  console.log(debugMsg)
-					  bootbox.alert(debugMsg)
+					//   bootbox.alert(debugMsg)
 					})
 				
 			}
