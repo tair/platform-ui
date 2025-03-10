@@ -23,6 +23,8 @@ angular.module('platform-ui.contentaccess.subscription').factory(
           termOfServiceUri: 'http://thisisanotherbrokenuri.com',
         },
 
+        helpLink: 'https://phoenixbioinformatics.atlassian.net/wiki/spaces/COM/pages/42217802/Individual+Subscription+FAQ',
+
         institutions: ["Azeem's lab", "Steve's lab"],
         countries: ['USA', 'Canada'],
 

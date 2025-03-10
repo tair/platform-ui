@@ -4,16 +4,14 @@
       class="col-xs-11"
       style="float: none; margin-left: auto; margin-right: auto;"
     >
-      <div class="row" style="height: 30px;"></div>
       <div class="row">
         <div class="col-xs-12 payment-confirmation-individual-heading">
           Checkout
         </div>
       </div>
-      <div class="row" style="height: 30px;"></div>
       <form
         id="payment-form"
-        ng-submit="validateAndSubmit() && makeCharge(false, 'confirm')"
+        ng-submit="validateAndSubmit() && makeChargeBucket(false, 'confirm')"
       >
         <div class="row">
           <div class="col-xs-6">
@@ -49,7 +47,6 @@
             </div>
           </div>
         </div>
-        <div class="row" style="height: 15px;"></div>
         <div class="row">
           <div class="col-xs-6">
             <div class="form-group">
@@ -83,7 +80,6 @@
             </div>
           </div>
         </div>
-        <div class="row" style="height: 15px;"></div>
 
         <div class="col-xs-13">
           <div class="form-group">
@@ -102,7 +98,6 @@
             />
           </div>
         </div>
-        <div class="row" style="height: 15px;"></div>
 
         <div class="row">
           <div class="col-xs-6">
@@ -134,7 +129,6 @@
             </div>
           </div>
         </div>
-        <div class="row" style="height: 15px;"></div>
         <div class="row">
           <div class="col-xs-3">
             <div class="form-group">
@@ -181,7 +175,6 @@
             </div>
           </div>
         </div>
-        <div class="row" style="height: 15px;"></div>
         <div class="row">
           <div class="col-xs-6">
             <div class="form-group">
@@ -268,16 +261,16 @@
             </div>
           </div>
         </div>
-        <div class="row" style="height: 15px;"></div>
         <div class="row">
           <div class="col-xs-12 payment-confirmation-individual-footer">
             Upon receipt of payment you will be emailed activation code(s) and
             instructions for activating your subscription(s).
           </div>
+          <div class="col-xs-12 payment-confirmation-individual-footer">
+            Note: Activation codes MUST be applied to a TAIR account within 90 days of purchase or they will be invalidated. If this happens, your payment will be refunded to the card that made the original purchase.
+          </div>
         </div>
-        <div class="row" style="height: 20px;"></div>
         <span style="color: red;">{{ stripeerrors }}</span>
-        <div class="row" style="height: 20px;"></div>
         <div class="row">
           <div class="col-xs-4 text-center">
             <button
@@ -307,7 +300,6 @@
             </button>
           </div>
         </div>
-        <div class="row" style="height: 30px;"></div>
       </form>
     </div>
   </div>

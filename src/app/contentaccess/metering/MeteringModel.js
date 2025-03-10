@@ -12,6 +12,7 @@ angular.module('platform-ui.contentaccess.metering').factory(
     function () {
       return {
         title: 'Metering',
+        helpLink: 'https://phoenixbioinformatics.atlassian.net/wiki/spaces/COM/pages/42217802/Individual+Subscription+FAQ'
       }
     },
   ]

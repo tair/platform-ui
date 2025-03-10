@@ -39,15 +39,23 @@ angular.module('platform-ui.contentaccess.subscription.individual').factory(
           price: null,
           groupDiscountPercentage: null,
         },
-        currentTab: 'term',
+        selectedSubscriptionBucket: {
+          subscriptionBucketId: null,
+          partnerId: null,
+          units: null,
+          price: null,
+          description: null,
+          discountPercentage: null
+        },
+        currentTab: 'bucket',
         tabs: {
           notused: {
             id: 'not used',
             text: '1. Choose License',
           },
           tab1: {
-            id: 'term',
-            text: '2. Choose Term',
+            id: 'bucket',
+            text: '2. Choose Bucket',
           },
           tab2: {
             id: 'pay',
@@ -59,7 +67,8 @@ angular.module('platform-ui.contentaccess.subscription.individual').factory(
           },
         },
         templates: {
-          term: 'contentaccess/subscription/individual/term/term.html',
+          bucket: 'contentaccess/subscription/individual/bucket/bucket.html',
+          // term: 'contentaccess/subscription/individual/term/term.html',
           pay: 'contentaccess/subscription/individual/pay/pay.html',
           confirm: 'contentaccess/subscription/individual/confirm/confirm.html',
           thankyou:
