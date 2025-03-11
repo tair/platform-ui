@@ -63,5 +63,23 @@ angular
               'contentaccess/subscription/individual/individual.html',
           },
         },
+        resolve: {
+          redirectToProperView: ['$state', '$stateParams', function($state, $stateParams) {
+            var partnerId = $stateParams.partnerId;
+            
+            // If we're already in a child state, don't redirect
+            if ($state.current.name !== 'subscription.individual') {
+              return;
+            }
+
+            if (partnerId && partnerId.toLowerCase() === 'tair') {
+              console.log('partnerId is tair; redirecting to bucket')
+              return $state.go('subscription.individual.bucket', $stateParams);
+            } else {
+              console.log('partnerId is not tair; redirecting to term')
+              return $state.go('subscription.individual.term', $stateParams);
+            }
+          }]
+        }
       })
   })
