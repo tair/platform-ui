@@ -86,6 +86,7 @@ angular.module('platform-ui.contentaccess.subscription').controller(
       function rerouteByPartner() {
         var partnerId = $scope.partnerId
         if (!partnerId) return
+        console.log('partnerId', partnerId)
         if (partnerId.toLowerCase() == 'morphobank') {
           if (!$location.url().includes('thankyou')) {
             // not redirect for thank you page
@@ -94,6 +95,13 @@ angular.module('platform-ui.contentaccess.subscription').controller(
               redirect: $scope.redirect,
             })
           }
+        }
+        // Redirect to term.html instead of bucket.html when partnerId is not 'tair'
+        else if (partnerId.toLowerCase() != 'tair' && $location.url().includes('/individual') && !$location.url().includes('/pay') && !$location.url().includes('/confirm') && !$location.url().includes('/thankyou')) {
+          $state.go('subscription.individual.term', {
+            partnerId: $scope.partnerId,
+            redirect: $scope.redirect,
+          })
         }
       }
 
