@@ -24,12 +24,18 @@ angular.module('platform-ui.contentaccess.subscription.landing').controller(
         }
         //$scope.switchTab($scope.license);
         if ($scope.license == 'individual') {
-          $state.go('subscription.individual.bucket', {
-            partnerId: $scope.partnerId,
-            redirect: $scope.redirect,
-          })
-          console.log("bucket state: ", $state)
-          // console.log($state)
+          if ($scope.partnerId && $scope.partnerId.toLowerCase() != 'tair') {
+            $state.go('subscription.individual.term', {
+              partnerId: $scope.partnerId,
+              redirect: $scope.redirect,
+            })
+          } else {
+            $state.go('subscription.individual.bucket', {
+              partnerId: $scope.partnerId,
+              redirect: $scope.redirect,
+            })
+          }
+          console.log("state: ", $state)
           return
         }
         if ($scope.license == 'institution') {

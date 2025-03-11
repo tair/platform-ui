@@ -20,13 +20,34 @@ angular
   )
   .config(function ($stateProvider) {
     $stateProvider
+    .state('subscription.individual.term', {
+      url: '?{partnerId}&{redirect}',
+      views: {
+        individual: {
+          controller: 'TermController',
+          templateUrl: function (stateParam) {
+            var partnerId = stateParam.partnerId
+            var viewFile = 'term.html'
+            if (partnerId != null) {
+              switch(partnerId.toLowerCase()){
+                case 'biocyc':
+                  viewFile = 'biocyc-transition-info.html'
+                  break;
+              }
+            }
+            return (
+              'contentaccess/subscription/individual/term/' + viewFile
+            )
+          },
+        },
+      },
+    })
     .state('subscription.individual.bucket', {
       url: '?{partnerId}&{redirect}&{orcid_id}',
       views: {
         individual: {
           controller: 'BucketController',
           templateUrl: function (stateParam) {
-            var partnerId = stateParam.partnerId
             var viewFile = 'bucket.html'
             return (
               'contentaccess/subscription/individual/bucket/' + viewFile
@@ -35,28 +56,6 @@ angular
         },
       },
     })
-    // .state('subscription.individual.term', {
-    //     url: '?{partnerId}&{redirect}',
-    //     views: {
-    //       individual: {
-    //         controller: 'TermController',
-    //         templateUrl: function (stateParam) {
-    //           var partnerId = stateParam.partnerId
-    //           var viewFile = 'term.html'
-    //           if (partnerId != null) {
-    //             switch(partnerId.toLowerCase()){
-    //               case 'biocyc':
-    //                 viewFile = 'biocyc-transition-info.html'
-    //                 break;
-    //             }
-    //           }
-    //           return (
-    //             'contentaccess/subscription/individual/term/' + viewFile
-    //           )
-    //         },
-    //       },
-    //     },
-    //   })
       
       .state('subscription.individual.pay', {
         url: '/pay?{partnerId}&{redirect}',

@@ -57,8 +57,13 @@ angular
 				if ($stateParams.orcid_id == null) {
 					console.log('orcid_id is null')
 					if ($cookies.credentialId != null) {
-					$scope.credentialId = $cookies.credentialId
-					console.log($scope.credentialId)
+						$scope.credentialId = $cookies.credentialId
+						console.log($scope.credentialId)
+					} else {
+						console.log('credentialId is null')
+						// Redirect to login page
+						// window.location.href = '/#/contentaccess/login?partnerId=' + $scope.partnerId + '&redirect=' + $scope.redirect;
+						return;
 					}
 				}
 

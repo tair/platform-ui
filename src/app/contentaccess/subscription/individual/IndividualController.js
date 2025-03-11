@@ -261,6 +261,28 @@ angular.module('platform-ui.contentaccess.subscription.individual').controller(
         $scope.loading = false
         console.log('IndividualController init ', $state.params)
         $scope.orcid_id = $state.params.orcid_id
+        
+        // Set the currentTab based on partnerId
+        var partnerId = $state.params.partnerId;
+        if (partnerId && partnerId.toLowerCase() === 'tair') {
+          console.log('partnerId is tair')
+          $state.go('subscription.individual.bucket', {
+            partnerId: partnerId,
+            redirect: $state.params.redirect,
+            orcid_id: $state.params.orcid_id
+          });
+        } else {
+          $state.go('subscription.individual.term', {
+            partnerId: partnerId,
+            redirect: $state.params.redirect
+          });
+        }
+        if (partnerId && partnerId.toLowerCase() != 'tair') {
+          $scope.currentTab = 'term';
+        } else {
+          $scope.currentTab = 'bucket';
+        }
+        
         //            $scope.domain = $location.protocol() + "://" + $location.host();
       }
     },
