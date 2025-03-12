@@ -62,7 +62,7 @@ angular
 					} else {
 						console.log('credentialId is null')
 						// Redirect to login page
-						// window.location.href = '/#/contentaccess/login?partnerId=' + $scope.partnerId + '&redirect=' + $scope.redirect;
+						window.location.href = '/#/contentaccess/login?partnerId=' + $scope.partnerId + '&redirect=/contentaccess/subscription?partnerId=tair&redirect=https:%252F%252Fwww.arabidopsis.org';
 						return;
 					}
 				}
