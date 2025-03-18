@@ -11,10 +11,11 @@ angular
     /* Dependencies */
     [
       '$scope',
+      '$stateParams',
       'PayModel',
 
       /* Controller Definition */
-      function ($scope, PayModel) {
+      function ($scope, $stateParams, PayModel) {
         init()
 
         $scope.reset = function () {
@@ -113,7 +114,10 @@ angular
           return true
         }
 
-        function init() {}
+        function init() {
+          console.log('init PayController ', $stateParams)
+          $scope.partnerId = $stateParams.partnerId;
+        }
       },
     ]
   )

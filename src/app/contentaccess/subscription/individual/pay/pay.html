@@ -11,7 +11,7 @@
       </div>
       <form
         id="payment-form"
-        ng-submit="validateAndSubmit() && makeChargeBucket(false, 'confirm')"
+        ng-submit="validateAndSubmit() && (partnerId.toLowerCase() === 'tair' ? makeChargeBucket(false, 'confirm') : makeCharge(false, 'confirm'))"
       >
         <div class="row">
           <div class="col-xs-6">
