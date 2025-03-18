@@ -115,11 +115,15 @@ angular
         }
 
         function init() {
-          console.log('init PayController ', $scope)
+          console.log('init PayController ', $scope.partnerId, $scope.selectedSubscription, $scope.selectedSubscriptionBucket)
           // Get partnerId from either selectedSubscription or selectedSubscriptionBucket
-          $scope.partnerId = $scope.selectedSubscriptionBucket ? 
-                            $scope.selectedSubscriptionBucket.partnerId : 
-                            $scope.selectedSubscription.partnerId;
+          if ($scope.selectedSubscriptionBucket && $scope.selectedSubscriptionBucket.partnerId) {
+            $scope.partnerId = $scope.selectedSubscriptionBucket.partnerId;
+          } else if ($scope.selectedSubscription && $scope.selectedSubscription.partnerId) {
+            $scope.partnerId = $scope.selectedSubscription.partnerId;
+          } else {
+            console.log('No partnerId found')
+          }
         }
       },
     ]
