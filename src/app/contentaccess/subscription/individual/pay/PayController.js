@@ -115,8 +115,11 @@ angular
         }
 
         function init() {
-          console.log('init PayController ', $stateParams)
-          $scope.partnerId = $stateParams.partnerId;
+          console.log('init PayController ', $scope)
+          // Get partnerId from either selectedSubscription or selectedSubscriptionBucket
+          $scope.partnerId = $scope.selectedSubscriptionBucket ? 
+                            $scope.selectedSubscriptionBucket.partnerId : 
+                            $scope.selectedSubscription.partnerId;
         }
       },
     ]
