@@ -61,9 +61,6 @@ angular
 						console.log($scope.credentialId)
 					} else {
 						console.log('credentialId is null')
-						// Redirect to login page
-						// window.location.href = '/#/contentaccess/login?partnerId=' + $scope.partnerId + '&redirect=' + $scope.redirect;
-						return;
 					}
 				}
 
