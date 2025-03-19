@@ -79,7 +79,8 @@
           <button
             type="button"
             class="btn btn-success btn-success-tair"
-            ng-click="makeChargeBucket(true, 'thankyou')"
+            
+            ng-click="partnerId.toLowerCase() === 'tair' ? makeChargeBucket(false, 'thankyou') : makeCharge(false, 'thankyou')"
           >
             BUY
           </button>

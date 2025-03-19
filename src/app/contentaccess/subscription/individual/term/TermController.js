@@ -62,19 +62,7 @@ angular
           //1.
           if ($scope.partnerId == null) {
             $scope.partnerId = $stateParams.partnerId
-            //vet PW-251
-            debugMsg =
-              '1.1 $scope.partnerId NULL. it is initialised with $stateParams.partnerId which is ' +
-              $stateParams.partnerId
-            console.log(debugMsg)
-          } else {
-            debugMsg =
-              '1.2 $scope.partnerId is ' +
-              $scope.partnerId +
-              ' and $stateParams.partnerId is ' +
-              $stateParams.partnerId
-            console.log(debugMsg)
-          }
+          } 
 
           //2.
           if ($scope.partner == null) {
@@ -84,18 +72,12 @@ angular
             })
               .success(function (data, status, headers, config) {
                 $scope.partner = data[0]
-                //vet PW-251
-                debugMsg = '2.1. OK $scope.partner is ' + $scope.partner
-                console.log(debugMsg)
               })
               .error(function (data, status, headers, config) {
                 debugMsg = '2.2. ERROR with $scope.partner'
                 console.log(debugMsg)
                 bootbox.alert(debugMsg)
               })
-          } else {
-            debugMsg = '2.3. $scope.partner is ' + $scope.partner
-            console.log(debugMsg)
           }
           //3. initialise with default values
           //PW-215 that's the place where wrong default values are assigned
@@ -112,10 +94,6 @@ angular
           })
             .success(function (data, status, headers, config) {
               $scope.subscriptions = data //vet PW-215 here the default values are being rewritten with correct values
-              debugMsg =
-                '4.1. OK $scope.subscriptions is ' + $scope.subscriptions
-              console.log(debugMsg)
-              //bootbox.alert(debugMsg);
             })
             .error(function (data, status, headers, config) {
               debugMsg =
