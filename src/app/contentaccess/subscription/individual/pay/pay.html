@@ -215,12 +215,13 @@
             </div>
           </div>
           <div class="col-xs-4">
-            <div class="form-group">
-              <label for="expmonth" class="payment-confirmation-individual-label"
-                >Expiration Date <span aria-hidden="true">*</span></label
+            <fieldset class="form-group">
+              <legend class="payment-confirmation-individual-label"
+                >Expiration Date <span aria-hidden="true">*</span></legend
               >
               <div class="row">
                 <div class="col-xs-6">
+                  <label for="expmonth" class="sr-only">Expiration month</label>
                   <input
                     type="text"
                     size="2"
@@ -236,6 +237,7 @@
                   />
                 </div>
                 <div class="col-xs-6" style="padding-left: 0px;">
+                  <label for="expyear" class="sr-only">Expiration year</label>
                   <input
                     type="text"
                     size="4"
@@ -250,7 +252,7 @@
                   />
                 </div>
               </div>
-            </div>
+            </fieldset>
           </div>
           <div class="col-xs-2">
             <div class="form-group">
