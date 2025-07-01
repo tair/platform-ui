@@ -6,6 +6,9 @@
 	overflow-x: hidden;
 	/* add padding to account for vertical scrollbar */
 	padding-right: 20px;
+	min-height: 44px;
+	/* outline: none !important; */
+	box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 /* IE 6 doesn't support max-height
  * we use height instead, but this forces the menu to always be this tall
@@ -49,14 +52,14 @@ body {
 }
 
 .metering-body-heading {
-	color: #666666;
+	color: #333333;
 	font-size: 24px;
 	font-family: Arial, Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
 }
 
 .metering-body-text {
-	color: #666;
+	color: #333;
 	font-size: 15px;
 	line-height: 1.5;
 	margin: 15px 0;
@@ -64,11 +67,11 @@ body {
 	-webkit-font-smoothing: antialiased;
 	
 	a {
-		color: #3498db;
-		text-decoration: none;
+		color: #0056b3;
+		text-decoration: underline;
 		
 		&:hover {
-			color: darken(#3498db, 15%);
+			color: darken(#0056b3, 15%);
 		}
 	}
 }
@@ -90,11 +93,16 @@ body {
   border-width: 2px;
   border-style: solid;
   min-height: 44px;
-  outline: none !important;
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 
   &:active {
     transform: translateY(1px);
+  }
+
+  &:focus {
+    outline: 3px solid #007bff;
+    outline-offset: 1px;
+    box-shadow: 0 0 0 3px rgba(0,123,255,.5);
   }
 
   i {
@@ -111,50 +119,50 @@ body {
 
 // Success button variant
 .btn-success-tair {
-  background-color: #b9c841;
-  border-color: #b9c841;
+  background-color: #829321;
+  border-color: #829321;
   color: #fff;
   min-width: 180px;
 
   &:hover, &:focus {
-    background-color: darken(#b9c841, 5%);
-    border-color: darken(#b9c841, 5%);
-    box-shadow: 0 4px 8px rgba(185, 200, 65, 0.2);
+    background-color: darken(#829321, 5%);
+    border-color: darken(#829321, 5%);
+    box-shadow: 0 4px 8px rgba(130, 147, 33, 0.2);
   }
 
   &:active {
-    background-color: darken(#b9c841, 10%);
-    border-color: darken(#b9c841, 10%);
+    background-color: darken(#829321, 10%);
+    border-color: darken(#829321, 10%);
   }
 
   &[disabled] {
-    background-color: lighten(#b9c841, 20%);
-    border-color: lighten(#b9c841, 20%);
+    background-color: lighten(#829321, 20%);
+    border-color: lighten(#829321, 20%);
     cursor: not-allowed;
   }
 }
 
 // Primary button variant
 .btn-primary-tair {
-  background-color: #bbc9cf;
-  border-color: #bbc9cf;
+  background-color: #708088;
+  border-color: #708088;
   color: #fff;
   min-width: 160px;
 
   &:hover, &:focus {
-    background-color: darken(#bbc9cf, 5%);
-    border-color: darken(#bbc9cf, 5%);
-    box-shadow: 0 4px 8px rgba(187, 201, 207, 0.2);
+    background-color: darken(#708088, 5%);
+    border-color: darken(#708088, 5%);
+    box-shadow: 0 4px 8px rgba(112, 128, 136, 0.2);
   }
 
   &:active {
-    background-color: darken(#bbc9cf, 10%);
-    border-color: darken(#bbc9cf, 10%);
+    background-color: darken(#708088, 10%);
+    border-color: darken(#708088, 10%);
   }
 
   &[disabled] {
-    background-color: lighten(#bbc9cf, 10%);
-    border-color: lighten(#bbc9cf, 10%);
+    background-color: lighten(#708088, 10%);
+    border-color: lighten(#708088, 10%);
     cursor: not-allowed;
   }
 }
@@ -162,21 +170,21 @@ body {
 // Default button variant
 .btn-default-tair {
   background-color: transparent;
-  border-color: #bbc9cf;
-  color: #8396a8;
+  border-color: #8396a8;
+  color: #5a6268;
   min-width: 160px;
 
   &:hover, &:focus {
     background-color: #f8f9fa;
-    border-color: #8396a8;
-    color: #2c3e50;
+    border-color: #5a6268;
+    color: #343a40;
     box-shadow: 0 4px 8px rgba(131, 150, 168, 0.1);
   }
 
   &:active {
     background-color: #f1f3f5;
-    border-color: #8396a8;
-    color: #2c3e50;
+    border-color: #5a6268;
+    color: #343a40;
   }
 
   &[disabled] {
@@ -643,7 +651,7 @@ body {
 }
 
 .panel-default>.apidoc-panel-heading {
-	background-color: #bbc9cf;
+	background-color: #708088;
 	color: #ffffff;
 	font-size: 24px;
 	height: 94px;
@@ -652,7 +660,7 @@ body {
 }
 
 .apidoc-body-heading {
-	color: #666666;
+	color: #333333;
 	font-size: 24px;
 	font-family: Arial, Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
@@ -662,13 +670,13 @@ body {
 	font-size: 14px;
 	font-family: Arial, Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
-	color: #666666;
+	color: #333333;
 }
 
 .apidoc-call {
 	font-size: 14px;
 	font-family: "Courier New", Courier, monospace;
-	color: #666666;
+	color: #333333;
 	background-color: #F2FAFD;
 	-webkit-font-smoothing: antialiased;
 }
@@ -676,14 +684,14 @@ body {
 .apidoc-example {
 	font-size: 14px;
 	font-family: "Courier New", Courier, monospace;
-	color: #666666;
+	color: #333333;
 	background-color: #F2FAFD;
 	-webkit-font-smoothing: antialiased;
 }
 
 .apidoc-returns {
 	font-size: 14px;
-	color: #666666;
+	color: #333333;
 	font-family: Arial, Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
 }
@@ -692,33 +700,33 @@ body {
 	font-size: 15px;
 	font-family: Arial, Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
-	color: #666666;
+	color: #333333;
 }
 
 .apidoc-elements {
 	font-size: 12px;
-	color: #666666;
+	color: #333333;
 	font-family: Arial, Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
 }
 
 .apidoc-img-tags {
 	font-size: 18px;
-	color: #666666;
+	color: #333333;
 	font-family: Arial, Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
 }
 
 .apidoc-img-tags-tag {
 	font-size: 13px;
-	color: #b9c841;
+	color: #829321;
 	font-family: Arial, Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
 }
 
 .apidoc-licence-text {
 	font-size: 15px;
-	color: #666666;
+	color: #333333;
 	font-family: Arial, Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
 }
@@ -737,7 +745,7 @@ body {
 }
 
 .apidoc-tab-tag.active {
-	color: #666666;
+	color: #333333;
 }
 
 .highlight-api {
@@ -806,7 +814,7 @@ body {
 }
 
 .subscription-body-heading {
-	color: #666666;
+	color: #333333;
 	font-size: 24px;
 	font-family: Arial, Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
@@ -814,28 +822,28 @@ body {
 
 .subscription-benefits {
 	font-size: 15px;
-	color: #666666;
+	color: #333333;
 	font-family: Arial, Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
 }
 
 .subscription-img-tags {
 	font-size: 18px;
-	color: #666666;
+	color: #333333;
 	font-family: Arial, Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
 }
 
 .subscription-img-tags-tag {
 	font-size: 13px;
-	color: #b9c841;
+	color: #829321;
 	font-family: Arial, Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
 }
 
 .subscription-licence-text {
 	font-size: 15px;
-	color: #666666;
+	color: #333333;
 	font-family: Arial, Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
 }
@@ -854,7 +862,7 @@ body {
 }
 
 .subscription-tab-tag.active {
-	color: #666666;
+	color: #333333;
 }
 
 .highlight-license {
@@ -877,7 +885,7 @@ body {
 
 .info-commercial-form-label {
 	font-size: 15px;
-	color: #666666;
+	color: #333333;
 	font-weight: 600;
 	font-family: Arial, Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
@@ -886,7 +894,7 @@ body {
 /******************** Confirmation Commercial *****************/
 .paymentConfirmationCommercial-heading {
 	font-size: 24px;
-	color: #b8c63f;
+	color: #829321;
 	font-family: Arial, Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
 }
@@ -906,7 +914,7 @@ body {
 
 .info-institution-form-label {
 	font-size: 15px;
-	color: #666666;
+	color: #333333;
 	font-weight: 600;
 	font-family: Arial, Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
@@ -915,7 +923,7 @@ body {
 /******************** Confirmtion Institution **************/
 .payment-confirmation-institution-heading {
 	font-size: 24px;
-	color: #b8c63f;
+	color: #829321;
 	font-family: Arial, Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
 }
@@ -929,14 +937,14 @@ body {
 /******************* Info Individual *****************/
 .info-individual-heading {
 	font-size: 24px;
-	color: #666666;
+	color: #333333;
 	font-family: Arial, Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
 }
 
 .info-individual-text {
 	font-size: 15px;
-	color: #666666;
+	color: #333333;
 	font-family: Arial, Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
 }
@@ -950,7 +958,7 @@ body {
 
 .info-individual-subtotal {
 	font-size: 24px;
-	color: #666666;
+	color: #333333;
 	font-family: Arial, Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
 }
@@ -958,14 +966,14 @@ body {
 /************************** Payment Individual 1 *****************/
 .payment-confirmation-individual-heading {
 	font-size: 24px;
-	color: #666666;
+	color: #333333;
 	font-family: Arial, Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
 }
 
 .payment-confirmation-individual-label {
 	font-size: 15px;
-	color: #666666;
+	color: #333333;
 	font-weight: 600;
 	font-family: Arial, Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
@@ -973,7 +981,7 @@ body {
 
 .payment-confirmation-individual-footer {
 	font-size: 15px;
-	color: #666666;
+	color: #333333;
 	font-family: Arial, Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
 }
@@ -981,7 +989,7 @@ body {
 /************** Payment Individual 2 ***************/
 .payment-confirmation-individual-confirm-heading {
 	font-size: 24px;
-	color: #666666;
+	color: #333333;
 	font-family: Arial, Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
 }
@@ -1004,14 +1012,14 @@ hr {
 /************ Payment Indivivual 3 ****************/
 .payment-confirmation-individual-thankyou-heading {
 	font-size: 24px;
-	color: #b8c63f;
+	color: #829321;
 	font-family: Arial, Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
 }
 
 .payment-confirmation-individual-thankyou-text {
 	font-size: 14px;
-	color: #666666;
+	color: #333333;
 	font-family: Arial, Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
 }
@@ -1026,7 +1034,7 @@ hr {
 /******************** Confirmtion Institution **************/
 .payment-confirmation-institution-heading {
 	font-size: 24px;
-	color: #b8c63f;
+	color: #829321;
 	font-family: Arial, Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
 }
@@ -1047,7 +1055,7 @@ hr {
 
 .activation-success-heading {
 	font-size: 24px;
-	color: #b9c841;
+	color: #829321;
 	font-family: Arial, Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
 }
@@ -1207,7 +1215,7 @@ hr {
     // Link styles
     a:not(.btn) {
       color: #3498db;
-      text-decoration: none;
+      text-decoration: underline;
       transition: color 0.2s;
 
       &:hover {
@@ -1350,4 +1358,21 @@ hr {
     position: absolute;
     white-space: nowrap;
     width: 1px;
+}
+
+.license-option {
+  padding: 10px;
+  transition: background-color 0.2s ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #f0f0f0;
+  }
+}
+
+.license-option:focus {
+  outline: 3px solid #007bff;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(0,123,255,.5);
+  border-radius: 4px;
 }
