@@ -41,6 +41,7 @@
 					  ng-value="{{ sub.bucketTypeId }}"
 					  ng-change="setSelectedSubscriptionBucket(sub.bucketTypeId, sub.partnerId, sub.units, sub.price, sub.description, sub.discountPercentage)"
 					  required
+					  aria-required="true"
 					/>
 					{{ sub.description }}&nbsp;-&nbsp;
 					<span ng-if="sub.discountPercentage > 0">
@@ -58,18 +59,18 @@
 			<div class="col-xs-12">
 			  <div class="checkbox">
 				<label class="info-individual-text">
-				  <input type="checkbox" value="" ng-model="userbool" required />
+				  <input type="checkbox" value="" ng-model="userbool" required aria-required="true" />
 				  My employer is an academic institution, a not-for-profit
-				  research institution, or a government laboratory.
+				  research institution, or a government laboratory. <span aria-hidden="true">*</span>
 				</label>
 			  </div>
 			  <div class="checkbox">
 				<label class="info-individual-text">
-				  <input type="checkbox" value="" ng-model="termsbool" required />
+				  <input type="checkbox" value="" ng-model="termsbool" required aria-required="true" />
 				  I agree to
 				  <a href="{{partner.termOfServiceUri}}" target="_blank"
 					>Terms of Use</a
-				  >
+				  > <span aria-hidden="true">*</span>
 				</label>
 			  </div>
 			</div>

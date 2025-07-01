@@ -34,9 +34,11 @@
 
           <!-- UID FIELD -->
           <div class="row">
-            <div class="col-xs-14 text-center form-group">
+            <div class="col-xs-14 form-group">
+              <label for="user" class="pull-left"><span aria-hidden="true">*</span> Username</label>
               <input
                 type="text"
+                id="user"
                 name="user"
                 autocomplete="username"
                 class="form-control"
@@ -44,6 +46,7 @@
                 placeholder="{{partner.loginUserNameFieldPrompt}}"
                 style="width: 100%; border-radius: 0px;"
                 required
+                aria-required="true"
               />
               <a
                 class="text-right pull-right lt-login-forgot"
@@ -57,9 +60,11 @@
 
           <!-- PWD FIELD -->
           <div class="row">
-            <div class="col-xs-14 text-left form-group">
+            <div class="col-xs-14 form-group">
+              <label for="password" class="pull-left"><span aria-hidden="true">*</span> Password</label>
               <input
                 type="password"
+                id="password"
                 name="password"
                 autocomplete="current-password"
                 class="form-control"
@@ -67,6 +72,7 @@
                 placeholder="{{partner.loginPasswordFieldPrompt}}"
                 style="width: 100%; border-radius: 0px;"
                 required
+                aria-required="true"
               />
               <a
                 class="text-right pull-right lt-login-forgot"

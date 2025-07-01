@@ -19,7 +19,7 @@
               <label
                 for="firstname"
                 class="payment-confirmation-individual-label"
-                >*First Name</label
+                >First Name <span aria-hidden="true">*</span></label
               >
               <input
                 type="text"
@@ -28,6 +28,7 @@
                 ng-model="formdata.firstname"
                 autocomplete="given-name"
                 required
+                aria-required="true"
               />
             </div>
           </div>
@@ -36,7 +37,7 @@
               <label
                 for="lastname"
                 class="payment-confirmation-individual-label"
-                >*Last Name</label
+                >Last Name <span aria-hidden="true">*</span></label
               >
               <input
                 type="text"
@@ -45,6 +46,7 @@
                 ng-model="formdata.lastname"
                 autocomplete="family-name"
                 required
+                aria-required="true"
               />
             </div>
           </div>
@@ -53,7 +55,7 @@
           <div class="col-xs-6">
             <div class="form-group">
               <label for="email" class="payment-confirmation-individual-label"
-                >*Email (for receipts/activation codes)</label
+                >Email (for receipts/activation codes) <span aria-hidden="true">*</span></label
               >
               <input
                 type="email"
@@ -63,6 +65,7 @@
                 placeholder="xyz@host.com"
                 autocomplete="email"
                 required
+                aria-required="true"
               />
             </div>
           </div>
@@ -71,15 +74,16 @@
               <label
                 for="emailConfirm"
                 class="payment-confirmation-individual-label"
-                >*Confirm Email</label
+                >Confirm Email <span aria-hidden="true">*</span></label
               >
               <input
-                type="emailConfirm"
+                type="email"
                 class="form-control"
                 id="emailConfirm"
                 ng-model="formdata.emailConfirm"
                 autocomplete="email"
                 required
+                aria-required="true"
               />
             </div>
           </div>
@@ -90,7 +94,7 @@
             <label
               for="institution"
               class="payment-confirmation-individual-label"
-              >*Institution</label
+              >Institution <span aria-hidden="true">*</span></label
             >
             <input
               type="text"
@@ -99,6 +103,7 @@
               ng-model="formdata.institution"
               autocomplete="organization"
               required
+              aria-required="true"
             />
           </div>
         </div>
@@ -107,7 +112,7 @@
           <div class="col-xs-6">
             <div class="form-group">
               <label for="street" class="payment-confirmation-individual-label"
-                >*Billing Address Street</label
+                >Billing Address Street <span aria-hidden="true">*</span></label
               >
               <input
                 type="text"
@@ -116,13 +121,14 @@
                 ng-model="formdata.street"
                 autocomplete="street-address"
                 required
+                aria-required="true"
               />
             </div>
           </div>
           <div class="col-xs-6">
             <div class="form-group">
               <label for="city" class="payment-confirmation-individual-label"
-                >*City</label
+                >City <span aria-hidden="true">*</span></label
               >
               <input
                 type="text"
@@ -131,6 +137,7 @@
                 ng-model="formdata.city"
                 autocomplete="address-level2"
                 required
+                aria-required="true"
               />
             </div>
           </div>
@@ -153,7 +160,7 @@
           <div class="col-xs-3">
             <div class="form-group">
               <label for="zip" class="payment-confirmation-individual-label"
-                >*Zip/Postal Code</label
+                >Zip/Postal Code <span aria-hidden="true">*</span></label
               >
               <input
                 type="text"
@@ -162,13 +169,14 @@
                 ng-model="formdata.zip"
                 autocomplete="postal-code"
                 required
+                aria-required="true"
               />
             </div>
           </div>
           <div class="col-xs-6">
             <div class="form-group">
               <label for="country" class="payment-confirmation-individual-label"
-                >*Country</label
+                >Country <span aria-hidden="true">*</span></label
               >
               <!-- <input type="text" class="form-control" id="country" ng-model="formdata.country" autocompletecountries required> -->
               <select
@@ -178,6 +186,7 @@
                 ng-options="c.name as c.name for c in countries | orderBy: 'name'"
                 autocomplete="country-name"
                 required
+                aria-required="true"
               >
                 <option value="">--Choose Country--</option>
               </select>
@@ -190,7 +199,7 @@
               <label
                 for="creditcard"
                 class="payment-confirmation-individual-label"
-                >*Credit Card Number</label
+                >Credit Card Number <span aria-hidden="true">*</span></label
               >
               <input
                 type="text"
@@ -201,13 +210,14 @@
                 data-stripe="number"
                 autocomplete="cc-number"
                 required
+                aria-required="true"
               />
             </div>
           </div>
           <div class="col-xs-4">
             <div class="form-group">
-              <label for="expdate" class="payment-confirmation-individual-label"
-                >*Expiration Date</label
+              <label for="expmonth" class="payment-confirmation-individual-label"
+                >Expiration Date <span aria-hidden="true">*</span></label
               >
               <div class="row">
                 <div class="col-xs-6">
@@ -216,12 +226,13 @@
                     size="2"
                     class="form-control"
                     style="padding-left: 8px;"
-                    id="expdate"
+                    id="expmonth"
                     ng-model="formdata.expmonth"
                     placeholder="MM"
                     data-stripe="exp-month"
                     autocomplete="cc-exp-month"
                     required
+                    aria-required="true"
                   />
                 </div>
                 <div class="col-xs-6" style="padding-left: 0px;">
@@ -229,12 +240,13 @@
                     type="text"
                     size="4"
                     class="form-control"
-                    id="expdate"
+                    id="expyear"
                     ng-model="formdata.expyear"
                     placeholder="YYYY"
                     data-stripe="exp-year"
                     autocomplete="cc-exp-year"
                     required
+                    aria-required="true"
                   />
                 </div>
               </div>
@@ -243,7 +255,7 @@
           <div class="col-xs-2">
             <div class="form-group">
               <label for="cvc" class="payment-confirmation-individual-label"
-                >*CVC</label
+                >CVC <span aria-hidden="true">*</span></label
               >
               <input
                 type="text"
@@ -254,6 +266,7 @@
                 data-stripe="cvc"
                 autocomplete="cc-csc"
                 required
+                aria-required="true"
               />
             </div>
           </div>
