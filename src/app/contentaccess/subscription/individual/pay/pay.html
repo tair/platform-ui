@@ -26,6 +26,7 @@
                 class="form-control"
                 id="firstname"
                 ng-model="formdata.firstname"
+                autocomplete="given-name"
                 required
               />
             </div>
@@ -42,6 +43,7 @@
                 class="form-control"
                 id="lastname"
                 ng-model="formdata.lastname"
+                autocomplete="family-name"
                 required
               />
             </div>
@@ -59,6 +61,7 @@
                 id="email"
                 ng-model="formdata.email"
                 placeholder="xyz@host.com"
+                autocomplete="email"
                 required
               />
             </div>
@@ -75,6 +78,7 @@
                 class="form-control"
                 id="emailConfirm"
                 ng-model="formdata.emailConfirm"
+                autocomplete="email"
                 required
               />
             </div>
@@ -93,7 +97,7 @@
               class="form-control"
               id="institution"
               ng-model="formdata.institution"
-              autocomplete
+              autocomplete="organization"
               required
             />
           </div>
@@ -110,6 +114,7 @@
                 class="form-control"
                 id="street"
                 ng-model="formdata.street"
+                autocomplete="street-address"
                 required
               />
             </div>
@@ -124,6 +129,7 @@
                 class="form-control"
                 id="city"
                 ng-model="formdata.city"
+                autocomplete="address-level2"
                 required
               />
             </div>
@@ -140,6 +146,7 @@
                 class="form-control"
                 id="state"
                 ng-model="formdata.state"
+                autocomplete="address-level1"
               />
             </div>
           </div>
@@ -153,6 +160,7 @@
                 class="form-control"
                 id="zip"
                 ng-model="formdata.zip"
+                autocomplete="postal-code"
                 required
               />
             </div>
@@ -168,6 +176,7 @@
                 id="country"
                 ng-model="formdata.country"
                 ng-options="c.name as c.name for c in countries | orderBy: 'name'"
+                autocomplete="country-name"
                 required
               >
                 <option value="">--Choose Country--</option>
@@ -190,6 +199,7 @@
                 id="creditcard"
                 ng-model="formdata.creditcard"
                 data-stripe="number"
+                autocomplete="cc-number"
                 required
               />
             </div>
@@ -210,6 +220,7 @@
                     ng-model="formdata.expmonth"
                     placeholder="MM"
                     data-stripe="exp-month"
+                    autocomplete="cc-exp-month"
                     required
                   />
                 </div>
@@ -222,6 +233,7 @@
                     ng-model="formdata.expyear"
                     placeholder="YYYY"
                     data-stripe="exp-year"
+                    autocomplete="cc-exp-year"
                     required
                   />
                 </div>
@@ -240,6 +252,7 @@
                 id="cvc"
                 ng-model="formdata.cvc"
                 data-stripe="cvc"
+                autocomplete="cc-csc"
                 required
               />
             </div>
