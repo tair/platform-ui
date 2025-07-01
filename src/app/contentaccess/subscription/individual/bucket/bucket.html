@@ -29,26 +29,30 @@
 				<div
 				  class="radio"
 				  ng-repeat="sub in subscriptions"
-				  style="margin-top: 0px;"
+				  style="margin-top: 0px; margin-bottom: 15px;"
 				>
 				  <label class="info-individual-text">
-					<input
-					  type="radio"
-					  name="licenseoptions"
-					  ng-model="$parent.bucketTypeId"
-					  ng-value="{{ sub.bucketTypeId }}"
-					  ng-change="setSelectedSubscriptionBucket(sub.bucketTypeId, sub.partnerId, sub.units, sub.price, sub.description, sub.discountPercentage)"
-					  required
-					  aria-required="true"
-					/>
-					{{ sub.description }}&nbsp;-&nbsp;
-					<span ng-if="sub.discountPercentage > 0">
-					  <span style="text-decoration: line-through;">${{ sub.price }} (USD)</span>
-					  &nbsp;<span style="font-weight: bold;">${{ sub.price - (sub.price * sub.discountPercentage / 100) }} (USD)  (${{sub.discountPercentage}}% off first annual purchase)</span>
-					</span>
-					<span ng-if="!sub.discountPercentage || sub.discountPercentage === 0">
-					  ${{ sub.price }} (USD)
-					</span>
+					<div>
+						<input
+						  type="radio"
+						  name="licenseoptions"
+						  ng-model="$parent.bucketTypeId"
+						  ng-value="{{ sub.bucketTypeId }}"
+						  ng-change="setSelectedSubscriptionBucket(sub.bucketTypeId, sub.partnerId, sub.units, sub.price, sub.description, sub.discountPercentage)"
+						  required
+						  aria-required="true"
+						/>
+						{{ sub.description }}
+					</div>
+					<div style="margin-left: 25px;">
+						<span ng-if="sub.discountPercentage > 0">
+						  <span class="visually-hidden">Previous price: </span><s>${{ sub.price }} (USD)</s>
+						  &nbsp;<span class="visually-hidden">Current price: </span><span style="font-weight: bold;">${{ sub.price - (sub.price * sub.discountPercentage / 100) }} (USD)  (${{sub.discountPercentage}}% off first annual purchase)</span>
+						</span>
+						<span ng-if="!sub.discountPercentage || sub.discountPercentage === 0">
+						  ${{ sub.price }} (USD)
+						</span>
+					</div>
 				  </label>
 				</div>
 			</div>
