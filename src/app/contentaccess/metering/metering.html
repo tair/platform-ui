@@ -25,7 +25,7 @@
                   
                   <span ng-if="exceed=='exceeded'" style="color: #e74c3c;">
                     You have exceeded your limit for this month
-                    <a href="{{helpLink}}" target="_blank" title="Learn more about usage limits" class="info-circle">
+                    <a href="{{helpLink}}" target="_blank" title="Learn more about usage limits" class="info-circle" aria-label="Information - Purchase units">
                       <i class="fa fa-info-circle"></i>
                     </a>
                   </span>
@@ -35,22 +35,22 @@
                   </span>
                   
                   <span ng-if="exceed=='outofunits'" style="color: #e74c3c; font-size: 14px;">
-                    You don’t have enough usage units to access this content. Please access through your subscribed institution or purchase usage units.
-                    <a href="{{helpLink}}" target="_blank" title="Learn more about usage limits" class="info-circle">
+                    You don't have enough usage units to access this content. Please access through your subscribed institution or purchase usage units.
+                    <a href="{{helpLink}}" target="_blank" title="Learn more about usage limits" class="info-circle" aria-label="Information - Purchase units">
                       <i class="fa fa-info-circle"></i>
                     </a>
                   </span>
                   
                   <span ng-if="exceed=='nologin'" style="color: #e74c3c;">
                     You are not logged in. Your session may have expired.
-                    <a href="{{helpLink}}" target="_blank" title="Learn more about usage limits" class="info-circle">
+                    <a href="{{helpLink}}" target="_blank" title="Learn more about usage limits" class="info-circle" aria-label="Information - Purchase units">
                       <i class="fa fa-info-circle"></i>
                     </a>
                   </span>
                   
                   <span ng-if="exceed=='abouttorunout'" style="color: #d35400;">
                     You have 4 usage units left.
-                    <a href="{{helpLink}}" target="_blank" title="Learn more about usage limits" class="info-circle">
+                    <a href="{{helpLink}}" target="_blank" title="Learn more about usage limits" class="info-circle" aria-label="Information - Purchase units">
                       <i class="fa fa-info-circle"></i>
                     </a>
                   </span>
