@@ -1,4 +1,7 @@
 /* All your CSS goes here */
+@import "../app/adminportal/login/loginpage/loginpage.less";
+@import "../app/contentaccess/subscription/individual/pay/pay.less";
+
 .ui-autocomplete {
 	max-height: 320px;
 	overflow-y: auto;
@@ -541,74 +544,6 @@ body {
 	background-color: white;
 }
 
-/****************** Admin Portal Login******************/
-.lt-login-heading { .lt-theme-color;
-	height: 200px;
-}
-
-.lt-login-heading-img {
-	height: 64px;
-	width: 60px;
-}
-
-.lt-login-heading-text {
-	font: 22px arial bold;
-	color: #ffffff;
-	letter-spacing: 2px;
-}
-
-.lt-login-panel {
-	width: 520px;
-}
-
-.lt-login-form-width {
-	width: 240px;
-}
-
-.lt-login-input-box { .lt-input-box; .lt-login-form-width;
-	height: 36px;
-	border: 1px solid #767676;
-	font-size: 16px;
-	color: #858585;
-}
-
-.lt-login-remember { .lt-font;
-	font: 14px;
-	color: #909b9f;
-}
-
-.lt-login-forgot {
-	font: 15px;
-	color: #6aa2ce;
-}
-
-.lt-login-login-btn { .lt-font-bold; .lt-login-form-width; .lt-theme-color;
-	height: 36px;
-	font-size: 14px;
-	color: #f9f9f9;
-	border-width: 1px;
-	border-color: #cccccc;
-}
-
-.lt-login-req-btn { .lt-font-bold; .lt-login-form-width;
-	height: 36px;
-	font-size: 14px;
-	color: #909a9f;
-	border-width: 2px;
-	border-color: #bbc9cf;
-	background-color: #ffffff;
-}
-
-.lt-login-description { .lt-font;
-	color: #aaaaaa;
-	font-size: 14px;
-}
-
-.lt-login-info { .lt-font;
-	font-size: 15px;
-	color: #6aa2ce;
-}
-
 /****************** Admin Portal institution profile page*************/
 .panel-default>.lt-institution-profile-panel-heading { .lt-theme-color;
 	
@@ -917,25 +852,11 @@ body {
 
 .info-institution-form-label {
 	font-size: 15px;
-	color: #333333;
-	font-weight: 600;
+	color: #97a0a5;
 	font-family: Arial, Helvetica, sans-serif;
 	-webkit-font-smoothing: antialiased;
 }
 
-/******************** Confirmtion Institution **************/
-.payment-confirmation-institution-heading {
-	font-size: 24px;
-	color: #829321;
-	font-family: Arial, Helvetica, sans-serif;
-	-webkit-font-smoothing: antialiased;
-}
-
-.payment-confirmation-institution-text {
-	font-size: 14px;
-	font-family: Arial, Helvetica, sans-serif;
-	-webkit-font-smoothing: antialiased;
-}
 
 /******************* Info Individual *****************/
 .info-individual-heading {
@@ -966,86 +887,12 @@ body {
 	-webkit-font-smoothing: antialiased;
 }
 
-/************************** Payment Individual 1 *****************/
-.payment-confirmation-individual-heading {
-	font-size: 24px;
-	color: #333333;
-	font-family: Arial, Helvetica, sans-serif;
-	-webkit-font-smoothing: antialiased;
-}
-
-.payment-confirmation-individual-label {
-	font-size: 15px;
-	color: #333333;
-	font-weight: 600;
-	font-family: Arial, Helvetica, sans-serif;
-	-webkit-font-smoothing: antialiased;
-}
-
-.payment-confirmation-individual-footer {
-	font-size: 15px;
-	color: #333333;
-	font-family: Arial, Helvetica, sans-serif;
-	-webkit-font-smoothing: antialiased;
-}
-
-/************** Payment Individual 2 ***************/
-.payment-confirmation-individual-confirm-heading {
-	font-size: 24px;
-	color: #333333;
-	font-family: Arial, Helvetica, sans-serif;
-	-webkit-font-smoothing: antialiased;
-}
-
-.payment-confirmation-individual-confirm-text {
-	font-size: 15px;
-	color: #97a0a5;
-	font-family: Arial, Helvetica, sans-serif;
-	-webkit-font-smoothing: antialiased;
-}
-
 hr {
 	width: 260px;
 	height: 1px;
 	color: #dddddd;
 	float: left;
 	margin: 0px;
-}
-
-/************ Payment Indivivual 3 ****************/
-.payment-confirmation-individual-thankyou-heading {
-	font-size: 24px;
-	color: #829321;
-	font-family: Arial, Helvetica, sans-serif;
-	-webkit-font-smoothing: antialiased;
-}
-
-.payment-confirmation-individual-thankyou-text {
-	font-size: 14px;
-	color: #333333;
-	font-family: Arial, Helvetica, sans-serif;
-	-webkit-font-smoothing: antialiased;
-}
-
-.info-institution-form-label {
-	font-size: 15px;
-	color: #97a0a5;
-	font-family: Arial, Helvetica, sans-serif;
-	-webkit-font-smoothing: antialiased;
-}
-
-/******************** Confirmtion Institution **************/
-.payment-confirmation-institution-heading {
-	font-size: 24px;
-	color: #829321;
-	font-family: Arial, Helvetica, sans-serif;
-	-webkit-font-smoothing: antialiased;
-}
-
-.payment-confirmation-institution-text {
-	font-size: 14px;
-	font-family: Arial, Helvetica, sans-serif;
-	-webkit-font-smoothing: antialiased;
 }
 
 /******************** Activation page *******************/
