@@ -21,19 +21,17 @@
 			  >
 			</div>
 		  </div>
-		  <div class="row">
-			<div class="col-xs-7 info-individual-text" style="margin-bottom: 10px">
+		  <fieldset class="row">
+			<legend class="col-xs-12 info-individual-text" style="margin-bottom: 10px">
 			  {{partner.name}} bundles of usage units for individual use:
-			</div>
-		  </div>
-		  <div class="row">
-			<div style="margin-left: 30px">
+			</legend>
+			<div class="col-xs-12" style="margin-left: 15px;">
 				<div
 				  class="radio"
 				  ng-repeat="sub in subscriptions"
-				  style="margin-top: 0px;"
+				  style="margin-bottom: 18px;"
 				>
-				  <label class="info-individual-text">
+				  <label class="info-individual-text" style="display: flex; align-items: flex-start; gap: 10px; width: 100%;">
 					<input
 					  type="radio"
 					  name="licenseoptions"
@@ -41,35 +39,47 @@
 					  ng-value="{{ sub.bucketTypeId }}"
 					  ng-change="setSelectedSubscriptionBucket(sub.bucketTypeId, sub.partnerId, sub.units, sub.price, sub.description, sub.discountPercentage)"
 					  required
+					  aria-required="true"
+					  style="margin-top: 2px;"
 					/>
-					{{ sub.description }}&nbsp;-&nbsp;
-					<span ng-if="sub.discountPercentage > 0">
-					  <span style="text-decoration: line-through;">${{ sub.price }} (USD)</span>
-					  &nbsp;<span style="font-weight: bold;">${{ sub.price - (sub.price * sub.discountPercentage / 100) }} (USD)  (${{sub.discountPercentage}}% off first annual purchase)</span>
-					</span>
-					<span ng-if="!sub.discountPercentage || sub.discountPercentage === 0">
-					  ${{ sub.price }} (USD)
-					</span>
+					<div>
+						<div style="font-weight: 500;">{{ sub.description }}</div>
+						<div style="margin-left: 2px; margin-top: 2px;">
+							<span ng-if="sub.discountPercentage > 0">
+								<span class="visually-hidden">Previous price: </span>
+								<s>${{ sub.price }} (USD)</s>
+								&nbsp;
+								<span class="visually-hidden">Current price: </span>
+								<span style="font-weight: bold;">
+									${{ sub.price - (sub.price * sub.discountPercentage / 100) }} (USD)
+									(${{sub.discountPercentage}}% off first annual purchase)
+								</span>
+							</span>
+							<span ng-if="!sub.discountPercentage || sub.discountPercentage === 0">
+								${{ sub.price }} (USD)
+							</span>
+						</div>
+					</div>
 				  </label>
 				</div>
 			</div>
-		  </div>
+		  </fieldset>
 		  <div class="row">
 			<div class="col-xs-12">
 			  <div class="checkbox">
 				<label class="info-individual-text">
-				  <input type="checkbox" value="" ng-model="userbool" required />
+				  <input type="checkbox" value="" ng-model="userbool" required aria-required="true" />
 				  My employer is an academic institution, a not-for-profit
-				  research institution, or a government laboratory.
+				  research institution, or a government laboratory. <span aria-hidden="true">*</span>
 				</label>
 			  </div>
 			  <div class="checkbox">
 				<label class="info-individual-text">
-				  <input type="checkbox" value="" ng-model="termsbool" required />
+				  <input type="checkbox" value="" ng-model="termsbool" required aria-required="true" />
 				  I agree to
 				  <a href="{{partner.termOfServiceUri}}" target="_blank"
 					>Terms of Use</a
-				  >
+				  > <span aria-hidden="true">*</span>
 				</label>
 			  </div>
 			</div>

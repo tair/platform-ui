@@ -11,7 +11,7 @@
     <div class="col-xs-6">
       <div class="row">
         <div class="col-xs-offset-2 text-left subscription-body-heading">
-          {{licenses[license].heading}}
+          <h2>{{licenses[license].heading}}</h2>
         </div>
       </div>
       <div class="row">
@@ -30,60 +30,52 @@
         >
           <div class="row">
             <div class="col-xs-12 subscription-licence-text text-center" style="margin-bottom: 20px;">
-              Choose License Type
+              <h2>Choose License Type</h2>
             </div>
           </div>
           <div class="row">
             <div class="col-xs-6">
-              <a href="" ng-click="set_license('institution')">
-                <div ng-class="{'highlight-license': license=='institution'}">
-                  <div class="row text-center" style="padding: 10px;">
-                    <img class="img-to-inline-block" src="assets/Institutional.png" />
-                  </div>
-                  <div class="row">
-                    <div class="text-center subscription-img-tags">
-                      Institutional Academic
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="text-center subscription-img-tags-tag">
-                      Recommended
-                    </div>
-                  </div>
+              <div role="button" tabindex="0" ng-click="set_license('institution')" ng-class="{'highlight-license': license=='institution'}" class="license-option">
+                <div class="row text-center" style="padding: 10px;">
+                  <img class="img-to-inline-block" src="assets/Institutional.png" alt="" />
                 </div>
-              </a>
+                <div class="row">
+                  <h2 class="text-center subscription-img-tags">
+                    Institutional Academic
+                  </h2>
+                  <p class="text-center subscription-img-tags-tag">
+                    Recommended
+                  </p>
+                </div>
+              </div>
             </div>
             
             <div class="col-xs-6">
-              <a href="" ng-click="set_license('individual')">
-                <div ng-class="{'highlight-license': license=='individual'}">
-                  <div class="row text-center" style="padding: 10px;">
-                    <img class="img-to-inline-block" src="assets/Individual.png" />
-                  </div>
-                  <div class="row">
-                    <div class="text-center subscription-img-tags">
-                      Individual Academic
-                    </div>
-                  </div>
+              <div role="button" tabindex="0" ng-click="set_license('individual')" ng-class="{'highlight-license': license=='individual'}" class="license-option">
+                <div class="row text-center" style="padding: 10px;">
+                  <img class="img-to-inline-block" src="assets/Individual.png" alt="" />
                 </div>
-              </a>
+                <div class="row">
+                  <h2 class="text-center subscription-img-tags">
+                    Individual Academic
+                  </h2>
+                </div>
+              </div>
             </div>
           </div>
 
           <div class="row" style="margin-top: 30px;">
             <div class="col-xs-6">
-              <a href="" ng-click="set_license('commercial')">
-                <div ng-class="{'highlight-license': license=='commercial'}">
-                  <div class="row text-center" style="padding: 10px;">
-                    <img class="img-to-inline-block" src="assets/Commercial.png" />
-                  </div>
-                  <div class="row">
-                    <div class="text-center subscription-img-tags">
-                      Commercial
-                    </div>
-                  </div>
+              <div role="button" tabindex="0" ng-click="set_license('commercial')" ng-class="{'highlight-license': license=='commercial'}" class="license-option">
+                <div class="row text-center" style="padding: 10px;">
+                  <img class="img-to-inline-block" src="assets/Commercial.png" alt="" />
                 </div>
-              </a>
+                <div class="row">
+                  <h2 class="text-center subscription-img-tags">
+                    Commercial
+                  </h2>
+                </div>
+              </div>
             </div>
           </div>
         </div>
