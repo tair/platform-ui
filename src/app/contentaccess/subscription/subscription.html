@@ -20,7 +20,7 @@
               <div style="display: flex; align-items: center; justify-content: center;">
                 <span style="font-size: 16px; color: #333; font-weight: 500;">
                   {{panelHeader}}
-                  <a href="{{helpLink}}" target="_blank" title="Learn more about usage limits" class="info-circle" aria-label="Information - Purchase units">
+                  <a ng-if="showHelpLink" href="{{helpLink}}" target="_blank" title="Learn more about usage limits" class="info-circle" aria-label="Information - Purchase units">
                     <i class="fa fa-info-circle"></i>
                   </a>
                 </span>

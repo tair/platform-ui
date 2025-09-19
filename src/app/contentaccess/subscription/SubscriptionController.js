@@ -77,6 +77,7 @@ angular.module('platform-ui.contentaccess.subscription').controller(
           $scope.countries = data
         })
         $scope.panelHeader = getPanelHeader()
+        $scope.showHelpLink = shouldShowHelpLink()
       }
 
       function getHelpLink() {
@@ -115,6 +116,15 @@ angular.module('platform-ui.contentaccess.subscription').controller(
           header = 'Purchase usage units for individual academic or non-profit use'
         }
         return header
+      }
+
+      function shouldShowHelpLink() {
+        var partnerId = $scope.partnerId
+        // Hide help link for morphobank partner
+        if (partnerId && partnerId.toLowerCase() == 'morphobank') {
+          return false
+        }
+        return true
       }
     },
 
