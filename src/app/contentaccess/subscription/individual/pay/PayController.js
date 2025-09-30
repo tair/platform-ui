@@ -12,10 +12,12 @@ angular
     [
       '$scope',
       '$stateParams',
+      '$window',
+      '$state',
       'PayModel',
 
       /* Controller Definition */
-      function ($scope, $stateParams, PayModel) {
+      function ($scope, $stateParams, $window, $state, PayModel) {
         init()
 
         $scope.reset = function () {
@@ -119,6 +121,24 @@ angular
           if(!$scope.partnerId) {
             console.log('No partnerId found')
           }
+
+          // Override browser back button to go to bucket instead of term
+          var unregisterStateChangeStart = $scope.$on('$locationChangeStart', function(event, newUrl, oldUrl) {
+            // Check if this is a back navigation (user hitting browser back)
+            if (newUrl.includes('/individual') && !newUrl.includes('/pay') && !newUrl.includes('/bucket')) {
+              // This looks like navigation back to term page, redirect to bucket instead
+              event.preventDefault();
+              $state.go('subscription.individual.bucket', {
+                partnerId: $scope.partnerId,
+                redirect: $scope.redirect
+              });
+            }
+          });
+
+          // Clean up listener when scope is destroyed
+          $scope.$on('$destroy', function() {
+            unregisterStateChangeStart();
+          });
         }
       },
     ]
