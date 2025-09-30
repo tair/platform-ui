@@ -1,4 +1,70 @@
 <div ng-controller="PayController">
+  <style>
+    /* Ensure form controls have sufficient contrast (3:1 minimum) */
+    #payment-form .form-control {
+      border: 2px solid #767676 !important; /* Medium gray - 4.6:1 contrast with white */
+      border-radius: 4px;
+    }
+    
+    #payment-form .form-control:focus {
+      border-color: #0056b3 !important; /* Dark blue - high contrast */
+      outline: 2px solid #0056b3;
+      outline-offset: 2px;
+    }
+    
+    #payment-form .form-control:hover {
+      border-color: #495057 !important; /* Darker gray on hover */
+    }
+    
+    /* Buttons with sufficient border contrast */
+    #payment-form .btn {
+      border: 2px solid #767676 !important;
+    }
+    
+    #payment-form .btn-default,
+    #payment-form .btn-default-tair {
+      border-color: #495057 !important; /* Dark gray border */
+      background-color: #f8f9fa;
+      color: #212529;
+    }
+    
+    #payment-form .btn-default:hover,
+    #payment-form .btn-default-tair:hover {
+      border-color: #212529 !important;
+      background-color: #e2e6ea;
+    }
+    
+    #payment-form .btn-primary,
+    #payment-form .btn-primary-tair {
+      border-color: #004085 !important; /* Dark blue border */
+    }
+    
+    #payment-form .btn-success,
+    #payment-form .btn-success-tair {
+      border-color: #155724 !important; /* Dark green border */
+    }
+    
+    /* Select dropdown */
+    #payment-form select.form-control {
+      border: 2px solid #767676 !important;
+    }
+    
+    /* Fieldset border for expiration date */
+    #payment-form fieldset {
+      border: 2px solid #767676;
+      padding: 10px;
+      border-radius: 4px;
+      margin-bottom: 15px;
+    }
+    
+    #payment-form fieldset legend {
+      width: auto;
+      padding: 0 10px;
+      margin-bottom: 10px;
+      border: none;
+      font-size: inherit;
+    }
+  </style>
   <div class="row">
     <div
       class="col-xs-11"
@@ -14,7 +80,7 @@
         ng-submit="validateAndSubmit() && (partnerId.toLowerCase() === 'tair' ? makeChargeBucket(false, 'confirm') : makeCharge(false, 'confirm'))"
       >
         <div class="row">
-          <div class="col-xs-6">
+          <div class="col-xs-12 col-sm-6">
             <div class="form-group">
               <label
                 for="firstname"
@@ -32,7 +98,7 @@
               />
             </div>
           </div>
-          <div class="col-xs-6">
+          <div class="col-xs-12 col-sm-6">
             <div class="form-group">
               <label
                 for="lastname"
@@ -52,7 +118,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-xs-6">
+          <div class="col-xs-12 col-sm-6">
             <div class="form-group">
               <label for="email" class="payment-confirmation-individual-label"
                 ><span aria-hidden="true">*</span> Email (for receipts/activation codes)</label
@@ -69,7 +135,7 @@
               />
             </div>
           </div>
-          <div class="col-xs-6">
+          <div class="col-xs-12 col-sm-6">
             <div class="form-group">
               <label
                 for="emailConfirm"
@@ -109,7 +175,7 @@
         </div>
 
         <div class="row">
-          <div class="col-xs-6">
+          <div class="col-xs-12 col-sm-6">
             <div class="form-group">
               <label for="street" class="payment-confirmation-individual-label"
                 ><span aria-hidden="true">*</span> Billing Address Street</label
@@ -125,7 +191,7 @@
               />
             </div>
           </div>
-          <div class="col-xs-6">
+          <div class="col-xs-12 col-sm-6">
             <div class="form-group">
               <label for="city" class="payment-confirmation-individual-label"
                 ><span aria-hidden="true">*</span> City</label
@@ -143,7 +209,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-xs-3">
+          <div class="col-xs-12 col-sm-3">
             <div class="form-group">
               <label for="state" class="payment-confirmation-individual-label"
                 >State/Province</label
@@ -157,7 +223,7 @@
               />
             </div>
           </div>
-          <div class="col-xs-3">
+          <div class="col-xs-12 col-sm-3">
             <div class="form-group">
               <label for="zip" class="payment-confirmation-individual-label"
                 ><span aria-hidden="true">*</span> Zip/Postal Code</label
@@ -173,7 +239,7 @@
               />
             </div>
           </div>
-          <div class="col-xs-6">
+          <div class="col-xs-12 col-sm-6">
             <div class="form-group">
               <label for="country" class="payment-confirmation-individual-label"
                 ><span aria-hidden="true">*</span> Country</label
@@ -194,7 +260,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-xs-6">
+          <div class="col-xs-12 col-sm-6">
             <div class="form-group">
               <label
                 for="creditcard"
@@ -214,14 +280,14 @@
               />
             </div>
           </div>
-          <div class="col-xs-3">
+          <div class="col-xs-12 col-sm-3">
             <fieldset class="form-group">
               <legend class="payment-confirmation-individual-label"
                 ><span aria-hidden="true">*</span> Expiration Date</legend
               >
               <div class="row">
                 <div class="col-xs-6">
-                  <label for="expmonth" class="sr-only">Expiration month</label>
+                  <label for="expmonth" class="payment-confirmation-individual-label" style="font-size: 12px; display: block; margin-bottom: 5px;">Month</label>
                   <input
                     type="text"
                     size="2"
@@ -237,7 +303,7 @@
                   />
                 </div>
                 <div class="col-xs-6" style="padding-left: 0px;">
-                  <label for="expyear" class="sr-only">Expiration year</label>
+                  <label for="expyear" class="payment-confirmation-individual-label" style="font-size: 12px; display: block; margin-bottom: 5px;">Year</label>
                   <input
                     type="text"
                     size="4"
@@ -254,7 +320,7 @@
               </div>
             </fieldset>
           </div>
-          <div class="col-xs-3">
+          <div class="col-xs-12 col-sm-3">
             <div class="form-group">
               <label for="cvc" class="payment-confirmation-individual-label"
                 ><span aria-hidden="true">*</span> CVC</label
@@ -300,29 +366,32 @@
         </div>
         <span style="color: red;">{{ stripeerrors }}</span>
         <div class="row">
-          <div class="col-xs-4 text-center">
+          <div class="col-xs-12 col-sm-4 text-center" style="margin-bottom: 10px;">
             <button
               type="button"
               class="btn btn-default btn-default-tair"
               ng-click="next('bucket')"
+              style="width: 100%; max-width: 200px;"
             >
               BACK
             </button>
           </div>
-          <div class="col-xs-4 text-center">
+          <div class="col-xs-12 col-sm-4 text-center" style="margin-bottom: 10px;">
             <button
               type="button"
               class="btn btn-default btn-default-tair"
               ng-click="reset()"
+              style="width: 100%; max-width: 200px;"
             >
               RESET
             </button>
           </div>
-          <div class="col-xs-4 text-center">
+          <div class="col-xs-12 col-sm-4 text-center" style="margin-bottom: 10px;">
             <button
               type="submit"
               class="btn"
               ng-class=" validate() ? 'btn-success btn-success-tair' : 'btn-primary btn-primary-tair' "
+              style="width: 100%; max-width: 200px;"
             >
               NEXT
             </button>

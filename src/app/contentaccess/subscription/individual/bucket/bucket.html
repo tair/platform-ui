@@ -1,4 +1,52 @@
 <div ng-controller="BucketController">
+	<style>
+		/* Ensure form controls have sufficient contrast (3:1 minimum) */
+		.checkbox input[type="checkbox"] {
+			width: 18px;
+			height: 18px;
+			border: 2px solid #767676 !important;
+			margin-right: 8px;
+		}
+		
+		.radio input[type="radio"] {
+			width: 18px;
+			height: 18px;
+			border: 2px solid #767676 !important;
+		}
+		
+		/* Buttons with sufficient border contrast */
+		.btn {
+			border: 2px solid #767676 !important;
+		}
+		
+		.btn-default,
+		.btn-default-tair {
+			border-color: #495057 !important; /* Dark gray border - 9:1 contrast */
+			background-color: #f8f9fa;
+			color: #212529;
+		}
+		
+		.btn-default:hover,
+		.btn-default-tair:hover {
+			border-color: #212529 !important;
+			background-color: #e2e6ea;
+		}
+		
+		.btn-primary,
+		.btn-primary-tair {
+			border-color: #004085 !important; /* Dark blue border */
+		}
+		
+		.btn-success,
+		.btn-success-tair {
+			border-color: #155724 !important; /* Dark green border */
+		}
+		
+		.btn:focus {
+			outline: 2px solid #0056b3;
+			outline-offset: 2px;
+		}
+	</style>
 	<div class="row">
 	  <div
 		class="col-xs-12"
@@ -92,29 +140,32 @@
 		  </div>
 		  <span style="color: red;">{{errors}}</span>
 		  <div class="row">
-			<div class="col-xs-4 text-center">
+			<div class="col-xs-12 col-sm-4 text-center" style="margin-bottom: 10px;">
 			  <button
 				type="button"
 				class="btn btn-default btn-default-tair"
 				ng-click="switchTab('landing')"
+				style="width: 100%; max-width: 200px;"
 			  >
 				BACK
 			  </button>
 			</div>
-			<div class="col-xs-4 text-center">
+			<div class="col-xs-12 col-sm-4 text-center" style="margin-bottom: 10px;">
 			  <button
 				type="button"
 				class="btn btn-default btn-default-tair"
 				ng-click="reset()"
+				style="width: 100%; max-width: 200px;"
 			  >
 				RESET FORM
 			  </button>
 			</div>
-			<div class="col-xs-4 text-center">
+			<div class="col-xs-12 col-sm-4 text-center" style="margin-bottom: 10px;">
 			  <button
 				type="submit"
 				class="btn"
 				ng-class=" validate() ? 'btn-success btn-success-tair' : 'btn-primary btn-primary-tair' "
+				style="width: 100%; max-width: 200px;"
 			  >
 				NEXT
 			  </button>
