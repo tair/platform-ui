@@ -58,6 +58,12 @@ angular.module('platform-ui.contentaccess.subscription.landing').controller(
       $scope.set_license = function (str) {
         $scope.license = str
       }
+      $scope.handleKeyPress = function (event, license) {
+        if (event.keyCode === 13 || event.keyCode === 32) {
+          event.preventDefault()
+          $scope.set_license(license)
+        }
+      }
       init()
 
       function init() {
