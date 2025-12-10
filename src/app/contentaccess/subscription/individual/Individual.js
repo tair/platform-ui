@@ -55,40 +55,6 @@ angular
           },
         },
       },
-      resolve: {
-        authCheck: [
-          '$cookies',
-          '$stateParams',
-          '$state',
-          function ($cookies, $stateParams, $state) {
-            var partnerId = $stateParams.partnerId
-            var isTair = partnerId && partnerId.toLowerCase() === 'tair'
-            var hasOrcid = !!$stateParams.orcid_id
-            var hasCredential = !!$cookies.credentialId
-
-            if (!isTair) {
-              return
-            }
-
-            if (hasCredential || hasOrcid) {
-              return
-            }
-
-            var returnUrl =
-              '/contentaccess/subscription/individual?partnerId=' + partnerId
-            if ($stateParams.redirect) {
-              returnUrl +=
-                '&redirect=' + encodeURIComponent($stateParams.redirect)
-            }
-
-            return $state.go('login.form', {
-              partnerId: partnerId,
-              redirect: $stateParams.redirect,
-              returnTo: returnUrl,
-            })
-          },
-        ],
-      },
     })
       
       .state('subscription.individual.pay', {
