@@ -64,7 +64,7 @@ angular
           },
         },
         resolve: {
-          authCheck: ['$cookies', '$stateParams', '$state', function($cookies, $stateParams, $state) {
+          authCheck: ['$cookies', '$stateParams', '$state', '$q', function($cookies, $stateParams, $state, $q) {
             var partnerId = $stateParams.partnerId;
             var isTair = partnerId && partnerId.toLowerCase() === 'tair';
             
@@ -79,13 +79,16 @@ angular
                 if ($stateParams.redirect) {
                   returnUrl += '&redirect=' + encodeURIComponent($stateParams.redirect);
                 }
-                return $state.go('login.form', {
+                $state.go('login.form', {
                   partnerId: partnerId,
                   redirect: $stateParams.redirect,
                   returnTo: returnUrl,
                 });
+                // Return rejected promise to prevent current state from loading
+                return $q.reject('Authentication required');
               }
             }
+            return $q.resolve();
           }]
         }
       })
