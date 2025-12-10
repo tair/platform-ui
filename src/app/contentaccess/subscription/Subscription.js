@@ -64,20 +64,27 @@ angular
           },
         },
         resolve: {
-          redirectToProperView: ['$state', '$stateParams', function($state, $stateParams) {
+          authCheck: ['$cookies', '$stateParams', '$state', function($cookies, $stateParams, $state) {
             var partnerId = $stateParams.partnerId;
+            var isTair = partnerId && partnerId.toLowerCase() === 'tair';
             
-            // If we're already in a child state, don't redirect
-            if ($state.current.name !== 'subscription.individual') {
-              return;
-            }
-
-            if (partnerId && partnerId.toLowerCase() === 'tair') {
-              console.log('partnerId is tair; redirecting to bucket')
-              return $state.go('subscription.individual.bucket', $stateParams);
-            } else {
-              console.log('partnerId is not tair; redirecting to term')
-              return $state.go('subscription.individual.term', $stateParams);
+            // Only require login for TAIR partner
+            if (isTair) {
+              var hasCredential = !!$cookies.credentialId;
+              var hasOrcid = !!$stateParams.orcid_id;
+              
+              if (!hasCredential && !hasOrcid) {
+                // Not logged in - redirect to login
+                var returnUrl = '/contentaccess/subscription/individual?partnerId=' + partnerId;
+                if ($stateParams.redirect) {
+                  returnUrl += '&redirect=' + encodeURIComponent($stateParams.redirect);
+                }
+                return $state.go('login.form', {
+                  partnerId: partnerId,
+                  redirect: $stateParams.redirect,
+                  returnTo: returnUrl,
+                });
+              }
             }
           }]
         }

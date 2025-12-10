@@ -261,7 +261,6 @@ angular.module('platform-ui.contentaccess.subscription.individual').controller(
         $scope.selectedSubscription = IndividualModel.selectedSubscription
         $scope.selectedSubscriptionBucket = IndividualModel.selectedSubscriptionBucket
         $scope.loading = false
-        console.log('IndividualController init ', $state.params)
         $scope.orcid_id = $state.params.orcid_id
         // Set credentialId from cookie for logged-in users
         if ($cookies.credentialId) {
@@ -271,7 +270,6 @@ angular.module('platform-ui.contentaccess.subscription.individual').controller(
         // Set the currentTab based on partnerId
         var partnerId = $state.params.partnerId;
         if (partnerId && partnerId.toLowerCase() === 'tair') {
-          console.log('partnerId is tair')
           $state.go('subscription.individual.bucket', {
             partnerId: partnerId,
             redirect: $state.params.redirect,
