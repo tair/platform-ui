@@ -19,7 +19,7 @@ angular
   .config(function ($stateProvider) {
     $stateProvider
       .state('login.form', {
-        url: '?{partnerId}&{redirect}',
+        url: '?{partnerId}&{redirect}&{returnTo}',
         views: {
           login: {
             templateUrl: 'contentaccess/login/form/form.html',

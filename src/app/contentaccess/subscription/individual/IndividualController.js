@@ -13,10 +13,11 @@ angular.module('platform-ui.contentaccess.subscription.individual').controller(
     '$rootScope',
     '$state',
     '$location',
+    '$cookies',
     'IndividualModel',
 
     /* Controller Definition */
-    function ($http, $scope, $rootScope, $state, $location, IndividualModel) {
+    function ($http, $scope, $rootScope, $state, $location, $cookies, IndividualModel) {
       init()
 
       $scope.next = function (nextTab) {
@@ -223,7 +224,8 @@ angular.module('platform-ui.contentaccess.subscription.individual').controller(
                   other: $scope.formdata.other, //PW-248
                   redirect: $scope.redirect,
                   domain: $scope.domain,
-                  orcid_id: $scope.orcid_id || ""
+                  orcid_id: $scope.orcid_id || "",
+                  credentialId: $scope.credentialId || ""
                 },
                 method: 'POST',
                 timeout: 30000
@@ -261,6 +263,10 @@ angular.module('platform-ui.contentaccess.subscription.individual').controller(
         $scope.loading = false
         console.log('IndividualController init ', $state.params)
         $scope.orcid_id = $state.params.orcid_id
+        // Set credentialId from cookie for logged-in users
+        if ($cookies.credentialId) {
+          $scope.credentialId = $cookies.credentialId
+        }
         
         // Set the currentTab based on partnerId
         var partnerId = $state.params.partnerId;
