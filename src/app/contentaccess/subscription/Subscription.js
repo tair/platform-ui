@@ -63,33 +63,5 @@ angular
               'contentaccess/subscription/individual/individual.html',
           },
         },
-        resolve: {
-          authCheck: ['$cookies', '$stateParams', '$state', '$q', function($cookies, $stateParams, $state, $q) {
-            var partnerId = $stateParams.partnerId;
-            var isTair = partnerId && partnerId.toLowerCase() === 'tair';
-            
-            // Only require login for TAIR partner
-            if (isTair) {
-              var hasCredential = !!$cookies.credentialId;
-              var hasOrcid = !!$stateParams.orcid_id;
-              
-              if (!hasCredential && !hasOrcid) {
-                // Not logged in - redirect to login
-                var returnUrl = '/contentaccess/subscription/individual?partnerId=' + partnerId;
-                if ($stateParams.redirect) {
-                  returnUrl += '&redirect=' + encodeURIComponent($stateParams.redirect);
-                }
-                $state.go('login.form', {
-                  partnerId: partnerId,
-                  redirect: $stateParams.redirect,
-                  returnTo: returnUrl,
-                });
-                // Return rejected promise to prevent current state from loading
-                return $q.reject('Authentication required');
-              }
-            }
-            return $q.resolve();
-          }]
-        }
       })
   })

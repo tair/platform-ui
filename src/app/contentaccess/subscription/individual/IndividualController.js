@@ -267,9 +267,24 @@ angular.module('platform-ui.contentaccess.subscription.individual').controller(
           $scope.credentialId = $cookies.credentialId
         }
         
-        // Set the currentTab based on partnerId
+        // Require login for TAIR partner
         var partnerId = $state.params.partnerId;
-        if (partnerId && partnerId.toLowerCase() === 'tair') {
+        var isTair = partnerId && partnerId.toLowerCase() === 'tair';
+        if (isTair && !$cookies.credentialId && !$state.params.orcid_id) {
+          var returnUrl = '/contentaccess/subscription/individual?partnerId=' + partnerId;
+          if ($state.params.redirect) {
+            returnUrl += '&redirect=' + encodeURIComponent($state.params.redirect);
+          }
+          $state.go('login.form', {
+            partnerId: partnerId,
+            redirect: $state.params.redirect,
+            returnTo: returnUrl,
+          });
+          return;
+        }
+
+        // Set the currentTab based on partnerId
+        if (isTair) {
           $state.go('subscription.individual.bucket', {
             partnerId: partnerId,
             redirect: $state.params.redirect,
