@@ -10,11 +10,12 @@ angular
 		'$scope',
 		'$cookies',
 		'$rootScope',
+		'$state',
 		'$stateParams',
 		'BucketModel',
 
 		/* Controller Definition */
-		function ($http, $scope, $cookies, $rootScope, $stateParams, BucketModel) {
+		function ($http, $scope, $cookies, $rootScope, $state, $stateParams, BucketModel) {
 			init()
 
 			$scope.validate = function () {
@@ -50,20 +51,28 @@ angular
 
 			function init() {
 				var debugMsg = ''
-				// $scope.subscriptions = BucketModel.subscriptions
-				if ($scope.partnerId == null) {
-					console.log('partnerId is null')
-				}
-				if ($stateParams.orcid_id == null) {
-					console.log('orcid_id is null')
-					if ($cookies.credentialId != null) {
-						$scope.credentialId = $cookies.credentialId
-						console.log($scope.credentialId)
-					} else {
-						console.log('credentialId is null')
+				var partnerId = $stateParams.partnerId;
+				var isTair = partnerId && partnerId.toLowerCase() === 'tair';
+
+				// Require login for TAIR partner
+				if (isTair && !$cookies.credentialId && !$stateParams.orcid_id) {
+					var returnUrl = '/contentaccess/subscription/individual?partnerId=' + partnerId;
+					if ($stateParams.redirect) {
+						returnUrl += '&redirect=' + encodeURIComponent($stateParams.redirect);
 					}
+					$state.go('login.form', {
+						partnerId: partnerId,
+						redirect: $stateParams.redirect,
+						returnTo: returnUrl,
+					});
+					return;
 				}
 
+				if ($stateParams.orcid_id == null) {
+					if ($cookies.credentialId != null) {
+						$scope.credentialId = $cookies.credentialId
+					}
+				}
 
 				//rewrite the default values with correct actual values
 				$http({
