@@ -12,11 +12,12 @@ angular.module('platform-ui.contentaccess.subscription.landing').controller(
     '$scope',
     '$location',
     '$state',
+    '$cookies',
     'Title',
     'LandingModel',
 
     /* Controller Definition */
-    function ($http, $scope, $location, $state, Title, LandingModel) {
+    function ($http, $scope, $location, $state, $cookies, Title, LandingModel) {
       $scope.next = function () {
         if ($scope.license == 'def') {
           alert('Please select a license type')
@@ -24,6 +25,20 @@ angular.module('platform-ui.contentaccess.subscription.landing').controller(
         }
         //$scope.switchTab($scope.license);
         if ($scope.license == 'individual') {
+          var isTair = $scope.partnerId && $scope.partnerId.toLowerCase() === 'tair';
+          // Require login for TAIR individual subscriptions
+          if (isTair && !$cookies.credentialId && !$state.params.orcid_id) {
+            var returnUrl = '/contentaccess/subscription/individual?partnerId=' + $scope.partnerId;
+            if ($scope.redirect) {
+              returnUrl += '&redirect=' + encodeURIComponent($scope.redirect);
+            }
+            $state.go('login.form', {
+              partnerId: $scope.partnerId,
+              redirect: $scope.redirect,
+              returnTo: returnUrl,
+            });
+            return;
+          }
           if ($scope.partnerId && $scope.partnerId.toLowerCase() != 'tair') {
             $state.go('subscription.individual.term', {
               partnerId: $scope.partnerId,

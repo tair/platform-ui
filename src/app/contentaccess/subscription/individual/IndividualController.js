@@ -13,10 +13,11 @@ angular.module('platform-ui.contentaccess.subscription.individual').controller(
     '$rootScope',
     '$state',
     '$location',
+    '$cookies',
     'IndividualModel',
 
     /* Controller Definition */
-    function ($http, $scope, $rootScope, $state, $location, IndividualModel) {
+    function ($http, $scope, $rootScope, $state, $location, $cookies, IndividualModel) {
       init()
 
       $scope.next = function (nextTab) {
@@ -223,7 +224,8 @@ angular.module('platform-ui.contentaccess.subscription.individual').controller(
                   other: $scope.formdata.other, //PW-248
                   redirect: $scope.redirect,
                   domain: $scope.domain,
-                  orcid_id: $scope.orcid_id || ""
+                  orcid_id: $scope.orcid_id || "",
+                  credentialId: $scope.credentialId || ""
                 },
                 method: 'POST',
                 timeout: 30000
@@ -259,13 +261,30 @@ angular.module('platform-ui.contentaccess.subscription.individual').controller(
         $scope.selectedSubscription = IndividualModel.selectedSubscription
         $scope.selectedSubscriptionBucket = IndividualModel.selectedSubscriptionBucket
         $scope.loading = false
-        console.log('IndividualController init ', $state.params)
         $scope.orcid_id = $state.params.orcid_id
+        // Set credentialId from cookie for logged-in users
+        if ($cookies.credentialId) {
+          $scope.credentialId = $cookies.credentialId
+        }
         
-        // Set the currentTab based on partnerId
+        // Require login for TAIR partner
         var partnerId = $state.params.partnerId;
-        if (partnerId && partnerId.toLowerCase() === 'tair') {
-          console.log('partnerId is tair')
+        var isTair = partnerId && partnerId.toLowerCase() === 'tair';
+        if (isTair && !$cookies.credentialId && !$state.params.orcid_id) {
+          var returnUrl = '/contentaccess/subscription/individual?partnerId=' + partnerId;
+          if ($state.params.redirect) {
+            returnUrl += '&redirect=' + encodeURIComponent($state.params.redirect);
+          }
+          $state.go('login.form', {
+            partnerId: partnerId,
+            redirect: $state.params.redirect,
+            returnTo: returnUrl,
+          });
+          return;
+        }
+
+        // Set the currentTab based on partnerId
+        if (isTair) {
           $state.go('subscription.individual.bucket', {
             partnerId: partnerId,
             redirect: $state.params.redirect,
