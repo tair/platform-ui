@@ -27,7 +27,7 @@ angular.module('platform-ui.contentaccess.subscription.landing').controller(
         if ($scope.license == 'individual') {
           var isTair = $scope.partnerId && $scope.partnerId.toLowerCase() === 'tair';
           // Require login for TAIR individual subscriptions
-          if (isTair && !$cookies.credentialId) {
+          if (isTair && !$cookies.credentialId && !$state.params.orcid_id) {
             var returnUrl = '/contentaccess/subscription/individual?partnerId=' + $scope.partnerId;
             if ($scope.redirect) {
               returnUrl += '&redirect=' + encodeURIComponent($scope.redirect);
@@ -39,7 +39,7 @@ angular.module('platform-ui.contentaccess.subscription.landing').controller(
             });
             return;
           }
-          if (!isTair) {
+          if ($scope.partnerId && $scope.partnerId.toLowerCase() != 'tair') {
             $state.go('subscription.individual.term', {
               partnerId: $scope.partnerId,
               redirect: $scope.redirect,
