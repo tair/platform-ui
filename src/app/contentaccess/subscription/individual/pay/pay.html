@@ -1,62 +1,28 @@
 <div ng-controller="PayController">
   <style>
-    /* Ensure form controls have sufficient contrast (3:1 minimum) */
+    /* Payment form specific styles */
     #payment-form .form-control {
-      border: 2px solid #767676 !important; /* Medium gray - 4.6:1 contrast with white */
+      border: 2px solid #767676 !important;
       border-radius: 4px;
     }
-    
+
     #payment-form .form-control:focus {
-      border-color: #0056b3 !important; /* Dark blue - high contrast */
+      border-color: #0056b3 !important;
       outline: 2px solid #0056b3;
       outline-offset: 2px;
     }
-    
+
     #payment-form .form-control:hover {
-      border-color: #495057 !important; /* Darker gray on hover */
+      border-color: #495057 !important;
     }
-    
-    /* Buttons with sufficient border contrast */
-    #payment-form .btn {
-      border: 2px solid #767676 !important;
-    }
-    
-    #payment-form .btn-default,
-    #payment-form .btn-default-tair {
-      border-color: #495057 !important; /* Dark gray border */
-      background-color: #f8f9fa;
-      color: #212529;
-    }
-    
-    #payment-form .btn-default:hover,
-    #payment-form .btn-default-tair:hover {
-      border-color: #212529 !important;
-      background-color: #e2e6ea;
-    }
-    
-    #payment-form .btn-primary,
-    #payment-form .btn-primary-tair {
-      border-color: #004085 !important; /* Dark blue border */
-    }
-    
-    #payment-form .btn-success,
-    #payment-form .btn-success-tair {
-      border-color: #155724 !important; /* Dark green border */
-    }
-    
-    /* Select dropdown */
-    #payment-form select.form-control {
-      border: 2px solid #767676 !important;
-    }
-    
-    /* Fieldset border for expiration date */
+
     #payment-form fieldset {
       border: 2px solid #767676;
       padding: 10px;
       border-radius: 4px;
       margin-bottom: 15px;
     }
-    
+
     #payment-form fieldset legend {
       width: auto;
       padding: 0 10px;

@@ -13,9 +13,10 @@ angular
 		'$state',
 		'$stateParams',
 		'BucketModel',
+		'TairAuthGuard',
 
 		/* Controller Definition */
-		function ($http, $scope, $cookies, $rootScope, $state, $stateParams, BucketModel) {
+		function ($http, $scope, $cookies, $rootScope, $state, $stateParams, BucketModel, TairAuthGuard) {
 			init()
 
 			$scope.validate = function () {
@@ -55,16 +56,7 @@ angular
 				var isTair = partnerId && partnerId.toLowerCase() === 'tair';
 
 				// Require login for TAIR partner
-				if (isTair && !$cookies.credentialId && !$stateParams.orcid_id) {
-					var returnUrl = '/contentaccess/subscription/individual?partnerId=' + partnerId;
-					if ($stateParams.redirect) {
-						returnUrl += '&redirect=' + encodeURIComponent($stateParams.redirect);
-					}
-					$state.go('login.form', {
-						partnerId: partnerId,
-						redirect: $stateParams.redirect,
-						returnTo: returnUrl,
-					});
+				if (TairAuthGuard.requireLogin(partnerId, $stateParams.orcid_id, $stateParams.redirect)) {
 					return;
 				}
 

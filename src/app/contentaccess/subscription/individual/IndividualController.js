@@ -15,9 +15,10 @@ angular.module('platform-ui.contentaccess.subscription.individual').controller(
     '$location',
     '$cookies',
     'IndividualModel',
+    'TairAuthGuard',
 
     /* Controller Definition */
-    function ($http, $scope, $rootScope, $state, $location, $cookies, IndividualModel) {
+    function ($http, $scope, $rootScope, $state, $location, $cookies, IndividualModel, TairAuthGuard) {
       init()
 
       $scope.next = function (nextTab) {
@@ -270,16 +271,7 @@ angular.module('platform-ui.contentaccess.subscription.individual').controller(
         // Require login for TAIR partner
         var partnerId = $state.params.partnerId;
         var isTair = partnerId && partnerId.toLowerCase() === 'tair';
-        if (isTair && !$cookies.credentialId && !$state.params.orcid_id) {
-          var returnUrl = '/contentaccess/subscription/individual?partnerId=' + partnerId;
-          if ($state.params.redirect) {
-            returnUrl += '&redirect=' + encodeURIComponent($state.params.redirect);
-          }
-          $state.go('login.form', {
-            partnerId: partnerId,
-            redirect: $state.params.redirect,
-            returnTo: returnUrl,
-          });
+        if (TairAuthGuard.requireLogin(partnerId, $state.params.orcid_id, $state.params.redirect)) {
           return;
         }
 

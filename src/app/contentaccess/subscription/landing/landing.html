@@ -1,8 +1,8 @@
 <div ng-controller="LandingController">
   <style>
-    /* Ensure interactive elements have sufficient border contrast (3:1 minimum) */
+    /* License option styles specific to landing page */
     .license-option {
-      border: 2px solid #767676 !important; /* 4.6:1 contrast with white */
+      border: 2px solid #767676 !important;
       border-radius: 8px;
       cursor: pointer;
       transition: all 0.2s ease;
@@ -12,61 +12,41 @@
       min-height: 240px;
       height: 100%;
     }
-    
+
     .license-option:hover {
-      border-color: #495057 !important; /* Darker on hover */
+      border-color: #495057 !important;
       box-shadow: 0 2px 8px rgba(0,0,0,0.15);
     }
-    
+
     .license-option:focus {
       outline: 2px solid #0056b3;
       outline-offset: 2px;
       border-color: #0056b3 !important;
     }
-    
+
     .highlight-license {
-      border-color: #155724 !important; /* Dark green for selected - 7:1 contrast */
+      border-color: #155724 !important;
       background-color: #d4edda;
       box-shadow: 0 2px 8px rgba(21, 87, 36, 0.2);
     }
-    
+
     .license-option-content {
       flex-grow: 1;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
     }
-    
+
     .license-option h2 {
       margin: 10px 0;
       word-wrap: break-word;
       overflow-wrap: break-word;
     }
-    
+
     .license-option p {
       margin: 5px 0 0 0;
       word-wrap: break-word;
       overflow-wrap: break-word;
-    }
-    
-    /* Button contrast */
-    .btn {
-      border: 2px solid #767676 !important;
-    }
-    
-    .btn-primary,
-    .btn-primary-tair {
-      border-color: #004085 !important;
-    }
-    
-    .btn-success,
-    .btn-success-tair {
-      border-color: #155724 !important;
-    }
-    
-    .btn:focus {
-      outline: 2px solid #0056b3;
-      outline-offset: 2px;
     }
   </style>
   <!-- Tabs -->
