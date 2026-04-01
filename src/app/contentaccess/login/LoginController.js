@@ -83,8 +83,8 @@ angular.module('platform-ui.contentaccess.login').controller(
             $cookies.credentialId = data['credentialId'] //Credential.partyId
             $cookies.secretKey = data['secretKey']
           var returnTo = $location.search()['returnTo']
-          if (returnTo) {
-            // If returnTo is provided, navigate internally instead of proxy redirect
+          if (returnTo && returnTo.indexOf('/contentaccess/') === 0) {
+            // Only allow internal navigation to contentaccess paths
             $location.url(returnTo)
             return
           }
