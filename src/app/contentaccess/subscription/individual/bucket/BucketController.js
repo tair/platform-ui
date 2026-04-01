@@ -10,11 +10,13 @@ angular
 		'$scope',
 		'$cookies',
 		'$rootScope',
+		'$state',
 		'$stateParams',
 		'BucketModel',
+		'TairAuthGuard',
 
 		/* Controller Definition */
-		function ($http, $scope, $cookies, $rootScope, $stateParams, BucketModel) {
+		function ($http, $scope, $cookies, $rootScope, $state, $stateParams, BucketModel, TairAuthGuard) {
 			init()
 
 			$scope.validate = function () {
@@ -50,20 +52,19 @@ angular
 
 			function init() {
 				var debugMsg = ''
-				// $scope.subscriptions = BucketModel.subscriptions
-				if ($scope.partnerId == null) {
-					console.log('partnerId is null')
-				}
-				if ($stateParams.orcid_id == null) {
-					console.log('orcid_id is null')
-					if ($cookies.credentialId != null) {
-						$scope.credentialId = $cookies.credentialId
-						console.log($scope.credentialId)
-					} else {
-						console.log('credentialId is null')
-					}
+				var partnerId = $stateParams.partnerId;
+				var isTair = partnerId && partnerId.toLowerCase() === 'tair';
+
+				// Require login for TAIR partner
+				if (TairAuthGuard.requireLogin(partnerId, $stateParams.orcid_id, $stateParams.redirect)) {
+					return;
 				}
 
+				if ($stateParams.orcid_id == null) {
+					if ($cookies.credentialId != null) {
+						$scope.credentialId = $cookies.credentialId
+					}
+				}
 
 				//rewrite the default values with correct actual values
 				$http({

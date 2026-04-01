@@ -82,7 +82,13 @@ angular.module('platform-ui.contentaccess.login').controller(
           .success(function (data, status, headers, config) {
             $cookies.credentialId = data['credentialId'] //Credential.partyId
             $cookies.secretKey = data['secretKey']
-            callProxy(data)
+          var returnTo = $location.search()['returnTo']
+          if (returnTo && returnTo.indexOf('/contentaccess/') === 0) {
+            // Only allow internal navigation to contentaccess paths
+            $location.url(returnTo)
+            return
+          }
+          callProxy(data)
             //$state.go("login.success"); // PW-147: YM: No more login confirmation page.
             //alert('Login successful: '+$cookies.secretKey);
           })
