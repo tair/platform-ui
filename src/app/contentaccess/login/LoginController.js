@@ -72,7 +72,25 @@ angular.module('platform-ui.contentaccess.login').controller(
           })
       }
 
+      // The page only learns its partner from the URL, and only at load. With no
+      // partnerId nothing can match, and the API's answers are indistinguishable
+      // from a wrong username or password.
+      var hasPartnerId = function () {
+        if ($scope.partnerId) {
+          return true
+        }
+        bootbox.alert(
+          'This page is missing information about the site you came from, so we ' +
+            'cannot complete that. Please go back to that site and use its log in ' +
+            'link, or contact us at info@phoenixbioinformatics.org.'
+        )
+        return false
+      }
+
       $scope.login = function () {
+        if (!hasPartnerId()) {
+          return
+        }
         $http({
           url:
             $scope.apiUri + '/credentials/login/?partnerId=' + $scope.partnerId,
@@ -93,10 +111,19 @@ angular.module('platform-ui.contentaccess.login').controller(
             //alert('Login successful: '+$cookies.secretKey);
           })
           .error(function (data, status, headers, config) {
-            console.log('data=' + data['message'] + ';status=' + status)
-            bootbox.alert(
-              "The user name and password you entered don't match our records"
-            )
+            // Only a 401 actually means the credentials were wrong. Reporting every
+            // failure that way sends people off retyping a password that was fine.
+            if (status === 401) {
+              bootbox.alert(
+                "The user name and password you entered don't match our records"
+              )
+            } else {
+              bootbox.alert(
+                'Something went wrong and we could not sign you in. Please try ' +
+                  'again in a few minutes, or contact us at ' +
+                  'info@phoenixbioinformatics.org if the problem continues.'
+              )
+            }
           })
       }
 
@@ -134,6 +161,9 @@ angular.module('platform-ui.contentaccess.login').controller(
       }
 
       $scope.resetPwd = function () {
+        if (!hasPartnerId()) {
+          return
+        }
         if (confirm('Are you sure you want to reset your password?')) {
           //email masking tests. to remove later
           console.log('a@arabi.com=>' + maskEmail('a@arabi.com'))
@@ -158,8 +188,6 @@ angular.module('platform-ui.contentaccess.login').controller(
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           })
             .success(function (data, status, headers, config) {
-              console.log('status', status)
-              console.log('data', data)
               $scope.formdata.email = data['useremail']
               maskedEmail = maskEmail($scope.formdata.email)
               bootbox.alert(
@@ -168,13 +196,22 @@ angular.module('platform-ui.contentaccess.login').controller(
               )
             })
             .error(function (data, status, headers, config) {
-              bootbox.alert(
-                'User ' +
-                  $scope.formdata.user +
-                  ' not found; username is case sensitive'
-              )
-              console.log('status', status)
-              console.log('data', data)
+              // Only a 401 means the username was genuinely not found. Anything else
+              // is our fault, and blaming the username sends people off retrying
+              // capitalisation instead of telling us something is broken.
+              if (status === 401) {
+                bootbox.alert(
+                  'We could not find an account with the username ' +
+                    $scope.formdata.user +
+                    '. Please check it and try again.'
+                )
+              } else {
+                bootbox.alert(
+                  'Something went wrong and your password could not be reset. ' +
+                    'Please try again in a few minutes, or contact us at ' +
+                    'info@phoenixbioinformatics.org if the problem continues.'
+                )
+              }
             })
         }
       }
