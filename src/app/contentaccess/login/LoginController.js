@@ -72,7 +72,25 @@ angular.module('platform-ui.contentaccess.login').controller(
           })
       }
 
+      // The page only learns its partner from the URL, and only at load. With no
+      // partnerId nothing can match, and the API's answers are indistinguishable
+      // from a wrong username or password.
+      var hasPartnerId = function () {
+        if ($scope.partnerId) {
+          return true
+        }
+        bootbox.alert(
+          'This page is missing information about the site you came from, so we ' +
+            'cannot complete that. Please go back to that site and use its log in ' +
+            'link, or contact us at info@phoenixbioinformatics.org.'
+        )
+        return false
+      }
+
       $scope.login = function () {
+        if (!hasPartnerId()) {
+          return
+        }
         $http({
           url:
             $scope.apiUri + '/credentials/login/?partnerId=' + $scope.partnerId,
@@ -145,6 +163,9 @@ angular.module('platform-ui.contentaccess.login').controller(
       }
 
       $scope.resetPwd = function () {
+        if (!hasPartnerId()) {
+          return
+        }
         if (confirm('Are you sure you want to reset your password?')) {
           //email masking tests. to remove later
           console.log('a@arabi.com=>' + maskEmail('a@arabi.com'))
