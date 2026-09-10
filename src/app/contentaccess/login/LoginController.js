@@ -111,8 +111,6 @@ angular.module('platform-ui.contentaccess.login').controller(
             //alert('Login successful: '+$cookies.secretKey);
           })
           .error(function (data, status, headers, config) {
-            console.log('status', status)
-            console.log('data', data)
             // Only a 401 actually means the credentials were wrong. Reporting every
             // failure that way sends people off retyping a password that was fine.
             if (status === 401) {
@@ -190,8 +188,6 @@ angular.module('platform-ui.contentaccess.login').controller(
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
           })
             .success(function (data, status, headers, config) {
-              console.log('status', status)
-              console.log('data', data)
               $scope.formdata.email = data['useremail']
               maskedEmail = maskEmail($scope.formdata.email)
               bootbox.alert(
@@ -200,8 +196,6 @@ angular.module('platform-ui.contentaccess.login').controller(
               )
             })
             .error(function (data, status, headers, config) {
-              console.log('status', status)
-              console.log('data', data)
               // Only a 401 means the username was genuinely not found. Anything else
               // is our fault, and blaming the username sends people off retrying
               // capitalisation instead of telling us something is broken.
