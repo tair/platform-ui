@@ -93,10 +93,21 @@ angular.module('platform-ui.contentaccess.login').controller(
             //alert('Login successful: '+$cookies.secretKey);
           })
           .error(function (data, status, headers, config) {
-            console.log('data=' + data['message'] + ';status=' + status)
-            bootbox.alert(
-              "The user name and password you entered don't match our records"
-            )
+            console.log('status', status)
+            console.log('data', data)
+            // Only a 401 actually means the credentials were wrong. Reporting every
+            // failure that way sends people off retyping a password that was fine.
+            if (status === 401) {
+              bootbox.alert(
+                "The user name and password you entered don't match our records"
+              )
+            } else {
+              bootbox.alert(
+                'Something went wrong and we could not sign you in. Please try ' +
+                  'again in a few minutes, or contact us at ' +
+                  'info@phoenixbioinformatics.org if the problem continues.'
+              )
+            }
           })
       }
 
@@ -168,13 +179,24 @@ angular.module('platform-ui.contentaccess.login').controller(
               )
             })
             .error(function (data, status, headers, config) {
-              bootbox.alert(
-                'User ' +
-                  $scope.formdata.user +
-                  ' not found; username is case sensitive'
-              )
               console.log('status', status)
               console.log('data', data)
+              // Only a 401 means the username was genuinely not found. Anything else
+              // is our fault, and blaming the username sends people off retrying
+              // capitalisation instead of telling us something is broken.
+              if (status === 401) {
+                bootbox.alert(
+                  'We could not find an account with the username ' +
+                    $scope.formdata.user +
+                    '. Please check it and try again.'
+                )
+              } else {
+                bootbox.alert(
+                  'Something went wrong and your password could not be reset. ' +
+                    'Please try again in a few minutes, or contact us at ' +
+                    'info@phoenixbioinformatics.org if the problem continues.'
+                )
+              }
             })
         }
       }
